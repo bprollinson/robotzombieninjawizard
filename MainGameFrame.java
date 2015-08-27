@@ -13,4 +13,10 @@ public class MainGameFrame extends JFrame
         JPanel panel = new MainGamePanel();
         this.getContentPane().add(panel);
     }
+
+    public void renderDisplayCharacter(int i, int j, char displayCharacter)
+    {
+        MainGamePanel panel = (MainGamePanel)this.getContentPane().getComponent(0);
+        panel.renderDisplayCharacter(i, j, displayCharacter);
+    }
 }
