@@ -12,5 +12,10 @@ public class Test
 
         MapRenderer renderer = new MapRenderer(frame);
         renderer.render(map);
+
+        MovementKeyListener listener = new MovementKeyListener(character, map, renderer);
+        frame.getContentPane().setFocusable(true);
+        frame.getContentPane().requestFocus();
+        frame.getContentPane().addKeyListener(listener);
     }
 }
