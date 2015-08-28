@@ -1,6 +1,6 @@
 public class MapGenerator
 {
-    public Map generate()
+    public Map generate(GameCharacter character)
     {
         Map map = new Map();
 
@@ -15,6 +15,10 @@ public class MapGenerator
             map.setElement(i, 0, new Wall());
             map.setElement(i, Map.NUM_COLUMNS - 1, new Wall());
         }
+
+        CharacterMapElement characterMapElement = new CharacterMapElement();
+        map.setElement(1, 1, characterMapElement);
+        character.setMapElement(characterMapElement);
 
         return map;
     }
