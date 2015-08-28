@@ -15,11 +15,14 @@ public class MapRenderer
             {
                 MapElement element = map.getElement(i, j);
 
+                char displayCharacter = ' ';
+
                 if (element != null)
                 {
-                    char displayCharacter = element.getDisplayCharacter();
-                    this.frame.renderDisplayCharacter(i, j, displayCharacter);
+                    displayCharacter = element.getDisplayCharacter();
                 }
+
+                this.frame.renderDisplayCharacter(i, j, displayCharacter);
             }
         }
     }

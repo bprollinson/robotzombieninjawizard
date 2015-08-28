@@ -1,4 +1,4 @@
 test:
 	javac ./*.java
 clean:
-	rm ./*.class
+	rm ./*.class ./*.java~
