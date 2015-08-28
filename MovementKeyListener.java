@@ -48,6 +48,12 @@ class MovementKeyListener implements KeyListener
         int newX = oldX + deltaX;
         int newY = oldY + deltaY;
 
+        MapElement collisionTest = map.getElement(newY, newX);
+        if (collisionTest != null)
+        {
+            return;
+        }
+
         map.setElement(oldY, oldX, null);
         map.setElement(newY, newX, mapElement);
         mapElement.setRow(newY);
