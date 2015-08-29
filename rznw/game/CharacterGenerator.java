@@ -1,11 +1,13 @@
 package rznw.game;
 
-import rznw.game.Robot;
-import rznw.game.Zombie;
-import rznw.game.Ninja;
-import rznw.game.Wizard;
-import rznw.game.Werewolf;
-import rznw.game.Mummy;
+import rznw.game.enemy.EnemyCharacter;
+import rznw.game.enemy.Werewolf;
+import rznw.game.enemy.Mummy;
+import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.Robot;
+import rznw.game.maincharacter.Zombie;
+import rznw.game.maincharacter.Ninja;
+import rznw.game.maincharacter.Wizard;
 
 import java.util.Random;
 

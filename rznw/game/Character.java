@@ -4,7 +4,7 @@ import rznw.map.element.MapElement;
 
 public abstract class Character
 {
-    MapElement mapElement;
+    protected MapElement mapElement;
 
     public MapElement getMapElement()
     {

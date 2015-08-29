@@ -1,5 +1,5 @@
 import rznw.game.CharacterGenerator;
-import rznw.game.MainCharacter;
+import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.MapGenerator;
 import rznw.ui.MainGameFrame;

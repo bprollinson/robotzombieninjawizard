@@ -3,7 +3,7 @@ package rznw.ui;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import rznw.game.MainCharacter;
+import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 

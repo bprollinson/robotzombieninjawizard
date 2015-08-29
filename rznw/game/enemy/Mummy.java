@@ -1,4 +1,4 @@
-package rznw.game;
+package rznw.game.enemy;
 
 import rznw.map.element.EnemyMapElement;
 

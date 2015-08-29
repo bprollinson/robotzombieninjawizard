@@ -1,4 +1,4 @@
-package rznw.game;
+package rznw.game.maincharacter;
 
 import rznw.map.element.CharacterMapElement;
 
