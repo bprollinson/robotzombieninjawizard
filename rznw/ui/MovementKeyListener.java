@@ -34,15 +34,43 @@ public class MovementKeyListener implements KeyListener
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_UP:
+            case KeyEvent.VK_NUMPAD8:
+            case KeyEvent.VK_KP_UP:
                 deltaY = -1;
                 break;
             case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_NUMPAD2:
+            case KeyEvent.VK_KP_DOWN:
                 deltaY = 1;
                 break;
             case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_NUMPAD4:
+            case KeyEvent.VK_KP_LEFT:
                 deltaX = -1;
                 break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_NUMPAD6:
+            case KeyEvent.VK_KP_RIGHT:
+                deltaX = 1;
+                break;
+            case KeyEvent.VK_NUMPAD7:
+            case KeyEvent.VK_HOME:
+                deltaY = -1;
+                deltaX = -1;
+                break;
+            case KeyEvent.VK_NUMPAD9:
+            case KeyEvent.VK_PAGE_UP:
+                deltaY = -1;
+                deltaX = 1;
+                break;
+            case KeyEvent.VK_NUMPAD1:
+            case KeyEvent.VK_END:
+                deltaY = 1;
+                deltaX = -1;
+                break;
+            case KeyEvent.VK_NUMPAD3:
+            case KeyEvent.VK_PAGE_DOWN:
+                deltaY = 1;
                 deltaX = 1;
                 break;
             default:
