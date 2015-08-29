@@ -1,4 +1,4 @@
-package rznw;
+package rznw.map.element;
 
 public class CharacterMapElement extends MapElement
 {

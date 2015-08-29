@@ -1,4 +1,4 @@
-package rznw;
+package rznw.ui;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

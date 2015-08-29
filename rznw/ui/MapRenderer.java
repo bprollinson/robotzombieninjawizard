@@ -1,4 +1,7 @@
-package rznw;
+package rznw.ui;
+
+import rznw.map.Map;
+import rznw.map.element.MapElement;
 
 public class MapRenderer
 {

@@ -1,4 +1,6 @@
-package rznw;
+package rznw.map;
+
+import rznw.map.element.MapElement;
 
 public class Map
 {

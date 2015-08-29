@@ -1,4 +1,4 @@
-package rznw;
+package rznw.map.element;
 
 public class Wall extends MapElement
 {

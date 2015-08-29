@@ -1,6 +1,6 @@
-package rznw;
+package rznw.map.element;
 
-abstract class MapElement
+public abstract class MapElement
 {
     private int row;
     private int column;

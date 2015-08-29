@@ -1,4 +1,6 @@
-package rznw;
+package rznw.game;
+
+import rznw.map.element.MapElement;
 
 public class GameCharacter
 {

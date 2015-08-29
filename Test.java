@@ -1,9 +1,9 @@
-import rznw.GameCharacter;
-import rznw.MainGameFrame;
-import rznw.Map;
-import rznw.MapGenerator;
-import rznw.MapRenderer;
-import rznw.MovementKeyListener;
+import rznw.game.GameCharacter;
+import rznw.map.Map;
+import rznw.map.MapGenerator;
+import rznw.ui.MainGameFrame;
+import rznw.ui.MapRenderer;
+import rznw.ui.MovementKeyListener;
 
 public class Test
 {

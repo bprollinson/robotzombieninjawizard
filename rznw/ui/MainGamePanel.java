@@ -1,8 +1,10 @@
-package rznw;
+package rznw.ui;
 
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import rznw.map.Map;
 
 public class MainGamePanel extends JPanel
 {

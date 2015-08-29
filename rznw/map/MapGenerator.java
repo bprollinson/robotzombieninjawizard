@@ -1,4 +1,9 @@
-package rznw;
+package rznw.map;
+
+import rznw.game.GameCharacter;
+import rznw.map.element.CharacterMapElement;
+import rznw.map.element.Wall;
+import rznw.ui.MainGamePanel;
 
 public class MapGenerator
 {

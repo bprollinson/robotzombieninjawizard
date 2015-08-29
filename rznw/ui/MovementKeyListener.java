@@ -1,7 +1,11 @@
-package rznw;
+package rznw.ui;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import rznw.game.GameCharacter;
+import rznw.map.Map;
+import rznw.map.element.MapElement;
 
 public class MovementKeyListener implements KeyListener
 {
