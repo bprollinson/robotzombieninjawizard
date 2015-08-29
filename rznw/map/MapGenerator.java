@@ -23,9 +23,9 @@ public class MapGenerator
             map.setElement(i, Map.NUM_COLUMNS - 1, new Wall(i, Map.NUM_COLUMNS - 1));
         }
 
-        CharacterMapElement characterMapElement = new CharacterMapElement(1, 1);
+        character.generateMapElement(1, 1);
+        CharacterMapElement characterMapElement = (CharacterMapElement)character.getMapElement();
         map.setElement(1, 1, characterMapElement);
-        character.setMapElement(characterMapElement);
 
         return map;
     }

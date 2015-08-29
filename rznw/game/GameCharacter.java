@@ -2,7 +2,7 @@ package rznw.game;
 
 import rznw.map.element.MapElement;
 
-public class GameCharacter
+public abstract class GameCharacter
 {
     MapElement mapElement;
 
@@ -11,8 +11,5 @@ public class GameCharacter
         return this.mapElement;
     }
 
-    public void setMapElement(MapElement mapElement)
-    {
-        this.mapElement = mapElement;
-    }
+    public abstract void generateMapElement(int row, int column);
 }

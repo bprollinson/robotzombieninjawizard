@@ -1,3 +1,4 @@
+import rznw.game.CharacterGenerator;
 import rznw.game.GameCharacter;
 import rznw.map.Map;
 import rznw.map.MapGenerator;
@@ -12,7 +13,7 @@ public class Test
         MainGameFrame frame = new MainGameFrame("Robot Zombie Ninja Wizard");
         frame.setVisible(true);
 
-        GameCharacter character = new GameCharacter();
+        GameCharacter character = CharacterGenerator.generate();
 
         MapGenerator mapGenerator = new MapGenerator();
         Map map = mapGenerator.generate(character);

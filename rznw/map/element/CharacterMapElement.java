@@ -2,13 +2,17 @@ package rznw.map.element;
 
 public class CharacterMapElement extends MapElement
 {
-    public CharacterMapElement(int row, int column)
+    private char displayCharacter;
+
+    public CharacterMapElement(int row, int column, char displayCharacter)
     {
         super(row, column);
+
+        this.displayCharacter = displayCharacter;
     }
 
     public char getDisplayCharacter()
     {
-        return '@';
+        return this.displayCharacter;
     }
 }
