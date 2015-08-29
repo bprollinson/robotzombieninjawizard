@@ -11,12 +11,12 @@ import java.util.Random;
 
 public class CharacterGenerator
 {
-    private GameCharacter[] characterList;
+    private MainCharacter[] mainCharacterList;
     private EnemyCharacter[] enemyList;
 
     public CharacterGenerator()
     {
-        this.characterList = new GameCharacter[]
+        this.mainCharacterList = new MainCharacter[]
         {
             new Robot(),
             new Zombie(),
@@ -31,12 +31,12 @@ public class CharacterGenerator
         };
     }
 
-    public GameCharacter generateCharacter()
+    public MainCharacter generateMainCharacter()
     {
         Random random = new Random();
-        int randomNumber = random.nextInt(this.characterList.length);
+        int randomNumber = random.nextInt(this.mainCharacterList.length);
 
-        return this.characterList[randomNumber];
+        return this.mainCharacterList[randomNumber];
     }
 
     public EnemyCharacter generateEnemy()

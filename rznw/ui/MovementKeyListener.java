@@ -3,17 +3,17 @@ package rznw.ui;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import rznw.game.GameCharacter;
+import rznw.game.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 
 public class MovementKeyListener implements KeyListener
 {
-    private GameCharacter character;
+    private MainCharacter character;
     private Map map;
     private MapRenderer renderer;
 
-    public MovementKeyListener(GameCharacter character, Map map, MapRenderer renderer)
+    public MovementKeyListener(MainCharacter character, Map map, MapRenderer renderer)
     {
         this.character = character;
         this.map = map;

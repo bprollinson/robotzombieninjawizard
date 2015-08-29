@@ -2,7 +2,7 @@ package rznw.map;
 
 import rznw.game.CharacterGenerator;
 import rznw.game.EnemyCharacter;
-import rznw.game.GameCharacter;
+import rznw.game.MainCharacter;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.Wall;
@@ -10,7 +10,7 @@ import rznw.ui.MainGamePanel;
 
 public class MapGenerator
 {
-    public Map generate(GameCharacter character, CharacterGenerator characterGenerator)
+    public Map generate(MainCharacter character, CharacterGenerator characterGenerator)
     {
         Map map = new Map();
 
@@ -36,7 +36,7 @@ public class MapGenerator
         }
     }
 
-    private void placeCharacter(Map map, GameCharacter character)
+    private void placeCharacter(Map map, MainCharacter character)
     {
         character.generateMapElement(1, 1);
         CharacterMapElement characterMapElement = (CharacterMapElement)character.getMapElement();

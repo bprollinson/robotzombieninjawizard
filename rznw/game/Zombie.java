@@ -2,7 +2,7 @@ package rznw.game;
 
 import rznw.map.element.CharacterMapElement;
 
-public class Zombie extends GameCharacter
+public class Zombie extends MainCharacter
 {
     private static char mapCharacter = 'Z';
 

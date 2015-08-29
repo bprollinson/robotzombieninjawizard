@@ -2,7 +2,7 @@ package rznw.game;
 
 import rznw.map.element.CharacterMapElement;
 
-public class Ninja extends GameCharacter
+public class Ninja extends MainCharacter
 {
     private static char mapCharacter = 'N';
 

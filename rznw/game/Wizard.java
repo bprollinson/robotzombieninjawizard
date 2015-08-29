@@ -2,7 +2,7 @@ package rznw.game;
 
 import rznw.map.element.CharacterMapElement;
 
-public class Wizard extends GameCharacter
+public class Wizard extends MainCharacter
 {
     private static char mapCharacter = 'W';
 

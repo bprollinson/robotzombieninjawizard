@@ -1,5 +1,5 @@
 import rznw.game.CharacterGenerator;
-import rznw.game.GameCharacter;
+import rznw.game.MainCharacter;
 import rznw.map.Map;
 import rznw.map.MapGenerator;
 import rznw.ui.MainGameFrame;
@@ -14,7 +14,7 @@ public class Test
         frame.setVisible(true);
 
         CharacterGenerator characterGenerator = new CharacterGenerator();
-        GameCharacter character = characterGenerator.generateCharacter();
+        MainCharacter character = characterGenerator.generateMainCharacter();
 
         MapGenerator mapGenerator = new MapGenerator();
         Map map = mapGenerator.generate(character, characterGenerator);

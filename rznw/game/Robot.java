@@ -2,7 +2,7 @@ package rznw.game;
 
 import rznw.map.element.CharacterMapElement;
 
-public class Robot extends GameCharacter
+public class Robot extends MainCharacter
 {
     private static char mapCharacter = 'R';
 
