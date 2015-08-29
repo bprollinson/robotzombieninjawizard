@@ -2,6 +2,7 @@ import rznw.game.CharacterGenerator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.MapGenerator;
+import rznw.turn.MainCharacterTurnHandler;
 import rznw.ui.MainGameFrame;
 import rznw.ui.MapRenderer;
 import rznw.ui.MovementKeyListener;
@@ -22,7 +23,8 @@ public class Test
         MapRenderer renderer = new MapRenderer(frame);
         renderer.render(map);
 
-        MovementKeyListener listener = new MovementKeyListener(character, map, renderer);
+        MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(map, character);
+        MovementKeyListener listener = new MovementKeyListener(turnHandler, renderer, map);
         frame.getContentPane().setFocusable(true);
         frame.getContentPane().requestFocus();
         frame.getContentPane().addKeyListener(listener);
