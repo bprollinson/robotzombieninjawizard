@@ -1,13 +1,16 @@
 package rznw.map;
 
+import rznw.game.CharacterGenerator;
+import rznw.game.EnemyCharacter;
 import rznw.game.GameCharacter;
 import rznw.map.element.CharacterMapElement;
+import rznw.map.element.EnemyMapElement;
 import rznw.map.element.Wall;
 import rznw.ui.MainGamePanel;
 
 public class MapGenerator
 {
-    public Map generate(GameCharacter character)
+    public Map generate(GameCharacter character, CharacterGenerator characterGenerator)
     {
         Map map = new Map();
 
@@ -26,6 +29,14 @@ public class MapGenerator
         character.generateMapElement(1, 1);
         CharacterMapElement characterMapElement = (CharacterMapElement)character.getMapElement();
         map.setElement(1, 1, characterMapElement);
+
+        for (int i = 10; i < 15; i++)
+        {
+            EnemyCharacter enemyCharacter = characterGenerator.generateEnemy();
+            enemyCharacter.generateMapElement(i, i);
+            EnemyMapElement enemyMapElement = (EnemyMapElement)enemyCharacter.getMapElement();
+            map.setElement(i, i, enemyMapElement);
+        }
 
         return map;
     }

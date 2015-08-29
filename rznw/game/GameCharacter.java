@@ -1,15 +1,5 @@
 package rznw.game;
 
-import rznw.map.element.MapElement;
-
-public abstract class GameCharacter
+public abstract class GameCharacter extends Character
 {
-    MapElement mapElement;
-
-    public MapElement getMapElement()
-    {
-        return this.mapElement;
-    }
-
-    public abstract void generateMapElement(int row, int column);
 }

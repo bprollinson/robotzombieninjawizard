@@ -13,10 +13,11 @@ public class Test
         MainGameFrame frame = new MainGameFrame("Robot Zombie Ninja Wizard");
         frame.setVisible(true);
 
-        GameCharacter character = CharacterGenerator.generate();
+        CharacterGenerator characterGenerator = new CharacterGenerator();
+        GameCharacter character = characterGenerator.generateCharacter();
 
         MapGenerator mapGenerator = new MapGenerator();
-        Map map = mapGenerator.generate(character);
+        Map map = mapGenerator.generate(character, characterGenerator);
 
         MapRenderer renderer = new MapRenderer(frame);
         renderer.render(map);
