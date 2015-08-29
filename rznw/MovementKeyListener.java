@@ -1,7 +1,9 @@
+package rznw;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-class MovementKeyListener implements KeyListener
+public class MovementKeyListener implements KeyListener
 {
     private GameCharacter character;
     private Map map;

@@ -1,3 +1,5 @@
+package rznw;
+
 public class Map
 {
     public static final int NUM_ROWS = 20;

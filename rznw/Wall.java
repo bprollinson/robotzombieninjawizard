@@ -1,3 +1,5 @@
+package rznw;
+
 public class Wall extends MapElement
 {
     public Wall(int row, int column)

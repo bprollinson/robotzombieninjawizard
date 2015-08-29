@@ -1,3 +1,5 @@
+package rznw;
+
 public class MapRenderer
 {
     private MainGameFrame frame;

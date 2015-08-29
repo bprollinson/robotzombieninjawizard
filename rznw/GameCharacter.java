@@ -1,3 +1,5 @@
+package rznw;
+
 public class GameCharacter
 {
     MapElement mapElement;

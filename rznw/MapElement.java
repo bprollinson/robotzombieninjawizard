@@ -1,3 +1,5 @@
+package rznw;
+
 abstract class MapElement
 {
     private int row;

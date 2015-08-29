@@ -1,3 +1,10 @@
+import rznw.GameCharacter;
+import rznw.MainGameFrame;
+import rznw.Map;
+import rznw.MapGenerator;
+import rznw.MapRenderer;
+import rznw.MovementKeyListener;
+
 public class Test
 {
     public static void main(String[] args)

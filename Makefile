@@ -1,4 +1,5 @@
 test:
 	javac ./*.java
 clean:
-	rm ./*.class ./*.java~
+	find . -name "*.class" | xargs rm
+	find . -name "*.java~" | xargs rm

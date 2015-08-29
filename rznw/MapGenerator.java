@@ -1,3 +1,5 @@
+package rznw;
+
 public class MapGenerator
 {
     public Map generate(GameCharacter character)
