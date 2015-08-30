@@ -1,4 +1,4 @@
-package rznw.turn;
+package rznw.turn.positionchange;
 
 import java.awt.event.KeyEvent;
 

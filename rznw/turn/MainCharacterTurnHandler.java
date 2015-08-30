@@ -8,6 +8,8 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.turn.positionchange.EnemyAIBasedPositionChange;
+import rznw.turn.positionchange.KeyBasedPositionChange;
 
 public class MainCharacterTurnHandler
 {

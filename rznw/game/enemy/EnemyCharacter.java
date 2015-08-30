@@ -2,7 +2,7 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.turn.EnemyAIBasedPositionChange;
+import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 public abstract class EnemyCharacter extends Character
 {

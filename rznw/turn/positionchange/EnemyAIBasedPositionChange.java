@@ -1,4 +1,4 @@
-package rznw.turn;
+package rznw.turn.positionchange;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.MapElement;
