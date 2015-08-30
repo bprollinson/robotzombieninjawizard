@@ -159,6 +159,26 @@ public class MainCharacterTurnHandler
 
     private void handleEnemyTurn(EnemyCharacter enemy)
     {
-        System.out.println("Handling enemy turn for class: "+enemy.getClass().getName());
+        EnemyAIBasedPositionChange positionChange = enemy.getPositionChange(this.character);
+        if (!positionChange.isChange())
+        {
+            return;
+        }
+
+        int newRow = positionChange.getFinalRow();
+        int newColumn = positionChange.getFinalColumn();
+
+        MapElement collisionTest = map.getElement(newRow, newColumn);
+        if (collisionTest != null)
+        {
+            return;
+        }
+
+        map.setElement(positionChange.getInitialRow(), positionChange.getInitialColumn(), null);
+
+        MapElement mapElement = enemy.getMapElement();
+        map.setElement(newRow, newColumn, mapElement);
+        mapElement.setRow(newRow);
+        mapElement.setColumn(newColumn);
     }
 }

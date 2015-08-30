@@ -13,12 +13,9 @@ import java.util.Random;
 
 public class CharacterGenerator
 {
-    private MainCharacter[] mainCharacterList;
-    private EnemyCharacter[] enemyList;
-
-    public CharacterGenerator()
+    public MainCharacter generateMainCharacter()
     {
-        this.mainCharacterList = new MainCharacter[]
+        MainCharacter[] mainCharacterList = new MainCharacter[]
         {
             new Robot(),
             new Zombie(),
@@ -26,26 +23,23 @@ public class CharacterGenerator
             new Wizard()
         };
 
-        this.enemyList = new EnemyCharacter[]
-        {
-            new Werewolf(),
-            new Mummy()
-        };
-    }
-
-    public MainCharacter generateMainCharacter()
-    {
         Random random = new Random();
-        int randomNumber = random.nextInt(this.mainCharacterList.length);
+        int randomNumber = random.nextInt(mainCharacterList.length);
 
-        return this.mainCharacterList[randomNumber];
+        return mainCharacterList[randomNumber];
     }
 
     public EnemyCharacter generateEnemy()
     {
-        Random random = new Random();
-        int randomNumber = random.nextInt(this.enemyList.length);
+        EnemyCharacter[] enemyList = new EnemyCharacter[]
+        {
+            new Werewolf(),
+            new Mummy()
+        };
 
-        return this.enemyList[randomNumber];
+        Random random = new Random();
+        int randomNumber = random.nextInt(enemyList.length);
+
+        return enemyList[randomNumber];
     } 
 }
