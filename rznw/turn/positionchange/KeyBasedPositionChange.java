@@ -5,17 +5,8 @@ import java.awt.event.KeyEvent;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.element.MapElement;
 
-public class KeyBasedPositionChange
+public class KeyBasedPositionChange extends PositionChange
 {
-    private int initialRow;
-    private int initialColumn;
-
-    private int deltaRow;
-    private int deltaColumn;
-
-    private int finalRow;
-    private int finalColumn;
-
     public KeyBasedPositionChange(MainCharacter character, KeyEvent event)
     {
         MapElement mapElement = character.getMapElement();
@@ -77,30 +68,5 @@ public class KeyBasedPositionChange
                 this.deltaColumn = 1;
                 break;
         }
-    }
-
-    public boolean isChange()
-    {
-        return this.deltaRow != 0 || this.deltaColumn != 0;
-    }
-
-    public int getInitialRow()
-    {
-        return this.initialRow;
-    }
-
-    public int getInitialColumn()
-    {
-        return this.initialColumn;
-    }
-
-    public int getFinalRow()
-    {
-        return this.finalRow;
-    }
-
-    public int getFinalColumn()
-    {
-        return this.finalColumn;
     }
 }
