@@ -1,7 +1,10 @@
 package rznw.turn;
 
 import java.awt.event.KeyEvent;
+import java.util.Collection;
+import java.util.Iterator;
 
+import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -117,12 +120,24 @@ public class MainCharacterTurnHandler
         this.character = character;
     }
 
-    public boolean handleTurn(KeyEvent event)
+    public void handleTurn(KeyEvent event)
+    {
+        this.handleMainCharacterTurn(event);
+
+        Collection<EnemyCharacter> enemies = this.map.getEnemies();
+        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+        {
+            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+            this.handleEnemyTurn(enemy);
+        }
+    }
+
+    private void handleMainCharacterTurn(KeyEvent event)
     {
         KeyBasedPositionChange positionChange = new KeyBasedPositionChange(this.character, event);
         if (!positionChange.isChange())
         {
-            return false;
+            return;
         }
 
         int newRow = positionChange.getFinalRow();
@@ -131,7 +146,7 @@ public class MainCharacterTurnHandler
         MapElement collisionTest = map.getElement(newRow, newColumn);
         if (collisionTest != null)
         {
-            return false;
+            return;
         }
 
         map.setElement(positionChange.getInitialRow(), positionChange.getInitialColumn(), null);
@@ -140,7 +155,10 @@ public class MainCharacterTurnHandler
         map.setElement(newRow, newColumn, mapElement);
         mapElement.setRow(newRow);
         mapElement.setColumn(newColumn);
+    }
 
-        return true;
+    private void handleEnemyTurn(EnemyCharacter enemy)
+    {
+        System.out.println("Handling enemy turn for class: "+enemy.getClass().getName());
     }
 }

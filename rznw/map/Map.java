@@ -1,5 +1,10 @@
 package rznw.map;
 
+import java.util.Collection;
+import java.util.Vector;
+
+import rznw.game.enemy.EnemyCharacter;
+import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 
 public class Map
@@ -22,5 +27,26 @@ public class Map
     public void setElement(int i, int j, MapElement element)
     {
         this.elements[i][j] = element;
+    }
+
+    public Collection<EnemyCharacter> getEnemies()
+    {
+        Collection<EnemyCharacter> enemies = new Vector<EnemyCharacter>();
+
+        for (int i = 0; i < Map.NUM_ROWS; i++)
+        {
+            for (int j = 0; j < Map.NUM_COLUMNS; j++)
+            {
+                MapElement element = this.elements[i][j];
+
+                if (element instanceof EnemyMapElement)
+                {
+                    EnemyCharacter enemyCharacter = ((EnemyMapElement)element).getEnemyCharacter();
+                    enemies.add(enemyCharacter);
+                }
+            }
+        }
+
+        return enemies;
     }
 }

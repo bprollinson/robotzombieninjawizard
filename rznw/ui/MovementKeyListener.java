@@ -21,12 +21,8 @@ public class MovementKeyListener implements KeyListener
 
     public void keyPressed(KeyEvent event)
     {
-        boolean stateChanged = this.turnHandler.handleTurn(event);
-
-        if (stateChanged)
-        {
-            this.renderer.render(this.map);
-        }
+        this.turnHandler.handleTurn(event);
+        this.renderer.render(this.map);
     }
 
     public void keyReleased(KeyEvent event)

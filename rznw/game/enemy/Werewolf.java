@@ -8,6 +8,6 @@ public class Werewolf extends EnemyCharacter
 
     public void generateMapElement(int row, int column)
     {
-        this.mapElement = new EnemyMapElement(row, column, Werewolf.mapCharacter);
+        this.mapElement = new EnemyMapElement(row, column, Werewolf.mapCharacter, this);
     }
 }

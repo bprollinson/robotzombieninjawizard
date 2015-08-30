@@ -8,6 +8,6 @@ public class Mummy extends EnemyCharacter
 
     public void generateMapElement(int row, int column)
     {
-        this.mapElement = new EnemyMapElement(row, column, Mummy.mapCharacter);
+        this.mapElement = new EnemyMapElement(row, column, Mummy.mapCharacter, this);
     }
 }
