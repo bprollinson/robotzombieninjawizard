@@ -36,4 +36,14 @@ public abstract class EnemyCharacter extends Character
 
         return new EnemyAIBasedPositionChange(this, deltaRow, deltaColumn);
     }
+
+    public int getMaxHP()
+    {
+        return 10;
+    }
+
+    public int getDamage()
+    {
+        return 1;
+    }
 }
