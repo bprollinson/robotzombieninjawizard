@@ -37,6 +37,8 @@ public class MainCharacterTurnHandler
 
             this.handleCharacterTurn(enemyPositionChange, enemy);
         }
+
+        System.out.println(this.character.getHP() + "/" + this.character.getMaxHP());
     }
 
     private void handleCharacterTurn(PositionChange positionChange, Character character)

@@ -5,6 +5,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
+import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.PositionChange;
 
@@ -27,6 +28,17 @@ public class CollisionHandler
             enemy.damage(character.getDamage());
 
             if (enemy.isDead())
+            {
+                map.setElement(newRow, newColumn, null);
+            }
+        }
+
+        if (collisionTest instanceof MainCharacterMapElement && character instanceof EnemyCharacter)
+        {
+            MainCharacter mainCharacter = ((MainCharacterMapElement)collisionTest).getMainCharacter();
+            mainCharacter.damage(character.getDamage());
+
+            if (mainCharacter.isDead())
             {
                 map.setElement(newRow, newColumn, null);
             }

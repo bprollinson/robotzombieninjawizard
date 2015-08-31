@@ -1,6 +1,6 @@
 package rznw.map.element;
 
-public class CharacterMapElement extends MapElement
+public abstract class CharacterMapElement extends MapElement
 {
     private char displayCharacter;
 

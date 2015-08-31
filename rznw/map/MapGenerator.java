@@ -3,8 +3,8 @@ package rznw.map;
 import rznw.game.CharacterGenerator;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
+import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.Wall;
 import rznw.ui.MainGamePanel;
 
@@ -39,7 +39,7 @@ public class MapGenerator
     private void placeCharacter(Map map, MainCharacter character)
     {
         character.generateMapElement(1, 1);
-        CharacterMapElement characterMapElement = (CharacterMapElement)character.getMapElement();
+        MainCharacterMapElement characterMapElement = (MainCharacterMapElement)character.getMapElement();
         map.setElement(1, 1, characterMapElement);
     }
 

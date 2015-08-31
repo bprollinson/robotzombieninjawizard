@@ -1,6 +1,6 @@
 package rznw.game.maincharacter;
 
-import rznw.map.element.CharacterMapElement;
+import rznw.map.element.MainCharacterMapElement;
 
 public class Ninja extends MainCharacter
 {
@@ -8,6 +8,6 @@ public class Ninja extends MainCharacter
 
     public void generateMapElement(int row, int column)
     {
-        this.mapElement = new CharacterMapElement(row, column, Ninja.mapCharacter);
+        this.mapElement = new MainCharacterMapElement(row, column, Ninja.mapCharacter, this);
     }
 }

@@ -31,5 +31,10 @@ public abstract class Character
 
     public abstract int getMaxHP();
 
+    public int getHP()
+    {
+        return this.HP;
+    }
+
     public abstract int getDamage();
 }

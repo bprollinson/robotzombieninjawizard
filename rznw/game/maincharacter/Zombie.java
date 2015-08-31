@@ -1,6 +1,6 @@
 package rznw.game.maincharacter;
 
-import rznw.map.element.CharacterMapElement;
+import rznw.map.element.MainCharacterMapElement;
 
 public class Zombie extends MainCharacter
 {
@@ -8,6 +8,6 @@ public class Zombie extends MainCharacter
 
     public void generateMapElement(int row, int column)
     {
-        this.mapElement = new CharacterMapElement(row, column, Zombie.mapCharacter);
+        this.mapElement = new MainCharacterMapElement(row, column, Zombie.mapCharacter, this);
     }
 }
