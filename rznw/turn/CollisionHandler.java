@@ -16,27 +16,22 @@ public class CollisionHandler
         int newColumn = positionChange.getFinalColumn();
 
         MapElement collisionTest = map.getElement(newRow, newColumn);
-
-        if (collisionTest != null && collisionTest instanceof EnemyMapElement)
+        if (collisionTest == null)
         {
-            if (character instanceof MainCharacter)
+            return false;
+        }
+
+        if (collisionTest instanceof EnemyMapElement && character instanceof MainCharacter)
+        {
+            EnemyCharacter enemy = ((EnemyMapElement)collisionTest).getEnemyCharacter();
+            enemy.damage(character.getDamage());
+
+            if (enemy.isDead())
             {
-                EnemyCharacter enemy = ((EnemyMapElement)collisionTest).getEnemyCharacter();
-                enemy.damage(character.getDamage());
-
-                if (enemy.isDead())
-                {
-                    map.setElement(newRow, newColumn, null);
-                }
+                map.setElement(newRow, newColumn, null);
             }
-
-            return true;
-        }
-        else if (collisionTest != null)
-        {
-            return true;
         }
 
-        return false;
+        return true;
     }
 }
