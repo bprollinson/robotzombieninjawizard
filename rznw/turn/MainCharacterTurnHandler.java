@@ -8,7 +8,6 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
-import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
@@ -47,31 +46,17 @@ public class MainCharacterTurnHandler
             return;
         }
 
-        int newRow = positionChange.getFinalRow();
-        int newColumn = positionChange.getFinalColumn();
-
-        MapElement collisionTest = map.getElement(newRow, newColumn);
-        if (collisionTest != null && collisionTest instanceof EnemyMapElement)
-        {
-            if (character instanceof MainCharacter)
-            {
-                EnemyCharacter enemy = ((EnemyMapElement)collisionTest).getEnemyCharacter();
-                enemy.damage(character.getDamage());
-
-                if (enemy.isDead())
-                {
-                    map.setElement(newRow, newColumn, null);
-                }
-            }
-
-            return;
-        }
-        else if (collisionTest != null)
+        CollisionHandler collisionHandler = new CollisionHandler();
+        boolean collided = collisionHandler.handleCollision(character, this.map, positionChange);
+        if (collided)
         {
             return;
         }
 
         map.setElement(positionChange.getInitialRow(), positionChange.getInitialColumn(), null);
+
+        int newRow = positionChange.getFinalRow();
+        int newColumn = positionChange.getFinalColumn();
 
         MapElement mapElement = character.getMapElement();
         map.setElement(newRow, newColumn, mapElement);
