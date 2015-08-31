@@ -1,5 +1,6 @@
 package rznw.ui;
 
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,6 +15,14 @@ public class MainGameFrame extends JFrame
 
         JPanel panel = new MainGamePanel();
         this.getContentPane().add(panel);
+    }
+
+    public void display(KeyListener keyListener)
+    {
+        this.setVisible(true);
+        this.getContentPane().setFocusable(true);
+        this.getContentPane().requestFocus();
+        this.getContentPane().addKeyListener(keyListener);
     }
 
     public void renderDisplayCharacter(int i, int j, char displayCharacter)
