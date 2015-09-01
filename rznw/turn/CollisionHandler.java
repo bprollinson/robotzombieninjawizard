@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
+import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.MapElement;
@@ -22,26 +23,31 @@ public class CollisionHandler
             return false;
         }
 
-        if (collisionTest instanceof EnemyMapElement && character instanceof MainCharacter)
+        if (!this.elementsHaveInteraction(character, collisionTest))
         {
-            EnemyCharacter enemy = ((EnemyMapElement)collisionTest).getEnemyCharacter();
-            enemy.damage(character.getDamage());
-
-            if (enemy.isDead())
-            {
-                map.setElement(newRow, newColumn, null);
-            }
+            return true;
         }
 
-        if (collisionTest instanceof MainCharacterMapElement && character instanceof EnemyCharacter)
+        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
+        otherCharacter.damage(character.getDamage());
+        if (otherCharacter.isDead())
         {
-            MainCharacter mainCharacter = ((MainCharacterMapElement)collisionTest).getMainCharacter();
-            mainCharacter.damage(character.getDamage());
+            map.setElement(newRow, newColumn, null);
+        }
 
-            if (mainCharacter.isDead())
-            {
-                map.setElement(newRow, newColumn, null);
-            }
+        return true;
+    }
+
+    private boolean elementsHaveInteraction(Character character, MapElement collisionTest)
+    {
+        if (!(collisionTest instanceof CharacterMapElement))
+        {
+            return false;
+        }
+
+        if (collisionTest instanceof EnemyMapElement && character instanceof EnemyCharacter)
+        {
+            return false;
         }
 
         return true;

@@ -41,7 +41,7 @@ public class Map
 
                 if (element instanceof EnemyMapElement)
                 {
-                    EnemyCharacter enemyCharacter = ((EnemyMapElement)element).getEnemyCharacter();
+                    EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                     enemies.add(enemyCharacter);
                 }
             }
