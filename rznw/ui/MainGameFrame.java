@@ -4,13 +4,15 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import rznw.map.Map;
+
 public class MainGameFrame extends JFrame
 {
     public MainGameFrame(String title)
     {
         super(title);
 
-        this.setSize(400, 440);
+        this.setSize(20 * Map.NUM_COLUMNS, 20 * (Map.NUM_COLUMNS + 2));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new MainGamePanel();

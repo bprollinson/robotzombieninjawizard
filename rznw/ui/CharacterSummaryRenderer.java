@@ -16,10 +16,10 @@ public class CharacterSummaryRenderer
     {
         this.clearCharacterSummaryArea();
 
-        this.frame.renderDisplayString(21, 0, "HP: ");
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "HP: ");
 
         String hp = character.getHP() + "/" + character.getMaxHP();
-        this.frame.renderDisplayString(21, "HP: ".length(), hp);
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, "HP: ".length(), hp);
     }
 
     private void clearCharacterSummaryArea()

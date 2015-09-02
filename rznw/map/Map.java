@@ -9,8 +9,8 @@ import rznw.map.element.MapElement;
 
 public class Map
 {
-    public static final int NUM_ROWS = 20;
-    public static final int NUM_COLUMNS = 20;
+    public static final int NUM_ROWS = 30;
+    public static final int NUM_COLUMNS = 40;
 
     private MapElement[][] elements;
 
