@@ -16,6 +16,6 @@ public class CharacterSummaryRenderer
         this.frame.renderDisplayString(21, 0, "HP: ");
 
         String hp = character.getHP() + "/" + character.getMaxHP();
-        this.frame.renderDisplayString(21, 4, hp);
+        this.frame.renderDisplayString(21, "HP: ".length(), hp);
     }
 }

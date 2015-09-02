@@ -8,15 +8,19 @@ import rznw.map.Map;
 
 public class MainGamePanel extends JPanel
 {
+    public static final int NUM_SUMMARY_ROWS = 2;
+
     private JPanel[][] innerPanel;
 
     public MainGamePanel()
     {
-        this.setLayout(new GridLayout(Map.NUM_ROWS + 2, Map.NUM_COLUMNS));
+        int numTotalRows = Map.NUM_ROWS + MainGamePanel.NUM_SUMMARY_ROWS;
 
-        this.innerPanel = new JPanel[Map.NUM_ROWS + 2][Map.NUM_COLUMNS];
+        this.setLayout(new GridLayout(numTotalRows, Map.NUM_COLUMNS));
 
-        for (int i = 0; i < Map.NUM_ROWS + 2; i++)
+        this.innerPanel = new JPanel[numTotalRows][Map.NUM_COLUMNS];
+
+        for (int i = 0; i < numTotalRows; i++)
         {
             for (int j = 0; j < Map.NUM_COLUMNS; j++)
             {
