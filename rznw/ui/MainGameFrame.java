@@ -10,7 +10,7 @@ public class MainGameFrame extends JFrame
     {
         super(title);
 
-        this.setSize(400, 400);
+        this.setSize(400, 440);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new MainGamePanel();
@@ -23,6 +23,12 @@ public class MainGameFrame extends JFrame
         this.getContentPane().setFocusable(true);
         this.getContentPane().requestFocus();
         this.getContentPane().addKeyListener(keyListener);
+    }
+
+    public void renderDisplayString(int i, int j, String displayString)
+    {
+        MainGamePanel panel = (MainGamePanel)this.getContentPane().getComponent(0);
+        panel.renderDisplayString(i, j, displayString);
     }
 
     public void renderDisplayCharacter(int i, int j, char displayCharacter)

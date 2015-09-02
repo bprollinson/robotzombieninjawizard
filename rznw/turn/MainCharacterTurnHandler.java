@@ -12,16 +12,19 @@ import rznw.map.element.MapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
+import rznw.ui.CharacterSummaryRenderer;
 
 public class MainCharacterTurnHandler
 {
     private Map map;
     private MainCharacter character;
+    private CharacterSummaryRenderer renderer;
 
-    public MainCharacterTurnHandler(Map map, MainCharacter character)
+    public MainCharacterTurnHandler(Map map, MainCharacter character, CharacterSummaryRenderer renderer)
     {
         this.map = map;
         this.character = character;
+        this.renderer = renderer;
     }
 
     public void handleTurn(KeyEvent event)
@@ -38,7 +41,7 @@ public class MainCharacterTurnHandler
             this.handleCharacterTurn(enemyPositionChange, enemy);
         }
 
-        System.out.println(this.character.getHP() + "/" + this.character.getMaxHP());
+        this.renderer.render(this.character);
     }
 
     private void handleCharacterTurn(PositionChange positionChange, Character character)

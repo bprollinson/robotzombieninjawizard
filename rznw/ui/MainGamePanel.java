@@ -12,11 +12,11 @@ public class MainGamePanel extends JPanel
 
     public MainGamePanel()
     {
-        this.setLayout(new GridLayout(Map.NUM_ROWS, Map.NUM_COLUMNS));
+        this.setLayout(new GridLayout(Map.NUM_ROWS + 2, Map.NUM_COLUMNS));
 
-        this.innerPanel = new JPanel[Map.NUM_ROWS][Map.NUM_COLUMNS];
+        this.innerPanel = new JPanel[Map.NUM_ROWS + 2][Map.NUM_COLUMNS];
 
-        for (int i = 0; i < Map.NUM_ROWS; i++)
+        for (int i = 0; i < Map.NUM_ROWS + 2; i++)
         {
             for (int j = 0; j < Map.NUM_COLUMNS; j++)
             {
@@ -26,6 +26,14 @@ public class MainGamePanel extends JPanel
                 this.add(panel);
                 this.innerPanel[i][j] = panel;
             }
+        }
+    }
+
+    public void renderDisplayString(int i, int j, String displayString)
+    {
+        for (int k = 0; k < displayString.length(); k++)
+        {
+            this.renderDisplayCharacter(i, j + k, displayString.charAt(k));
         }
     }
 
