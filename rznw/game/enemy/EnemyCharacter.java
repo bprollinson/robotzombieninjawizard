@@ -2,6 +2,8 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Gold;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 public abstract class EnemyCharacter extends Character
@@ -45,5 +47,10 @@ public abstract class EnemyCharacter extends Character
     public int getDamage()
     {
         return 1;
+    }
+
+    public InventoryItem getItemDrop()
+    {
+        return new Gold(20);
     }
 }

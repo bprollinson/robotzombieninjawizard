@@ -3,6 +3,7 @@ package rznw.turn;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
@@ -32,6 +33,7 @@ public class CollisionHandler
         otherCharacter.damage(character.getDamage());
         if (otherCharacter.isDead())
         {
+            this.grantKillBonuses(character, otherCharacter);
             map.setElement(newRow, newColumn, null);
         }
 
@@ -51,5 +53,19 @@ public class CollisionHandler
         }
 
         return true;
+    }
+
+    private void grantKillBonuses(Character character, Character otherCharacter)
+    {
+        if (!(character instanceof MainCharacter) || !(otherCharacter instanceof EnemyCharacter))
+        {
+            return;
+        }
+
+        InventoryItem item = ((EnemyCharacter)otherCharacter).getItemDrop();
+        if (item != null)
+        {
+            ((MainCharacter)character).getInventory().addItem(item);
+        }
     }
 }
