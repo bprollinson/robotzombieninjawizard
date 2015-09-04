@@ -17,13 +17,15 @@ public class MapGenerator
     private static int MIN_ROOM_SIZE = 5;
     private static int MAX_ROOM_SIZE = 15;
 
+    private static int ENEMY_PROBABILITY = 10;
+
     public Map generate(MainCharacter character, CharacterGenerator characterGenerator)
     {
         Map map = new Map();
 
         List<MapArea> rooms = this.generateTerrain(map);
         this.placeCharacter(map, character, rooms);
-        this.generateEnemies(map, characterGenerator);
+        this.generateEnemies(map, characterGenerator, rooms);
 
         return map;
     }
@@ -125,14 +127,26 @@ public class MapGenerator
         map.setElement(posY, posX, characterMapElement);
     }
 
-    private void generateEnemies(Map map, CharacterGenerator characterGenerator)
+    private void generateEnemies(Map map, CharacterGenerator characterGenerator, List<MapArea> rooms)
     {
-        for (int i = 10; i < 15; i++)
+        for (int i = 0; i < rooms.size(); i++)
         {
-            EnemyCharacter enemyCharacter = characterGenerator.generateEnemy();
-            enemyCharacter.generateMapElement(i, i);
-            EnemyMapElement enemyMapElement = (EnemyMapElement)enemyCharacter.getMapElement();
-            map.setElement(i, i, enemyMapElement);
+            MapArea room = rooms.get(i);
+            for (int row = room.getStartY() + 1; row < room.getEndY(); row++)
+            {
+                for (int column = room.getStartX() + 1; column < room.getEndX(); column++)
+                {
+                    int random = RandomNumberGenerator.randomInteger(1, 100);
+
+                    if (map.getElement(row, column) == null && random <= MapGenerator.ENEMY_PROBABILITY)
+                    {
+                        EnemyCharacter enemyCharacter = characterGenerator.generateEnemy();
+                        enemyCharacter.generateMapElement(row, column);
+                        EnemyMapElement enemyMapElement = (EnemyMapElement)enemyCharacter.getMapElement();
+                        map.setElement(row, column, enemyMapElement);
+                    }
+                }
+            }
         }
     }
 }
