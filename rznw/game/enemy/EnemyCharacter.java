@@ -53,4 +53,9 @@ public abstract class EnemyCharacter extends Character
     {
         return new Gold(20);
     }
+
+    public int getExperienceReward()
+    {
+        return 20;
+    }
 }

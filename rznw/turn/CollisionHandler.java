@@ -2,6 +2,7 @@ package rznw.turn;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.ExperienceCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.Map;
@@ -62,10 +63,24 @@ public class CollisionHandler
             return;
         }
 
-        InventoryItem item = ((EnemyCharacter)otherCharacter).getItemDrop();
+        MainCharacter mainCharacter = (MainCharacter)character;
+        EnemyCharacter enemyCharacter = (EnemyCharacter)otherCharacter;
+
+        int oldLevel = mainCharacter.getLevel();
+        int experience = enemyCharacter.getExperienceReward();
+        mainCharacter.grantExperience(experience);
+        int newLevel = ExperienceCalculator.getLevel(mainCharacter.getExperience());
+
+        if (newLevel > oldLevel)
+        {
+            System.out.println("Leveling up " + (newLevel - oldLevel) + " time(s) to level " + newLevel);
+            mainCharacter.setLevel(newLevel);
+        }
+
+        InventoryItem item = enemyCharacter.getItemDrop();
         if (item != null)
         {
-            ((MainCharacter)character).getInventory().addItem(item);
+            mainCharacter.getInventory().addItem(item);
         }
     }
 }
