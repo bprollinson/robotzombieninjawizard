@@ -32,23 +32,24 @@ public class MapGenerator
 
         while (true)
         {
-            int width = largestOpenArea.getEndX() - largestOpenArea.getStartX() + 1;
-            int height = largestOpenArea.getEndY() - largestOpenArea.getStartY() + 1;
-            int radius = Math.min(width, height);
-            if (radius < MapGenerator.MIN_ROOM_SIZE) {
+            int width = largestOpenArea.getWidth();
+            int height = largestOpenArea.getHeight();
+            int maxRoomSize = Math.min(width, height);
+
+            if (maxRoomSize < MapGenerator.MIN_ROOM_SIZE) {
                 break;
             }
 
-            this.generateRoom(map, largestOpenArea, radius);
+            this.generateRoom(map, largestOpenArea, maxRoomSize);
             largestOpenArea = this.calculateLargestOpenArea(map);
         }
     }
 
-    private void generateRoom(Map map, OpenArea largestOpenArea, int maxWidth)
+    private void generateRoom(Map map, OpenArea largestOpenArea, int maxRoomSize)
     {
-        maxWidth = Math.min(maxWidth, MapGenerator.MAX_ROOM_SIZE);
-        int width = this.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxWidth);
-        int height = this.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxWidth);
+        maxRoomSize = Math.min(maxRoomSize, MapGenerator.MAX_ROOM_SIZE);
+        int width = this.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
+        int height = this.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
 
         int startX = this.randomInteger(largestOpenArea.getStartX(), largestOpenArea.getEndX() - width + 1);
         int startY = this.randomInteger(largestOpenArea.getStartY(), largestOpenArea.getEndY() - height + 1);

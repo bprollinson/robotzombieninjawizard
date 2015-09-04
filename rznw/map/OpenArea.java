@@ -34,4 +34,14 @@ public class OpenArea
     {
         return this.endY;
     }
+
+    public int getWidth()
+    {
+        return this.endX - this.startX + 1;
+    }
+
+    public int getHeight()
+    {
+        return this.endY - this.startY + 1;
+    }
 }
