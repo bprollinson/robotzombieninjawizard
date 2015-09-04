@@ -1,13 +1,13 @@
 package rznw.map;
 
-public class OpenArea
+public class MapArea
 {
     private int startX;
     private int startY;
     private int endX;
     private int endY;
 
-    public OpenArea(int startX, int startY, int endX, int endY)
+    public MapArea(int startX, int startY, int endX, int endY)
     {
         this.startX = startX;
         this.startY = startY;

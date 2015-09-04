@@ -9,6 +9,9 @@ import rznw.map.element.Wall;
 import rznw.ui.MainGamePanel;
 import rznw.utility.RandomNumberGenerator;
 
+import java.util.List;
+import java.util.Vector;
+
 public class MapGenerator
 {
     private static int MIN_ROOM_SIZE = 5;
@@ -18,28 +21,33 @@ public class MapGenerator
     {
         Map map = new Map();
 
-        this.generateTerrain(map);
-        this.placeCharacter(map, character);
+        List<MapArea> rooms = this.generateTerrain(map);
+        this.placeCharacter(map, character, rooms);
         this.generateEnemies(map, characterGenerator);
 
         return map;
     }
 
-    private void generateTerrain(Map map)
+    private List<MapArea> generateTerrain(Map map)
     {
-        OpenArea largestOpenArea = new OpenArea(0, 0, Map.NUM_COLUMNS - 1, Map.NUM_ROWS - 1);
+        Vector<MapArea> rooms = new Vector<MapArea>();
+
+        MapArea largestOpenArea = new MapArea(0, 0, Map.NUM_COLUMNS - 1, Map.NUM_ROWS - 1);
         int maxRoomSize = largestOpenArea.getSmallestDimensionSize();
 
         while (maxRoomSize >= MapGenerator.MIN_ROOM_SIZE)
         {
-            this.generateRoom(map, largestOpenArea, maxRoomSize);
-            largestOpenArea = this.calculateLargestOpenArea(map);
+            MapArea room = this.generateRoom(map, largestOpenArea, maxRoomSize);
+            rooms.add(room);
 
+            largestOpenArea = this.calculateLargestOpenArea(map);
             maxRoomSize = largestOpenArea.getSmallestDimensionSize();
         }
+
+        return rooms;
     }
 
-    private void generateRoom(Map map, OpenArea largestOpenArea, int maxRoomSize)
+    private MapArea generateRoom(Map map, MapArea largestOpenArea, int maxRoomSize)
     {
         maxRoomSize = Math.min(maxRoomSize, MapGenerator.MAX_ROOM_SIZE);
         int width = RandomNumberGenerator.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
@@ -51,6 +59,8 @@ public class MapGenerator
         int endY = startY + height - 1;
 
         this.renderRoom(map, startX, startY, endX, endY);
+
+        return new MapArea(startX, startY, endX, endY);
     }
 
     private void renderRoom(Map map, int startX, int startY, int endX, int endY)
@@ -68,14 +78,14 @@ public class MapGenerator
         }
     }
 
-    private OpenArea calculateLargestOpenArea(Map map)
+    private MapArea calculateLargestOpenArea(Map map)
     {
         for (int width = Map.NUM_ROWS; width >= 0; width--)
         {
             for (int row = 0; row < Map.NUM_ROWS - width; row++) {
                 for (int column = 0; column < Map.NUM_COLUMNS - width; column++) {
 
-                    OpenArea openArea = new OpenArea(column, row, column + width - 1, row + width - 1);
+                    MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
                     if (!this.elementExistsWithinRectangle(map, openArea))
                     {
                         return openArea;
@@ -87,7 +97,7 @@ public class MapGenerator
         return null;
     }
 
-    private boolean elementExistsWithinRectangle(Map map, OpenArea openArea)
+    private boolean elementExistsWithinRectangle(Map map, MapArea openArea)
     {
         for (int row = openArea.getStartY(); row <= openArea.getEndY(); row++)
         {
@@ -103,11 +113,16 @@ public class MapGenerator
         return false;
     }
 
-    private void placeCharacter(Map map, MainCharacter character)
+    private void placeCharacter(Map map, MainCharacter character, List<MapArea> rooms)
     {
-        character.generateMapElement(1, 1);
+        int roomIndex = RandomNumberGenerator.randomInteger(0, rooms.size() - 1);
+        MapArea room = rooms.get(roomIndex);
+        int posX = RandomNumberGenerator.randomInteger(room.getStartX() + 1, room.getEndX() - 1);
+        int posY = RandomNumberGenerator.randomInteger(room.getStartY() + 1, room.getEndY() - 1);
+
+        character.generateMapElement(posY, posX);
         MainCharacterMapElement characterMapElement = (MainCharacterMapElement)character.getMapElement();
-        map.setElement(1, 1, characterMapElement);
+        map.setElement(posY, posX, characterMapElement);
     }
 
     private void generateEnemies(Map map, CharacterGenerator characterGenerator)
