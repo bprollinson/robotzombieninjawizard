@@ -2,18 +2,22 @@ package rznw.turn;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.ExperienceCalculator;
-import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.maincharacter.KillBonusGranter;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
-import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.PositionChange;
 
 public class CollisionHandler
 {
+    private KillBonusGranter killBonusGranter;
+
+    public CollisionHandler()
+    {
+        this.killBonusGranter = new KillBonusGranter();
+    }
+
     public boolean handleCollision(Character character, Map map, PositionChange positionChange)
     {
         int newRow = positionChange.getFinalRow();
@@ -34,7 +38,7 @@ public class CollisionHandler
         otherCharacter.damage(character.getDamage());
         if (otherCharacter.isDead())
         {
-            this.grantKillBonuses(character, otherCharacter);
+            this.killBonusGranter.grantKillBonuses(character, otherCharacter);
             map.setElement(newRow, newColumn, null);
         }
 
@@ -54,33 +58,5 @@ public class CollisionHandler
         }
 
         return true;
-    }
-
-    private void grantKillBonuses(Character character, Character otherCharacter)
-    {
-        if (!(character instanceof MainCharacter) || !(otherCharacter instanceof EnemyCharacter))
-        {
-            return;
-        }
-
-        MainCharacter mainCharacter = (MainCharacter)character;
-        EnemyCharacter enemyCharacter = (EnemyCharacter)otherCharacter;
-
-        int oldLevel = mainCharacter.getLevel();
-        int experience = enemyCharacter.getExperienceReward();
-        mainCharacter.grantExperience(experience);
-        int newLevel = ExperienceCalculator.getLevel(mainCharacter.getExperience());
-
-        if (newLevel > oldLevel)
-        {
-            System.out.println("Leveling up " + (newLevel - oldLevel) + " time(s) to level " + newLevel);
-            mainCharacter.setLevel(newLevel);
-        }
-
-        InventoryItem item = enemyCharacter.getItemDrop();
-        if (item != null)
-        {
-            mainCharacter.getInventory().addItem(item);
-        }
     }
 }
