@@ -54,4 +54,12 @@ public class OpenArea
     {
         return this.endY - height + 1;
     }
+
+    public int getSmallestDimensionSize()
+    {
+        int width = this.getWidth();
+        int height = this.getHeight();
+
+        return Math.min(width, height);
+    }
 }

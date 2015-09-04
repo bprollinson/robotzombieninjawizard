@@ -28,19 +28,14 @@ public class MapGenerator
     private void generateTerrain(Map map)
     {
         OpenArea largestOpenArea = new OpenArea(0, 0, Map.NUM_COLUMNS - 1, Map.NUM_ROWS - 1);
+        int maxRoomSize = largestOpenArea.getSmallestDimensionSize();
 
-        while (true)
+        while (maxRoomSize >= MapGenerator.MIN_ROOM_SIZE)
         {
-            int width = largestOpenArea.getWidth();
-            int height = largestOpenArea.getHeight();
-            int maxRoomSize = Math.min(width, height);
-
-            if (maxRoomSize < MapGenerator.MIN_ROOM_SIZE) {
-                break;
-            }
-
             this.generateRoom(map, largestOpenArea, maxRoomSize);
             largestOpenArea = this.calculateLargestOpenArea(map);
+
+            maxRoomSize = largestOpenArea.getSmallestDimensionSize();
         }
     }
 
