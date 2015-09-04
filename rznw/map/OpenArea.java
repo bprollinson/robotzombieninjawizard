@@ -44,4 +44,14 @@ public class OpenArea
     {
         return this.endY - this.startY + 1;
     }
+
+    public int getMaxStartXForRectangle(int width)
+    {
+        return this.endX - width + 1;
+    }
+
+    public int getMaxStartYForRectangle(int height)
+    {
+        return this.endY - height + 1;
+    }
 }

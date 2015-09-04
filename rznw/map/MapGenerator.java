@@ -7,8 +7,7 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.Wall;
 import rznw.ui.MainGamePanel;
-
-import java.util.Random;
+import rznw.utility.RandomNumberGenerator;
 
 public class MapGenerator
 {
@@ -48,23 +47,15 @@ public class MapGenerator
     private void generateRoom(Map map, OpenArea largestOpenArea, int maxRoomSize)
     {
         maxRoomSize = Math.min(maxRoomSize, MapGenerator.MAX_ROOM_SIZE);
-        int width = this.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
-        int height = this.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
+        int width = RandomNumberGenerator.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
+        int height = RandomNumberGenerator.randomInteger(MapGenerator.MIN_ROOM_SIZE, maxRoomSize);
 
-        int startX = this.randomInteger(largestOpenArea.getStartX(), largestOpenArea.getEndX() - width + 1);
-        int startY = this.randomInteger(largestOpenArea.getStartY(), largestOpenArea.getEndY() - height + 1);
+        int startX = RandomNumberGenerator.randomInteger(largestOpenArea.getStartX(), largestOpenArea.getMaxStartXForRectangle(width));
+        int startY = RandomNumberGenerator.randomInteger(largestOpenArea.getStartY(), largestOpenArea.getMaxStartYForRectangle(height));
         int endX = startX + width - 1;
         int endY = startY + height - 1;
 
         this.renderRoom(map, startX, startY, endX, endY);
-    }
-
-    private int randomInteger(int minValue, int maxValue)
-    {
-        Random random = new Random();
-        int offset = random.nextInt(maxValue - minValue + 1);
-
-        return minValue + offset;
     }
 
     private void renderRoom(Map map, int startX, int startY, int endX, int endY)
