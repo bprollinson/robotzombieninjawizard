@@ -42,7 +42,7 @@ public class MapGenerator
             MapArea room = this.generateRoom(map, largestOpenArea, maxRoomSize);
             rooms.add(room);
 
-            largestOpenArea = this.calculateLargestOpenArea(map);
+            largestOpenArea = this.calculateLargestOpenArea(map, rooms);
             maxRoomSize = largestOpenArea.getSmallestDimensionSize();
         }
 
@@ -80,7 +80,7 @@ public class MapGenerator
         }
     }
 
-    private MapArea calculateLargestOpenArea(Map map)
+    private MapArea calculateLargestOpenArea(Map map, List<MapArea> rooms)
     {
         for (int width = Map.NUM_ROWS; width >= 0; width--)
         {
@@ -88,7 +88,7 @@ public class MapGenerator
                 for (int column = 0; column < Map.NUM_COLUMNS - width; column++) {
 
                     MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
-                    if (!this.elementExistsWithinRectangle(map, openArea))
+                    if (!this.elementExistsWithinRectangle(map, openArea)  && !this.areaFallsWithinAnotherArea(openArea, rooms))
                     {
                         return openArea;
                     }
@@ -109,6 +109,20 @@ public class MapGenerator
                 {
                     return true;
                 }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean areaFallsWithinAnotherArea(MapArea openArea, List<MapArea> rooms)
+    {
+        for (int i = 0; i < rooms.size(); i++)
+        {
+            MapArea room = rooms.get(i);
+
+            if (openArea.fallsWithin(room)) {
+                return true;
             }
         }
 

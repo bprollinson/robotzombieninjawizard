@@ -62,4 +62,9 @@ public class MapArea
 
         return Math.min(width, height);
     }
+
+    public boolean fallsWithin(MapArea otherArea)
+    {
+        return this.startX > otherArea.getStartX() && this.endX < otherArea.getEndX() && this.startY > otherArea.getStartY() && this.endY < otherArea.getEndY();
+    }
 }
