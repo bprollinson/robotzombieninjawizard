@@ -1,13 +1,10 @@
 package rznw.map.generator;
 
 import rznw.game.CharacterGenerator;
-import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
-import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.Wall;
-import rznw.ui.MainGamePanel;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;
@@ -18,7 +15,12 @@ public class MapGenerator
     private static int MIN_ROOM_SIZE = 5;
     private static int MAX_ROOM_SIZE = 15;
 
-    private static int ENEMY_PROBABILITY = 10;
+    private MapEnemyGenerator enemyGenerator;
+
+    public MapGenerator()
+    {
+        this.enemyGenerator = new MapEnemyGenerator();
+    }
 
     public Map generate(MainCharacter character, CharacterGenerator characterGenerator)
     {
@@ -26,7 +28,7 @@ public class MapGenerator
 
         List<MapArea> rooms = this.generateTerrain(map);
         this.placeCharacter(map, character, rooms);
-        this.generateEnemies(map, characterGenerator, rooms);
+        this.enemyGenerator.generateEnemies(map, characterGenerator, rooms);
 
         return map;
     }
@@ -122,7 +124,8 @@ public class MapGenerator
         {
             MapArea room = rooms.get(i);
 
-            if (openArea.fallsWithin(room)) {
+            if (openArea.fallsWithin(room))
+            {
                 return true;
             }
         }
@@ -140,28 +143,5 @@ public class MapGenerator
         character.generateMapElement(posY, posX);
         MainCharacterMapElement characterMapElement = (MainCharacterMapElement)character.getMapElement();
         map.setElement(posY, posX, characterMapElement);
-    }
-
-    private void generateEnemies(Map map, CharacterGenerator characterGenerator, List<MapArea> rooms)
-    {
-        for (int i = 0; i < rooms.size(); i++)
-        {
-            MapArea room = rooms.get(i);
-            for (int row = room.getStartY() + 1; row < room.getEndY(); row++)
-            {
-                for (int column = room.getStartX() + 1; column < room.getEndX(); column++)
-                {
-                    int random = RandomNumberGenerator.randomInteger(1, 100);
-
-                    if (map.getElement(row, column) == null && random <= MapGenerator.ENEMY_PROBABILITY)
-                    {
-                        EnemyCharacter enemyCharacter = characterGenerator.generateEnemy();
-                        enemyCharacter.generateMapElement(row, column);
-                        EnemyMapElement enemyMapElement = (EnemyMapElement)enemyCharacter.getMapElement();
-                        map.setElement(row, column, enemyMapElement);
-                    }
-                }
-            }
-        }
     }
 }
