@@ -1,7 +1,7 @@
 import rznw.game.CharacterGenerator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
-import rznw.map.MapGenerator;
+import rznw.map.generator.MapGenerator;
 import rznw.turn.MainCharacterTurnHandler;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.ui.MainGameFrame;

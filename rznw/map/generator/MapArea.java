@@ -1,4 +1,4 @@
-package rznw.map;
+package rznw.map.generator;
 
 public class MapArea
 {

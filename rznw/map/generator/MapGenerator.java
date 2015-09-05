@@ -1,8 +1,9 @@
-package rznw.map;
+package rznw.map.generator;
 
 import rznw.game.CharacterGenerator;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.Wall;
