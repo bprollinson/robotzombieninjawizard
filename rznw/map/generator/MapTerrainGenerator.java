@@ -55,7 +55,8 @@ public class MapTerrainGenerator
                 for (int column = 0; column < Map.NUM_COLUMNS - width; column++) {
 
                     MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
-                    if (!this.elementExistsWithinRectangle(map, openArea)  && !this.areaFallsWithinAnotherArea(openArea, rooms))
+                    MapArea openAreaWithBorders = this.addBordersToOpenArea(openArea);
+                    if (!this.elementExistsWithinRectangle(map, openAreaWithBorders) && !this.areaFallsWithinAnotherArea(openArea, rooms))
                     {
                         return openArea;
                     }
@@ -64,6 +65,35 @@ public class MapTerrainGenerator
         }
 
         return null;
+    }
+
+    private MapArea addBordersToOpenArea(MapArea openArea)
+    {
+        int startX = openArea.getStartX();
+        if (startX > 0)
+        {
+            startX--;
+        }
+
+        int endX = openArea.getEndX();
+        if (endX < Map.NUM_COLUMNS - 1)
+        {
+            endX++;
+        }
+
+        int startY = openArea.getStartY();
+        if (startY > 0)
+        {
+            startY--;
+        }
+
+        int endY = openArea.getEndY();
+        if (endY < Map.NUM_ROWS - 1)
+        {
+            endY++;
+        }
+
+        return new MapArea(startX, startY, endX, endY);
     }
 
     private void renderRoom(Map map, int startX, int startY, int endX, int endY)
