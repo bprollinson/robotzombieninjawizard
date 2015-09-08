@@ -75,18 +75,15 @@ public class MapPathGenerator
         System.out.println("Adding path: " + i + " " + j);
         directPaths.setAdjacent(i, j);
 
-        allPaths.setAdjacent(i, j);
+        int[] adjacent1 = allPaths.getAdjacent(i);
+        int[] adjacent2 = allPaths.getAdjacent(j);
 
-        int[] adjacent = directPaths.getAdjacent(i);
-        for (int k = 0; k < adjacent.length; k++)
+        for (int k = 0; k < adjacent1.length; k++)
         {
-            allPaths.setAdjacent(j, adjacent[k]);
-        }
-
-        adjacent = directPaths.getAdjacent(j);
-        for (int k = 0; k < adjacent.length; k++)
-        {
-            allPaths.setAdjacent(i, adjacent[k]);
+            for (int l = 0; l < adjacent2.length; l++)
+            {
+                allPaths.setAdjacent(adjacent1[k], adjacent2[l]);
+            }
         }
     }
 }
