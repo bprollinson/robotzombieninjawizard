@@ -67,4 +67,24 @@ public class MapArea
     {
         return this.startX > otherArea.getStartX() && this.endX < otherArea.getEndX() && this.startY > otherArea.getStartY() && this.endY < otherArea.getEndY();
     }
+
+    public double getDistanceTo(MapArea otherArea)
+    {
+        double centerX = this.getCenterX();
+        double centerY = this.getCenterY();
+        double otherCenterX = otherArea.getCenterX();
+        double otherCenterY = otherArea.getCenterY();
+
+        return Math.sqrt(Math.pow((otherCenterX - centerX), 2) + Math.pow((otherCenterY - centerY), 2));
+    }
+
+    public double getCenterX()
+    {
+        return (this.startX + this.endX + 1) / 2;
+    }
+
+    public double getCenterY()
+    {
+        return (this.startY + this.endY + 1) / 2;
+    }
 }
