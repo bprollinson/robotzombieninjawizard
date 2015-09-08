@@ -2,6 +2,7 @@ package rznw.map.generator;
 
 import rznw.map.Map;
 import rznw.map.generator.MapArea;
+import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;
 
@@ -14,12 +15,14 @@ public class MapPathGenerator
         AdjacencyList directPaths = new AdjacencyList(rooms);
         AdjacencyList allPaths = new AdjacencyList(rooms);
 
+        System.out.println("Adding necessary paths");
         while (allPaths.partitionExists())
         {
             this.addShortestUnsetPath(map, rooms, directPaths, allPaths);
         }
 
-        //this.addAllUnsetPathsWithProbability(directPaths, allPaths, MapPathGenerator.RANDOM_PATH_PROBABILITY);
+        System.out.println("Adding some additional unset paths at random");
+        this.addAllUnsetPathsWithProbability(map, rooms, directPaths, allPaths);
     }
 
     private void addShortestUnsetPath(Map map, List<MapArea> rooms, AdjacencyList directPaths, AdjacencyList allPaths)
@@ -46,8 +49,25 @@ public class MapPathGenerator
             }
         }
 
-        System.out.println(shortestDistance);
         this.addPath(map, rooms, directPaths, allPaths, shortestI, shortestJ);
+    }
+
+    private void addAllUnsetPathsWithProbability(Map map, List<MapArea> rooms, AdjacencyList directPaths, AdjacencyList allPaths)
+    {
+        for (int i = 0; i < rooms.size(); i++)
+        {
+            for (int j = 0; j < rooms.size(); j++)
+            {
+                if (!directPaths.isAdjacent(i, j))
+                {
+                    int random = RandomNumberGenerator.randomInteger(1, 100);
+                    if (random <= MapPathGenerator.RANDOM_PATH_PROBABILITY)
+                    {
+                        this.addPath(map, rooms, directPaths, allPaths, i, j);
+                    }
+                }
+            }
+        }
     }
 
     private void addPath(Map map, List<MapArea> rooms, AdjacencyList directPaths, AdjacencyList allPaths, int i, int j)
