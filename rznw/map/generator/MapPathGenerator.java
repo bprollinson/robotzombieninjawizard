@@ -57,7 +57,7 @@ public class MapPathGenerator
         {
             for (int j = 0; j < rooms.size(); j++)
             {
-                if (pathCollection.isDirectlyAdjacent(i, j))
+                if (!pathCollection.isDirectlyAdjacent(i, j))
                 {
                     int random = RandomNumberGenerator.randomInteger(1, 100);
                     if (random <= MapPathGenerator.RANDOM_PATH_PROBABILITY)
