@@ -12,6 +12,8 @@ public class MapTerrainGenerator
     private static int MIN_ROOM_SIZE = 5;
     private static int MAX_ROOM_SIZE = 15;
 
+    private static int ROOM_BUFFER_SIZE = 3;
+
     public List<MapArea> generateTerrain(Map map)
     {
         Vector<MapArea> rooms = new Vector<MapArea>();
@@ -70,28 +72,16 @@ public class MapTerrainGenerator
     private MapArea addBordersToOpenArea(MapArea openArea)
     {
         int startX = openArea.getStartX();
-        if (startX > 0)
-        {
-            startX--;
-        }
+        startX = Math.max(0, startX - MapTerrainGenerator.ROOM_BUFFER_SIZE);
 
         int endX = openArea.getEndX();
-        if (endX < Map.NUM_COLUMNS - 1)
-        {
-            endX++;
-        }
+        endX = Math.min(Map.NUM_COLUMNS - 1, endX + MapTerrainGenerator.ROOM_BUFFER_SIZE);
 
         int startY = openArea.getStartY();
-        if (startY > 0)
-        {
-            startY--;
-        }
+        startY = Math.max(0, startY - MapTerrainGenerator.ROOM_BUFFER_SIZE);
 
         int endY = openArea.getEndY();
-        if (endY < Map.NUM_ROWS - 1)
-        {
-            endY++;
-        }
+        endY = Math.min(Map.NUM_ROWS - 1, endY + MapTerrainGenerator.ROOM_BUFFER_SIZE);
 
         return new MapArea(startX, startY, endX, endY);
     }
