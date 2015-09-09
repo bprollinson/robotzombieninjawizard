@@ -12,20 +12,19 @@ public class MapPathGenerator
 
     public void generatePaths(Map map, List<MapArea> rooms)
     {
-        AdjacencyList directPaths = new AdjacencyList(rooms);
-        AdjacencyList allPaths = new AdjacencyList(rooms);
+        PathCollection pathCollection = new PathCollection(rooms);
 
         System.out.println("Adding necessary paths");
-        while (allPaths.partitionExists())
+        while (pathCollection.partitionExists())
         {
-            this.addShortestUnsetPath(map, rooms, directPaths, allPaths);
+            this.addShortestUnsetPath(map, rooms, pathCollection);
         }
 
         System.out.println("Adding some additional unset paths at random");
-        this.addAllUnsetPathsWithProbability(map, rooms, directPaths, allPaths);
+        this.addAllUnsetPathsWithProbability(map, rooms, pathCollection);
     }
 
-    private void addShortestUnsetPath(Map map, List<MapArea> rooms, AdjacencyList directPaths, AdjacencyList allPaths)
+    private void addShortestUnsetPath(Map map, List<MapArea> rooms, PathCollection pathCollection)
     {
         int shortestI = -1;
         int shortestJ = -1;
@@ -35,7 +34,7 @@ public class MapPathGenerator
         {
             for (int j = 0; j < rooms.size(); j++)
             {
-                if (!allPaths.isAdjacent(i, j))
+                if (!pathCollection.isIndirectlyAdjacent(i, j))
                 {
                     double distance = rooms.get(i).getDistanceTo(rooms.get(j));
 
@@ -49,41 +48,30 @@ public class MapPathGenerator
             }
         }
 
-        this.addPath(map, rooms, directPaths, allPaths, shortestI, shortestJ);
+        this.addPath(map, rooms, pathCollection, shortestI, shortestJ);
     }
 
-    private void addAllUnsetPathsWithProbability(Map map, List<MapArea> rooms, AdjacencyList directPaths, AdjacencyList allPaths)
+    private void addAllUnsetPathsWithProbability(Map map, List<MapArea> rooms, PathCollection pathCollection)
     {
         for (int i = 0; i < rooms.size(); i++)
         {
             for (int j = 0; j < rooms.size(); j++)
             {
-                if (!directPaths.isAdjacent(i, j))
+                if (pathCollection.isDirectlyAdjacent(i, j))
                 {
                     int random = RandomNumberGenerator.randomInteger(1, 100);
                     if (random <= MapPathGenerator.RANDOM_PATH_PROBABILITY)
                     {
-                        this.addPath(map, rooms, directPaths, allPaths, i, j);
+                        this.addPath(map, rooms, pathCollection, i, j);
                     }
                 }
             }
         }
     }
 
-    private void addPath(Map map, List<MapArea> rooms, AdjacencyList directPaths, AdjacencyList allPaths, int i, int j)
+    private void addPath(Map map, List<MapArea> rooms, PathCollection pathCollection, int i, int j)
     {
         System.out.println("Adding path: " + i + " " + j);
-        directPaths.setAdjacent(i, j);
-
-        int[] adjacent1 = allPaths.getAdjacent(i);
-        int[] adjacent2 = allPaths.getAdjacent(j);
-
-        for (int k = 0; k < adjacent1.length; k++)
-        {
-            for (int l = 0; l < adjacent2.length; l++)
-            {
-                allPaths.setAdjacent(adjacent1[k], adjacent2[l]);
-            }
-        }
+        pathCollection.setDirectlyAdjacent(i, j);
     }
 }
