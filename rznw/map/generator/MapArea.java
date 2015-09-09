@@ -1,5 +1,10 @@
 package rznw.map.generator;
 
+import rznw.map.generator.direction.PathDirection;
+import rznw.map.generator.direction.PathDirectionUp;
+import rznw.map.generator.direction.PathDirectionDown;
+import rznw.map.generator.direction.PathDirectionLeft;
+
 public class MapArea
 {
     private int startX;
@@ -86,5 +91,69 @@ public class MapArea
     public double getCenterY()
     {
         return (this.startY + this.endY + 1) / 2;
+    }
+
+    public MapPoint[] getWallPoints(PathDirection directionOut)
+    {
+        if (directionOut instanceof PathDirectionUp)
+        {
+            int numPoints = this.endX - this.startX - 1;
+            MapPoint[] points = new MapPoint[numPoints];
+
+            int pointY = this.startY;
+
+            for (int i = 0; i < numPoints; i++)
+            {
+                int pointX = this.startX + i + 1;
+                points[i] = new MapPoint(pointX, pointY);
+            }
+
+            return points;
+        }
+
+        if (directionOut instanceof PathDirectionDown)
+        {
+            int numPoints = this.endX - this.startX - 1;
+            MapPoint[] points = new MapPoint[numPoints];
+
+            int pointY = this.endY;
+
+            for (int i = 0; i < numPoints; i++)
+            {
+                int pointX = this.startX + i + 1;
+                points[i] = new MapPoint(pointX, pointY);
+            }
+
+            return points;
+        }
+
+        if (directionOut instanceof PathDirectionLeft)
+        {
+            int numPoints = this.endY - this.startY - 1;
+            MapPoint[] points = new MapPoint[numPoints];
+
+            int pointX = this.startX;
+
+            for (int i = 0; i < numPoints; i++)
+            {
+                int pointY = this.startY + i + 1;
+                points[i] = new MapPoint(pointX, pointY);
+            }
+
+            return points;
+        }
+
+        int numPoints = this.endY - this.startY - 1;
+        MapPoint[] points = new MapPoint[numPoints];
+
+        int pointX = this.endX;
+
+        for (int i = 0; i < numPoints; i++)
+        {
+            int pointY = this.startY + i + 1;
+            points[i] = new MapPoint(pointX, pointY);
+        }
+
+        return points;
     }
 }

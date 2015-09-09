@@ -95,6 +95,8 @@ public class MapPathGenerator
         PathDirection directionOut = possibleDirectionOut[outIndex];
         System.out.println("Direction out: " + directionOut);
 
+        MapPoint point1 = this.getRandomWallAdjacentPoint(room1, directionOut);
+
         PathDirection[] possibleDirectionIn = PathDirectionFactory.getOppositeDirections(possibleDirectionOut);
 
         System.out.println("Possible directions in");
@@ -106,5 +108,25 @@ public class MapPathGenerator
         int inIndex = RandomNumberGenerator.randomInteger(0, possibleDirectionIn.length - 1);
         PathDirection directionIn = possibleDirectionIn[inIndex];
         System.out.println("Direction in: " + directionIn);
+
+        MapPoint point2 = this.getRandomWallAdjacentPoint(room2, directionIn);
+        System.out.println("Leaving from: " + point1.getX() + ", " + point1.getY());
+        System.out.println("Re-entering at: " + point2.getX() + ", " + point2.getY());
+    }
+
+    private MapPoint getRandomWallAdjacentPoint(MapArea room, PathDirection directionFromRoom)
+    {
+        MapPoint[] wallPoints = room.getWallPoints(directionFromRoom);
+
+        MapPoint[] possiblePoints = new MapPoint[wallPoints.length];
+
+        for (int i = 0; i < wallPoints.length; i++)
+        {
+            MapPoint wallPoint = wallPoints[i];
+            possiblePoints[i] = new MapPoint(wallPoint.getX() + directionFromRoom.getDeltaX(), wallPoint.getY() + directionFromRoom.getDeltaY());
+        }
+
+        int randomIndex = RandomNumberGenerator.randomInteger(0, possiblePoints.length - 1);
+        return possiblePoints[randomIndex];
     }
 }
