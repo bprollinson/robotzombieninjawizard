@@ -97,56 +97,40 @@ public class MapArea
     {
         if (directionOut instanceof PathDirectionUp)
         {
-            int numPoints = this.endX - this.startX - 1;
-            MapPoint[] points = new MapPoint[numPoints];
-
-            int pointY = this.startY;
-
-            for (int i = 0; i < numPoints; i++)
-            {
-                int pointX = this.startX + i + 1;
-                points[i] = new MapPoint(pointX, pointY);
-            }
-
-            return points;
+            return this.getHorizontalWallPoints(this.startY);
         }
 
         if (directionOut instanceof PathDirectionDown)
         {
-            int numPoints = this.endX - this.startX - 1;
-            MapPoint[] points = new MapPoint[numPoints];
-
-            int pointY = this.endY;
-
-            for (int i = 0; i < numPoints; i++)
-            {
-                int pointX = this.startX + i + 1;
-                points[i] = new MapPoint(pointX, pointY);
-            }
-
-            return points;
+            return this.getHorizontalWallPoints(this.endY);
         }
 
         if (directionOut instanceof PathDirectionLeft)
         {
-            int numPoints = this.endY - this.startY - 1;
-            MapPoint[] points = new MapPoint[numPoints];
-
-            int pointX = this.startX;
-
-            for (int i = 0; i < numPoints; i++)
-            {
-                int pointY = this.startY + i + 1;
-                points[i] = new MapPoint(pointX, pointY);
-            }
-
-            return points;
+            return this.getVerticalWallPoints(this.startX);
         }
 
-        int numPoints = this.endY - this.startY - 1;
+        return this.getVerticalWallPoints(this.endX);
+    }
+
+    private MapPoint[] getHorizontalWallPoints(int pointY)
+    {
+        int numPoints = this.endX - this.startX - 1;
         MapPoint[] points = new MapPoint[numPoints];
 
-        int pointX = this.endX;
+        for (int i = 0; i < numPoints; i++)
+        {
+            int pointX = this.startX + i + 1;
+            points[i] = new MapPoint(pointX, pointY);
+        }
+
+        return points;
+    }
+
+    private MapPoint[] getVerticalWallPoints(int pointX)
+    {
+        int numPoints = this.endY - this.startY - 1;
+        MapPoint[] points = new MapPoint[numPoints];
 
         for (int i = 0; i < numPoints; i++)
         {
