@@ -91,6 +91,10 @@ public class MapPathGenerator
             System.out.println(possibleDirectionOut[k]);
         }
 
+        int outIndex = RandomNumberGenerator.randomInteger(0, possibleDirectionOut.length - 1);
+        PathDirection directionOut = possibleDirectionOut[outIndex];
+        System.out.println("Direction out: " + directionOut);
+
         PathDirection[] possibleDirectionIn = PathDirectionFactory.getOppositeDirections(possibleDirectionOut);
 
         System.out.println("Possible directions in");
@@ -98,5 +102,9 @@ public class MapPathGenerator
         {
             System.out.println(possibleDirectionIn[k]);
         }
+
+        int inIndex = RandomNumberGenerator.randomInteger(0, possibleDirectionIn.length - 1);
+        PathDirection directionIn = possibleDirectionIn[inIndex];
+        System.out.println("Direction in: " + directionIn);
     }
 }
