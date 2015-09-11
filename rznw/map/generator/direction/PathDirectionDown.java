@@ -6,4 +6,9 @@ public class PathDirectionDown extends PathDirection
     {
         super(0, 1);
     }
+
+    public String toString()
+    {
+        return "D";
+    }
 }

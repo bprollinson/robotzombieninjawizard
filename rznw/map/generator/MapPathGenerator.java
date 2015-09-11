@@ -1,6 +1,7 @@
 package rznw.map.generator;
 
 import rznw.map.Map;
+import rznw.map.element.Path;
 import rznw.map.element.Wall;
 import rznw.map.generator.MapArea;
 import rznw.map.generator.direction.PathDirection;
@@ -120,6 +121,9 @@ public class MapPathGenerator
         System.out.println("Re-entering at: " + point2.getX() + ", " + point2.getY());
 
         MapPath path = this.calculatePath(map, rooms, point1, point2);
+        System.out.println("Path is: " + path);
+
+        this.renderPathOnMap(map, path);
     }
 
     private MapPoint getRandomWallAdjacentPoint(MapArea room, PathDirection directionFromRoom)
@@ -171,6 +175,7 @@ public class MapPathGenerator
 
             if (currentPoint.equals(finalPoint))
             {
+                System.out.println("Found the matching path!");
                 return path;
             }
         }
@@ -192,7 +197,7 @@ public class MapPathGenerator
             } else {
                 if (upPath.getCurrentPoint().equals(finalPoint))
                 {
-                    System.out.println("*****Match up*****");return null;
+                    newPaths.add(upPath);
                 }
             }
 
@@ -204,7 +209,7 @@ public class MapPathGenerator
             } else {
                 if (downPath.getCurrentPoint().equals(finalPoint))
                 {
-                    System.out.println("*****Match down*****");return null;
+                    newPaths.add(downPath);
                 }
             }
 
@@ -216,7 +221,7 @@ public class MapPathGenerator
             } else {
                 if (leftPath.getCurrentPoint().equals(finalPoint))
                 {
-                    System.out.println("*****Match left*****");return null;
+                    newPaths.add(leftPath);
                 }
             }
 
@@ -228,11 +233,22 @@ public class MapPathGenerator
             } else {
                 if (rightPath.getCurrentPoint().equals(finalPoint))
                 {
-                    System.out.println("*****Match right*****");return null;
+                    newPaths.add(rightPath);
                 }
             }
         }
 
         return this.calculateShortestPath(map, finalPoint, newPaths.toArray(new MapPath[newPaths.size()]), pathCache);
+    }
+
+    private void renderPathOnMap(Map map, MapPath path)
+    {
+        MapPoint[] points = path.getPoints();
+
+        for (int i = 0; i < points.length; i++)
+        {
+            MapPoint point = points[i];
+            map.setElement(point.getY(), point.getX(), new Path(point.getY(), point.getX()));
+        }
     }
 }
