@@ -1,12 +1,18 @@
 package rznw.map.generator;
 
 import rznw.map.Map;
+import rznw.map.element.Wall;
 import rznw.map.generator.MapArea;
 import rznw.map.generator.direction.PathDirection;
+import rznw.map.generator.direction.PathDirectionDown;
+import rznw.map.generator.direction.PathDirectionLeft;
+import rznw.map.generator.direction.PathDirectionRight;
+import rznw.map.generator.direction.PathDirectionUp;
 import rznw.map.generator.direction.PathDirectionFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;
+import java.util.Vector;
 
 public class MapPathGenerator
 {
@@ -112,6 +118,8 @@ public class MapPathGenerator
         MapPoint point2 = this.getRandomWallAdjacentPoint(room2, directionIn);
         System.out.println("Leaving from: " + point1.getX() + ", " + point1.getY());
         System.out.println("Re-entering at: " + point2.getX() + ", " + point2.getY());
+
+        MapPath path = this.calculatePath(map, rooms, point1, point2);
     }
 
     private MapPoint getRandomWallAdjacentPoint(MapArea room, PathDirection directionFromRoom)
@@ -128,5 +136,103 @@ public class MapPathGenerator
 
         int randomIndex = RandomNumberGenerator.randomInteger(0, possiblePoints.length - 1);
         return possiblePoints[randomIndex];
+    }
+
+    private MapPath calculatePath(Map map, List<MapArea> rooms, MapPoint point1, MapPoint point2)
+    {
+        Map paddedMap = new Map();
+
+        for (int i = 0; i < rooms.size(); i++)
+        {
+            MapArea room = rooms.get(i);
+            MapArea paddedRoom = MapTerrainGenerator.addBordersToOpenArea(room, 1);
+
+            MapTerrainGenerator.renderRoom(paddedMap, paddedRoom.getStartX(), paddedRoom.getStartY(), paddedRoom.getEndX(), paddedRoom.getEndY());
+        }
+
+        MapPath result = new MapPath(point1);
+        MapPathCache pathCache = new MapPathCache();
+
+        return this.calculateShortestPath(paddedMap, point2, new MapPath[]{result}, pathCache);
+    }
+
+    private MapPath calculateShortestPath(Map map, MapPoint finalPoint, MapPath[] paths, MapPathCache pathCache)
+    {
+        if (paths.length == 0)
+        {
+            System.out.println("!Fail!");
+            return null;
+        }
+
+        for (int i = 0; i < paths.length; i++)
+        {
+            MapPath path = paths[i];
+            MapPoint currentPoint = path.getCurrentPoint();
+
+            if (currentPoint.equals(finalPoint))
+            {
+                return path;
+            }
+        }
+
+        Vector<MapPath> newPaths = new Vector<MapPath>();
+
+        for (int i = 0; i < paths.length; i++)
+        {
+            pathCache.registerPathAsUsed(paths[i]);
+        }
+
+        for (int i = 0; i < paths.length; i++)
+        {
+            MapPath upPath = paths[i].getSubsequentPath(new PathDirectionUp());
+            MapPoint upPathPoint = upPath.getCurrentPoint();
+            if (upPathPoint.getY() >= 0 && !pathCache.pathIsUsed(upPath) && !(map.getElement(upPathPoint.getY(), upPathPoint.getX()) instanceof Wall))
+            {
+                newPaths.add(upPath);
+            } else {
+                if (upPath.getCurrentPoint().equals(finalPoint))
+                {
+                    System.out.println("*****Match up*****");return null;
+                }
+            }
+
+            MapPath downPath = paths[i].getSubsequentPath(new PathDirectionDown());
+            MapPoint downPathPoint = downPath.getCurrentPoint();
+            if (downPathPoint.getY() < Map.NUM_ROWS && !pathCache.pathIsUsed(downPath) && !(map.getElement(downPathPoint.getY(), downPathPoint.getX()) instanceof Wall))
+            {
+                newPaths.add(downPath);
+            } else {
+                if (downPath.getCurrentPoint().equals(finalPoint))
+                {
+                    System.out.println("*****Match down*****");return null;
+                }
+            }
+
+            MapPath leftPath = paths[i].getSubsequentPath(new PathDirectionLeft());
+            MapPoint leftPathPoint = leftPath.getCurrentPoint();
+            if (leftPathPoint.getX() >= 0 && !pathCache.pathIsUsed(leftPath) && !(map.getElement(leftPathPoint.getY(), leftPathPoint.getX()) instanceof Wall))
+            {
+                newPaths.add(leftPath);
+            } else {
+                if (leftPath.getCurrentPoint().equals(finalPoint))
+                {
+                    System.out.println("*****Match left*****");return null;
+                }
+            }
+
+            MapPath rightPath = paths[i].getSubsequentPath(new PathDirectionRight());
+            MapPoint rightPathPoint = rightPath.getCurrentPoint();
+            if (rightPathPoint.getX() < Map.NUM_COLUMNS && !pathCache.pathIsUsed(rightPath) && !(map.getElement(rightPathPoint.getY(), rightPathPoint.getX()) instanceof Wall))
+            {
+                newPaths.add(rightPath);
+            } else {
+                if (rightPath.getCurrentPoint().equals(finalPoint))
+                {
+                    System.out.println("*****Match right*****");return null;
+                }
+            }
+        }
+
+        return this.calculateShortestPath(map, finalPoint, newPaths.toArray(new MapPath[newPaths.size()]), pathCache);
     }
 }

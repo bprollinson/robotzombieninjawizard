@@ -20,4 +20,19 @@ public class MapPoint
     {
         return this.y;
     }
+
+    public MapPoint clone()
+    {
+        return new MapPoint(this.x, this.y);
+    }
+
+    public boolean equals(MapPoint otherPoint)
+    {
+        return this.x == otherPoint.getX() && this.y == otherPoint.getY();
+    }
+
+    public String toString()
+    {
+        return "(" + this.x + "," + this.y + ")";
+    }
 }

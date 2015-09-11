@@ -33,6 +33,55 @@ public class MapTerrainGenerator
         return rooms;
     }
 
+    public static MapArea addBordersToOpenArea(MapArea openArea)
+    {
+        int startX = openArea.getStartX();
+        startX = Math.max(0, startX - MapTerrainGenerator.ROOM_BUFFER_SIZE);
+
+        int endX = openArea.getEndX();
+        endX = Math.min(Map.NUM_COLUMNS - 1, endX + MapTerrainGenerator.ROOM_BUFFER_SIZE);
+
+        int startY = openArea.getStartY();
+        startY = Math.max(0, startY - MapTerrainGenerator.ROOM_BUFFER_SIZE);
+
+        int endY = openArea.getEndY();
+        endY = Math.min(Map.NUM_ROWS - 1, endY + MapTerrainGenerator.ROOM_BUFFER_SIZE);
+
+        return new MapArea(startX, startY, endX, endY);
+    }
+
+    public static MapArea addBordersToOpenArea(MapArea openArea, int bufferSize)
+    {
+        int startX = openArea.getStartX();
+        startX = Math.max(0, startX - bufferSize);
+
+        int endX = openArea.getEndX();
+        endX = Math.min(Map.NUM_COLUMNS - 1, endX + bufferSize);
+
+        int startY = openArea.getStartY();
+        startY = Math.max(0, startY - bufferSize);
+
+        int endY = openArea.getEndY();
+        endY = Math.min(Map.NUM_ROWS - 1, endY + bufferSize);
+
+        return new MapArea(startX, startY, endX, endY);
+    }
+
+    public static void renderRoom(Map map, int startX, int startY, int endX, int endY)
+    {
+        for (int i = startX; i <= endX; i++)
+        {
+            map.setElement(startY, i, new Wall(startY, i));
+            map.setElement(endY, i, new Wall(endY, i));
+        }
+
+        for (int i = startY; i <= endY; i++)
+        {
+            map.setElement(i, startX, new Wall(i, startX));
+            map.setElement(i, endX, new Wall(i, endX));
+        }
+    }
+
     private MapArea generateRoom(Map map, MapArea largestOpenArea, int maxRoomSize)
     {
         maxRoomSize = Math.min(maxRoomSize, MapTerrainGenerator.MAX_ROOM_SIZE);
@@ -67,38 +116,6 @@ public class MapTerrainGenerator
         }
 
         return null;
-    }
-
-    private MapArea addBordersToOpenArea(MapArea openArea)
-    {
-        int startX = openArea.getStartX();
-        startX = Math.max(0, startX - MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        int endX = openArea.getEndX();
-        endX = Math.min(Map.NUM_COLUMNS - 1, endX + MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        int startY = openArea.getStartY();
-        startY = Math.max(0, startY - MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        int endY = openArea.getEndY();
-        endY = Math.min(Map.NUM_ROWS - 1, endY + MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        return new MapArea(startX, startY, endX, endY);
-    }
-
-    private void renderRoom(Map map, int startX, int startY, int endX, int endY)
-    {
-        for (int i = startX; i <= endX; i++)
-        {
-            map.setElement(startY, i, new Wall(startY, i));
-            map.setElement(endY, i, new Wall(endY, i));
-        }
-
-        for (int i = startY; i <= endY; i++)
-        {
-            map.setElement(i, startX, new Wall(i, startX));
-            map.setElement(i, endX, new Wall(i, endX));
-        }
     }
 
     private boolean elementExistsWithinRectangle(Map map, MapArea openArea)
