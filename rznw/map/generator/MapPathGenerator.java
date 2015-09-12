@@ -212,6 +212,37 @@ public class MapPathGenerator
             }
         }
 
-        return this.calculateShortestPath(map, finalPoint, newPaths.toArray(new MapPath[newPaths.size()]), pathCache);
+        Vector<MapPath> uniquePaths = this.makePathsUnique(newPaths);
+
+        return this.calculateShortestPath(map, finalPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache);
+    }
+
+    private Vector<MapPath> makePathsUnique(Vector<MapPath> paths)
+    {
+        Vector<MapPath> result = new Vector<MapPath>();
+
+        for (int i = 0; i < paths.size(); i++)
+        {
+            MapPath path = paths.get(i);
+
+            boolean found = false;
+
+            for (int j = 0; j < result.size(); j++)
+            {
+                MapPath solutionPath = result.get(j);
+                if (path.getCurrentPoint().equals(solutionPath.getCurrentPoint()))
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                result.add(path);
+            }
+        }
+
+        return result;
     }
 }
