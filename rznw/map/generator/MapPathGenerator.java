@@ -21,10 +21,13 @@ public class MapPathGenerator
 
     private MapAreaPointAggregator pointAggregator;
     private OpenAreaPadder padder;
+    private RoomRenderer roomRenderer;
 
     public MapPathGenerator()
     {
         this.pointAggregator = new MapAreaPointAggregator();
+        this.padder = new OpenAreaPadder();
+        this.roomRenderer = new RoomRenderer();
     }
 
     public void generatePaths(Map map, List<MapArea> rooms)
@@ -159,7 +162,7 @@ public class MapPathGenerator
             MapArea room = rooms.get(i);
             MapArea paddedRoom = this.padder.addBordersToOpenArea(room, 1);
 
-            MapTerrainGenerator.renderRoom(paddedMap, paddedRoom.getStartX(), paddedRoom.getStartY(), paddedRoom.getEndX(), paddedRoom.getEndY());
+            this.roomRenderer.renderRoom(paddedMap, paddedRoom.getStartX(), paddedRoom.getStartY(), paddedRoom.getEndX(), paddedRoom.getEndY());
         }
 
         MapPath result = new MapPath(point1);

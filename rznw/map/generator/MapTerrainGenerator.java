@@ -1,7 +1,6 @@
 package rznw.map.generator;
 
 import rznw.map.Map;
-import rznw.map.element.Wall;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;
@@ -16,11 +15,13 @@ public class MapTerrainGenerator
 
     private MapAreaCollision collision;
     private OpenAreaPadder padder;
+    private RoomRenderer roomRenderer;
 
     public MapTerrainGenerator()
     {
         this.collision = new MapAreaCollision();
         this.padder = new OpenAreaPadder();
+        this.roomRenderer = new RoomRenderer();
     }
 
     public List<MapArea> generateTerrain(Map map)
@@ -42,21 +43,6 @@ public class MapTerrainGenerator
         return rooms;
     }
 
-    public static void renderRoom(Map map, int startX, int startY, int endX, int endY)
-    {
-        for (int i = startX; i <= endX; i++)
-        {
-            map.setElement(startY, i, new Wall(startY, i));
-            map.setElement(endY, i, new Wall(endY, i));
-        }
-
-        for (int i = startY; i <= endY; i++)
-        {
-            map.setElement(i, startX, new Wall(i, startX));
-            map.setElement(i, endX, new Wall(i, endX));
-        }
-    }
-
     private MapArea generateRoom(Map map, MapArea largestOpenArea, int maxRoomSize)
     {
         maxRoomSize = Math.min(maxRoomSize, MapTerrainGenerator.MAX_ROOM_SIZE);
@@ -68,7 +54,7 @@ public class MapTerrainGenerator
         int endX = startX + width - 1;
         int endY = startY + height - 1;
 
-        this.renderRoom(map, startX, startY, endX, endY);
+        this.roomRenderer.renderRoom(map, startX, startY, endX, endY);
 
         return new MapArea(startX, startY, endX, endY);
     }

@@ -4,7 +4,7 @@ import rznw.map.Map;
 
 public class OpenAreaPadder
 {
-    public static MapArea addBordersToOpenArea(MapArea openArea, int bufferSize)
+    public MapArea addBordersToOpenArea(MapArea openArea, int bufferSize)
     {
         int startX = openArea.getStartX();
         startX = Math.max(0, startX - bufferSize);
