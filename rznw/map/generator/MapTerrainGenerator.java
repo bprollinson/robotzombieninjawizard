@@ -14,6 +14,13 @@ public class MapTerrainGenerator
 
     private static int ROOM_BUFFER_SIZE = 3;
 
+    private MapAreaCollision collision;
+
+    public MapTerrainGenerator()
+    {
+        this.collision = new MapAreaCollision();
+    }
+
     public List<MapArea> generateTerrain(Map map)
     {
         Vector<MapArea> rooms = new Vector<MapArea>();
@@ -107,7 +114,7 @@ public class MapTerrainGenerator
 
                     MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
                     MapArea openAreaWithBorders = this.addBordersToOpenArea(openArea);
-                    if (!this.elementExistsWithinRectangle(map, openAreaWithBorders) && !this.areaFallsWithinAnotherArea(openArea, rooms))
+                    if (!this.collision.elementExistsWithinRectangle(map, openAreaWithBorders) && !this.collision.areaFallsWithinAnotherArea(openArea, rooms))
                     {
                         return openArea;
                     }
@@ -116,36 +123,5 @@ public class MapTerrainGenerator
         }
 
         return null;
-    }
-
-    private boolean elementExistsWithinRectangle(Map map, MapArea openArea)
-    {
-        for (int row = openArea.getStartY(); row <= openArea.getEndY(); row++)
-        {
-            for (int column = openArea.getStartX(); column <= openArea.getEndX(); column++)
-            {
-                if (map.getElement(row, column) != null)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    private boolean areaFallsWithinAnotherArea(MapArea openArea, List<MapArea> rooms)
-    {
-        for (int i = 0; i < rooms.size(); i++)
-        {
-            MapArea room = rooms.get(i);
-
-            if (openArea.fallsWithin(room))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
