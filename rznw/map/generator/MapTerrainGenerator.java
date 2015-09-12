@@ -40,23 +40,6 @@ public class MapTerrainGenerator
         return rooms;
     }
 
-    public static MapArea addBordersToOpenArea(MapArea openArea)
-    {
-        int startX = openArea.getStartX();
-        startX = Math.max(0, startX - MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        int endX = openArea.getEndX();
-        endX = Math.min(Map.NUM_COLUMNS - 1, endX + MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        int startY = openArea.getStartY();
-        startY = Math.max(0, startY - MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        int endY = openArea.getEndY();
-        endY = Math.min(Map.NUM_ROWS - 1, endY + MapTerrainGenerator.ROOM_BUFFER_SIZE);
-
-        return new MapArea(startX, startY, endX, endY);
-    }
-
     public static MapArea addBordersToOpenArea(MapArea openArea, int bufferSize)
     {
         int startX = openArea.getStartX();
@@ -113,7 +96,7 @@ public class MapTerrainGenerator
                 for (int column = 0; column < Map.NUM_COLUMNS - width; column++) {
 
                     MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
-                    MapArea openAreaWithBorders = this.addBordersToOpenArea(openArea);
+                    MapArea openAreaWithBorders = this.addBordersToOpenArea(openArea, MapTerrainGenerator.ROOM_BUFFER_SIZE);
                     if (!this.collision.elementExistsWithinRectangle(map, openAreaWithBorders) && !this.collision.areaFallsWithinAnotherArea(openArea, rooms))
                     {
                         return openArea;
