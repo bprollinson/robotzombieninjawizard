@@ -1,4 +1,7 @@
-package rznw.map.generator;
+package rznw.map.generator.path;
+
+import rznw.map.generator.AdjacencyList;
+import rznw.map.generator.area.MapArea;
 
 import java.util.List;
 

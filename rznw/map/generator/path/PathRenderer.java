@@ -1,7 +1,8 @@
-package rznw.map.generator;
+package rznw.map.generator.path;
 
 import rznw.map.Map;
 import rznw.map.element.Path;
+import rznw.map.generator.MapPoint;
 
 public class PathRenderer
 {

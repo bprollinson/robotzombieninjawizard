@@ -1,4 +1,4 @@
-package rznw.map.generator;
+package rznw.map.generator.area;
 
 import rznw.map.Map;
 

@@ -1,6 +1,10 @@
 package rznw.map.generator;
 
 import rznw.map.Map;
+import rznw.map.generator.area.MapArea;
+import rznw.map.generator.area.MapAreaCollision;
+import rznw.map.generator.area.OpenAreaPadder;
+import rznw.map.generator.area.RoomRenderer;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;

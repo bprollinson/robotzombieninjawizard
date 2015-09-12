@@ -1,5 +1,6 @@
-package rznw.map.generator;
+package rznw.map.generator.area;
 
+import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
 import rznw.map.generator.direction.PathDirectionUp;
 import rznw.map.generator.direction.PathDirectionDown;

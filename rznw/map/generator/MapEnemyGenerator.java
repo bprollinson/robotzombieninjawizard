@@ -4,6 +4,7 @@ import rznw.game.CharacterGenerator;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
+import rznw.map.generator.area.MapArea;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;

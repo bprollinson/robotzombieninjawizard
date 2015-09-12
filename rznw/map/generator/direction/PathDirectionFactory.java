@@ -1,6 +1,6 @@
 package rznw.map.generator.direction;
 
-import rznw.map.generator.MapArea;
+import rznw.map.generator.area.MapArea;
 
 import java.util.Vector;
 

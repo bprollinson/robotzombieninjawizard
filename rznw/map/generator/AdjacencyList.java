@@ -1,5 +1,7 @@
 package rznw.map.generator;
 
+import rznw.map.generator.area.MapArea;
+
 import java.util.HashMap;
 import java.util.List;
 

@@ -1,5 +1,6 @@
-package rznw.map.generator;
+package rznw.map.generator.path;
 
+import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
 
 import java.util.Vector;

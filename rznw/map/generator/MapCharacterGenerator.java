@@ -3,6 +3,7 @@ package rznw.map.generator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.MainCharacterMapElement;
+import rznw.map.generator.area.MapArea;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.List;

@@ -3,6 +3,7 @@ package rznw.map.generator;
 import rznw.game.CharacterGenerator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
+import rznw.map.generator.area.MapArea;
 
 import java.util.List;
 
