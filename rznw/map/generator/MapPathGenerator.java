@@ -19,6 +19,13 @@ public class MapPathGenerator
 {
     private static final int RANDOM_PATH_PROBABILITY = 10;
 
+    private MapAreaPointAggregator pointAggregator;
+
+    public MapPathGenerator()
+    {
+        this.pointAggregator = new MapAreaPointAggregator();
+    }
+
     public void generatePaths(Map map, List<MapArea> rooms)
     {
         PathCollection pathCollection = new PathCollection(rooms);
@@ -128,7 +135,7 @@ public class MapPathGenerator
 
     private MapPoint getRandomWallAdjacentPoint(MapArea room, PathDirection directionFromRoom)
     {
-        MapPoint[] wallPoints = room.getWallPoints(directionFromRoom);
+        MapPoint[] wallPoints = this.pointAggregator.getWallPoints(room, directionFromRoom);
 
         MapPoint[] possiblePoints = new MapPoint[wallPoints.length];
 

@@ -1,10 +1,5 @@
 package rznw.map.generator;
 
-import rznw.map.generator.direction.PathDirection;
-import rznw.map.generator.direction.PathDirectionUp;
-import rznw.map.generator.direction.PathDirectionDown;
-import rznw.map.generator.direction.PathDirectionLeft;
-
 public class MapArea
 {
     private int startX;
@@ -91,53 +86,5 @@ public class MapArea
     public double getCenterY()
     {
         return (this.startY + this.endY + 1) / 2;
-    }
-
-    public MapPoint[] getWallPoints(PathDirection directionOut)
-    {
-        if (directionOut instanceof PathDirectionUp)
-        {
-            return this.getHorizontalWallPoints(this.startY);
-        }
-
-        if (directionOut instanceof PathDirectionDown)
-        {
-            return this.getHorizontalWallPoints(this.endY);
-        }
-
-        if (directionOut instanceof PathDirectionLeft)
-        {
-            return this.getVerticalWallPoints(this.startX);
-        }
-
-        return this.getVerticalWallPoints(this.endX);
-    }
-
-    private MapPoint[] getHorizontalWallPoints(int pointY)
-    {
-        int numPoints = this.endX - this.startX - 1;
-        MapPoint[] points = new MapPoint[numPoints];
-
-        for (int i = 0; i < numPoints; i++)
-        {
-            int pointX = this.startX + i + 1;
-            points[i] = new MapPoint(pointX, pointY);
-        }
-
-        return points;
-    }
-
-    private MapPoint[] getVerticalWallPoints(int pointX)
-    {
-        int numPoints = this.endY - this.startY - 1;
-        MapPoint[] points = new MapPoint[numPoints];
-
-        for (int i = 0; i < numPoints; i++)
-        {
-            int pointY = this.startY + i + 1;
-            points[i] = new MapPoint(pointX, pointY);
-        }
-
-        return points;
     }
 }
