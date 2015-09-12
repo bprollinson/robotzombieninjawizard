@@ -4,11 +4,11 @@ import java.util.HashSet;
 
 public class MapPathCache
 {
-    private HashSet usedPoints;
+    private HashSet<String> usedPoints;
 
     public MapPathCache()
     {
-        this.usedPoints = new HashSet();
+        this.usedPoints = new HashSet<String>();
     }
 
     public void registerPathAsUsed(MapPath path)

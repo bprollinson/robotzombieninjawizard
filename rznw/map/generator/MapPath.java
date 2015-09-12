@@ -59,7 +59,7 @@ public class MapPath implements Cloneable
     {
         MapPoint newStartingPoint = this.startingPoint.clone();
         MapPoint newCurrentPoint = this.currentPoint.clone();
-        Vector<PathDirection> pathVector = (Vector<PathDirection>)this.path.clone();
+        Vector<PathDirection> pathVector = new Vector<PathDirection>(this.path);
         MapPath newPath = new MapPath(newStartingPoint, newCurrentPoint, pathVector);
 
         return newPath;
