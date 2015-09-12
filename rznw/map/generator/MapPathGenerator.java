@@ -20,6 +20,7 @@ public class MapPathGenerator
     private static final int RANDOM_PATH_PROBABILITY = 10;
 
     private MapAreaPointAggregator pointAggregator;
+    private OpenAreaPadder padder;
 
     public MapPathGenerator()
     {
@@ -156,7 +157,7 @@ public class MapPathGenerator
         for (int i = 0; i < rooms.size(); i++)
         {
             MapArea room = rooms.get(i);
-            MapArea paddedRoom = MapTerrainGenerator.addBordersToOpenArea(room, 1);
+            MapArea paddedRoom = this.padder.addBordersToOpenArea(room, 1);
 
             MapTerrainGenerator.renderRoom(paddedMap, paddedRoom.getStartX(), paddedRoom.getStartY(), paddedRoom.getEndX(), paddedRoom.getEndY());
         }

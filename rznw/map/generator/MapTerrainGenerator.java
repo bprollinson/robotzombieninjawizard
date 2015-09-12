@@ -15,10 +15,12 @@ public class MapTerrainGenerator
     private static int ROOM_BUFFER_SIZE = 3;
 
     private MapAreaCollision collision;
+    private OpenAreaPadder padder;
 
     public MapTerrainGenerator()
     {
         this.collision = new MapAreaCollision();
+        this.padder = new OpenAreaPadder();
     }
 
     public List<MapArea> generateTerrain(Map map)
@@ -38,23 +40,6 @@ public class MapTerrainGenerator
         }
 
         return rooms;
-    }
-
-    public static MapArea addBordersToOpenArea(MapArea openArea, int bufferSize)
-    {
-        int startX = openArea.getStartX();
-        startX = Math.max(0, startX - bufferSize);
-
-        int endX = openArea.getEndX();
-        endX = Math.min(Map.NUM_COLUMNS - 1, endX + bufferSize);
-
-        int startY = openArea.getStartY();
-        startY = Math.max(0, startY - bufferSize);
-
-        int endY = openArea.getEndY();
-        endY = Math.min(Map.NUM_ROWS - 1, endY + bufferSize);
-
-        return new MapArea(startX, startY, endX, endY);
     }
 
     public static void renderRoom(Map map, int startX, int startY, int endX, int endY)
@@ -96,7 +81,7 @@ public class MapTerrainGenerator
                 for (int column = 0; column < Map.NUM_COLUMNS - width; column++) {
 
                     MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
-                    MapArea openAreaWithBorders = this.addBordersToOpenArea(openArea, MapTerrainGenerator.ROOM_BUFFER_SIZE);
+                    MapArea openAreaWithBorders = this.padder.addBordersToOpenArea(openArea, MapTerrainGenerator.ROOM_BUFFER_SIZE);
                     if (!this.collision.elementExistsWithinRectangle(map, openAreaWithBorders) && !this.collision.areaFallsWithinAnotherArea(openArea, rooms))
                     {
                         return openArea;
