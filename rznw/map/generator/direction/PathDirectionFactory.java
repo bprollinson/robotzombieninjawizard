@@ -45,7 +45,7 @@ public class PathDirectionFactory
         return oppositeDirection;
     }
 
-    private static PathDirection getOppositeDirection(PathDirection direction)
+    public static PathDirection getOppositeDirection(PathDirection direction)
     {
         if (direction instanceof PathDirectionUp)
         {

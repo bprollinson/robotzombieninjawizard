@@ -30,6 +30,11 @@ public class MapPath implements Cloneable
         return this.currentPoint;
     }
 
+    public PathDirection getDirection(int i)
+    {
+        return this.path.get(i);
+    }
+
     public MapPoint[] getPoints()
     {
         MapPoint[] result = new MapPoint[path.size() + 1];
