@@ -13,10 +13,12 @@ public class Map
     public static final int NUM_COLUMNS = 40;
 
     private MapElement[][] elements;
+    private MapElement[][] backgroundElements;
 
     public Map()
     {
         this.elements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
+        this.backgroundElements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
     }
 
     public MapElement getElement(int i, int j)
@@ -24,9 +26,19 @@ public class Map
         return this.elements[i][j];
     }
 
+    public MapElement getBackgroundElement(int i, int j)
+    {
+        return this.backgroundElements[i][j];
+    }
+
     public void setElement(int i, int j, MapElement element)
     {
         this.elements[i][j] = element;
+    }
+
+    public void setBackgroundElement(int i, int j, MapElement element)
+    {
+        this.backgroundElements[i][j] = element;
     }
 
     public Collection<EnemyCharacter> getEnemies()

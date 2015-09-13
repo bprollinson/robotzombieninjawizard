@@ -15,7 +15,8 @@ public class PathRenderer
         for (int i = 0; i < points.length; i++)
         {
             MapPoint point = points[i];
-            map.setElement(point.getY(), point.getX(), new Path(point.getY(), point.getX()));
+            map.setElement(point.getY(), point.getX(), null);
+            map.setBackgroundElement(point.getY(), point.getX(), new Path(point.getY(), point.getX()));
         }
 
         MapPoint point1 = points[0];

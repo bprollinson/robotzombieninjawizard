@@ -19,12 +19,17 @@ public class MapRenderer
             for (int j = 0; j < Map.NUM_COLUMNS; j++)
             {
                 MapElement element = map.getElement(i, j);
+                MapElement backgroundElement = map.getBackgroundElement(i, j);
 
                 char displayCharacter = ' ';
 
                 if (element != null)
                 {
                     displayCharacter = element.getDisplayCharacter();
+                }
+                else if (backgroundElement != null)
+                {
+                    displayCharacter = backgroundElement.getDisplayCharacter();
                 }
 
                 this.frame.renderDisplayCharacter(i, j, displayCharacter);
