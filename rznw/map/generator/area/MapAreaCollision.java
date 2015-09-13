@@ -1,18 +1,21 @@
 package rznw.map.generator.area;
 
 import rznw.map.Map;
+import rznw.map.element.MapElement;
+import rznw.map.element.Wall;
 
 import java.util.List;
 
 public class MapAreaCollision
 {
-    public boolean elementExistsWithinRectangle(Map map, MapArea openArea)
+    public boolean wallExistsWithinRectangle(Map map, MapArea openArea)
     {
         for (int row = openArea.getStartY(); row <= openArea.getEndY(); row++)
         {
             for (int column = openArea.getStartX(); column <= openArea.getEndX(); column++)
             {
-                if (map.getElement(row, column) != null)
+                MapElement element = map.getElement(row, column);
+                if (element instanceof Wall)
                 {
                     return true;
                 }

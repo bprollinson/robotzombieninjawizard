@@ -30,6 +30,8 @@ public class MapTerrainGenerator
 
     public List<MapArea> generateTerrain(Map map)
     {
+        this.roomRenderer.renderVoid(map);
+
         Vector<MapArea> rooms = new Vector<MapArea>();
 
         MapArea largestOpenArea = new MapArea(0, 0, Map.NUM_COLUMNS - 1, Map.NUM_ROWS - 1);
@@ -72,7 +74,7 @@ public class MapTerrainGenerator
 
                     MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
                     MapArea openAreaWithBorders = this.padder.addBordersToOpenArea(openArea, MapTerrainGenerator.ROOM_BUFFER_SIZE);
-                    if (!this.collision.elementExistsWithinRectangle(map, openAreaWithBorders) && !this.collision.areaFallsWithinAnotherArea(openArea, rooms))
+                    if (!this.collision.wallExistsWithinRectangle(map, openAreaWithBorders) && !this.collision.areaFallsWithinAnotherArea(openArea, rooms))
                     {
                         return openArea;
                     }
