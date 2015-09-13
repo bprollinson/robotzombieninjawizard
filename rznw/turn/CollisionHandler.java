@@ -23,6 +23,11 @@ public class CollisionHandler
         int newRow = positionChange.getFinalRow();
         int newColumn = positionChange.getFinalColumn();
 
+        if (newRow < 0 || newRow >= Map.NUM_ROWS || newColumn < 0 || newColumn >= Map.NUM_COLUMNS)
+        {
+            return true;
+        }
+
         MapElement collisionTest = map.getElement(newRow, newColumn);
         if (collisionTest == null)
         {
