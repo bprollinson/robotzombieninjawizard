@@ -1,6 +1,6 @@
 import rznw.game.CharacterGenerator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.map.Map;
+import rznw.map.GameWorld;
 import rznw.map.generator.MapGenerator;
 import rznw.turn.MainCharacterTurnHandler;
 import rznw.ui.CharacterSummaryRenderer;
@@ -15,18 +15,20 @@ public class Test
         CharacterGenerator characterGenerator = new CharacterGenerator();
         MainCharacter character = characterGenerator.generateMainCharacter();
 
-        MapGenerator mapGenerator = new MapGenerator();
-        Map map = mapGenerator.generate(character, characterGenerator);
-
         MainGameFrame frame = new MainGameFrame("Robot Zombie Ninja Wizard");
+
+        MapGenerator mapGenerator = new MapGenerator();
+        GameWorld gameWorld = new GameWorld(character, characterGenerator, mapGenerator);
+        gameWorld.generateMap();
+
         MapRenderer renderer = new MapRenderer(frame);
-        renderer.render(map);
+        renderer.render(gameWorld.getMap());
 
         CharacterSummaryRenderer characterSummaryRenderer = new CharacterSummaryRenderer(frame);
         characterSummaryRenderer.render(character);
 
-        MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(map, character, characterSummaryRenderer);
-        MovementKeyListener listener = new MovementKeyListener(turnHandler, renderer, map);
+        MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(gameWorld, character, characterSummaryRenderer);
+        MovementKeyListener listener = new MovementKeyListener(turnHandler, renderer, gameWorld);
 
         frame.display(listener);
     }

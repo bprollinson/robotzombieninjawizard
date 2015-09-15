@@ -7,6 +7,7 @@ import java.util.Iterator;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
@@ -19,13 +20,13 @@ public class MainCharacterTurnHandler
 {
     private static int KEY_V = 86;
 
-    private Map map;
+    private GameWorld gameWorld;
     private MainCharacter character;
     private CharacterSummaryRenderer renderer;
 
-    public MainCharacterTurnHandler(Map map, MainCharacter character, CharacterSummaryRenderer renderer)
+    public MainCharacterTurnHandler(GameWorld gameWorld, MainCharacter character, CharacterSummaryRenderer renderer)
     {
-        this.map = map;
+        this.gameWorld = gameWorld;
         this.character = character;
         this.renderer = renderer;
     }
@@ -35,13 +36,14 @@ public class MainCharacterTurnHandler
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
+            this.gameWorld.generateMap();
             return;
         }
 
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(this.character, event);
         this.handleCharacterTurn(characterPositionChange, this.character);
 
-        Collection<EnemyCharacter> enemies = this.map.getEnemies();
+        Collection<EnemyCharacter> enemies = this.gameWorld.getMap().getEnemies();
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
@@ -60,6 +62,8 @@ public class MainCharacterTurnHandler
         int row = mapElement.getRow();
         int column = mapElement.getColumn();
 
+        Map map = this.gameWorld.getMap();
+
         if (event.isShiftDown() && event.getKeyCode() == MainCharacterTurnHandler.KEY_V && map.getBackgroundElement(row, column) instanceof Stairs)
         {
             return true;
@@ -75,8 +79,10 @@ public class MainCharacterTurnHandler
             return;
         }
 
+        Map map = this.gameWorld.getMap();
+
         CollisionHandler collisionHandler = new CollisionHandler();
-        boolean collided = collisionHandler.handleCollision(character, this.map, positionChange);
+        boolean collided = collisionHandler.handleCollision(character, map, positionChange);
         if (collided)
         {
             return;
