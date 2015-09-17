@@ -23,11 +23,13 @@ public class MapRenderer
 
                 char displayCharacter = ' ';
 
-                if (element != null)
+                boolean visible = map.isVisible(i, j);
+
+                if (visible && element != null)
                 {
                     displayCharacter = element.getDisplayCharacter();
                 }
-                else if (backgroundElement != null)
+                else if (visible && backgroundElement != null)
                 {
                     displayCharacter = backgroundElement.getDisplayCharacter();
                 }

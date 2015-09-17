@@ -12,13 +12,25 @@ public class Map
     public static final int NUM_ROWS = 30;
     public static final int NUM_COLUMNS = 40;
 
+    private static final int FOG_RADIUS = 2;
+
     private MapElement[][] elements;
     private MapElement[][] backgroundElements;
+    private boolean[][] visible;
 
     public Map()
     {
         this.elements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
         this.backgroundElements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
+        this.visible = new boolean[Map.NUM_ROWS][Map.NUM_COLUMNS];
+
+        for (int i = 0; i < Map.NUM_ROWS; i++)
+        {
+            for (int j = 0; j < Map.NUM_COLUMNS; j++)
+            {
+                this.visible[i][j] = false;
+            }
+        }
     }
 
     public MapElement getElement(int i, int j)
@@ -39,6 +51,27 @@ public class Map
     public void setBackgroundElement(int i, int j, MapElement element)
     {
         this.backgroundElements[i][j] = element;
+    }
+
+    public boolean isVisible(int i, int j)
+    {
+        return this.visible[i][j];
+    }
+
+    public void setElementVisited(int i, int j)
+    {
+        int minRow = Math.max(i - Map.FOG_RADIUS, 0);
+        int maxRow = Math.min(i + Map.FOG_RADIUS, Map.NUM_ROWS - 1);
+        int minColumn = Math.max(j - Map.FOG_RADIUS, 0);
+        int maxColumn = Math.min(j + Map.FOG_RADIUS, Map.NUM_COLUMNS - 1);
+
+        for (int row = minRow; row <= maxRow; row++)
+        {
+            for (int column = minColumn; column <= maxColumn; column++)
+            {
+                this.visible[row][column] = true;
+            }
+        }
     }
 
     public Collection<EnemyCharacter> getEnemies()
