@@ -10,11 +10,13 @@ public class DispatchKeyListener implements KeyListener
 
     private int state;
     private MovementKeyListener movementKeyListener;
+    private MainMenuKeyListener mainMenuKeyListener;
 
-    public DispatchKeyListener(MovementKeyListener movementKeyListener)
+    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener)
     {
         this.state = DispatchKeyListener.STATE_GAME_MOTION;
         this.movementKeyListener = movementKeyListener;
+        this.mainMenuKeyListener = mainMenuKeyListener;
     }
 
     public void keyPressed(KeyEvent event)
@@ -27,6 +29,7 @@ public class DispatchKeyListener implements KeyListener
             if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
             {
                 System.out.println("Display the escape menu");
+                this.mainMenuKeyListener.enterState();
             }
         }
     }
