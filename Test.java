@@ -33,7 +33,7 @@ public class Test
         MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(gameWorld, character, characterSummaryRenderer);
 
         MovementKeyListener movementListener = new MovementKeyListener(turnHandler, renderer, gameWorld);
-        MainMenuKeyListener mainMenuKeyListener = new MainMenuKeyListener(new MainMenuRenderer());
+        MainMenuKeyListener mainMenuKeyListener = new MainMenuKeyListener(new MainMenuRenderer(frame));
         DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener);
 
         frame.display(dispatchListener);
