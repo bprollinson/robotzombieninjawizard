@@ -7,6 +7,7 @@ public class DispatchKeyListener implements KeyListener
 {
     public static final int STATE_GAME_MOTION = 1;
     public static final int STATE_GAME_ESCAPE_MENU = 2;
+    public static final int STATE_GAME_EXIT = 3;
 
     private int state;
     private MovementKeyListener movementKeyListener;
@@ -39,6 +40,10 @@ public class DispatchKeyListener implements KeyListener
             if (this.state == DispatchKeyListener.STATE_GAME_MOTION)
             {
                 this.movementKeyListener.enterState();
+            }
+            else if (this.state == DispatchKeyListener.STATE_GAME_EXIT)
+            {
+                System.exit(0);
             }
         }
     }

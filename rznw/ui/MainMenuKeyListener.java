@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 
 public class MainMenuKeyListener implements KeyListener
 {
+    private static final int ENTRY_EXIT = 7;
+
     private MainMenuRenderer mainMenuRenderer;
     private MainMenuState state;
 
@@ -51,6 +53,11 @@ public class MainMenuKeyListener implements KeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EXIT)
+        {
+            return DispatchKeyListener.STATE_GAME_EXIT;
         }
 
         return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
