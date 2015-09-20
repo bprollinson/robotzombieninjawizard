@@ -5,6 +5,9 @@ public class MainMenuRenderer
     public static final int NUM_ROWS = 32;
     public static final int NUM_COLUMNS = 40;
 
+    private static final int MENU_ENTRY_FIRST_ROW = 4;
+    private static final int MENU_ROW_HEIGHT = 2;
+
     private MainGameFrame frame;
 
     public MainMenuRenderer(MainGameFrame frame)
@@ -12,7 +15,7 @@ public class MainMenuRenderer
         this.frame = frame;
     }
 
-    public void render()
+    public void render(MainMenuState state)
     {
         for (int i = 0; i < MainMenuRenderer.NUM_ROWS; i++)
         {
@@ -32,11 +35,20 @@ public class MainMenuRenderer
         this.renderCenteredString(14, "Load Game");
         this.renderCenteredString(16, "New Game");
         this.renderCenteredString(18, "Exit");
+
+        this.renderCursor(state);
     }
 
     private void renderCenteredString(int row, String string)
     {
         int column = (MainMenuRenderer.NUM_COLUMNS - string.length()) / 2;
         this.frame.renderDisplayString(row, column, string);
+    }
+
+    private void renderCursor(MainMenuState state)
+    {
+        int row = MainMenuRenderer.MENU_ENTRY_FIRST_ROW + state.getEntryNumber() * MainMenuRenderer.MENU_ROW_HEIGHT;
+
+        this.frame.renderDisplayCharacter(row, 13, 'X');
     }
 }

@@ -6,10 +6,12 @@ import java.awt.event.KeyListener;
 public class MainMenuKeyListener implements KeyListener
 {
     private MainMenuRenderer mainMenuRenderer;
+    private MainMenuState state;
 
     public MainMenuKeyListener(MainMenuRenderer mainMenuRenderer)
     {
         this.mainMenuRenderer = mainMenuRenderer;
+        this.state = new MainMenuState();
     }
 
     public void keyPressed(KeyEvent event)
@@ -26,6 +28,6 @@ public class MainMenuKeyListener implements KeyListener
 
     public void enterState()
     {
-        this.mainMenuRenderer.render();
+        this.mainMenuRenderer.render(state);
     }
 }
