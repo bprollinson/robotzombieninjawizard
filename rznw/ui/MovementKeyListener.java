@@ -37,7 +37,6 @@ public class MovementKeyListener implements KeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            System.out.println("Escape!!!");
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
         }
 

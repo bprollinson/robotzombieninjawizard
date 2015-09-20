@@ -14,8 +14,6 @@ public class MainMenuRenderer
 
     public void render()
     {
-        System.out.println("In main menu rendering method");
-
         for (int i = 0; i < MainMenuRenderer.NUM_ROWS; i++)
         {
             for (int j = 0; j < MainMenuRenderer.NUM_COLUMNS; j++)

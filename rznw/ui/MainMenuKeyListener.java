@@ -26,7 +26,6 @@ public class MainMenuKeyListener implements KeyListener
 
     public void enterState()
     {
-        System.out.println("Entering main menu state in custom class!");
         this.mainMenuRenderer.render();
     }
 }

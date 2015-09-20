@@ -28,7 +28,6 @@ public class DispatchKeyListener implements KeyListener
 
             if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
             {
-                System.out.println("Display the escape menu");
                 this.mainMenuKeyListener.enterState();
             }
         }
