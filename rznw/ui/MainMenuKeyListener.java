@@ -45,4 +45,14 @@ public class MainMenuKeyListener implements KeyListener
     {
         this.mainMenuRenderer.render(this.state);
     }
+
+    public int getNextState(KeyEvent event)
+    {
+        if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            return DispatchKeyListener.STATE_GAME_MOTION;
+        }
+
+        return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+    }
 }

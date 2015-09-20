@@ -103,4 +103,9 @@ public class MainCharacterTurnHandler
             map.setElementVisited(newRow, newColumn);
         }
     }
+
+    public void renderSummary()
+    {
+        this.renderer.render(this.character);
+    }
 }

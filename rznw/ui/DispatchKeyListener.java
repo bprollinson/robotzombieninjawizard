@@ -34,6 +34,12 @@ public class DispatchKeyListener implements KeyListener
         else if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
         {
             this.mainMenuKeyListener.keyPressed(event);
+            this.state = this.mainMenuKeyListener.getNextState(event);
+
+            if (this.state == DispatchKeyListener.STATE_GAME_MOTION)
+            {
+                this.movementKeyListener.enterState();
+            }
         }
     }
 

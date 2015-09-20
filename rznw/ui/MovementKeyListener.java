@@ -33,6 +33,12 @@ public class MovementKeyListener implements KeyListener
     {
     }
 
+    public void enterState()
+    {
+        this.renderer.render(this.gameWorld.getMap());
+        this.turnHandler.renderSummary();
+    }
+
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
