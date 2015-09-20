@@ -16,6 +16,21 @@ public class MainMenuKeyListener implements KeyListener
 
     public void keyPressed(KeyEvent event)
     {
+        switch (event.getKeyCode())
+        {
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_NUMPAD8:
+            case KeyEvent.VK_KP_UP:
+                this.state.moveUp();
+                break;
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_NUMPAD2:
+            case KeyEvent.VK_KP_DOWN:
+                this.state.moveDown();
+                break;
+        }
+
+        this.mainMenuRenderer.render(this.state);
     }
 
     public void keyReleased(KeyEvent event)
@@ -28,6 +43,6 @@ public class MainMenuKeyListener implements KeyListener
 
     public void enterState()
     {
-        this.mainMenuRenderer.render(state);
+        this.mainMenuRenderer.render(this.state);
     }
 }
