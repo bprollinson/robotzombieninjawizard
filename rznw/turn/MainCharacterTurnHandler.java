@@ -33,6 +33,12 @@ public class MainCharacterTurnHandler
 
     public void handleTurn(KeyEvent event)
     {
+        if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            return;
+        }
+
+
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
