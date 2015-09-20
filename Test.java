@@ -3,6 +3,8 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.generator.MapGenerator;
 import rznw.turn.MainCharacterTurnHandler;
+import rznw.ui.CharacterScreenKeyListener;
+import rznw.ui.CharacterScreenRenderer;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.ui.DispatchKeyListener;
 import rznw.ui.MainGameFrame;
@@ -34,7 +36,8 @@ public class Test
 
         MovementKeyListener movementListener = new MovementKeyListener(turnHandler, renderer, gameWorld);
         MainMenuKeyListener mainMenuKeyListener = new MainMenuKeyListener(new MainMenuRenderer(frame));
-        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener);
+        CharacterScreenKeyListener characterScreenKeyListener = new CharacterScreenKeyListener(new CharacterScreenRenderer(frame));
+        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener, characterScreenKeyListener);
 
         frame.display(dispatchListener);
     }

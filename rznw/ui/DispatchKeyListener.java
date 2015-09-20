@@ -7,17 +7,20 @@ public class DispatchKeyListener implements KeyListener
 {
     public static final int STATE_GAME_MOTION = 1;
     public static final int STATE_GAME_ESCAPE_MENU = 2;
-    public static final int STATE_GAME_EXIT = 3;
+    public static final int STATE_CHARACTER_SCREEN = 3;
+    public static final int STATE_GAME_EXIT = 4;
 
     private int state;
     private MovementKeyListener movementKeyListener;
     private MainMenuKeyListener mainMenuKeyListener;
+    private CharacterScreenKeyListener characterScreenKeyListener;
 
-    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener)
+    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener)
     {
         this.state = DispatchKeyListener.STATE_GAME_MOTION;
         this.movementKeyListener = movementKeyListener;
         this.mainMenuKeyListener = mainMenuKeyListener;
+        this.characterScreenKeyListener = characterScreenKeyListener;
     }
 
     public void keyPressed(KeyEvent event)
@@ -44,6 +47,19 @@ public class DispatchKeyListener implements KeyListener
             else if (this.state == DispatchKeyListener.STATE_GAME_EXIT)
             {
                 System.exit(0);
+            }
+            else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN)
+            {
+                this.characterScreenKeyListener.enterState();
+            }
+        }
+        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN)
+        {
+            this.state = this.characterScreenKeyListener.getNextState(event);
+
+            if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
+            {
+                this.mainMenuKeyListener.enterState();
             }
         }
     }

@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 public class MainMenuKeyListener implements KeyListener
 {
+    private static final int ENTRY_CHARACTER = 0;
     private static final int ENTRY_EXIT = 7;
 
     private MainMenuRenderer mainMenuRenderer;
@@ -53,6 +54,11 @@ public class MainMenuKeyListener implements KeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_CHARACTER)
+        {
+            return DispatchKeyListener.STATE_CHARACTER_SCREEN;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EXIT)
