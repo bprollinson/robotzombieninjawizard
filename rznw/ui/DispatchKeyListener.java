@@ -9,21 +9,24 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_GAME_ESCAPE_MENU = 2;
     public static final int STATE_CHARACTER_SCREEN = 3;
     public static final int STATE_SKILLS_SCREEN = 4;
-    public static final int STATE_GAME_EXIT = 5;
+    public static final int STATE_SPELLS_SCREEN = 5;
+    public static final int STATE_GAME_EXIT = 6;
 
     private int state;
     private MovementKeyListener movementKeyListener;
     private MainMenuKeyListener mainMenuKeyListener;
     private CharacterScreenKeyListener characterScreenKeyListener;
     private SkillsScreenKeyListener skillsScreenKeyListener;
+    private SpellsScreenKeyListener spellsScreenKeyListener;
 
-    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener)
+    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener, SpellsScreenKeyListener spellsScreenKeyListener)
     {
         this.state = DispatchKeyListener.STATE_GAME_MOTION;
         this.movementKeyListener = movementKeyListener;
         this.mainMenuKeyListener = mainMenuKeyListener;
         this.characterScreenKeyListener = characterScreenKeyListener;
         this.skillsScreenKeyListener = skillsScreenKeyListener;
+        this.spellsScreenKeyListener = spellsScreenKeyListener;
     }
 
     public void keyPressed(KeyEvent event)
@@ -59,8 +62,12 @@ public class DispatchKeyListener implements KeyListener
             {
                 this.skillsScreenKeyListener.enterState();
             }
+            else if (this.state == DispatchKeyListener.STATE_SPELLS_SCREEN)
+            {
+                this.spellsScreenKeyListener.enterState();
+            }
         }
-        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN)
+        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN || this.state == DispatchKeyListener.STATE_SPELLS_SCREEN)
         {
             this.state = this.characterScreenKeyListener.getNextState(event);
 
