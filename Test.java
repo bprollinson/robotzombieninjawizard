@@ -12,6 +12,8 @@ import rznw.ui.MainMenuKeyListener;
 import rznw.ui.MainMenuRenderer;
 import rznw.ui.MapRenderer;
 import rznw.ui.MovementKeyListener;
+import rznw.ui.SkillsScreenKeyListener;
+import rznw.ui.SkillsScreenRenderer;
 
 public class Test
 {
@@ -37,7 +39,8 @@ public class Test
         MovementKeyListener movementListener = new MovementKeyListener(turnHandler, renderer, gameWorld);
         MainMenuKeyListener mainMenuKeyListener = new MainMenuKeyListener(new MainMenuRenderer(frame));
         CharacterScreenKeyListener characterScreenKeyListener = new CharacterScreenKeyListener(new CharacterScreenRenderer(frame));
-        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener, characterScreenKeyListener);
+        SkillsScreenKeyListener skillsScreenKeyListener = new SkillsScreenKeyListener(new SkillsScreenRenderer(frame));
+        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener, characterScreenKeyListener, skillsScreenKeyListener);
 
         frame.display(dispatchListener);
     }
