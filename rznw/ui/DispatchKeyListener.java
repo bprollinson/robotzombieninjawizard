@@ -11,7 +11,8 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_SKILLS_SCREEN = 4;
     public static final int STATE_SPELLS_SCREEN = 5;
     public static final int STATE_INVENTORY_SCREEN = 6;
-    public static final int STATE_GAME_EXIT = 7;
+    public static final int STATE_SAVE_SCREEN = 7;
+    public static final int STATE_GAME_EXIT = 8;
 
     private int state;
     private MovementKeyListener movementKeyListener;
@@ -20,8 +21,9 @@ public class DispatchKeyListener implements KeyListener
     private SkillsScreenKeyListener skillsScreenKeyListener;
     private SpellsScreenKeyListener spellsScreenKeyListener;
     private InventoryScreenKeyListener inventoryScreenKeyListener;
+    private SaveScreenKeyListener saveScreenKeyListener;
 
-    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener, SpellsScreenKeyListener spellsScreenKeyListener, InventoryScreenKeyListener inventoryScreenKeyListener)
+    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener, SpellsScreenKeyListener spellsScreenKeyListener, InventoryScreenKeyListener inventoryScreenKeyListener, SaveScreenKeyListener saveScreenKeyListener)
     {
         this.state = DispatchKeyListener.STATE_GAME_MOTION;
         this.movementKeyListener = movementKeyListener;
@@ -30,6 +32,7 @@ public class DispatchKeyListener implements KeyListener
         this.skillsScreenKeyListener = skillsScreenKeyListener;
         this.spellsScreenKeyListener = spellsScreenKeyListener;
         this.inventoryScreenKeyListener = inventoryScreenKeyListener;
+        this.saveScreenKeyListener = saveScreenKeyListener;
     }
 
     public void keyPressed(KeyEvent event)
@@ -73,8 +76,12 @@ public class DispatchKeyListener implements KeyListener
             {
                 this.inventoryScreenKeyListener.enterState();
             }
+            else if (this.state == DispatchKeyListener.STATE_SAVE_SCREEN)
+            {
+                this.saveScreenKeyListener.enterState();
+            }
         }
-        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN || this.state == DispatchKeyListener.STATE_SPELLS_SCREEN || this.state == DispatchKeyListener.STATE_INVENTORY_SCREEN)
+        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN || this.state == DispatchKeyListener.STATE_SPELLS_SCREEN || this.state == DispatchKeyListener.STATE_INVENTORY_SCREEN || this.state == DispatchKeyListener.STATE_SAVE_SCREEN)
         {
             this.state = this.characterScreenKeyListener.getNextState(event);
 

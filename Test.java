@@ -14,6 +14,8 @@ import rznw.ui.MainMenuKeyListener;
 import rznw.ui.MainMenuRenderer;
 import rznw.ui.MapRenderer;
 import rznw.ui.MovementKeyListener;
+import rznw.ui.SaveScreenKeyListener;
+import rznw.ui.SaveScreenRenderer;
 import rznw.ui.SkillsScreenKeyListener;
 import rznw.ui.SkillsScreenRenderer;
 import rznw.ui.SpellsScreenKeyListener;
@@ -46,7 +48,8 @@ public class Test
         SkillsScreenKeyListener skillsScreenKeyListener = new SkillsScreenKeyListener(new SkillsScreenRenderer(frame));
         SpellsScreenKeyListener spellsScreenKeyListener = new SpellsScreenKeyListener(new SpellsScreenRenderer(frame));
         InventoryScreenKeyListener inventoryScreenKeyListener = new InventoryScreenKeyListener(new InventoryScreenRenderer(frame));
-        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener, characterScreenKeyListener, skillsScreenKeyListener, spellsScreenKeyListener, inventoryScreenKeyListener);
+        SaveScreenKeyListener saveScreenKeyListener = new SaveScreenKeyListener(new SaveScreenRenderer(frame));
+        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener, characterScreenKeyListener, skillsScreenKeyListener, spellsScreenKeyListener, inventoryScreenKeyListener, saveScreenKeyListener);
 
         frame.display(dispatchListener);
     }
