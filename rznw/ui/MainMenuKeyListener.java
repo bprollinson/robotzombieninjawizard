@@ -10,6 +10,7 @@ public class MainMenuKeyListener implements KeyListener
     private static final int ENTRY_SPELLS = 2;
     private static final int ENTRY_INVENTORY = 3;
     private static final int ENTRY_SAVE = 4;
+    private static final int ENTRY_LOAD = 5;
     private static final int ENTRY_EXIT = 7;
 
     private MainMenuRenderer mainMenuRenderer;
@@ -83,6 +84,11 @@ public class MainMenuKeyListener implements KeyListener
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_SAVE)
         {
             return DispatchKeyListener.STATE_SAVE_SCREEN;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_LOAD)
+        {
+            return DispatchKeyListener.STATE_LOAD_SCREEN;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EXIT)
