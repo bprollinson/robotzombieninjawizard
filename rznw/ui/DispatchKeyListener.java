@@ -13,7 +13,8 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_INVENTORY_SCREEN = 6;
     public static final int STATE_SAVE_SCREEN = 7;
     public static final int STATE_LOAD_SCREEN = 8;
-    public static final int STATE_GAME_EXIT = 9;
+    public static final int STATE_NEW_GAME_SCREEN = 9;
+    public static final int STATE_GAME_EXIT = 10;
 
     private int state;
     private MovementKeyListener movementKeyListener;
@@ -24,8 +25,9 @@ public class DispatchKeyListener implements KeyListener
     private InventoryScreenKeyListener inventoryScreenKeyListener;
     private SaveScreenKeyListener saveScreenKeyListener;
     private LoadScreenKeyListener loadScreenKeyListener;
+    private NewGameScreenKeyListener newGameScreenKeyListener;
 
-    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener, SpellsScreenKeyListener spellsScreenKeyListener, InventoryScreenKeyListener inventoryScreenKeyListener, SaveScreenKeyListener saveScreenKeyListener, LoadScreenKeyListener loadScreenKeyListener)
+    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener, SpellsScreenKeyListener spellsScreenKeyListener, InventoryScreenKeyListener inventoryScreenKeyListener, SaveScreenKeyListener saveScreenKeyListener, LoadScreenKeyListener loadScreenKeyListener, NewGameScreenKeyListener newGameScreenKeyListener)
     {
         this.state = DispatchKeyListener.STATE_GAME_MOTION;
         this.movementKeyListener = movementKeyListener;
@@ -36,6 +38,7 @@ public class DispatchKeyListener implements KeyListener
         this.inventoryScreenKeyListener = inventoryScreenKeyListener;
         this.saveScreenKeyListener = saveScreenKeyListener;
         this.loadScreenKeyListener = loadScreenKeyListener;
+        this.newGameScreenKeyListener = newGameScreenKeyListener;
     }
 
     public void keyPressed(KeyEvent event)
@@ -87,8 +90,12 @@ public class DispatchKeyListener implements KeyListener
             {
                 this.loadScreenKeyListener.enterState();
             }
+            else if (this.state == DispatchKeyListener.STATE_NEW_GAME_SCREEN)
+            {
+                this.newGameScreenKeyListener.enterState();
+            }
         }
-        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN || this.state == DispatchKeyListener.STATE_SPELLS_SCREEN || this.state == DispatchKeyListener.STATE_INVENTORY_SCREEN || this.state == DispatchKeyListener.STATE_SAVE_SCREEN || this.state == DispatchKeyListener.STATE_LOAD_SCREEN)
+        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN || this.state == DispatchKeyListener.STATE_SPELLS_SCREEN || this.state == DispatchKeyListener.STATE_INVENTORY_SCREEN || this.state == DispatchKeyListener.STATE_SAVE_SCREEN || this.state == DispatchKeyListener.STATE_LOAD_SCREEN || this.state == DispatchKeyListener.STATE_NEW_GAME_SCREEN)
         {
             this.state = this.characterScreenKeyListener.getNextState(event);
 
