@@ -43,66 +43,21 @@ public class DispatchKeyListener implements KeyListener
 
     public void keyPressed(KeyEvent event)
     {
-        if (this.state == DispatchKeyListener.STATE_GAME_MOTION)
-        {
-            this.movementKeyListener.keyPressed(event);
-            this.state = this.movementKeyListener.getNextState(event);
+        int lastState = this.state;
+        StateTransitionKeyListener lastStateListener = this.getListener(this.state);
 
-            if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
-            {
-                this.mainMenuKeyListener.enterState();
-            }
+        lastStateListener.keyPressed(event);
+        this.state = lastStateListener.getNextState(event);
+
+        if (this.state == DispatchKeyListener.STATE_GAME_EXIT)
+        {
+            System.exit(0);
         }
-        else if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
-        {
-            this.mainMenuKeyListener.keyPressed(event);
-            this.state = this.mainMenuKeyListener.getNextState(event);
 
-            if (this.state == DispatchKeyListener.STATE_GAME_MOTION)
-            {
-                this.movementKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_GAME_EXIT)
-            {
-                System.exit(0);
-            }
-            else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN)
-            {
-                this.characterScreenKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_SKILLS_SCREEN)
-            {
-                this.skillsScreenKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_SPELLS_SCREEN)
-            {
-                this.spellsScreenKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_INVENTORY_SCREEN)
-            {
-                this.inventoryScreenKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_SAVE_SCREEN)
-            {
-                this.saveScreenKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_LOAD_SCREEN)
-            {
-                this.loadScreenKeyListener.enterState();
-            }
-            else if (this.state == DispatchKeyListener.STATE_NEW_GAME_SCREEN)
-            {
-                this.newGameScreenKeyListener.enterState();
-            }
-        }
-        else
+        if (this.state != lastState)
         {
-            this.state = this.characterScreenKeyListener.getNextState(event);
-
-            if (this.state == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
-            {
-                this.mainMenuKeyListener.enterState();
-            }
+            StateTransitionKeyListener currentStateListener = this.getListener(this.state);
+            currentStateListener.enterState();
         }
     }
 
@@ -112,5 +67,32 @@ public class DispatchKeyListener implements KeyListener
 
     public void keyTyped(KeyEvent event)
     {
+    }
+
+    private StateTransitionKeyListener getListener(int state)
+    {
+        switch (state)
+        {
+            case DispatchKeyListener.STATE_GAME_MOTION:
+                return this.movementKeyListener;
+            case DispatchKeyListener.STATE_GAME_ESCAPE_MENU:
+                return this.mainMenuKeyListener;
+            case DispatchKeyListener.STATE_CHARACTER_SCREEN:
+                return this.characterScreenKeyListener;
+            case DispatchKeyListener.STATE_SKILLS_SCREEN:
+                return this.skillsScreenKeyListener;
+            case DispatchKeyListener.STATE_SPELLS_SCREEN:
+                return this.spellsScreenKeyListener;
+            case DispatchKeyListener.STATE_INVENTORY_SCREEN:
+                return this.inventoryScreenKeyListener;
+            case DispatchKeyListener.STATE_SAVE_SCREEN:
+                return this.saveScreenKeyListener;
+            case DispatchKeyListener.STATE_LOAD_SCREEN:
+                return this.loadScreenKeyListener;
+            case DispatchKeyListener.STATE_NEW_GAME_SCREEN:
+                return this.newGameScreenKeyListener;
+            default:
+                return null;
+        }
     }
 }
