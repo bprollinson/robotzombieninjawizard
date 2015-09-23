@@ -1,9 +1,8 @@
 package rznw.ui;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class NewGameScreenKeyListener implements KeyListener
+public class NewGameScreenKeyListener extends StateTransitionKeyListener
 {
     private NewGameScreenRenderer newGameScreenRenderer;
 
@@ -13,14 +12,6 @@ public class NewGameScreenKeyListener implements KeyListener
     }
 
     public void keyPressed(KeyEvent event)
-    {
-    }
-
-    public void keyReleased(KeyEvent event)
-    {
-    }
-
-    public void keyTyped(KeyEvent event)
     {
     }
 

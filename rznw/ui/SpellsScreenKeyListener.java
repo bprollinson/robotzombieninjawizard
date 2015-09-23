@@ -1,9 +1,8 @@
 package rznw.ui;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class SpellsScreenKeyListener implements KeyListener
+public class SpellsScreenKeyListener extends StateTransitionKeyListener
 {
     private SpellsScreenRenderer spellsScreenRenderer;
 
@@ -13,14 +12,6 @@ public class SpellsScreenKeyListener implements KeyListener
     }
 
     public void keyPressed(KeyEvent event)
-    {
-    }
-
-    public void keyReleased(KeyEvent event)
-    {
-    }
-
-    public void keyTyped(KeyEvent event)
     {
     }
 

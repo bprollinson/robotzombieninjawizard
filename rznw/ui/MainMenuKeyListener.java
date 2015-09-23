@@ -1,9 +1,8 @@
 package rznw.ui;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-public class MainMenuKeyListener implements KeyListener
+public class MainMenuKeyListener extends StateTransitionKeyListener
 {
     private static final int ENTRY_CHARACTER = 0;
     private static final int ENTRY_SKILLS = 1;
@@ -40,14 +39,6 @@ public class MainMenuKeyListener implements KeyListener
         }
 
         this.mainMenuRenderer.render(this.state);
-    }
-
-    public void keyReleased(KeyEvent event)
-    {
-    }
-
-    public void keyTyped(KeyEvent event)
-    {
     }
 
     public void enterState()
