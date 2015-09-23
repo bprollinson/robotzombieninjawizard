@@ -17,17 +17,17 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_GAME_EXIT = 10;
 
     private int state;
-    private MovementKeyListener movementKeyListener;
-    private MainMenuKeyListener mainMenuKeyListener;
-    private CharacterScreenKeyListener characterScreenKeyListener;
-    private SkillsScreenKeyListener skillsScreenKeyListener;
-    private SpellsScreenKeyListener spellsScreenKeyListener;
-    private InventoryScreenKeyListener inventoryScreenKeyListener;
-    private SaveScreenKeyListener saveScreenKeyListener;
-    private LoadScreenKeyListener loadScreenKeyListener;
-    private NewGameScreenKeyListener newGameScreenKeyListener;
+    private StateTransitionKeyListener movementKeyListener;
+    private StateTransitionKeyListener mainMenuKeyListener;
+    private StateTransitionKeyListener characterScreenKeyListener;
+    private StateTransitionKeyListener skillsScreenKeyListener;
+    private StateTransitionKeyListener spellsScreenKeyListener;
+    private StateTransitionKeyListener inventoryScreenKeyListener;
+    private StateTransitionKeyListener saveScreenKeyListener;
+    private StateTransitionKeyListener loadScreenKeyListener;
+    private StateTransitionKeyListener newGameScreenKeyListener;
 
-    public DispatchKeyListener(MovementKeyListener movementKeyListener, MainMenuKeyListener mainMenuKeyListener, CharacterScreenKeyListener characterScreenKeyListener, SkillsScreenKeyListener skillsScreenKeyListener, SpellsScreenKeyListener spellsScreenKeyListener, InventoryScreenKeyListener inventoryScreenKeyListener, SaveScreenKeyListener saveScreenKeyListener, LoadScreenKeyListener loadScreenKeyListener, NewGameScreenKeyListener newGameScreenKeyListener)
+    public DispatchKeyListener(StateTransitionKeyListener movementKeyListener, StateTransitionKeyListener mainMenuKeyListener, StateTransitionKeyListener characterScreenKeyListener, StateTransitionKeyListener skillsScreenKeyListener, StateTransitionKeyListener spellsScreenKeyListener, StateTransitionKeyListener inventoryScreenKeyListener, StateTransitionKeyListener saveScreenKeyListener, StateTransitionKeyListener loadScreenKeyListener, StateTransitionKeyListener newGameScreenKeyListener)
     {
         this.state = DispatchKeyListener.STATE_GAME_MOTION;
         this.movementKeyListener = movementKeyListener;
