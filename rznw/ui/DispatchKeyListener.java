@@ -95,7 +95,7 @@ public class DispatchKeyListener implements KeyListener
                 this.newGameScreenKeyListener.enterState();
             }
         }
-        else if (this.state == DispatchKeyListener.STATE_CHARACTER_SCREEN || this.state == DispatchKeyListener.STATE_SKILLS_SCREEN || this.state == DispatchKeyListener.STATE_SPELLS_SCREEN || this.state == DispatchKeyListener.STATE_INVENTORY_SCREEN || this.state == DispatchKeyListener.STATE_SAVE_SCREEN || this.state == DispatchKeyListener.STATE_LOAD_SCREEN || this.state == DispatchKeyListener.STATE_NEW_GAME_SCREEN)
+        else
         {
             this.state = this.characterScreenKeyListener.getNextState(event);
 
