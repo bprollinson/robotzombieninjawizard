@@ -5,7 +5,7 @@ public abstract class MenuScreenRenderer
     private static final int NUM_ROWS = 32;
     private static final int NUM_COLUMNS = 40;
 
-    private MainGameFrame frame;
+    protected MainGameFrame frame;
 
     public MenuScreenRenderer(MainGameFrame frame)
     {

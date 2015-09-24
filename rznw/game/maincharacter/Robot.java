@@ -10,4 +10,9 @@ public class Robot extends MainCharacter
     {
         this.mapElement = new MainCharacterMapElement(row, column, Robot.mapCharacter, this);
     }
+
+    public String getCharacterClass()
+    {
+        return "Robot";
+    }
 }

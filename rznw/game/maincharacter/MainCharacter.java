@@ -49,4 +49,6 @@ public abstract class MainCharacter extends Character
     {
         this.experience += experience;
     }
+
+    public abstract String getCharacterClass();
 }

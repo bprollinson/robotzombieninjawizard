@@ -10,4 +10,9 @@ public class Zombie extends MainCharacter
     {
         this.mapElement = new MainCharacterMapElement(row, column, Zombie.mapCharacter, this);
     }
+
+    public String getCharacterClass()
+    {
+        return "Zombie";
+    }
 }

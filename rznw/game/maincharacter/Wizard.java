@@ -10,4 +10,9 @@ public class Wizard extends MainCharacter
     {
         this.mapElement = new MainCharacterMapElement(row, column, Wizard.mapCharacter, this);
     }
+
+    public String getCharacterClass()
+    {
+        return "Wizard";
+    }
 }

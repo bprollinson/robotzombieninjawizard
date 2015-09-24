@@ -30,7 +30,7 @@ public class Test
 
         MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(gameWorld, character, characterSummaryRenderer);
 
-        StateTransitionKeyListenerContainer listenerContainer = new StateTransitionKeyListenerContainer(frame, turnHandler, renderer, gameWorld);
+        StateTransitionKeyListenerContainer listenerContainer = new StateTransitionKeyListenerContainer(frame, turnHandler, renderer, gameWorld, character);
         DispatchKeyListener dispatchListener = new DispatchKeyListener(listenerContainer);
 
         frame.display(dispatchListener);

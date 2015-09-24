@@ -10,4 +10,9 @@ public class Ninja extends MainCharacter
     {
         this.mapElement = new MainCharacterMapElement(row, column, Ninja.mapCharacter, this);
     }
+
+    public String getCharacterClass()
+    {
+        return "Ninja";
+    }
 }
