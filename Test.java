@@ -3,27 +3,10 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.generator.MapGenerator;
 import rznw.turn.MainCharacterTurnHandler;
-import rznw.ui.CharacterScreenKeyListener;
-import rznw.ui.CharacterScreenRenderer;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.ui.DispatchKeyListener;
-import rznw.ui.InventoryScreenKeyListener;
-import rznw.ui.InventoryScreenRenderer;
-import rznw.ui.LoadScreenKeyListener;
-import rznw.ui.LoadScreenRenderer;
 import rznw.ui.MainGameFrame;
-import rznw.ui.MainMenuKeyListener;
-import rznw.ui.MainMenuRenderer;
 import rznw.ui.MapRenderer;
-import rznw.ui.MovementKeyListener;
-import rznw.ui.NewGameScreenKeyListener;
-import rznw.ui.NewGameScreenRenderer;
-import rznw.ui.SaveScreenKeyListener;
-import rznw.ui.SaveScreenRenderer;
-import rznw.ui.SkillsScreenKeyListener;
-import rznw.ui.SkillsScreenRenderer;
-import rznw.ui.SpellsScreenKeyListener;
-import rznw.ui.SpellsScreenRenderer;
 import rznw.ui.StateTransitionKeyListenerContainer;
 
 public class Test
