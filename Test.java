@@ -24,6 +24,7 @@ import rznw.ui.SkillsScreenKeyListener;
 import rznw.ui.SkillsScreenRenderer;
 import rznw.ui.SpellsScreenKeyListener;
 import rznw.ui.SpellsScreenRenderer;
+import rznw.ui.StateTransitionKeyListenerContainer;
 
 public class Test
 {
@@ -46,16 +47,8 @@ public class Test
 
         MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(gameWorld, character, characterSummaryRenderer);
 
-        MovementKeyListener movementListener = new MovementKeyListener(turnHandler, renderer, gameWorld);
-        MainMenuKeyListener mainMenuKeyListener = new MainMenuKeyListener(new MainMenuRenderer(frame));
-        CharacterScreenKeyListener characterScreenKeyListener = new CharacterScreenKeyListener(new CharacterScreenRenderer(frame));
-        SkillsScreenKeyListener skillsScreenKeyListener = new SkillsScreenKeyListener(new SkillsScreenRenderer(frame));
-        SpellsScreenKeyListener spellsScreenKeyListener = new SpellsScreenKeyListener(new SpellsScreenRenderer(frame));
-        InventoryScreenKeyListener inventoryScreenKeyListener = new InventoryScreenKeyListener(new InventoryScreenRenderer(frame));
-        SaveScreenKeyListener saveScreenKeyListener = new SaveScreenKeyListener(new SaveScreenRenderer(frame));
-        LoadScreenKeyListener loadScreenKeyListener = new LoadScreenKeyListener(new LoadScreenRenderer(frame));
-        NewGameScreenKeyListener newGameScreenKeyListener = new NewGameScreenKeyListener(new NewGameScreenRenderer(frame));
-        DispatchKeyListener dispatchListener = new DispatchKeyListener(movementListener, mainMenuKeyListener, characterScreenKeyListener, skillsScreenKeyListener, spellsScreenKeyListener, inventoryScreenKeyListener, saveScreenKeyListener, loadScreenKeyListener, newGameScreenKeyListener);
+        StateTransitionKeyListenerContainer listenerContainer = new StateTransitionKeyListenerContainer(frame, turnHandler, renderer, gameWorld);
+        DispatchKeyListener dispatchListener = new DispatchKeyListener(listenerContainer);
 
         frame.display(dispatchListener);
     }
