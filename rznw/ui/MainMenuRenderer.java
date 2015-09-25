@@ -15,7 +15,7 @@ public class MainMenuRenderer
         this.frame = frame;
     }
 
-    public void render(MainMenuState state)
+    public void render(MenuState state)
     {
         for (int i = 0; i < MainMenuRenderer.NUM_ROWS; i++)
         {
@@ -45,7 +45,7 @@ public class MainMenuRenderer
         this.frame.renderDisplayString(row, column, string);
     }
 
-    private void renderCursor(MainMenuState state)
+    private void renderCursor(MenuState state)
     {
         int row = MainMenuRenderer.MENU_ENTRY_FIRST_ROW + state.getEntryNumber() * MainMenuRenderer.MENU_ROW_HEIGHT;
 

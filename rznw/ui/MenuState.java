@@ -1,10 +1,14 @@
 package rznw.ui;
 
-public class MainMenuState
+public class MenuState
 {
-    private static int MAX_ENTRY_NUMBER = 7;
-
+    private int maxEntryNumber;
     private int entryNumber = 0;
+
+    public MenuState(int maxEntryNumber)
+    {
+        this.maxEntryNumber = maxEntryNumber;
+    }
 
     public int getEntryNumber()
     {
@@ -21,7 +25,7 @@ public class MainMenuState
 
     public void moveDown()
     {
-        if (this.entryNumber < MainMenuState.MAX_ENTRY_NUMBER)
+        if (this.entryNumber < this.maxEntryNumber)
         {
             this.entryNumber++;
         }

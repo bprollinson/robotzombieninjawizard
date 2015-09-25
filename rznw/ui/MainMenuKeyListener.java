@@ -14,12 +14,12 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
     private static final int ENTRY_EXIT = 7;
 
     private MainMenuRenderer mainMenuRenderer;
-    private MainMenuState state;
+    private MenuState state;
 
     public MainMenuKeyListener(MainMenuRenderer mainMenuRenderer)
     {
         this.mainMenuRenderer = mainMenuRenderer;
-        this.state = new MainMenuState();
+        this.state = new MenuState(7);
     }
 
     public void keyPressed(KeyEvent event)
