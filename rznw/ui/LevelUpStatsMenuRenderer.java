@@ -11,6 +11,6 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
     {
         this.clearScreen();
         this.renderCenteredString(1, "Level Up!");
-        this.renderCenteredString(3, "Points remaining: " + numPoints);
+        this.renderCenteredString(3, "Stat points remaining: " + numPoints);
     }
 }
