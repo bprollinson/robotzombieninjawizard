@@ -40,6 +40,14 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
         this.newGameScreenRenderer.render(this.state);
     }
 
+    public void exitState(KeyEvent event)
+    {
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == NewGameScreenKeyListener.ENTRY_YES)
+        {
+            System.out.println("Regenerate the world");
+        }
+    }
+
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)

@@ -30,6 +30,10 @@ public class MovementKeyListener extends StateTransitionKeyListener
         this.turnHandler.renderSummary();
     }
 
+    public void exitState(KeyEvent event)
+    {
+    }
+
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)

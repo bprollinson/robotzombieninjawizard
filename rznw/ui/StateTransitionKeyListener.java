@@ -15,5 +15,7 @@ public abstract class StateTransitionKeyListener implements KeyListener
 
     public abstract void enterState();
 
+    public abstract void exitState(KeyEvent event);
+
     public abstract int getNextState(KeyEvent event);
 }

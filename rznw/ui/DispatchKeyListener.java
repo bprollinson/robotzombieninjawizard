@@ -40,6 +40,7 @@ public class DispatchKeyListener implements KeyListener
 
         if (this.state != lastState)
         {
+            lastStateListener.exitState(event);
             StateTransitionKeyListener currentStateListener = this.listenerContainer.getListener(this.state);
             currentStateListener.enterState();
         }

@@ -20,6 +20,10 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         this.inventoryScreenRenderer.render();
     }
 
+    public void exitState(KeyEvent event)
+    {
+    }
+
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)

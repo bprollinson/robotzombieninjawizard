@@ -15,6 +15,10 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
+    public void exitState(KeyEvent event)
+    {
+    }
+
     public void enterState()
     {
         this.characterScreenRenderer.render();

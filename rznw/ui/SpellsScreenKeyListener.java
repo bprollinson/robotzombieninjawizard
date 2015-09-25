@@ -20,6 +20,10 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         this.spellsScreenRenderer.render();
     }
 
+    public void exitState(KeyEvent event)
+    {
+    }
+
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)

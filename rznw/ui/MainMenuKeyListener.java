@@ -46,6 +46,10 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
         this.mainMenuRenderer.render(this.state);
     }
 
+    public void exitState(KeyEvent event)
+    {
+    }
+
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
