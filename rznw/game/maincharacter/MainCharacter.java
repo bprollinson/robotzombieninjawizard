@@ -7,6 +7,7 @@ public abstract class MainCharacter extends Character
 {
     private int level = 0;
     private int experience = 0;
+    private int pendingLevels = 0;
 
     private Inventory inventory;
 
@@ -43,6 +44,16 @@ public abstract class MainCharacter extends Character
     public void setLevel(int level)
     {
         this.level = level;
+    }
+
+    public void setPendingLevels(int pendingLevels)
+    {
+        this.pendingLevels = pendingLevels;
+    }
+
+    public int getPendingLevels()
+    {
+        return this.pendingLevels;
     }
 
     public void grantExperience(int experience)

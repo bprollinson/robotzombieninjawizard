@@ -33,6 +33,7 @@ public class KillBonusGranter
         {
             System.out.println("Leveling up " + (newLevel - oldLevel) + " time(s) to level " + newLevel);
             mainCharacter.setLevel(newLevel);
+            mainCharacter.setPendingLevels(newLevel - oldLevel);
         }
     }
 
