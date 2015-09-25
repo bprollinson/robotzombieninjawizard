@@ -4,6 +4,9 @@ import java.awt.event.KeyEvent;
 
 public class NewGameScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int ENTRY_YES = 0;
+    private static final int ENTRY_NO = 1;
+
     private NewGameScreenRenderer newGameScreenRenderer;
     private MenuState state;
 
@@ -40,6 +43,16 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
     public int getNextState(KeyEvent event)
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == NewGameScreenKeyListener.ENTRY_YES)
+        {
+            return DispatchKeyListener.STATE_GAME_MOTION;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == NewGameScreenKeyListener.ENTRY_NO)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
         }
