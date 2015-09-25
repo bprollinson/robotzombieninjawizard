@@ -20,6 +20,7 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.renderCenteredString(1, "Character");
         this.frame.renderDisplayString(3, 0, "Class: " + this.character.getCharacterClass());
         this.frame.renderDisplayString(4, 0, "Level: " + this.character.getLevel());
-        this.frame.renderDisplayString(6, 0, "HP: " + this.character.getHP() + "/" + this.character.getMaxHP());
+        this.frame.renderDisplayString(5, 0, "Total experience: " + this.character.getExperience());
+        this.frame.renderDisplayString(7, 0, "HP: " + this.character.getHP() + "/" + this.character.getMaxHP());
     }
 }
