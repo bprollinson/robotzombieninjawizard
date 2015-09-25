@@ -5,6 +5,8 @@ import rznw.game.maincharacter.inventory.Inventory;
 
 public abstract class MainCharacter extends Character
 {
+    public static final int STAT_POINTS_PER_LEVEL = 5;
+
     private int level = 0;
     private int experience = 0;
     private int pendingLevels = 0;

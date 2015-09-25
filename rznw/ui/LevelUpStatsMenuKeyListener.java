@@ -8,6 +8,7 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
 {
     private LevelUpStatsMenuRenderer levelUpStatsMenuRenderer;
     private MainCharacter mainCharacter;
+    private int numPoints;
 
     public LevelUpStatsMenuKeyListener(LevelUpStatsMenuRenderer levelUpStatsMenuRenderer, MainCharacter mainCharacter)
     {
@@ -17,11 +18,18 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
 
     public void keyPressed(KeyEvent event)
     {
+        if (event.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            this.numPoints--;
+        }
+
+        this.levelUpStatsMenuRenderer.render(this.numPoints);
     }
 
     public void enterState()
     {
-        this.levelUpStatsMenuRenderer.render();
+        this.numPoints = mainCharacter.getPendingLevels() * MainCharacter.STAT_POINTS_PER_LEVEL;
+        this.levelUpStatsMenuRenderer.render(this.numPoints);
     }
 
     public void exitState(KeyEvent event)
@@ -31,6 +39,11 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
+        if (this.numPoints > 0)
+        {
+            return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
+        }
+
         return DispatchKeyListener.STATE_GAME_MOTION;
     }
 }
