@@ -28,6 +28,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_SAVE_SCREEN, new SaveScreenKeyListener(new SaveScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_LOAD_SCREEN, new LoadScreenKeyListener(new LoadScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_NEW_GAME_SCREEN, new NewGameScreenKeyListener(new NewGameScreenRenderer(frame)));
+        this.listeners.put(DispatchKeyListener.STATE_EXIT_SCREEN, new ExitScreenKeyListener(new ExitScreenRenderer(frame)));
     }
 
     public StateTransitionKeyListener getListener(int state)
