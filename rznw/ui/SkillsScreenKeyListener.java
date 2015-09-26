@@ -1,14 +1,18 @@
 package rznw.ui;
 
+import rznw.game.maincharacter.MainCharacter;
+
 import java.awt.event.KeyEvent;
 
 public class SkillsScreenKeyListener extends StateTransitionKeyListener
 {
     private SkillsScreenRenderer skillsScreenRenderer;
+    private MainCharacter mainCharacter;
 
-    public SkillsScreenKeyListener(SkillsScreenRenderer skillsScreenRenderer)
+    public SkillsScreenKeyListener(SkillsScreenRenderer skillsScreenRenderer, MainCharacter mainCharacter)
     {
         this.skillsScreenRenderer = skillsScreenRenderer;
+        this.mainCharacter = mainCharacter;
     }
 
     public void keyPressed(KeyEvent event)
@@ -17,7 +21,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState()
     {
-        this.skillsScreenRenderer.render();
+        this.skillsScreenRenderer.render(this.mainCharacter);
     }
 
     public void exitState(KeyEvent event)
