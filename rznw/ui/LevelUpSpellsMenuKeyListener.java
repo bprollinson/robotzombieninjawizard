@@ -23,6 +23,7 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
+                this.mainCharacter.addSpellPoint(this.state.getEntryNumber());
                 this.numPoints--;
                 break;
             case KeyEvent.VK_UP:
@@ -37,13 +38,13 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
                 break;
         }
 
-        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints);
+        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, this.mainCharacter);
     }
 
     public void enterState()
     {
         this.numPoints = mainCharacter.getPendingLevels() * MainCharacter.SPELL_POINTS_PER_LEVEL;
-        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints);
+        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, this.mainCharacter);
     }
 
     public void exitState(KeyEvent event)
