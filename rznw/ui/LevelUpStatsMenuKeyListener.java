@@ -34,7 +34,6 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
 
     public void exitState(KeyEvent event)
     {
-        this.mainCharacter.setPendingLevels(0);
     }
 
     public int getNextState(KeyEvent event)
@@ -44,6 +43,6 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
         }
 
-        return DispatchKeyListener.STATE_GAME_MOTION;
+        return DispatchKeyListener.STATE_LEVEL_UP_SKILLS_MENU;
     }
 }
