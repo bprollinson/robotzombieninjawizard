@@ -2,12 +2,15 @@ package rznw.ui;
 
 public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 {
+    private static final int MENU_ENTRY_FIRST_ROW = 6;
+    private static final int MENU_ROW_HEIGHT = 1;
+
     public LevelUpSkillsMenuRenderer(MainGameFrame frame)
     {
         super(frame);
     }
 
-    public void render(int numPoints)
+    public void render(MenuState state, int numPoints)
     {
         this.clearScreen();
         this.renderCenteredString(1, "Level Up!");
@@ -36,5 +39,15 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
         this.frame.renderDisplayString(25, 2, "Minor Skill 4.2");
         this.frame.renderDisplayString(26, 2, "Minor Skill 4.3");
         this.frame.renderDisplayString(27, 2, "Minor Skill 4.4");
+
+        this.renderCursor(state);
+    }
+
+    private void renderCursor(MenuState state)
+    {
+        int rowSpaces = 2 * (state.getEntryNumber() / 4);
+        int row = LevelUpSkillsMenuRenderer.MENU_ENTRY_FIRST_ROW + state.getEntryNumber() * LevelUpSkillsMenuRenderer.MENU_ROW_HEIGHT + rowSpaces;
+
+        this.frame.renderDisplayCharacter(row, 0, 'X');
     }
 }
