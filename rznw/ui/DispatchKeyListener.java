@@ -18,6 +18,7 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_GAME_EXIT = 11;
     public static final int STATE_LEVEL_UP_STATS_MENU = 12;
     public static final int STATE_LEVEL_UP_SKILLS_MENU = 13;
+    public static final int STATE_LEVEL_UP_SPELLS_MENU = 14;
 
     private int state;
     private StateTransitionKeyListenerContainer listenerContainer;
