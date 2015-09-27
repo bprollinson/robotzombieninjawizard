@@ -1,14 +1,18 @@
 package rznw.ui;
 
+import rznw.game.maincharacter.MainCharacter;
+
 import java.awt.event.KeyEvent;
 
 public class SpellsScreenKeyListener extends StateTransitionKeyListener
 {
     private SpellsScreenRenderer spellsScreenRenderer;
+    private MainCharacter mainCharacter;
 
-    public SpellsScreenKeyListener(SpellsScreenRenderer spellsScreenRenderer)
+    public SpellsScreenKeyListener(SpellsScreenRenderer spellsScreenRenderer, MainCharacter mainCharacter)
     {
         this.spellsScreenRenderer = spellsScreenRenderer;
+        this.mainCharacter = mainCharacter;
     }
 
     public void keyPressed(KeyEvent event)
@@ -17,7 +21,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState()
     {
-        this.spellsScreenRenderer.render();
+        this.spellsScreenRenderer.render(this.mainCharacter);
     }
 
     public void exitState(KeyEvent event)
