@@ -2,8 +2,8 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.Gold;
 import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.maincharacter.inventory.Potion;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 public abstract class EnemyCharacter extends Character
@@ -49,9 +49,14 @@ public abstract class EnemyCharacter extends Character
         return 1;
     }
 
+    public int getNumGold()
+    {
+        return 1;
+    }
+
     public InventoryItem getItemDrop()
     {
-        return new Gold(20);
+        return new Potion();
     }
 
     public int getExperienceReward()

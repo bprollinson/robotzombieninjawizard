@@ -18,6 +18,7 @@ public class KillBonusGranter
         EnemyCharacter enemyCharacter = (EnemyCharacter)otherCharacter;
 
         this.grantExperience(mainCharacter, enemyCharacter);
+        this.grantGold(mainCharacter, enemyCharacter);
         this.grantItems(mainCharacter, enemyCharacter);
     }
 
@@ -35,6 +36,12 @@ public class KillBonusGranter
             mainCharacter.setLevel(newLevel);
             mainCharacter.setPendingLevels(newLevel - oldLevel);
         }
+    }
+
+    private void grantGold(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
+    {
+        int numGold = enemyCharacter.getNumGold();
+        mainCharacter.getInventory().addGold(numGold);
     }
 
     private void grantItems(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)

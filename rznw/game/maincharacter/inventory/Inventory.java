@@ -5,11 +5,17 @@ import java.util.Vector;
 
 public class Inventory
 {
+    int numGold = 0;
     Collection<InventoryItem> itemSet;
 
     public Inventory()
     {
         this.itemSet = new Vector<InventoryItem>();
+    }
+
+    public void addGold(int numGold)
+    {
+        this.numGold += numGold;
     }
 
     public void addItem(InventoryItem item)
