@@ -5,11 +5,11 @@ import java.util.Vector;
 public class Inventory
 {
     int numGold = 0;
-    Vector<InventoryItem> itemSet;
+    Vector<InventoryItemGroup> itemGroups;
 
     public Inventory()
     {
-        this.itemSet = new Vector<InventoryItem>();
+        this.itemGroups = new Vector<InventoryItemGroup>();
     }
 
     public void addGold(int numGold)
@@ -22,19 +22,18 @@ public class Inventory
         return this.numGold;
     }
 
-    public void addItem(InventoryItem item)
+    public void addItems(InventoryItemGroup itemGroup)
     {
-        this.itemSet.add(item);
-        System.out.println("Size: " + this.itemSet.size());
+        this.itemGroups.add(itemGroup);
     }
 
-    public int getNumItems()
+    public int getNumItemGroups()
     {
-        return itemSet.size();
+        return itemGroups.size();
     }
 
-    public InventoryItem getItem(int index)
+    public InventoryItemGroup getItemGroup(int index)
     {
-        return this.itemSet.get(index);
+        return this.itemGroups.get(index);
     }
 }

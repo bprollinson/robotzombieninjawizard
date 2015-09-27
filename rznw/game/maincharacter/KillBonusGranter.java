@@ -3,7 +3,7 @@ package rznw.game.maincharacter;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.maincharacter.inventory.InventoryItemGroup;
 
 public class KillBonusGranter
 {
@@ -46,10 +46,10 @@ public class KillBonusGranter
 
     private void grantItems(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
     {
-        InventoryItem item = enemyCharacter.getItemDrop();
-        if (item != null)
+        InventoryItemGroup itemGroup = enemyCharacter.getItemDrops();
+        if (itemGroup != null)
         {
-            mainCharacter.getInventory().addItem(item);
+            mainCharacter.getInventory().addItems(itemGroup);
         }
     }
 }
