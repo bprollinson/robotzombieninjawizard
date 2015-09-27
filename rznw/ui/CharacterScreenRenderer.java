@@ -45,6 +45,24 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
 
     private void renderStatInfo()
     {
+        this.renderPointGroup(this.character, 0, 3);
+        this.renderPointGroup(this.character, 1, 9);
+        this.renderPointGroup(this.character, 2, 15);
+        this.renderPointGroup(this.character, 3, 21);
+
         this.frame.renderDisplayString(31, 0, "Up for more");
+    }
+
+    private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
+    {
+        int groupDisplay = groupNumber + 1;
+        this.frame.renderDisplayString(startRow, 2, "Major Stat " + groupDisplay);
+
+        for (int i = 0; i < 4; i++)
+        {
+            int groupPositionDisplay = i + 1;
+            int pointIndex = groupNumber * 4 + i;
+            this.frame.renderDisplayString(startRow + i + 1, 2, "Minor Stat " + groupDisplay + "." + groupPositionDisplay + ": " + mainCharacter.getStatPoints(pointIndex));
+        }
     }
 }
