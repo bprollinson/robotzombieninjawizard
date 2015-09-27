@@ -2,9 +2,7 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-import rznw.game.maincharacter.inventory.Potion;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 public abstract class EnemyCharacter extends Character
@@ -55,10 +53,7 @@ public abstract class EnemyCharacter extends Character
         return 1;
     }
 
-    public InventoryItemGroup getItemDrops()
-    {
-        return new InventoryItemGroup(new Potion(), 2);
-    }
+    public abstract InventoryItemGroup getItemDrops();
 
     public int getExperienceReward()
     {

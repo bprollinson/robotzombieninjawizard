@@ -31,7 +31,7 @@ public class Inventory
             InventoryItemGroup existingItemGroup = this.itemGroups.get(i);
             if (itemGroup.getItem().getClass().equals(existingItemGroup.getItem().getClass()))
             {
-                index = 0;
+                index = i;
                 break;
             }
         }
