@@ -38,7 +38,9 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         int requiredAdditionalExperience = requiredTotalExperience - this.character.getExperience();
         this.frame.renderDisplayString(6, 0, "Next level: " + requiredTotalExperience + " (" + requiredAdditionalExperience + " more)");
 
-        this.frame.renderDisplayString(8, 0, "HP: " + this.character.getHP() + "/" + this.character.getMaxHP());
+        this.frame.renderDisplayString(8, 0, "Gold: " + this.character.getInventory().getNumGold());
+
+        this.frame.renderDisplayString(10, 0, "HP: " + this.character.getHP() + "/" + this.character.getMaxHP());
 
         this.frame.renderDisplayString(31, 0, "Down for more");
     }

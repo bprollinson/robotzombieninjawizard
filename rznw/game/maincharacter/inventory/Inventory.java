@@ -18,6 +18,11 @@ public class Inventory
         this.numGold += numGold;
     }
 
+    public int getNumGold()
+    {
+        return this.numGold;
+    }
+
     public void addItem(InventoryItem item)
     {
         this.itemSet.add(item);
