@@ -1,12 +1,11 @@
 package rznw.game.maincharacter.inventory;
 
-import java.util.Collection;
 import java.util.Vector;
 
 public class Inventory
 {
     int numGold = 0;
-    Collection<InventoryItem> itemSet;
+    Vector<InventoryItem> itemSet;
 
     public Inventory()
     {
@@ -27,5 +26,15 @@ public class Inventory
     {
         this.itemSet.add(item);
         System.out.println("Size: " + this.itemSet.size());
+    }
+
+    public int getNumItems()
+    {
+        return itemSet.size();
+    }
+
+    public InventoryItem getItem(int index)
+    {
+        return this.itemSet.get(index);
     }
 }

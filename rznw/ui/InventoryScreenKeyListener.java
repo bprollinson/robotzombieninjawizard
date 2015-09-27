@@ -1,14 +1,18 @@
 package rznw.ui;
 
+import rznw.game.maincharacter.MainCharacter;
+
 import java.awt.event.KeyEvent;
 
 public class InventoryScreenKeyListener extends StateTransitionKeyListener
 {
     private InventoryScreenRenderer inventoryScreenRenderer;
+    private MainCharacter character;
 
-    public InventoryScreenKeyListener(InventoryScreenRenderer inventoryScreenRenderer)
+    public InventoryScreenKeyListener(InventoryScreenRenderer inventoryScreenRenderer, MainCharacter character)
     {
         this.inventoryScreenRenderer = inventoryScreenRenderer;
+        this.character = character;
     }
 
     public void keyPressed(KeyEvent event)
@@ -17,7 +21,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState()
     {
-        this.inventoryScreenRenderer.render();
+        this.inventoryScreenRenderer.render(character);
     }
 
     public void exitState(KeyEvent event)
