@@ -14,11 +14,22 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.character = character;
     }
 
-    public void render()
+    public void render(MenuState state)
     {
         this.clearScreen();
 
         this.renderCenteredString(1, "Character");
+
+        if (state.getEntryNumber() == 0)
+        {
+            this.renderCharacterInfo();
+        } else {
+            this.renderStatInfo();
+        }
+    }
+
+    private void renderCharacterInfo()
+    {
         this.frame.renderDisplayString(3, 0, "Class: " + this.character.getCharacterClass());
         this.frame.renderDisplayString(4, 0, "Level: " + this.character.getLevel());
         this.frame.renderDisplayString(5, 0, "Total experience: " + this.character.getExperience());
@@ -28,5 +39,12 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.frame.renderDisplayString(6, 0, "Next level: " + requiredTotalExperience + " (" + requiredAdditionalExperience + " more)");
 
         this.frame.renderDisplayString(8, 0, "HP: " + this.character.getHP() + "/" + this.character.getMaxHP());
+
+        this.frame.renderDisplayString(31, 0, "Down for more");
+    }
+
+    private void renderStatInfo()
+    {
+        this.frame.renderDisplayString(31, 0, "Up for more");
     }
 }
