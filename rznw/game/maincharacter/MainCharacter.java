@@ -5,9 +5,9 @@ import rznw.game.maincharacter.inventory.Inventory;
 
 public abstract class MainCharacter extends Character
 {
-    public static final int STAT_POINTS_PER_LEVEL = 5;
-    public static final int SKILL_POINTS_PER_LEVEL = 5;
-    public static final int SPELL_POINTS_PER_LEVEL = 5;
+    public static final int STAT_POINTS_PER_LEVEL = 4;
+    public static final int SKILL_POINTS_PER_LEVEL = 4;
+    public static final int SPELL_POINTS_PER_LEVEL = 4;
 
     private int level = 0;
     private int experience = 0;
