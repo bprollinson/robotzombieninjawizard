@@ -11,6 +11,21 @@ public class InventoryItemGroup
         this.numItems = numItems;
     }
 
+    public InventoryItem getItem()
+    {
+        return this.item;
+    }
+
+    public int getNumItems()
+    {
+        return this.numItems;
+    }
+
+    public void addItemsToGroup(int numItems)
+    {
+        this.numItems += numItems;
+    }
+
     public String getDisplayString()
     {
         return this.numItems + " " + item.getDisplayName();

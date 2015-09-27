@@ -17,7 +17,7 @@ public class InventoryScreenRenderer extends MenuScreenRenderer
         this.renderCenteredString(1, "Inventory");
 
         int numGroups = character.getInventory().getNumItemGroups();
-        for (int i = 0; i < numGroups && i < 25; i++)
+        for (int i = 0; i < numGroups; i++)
         {
             InventoryItemGroup group = character.getInventory().getItemGroup(i);
             this.frame.renderDisplayString(3 + i, 2, group.getDisplayString());
