@@ -1,5 +1,7 @@
 package rznw.ui;
 
+import rznw.map.GameWorld;
+
 import java.awt.event.KeyEvent;
 
 public class NewGameScreenKeyListener extends StateTransitionKeyListener
@@ -8,11 +10,13 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
     private static final int ENTRY_NO = 1;
 
     private NewGameScreenRenderer newGameScreenRenderer;
+    private GameWorld gameWorld;
     private MenuState state;
 
-    public NewGameScreenKeyListener(NewGameScreenRenderer newGameScreenRenderer)
+    public NewGameScreenKeyListener(NewGameScreenRenderer newGameScreenRenderer, GameWorld gameWorld)
     {
         this.newGameScreenRenderer = newGameScreenRenderer;
+        this.gameWorld = gameWorld;
         this.state = new MenuState(1);
     }
 
@@ -45,6 +49,7 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == NewGameScreenKeyListener.ENTRY_YES)
         {
             System.out.println("Regenerate the world");
+            this.gameWorld.initializeToDefaultState();
         }
     }
 
