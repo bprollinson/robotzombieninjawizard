@@ -5,27 +5,28 @@ import java.awt.event.KeyListener;
 
 public class DispatchKeyListener implements KeyListener
 {
-    public static final int STATE_GAME_MOTION = 1;
-    public static final int STATE_GAME_ESCAPE_MENU = 2;
-    public static final int STATE_CHARACTER_SCREEN = 3;
-    public static final int STATE_SKILLS_SCREEN = 4;
-    public static final int STATE_SPELLS_SCREEN = 5;
-    public static final int STATE_INVENTORY_SCREEN = 6;
-    public static final int STATE_SAVE_SCREEN = 7;
-    public static final int STATE_LOAD_SCREEN = 8;
-    public static final int STATE_NEW_GAME_SCREEN = 9;
-    public static final int STATE_EXIT_SCREEN = 10;
-    public static final int STATE_GAME_EXIT = 11;
-    public static final int STATE_LEVEL_UP_STATS_MENU = 12;
-    public static final int STATE_LEVEL_UP_SKILLS_MENU = 13;
-    public static final int STATE_LEVEL_UP_SPELLS_MENU = 14;
+    public static final int STATE_START_SCREEN = 1;
+    public static final int STATE_GAME_MOTION = 2;
+    public static final int STATE_GAME_ESCAPE_MENU = 3;
+    public static final int STATE_CHARACTER_SCREEN = 4;
+    public static final int STATE_SKILLS_SCREEN = 5;
+    public static final int STATE_SPELLS_SCREEN = 6;
+    public static final int STATE_INVENTORY_SCREEN = 7;
+    public static final int STATE_SAVE_SCREEN = 8;
+    public static final int STATE_LOAD_SCREEN = 9;
+    public static final int STATE_NEW_GAME_SCREEN = 10;
+    public static final int STATE_EXIT_SCREEN = 11;
+    public static final int STATE_GAME_EXIT = 12;
+    public static final int STATE_LEVEL_UP_STATS_MENU = 13;
+    public static final int STATE_LEVEL_UP_SKILLS_MENU = 14;
+    public static final int STATE_LEVEL_UP_SPELLS_MENU = 15;
 
     private int state;
     private StateTransitionKeyListenerContainer listenerContainer;
 
     public DispatchKeyListener(StateTransitionKeyListenerContainer listenerContainer)
     {
-        this.state = DispatchKeyListener.STATE_GAME_MOTION;
+        this.state = DispatchKeyListener.STATE_START_SCREEN;
         this.listenerContainer = listenerContainer;
     }
 

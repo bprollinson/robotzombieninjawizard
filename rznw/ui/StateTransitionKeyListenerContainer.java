@@ -14,11 +14,12 @@ public class StateTransitionKeyListenerContainer
 
     private HashMap<Integer, StateTransitionKeyListener> listeners;
 
-    public StateTransitionKeyListenerContainer(MainGameFrame frame, MainCharacterTurnHandler turnHandler, MapRenderer renderer, GameWorld gameWorld)
+    public StateTransitionKeyListenerContainer(MainGameFrame frame, MainCharacterTurnHandler turnHandler, GameWorld gameWorld, StartScreenRenderer startScreenRenderer)
     {
         this.listeners = new HashMap<Integer, StateTransitionKeyListener>();
 
-        this.listeners.put(DispatchKeyListener.STATE_GAME_MOTION, new MovementKeyListener(turnHandler, renderer, gameWorld));
+        this.listeners.put(DispatchKeyListener.STATE_START_SCREEN, new StartScreenKeyListener(startScreenRenderer));
+        this.listeners.put(DispatchKeyListener.STATE_GAME_MOTION, new MovementKeyListener(turnHandler, new MapRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_GAME_ESCAPE_MENU, new MainMenuKeyListener(new MainMenuRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_CHARACTER_SCREEN, new CharacterScreenKeyListener(new CharacterScreenRenderer(frame, gameWorld)));
         this.listeners.put(DispatchKeyListener.STATE_SKILLS_SCREEN, new SkillsScreenKeyListener(new SkillsScreenRenderer(frame), gameWorld));
