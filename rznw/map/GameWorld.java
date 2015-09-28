@@ -23,6 +23,12 @@ public class GameWorld
         this.generateMap();
     }
 
+    public void initializeToDefaultState(int characterClass)
+    {
+        this.character = characterGenerator.generateMainCharacter(characterClass);
+        this.generateMap();
+    }
+
     public void generateMap()
     {
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator);
