@@ -21,13 +21,11 @@ public class MainCharacterTurnHandler
     private static int KEY_V = 86;
 
     private GameWorld gameWorld;
-    private MainCharacter character;
     private CharacterSummaryRenderer renderer;
 
-    public MainCharacterTurnHandler(GameWorld gameWorld, MainCharacter character, CharacterSummaryRenderer renderer)
+    public MainCharacterTurnHandler(GameWorld gameWorld, CharacterSummaryRenderer renderer)
     {
         this.gameWorld = gameWorld;
-        this.character = character;
         this.renderer = renderer;
     }
 
@@ -46,24 +44,25 @@ public class MainCharacterTurnHandler
             return;
         }
 
-        KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(this.character, event);
-        this.handleCharacterTurn(characterPositionChange, this.character);
+        MainCharacter character = this.gameWorld.getMainCharacter();
+        KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
+        this.handleCharacterTurn(characterPositionChange, character);
 
         Collection<EnemyCharacter> enemies = this.gameWorld.getMap().getEnemies();
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(this.character);
+            EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
 
             this.handleCharacterTurn(enemyPositionChange, enemy);
         }
 
-        this.renderer.render(this.character);
+        this.renderer.render(this.gameWorld);
     }
 
     private boolean eventIsFloorChange(KeyEvent event)
     {
-        MapElement mapElement = this.character.getMapElement();
+        MapElement mapElement = this.gameWorld.getMainCharacter().getMapElement();
 
         int row = mapElement.getRow();
         int column = mapElement.getColumn();
@@ -112,6 +111,6 @@ public class MainCharacterTurnHandler
 
     public void renderSummary()
     {
-        this.renderer.render(this.character);
+        this.renderer.render(this.gameWorld);
     }
 }

@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.game.Character;
+import rznw.map.GameWorld;
 import rznw.map.Map;
 
 public class CharacterSummaryRenderer
@@ -12,12 +13,13 @@ public class CharacterSummaryRenderer
         this.frame = frame;
     }
 
-    public void render(Character character)
+    public void render(GameWorld gameWorld)
     {
         this.clearCharacterSummaryArea();
 
         this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "HP: ");
 
+        Character character = gameWorld.getMainCharacter();
         String hp = character.getHP() + "/" + character.getMaxHP();
         this.frame.renderDisplayString(Map.NUM_ROWS + 1, "HP: ".length(), hp);
     }

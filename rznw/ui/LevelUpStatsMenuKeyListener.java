@@ -1,29 +1,32 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
 
 public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
 {
     private LevelUpStatsMenuRenderer levelUpStatsMenuRenderer;
-    private MainCharacter mainCharacter;
+    private GameWorld gameWorld;
     private MenuState state;
     private int numPoints;
 
-    public LevelUpStatsMenuKeyListener(LevelUpStatsMenuRenderer levelUpStatsMenuRenderer, MainCharacter mainCharacter)
+    public LevelUpStatsMenuKeyListener(LevelUpStatsMenuRenderer levelUpStatsMenuRenderer, GameWorld gameWorld)
     {
         this.levelUpStatsMenuRenderer = levelUpStatsMenuRenderer;
-        this.mainCharacter = mainCharacter;
+        this.gameWorld = gameWorld;
         this.state = new MenuState(15);
     }
 
     public void keyPressed(KeyEvent event)
     {
+        MainCharacter character = this.gameWorld.getMainCharacter();
+
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
-                this.mainCharacter.addStatPoint(this.state.getEntryNumber());
+                character.addStatPoint(this.state.getEntryNumber());
                 this.numPoints--;
                 break;
             case KeyEvent.VK_UP:
@@ -38,13 +41,14 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
                 break;
         }
 
-        this.levelUpStatsMenuRenderer.render(this.state, this.numPoints, this.mainCharacter);
+        this.levelUpStatsMenuRenderer.render(this.state, this.numPoints, character);
     }
 
     public void enterState()
     {
-        this.numPoints = mainCharacter.getPendingLevels() * MainCharacter.STAT_POINTS_PER_LEVEL;
-        this.levelUpStatsMenuRenderer.render(this.state, this.numPoints, this.mainCharacter);
+        MainCharacter character = this.gameWorld.getMainCharacter();
+        this.numPoints = character.getPendingLevels() * MainCharacter.STAT_POINTS_PER_LEVEL;
+        this.levelUpStatsMenuRenderer.render(this.state, this.numPoints, character);
     }
 
     public void exitState(KeyEvent event)

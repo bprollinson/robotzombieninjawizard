@@ -2,7 +2,6 @@ package rznw.ui;
 
 import java.awt.event.KeyEvent;
 
-import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
 
@@ -11,14 +10,12 @@ public class MovementKeyListener extends StateTransitionKeyListener
     private MainCharacterTurnHandler turnHandler;
     private MapRenderer renderer;
     private GameWorld gameWorld;
-    private MainCharacter mainCharacter;
 
-    public MovementKeyListener(MainCharacterTurnHandler turnHandler, MapRenderer renderer, GameWorld gameWorld, MainCharacter mainCharacter)
+    public MovementKeyListener(MainCharacterTurnHandler turnHandler, MapRenderer renderer, GameWorld gameWorld)
     {
         this.turnHandler = turnHandler;
         this.renderer = renderer;
         this.gameWorld = gameWorld;
-        this.mainCharacter = mainCharacter;
     }
 
     public void keyPressed(KeyEvent event)
@@ -39,7 +36,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
-        if (this.mainCharacter.getPendingLevels() > 0)
+        if (this.gameWorld.getMainCharacter().getPendingLevels() > 0)
         {
             return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
         }

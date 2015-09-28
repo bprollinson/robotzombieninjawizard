@@ -6,21 +6,31 @@ import rznw.map.generator.MapGenerator;
 
 public class GameWorld
 {
-    private MainCharacter character;
     private CharacterGenerator characterGenerator;
     private MapGenerator mapGenerator;
+    private MainCharacter character;
     private Map map;
 
-    public GameWorld(MainCharacter character, CharacterGenerator characterGenerator, MapGenerator mapGenerator)
+    public GameWorld(CharacterGenerator characterGenerator, MapGenerator mapGenerator)
     {
-        this.character = character;
         this.characterGenerator = characterGenerator;
         this.mapGenerator = mapGenerator;
+    }
+
+    public void initializeToDefaultState()
+    {
+        this.character = characterGenerator.generateMainCharacter();
+        this.generateMap();
     }
 
     public void generateMap()
     {
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator);
+    }
+
+    public MainCharacter getMainCharacter()
+    {
+        return this.character;
     }
 
     public Map getMap()

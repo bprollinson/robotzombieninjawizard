@@ -1,29 +1,32 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
 
 public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
 {
     private LevelUpSpellsMenuRenderer levelUpSpellsMenuRenderer;
-    private MainCharacter mainCharacter;
+    private GameWorld gameWorld;
     private MenuState state;
     private int numPoints;
 
-    public LevelUpSpellsMenuKeyListener(LevelUpSpellsMenuRenderer levelUpSpellsMenuRenderer, MainCharacter mainCharacter)
+    public LevelUpSpellsMenuKeyListener(LevelUpSpellsMenuRenderer levelUpSpellsMenuRenderer, GameWorld gameWorld)
     {
         this.levelUpSpellsMenuRenderer = levelUpSpellsMenuRenderer;
-        this.mainCharacter = mainCharacter;
+        this.gameWorld = gameWorld;
         this.state = new MenuState(15);
     }
 
     public void keyPressed(KeyEvent event)
     {
+        MainCharacter character = this.gameWorld.getMainCharacter();
+
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
-                this.mainCharacter.addSpellPoint(this.state.getEntryNumber());
+                character.addSpellPoint(this.state.getEntryNumber());
                 this.numPoints--;
                 break;
             case KeyEvent.VK_UP:
@@ -38,18 +41,20 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
                 break;
         }
 
-        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, this.mainCharacter);
+        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character);
     }
 
     public void enterState()
     {
-        this.numPoints = mainCharacter.getPendingLevels() * MainCharacter.SPELL_POINTS_PER_LEVEL;
-        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, this.mainCharacter);
+        MainCharacter character = this.gameWorld.getMainCharacter();
+        this.numPoints = character.getPendingLevels() * MainCharacter.SPELL_POINTS_PER_LEVEL;
+        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character);
     }
 
     public void exitState(KeyEvent event)
     {
-        this.mainCharacter.setPendingLevels(0);
+        MainCharacter character = this.gameWorld.getMainCharacter();
+        character.setPendingLevels(0);
     }
 
     public int getNextState(KeyEvent event)
