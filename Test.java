@@ -5,7 +5,6 @@ import rznw.turn.MainCharacterTurnHandler;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.ui.DispatchKeyListener;
 import rznw.ui.MainGameFrame;
-import rznw.ui.StartScreenRenderer;
 import rznw.ui.StateTransitionKeyListenerContainer;
 
 public class Test
@@ -20,14 +19,12 @@ public class Test
         GameWorld gameWorld = new GameWorld(characterGenerator, mapGenerator);
         gameWorld.initializeToDefaultState();
 
-        StartScreenRenderer startScreenRenderer = new StartScreenRenderer(frame);
-        startScreenRenderer.render();
-
         CharacterSummaryRenderer characterSummaryRenderer = new CharacterSummaryRenderer(frame);
         MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(gameWorld, characterSummaryRenderer);
 
-        StateTransitionKeyListenerContainer listenerContainer = new StateTransitionKeyListenerContainer(frame, turnHandler, gameWorld, startScreenRenderer);
+        StateTransitionKeyListenerContainer listenerContainer = new StateTransitionKeyListenerContainer(frame, turnHandler, gameWorld);
         DispatchKeyListener dispatchListener = new DispatchKeyListener(listenerContainer);
+        dispatchListener.enterFirstState();
 
         frame.display(dispatchListener);
     }

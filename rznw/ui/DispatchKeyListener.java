@@ -30,6 +30,11 @@ public class DispatchKeyListener implements KeyListener
         this.listenerContainer = listenerContainer;
     }
 
+    public void enterFirstState()
+    {
+        this.listenerContainer.getListener(this.state).enterState();
+    }
+
     public void keyPressed(KeyEvent event)
     {
         int lastState = this.state;
