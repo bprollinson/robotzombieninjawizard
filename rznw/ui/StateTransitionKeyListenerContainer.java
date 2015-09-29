@@ -32,6 +32,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU, new LevelUpStatsMenuKeyListener(new LevelUpStatsMenuRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_LEVEL_UP_SKILLS_MENU, new LevelUpSkillsMenuKeyListener(new LevelUpSkillsMenuRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_LEVEL_UP_SPELLS_MENU, new LevelUpSpellsMenuKeyListener(new LevelUpSpellsMenuRenderer(frame), gameWorld));
+        this.listeners.put(DispatchKeyListener.STATE_DEATH_SCREEN, new DeathScreenKeyListener(new DeathScreenRenderer(frame), gameWorld));
     }
 
     public StateTransitionKeyListener getListener(int state)

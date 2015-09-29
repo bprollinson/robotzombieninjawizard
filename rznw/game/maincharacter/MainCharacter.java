@@ -46,7 +46,7 @@ public abstract class MainCharacter extends Character
 
     public int getMaxHP()
     {
-        return 1000;
+        return 100;
     }
 
     public int getDamage()
