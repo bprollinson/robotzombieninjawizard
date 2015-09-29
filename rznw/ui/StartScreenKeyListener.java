@@ -4,6 +4,10 @@ import java.awt.event.KeyEvent;
 
 public class StartScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int ENTRY_LOAD = 0;
+    private static final int ENTRY_NEW_GAME = 1;
+    private static final int ENTRY_EXIT = 2;
+
     private StartScreenRenderer startScreenRenderer;
     private MenuState state;
 
@@ -43,7 +47,7 @@ public class StartScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
-        if (event.getKeyCode() == KeyEvent.VK_ENTER)
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == StartScreenKeyListener.ENTRY_NEW_GAME)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
