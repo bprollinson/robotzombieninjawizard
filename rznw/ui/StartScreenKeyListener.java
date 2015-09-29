@@ -49,7 +49,7 @@ public class StartScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == StartScreenKeyListener.ENTRY_NEW_GAME)
         {
-            return DispatchKeyListener.STATE_GAME_MOTION;
+            return DispatchKeyListener.STATE_NEW_GAME_SCREEN;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == StartScreenKeyListener.ENTRY_EXIT)

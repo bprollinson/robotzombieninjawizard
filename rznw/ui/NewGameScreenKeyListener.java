@@ -14,6 +14,7 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
     private NewGameScreenRenderer newGameScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private int previousState;
 
     public NewGameScreenKeyListener(NewGameScreenRenderer newGameScreenRenderer, GameWorld gameWorld)
     {
@@ -43,6 +44,7 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.newGameScreenRenderer.render(this.state);
     }
 
@@ -59,7 +61,7 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER)
