@@ -18,22 +18,6 @@ public class CharacterGenerator
     private static final int CLASS_NINJA = 2;
     private static final int CLASS_WIZARD = 3;
 
-    public MainCharacter generateMainCharacter()
-    {
-        MainCharacter[] mainCharacterList = new MainCharacter[]
-        {
-            new Robot(),
-            new Zombie(),
-            new Ninja(),
-            new Wizard()
-        };
-
-        Random random = new Random();
-        int randomNumber = random.nextInt(mainCharacterList.length);
-
-        return mainCharacterList[randomNumber];
-    }
-
     public MainCharacter generateMainCharacter(int characterClass)
     {
         switch (characterClass)

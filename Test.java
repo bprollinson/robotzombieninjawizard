@@ -17,7 +17,6 @@ public class Test
 
         MapGenerator mapGenerator = new MapGenerator();
         GameWorld gameWorld = new GameWorld(characterGenerator, mapGenerator);
-        gameWorld.initializeToDefaultState();
 
         CharacterSummaryRenderer characterSummaryRenderer = new CharacterSummaryRenderer(frame);
         MainCharacterTurnHandler turnHandler = new MainCharacterTurnHandler(gameWorld, characterSummaryRenderer);

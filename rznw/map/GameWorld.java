@@ -17,12 +17,6 @@ public class GameWorld
         this.mapGenerator = mapGenerator;
     }
 
-    public void initializeToDefaultState()
-    {
-        this.character = characterGenerator.generateMainCharacter();
-        this.generateMap();
-    }
-
     public void initializeToDefaultState(int characterClass)
     {
         this.character = characterGenerator.generateMainCharacter(characterClass);
