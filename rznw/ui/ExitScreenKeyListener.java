@@ -9,6 +9,7 @@ public class ExitScreenKeyListener extends StateTransitionKeyListener
 
     private ExitScreenRenderer exitScreenRenderer;
     private MenuState state;
+    private int previousState;
 
     public ExitScreenKeyListener(ExitScreenRenderer exitScreenRenderer)
     {
@@ -35,8 +36,9 @@ public class ExitScreenKeyListener extends StateTransitionKeyListener
         this.exitScreenRenderer.render(this.state);
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.exitScreenRenderer.render(this.state);
     }
 
@@ -48,7 +50,7 @@ public class ExitScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == ExitScreenKeyListener.ENTRY_YES)
@@ -58,7 +60,7 @@ public class ExitScreenKeyListener extends StateTransitionKeyListener
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == ExitScreenKeyListener.ENTRY_NO)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         return DispatchKeyListener.STATE_EXIT_SCREEN;

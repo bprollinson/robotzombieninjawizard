@@ -44,7 +44,7 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
         this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character);
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
         this.numPoints = character.getPendingLevels() * MainCharacter.SPELL_POINTS_PER_LEVEL;

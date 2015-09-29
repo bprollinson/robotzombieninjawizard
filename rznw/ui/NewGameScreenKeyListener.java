@@ -41,7 +41,7 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
         this.newGameScreenRenderer.render(this.state);
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.newGameScreenRenderer.render(this.state);
     }

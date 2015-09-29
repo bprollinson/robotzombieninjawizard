@@ -19,7 +19,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.spellsScreenRenderer.render(this.gameWorld.getMainCharacter());
     }

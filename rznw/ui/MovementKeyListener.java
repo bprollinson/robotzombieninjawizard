@@ -24,7 +24,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
         this.renderer.render(this.gameWorld.getMap());
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.renderer.render(this.gameWorld.getMap());
         this.turnHandler.renderSummary();

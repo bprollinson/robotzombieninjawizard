@@ -19,7 +19,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter());
     }

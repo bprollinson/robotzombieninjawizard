@@ -41,7 +41,7 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
         this.mainMenuRenderer.render(this.state);
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.mainMenuRenderer.render(this.state);
     }

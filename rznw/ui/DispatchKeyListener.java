@@ -32,7 +32,7 @@ public class DispatchKeyListener implements KeyListener
 
     public void enterFirstState()
     {
-        this.listenerContainer.getListener(this.state).enterState();
+        this.listenerContainer.getListener(this.state).enterState(0);
     }
 
     public void keyPressed(KeyEvent event)
@@ -52,7 +52,7 @@ public class DispatchKeyListener implements KeyListener
         {
             lastStateListener.exitState(event);
             StateTransitionKeyListener currentStateListener = this.listenerContainer.getListener(this.state);
-            currentStateListener.enterState();
+            currentStateListener.enterState(lastState);
         }
     }
 

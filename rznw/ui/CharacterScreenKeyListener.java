@@ -36,7 +36,7 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.characterScreenRenderer.render(this.state);
     }

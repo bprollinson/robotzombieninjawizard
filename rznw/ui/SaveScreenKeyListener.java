@@ -15,7 +15,7 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.saveScreenRenderer.render();
     }

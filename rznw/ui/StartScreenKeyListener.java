@@ -36,7 +36,7 @@ public class StartScreenKeyListener extends StateTransitionKeyListener
         this.startScreenRenderer.render(this.state);
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.startScreenRenderer.render(this.state);
     }
@@ -50,6 +50,11 @@ public class StartScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == StartScreenKeyListener.ENTRY_NEW_GAME)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == StartScreenKeyListener.ENTRY_EXIT)
+        {
+            return DispatchKeyListener.STATE_EXIT_SCREEN;
         }
 
         return DispatchKeyListener.STATE_START_SCREEN;

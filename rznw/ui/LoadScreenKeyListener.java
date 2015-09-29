@@ -15,7 +15,7 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.loadScreenRenderer.render();
     }

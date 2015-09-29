@@ -19,7 +19,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
     {
     }
 
-    public void enterState()
+    public void enterState(int previousState)
     {
         this.skillsScreenRenderer.render(this.gameWorld.getMainCharacter());
     }
