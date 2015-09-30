@@ -11,7 +11,8 @@ import java.util.List;
 
 public class MapEnemyGenerator
 {
-    private static int ENEMY_PROBABILITY = 10;
+    private static int BASE_ENEMY_PROBABILITY = 10;
+    private static int ENEMY_PROBABILITY_PER_LEVEL = 5;
 
     public void generateEnemies(Map map, CharacterGenerator characterGenerator, List<MapArea> rooms)
     {
@@ -24,7 +25,7 @@ public class MapEnemyGenerator
                 {
                     int random = RandomNumberGenerator.randomInteger(1, 100);
 
-                    if (map.getElement(row, column) == null && random <= MapEnemyGenerator.ENEMY_PROBABILITY)
+                    if (map.getElement(row, column) == null && random <= this.getEnemyProbability(map.getLevel()))
                     {
                         EnemyCharacter enemyCharacter = characterGenerator.generateEnemy();
                         enemyCharacter.generateMapElement(row, column);
@@ -34,5 +35,10 @@ public class MapEnemyGenerator
                 }
             }
         }
+    }
+
+    private int getEnemyProbability(int level)
+    {
+        return MapEnemyGenerator.BASE_ENEMY_PROBABILITY + (level - 1) * MapEnemyGenerator.ENEMY_PROBABILITY_PER_LEVEL;
     }
 }
