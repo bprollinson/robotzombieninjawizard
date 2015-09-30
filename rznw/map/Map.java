@@ -14,12 +14,15 @@ public class Map
 
     private static final int FOG_RADIUS = 2;
 
+    private int level;
     private MapElement[][] elements;
     private MapElement[][] backgroundElements;
     private boolean[][] visible;
 
-    public Map()
+    public Map(int level)
     {
+        this.level = level;
+
         this.elements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
         this.backgroundElements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
         this.visible = new boolean[Map.NUM_ROWS][Map.NUM_COLUMNS];
@@ -31,6 +34,11 @@ public class Map
                 this.visible[i][j] = false;
             }
         }
+    }
+
+    public int getLevel()
+    {
+        return this.level;
     }
 
     public MapElement getElement(int i, int j)

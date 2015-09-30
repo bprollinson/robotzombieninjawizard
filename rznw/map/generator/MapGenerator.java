@@ -24,9 +24,9 @@ public class MapGenerator
         this.pathGenerator = new MapPathGenerator();
     }
 
-    public Map generate(MainCharacter character, CharacterGenerator characterGenerator)
+    public Map generate(MainCharacter character, CharacterGenerator characterGenerator, int level)
     {
-        Map map = new Map();
+        Map map = new Map(level);
 
         List<MapArea> rooms = this.terrainGenerator.generateTerrain(map);
         this.pathGenerator.generatePaths(map, rooms);

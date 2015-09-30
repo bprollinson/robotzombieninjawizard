@@ -19,13 +19,15 @@ public class GameWorld
 
     public void initializeToDefaultState(int characterClass)
     {
+        System.out.println("Generating dungeon level 1");
         this.character = characterGenerator.generateMainCharacter(characterClass);
-        this.generateMap();
+        this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
     }
 
-    public void generateMap()
+    public void generateNextMap()
     {
-        this.map = this.mapGenerator.generate(this.character, this.characterGenerator);
+        System.out.println("Generating dungeon level " + (this.map.getLevel() + 1));
+        this.map = this.mapGenerator.generate(this.character, this.characterGenerator, this.map.getLevel() + 1);
     }
 
     public MainCharacter getMainCharacter()

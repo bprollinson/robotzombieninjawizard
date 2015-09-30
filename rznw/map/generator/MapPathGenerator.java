@@ -140,7 +140,7 @@ public class MapPathGenerator
 
     private MapPath calculatePath(Map map, List<MapArea> rooms, MapPoint point1, MapPoint point2)
     {
-        Map paddedMap = new Map();
+        Map paddedMap = new Map(map.getLevel());
 
         for (int i = 0; i < rooms.size(); i++)
         {

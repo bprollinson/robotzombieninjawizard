@@ -40,7 +40,7 @@ public class MainCharacterTurnHandler
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
-            this.gameWorld.generateMap();
+            this.gameWorld.generateNextMap();
             return;
         }
 
