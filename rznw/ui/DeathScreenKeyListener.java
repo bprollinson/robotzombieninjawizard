@@ -21,7 +21,7 @@ public class DeathScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        this.deathScreenRenderer.render(this.gameWorld.getMainCharacter());
+        this.deathScreenRenderer.render(this.gameWorld.getMainCharacter(), this.gameWorld.getMap());
     }
 
     public void exitState(KeyEvent event)
