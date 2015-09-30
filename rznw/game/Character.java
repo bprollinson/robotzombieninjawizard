@@ -36,5 +36,10 @@ public abstract class Character
         return this.HP;
     }
 
+    public void fillHP()
+    {
+        this.HP = this.getMaxHP();
+    }
+
     public abstract int getDamage();
 }

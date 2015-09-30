@@ -55,6 +55,7 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
         character.setPendingLevels(0);
+        character.resetStateAfterLevelUp();
     }
 
     public int getNextState(KeyEvent event)

@@ -46,7 +46,7 @@ public abstract class MainCharacter extends Character
 
     public int getMaxHP()
     {
-        return 100;
+        return 20;
     }
 
     public int getDamage()
@@ -107,6 +107,11 @@ public abstract class MainCharacter extends Character
     public int getSpellPoints(int spellNumber)
     {
         return this.spells[spellNumber];
+    }
+
+    public void resetStateAfterLevelUp()
+    {
+        this.fillHP();
     }
 
     public abstract String getCharacterClass();
