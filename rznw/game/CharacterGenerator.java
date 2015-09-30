@@ -8,8 +8,7 @@ import rznw.game.maincharacter.Robot;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.Ninja;
 import rznw.game.maincharacter.Wizard;
-
-import java.util.Random;
+import rznw.utility.RandomNumberGenerator;
 
 public class CharacterGenerator
 {
@@ -35,7 +34,7 @@ public class CharacterGenerator
         return null;
     }
 
-    public EnemyCharacter generateEnemy()
+    public EnemyCharacter generateEnemy(int level)
     {
         EnemyCharacter[] enemyList = new EnemyCharacter[]
         {
@@ -43,9 +42,26 @@ public class CharacterGenerator
             new Mummy()
         };
 
-        Random random = new Random();
-        int randomNumber = random.nextInt(enemyList.length);
+        int[][] cumulativeEnemyProbabilities = new int[][]
+        {
+            {70, 100},
+            {30, 100}
+        };
 
-        return enemyList[randomNumber];
+        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
+        int levelIndex = Math.min(level - 1, 1);
+
+        int index = -1;
+
+        for (int i = 0; i < cumulativeEnemyProbabilities[levelIndex].length; i++)
+        {
+            if (randomNumber <= cumulativeEnemyProbabilities[levelIndex][i])
+            {
+                index = i;
+                break;
+            }
+        }
+
+        return enemyList[index];
     } 
 }

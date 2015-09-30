@@ -27,7 +27,7 @@ public class MapEnemyGenerator
 
                     if (map.getElement(row, column) == null && random <= this.getEnemyProbability(map.getLevel()))
                     {
-                        EnemyCharacter enemyCharacter = characterGenerator.generateEnemy();
+                        EnemyCharacter enemyCharacter = characterGenerator.generateEnemy(map.getLevel());
                         enemyCharacter.generateMapElement(row, column);
                         EnemyMapElement enemyMapElement = (EnemyMapElement)enemyCharacter.getMapElement();
                         map.setElement(row, column, enemyMapElement);
