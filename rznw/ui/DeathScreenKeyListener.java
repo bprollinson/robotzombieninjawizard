@@ -30,6 +30,11 @@ public class DeathScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
-        return DispatchKeyListener.STATE_START_SCREEN;
+        if (event.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            return DispatchKeyListener.STATE_START_SCREEN;
+        }
+
+        return DispatchKeyListener.STATE_DEATH_SCREEN;
     }
 }
