@@ -9,6 +9,20 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
+    private static String[] majorStatCategory = {
+        "Vitality",
+        "Agility",
+        "Fortitude",
+        "Magic"
+    };
+
+    private static String[] majorSkillCategory = {
+        "Vitality",
+        "Agility",
+        "Fortitude",
+        "Magic"
+    };
+
     private int level = 0;
     private int experience = 0;
     private int pendingLevels = 0;
@@ -32,6 +46,16 @@ public abstract class MainCharacter extends Character
         }
 
         this.inventory = new Inventory();
+    }
+
+    public static String getMajorStatCategory(int categoryNumber)
+    {
+        return MainCharacter.majorStatCategory[categoryNumber];
+    }
+
+    public static String getMajorSkillCategory(int categoryNumber)
+    {
+        return MainCharacter.majorSkillCategory[categoryNumber];
     }
 
     public int getLevel()
