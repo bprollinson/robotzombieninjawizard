@@ -101,12 +101,14 @@ public abstract class MainCharacter extends Character
         return MainCharacter.skillCategory[categoryNumber];
     }
 
-    public static String getSkillName(int statNumber)
+    public static String getSkillName(int skillNumber)
     {
-        return MainCharacter.skillName[statNumber];
+        return MainCharacter.skillName[skillNumber];
     }
 
     public abstract String getSpellCategory(int categoryNumber);
+
+    public abstract String getSpellName(int spellNumber);
 
     public int getLevel()
     {

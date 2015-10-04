@@ -11,6 +11,24 @@ public class Zombie extends MainCharacter
         "Infection",
         "Zombie Pack"
     };
+    private static String[] spellName = {
+        "Poison Skin",
+        "Resist Damage",
+        "Thorn Skin",
+        "Barbed Skin",
+        "Feed Flesh",
+        "Feed Brain",
+        "Feed Past",
+        "Feed Mind",
+        "Locust Swarm",
+        "Poison Cloud",
+        "Infectious Rage",
+        "Blotch",
+        "Summon Zombie",
+        "Infer Zombie",
+        "Multiply Zombies",
+        "Explode Zombies"
+    };
 
     public void generateMapElement(int row, int column)
     {
@@ -25,5 +43,10 @@ public class Zombie extends MainCharacter
     public String getSpellCategory(int categoryNumber)
     {
         return Zombie.spellCategory[categoryNumber];
+    }
+
+    public String getSpellName(int spellNumber)
+    {
+        return Zombie.spellName[spellNumber];
     }
 }

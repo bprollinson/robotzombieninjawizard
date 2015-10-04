@@ -11,6 +11,24 @@ public class Ninja extends MainCharacter
         "Thievery",
         "Counterattack"
     };
+    private static String[] spellName = {
+        "Stun Strike",
+        "Roundhouse Strike",
+        "Poison Strike",
+        "Armor Break",
+        "Pin Strike",
+        "Shuriken Star",
+        "Smoke Cluster",
+        "Stun Bomb",
+        "Steal Gold",
+        "Steal Item",
+        "Steal Equipment",
+        "Steal Experience",
+        "Smoke Bomb",
+        "Counterstrike",
+        "Reverse Pain",
+        "Death Strike"
+    };
 
     public void generateMapElement(int row, int column)
     {
@@ -25,5 +43,10 @@ public class Ninja extends MainCharacter
     public String getSpellCategory(int categoryNumber)
     {
         return Ninja.spellCategory[categoryNumber];
+    }
+
+    public String getSpellName(int spellNumber)
+    {
+        return Ninja.spellName[spellNumber];
     }
 }

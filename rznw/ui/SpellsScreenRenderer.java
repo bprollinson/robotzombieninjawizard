@@ -29,7 +29,7 @@ public class SpellsScreenRenderer extends MenuScreenRenderer
         {
             int groupPositionDisplay = i + 1;
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, "Minor Spell " + groupDisplay + "." + groupPositionDisplay + ": " + mainCharacter.getSpellPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, mainCharacter.getSpellName(pointIndex) + ": " + mainCharacter.getSpellPoints(pointIndex));
         }
     }
 }

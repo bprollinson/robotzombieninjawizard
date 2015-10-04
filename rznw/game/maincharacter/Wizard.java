@@ -11,6 +11,24 @@ public class Wizard extends MainCharacter
         "Air",
         "Water"
     };
+    private static String[] spellName = {
+        "Rock Wall",
+        "Metero Shower",
+        "Earthquake",
+        "Summon Golem",
+        "Ring of Fire",
+        "Fireball",
+        "Heat Ray",
+        "Arc Lightning",
+        "Repel",
+        "Teleport",
+        "Ricochet Blast",
+        "Updraft",
+        "Ice Field",
+        "Heal",
+        "Cleanse",
+        "Vital Zap"
+    };
 
     public void generateMapElement(int row, int column)
     {
@@ -25,5 +43,10 @@ public class Wizard extends MainCharacter
     public String getSpellCategory(int categoryNumber)
     {
         return Wizard.spellCategory[categoryNumber];
+    }
+
+    public String getSpellName(int spellNumber)
+    {
+        return Wizard.spellName[spellNumber];
     }
 }
