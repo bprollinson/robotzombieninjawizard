@@ -5,6 +5,12 @@ import rznw.map.element.MainCharacterMapElement;
 public class Zombie extends MainCharacter
 {
     private static char mapCharacter = 'Z';
+    private static String[] spellCategory = {
+        "Thick Skin",
+        "Feeding",
+        "Infection",
+        "Zombie Pack"
+    };
 
     public void generateMapElement(int row, int column)
     {
@@ -14,5 +20,10 @@ public class Zombie extends MainCharacter
     public String getCharacterClass()
     {
         return "Zombie";
+    }
+
+    public String getSpellCategory(int categoryNumber)
+    {
+        return Zombie.spellCategory[categoryNumber];
     }
 }

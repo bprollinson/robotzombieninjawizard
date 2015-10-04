@@ -22,8 +22,8 @@ public class SpellsScreenRenderer extends MenuScreenRenderer
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
-        int groupDisplay = groupNumber + 1;
-        this.frame.renderDisplayString(startRow, 2, "Major Spell " + groupDisplay);
+        String groupDisplay = mainCharacter.getSpellCategory(groupNumber);
+        this.frame.renderDisplayString(startRow, 2, groupDisplay);
 
         for (int i = 0; i < 4; i++)
         {

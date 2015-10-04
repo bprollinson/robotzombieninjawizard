@@ -106,6 +106,8 @@ public abstract class MainCharacter extends Character
         return MainCharacter.skillName[statNumber];
     }
 
+    public abstract String getSpellCategory(int categoryNumber);
+
     public int getLevel()
     {
         return this.level;
