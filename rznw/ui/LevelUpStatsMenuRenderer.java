@@ -28,14 +28,13 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
-        String groupDisplay = MainCharacter.getMajorStatCategory(groupNumber);
+        String groupDisplay = MainCharacter.getStatCategory(groupNumber);
         this.frame.renderDisplayString(startRow, 2, groupDisplay);
 
         for (int i = 0; i < 4; i++)
         {
-            int groupPositionDisplay = i + 1;
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, "Minor Stat " + groupDisplay + "." + groupPositionDisplay + ": " + mainCharacter.getStatPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacter.getStatName(pointIndex) + ": " + mainCharacter.getStatPoints(pointIndex));
         }
     }
 

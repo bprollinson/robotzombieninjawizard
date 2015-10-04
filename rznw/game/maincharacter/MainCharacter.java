@@ -9,18 +9,56 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
-    private static String[] majorStatCategory = {
+    private static String[] statCategory = {
         "Vitality",
         "Agility",
         "Fortitude",
         "Magic"
     };
 
-    private static String[] majorSkillCategory = {
+    private static String[] statName = {
+        "Health",
+        "Physical Regeneration",
+        "Last Breath",
+        "Life Bond",
+        "Accuracy",
+        "Dodge",
+        "Sight",
+        "Find Traps",
+        "Damage",
+        "Padding",
+        "Unencumberance",
+        "Thick Skin",
+        "Mana",
+        "Mental Regeneration",
+        "Mana Burn",
+        "Magic Resistance"
+    };
+
+    private static String[] skillCategory = {
         "Vitality",
         "Agility",
         "Fortitude",
         "Magic"
+    };
+
+    private static String[] skillName = {
+        "Detect Vitality",
+        "Detect Enemies",
+        "Blood Rage",
+        "Potion Find",
+        "Summon Shopkeeper",
+        "Waypoint",
+        "Fast Hands",
+        "Find Stairs",
+        "Item Trade",
+        "Rage",
+        "Abundance",
+        "Disarm Traps",
+        "Magic Seeds",
+        "Mana Suck",
+        "Protective Field",
+        "Mana River"
     };
 
     private int level = 0;
@@ -48,14 +86,24 @@ public abstract class MainCharacter extends Character
         this.inventory = new Inventory();
     }
 
-    public static String getMajorStatCategory(int categoryNumber)
+    public static String getStatCategory(int categoryNumber)
     {
-        return MainCharacter.majorStatCategory[categoryNumber];
+        return MainCharacter.statCategory[categoryNumber];
     }
 
-    public static String getMajorSkillCategory(int categoryNumber)
+    public static String getStatName(int statNumber)
     {
-        return MainCharacter.majorSkillCategory[categoryNumber];
+        return MainCharacter.statName[statNumber];
+    }
+
+    public static String getSkillCategory(int categoryNumber)
+    {
+        return MainCharacter.skillCategory[categoryNumber];
+    }
+
+    public static String getSkillName(int statNumber)
+    {
+        return MainCharacter.skillName[statNumber];
     }
 
     public int getLevel()

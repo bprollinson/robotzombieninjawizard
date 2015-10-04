@@ -28,14 +28,13 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
-        String groupDisplay = MainCharacter.getMajorSkillCategory(groupNumber);
+        String groupDisplay = MainCharacter.getSkillCategory(groupNumber);
         this.frame.renderDisplayString(startRow, 2, groupDisplay);
 
         for (int i = 0; i < 4; i++)
         {
-            int groupPositionDisplay = i + 1;
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, "Minor Skill " + groupDisplay + "." + groupPositionDisplay + ": " + mainCharacter.getSkillPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacter.getSkillName(pointIndex) + ": " + mainCharacter.getSkillPoints(pointIndex));
         }
     }
 
