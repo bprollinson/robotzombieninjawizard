@@ -12,18 +12,32 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
         super(frame);
     }
 
-    public void render(MenuState state, int numPoints, MainCharacter mainCharacter)
+    public void render(MenuState state, int numPoints, MainCharacter mainCharacter, boolean showingDescription)
     {
         this.clearScreen();
-        this.renderCenteredString(1, "Level Up!");
-        this.renderCenteredString(3, "Spell points remaining: " + numPoints);
 
-        this.renderPointGroup(mainCharacter, 0, 5);
-        this.renderPointGroup(mainCharacter, 1, 11);
-        this.renderPointGroup(mainCharacter, 2, 17);
-        this.renderPointGroup(mainCharacter, 3, 23);
+        if (showingDescription)
+        {
+            this.renderCenteredString(1, mainCharacter.getSpellName(state.getEntryNumber()));
 
-        this.renderCursor(state);
+            this.renderCenteredString(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
+
+            this.renderCenteredString(30, "Press 'i' to return to the spell menu");
+        }
+        else
+        {
+            this.renderCenteredString(1, "Level Up!");
+            this.renderCenteredString(3, "Spell points remaining: " + numPoints);
+
+            this.renderPointGroup(mainCharacter, 0, 5);
+            this.renderPointGroup(mainCharacter, 1, 11);
+            this.renderPointGroup(mainCharacter, 2, 17);
+            this.renderPointGroup(mainCharacter, 3, 23);
+
+            this.renderCenteredString(30, "Press 'i' for spell information");
+
+            this.renderCursor(state);
+        }
     }
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)

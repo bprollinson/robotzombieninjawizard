@@ -7,10 +7,13 @@ import java.awt.event.KeyEvent;
 
 public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private LevelUpSpellsMenuRenderer levelUpSpellsMenuRenderer;
     private GameWorld gameWorld;
     private MenuState state;
     private int numPoints;
+    private boolean showingDescription = false;
 
     public LevelUpSpellsMenuKeyListener(LevelUpSpellsMenuRenderer levelUpSpellsMenuRenderer, GameWorld gameWorld)
     {
@@ -26,29 +29,40 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
-                character.addSpellPoint(this.state.getEntryNumber());
-                this.numPoints--;
+                if (!this.showingDescription)
+                {
+                    character.addSpellPoint(this.state.getEntryNumber());
+                    this.numPoints--;
+                }
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.state.moveUp();
+                if (!this.showingDescription)
+                {
+                    this.state.moveUp();
+                }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.state.moveDown();
+                if (!this.showingDescription)
+                {
+                    this.state.moveDown();
+                }
                 break;
+            case LevelUpSpellsMenuKeyListener.KEY_I:
+                this.showingDescription = !this.showingDescription;
         }
 
-        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character);
+        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character, this.showingDescription);
     }
 
     public void enterState(int previousState)
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
         this.numPoints = character.getPendingLevels() * MainCharacter.SPELL_POINTS_PER_LEVEL;
-        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character);
+        this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character, this.showingDescription);
     }
 
     public void exitState(KeyEvent event)
