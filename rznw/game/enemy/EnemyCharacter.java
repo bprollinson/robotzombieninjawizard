@@ -43,6 +43,11 @@ public abstract class EnemyCharacter extends Character
         return 10;
     }
 
+    public int getMaxMP()
+    {
+        return 10;
+    }
+
     public int getDamage()
     {
         return 1;

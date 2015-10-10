@@ -5,16 +5,19 @@ import rznw.map.element.MapElement;
 public abstract class Character
 {
     protected int HP;
+    protected int MP;
     protected MapElement mapElement;
 
     public Character()
     {
         this.HP = this.getMaxHP();
+        this.MP = this.getMaxMP();
     }
 
-    public Character(int HP)
+    public Character(int HP, int MP)
     {
         this.HP = HP;
+        this.MP = MP;
     }
 
     public MapElement getMapElement()
@@ -41,9 +44,21 @@ public abstract class Character
         return this.HP;
     }
 
-    public void fillHP()
+    public abstract int getMaxMP();
+
+    public int getMP()
+    {
+        return this.MP;
+    }
+
+    protected void fillHP()
     {
         this.HP = this.getMaxHP();
+    }
+
+    protected void fillMP()
+    {
+        this.MP = this.getMaxMP();
     }
 
     public abstract int getDamage();

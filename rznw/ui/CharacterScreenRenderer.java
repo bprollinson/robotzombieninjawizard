@@ -43,6 +43,7 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.frame.renderDisplayString(8, 0, "Gold: " + character.getInventory().getNumGold());
 
         this.frame.renderDisplayString(10, 0, "HP: " + character.getHP() + "/" + character.getMaxHP());
+        this.frame.renderDisplayString(11, 0, "MP: " + character.getMP() + "/" + character.getMaxMP());
 
         this.frame.renderDisplayString(31, 0, "Down for more");
     }

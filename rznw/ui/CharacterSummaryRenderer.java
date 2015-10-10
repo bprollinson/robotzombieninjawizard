@@ -22,6 +22,10 @@ public class CharacterSummaryRenderer
         Character character = gameWorld.getMainCharacter();
         String hp = character.getHP() + "/" + character.getMaxHP();
         this.frame.renderDisplayString(Map.NUM_ROWS + 1, "HP: ".length(), hp);
+
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20, "MP: ");
+        String mp = character.getMP() + "/" + character.getMaxMP();
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20 + "MP: ".length(), mp);
     }
 
     private void clearCharacterSummaryArea()
