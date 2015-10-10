@@ -28,4 +28,22 @@ public abstract class MenuScreenRenderer
         int column = (MainMenuRenderer.NUM_COLUMNS - string.length()) / 2;
         this.frame.renderDisplayString(row, column, string);
     }
+
+    protected void renderCenteredStringWithNewlines(int row, String string)
+    {
+        String remainingString = string;
+
+        while (remainingString.length() > MenuScreenRenderer.NUM_COLUMNS)
+        {
+            String searchString = remainingString.substring(0, MenuScreenRenderer.NUM_COLUMNS);
+            int lastSpacePos = searchString.lastIndexOf(' ');
+            String rowString = searchString.substring(0, lastSpacePos);
+            this.renderCenteredString(row, rowString);
+
+            remainingString = remainingString.substring(lastSpacePos + 1);
+            row++;
+        }
+
+        this.renderCenteredString(row, remainingString);
+    }
 }

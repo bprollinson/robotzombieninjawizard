@@ -110,10 +110,7 @@ public abstract class MainCharacter extends Character
 
     public abstract String getSpellName(int spellNumber);
 
-    public String getSpellDescription(int spellNumber)
-    {
-        return "Spell description";
-    }
+    public abstract String getSpellDescription(int spellNumber);
 
     public int getLevel()
     {
