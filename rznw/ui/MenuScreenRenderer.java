@@ -29,7 +29,7 @@ public abstract class MenuScreenRenderer
         this.frame.renderDisplayString(row, column, string);
     }
 
-    protected void renderCenteredStringWithNewlines(int row, String string)
+    protected void renderStringWithNewlines(int row, String string)
     {
         String remainingString = string;
 
@@ -38,12 +38,12 @@ public abstract class MenuScreenRenderer
             String searchString = remainingString.substring(0, MenuScreenRenderer.NUM_COLUMNS);
             int lastSpacePos = searchString.lastIndexOf(' ');
             String rowString = searchString.substring(0, lastSpacePos);
-            this.renderCenteredString(row, rowString);
+            this.frame.renderDisplayString(row, 0, rowString);
 
             remainingString = remainingString.substring(lastSpacePos + 1);
             row++;
         }
 
-        this.renderCenteredString(row, remainingString);
+        this.frame.renderDisplayString(row, 0, remainingString);
     }
 }

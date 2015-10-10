@@ -20,7 +20,7 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
         {
             this.renderCenteredString(1, mainCharacter.getSpellName(state.getEntryNumber()));
 
-            this.renderCenteredStringWithNewlines(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
+            this.renderStringWithNewlines(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
 
             this.renderCenteredString(30, "Press 'i' to return to the spell menu");
         }
