@@ -17,15 +17,13 @@ public class CharacterSummaryRenderer
     {
         this.clearCharacterSummaryArea();
 
-        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "HP: ");
-
         Character character = gameWorld.getMainCharacter();
-        String hp = character.getHP() + "/" + character.getMaxHP();
-        this.frame.renderDisplayString(Map.NUM_ROWS + 1, "HP: ".length(), hp);
 
-        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20, "MP: ");
-        String mp = character.getMP() + "/" + character.getMaxMP();
-        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20 + "MP: ".length(), mp);
+        String hpDisplay = character.getHP() + "/" + character.getMaxHP();
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "HP: " + hpDisplay);
+
+        String mpDisplay = character.getMP() + "/" + character.getMaxMP();
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20, "MP: " + mpDisplay);
     }
 
     private void clearCharacterSummaryArea()
