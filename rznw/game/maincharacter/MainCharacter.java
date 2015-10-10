@@ -9,6 +9,8 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
+    public static final int STAT_HEALTH = 0;
+
     private static String[] statCategory = {
         "Vitality",
         "Agility",
@@ -72,6 +74,8 @@ public abstract class MainCharacter extends Character
 
     public MainCharacter()
     {
+        super(20);
+
         this.stats = new int[16];
         this.skills = new int[16];
         this.spells = new int[16];
@@ -84,6 +88,8 @@ public abstract class MainCharacter extends Character
         }
 
         this.inventory = new Inventory();
+
+        this.HP = this.getMaxHP();
     }
 
     public static String getStatCategory(int categoryNumber)
@@ -124,7 +130,7 @@ public abstract class MainCharacter extends Character
 
     public int getMaxHP()
     {
-        return 20;
+        return 20 + 2 * this.stats[MainCharacter.STAT_HEALTH];
     }
 
     public int getDamage()

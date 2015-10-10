@@ -4,12 +4,17 @@ import rznw.map.element.MapElement;
 
 public abstract class Character
 {
-    private int HP;
+    protected int HP;
     protected MapElement mapElement;
 
     public Character()
     {
         this.HP = this.getMaxHP();
+    }
+
+    public Character(int HP)
+    {
+        this.HP = HP;
     }
 
     public MapElement getMapElement()
