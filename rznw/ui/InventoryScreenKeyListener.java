@@ -53,15 +53,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
-        if (mainCharacter.getInventory().getNumItemGroups() > 0)
-        {
-            this.fixPosition();
-        }
-        else
-        {
-            this.state = null;
-        }
+        this.fixPosition();
 
         this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
     }
@@ -84,13 +76,20 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
     {
         MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
 
-        int entryNumber = this.state == null ? 0 : this.state.getEntryNumber();
-        this.state = new MenuState(mainCharacter.getInventory().getNumItemGroups() - 1);
-        if (entryNumber >= mainCharacter.getInventory().getNumItemGroups())
+        if (mainCharacter.getInventory().getNumItemGroups() > 0)
         {
-            entryNumber = mainCharacter.getInventory().getNumItemGroups() - 1;
-        }
+            int entryNumber = this.state == null ? 0 : this.state.getEntryNumber();
+            this.state = new MenuState(mainCharacter.getInventory().getNumItemGroups() - 1);
+            if (entryNumber >= mainCharacter.getInventory().getNumItemGroups())
+            {
+                entryNumber = mainCharacter.getInventory().getNumItemGroups() - 1;
+            }
 
-        this.state.setEntryNumber(entryNumber);
+            this.state.setEntryNumber(entryNumber);
+        }
+        else
+        {
+            this.state = null;
+        }
     }
 }

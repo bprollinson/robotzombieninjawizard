@@ -46,6 +46,11 @@ public class Inventory
         }
 
         this.itemGroups.get(index).removeItemsFromGroup(itemGroup.getNumItems());
+
+        if (this.itemGroups.get(index).getNumItems() == 0)
+        {
+            this.itemGroups.remove(index);
+        }
     }
 
     public int getNumItemGroups()
