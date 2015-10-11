@@ -24,7 +24,8 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_ENTER:
                 if (this.state != null)
                 {
-                    System.out.println("Using item with index: " + this.state.getEntryNumber());
+                    MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
+                    mainCharacter.useItem(this.state.getEntryNumber());
                 }
                 break;
             case KeyEvent.VK_UP:

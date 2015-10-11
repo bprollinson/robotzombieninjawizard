@@ -2,6 +2,7 @@ package rznw.game.maincharacter;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.inventory.Inventory;
+import rznw.game.maincharacter.inventory.InventoryItem;
 
 public abstract class MainCharacter extends Character
 {
@@ -207,4 +208,10 @@ public abstract class MainCharacter extends Character
     }
 
     public abstract String getCharacterClass();
+
+    public void useItem(int itemIndex)
+    {
+        InventoryItem item = this.inventory.getItemGroup(itemIndex).getItem();
+        item.useOnCharacter(this);
+    }
 }
