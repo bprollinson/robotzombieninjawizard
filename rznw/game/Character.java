@@ -27,6 +27,11 @@ public abstract class Character
 
     public abstract void generateMapElement(int row, int column);
 
+    public void heal(int HP)
+    {
+        this.HP = Math.min(this.HP + HP, this.getMaxHP());
+    }
+
     public void damage(int damage)
     {
         this.HP -= damage;

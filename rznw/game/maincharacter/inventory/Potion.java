@@ -11,6 +11,6 @@ public class Potion extends InventoryItem
 
     public void useOnCharacter(MainCharacter character)
     {
-        System.out.println("TODO: Use potion on character");
+        character.heal(20);
     }
 }
