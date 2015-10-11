@@ -26,6 +26,8 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
                 {
                     MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
                     mainCharacter.useItem(this.state.getEntryNumber());
+
+                    this.fixPosition();
                 }
                 break;
             case KeyEvent.VK_UP:
@@ -54,14 +56,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
         if (mainCharacter.getInventory().getNumItemGroups() > 0)
         {
-            int entryNumber = this.state == null ? 0 : this.state.getEntryNumber();
-            this.state = new MenuState(mainCharacter.getInventory().getNumItemGroups() - 1);
-            if (entryNumber >= mainCharacter.getInventory().getNumItemGroups())
-            {
-                entryNumber = mainCharacter.getInventory().getNumItemGroups() - 1;
-            }
-
-            this.state.setEntryNumber(entryNumber);
+            this.fixPosition();
         }
         else
         {
@@ -83,5 +78,19 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         }
 
         return DispatchKeyListener.STATE_INVENTORY_SCREEN;
+    }
+
+    private void fixPosition()
+    {
+        MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
+
+        int entryNumber = this.state == null ? 0 : this.state.getEntryNumber();
+        this.state = new MenuState(mainCharacter.getInventory().getNumItemGroups() - 1);
+        if (entryNumber >= mainCharacter.getInventory().getNumItemGroups())
+        {
+            entryNumber = mainCharacter.getInventory().getNumItemGroups() - 1;
+        }
+
+        this.state.setEntryNumber(entryNumber);
     }
 }

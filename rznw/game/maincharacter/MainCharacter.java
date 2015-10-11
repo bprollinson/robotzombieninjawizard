@@ -3,6 +3,7 @@ package rznw.game.maincharacter;
 import rznw.game.Character;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.maincharacter.inventory.InventoryItemGroup;
 
 public abstract class MainCharacter extends Character
 {
@@ -213,5 +214,6 @@ public abstract class MainCharacter extends Character
     {
         InventoryItem item = this.inventory.getItemGroup(itemIndex).getItem();
         item.useOnCharacter(this);
+        this.inventory.removeItems(new InventoryItemGroup(item, 1));
     }
 }

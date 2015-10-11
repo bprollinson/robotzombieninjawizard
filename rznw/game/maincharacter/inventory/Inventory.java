@@ -24,6 +24,42 @@ public class Inventory
 
     public void addItems(InventoryItemGroup itemGroup)
     {
+        int index = this.getItemGroupPosition(itemGroup);
+
+        if (index == -1)
+        {
+            this.itemGroups.add(itemGroup);
+        }
+        else
+        {
+            this.itemGroups.get(index).addItemsToGroup(itemGroup.getNumItems());
+        }
+    }
+
+    public void removeItems(InventoryItemGroup itemGroup)
+    {
+        int index = this.getItemGroupPosition(itemGroup);
+
+        if (index == -1)
+        {
+            return;
+        }
+
+        this.itemGroups.get(index).removeItemsFromGroup(itemGroup.getNumItems());
+    }
+
+    public int getNumItemGroups()
+    {
+        return itemGroups.size();
+    }
+
+    public InventoryItemGroup getItemGroup(int index)
+    {
+        return this.itemGroups.get(index);
+    }
+
+    private int getItemGroupPosition(InventoryItemGroup itemGroup)
+    {
         int index = -1;
 
         for (int i = 0; i < this.itemGroups.size(); i++)
@@ -36,23 +72,6 @@ public class Inventory
             }
         }
 
-        if (index == -1)
-        {
-            this.itemGroups.add(itemGroup);
-        }
-        else
-        {
-            this.itemGroups.get(index).addItemsToGroup(itemGroup.getNumItems());
-        }
-    }
-
-    public int getNumItemGroups()
-    {
-        return itemGroups.size();
-    }
-
-    public InventoryItemGroup getItemGroup(int index)
-    {
-        return this.itemGroups.get(index);
+        return index;
     }
 }

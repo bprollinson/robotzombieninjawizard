@@ -26,6 +26,11 @@ public class InventoryItemGroup
         this.numItems += numItems;
     }
 
+    public void removeItemsFromGroup(int numItems)
+    {
+        this.numItems = Math.max(this.numItems - numItems, 0);
+    }
+
     public String getDisplayString()
     {
         return this.numItems + " " + item.getDisplayName();
