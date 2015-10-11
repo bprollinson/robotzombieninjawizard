@@ -15,6 +15,11 @@ public class MenuState
         return this.entryNumber;
     }
 
+    public void setEntryNumber(int entryNumber)
+    {
+        this.entryNumber = entryNumber;
+    }
+
     public void moveUp()
     {
         if (this.entryNumber > 0)

@@ -11,7 +11,7 @@ public class InventoryScreenRenderer extends MenuScreenRenderer
         super(frame);
     }
 
-    public void render(MainCharacter character)
+    public void render(MainCharacter character, MenuState state)
     {
         this.clearScreen();
         this.renderCenteredString(1, "Inventory");
@@ -21,6 +21,16 @@ public class InventoryScreenRenderer extends MenuScreenRenderer
         {
             InventoryItemGroup group = character.getInventory().getItemGroup(i);
             this.frame.renderDisplayString(3 + i, 2, group.getDisplayString());
+        }
+
+        this.renderCursor(state);
+    }
+
+    private void renderCursor(MenuState state)
+    {
+        if (state != null)
+        {
+            this.frame.renderDisplayCharacter(state.getEntryNumber() + 3, 0, 'X');
         }
     }
 }
