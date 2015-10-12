@@ -56,6 +56,11 @@ public abstract class Character
         return this.MP;
     }
 
+    public void setMP(int MP)
+    {
+        this.MP = MP;
+    }
+
     protected void fillHP()
     {
         this.HP = this.getMaxHP();

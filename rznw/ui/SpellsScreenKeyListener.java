@@ -28,9 +28,9 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 MainCharacter character = gameWorld.getMainCharacter();
                 SpellFactory spellFactory = character.getSpellFactory();
                 Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
-                if (spell != null && spell.canCast())
+                if (spell != null && spell.canCast(character))
                 {
-                    spell.cast();
+                    spell.cast(character);
                 }
                 break;
             case KeyEvent.VK_UP:

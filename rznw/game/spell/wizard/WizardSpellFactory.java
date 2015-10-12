@@ -10,7 +10,7 @@ public class WizardSpellFactory extends SpellFactory
         switch (spellIndex)
         {
             case 13:
-                System.out.println("Casting Heal!");
+                return new HealSpell();
             default:
                 return null;
         }
