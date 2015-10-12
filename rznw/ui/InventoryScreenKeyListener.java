@@ -10,6 +10,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
     private InventoryScreenRenderer inventoryScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean itemUsed;
 
     public InventoryScreenKeyListener(InventoryScreenRenderer inventoryScreenRenderer, GameWorld gameWorld)
     {
@@ -26,8 +27,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
                 {
                     MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
                     mainCharacter.useItem(this.state.getEntryNumber());
-
-                    this.fixPosition();
+                    this.itemUsed = true;
                 }
                 break;
             case KeyEvent.VK_UP:
@@ -53,8 +53,9 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        this.fixPosition();
+        this.itemUsed = false;
 
+        this.fixPosition();
         this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
     }
 
@@ -67,6 +68,11 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+        }
+
+        if (this.itemUsed)
+        {
+            return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
         return DispatchKeyListener.STATE_INVENTORY_SCREEN;
