@@ -12,6 +12,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
     private SpellsScreenRenderer spellsScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean spellCast;
 
     public SpellsScreenKeyListener(SpellsScreenRenderer spellsScreenRenderer, GameWorld gameWorld)
     {
@@ -31,6 +32,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 if (spell != null && spell.canCast(character))
                 {
                     spell.cast(character);
+                    this.spellCast = true;
                 }
                 break;
             case KeyEvent.VK_UP:
@@ -50,6 +52,8 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.spellCast = false;
+
         this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter());
     }
 
@@ -62,6 +66,11 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+        }
+
+        if (this.spellCast)
+        {
+            return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
         return DispatchKeyListener.STATE_SPELLS_SCREEN;
