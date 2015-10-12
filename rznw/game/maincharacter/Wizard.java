@@ -1,5 +1,7 @@
 package rznw.game.maincharacter;
 
+import rznw.game.spell.SpellFactory;
+import rznw.game.spell.wizard.WizardSpellFactory;
 import rznw.map.element.MainCharacterMapElement;
 
 public class Wizard extends MainCharacter
@@ -71,5 +73,10 @@ public class Wizard extends MainCharacter
     public String getSpellDescription(int spellNumber)
     {
         return Wizard.spellDescription[spellNumber];
+    }
+
+    public SpellFactory getSpellFactory()
+    {
+        return new WizardSpellFactory();
     }
 }

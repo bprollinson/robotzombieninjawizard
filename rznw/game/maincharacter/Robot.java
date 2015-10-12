@@ -1,5 +1,7 @@
 package rznw.game.maincharacter;
 
+import rznw.game.spell.SpellFactory;
+import rznw.game.spell.robot.RobotSpellFactory;
 import rznw.map.element.MainCharacterMapElement;
 
 public class Robot extends MainCharacter
@@ -71,5 +73,10 @@ public class Robot extends MainCharacter
     public String getSpellDescription(int spellNumber)
     {
         return Robot.spellDescription[spellNumber];
+    }
+
+    public SpellFactory getSpellFactory()
+    {
+        return new RobotSpellFactory();
     }
 }

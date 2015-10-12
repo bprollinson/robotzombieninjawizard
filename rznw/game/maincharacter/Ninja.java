@@ -1,5 +1,7 @@
 package rznw.game.maincharacter;
 
+import rznw.game.spell.SpellFactory;
+import rznw.game.spell.ninja.NinjaSpellFactory;
 import rznw.map.element.MainCharacterMapElement;
 
 public class Ninja extends MainCharacter
@@ -71,5 +73,10 @@ public class Ninja extends MainCharacter
     public String getSpellDescription(int spellNumber)
     {
         return Ninja.spellDescription[spellNumber];
+    }
+
+    public SpellFactory getSpellFactory()
+    {
+        return new NinjaSpellFactory();
     }
 }

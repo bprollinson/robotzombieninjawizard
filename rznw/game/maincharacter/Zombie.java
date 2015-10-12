@@ -1,5 +1,7 @@
 package rznw.game.maincharacter;
 
+import rznw.game.spell.SpellFactory;
+import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.map.element.MainCharacterMapElement;
 
 public class Zombie extends MainCharacter
@@ -71,5 +73,10 @@ public class Zombie extends MainCharacter
     public String getSpellDescription(int spellNumber)
     {
         return Zombie.spellDescription[spellNumber];
+    }
+
+    public SpellFactory getSpellFactory()
+    {
+        return new ZombieSpellFactory();
     }
 }

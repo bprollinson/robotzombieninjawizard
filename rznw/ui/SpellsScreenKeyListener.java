@@ -1,5 +1,8 @@
 package rznw.ui;
 
+import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.Spell;
+import rznw.game.spell.SpellFactory;
 import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
@@ -21,6 +24,15 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
     {
         switch (event.getKeyCode())
         {
+            case KeyEvent.VK_ENTER:
+                MainCharacter character = gameWorld.getMainCharacter();
+                SpellFactory spellFactory = character.getSpellFactory();
+                Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
+                if (spell != null && spell.canCast())
+                {
+                    spell.cast();
+                }
+                break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:

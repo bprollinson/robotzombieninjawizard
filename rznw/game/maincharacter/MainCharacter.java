@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.spell.SpellFactory;
 
 public abstract class MainCharacter extends Character
 {
@@ -216,4 +217,6 @@ public abstract class MainCharacter extends Character
         item.useOnCharacter(this);
         this.inventory.removeItems(new InventoryItemGroup(item, 1));
     }
+
+    public abstract SpellFactory getSpellFactory();
 }
