@@ -41,6 +41,8 @@ public class MainCharacterTurnHandler
         {
             System.out.println("Going down to the next floor");
             this.gameWorld.generateNextMap();
+            this.renderer.render(this.gameWorld);
+
             return;
         }
 

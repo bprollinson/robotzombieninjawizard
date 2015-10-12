@@ -1,6 +1,6 @@
 package rznw.ui;
 
-import rznw.game.Character;
+import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 
@@ -17,7 +17,11 @@ public class CharacterSummaryRenderer
     {
         this.clearCharacterSummaryArea();
 
-        Character character = gameWorld.getMainCharacter();
+        MainCharacter character = gameWorld.getMainCharacter();
+        Map map = gameWorld.getMap();
+
+        this.frame.renderDisplayString(Map.NUM_ROWS, 0, "Character: L. " + character.getLevel());
+        this.frame.renderDisplayString(Map.NUM_ROWS, 20, "Dungeon: L. " + map.getLevel());
 
         String hpDisplay = character.getHP() + "/" + character.getMaxHP();
         this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "HP: " + hpDisplay);
