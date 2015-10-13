@@ -26,6 +26,11 @@ public class MovementKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        if (previousState == DispatchKeyListener.STATE_INVENTORY_SCREEN || previousState == DispatchKeyListener.STATE_SPELLS_SCREEN)
+        {
+            this.turnHandler.handleEnemyTurns();
+        }
+
         this.renderer.render(this.gameWorld.getMap());
         this.turnHandler.renderSummary();
     }

@@ -50,14 +50,7 @@ public class MainCharacterTurnHandler
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
 
-        Collection<EnemyCharacter> enemies = this.gameWorld.getMap().getEnemies();
-        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
-        {
-            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
-
-            this.handleCharacterTurn(enemyPositionChange, enemy);
-        }
+        this.handleEnemyTurns();
 
         this.renderer.render(this.gameWorld);
     }
@@ -108,6 +101,20 @@ public class MainCharacterTurnHandler
         if (character instanceof MainCharacter)
         {
             map.setElementVisited(newRow, newColumn);
+        }
+    }
+
+    public void handleEnemyTurns()
+    {
+        MainCharacter character = this.gameWorld.getMainCharacter();
+
+        Collection<EnemyCharacter> enemies = this.gameWorld.getMap().getEnemies();
+        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+        {
+            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+            EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
+
+            this.handleCharacterTurn(enemyPositionChange, enemy);
         }
     }
 
