@@ -41,6 +41,25 @@ public abstract class MainCharacter extends Character
         "Magic Resistance"
     };
 
+    private static String[] statDescription = {
+        "Increases your maximum HP.",
+        "Increases the amount of HP you recover while exploring the dungeon.",
+        "Increases your chance to recove with 1 HP when dying.",
+        "Amplifies the strength of healing effects on you.",
+        "Affects your probability of hitting enemies in melee combat.",
+        "Affects your probability of dodging attacks.",
+        "Increases your field of view.",
+        "Increases your ability of finding hidden traps.",
+        "Increases your damage in melee combat.",
+        "Reduces the damage you take.",
+        "Increases the amount you can carry in your inventory.",
+        "Increases your probability of dodging status effects.",
+        "Increases your maximum MP.",
+        "Increases the amount of MP you recover while exploring the dungeon.",
+        "Increases the damage you deal with your spells.",
+        "Decreases the damage your opponents' spells do to you."
+    };
+
     private static String[] skillCategory = {
         "Vitality",
         "Agility",
@@ -105,6 +124,11 @@ public abstract class MainCharacter extends Character
     public static String getStatName(int statNumber)
     {
         return MainCharacter.statName[statNumber];
+    }
+
+    public static String getStatDescription(int statNumber)
+    {
+        return MainCharacter.statDescription[statNumber];
     }
 
     public static String getSkillCategory(int categoryNumber)
