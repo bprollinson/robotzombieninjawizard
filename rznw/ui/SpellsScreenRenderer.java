@@ -12,17 +12,31 @@ public class SpellsScreenRenderer extends MenuScreenRenderer
         super(frame);
     }
 
-    public void render(MenuState state, MainCharacter mainCharacter)
+    public void render(MenuState state, MainCharacter mainCharacter, boolean showingDescription)
     {
         this.clearScreen();
-        this.renderCenteredString(1, "Spells");
 
-        this.renderPointGroup(mainCharacter, 0, 3);
-        this.renderPointGroup(mainCharacter, 1, 9);
-        this.renderPointGroup(mainCharacter, 2, 15);
-        this.renderPointGroup(mainCharacter, 3, 21);
+        if (showingDescription)
+        {
+            this.renderCenteredString(1, mainCharacter.getSpellName(state.getEntryNumber()));
 
-        this.renderCursor(state);
+            this.renderStringWithNewlines(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
+
+            this.renderCenteredString(30, "Press 'i' to return to the spell menu");
+        }
+        else
+        {
+            this.renderCenteredString(1, "Spells");
+
+            this.renderPointGroup(mainCharacter, 0, 3);
+            this.renderPointGroup(mainCharacter, 1, 9);
+            this.renderPointGroup(mainCharacter, 2, 15);
+            this.renderPointGroup(mainCharacter, 3, 21);
+
+            this.renderCenteredString(30, "Press 'i' for spell information");
+
+            this.renderCursor(state);
+        }
     }
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)

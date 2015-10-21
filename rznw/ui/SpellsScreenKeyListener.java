@@ -9,10 +9,13 @@ import java.awt.event.KeyEvent;
 
 public class SpellsScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private SpellsScreenRenderer spellsScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
     private boolean spellCast;
+    private boolean showingDescription = false;
 
     public SpellsScreenKeyListener(SpellsScreenRenderer spellsScreenRenderer, GameWorld gameWorld)
     {
@@ -26,35 +29,47 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
-                MainCharacter character = gameWorld.getMainCharacter();
-                SpellFactory spellFactory = character.getSpellFactory();
-                Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
-                if (spell != null && spell.canCast(character))
+                if (!this.showingDescription)
                 {
-                    spell.cast(character);
-                    this.spellCast = true;
+                    MainCharacter character = gameWorld.getMainCharacter();
+                    SpellFactory spellFactory = character.getSpellFactory();
+                    Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
+                    if (spell != null && spell.canCast(character))
+                    {
+                        spell.cast(character);
+                        this.spellCast = true;
+                    }
                 }
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.state.moveUp();
+                if (!this.showingDescription)
+                {
+                    this.state.moveUp();
+                }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.state.moveDown();
+                if (!this.showingDescription)
+                {
+                    this.state.moveDown();
+                }
+                break;
+            case SpellsScreenKeyListener.KEY_I:
+                this.showingDescription = !this.showingDescription;
                 break;
         }
 
-        this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter());
+        this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
     }
 
     public void enterState(int previousState)
     {
         this.spellCast = false;
 
-        this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter());
+        this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
     }
 
     public void exitState(KeyEvent event)

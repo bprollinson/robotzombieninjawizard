@@ -53,6 +53,7 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
                 break;
             case LevelUpSpellsMenuKeyListener.KEY_I:
                 this.showingDescription = !this.showingDescription;
+                break;
         }
 
         this.levelUpSpellsMenuRenderer.render(this.state, this.numPoints, character, this.showingDescription);
