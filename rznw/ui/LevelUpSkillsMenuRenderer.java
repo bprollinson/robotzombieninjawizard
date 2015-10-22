@@ -22,7 +22,7 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 
             this.renderStringWithNewlines(3, mainCharacter.getSkillDescription(state.getEntryNumber()));
 
-            this.renderCenteredString(30, "Press 'i' to return to the spell menu");
+            this.renderCenteredString(30, "Press 'i' to return to the skill menu");
         }
         else
         {
