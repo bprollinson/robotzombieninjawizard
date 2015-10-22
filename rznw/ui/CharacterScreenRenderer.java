@@ -18,19 +18,32 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.gameWorld = gameWorld;
     }
 
-    public void render(MenuState state)
+    public void render(MenuState state, boolean showingDescription)
     {
         this.clearScreen();
 
-        this.renderCenteredString(1, "Character");
-
         if (state.getEntryNumber() == 0)
         {
+            this.renderCenteredString(1, "Character");
+
             this.renderCharacterInfo();
         } else {
-            this.renderStatInfo(state);
+            if (showingDescription)
+            {
+                MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
 
-            this.renderCursor(state);
+                this.renderCenteredString(1, mainCharacter.getStatName(state.getEntryNumber() - 1));
+
+                this.renderStringWithNewlines(3, mainCharacter.getStatDescription(state.getEntryNumber() - 1));
+
+                this.renderCenteredString(29, "Press 'i' to return to the stat menu");
+            }
+            else
+            {
+                this.renderStatInfo(state);
+
+                this.renderCursor(state);
+            }
         }
     }
 
@@ -60,6 +73,8 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.renderPointGroup(character, 1, 9);
         this.renderPointGroup(character, 2, 15);
         this.renderPointGroup(character, 3, 21);
+
+        this.renderCenteredString(29, "Press 'i' for stat information");
 
         if (state.getEntryNumber() == 1)
         {

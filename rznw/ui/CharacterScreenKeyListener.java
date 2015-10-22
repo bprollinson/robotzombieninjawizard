@@ -4,8 +4,11 @@ import java.awt.event.KeyEvent;
 
 public class CharacterScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private CharacterScreenRenderer characterScreenRenderer;
     private MenuState state;
+    private boolean showingDescription = false;
 
     public CharacterScreenKeyListener(CharacterScreenRenderer characterScreenRenderer)
     {
@@ -20,16 +23,25 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.state.moveUp();
+                if (!this.showingDescription)
+                {
+                    this.state.moveUp();
+                }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.state.moveDown();
+                if (!this.showingDescription)
+                {
+                    this.state.moveDown();
+                }
+                break;
+            case CharacterScreenKeyListener.KEY_I:
+                this.showingDescription = !this.showingDescription;
                 break;
         }
 
-        this.characterScreenRenderer.render(this.state);
+        this.characterScreenRenderer.render(this.state, this.showingDescription);
     }
 
     public void exitState(KeyEvent event)
@@ -38,7 +50,7 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        this.characterScreenRenderer.render(this.state);
+        this.characterScreenRenderer.render(this.state, this.showingDescription);
     }
 
     public int getNextState(KeyEvent event)
