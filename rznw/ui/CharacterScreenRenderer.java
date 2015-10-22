@@ -6,6 +6,9 @@ import rznw.map.GameWorld;
 
 public class CharacterScreenRenderer extends MenuScreenRenderer
 {
+    private static final int MENU_ENTRY_FIRST_ROW = 4;
+    private static final int MENU_ROW_HEIGHT = 1;
+
     GameWorld gameWorld;
 
     public CharacterScreenRenderer(MainGameFrame frame, GameWorld gameWorld)
@@ -25,7 +28,9 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         {
             this.renderCharacterInfo();
         } else {
-            this.renderStatInfo();
+            this.renderStatInfo(state);
+
+            this.renderCursor(state);
         }
     }
 
@@ -48,7 +53,7 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.frame.renderDisplayString(31, 0, "Down for more");
     }
 
-    private void renderStatInfo()
+    private void renderStatInfo(MenuState state)
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
         this.renderPointGroup(character, 0, 3);
@@ -56,7 +61,10 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.renderPointGroup(character, 2, 15);
         this.renderPointGroup(character, 3, 21);
 
-        this.frame.renderDisplayString(31, 0, "Up for more");
+        if (state.getEntryNumber() == 1)
+        {
+            this.frame.renderDisplayString(31, 0, "Up for more");
+        }
     }
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
@@ -69,5 +77,13 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
             int pointIndex = groupNumber * 4 + i;
             this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacter.getStatName(pointIndex) + ": " + mainCharacter.getStatPoints(pointIndex));
         }
+    }
+
+    private void renderCursor(MenuState state)
+    {
+        int rowSpaces = 2 * ((state.getEntryNumber() - 1) / 4);
+        int row = CharacterScreenRenderer.MENU_ENTRY_FIRST_ROW + (state.getEntryNumber() - 1) * CharacterScreenRenderer.MENU_ROW_HEIGHT + rowSpaces;
+
+        this.frame.renderDisplayCharacter(row, 0, 'X');
     }
 }
