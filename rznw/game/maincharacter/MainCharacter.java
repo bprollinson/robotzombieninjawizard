@@ -86,6 +86,25 @@ public abstract class MainCharacter extends Character
         "Mana River"
     };
 
+    private static String[] skillDescription = {
+        "Detects enemy HP.",
+        "Detects the position of enemies.",
+        "Increases the damage you deal when injured.",
+        "Increases your chance of finding potions from enemies.",
+        "Summons a shopkeeper who buys and sells goods.",
+        "Sets up a waypoint or allows you to return to one.",
+        "Increases enemy item drop rate.",
+        "Shows you the position of the nearest set of stairs.",
+        "Allows you to trade in multiple items for a new random item.",
+        "Increases your damage but decreases your defense for a period of time.",
+        "Increases the amount of gold you receive from enemies.",
+        "Has a chance to automatically disarm traps you encounter.",
+        "Increases your effective spell levels.",
+        "You receive MP from damage you receive.",
+        "Grants you additional chance of avoiding magic damage.",
+        "Provides you with a periodic chance to refill your MP."
+    };
+
     private int level = 0;
     private int experience = 0;
     private int pendingLevels = 0;
@@ -139,6 +158,11 @@ public abstract class MainCharacter extends Character
     public static String getSkillName(int skillNumber)
     {
         return MainCharacter.skillName[skillNumber];
+    }
+
+    public static String getSkillDescription(int skillNumber)
+    {
+        return MainCharacter.skillDescription[skillNumber];
     }
 
     public abstract String getSpellCategory(int categoryNumber);
