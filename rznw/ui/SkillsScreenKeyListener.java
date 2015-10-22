@@ -7,9 +7,12 @@ import java.awt.event.KeyEvent;
 
 public class SkillsScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private SkillsScreenRenderer skillsScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean showingDescription = false;
 
     public SkillsScreenKeyListener(SkillsScreenRenderer skillsScreenRenderer, GameWorld gameWorld)
     {
@@ -27,21 +30,30 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.state.moveUp();
+                if (!this.showingDescription)
+                {
+                    this.state.moveUp();
+                }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.state.moveDown();
+                if (!this.showingDescription)
+                {
+                    this.state.moveDown();
+                }
+                break;
+            case SkillsScreenKeyListener.KEY_I:
+                this.showingDescription = !this.showingDescription;
                 break;
         }
 
-        this.skillsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter());
+        this.skillsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
     }
 
     public void enterState(int previousState)
     {
-        this.skillsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter());
+        this.skillsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
     }
 
     public void exitState(KeyEvent event)
