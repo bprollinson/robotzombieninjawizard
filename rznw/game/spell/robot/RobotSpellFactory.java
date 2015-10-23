@@ -7,6 +7,12 @@ public class RobotSpellFactory extends SpellFactory
 {
     public Spell getSpell(int spellIndex)
     {
-        return null;
+        switch (spellIndex)
+        {
+            case 2:
+                return new OverloadSpell();
+            default:
+                return null;
+        }
     }
 }

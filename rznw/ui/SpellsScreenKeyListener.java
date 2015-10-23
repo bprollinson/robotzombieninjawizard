@@ -36,7 +36,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                     Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
                     if (spell != null && spell.canCast(character))
                     {
-                        spell.cast(character);
+                        spell.cast(gameWorld);
                         this.spellCast = true;
                     }
                 }
