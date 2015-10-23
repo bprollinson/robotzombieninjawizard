@@ -41,7 +41,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
-        if (this.gameWorld.getMainCharacter().getHP() <= 0)
+        if (this.gameWorld.getMainCharacter().isDead())
         {
             return DispatchKeyListener.STATE_DEATH_SCREEN;
         }

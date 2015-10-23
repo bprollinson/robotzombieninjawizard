@@ -102,4 +102,25 @@ public class Map
 
         return enemies;
     }
+
+    public Collection<EnemyCharacter> getEnemiesInRectangle(int minRow, int minColumn, int maxRow, int maxColumn)
+    {
+        Collection<EnemyCharacter> enemies = new Vector<EnemyCharacter>();
+
+        for (int i = 0; i < Map.NUM_ROWS; i++)
+        {
+            for (int j = 0; j < Map.NUM_COLUMNS; j++)
+            {
+                MapElement element = this.elements[i][j];
+
+                if (element instanceof EnemyMapElement && i >= minRow && i <= maxRow && j >= minColumn && j <= maxColumn)
+                {
+                    EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
+                    enemies.add(enemyCharacter);
+                }
+            }
+        }
+
+        return enemies;
+    }
 }

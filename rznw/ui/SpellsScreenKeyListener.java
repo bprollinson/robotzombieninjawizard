@@ -83,6 +83,11 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
         }
 
+        if (this.gameWorld.getMainCharacter().isDead())
+        {
+            return DispatchKeyListener.STATE_DEATH_SCREEN;
+        }
+
         if (this.spellCast)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
