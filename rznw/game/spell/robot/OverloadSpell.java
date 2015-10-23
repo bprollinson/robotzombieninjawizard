@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -12,6 +13,13 @@ import rznw.map.element.MapElement;
 
 public class OverloadSpell extends Spell
 {
+    private KillBonusGranter killBonusGranter;
+
+    public OverloadSpell()
+    {
+        this.killBonusGranter = new KillBonusGranter();
+    }
+
     public boolean canCast(MainCharacter character)
     {
         return character.getSpellPoints(2) > 0 && character.getMP() >= this.getMPCost(character);
@@ -36,7 +44,7 @@ public class OverloadSpell extends Spell
 
             if (enemy.isDead())
             {
-                //killBonusGranter.grantKillBonuses(character, enemy);
+                this.killBonusGranter.grantKillBonuses(character, enemy);
                 MapElement enemyMapElement = enemy.getMapElement();
                 map.setElement(enemyMapElement.getRow(), enemyMapElement.getColumn(), null);
             }
