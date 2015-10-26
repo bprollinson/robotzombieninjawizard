@@ -72,4 +72,6 @@ public abstract class Character
     }
 
     public abstract int getDamage();
+
+    public abstract boolean meleeAttackHits();
 }

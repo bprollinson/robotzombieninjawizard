@@ -64,4 +64,9 @@ public abstract class EnemyCharacter extends Character
     {
         return 20;
     }
+
+    public boolean meleeAttackHits()
+    {
+        return true;
+    }
 }

@@ -5,6 +5,7 @@ import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.spell.SpellFactory;
+import rznw.utility.RandomNumberGenerator;
 
 public abstract class MainCharacter extends Character
 {
@@ -267,4 +268,12 @@ public abstract class MainCharacter extends Character
     }
 
     public abstract SpellFactory getSpellFactory();
+
+    public boolean meleeAttackHits()
+    {
+        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
+        int toHitPercent = 50 + 2 *  this.getStatPoints(4);
+
+        return randomNumber <= 50;
+    }
 }

@@ -3,6 +3,7 @@ package rznw.turn;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.KillBonusGranter;
+import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
@@ -37,6 +38,21 @@ public class CollisionHandler
         if (!this.elementsHaveInteraction(character, collisionTest))
         {
             return true;
+        }
+
+        if (!character.meleeAttackHits())
+        {
+            if (character instanceof MainCharacter)
+            {
+                System.out.println("Melee miss!");
+            }
+
+            return true;
+        }
+
+        if (character instanceof MainCharacter)
+        {
+            System.out.println("Melee hit!");
         }
 
         Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
