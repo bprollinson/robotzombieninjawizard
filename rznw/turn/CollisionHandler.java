@@ -40,28 +40,7 @@ public class CollisionHandler
             return true;
         }
 
-        if (!character.meleeAttackHits())
-        {
-            if (character instanceof MainCharacter)
-            {
-                System.out.println("Melee miss!");
-            }
-
-            return true;
-        }
-
-        if (character instanceof MainCharacter)
-        {
-            System.out.println("Melee hit!");
-        }
-
-        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
-        otherCharacter.damage(character.getDamage());
-        if (otherCharacter.isDead())
-        {
-            this.killBonusGranter.grantKillBonuses(character, otherCharacter);
-            map.setElement(newRow, newColumn, null);
-        }
+        this.handleCharacterInteraction(character, (CharacterMapElement)collisionTest, map);
 
         return true;
     }
@@ -79,5 +58,53 @@ public class CollisionHandler
         }
 
         return true;
+    }
+
+    private void handleCharacterInteraction(Character character, CharacterMapElement collisionTest, Map map)
+    {
+        if (!character.meleeAttackHits())
+        {
+            if (character instanceof MainCharacter)
+            {
+                System.out.println("Main character melee miss!");
+            }
+            else
+            {
+                System.out.println("Enemy character melee miss!");
+            }
+
+            return;
+        }
+
+        if (character.dodgesAttack())
+        {
+            if (character instanceof MainCharacter)
+            {
+                System.out.println("Main character dodge!");
+            }
+            else
+            {
+                System.out.println("Enemy character dodge!");
+            }
+
+            return;
+        }
+
+        if (character instanceof MainCharacter)
+        {
+            System.out.println("Main character melee hit!");
+        }
+        else
+        {
+            System.out.println("Enemy character melee hit!");
+        }
+
+        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
+        otherCharacter.damage(character.getDamage());
+        if (otherCharacter.isDead())
+        {
+            this.killBonusGranter.grantKillBonuses(character, otherCharacter);
+            map.setElement(collisionTest.getRow(), collisionTest.getColumn(), null);
+        }
     }
 }

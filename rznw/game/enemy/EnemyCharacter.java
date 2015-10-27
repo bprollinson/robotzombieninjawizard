@@ -69,4 +69,9 @@ public abstract class EnemyCharacter extends Character
     {
         return true;
     }
+
+    public boolean dodgesAttack()
+    {
+        return false;
+    }
 }

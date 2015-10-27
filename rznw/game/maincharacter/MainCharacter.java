@@ -274,6 +274,14 @@ public abstract class MainCharacter extends Character
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
         int toHitPercent = 50 + 2 *  this.getStatPoints(4);
 
-        return randomNumber <= 50;
+        return randomNumber <= toHitPercent;
+    }
+
+    public boolean dodgesAttack()
+    {
+        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
+        int toDodgePercent = 2 *  this.getStatPoints(5);
+
+        return randomNumber <= toDodgePercent;
     }
 }
