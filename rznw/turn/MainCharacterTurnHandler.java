@@ -48,7 +48,11 @@ public class MainCharacterTurnHandler
         MainCharacter character = this.gameWorld.getMainCharacter();
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
-        this.handleMainCharacterRegeneration();
+
+        if (!character.isDead())
+        {
+            this.handleMainCharacterRegeneration();
+        }
 
         this.handleEnemyTurns();
 
@@ -116,8 +120,7 @@ public class MainCharacterTurnHandler
             map.visit(row, column);
 
             MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
-            mainCharacter.heal(1);
-            mainCharacter.healMP(1);
+            mainCharacter.incrementSteps();
         }
     }
 

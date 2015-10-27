@@ -115,6 +115,9 @@ public abstract class MainCharacter extends Character
     private int[] spells;
     private Inventory inventory;
 
+    private int HPSteps = 0;
+    private int MPSteps = 0;
+
     public MainCharacter()
     {
         super(20, 20);
@@ -283,5 +286,38 @@ public abstract class MainCharacter extends Character
         int toDodgePercent = 2 *  this.getStatPoints(5);
 
         return randomNumber <= toDodgePercent;
+    }
+
+    private int getStepsForHeal()
+    {
+        return Math.max(1, 20 - this.getStatPoints(1));
+    }
+
+    private int getStepsForMPHeal()
+    {
+        return Math.max(1, 20 - this.getStatPoints(13));
+    }
+
+    public void incrementSteps()
+    {
+        if (this.getStatPoints(1) > 0)
+        {
+            this.HPSteps++;
+            if (this.HPSteps == this.getStepsForHeal())
+            {
+                this.heal(1);
+                this.HPSteps = 0;
+            }
+        }
+
+        if (this.getStatPoints(13) > 0)
+        {
+            this.MPSteps++;
+            if (this.MPSteps == this.getStepsForMPHeal())
+            {
+                this.healMP(1);
+                this.MPSteps = 0;
+            }
+        }
     }
 }
