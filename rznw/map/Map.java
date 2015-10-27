@@ -18,6 +18,7 @@ public class Map
     private MapElement[][] elements;
     private MapElement[][] backgroundElements;
     private boolean[][] visible;
+    private boolean[][] visited;
 
     public Map(int level)
     {
@@ -26,12 +27,14 @@ public class Map
         this.elements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
         this.backgroundElements = new MapElement[Map.NUM_ROWS][Map.NUM_COLUMNS];
         this.visible = new boolean[Map.NUM_ROWS][Map.NUM_COLUMNS];
+        this.visited = new boolean[Map.NUM_ROWS][Map.NUM_COLUMNS];
 
         for (int i = 0; i < Map.NUM_ROWS; i++)
         {
             for (int j = 0; j < Map.NUM_COLUMNS; j++)
             {
                 this.visible[i][j] = false;
+                this.visited[i][j] = false;
             }
         }
     }
@@ -122,5 +125,16 @@ public class Map
         }
 
         return enemies;
+    }
+
+    public boolean elementVisited(int i, int j)
+    {
+        return this.visited[i][j];
+    }
+
+    public void visit(int i, int j)
+    {
+        System.out.println("Setting a map square as visited");
+        this.visited[i][j] = true;
     }
 }

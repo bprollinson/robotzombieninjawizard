@@ -32,6 +32,11 @@ public abstract class Character
         this.HP = Math.min(this.HP + HP, this.getMaxHP());
     }
 
+    public void healMP(int MP)
+    {
+        this.MP = Math.min(this.MP + MP, this.getMaxMP());
+    }
+
     public void damage(int damage)
     {
         this.HP -= damage;

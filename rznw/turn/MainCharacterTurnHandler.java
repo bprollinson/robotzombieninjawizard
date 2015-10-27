@@ -36,7 +36,6 @@ public class MainCharacterTurnHandler
             return;
         }
 
-
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
@@ -49,6 +48,7 @@ public class MainCharacterTurnHandler
         MainCharacter character = this.gameWorld.getMainCharacter();
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
+        this.handleMainCharacterRegeneration();
 
         this.handleEnemyTurns();
 
@@ -101,6 +101,23 @@ public class MainCharacterTurnHandler
         if (character instanceof MainCharacter)
         {
             map.setElementVisited(newRow, newColumn);
+        }
+    }
+
+    private void handleMainCharacterRegeneration()
+    {
+        MapElement mapElement = this.gameWorld.getMainCharacter().getMapElement();
+        int row = mapElement.getRow();
+        int column = mapElement.getColumn();
+
+        Map map = this.gameWorld.getMap();
+        if (!map.elementVisited(row, column))
+        {
+            map.visit(row, column);
+
+            MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
+            mainCharacter.heal(1);
+            mainCharacter.healMP(1);
         }
     }
 
