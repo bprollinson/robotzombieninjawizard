@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.utility.RandomNumberGenerator;
 
 public class KillBonusGranter
 {
@@ -40,8 +41,11 @@ public class KillBonusGranter
 
     private void grantGold(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
     {
-        int numGold = enemyCharacter.getNumGold();
-        mainCharacter.getInventory().addGold(numGold);
+        int baseGold = enemyCharacter.getNumGold();
+        int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkillPoints(10));
+        int bonusGold = (int)(baseGold * bonusGoldPercent / 100);
+
+        mainCharacter.getInventory().addGold(baseGold + bonusGold);
     }
 
     private void grantItems(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)

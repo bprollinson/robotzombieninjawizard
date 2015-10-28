@@ -55,7 +55,7 @@ public abstract class EnemyCharacter extends Character
 
     public int getNumGold()
     {
-        return 1;
+        return 20;
     }
 
     public abstract InventoryItemGroup getItemDrops();
