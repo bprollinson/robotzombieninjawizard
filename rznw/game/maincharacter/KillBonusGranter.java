@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.Potion;
 import rznw.utility.RandomNumberGenerator;
 
 public class KillBonusGranter
@@ -54,6 +55,18 @@ public class KillBonusGranter
         if (itemGroup != null)
         {
             mainCharacter.getInventory().addItems(itemGroup);
+        }
+
+        if (mainCharacter.getSkillPoints(3) > 0)
+        {
+            int probability = 5 * mainCharacter.getSkillPoints(3);
+            int random = RandomNumberGenerator.randomInteger(1, 100);
+
+            if (random <= probability)
+            {
+                itemGroup = new InventoryItemGroup(new Potion(), 1);
+                mainCharacter.getInventory().addItems(itemGroup);
+            }
         }
     }
 }
