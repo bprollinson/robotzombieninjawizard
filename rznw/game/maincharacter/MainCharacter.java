@@ -117,6 +117,7 @@ public abstract class MainCharacter extends Character
 
     private int HPSteps = 0;
     private int MPSteps = 0;
+    private int manaRiverSteps = 0;
 
     public MainCharacter()
     {
@@ -298,12 +299,17 @@ public abstract class MainCharacter extends Character
         return Math.max(1, 20 - this.getStatPoints(13));
     }
 
+    private int getStepsForManaRiver()
+    {
+        return Math.max(1, 20 - this.getSkillPoints(15));
+    }
+
     public void incrementSteps()
     {
         if (this.getStatPoints(1) > 0)
         {
             this.HPSteps++;
-            if (this.HPSteps == this.getStepsForHeal())
+            if (this.HPSteps >= this.getStepsForHeal())
             {
                 this.heal(1);
                 this.HPSteps = 0;
@@ -313,10 +319,27 @@ public abstract class MainCharacter extends Character
         if (this.getStatPoints(13) > 0)
         {
             this.MPSteps++;
-            if (this.MPSteps == this.getStepsForMPHeal())
+            if (this.MPSteps >= this.getStepsForMPHeal())
             {
                 this.healMP(1);
                 this.MPSteps = 0;
+            }
+        }
+
+        if (this.getSkillPoints(15) > 0)
+        {
+            this.manaRiverSteps++;
+            if (this.manaRiverSteps >= this.getStepsForManaRiver())
+            {
+                int manaRiverProbability = this.getSkillPoints(15);
+
+                int random = RandomNumberGenerator.randomInteger(1, 100);
+                if (random <= manaRiverProbability)
+                {
+                    this.MP = this.getMaxMP();
+                }
+
+                this.manaRiverSteps = 0;
             }
         }
     }
