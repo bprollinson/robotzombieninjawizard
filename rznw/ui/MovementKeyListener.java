@@ -2,7 +2,10 @@ package rznw.ui;
 
 import java.awt.event.KeyEvent;
 
+import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.map.Map;
+import rznw.map.element.MapElement;
 import rznw.turn.MainCharacterTurnHandler;
 
 public class MovementKeyListener extends StateTransitionKeyListener
@@ -30,6 +33,11 @@ public class MovementKeyListener extends StateTransitionKeyListener
         {
             this.turnHandler.handleEnemyTurns();
         }
+
+        MainCharacter character = gameWorld.getMainCharacter();
+        MapElement element = character.getMapElement();
+        Map map = gameWorld.getMap();
+        map.setElementVisited(character, element.getRow(), element.getColumn());
 
         this.renderer.render(this.gameWorld.getMap());
         this.turnHandler.renderSummary();

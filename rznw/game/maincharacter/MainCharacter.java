@@ -343,4 +343,9 @@ public abstract class MainCharacter extends Character
             }
         }
     }
+
+    public int getViewRadius()
+    {
+        return 2 + this.getStatPoints(6);
+    }
 }

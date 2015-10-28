@@ -6,13 +6,12 @@ import java.util.Vector;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.game.maincharacter.MainCharacter;
 
 public class Map
 {
     public static final int NUM_ROWS = 30;
     public static final int NUM_COLUMNS = 40;
-
-    private static final int FOG_RADIUS = 2;
 
     private int level;
     private MapElement[][] elements;
@@ -69,12 +68,14 @@ public class Map
         return this.visible[i][j];
     }
 
-    public void setElementVisited(int i, int j)
+    public void setElementVisited(MainCharacter character, int i, int j)
     {
-        int minRow = Math.max(i - Map.FOG_RADIUS, 0);
-        int maxRow = Math.min(i + Map.FOG_RADIUS, Map.NUM_ROWS - 1);
-        int minColumn = Math.max(j - Map.FOG_RADIUS, 0);
-        int maxColumn = Math.min(j + Map.FOG_RADIUS, Map.NUM_COLUMNS - 1);
+        int radius = character.getViewRadius();
+
+        int minRow = Math.max(i - radius, 0);
+        int maxRow = Math.min(i + radius, Map.NUM_ROWS - 1);
+        int minColumn = Math.max(j - radius, 0);
+        int maxColumn = Math.min(j + radius, Map.NUM_COLUMNS - 1);
 
         for (int row = minRow; row <= maxRow; row++)
         {

@@ -20,6 +20,5 @@ public class MapCharacterGenerator
         character.generateMapElement(posY, posX);
         MainCharacterMapElement characterMapElement = (MainCharacterMapElement)character.getMapElement();
         map.setElement(posY, posX, characterMapElement);
-        map.setElementVisited(posY, posX);
     }
 }

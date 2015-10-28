@@ -104,7 +104,7 @@ public class MainCharacterTurnHandler
 
         if (character instanceof MainCharacter)
         {
-            map.setElementVisited(newRow, newColumn);
+            map.setElementVisited((MainCharacter)character, newRow, newColumn);
         }
     }
 
