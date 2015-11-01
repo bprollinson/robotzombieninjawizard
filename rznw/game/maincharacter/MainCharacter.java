@@ -198,7 +198,7 @@ public abstract class MainCharacter extends Character
 
     public int getDamage()
     {
-        return 50;
+        return 50 + 5 * this.getStatPoints(8);
     }
 
     public Inventory getInventory()
