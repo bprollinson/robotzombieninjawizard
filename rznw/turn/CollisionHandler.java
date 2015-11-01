@@ -76,9 +76,10 @@ public class CollisionHandler
             return;
         }
 
-        if (character.dodgesAttack())
+        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
+        if (otherCharacter.dodgesAttack())
         {
-            if (character instanceof MainCharacter)
+            if (otherCharacter instanceof MainCharacter)
             {
                 System.out.println("Main character dodge!");
             }
@@ -99,7 +100,6 @@ public class CollisionHandler
             System.out.println("Enemy character melee hit!");
         }
 
-        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
         otherCharacter.damage(character.getDamage());
         if (otherCharacter.isDead())
         {
