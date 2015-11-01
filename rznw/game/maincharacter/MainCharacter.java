@@ -45,7 +45,7 @@ public abstract class MainCharacter extends Character
     private static String[] statDescription = {
         "Increases your maximum HP.",
         "Increases the amount of HP you recover while exploring the dungeon.",
-        "Increases your chance to recove with 1 HP when dying.",
+        "Increases your chance to recover with 1 HP when dying.",
         "Amplifies the strength of healing effects on you.",
         "Affects your probability of hitting enemies in melee combat.",
         "Affects your probability of dodging attacks.",
