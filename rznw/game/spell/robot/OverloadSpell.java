@@ -38,7 +38,7 @@ public class OverloadSpell extends Spell
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             System.out.println("Before: " + enemy.getHP());
-            int damage = 10 + 2 * character.getSpellPoints(2);
+            int damage = 100 + 20 * character.getSpellPoints(2);
             enemy.damage(damage);
             System.out.println("After: " + enemy.getHP());
 
@@ -50,12 +50,12 @@ public class OverloadSpell extends Spell
             }
         }
 
-        character.damage(5);
+        character.damage(50);
     }
 
     private int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(2);
-        return Math.max(20 - spellLevel, 1);
+        return Math.max(200 - 10 * spellLevel, 1);
     }
 }

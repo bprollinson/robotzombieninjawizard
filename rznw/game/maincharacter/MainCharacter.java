@@ -188,17 +188,17 @@ public abstract class MainCharacter extends Character
 
     public int getMaxHP()
     {
-        return 20 + 2 * this.stats[MainCharacter.STAT_HEALTH];
+        return 200 + 20 * this.stats[MainCharacter.STAT_HEALTH];
     }
 
     public int getMaxMP()
     {
-        return 20 + 2 * this.stats[MainCharacter.STAT_MANA];
+        return 200 + 20 * this.stats[MainCharacter.STAT_MANA];
     }
 
     public int getDamage()
     {
-        return 5;
+        return 50;
     }
 
     public Inventory getInventory()
@@ -347,5 +347,18 @@ public abstract class MainCharacter extends Character
     public int getViewRadius()
     {
         return 2 + this.getStatPoints(6);
+    }
+
+    public void damage(int damage)
+    {
+        int paddingPercent = 2 * this.getStatPoints(9);
+        int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
+
+        if (padding > 0)
+        {
+            System.out.println("Padding damage: " + padding);
+        }
+
+        this.HP -= damage - padding;
     }
 }

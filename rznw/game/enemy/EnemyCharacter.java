@@ -40,17 +40,17 @@ public abstract class EnemyCharacter extends Character
 
     public int getMaxHP()
     {
-        return 10;
+        return 100;
     }
 
     public int getMaxMP()
     {
-        return 10;
+        return 100;
     }
 
     public int getDamage()
     {
-        return 1;
+        return 10;
     }
 
     public int getNumGold()

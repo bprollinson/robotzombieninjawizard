@@ -16,12 +16,12 @@ public class HealSpell extends Spell
         System.out.println("Casting Heal");
         MainCharacter character = gameWorld.getMainCharacter();
         character.setMP(character.getMP() - this.getMPCost(character));
-        character.heal(character.getSpellPoints(13));
+        character.heal(10 * character.getSpellPoints(13));
     }
 
     private int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(13);
-        return Math.max(20 - spellLevel, 1);
+        return Math.max(200 - 10 * spellLevel, 1);
     }
 }
