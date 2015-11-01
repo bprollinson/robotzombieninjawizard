@@ -11,6 +11,6 @@ public class Potion extends InventoryItem
 
     public void useOnCharacter(MainCharacter character)
     {
-        character.heal(200);
+        character.heal(50);
     }
 }

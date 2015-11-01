@@ -361,4 +361,17 @@ public abstract class MainCharacter extends Character
 
         this.HP -= damage - padding;
     }
+
+    public void heal(int HP)
+    {
+        int bonusHPPercent = 5 * this.getStatPoints(3);
+        int bonusHP = (int)Math.floor(bonusHPPercent / 100.0 * HP);
+
+        if (bonusHP > 0)
+        {
+            System.out.println("Bonus HP: " + bonusHP);
+        }
+
+        super.heal(HP + bonusHP);
+    }
 }
