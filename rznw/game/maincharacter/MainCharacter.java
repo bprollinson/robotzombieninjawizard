@@ -311,7 +311,7 @@ public abstract class MainCharacter extends Character
             this.HPSteps++;
             if (this.HPSteps >= this.getStepsForHeal())
             {
-                this.heal(1);
+                this.heal(10);
                 this.HPSteps = 0;
             }
         }
@@ -321,7 +321,7 @@ public abstract class MainCharacter extends Character
             this.MPSteps++;
             if (this.MPSteps >= this.getStepsForMPHeal())
             {
-                this.healMP(1);
+                this.healMP(10);
                 this.MPSteps = 0;
             }
         }
