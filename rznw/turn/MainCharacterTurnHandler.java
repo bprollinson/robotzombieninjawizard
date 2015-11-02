@@ -41,6 +41,9 @@ public class MainCharacterTurnHandler
         {
             System.out.println("Going down to the next floor");
             this.gameWorld.generateNextMap();
+            Map map = this.gameWorld.getMap();
+            MapElement characterElement = this.gameWorld.getMainCharacter().getMapElement();
+            map.setElementVisited(this.gameWorld.getMainCharacter(), characterElement.getRow(), characterElement.getColumn());
             this.renderer.render(this.gameWorld);
 
             return;
