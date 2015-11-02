@@ -101,7 +101,7 @@ public class CollisionHandler
         }
 
         otherCharacter.damage(character.getDamage());
-        if (otherCharacter.isDead())
+        if (otherCharacter.isDead() && otherCharacter instanceof EnemyCharacter)
         {
             this.killBonusGranter.grantKillBonuses(character, otherCharacter);
             map.setElement(collisionTest.getRow(), collisionTest.getColumn(), null);

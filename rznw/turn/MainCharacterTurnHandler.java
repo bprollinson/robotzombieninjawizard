@@ -15,6 +15,7 @@ import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
 import rznw.ui.CharacterSummaryRenderer;
+import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterTurnHandler
 {
@@ -55,6 +56,11 @@ public class MainCharacterTurnHandler
         }
 
         this.handleEnemyTurns();
+
+        if (character.isDead())
+        {
+            this.handleMainCharacterRevival();
+        }
 
         this.renderer.render(this.gameWorld);
     }
@@ -121,6 +127,20 @@ public class MainCharacterTurnHandler
 
             MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
             mainCharacter.incrementSteps();
+        }
+    }
+
+    private void handleMainCharacterRevival()
+    {
+        MainCharacter character = this.gameWorld.getMainCharacter();
+        int revivalProbability = 5 * character.getStatPoints(2);
+        System.out.println("Revival probability: " + revivalProbability);
+
+        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
+        if (randomNumber <= revivalProbability)
+        {
+            System.out.println("Reviving");
+            character.setHP(1);
         }
     }
 

@@ -49,6 +49,11 @@ public abstract class Character
 
     public abstract int getMaxHP();
 
+    public void setHP(int HP)
+    {
+        this.HP = HP;
+    }
+
     public int getHP()
     {
         return this.HP;
