@@ -11,6 +11,8 @@ public class RobotSpellFactory extends SpellFactory
         {
             case 2:
                 return new OverloadSpell();
+            case 3:
+                return new SuckPowerSpell();
             default:
                 return null;
         }
