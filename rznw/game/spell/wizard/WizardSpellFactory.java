@@ -9,6 +9,8 @@ public class WizardSpellFactory extends SpellFactory
     {
         switch (spellIndex)
         {
+            case 2:
+                return new EarthquakeSpell();
             case 13:
                 return new HealSpell();
             default:
