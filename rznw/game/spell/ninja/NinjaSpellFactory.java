@@ -7,6 +7,12 @@ public class NinjaSpellFactory extends SpellFactory
 {
     public Spell getSpell(int spellIndex)
     {
-        return null;
+        switch (spellIndex)
+        {
+            case 5:
+                return new ShurikenStarSpell();
+            default:
+                return null;
+        }
     }
 }
