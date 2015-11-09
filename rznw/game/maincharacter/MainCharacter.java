@@ -5,6 +5,7 @@ import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.spell.SpellFactory;
+import rznw.game.skill.SkillFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public abstract class MainCharacter extends Character
@@ -272,6 +273,11 @@ public abstract class MainCharacter extends Character
     }
 
     public abstract SpellFactory getSpellFactory();
+
+    public SkillFactory getSkillFactory()
+    {
+        return new SkillFactory();
+    }
 
     public boolean meleeAttackHits()
     {

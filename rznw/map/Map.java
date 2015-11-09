@@ -63,6 +63,11 @@ public class Map
         this.backgroundElements[i][j] = element;
     }
 
+    public void setVisible(int i, int j)
+    {
+        this.visible[i][j] = true;
+    }
+
     public boolean isVisible(int i, int j)
     {
         return this.visible[i][j];

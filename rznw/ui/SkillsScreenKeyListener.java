@@ -1,6 +1,8 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.skill.Skill;
+import rznw.game.skill.SkillFactory;
 import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
@@ -12,6 +14,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
     private SkillsScreenRenderer skillsScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean skillUsed;
     private boolean showingDescription = false;
 
     public SkillsScreenKeyListener(SkillsScreenRenderer skillsScreenRenderer, GameWorld gameWorld)
@@ -27,6 +30,18 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
         switch (event.getKeyCode())
         {
+            case KeyEvent.VK_ENTER:
+                if (!this.showingDescription)
+                {
+                    SkillFactory skillFactory = character.getSkillFactory();
+                    Skill skill = skillFactory.getSkill(this.state.getEntryNumber());
+                    if (skill != null && skill.canUse(character))
+                    {
+                        skill.use(gameWorld);
+                        this.skillUsed = true;
+                    }
+                }
+                break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
@@ -53,6 +68,8 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.skillUsed = false;
+
         this.skillsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
     }
 
@@ -65,6 +82,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+        }
+
+        if (this.skillUsed)
+        {
+            return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
         return DispatchKeyListener.STATE_SKILLS_SCREEN;
