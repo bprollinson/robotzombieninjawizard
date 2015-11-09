@@ -366,6 +366,13 @@ public abstract class MainCharacter extends Character
         }
 
         this.HP -= damage - padding;
+
+        int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(13) * (damage - padding));
+        if (MPFromDamage > 0)
+        {
+            System.out.println("Healing MP from damage: " + MPFromDamage);
+            this.healMP(MPFromDamage);
+        }
     }
 
     public void heal(int HP)
