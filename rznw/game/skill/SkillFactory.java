@@ -6,6 +6,8 @@ public class SkillFactory
     {
         switch (skillIndex)
         {
+            case 5:
+                return new WaypointSkill();
             case 7:
                 return new FindStairsSkill();
             default:

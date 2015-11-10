@@ -9,8 +9,10 @@ import rznw.utility.RandomNumberGenerator;
 
 public class FindStairsSkill extends Skill
 {
-    public boolean canUse(MainCharacter character)
+    public boolean canUse(GameWorld gameWorld)
     {
+        MainCharacter character = gameWorld.getMainCharacter();
+
         return character.getSkillPoints(7) > 0;
     }
 

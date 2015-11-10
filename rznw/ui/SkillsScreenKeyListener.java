@@ -35,7 +35,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 {
                     SkillFactory skillFactory = character.getSkillFactory();
                     Skill skill = skillFactory.getSkill(this.state.getEntryNumber());
-                    if (skill != null && skill.canUse(character))
+                    if (skill != null && skill.canUse(gameWorld))
                     {
                         skill.use(gameWorld);
                         this.skillUsed = true;
