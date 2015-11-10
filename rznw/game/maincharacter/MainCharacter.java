@@ -199,7 +199,14 @@ public abstract class MainCharacter extends Character
 
     public int getDamage()
     {
-        return 50 + 5 * this.getStatPoints(8);
+        int damage = 50 + 5 * this.getStatPoints(8);
+        double bloodRageFactor = this.getSkillPoints(2) / 100.0 * (this.getMaxHP() - this.getHP()) / this.getMaxHP();
+
+        if (bloodRageFactor > 0.0) {
+            System.out.println("Blood rage factor: " + bloodRageFactor);
+        }
+
+        return (int)Math.floor(damage * (1 + bloodRageFactor));
     }
 
     public Inventory getInventory()
