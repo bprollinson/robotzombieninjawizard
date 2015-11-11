@@ -11,6 +11,8 @@ public class WizardSpellFactory extends SpellFactory
         {
             case 2:
                 return new EarthquakeSpell();
+            case 9:
+                return new TeleportSpell();
             case 13:
                 return new HealSpell();
             default:
