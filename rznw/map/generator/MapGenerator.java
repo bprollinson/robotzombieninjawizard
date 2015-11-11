@@ -14,6 +14,7 @@ public class MapGenerator
     private MapCharacterGenerator characterGenerator;
     private MapStairsGenerator stairsGenerator;
     private MapPathGenerator pathGenerator;
+    private MapTrapGenerator trapGenerator;
 
     public MapGenerator()
     {
@@ -22,6 +23,7 @@ public class MapGenerator
         this.characterGenerator = new MapCharacterGenerator();
         this.stairsGenerator = new MapStairsGenerator();
         this.pathGenerator = new MapPathGenerator();
+        this.trapGenerator = new MapTrapGenerator();
     }
 
     public Map generate(MainCharacter character, CharacterGenerator characterGenerator, int level)
@@ -33,6 +35,7 @@ public class MapGenerator
         this.characterGenerator.placeCharacter(map, character, rooms);
         this.stairsGenerator.placeStairs(map, rooms);
         this.enemyGenerator.generateEnemies(map, characterGenerator, rooms);
+        this.trapGenerator.generateTraps(map, rooms);
 
         return map;
     }
