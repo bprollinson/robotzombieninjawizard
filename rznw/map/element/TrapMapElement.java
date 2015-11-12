@@ -2,6 +2,7 @@ package rznw.map.element;
 
 public class TrapMapElement extends MapElement
 {
+    private boolean visible = false;
     private boolean sprung = false;
 
     public TrapMapElement(int row, int column)
@@ -16,6 +17,11 @@ public class TrapMapElement extends MapElement
             return '-';
         }
 
+        if (this.visible)
+        {
+            return '_';
+        }
+
         return ' ';
     }
 
@@ -27,5 +33,10 @@ public class TrapMapElement extends MapElement
     public void spring()
     {
         this.sprung = true;
+    }
+
+    public void find()
+    {
+        this.visible = true;
     }
 }

@@ -40,7 +40,7 @@ public class FindStairsSkill extends Skill
                 if (element instanceof Stairs)
                 {
                     System.out.println("Found the stairs!");
-                    map.setVisible(row, column);
+                    map.setVisible(character, row, column);
                 }
             }
         }

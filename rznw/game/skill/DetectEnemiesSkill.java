@@ -54,7 +54,7 @@ public class DetectEnemiesSkill extends Skill
                 {
                     for (int column = enemyElement.getColumn() - 1; column <= enemyElement.getColumn() + 1; column++)
                     {
-                        map.setVisible(row, column);
+                        map.setVisible(character, row, column);
                     }
                 }
             }

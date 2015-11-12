@@ -6,7 +6,9 @@ import java.util.Vector;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.map.element.TrapMapElement;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.utility.RandomNumberGenerator;
 
 public class Map
 {
@@ -63,8 +65,26 @@ public class Map
         this.backgroundElements[i][j] = element;
     }
 
-    public void setVisible(int i, int j)
+    public void setVisible(MainCharacter character, int i, int j)
     {
+        if (this.visible[i][j] == false)
+        {
+            MapElement backgroundElement = this.getBackgroundElement(i, j);
+            if (backgroundElement instanceof TrapMapElement)
+            {
+                System.out.println("A trap is in range");
+                int trapRevealProbability = 5 * character.getStatPoints(7);
+                System.out.println("Trap reveal probability: " + trapRevealProbability);
+
+                int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
+                if (randomNumber <= trapRevealProbability)
+                {
+                    System.out.println("Detected the trap!");
+                    ((TrapMapElement)backgroundElement).find();
+                }
+            }
+        }
+
         this.visible[i][j] = true;
     }
 
@@ -86,7 +106,7 @@ public class Map
         {
             for (int column = minColumn; column <= maxColumn; column++)
             {
-                this.visible[row][column] = true;
+                this.setVisible(character, row, column);
             }
         }
     }
