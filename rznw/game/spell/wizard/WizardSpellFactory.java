@@ -19,6 +19,8 @@ public class WizardSpellFactory extends SpellFactory
                 return new TeleportSpell();
             case 13:
                 return new HealSpell();
+            case 15:
+                return new VitalZapSpell();
             default:
                 return null;
         }
