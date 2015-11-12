@@ -40,7 +40,7 @@ public class Wizard extends MainCharacter
         "Shoot a projectile in any direction. When this projectile hits an enemy or object, it explodes, damaging all enemies close to the blast area. The blast radius increases with your spell level.",
         "Travels through enemies, damaging them all until a wall is encountered.",
         "Shoots a projectile that chains between enemies. Travels in a straight line, then jumps between enemies within a radius of eachother. Attacks each enemy at most once.",
-        "Pushes nearby  enemies away. The distance and radius of effect increase with your spell level.",
+        "Pushes nearby enemies away. The distance and radius of effect increase with your spell level.",
         "Allows you to escape your surroundings, moving you to a safer location. As your spell level increases, the probability of arriving in a safe location increases.",
         "Shoots a projectile in the chosen direction. An enemy hit by this projectile will be shot back, hitting and damaging other enemies in a chain reaction.",
         "Allows you to travel back up to the previous dungeon level. This regenerates a random level of difficulty one less than the current level. Can't be used on the first dungeon level.",
