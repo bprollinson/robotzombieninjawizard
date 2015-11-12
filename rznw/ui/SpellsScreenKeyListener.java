@@ -147,6 +147,11 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_NUMPAD6:
                 case KeyEvent.VK_KP_RIGHT:
+                    if (this.gameWorld.getMainCharacter().getPendingLevels() > 0)
+                    {
+                        return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
+                    }
+
                     return DispatchKeyListener.STATE_GAME_MOTION;
                 default:
                     return DispatchKeyListener.STATE_SPELLS_SCREEN;
