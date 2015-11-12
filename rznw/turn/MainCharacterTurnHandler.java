@@ -135,8 +135,18 @@ public class MainCharacterTurnHandler
             {
                 properTrap.spring();
 
-                System.out.println("It's a trap!");
-                character.damage(20);
+                int disarmProbability = 5 * character.getSkillPoints(11);
+                int random = RandomNumberGenerator.randomInteger(1, 100);
+
+                if (random <= disarmProbability)
+                {
+                    System.out.println("Disarmed trap");
+                }
+                else
+                {
+                    System.out.println("It's a trap!");
+                    character.damage(20);
+                }
             }
         }
     }
