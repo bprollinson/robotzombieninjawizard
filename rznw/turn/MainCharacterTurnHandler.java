@@ -11,6 +11,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
+import rznw.map.element.TrapMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
@@ -52,6 +53,8 @@ public class MainCharacterTurnHandler
         MainCharacter character = this.gameWorld.getMainCharacter();
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
+
+        this.handleTrapCollision();
 
         if (!character.isDead())
         {
@@ -114,6 +117,20 @@ public class MainCharacterTurnHandler
         if (character instanceof MainCharacter)
         {
             map.setElementVisited((MainCharacter)character, newRow, newColumn);
+        }
+    }
+
+    private void handleTrapCollision()
+    {
+        MainCharacter character = this.gameWorld.getMainCharacter();
+        MapElement characterMapElement = character.getMapElement();
+
+        Map map = this.gameWorld.getMap();
+        MapElement trap = map.getBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn());
+        if (trap instanceof TrapMapElement)
+        {
+            System.out.println("It's a trap!");
+            character.damage(20);
         }
     }
 
