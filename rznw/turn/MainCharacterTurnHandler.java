@@ -129,8 +129,15 @@ public class MainCharacterTurnHandler
         MapElement trap = map.getBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn());
         if (trap instanceof TrapMapElement)
         {
-            System.out.println("It's a trap!");
-            character.damage(20);
+            TrapMapElement properTrap = (TrapMapElement)trap;
+
+            if (!properTrap.isSprung())
+            {
+                properTrap.spring();
+
+                System.out.println("It's a trap!");
+                character.damage(20);
+            }
         }
     }
 

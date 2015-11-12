@@ -2,6 +2,8 @@ package rznw.map.element;
 
 public class TrapMapElement extends MapElement
 {
+    private boolean sprung = false;
+
     public TrapMapElement(int row, int column)
     {
         super(row, column);
@@ -9,6 +11,21 @@ public class TrapMapElement extends MapElement
 
     public char getDisplayCharacter()
     {
-        return '-';
+        if (this.sprung)
+        {
+            return '-';
+        }
+
+        return ' ';
+    }
+
+    public boolean isSprung()
+    {
+        return sprung;
+    }
+
+    public void spring()
+    {
+        this.sprung = true;
     }
 }
