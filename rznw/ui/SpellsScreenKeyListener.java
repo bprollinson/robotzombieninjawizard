@@ -13,19 +13,58 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
     private SpellsScreenRenderer spellsScreenRenderer;
     private GameWorld gameWorld;
+    private MapRenderer mapRenderer;
     private MenuState state;
     private boolean spellCast;
+    private boolean requiresDirection;
     private boolean showingDescription = false;
 
-    public SpellsScreenKeyListener(SpellsScreenRenderer spellsScreenRenderer, GameWorld gameWorld)
+    public SpellsScreenKeyListener(SpellsScreenRenderer spellsScreenRenderer, GameWorld gameWorld, MapRenderer mapRenderer)
     {
         this.spellsScreenRenderer = spellsScreenRenderer;
         this.gameWorld = gameWorld;
         this.state = new MenuState(15);
+        this.mapRenderer = mapRenderer;
     }
 
     public void keyPressed(KeyEvent event)
     {
+        if (this.requiresDirection)
+        {
+            SpellFactory spellFactory = this.gameWorld.getMainCharacter().getSpellFactory();
+            Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
+
+            switch (event.getKeyCode())
+            {
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_NUMPAD8:
+                case KeyEvent.VK_KP_UP:
+                    System.out.println("Casting upward");
+                    spell.cast(this.gameWorld, Spell.DIRECTION_UP);
+                    break;
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_NUMPAD2:
+                case KeyEvent.VK_KP_DOWN:
+                    System.out.println("Casting downward");
+                    spell.cast(this.gameWorld, Spell.DIRECTION_DOWN);
+                    break;
+                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_NUMPAD4:
+                case KeyEvent.VK_KP_LEFT:
+                    System.out.println("Casting leftward");
+                    spell.cast(this.gameWorld, Spell.DIRECTION_LEFT);
+                    break;
+                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_NUMPAD6:
+                case KeyEvent.VK_KP_RIGHT:
+                    System.out.println("Casting rightward");
+                    spell.cast(this.gameWorld, Spell.DIRECTION_RIGHT);
+                    break;
+            }
+
+            return;
+        }
+
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
@@ -36,8 +75,18 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                     Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
                     if (spell != null && spell.canCast(character))
                     {
-                        spell.cast(gameWorld);
-                        this.spellCast = true;
+                        if (spell.requiresDirectionInput())
+                        {
+                            System.out.println("Requires direction input");
+                            this.requiresDirection = true;
+                            this.mapRenderer.render(this.gameWorld.getMap());
+                            System.out.println("Re-renderer map");
+                        }
+                        else
+                        {
+                            spell.cast(gameWorld);
+                            this.spellCast = true;
+                        }
                     }
                 }
                 break;
@@ -62,12 +111,16 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 break;
         }
 
-        this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
+        if (!this.requiresDirection)
+        {
+            this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
+        }
     }
 
     public void enterState(int previousState)
     {
         this.spellCast = false;
+        this.requiresDirection = false;
 
         this.spellsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
     }
@@ -78,6 +131,28 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
+        if (this.requiresDirection)
+        {
+            switch (event.getKeyCode())
+            {
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_NUMPAD8:
+                case KeyEvent.VK_KP_UP:
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_NUMPAD2:
+                case KeyEvent.VK_KP_DOWN:
+                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_NUMPAD4:
+                case KeyEvent.VK_KP_LEFT:
+                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_NUMPAD6:
+                case KeyEvent.VK_KP_RIGHT:
+                    return DispatchKeyListener.STATE_GAME_MOTION;
+                default:
+                    return DispatchKeyListener.STATE_SPELLS_SCREEN;
+            }
+        }
+
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
