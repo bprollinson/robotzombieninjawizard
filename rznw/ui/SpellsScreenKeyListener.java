@@ -80,6 +80,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                             System.out.println("Requires direction input");
                             this.requiresDirection = true;
                             this.mapRenderer.render(this.gameWorld.getMap());
+                            this.spellsScreenRenderer.renderDirectionInstructions();
                             System.out.println("Re-renderer map");
                         }
                         else

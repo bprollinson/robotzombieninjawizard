@@ -39,6 +39,12 @@ public class SpellsScreenRenderer extends MenuScreenRenderer
         }
     }
 
+    public void renderDirectionInstructions()
+    {
+        this.renderCenteredString(30, "Press up, down, left or right to direct");
+        this.renderCenteredString(31, "your spell.");
+    }
+
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
         String groupDisplay = mainCharacter.getSpellCategory(groupNumber);
