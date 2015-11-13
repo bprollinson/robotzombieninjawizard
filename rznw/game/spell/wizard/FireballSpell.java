@@ -96,7 +96,7 @@ public class FireballSpell extends Spell
             {
                 MapElement characterElement = character.getMapElement();
 
-                int radius = 1;
+                int radius = 1 + (int)Math.floor(character.getSpellPoints(5) / 4);
                 Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
                 for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
                 {
