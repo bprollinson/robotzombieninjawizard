@@ -6,12 +6,14 @@ public abstract class Character
 {
     protected int HP;
     protected int MP;
+    protected StatusEffects statusEffects;
     protected MapElement mapElement;
 
     public Character()
     {
         this.HP = this.getMaxHP();
         this.MP = this.getMaxMP();
+        this.statusEffects = new StatusEffects();
     }
 
     public Character(int HP, int MP)
@@ -79,6 +81,11 @@ public abstract class Character
     protected void fillMP()
     {
         this.MP = this.getMaxMP();
+    }
+
+    public StatusEffects getStatusEffects()
+    {
+        return this.statusEffects;
     }
 
     public abstract int getDamage();

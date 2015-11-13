@@ -189,9 +189,18 @@ public class MainCharacterTurnHandler
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
+            if (enemy.getStatusEffects().isFrozen())
+            {
+                System.out.println("Enemy is frozen!");
+            }
+            else
+            {
+                EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
 
-            this.handleCharacterTurn(enemyPositionChange, enemy);
+                this.handleCharacterTurn(enemyPositionChange, enemy);
+            }
+
+            enemy.getStatusEffects().processTurn();
         }
     }
 
