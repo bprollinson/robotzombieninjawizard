@@ -8,6 +8,7 @@ import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.map.element.RockWall;
 import rznw.turn.positionchange.PositionChange;
 
 public class CollisionHandler
@@ -40,6 +41,17 @@ public class CollisionHandler
             return true;
         }
 
+        if (collisionTest instanceof RockWall)
+        {
+            ((RockWall)collisionTest).damage(character.getDamage());
+            if (((RockWall)collisionTest).getHP() <= 0)
+            {
+                map.setElement(collisionTest.getRow(), collisionTest.getColumn(), null);
+            }
+
+            return true;
+        }
+
         this.handleCharacterInteraction(character, (CharacterMapElement)collisionTest, map);
 
         return true;
@@ -47,6 +59,11 @@ public class CollisionHandler
 
     private boolean elementsHaveInteraction(Character character, MapElement collisionTest)
     {
+        if (collisionTest instanceof RockWall)
+        {
+            return true;
+        }
+
         if (!(collisionTest instanceof CharacterMapElement))
         {
             return false;

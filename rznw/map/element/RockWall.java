@@ -15,4 +15,14 @@ public class RockWall extends MapElement
     {
         return '=';
     }
+
+    public void damage(int damage)
+    {
+        this.HP -= damage;
+    }
+
+    public int getHP()
+    {
+        return this.HP;
+    }
 }
