@@ -57,7 +57,7 @@ public class RockWallSpell extends Spell
 
         Map map = gameWorld.getMap();
 
-        if (map.getElement(centerRow, centerColumn) == null)
+        if (centerRow >= 0 && centerRow < Map.NUM_ROWS && centerColumn >= 0 && centerColumn < Map.NUM_COLUMNS && map.getElement(centerRow, centerColumn) == null)
         {
             RockWall rockWall = new RockWall(centerRow, centerColumn, wallHP);
             map.setElement(centerRow, centerColumn, rockWall);
@@ -82,7 +82,7 @@ public class RockWallSpell extends Spell
             int row = centerRow + i * deltaRow;
             int column = centerColumn + i * deltaColumn;
 
-            if (map.getElement(row, column) == null)
+            if (row >= 0 && row < Map.NUM_ROWS && column >= 0 && column < Map.NUM_COLUMNS && map.getElement(row, column) == null)
             {
                 RockWall rockWall = new RockWall(row, column, wallHP);
                 map.setElement(row, column, rockWall);
@@ -94,7 +94,7 @@ public class RockWallSpell extends Spell
             int row = centerRow - i * deltaRow;
             int column = centerColumn - i * deltaColumn;
 
-            if (map.getElement(row, column) == null)
+            if (row >= 0 && row < Map.NUM_ROWS && column >= 0 && column < Map.NUM_COLUMNS && map.getElement(row, column) == null)
             {
                 RockWall rockWall = new RockWall(row, column, wallHP);
                 map.setElement(row, column, rockWall);
