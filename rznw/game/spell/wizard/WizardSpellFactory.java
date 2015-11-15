@@ -9,6 +9,8 @@ public class WizardSpellFactory extends SpellFactory
     {
         switch (spellIndex)
         {
+            case 0:
+                return new RockWallSpell();
             case 1:
                 return new MeteorShowerSpell();
             case 2:
