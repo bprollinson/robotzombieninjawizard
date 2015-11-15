@@ -32,7 +32,7 @@ public class Wizard extends MainCharacter
         "Vital Zap"
     };
     private static String[] spellDescription = {
-        "Generates a barrier on any side of you, protecting you from enemeny attack. The length, distance and duration of the barrier depend on your spell level.",
+        "Generates a barrier on any side of you, protecting you from enemeny attack. The length, distance and duration of the barrier depend on your spell level. The wall can only be damaged by melee attack but cannot dodge attacks.",
         "Meteors rain down from the sky, crushing your enemies. The radius and concentration of the meteors varies with your spell level.",
         "The earth trembles, damaging all enemies within a radius of you. This radius increases with your spell level.",
         "Summons a golem to fight alongside you. This golem will wander around independently, continuing to battle until its HP are exhausted. Only one golem may be summoned at any time.",
