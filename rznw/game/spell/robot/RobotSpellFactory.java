@@ -15,6 +15,8 @@ public class RobotSpellFactory extends SpellFactory
                 return new SuckPowerSpell();
             case 4:
                 return new RocketPackSpell();
+            case 6:
+                return new RocketShotSpell();
             case 7:
                 return new ParalyzingBlastSpell();
             default:
