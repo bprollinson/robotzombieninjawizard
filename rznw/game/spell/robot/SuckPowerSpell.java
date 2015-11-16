@@ -12,11 +12,6 @@ import rznw.map.element.MapElement;
 
 public class SuckPowerSpell extends Spell
 {
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(3) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
         System.out.println("Casting Suck Power");

@@ -6,11 +6,6 @@ import rznw.map.GameWorld;
 
 public class HealSpell extends Spell
 {
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(13) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
         System.out.println("Casting Heal");

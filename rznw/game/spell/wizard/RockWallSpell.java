@@ -9,11 +9,6 @@ import rznw.map.element.RockWall;
 
 public class RockWallSpell extends Spell
 {
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(0) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
     }

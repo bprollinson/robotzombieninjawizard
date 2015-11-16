@@ -21,11 +21,6 @@ public class IceFieldSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(12) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
         System.out.println("Casting Ice Field");

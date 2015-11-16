@@ -19,11 +19,6 @@ public class HeatRaySpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(6) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
     }

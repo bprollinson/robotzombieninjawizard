@@ -18,11 +18,6 @@ import rznw.map.element.Void;
 
 public class TeleportSpell extends Spell
 {
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(9) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
         System.out.println("Casting Teleport");

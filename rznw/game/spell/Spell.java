@@ -10,9 +10,13 @@ public abstract class Spell
     public static final int DIRECTION_LEFT = 2;
     public static final int DIRECTION_RIGHT = 3;
 
-    public abstract boolean canCast(MainCharacter character);
     public abstract void cast(GameWorld gameWorld);
     public abstract int getMPCost(MainCharacter character);
+
+    public boolean canCast(MainCharacter character, int spellPoints)
+    {
+        return spellPoints > 0 && character.getMP() >= this.getMPCost(character);
+    }
 
     public void cast(GameWorld gameWorld, int direction)
     {

@@ -8,11 +8,6 @@ import rznw.map.element.MapElement;
 
 public class RocketPackSpell extends Spell
 {
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(4) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
     }

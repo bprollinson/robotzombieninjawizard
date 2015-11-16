@@ -9,11 +9,6 @@ import rznw.map.element.Wall;
 
 public class RocketJumpSpell extends Spell
 {
-    public boolean canCast(MainCharacter character)
-    {
-        return character.getSpellPoints(5) > 0 && character.getMP() >= this.getMPCost(character);
-    }
-
     public void cast(GameWorld gameWorld)
     {
     }
