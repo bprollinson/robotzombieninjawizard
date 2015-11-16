@@ -33,7 +33,6 @@ public class ParalyzingBlastSpell extends Spell
         System.out.println("Casting Paralyzing Blast");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int damage = 20 + 10 * character.getSpellPoints(7);
 
@@ -102,7 +101,7 @@ public class ParalyzingBlastSpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(7);
         return Math.max(200 - 10 * spellLevel, 1);

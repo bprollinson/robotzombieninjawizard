@@ -33,7 +33,6 @@ public class HeatRaySpell extends Spell
         System.out.println("Casting Heat Ray");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int damage = 50 + 10 * character.getSpellPoints(6);
 
@@ -89,7 +88,7 @@ public class HeatRaySpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(6);
         return Math.max(200 - 10 * spellLevel, 1);

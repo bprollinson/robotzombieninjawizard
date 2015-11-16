@@ -23,7 +23,6 @@ public class RocketJumpSpell extends Spell
         System.out.println("Casting Rocket Jump");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int startRow = character.getMapElement().getRow();
         int startColumn = character.getMapElement().getColumn();
@@ -74,7 +73,7 @@ public class RocketJumpSpell extends Spell
         map.setElement(row, column, characterElement);
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(5);
         return Math.max(200 - 10 * spellLevel, 1);

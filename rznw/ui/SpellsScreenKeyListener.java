@@ -60,7 +60,13 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                     System.out.println("Casting rightward");
                     spell.cast(this.gameWorld, Spell.DIRECTION_RIGHT);
                     break;
+                default:
+                    return;
             }
+
+            MainCharacter character = gameWorld.getMainCharacter();
+            int MPCost = spell.getMPCost(character);
+            character.setMP(character.getMP() - MPCost);
 
             return;
         }
@@ -86,6 +92,8 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                         else
                         {
                             spell.cast(gameWorld);
+                            int MPCost = spell.getMPCost(character);
+                            character.setMP(character.getMP() - MPCost);
                             this.spellCast = true;
                         }
                     }

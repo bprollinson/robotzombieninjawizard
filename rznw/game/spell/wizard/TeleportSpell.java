@@ -28,7 +28,6 @@ public class TeleportSpell extends Spell
         System.out.println("Casting Teleport");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         MapElement newPositionElement = this.getNewPositionElement(gameWorld);
 
@@ -44,7 +43,7 @@ public class TeleportSpell extends Spell
         map.setElementVisited(character, newPositionElement.getRow(), newPositionElement.getColumn());
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(9);
         return Math.max(200 - 10 * spellLevel, 1);

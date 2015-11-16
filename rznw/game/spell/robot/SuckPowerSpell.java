@@ -21,7 +21,6 @@ public class SuckPowerSpell extends Spell
     {
         System.out.println("Casting Suck Power");
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         MapElement characterElement = character.getMapElement();
         Map map = gameWorld.getMap();
@@ -39,7 +38,7 @@ public class SuckPowerSpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         return 10;
     }

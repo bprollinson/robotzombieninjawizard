@@ -23,7 +23,6 @@ public class RockWallSpell extends Spell
         System.out.println("Casting Rock Wall");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int wallWidth = 1 + 2 * (int)Math.floor(character.getSpellPoints(0) / 4);
         System.out.println("Wall width: " + wallWidth);
@@ -102,7 +101,7 @@ public class RockWallSpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(0);
         return Math.max(200 - 10 * spellLevel, 1);

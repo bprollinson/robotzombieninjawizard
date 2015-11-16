@@ -29,7 +29,6 @@ public class EarthquakeSpell extends Spell
     {
         System.out.println("Casting Earthquake");
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         MapElement characterElement = character.getMapElement();
         Map map = gameWorld.getMap();
@@ -52,7 +51,7 @@ public class EarthquakeSpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(2);
         return Math.max(200 - 10 * spellLevel, 1);

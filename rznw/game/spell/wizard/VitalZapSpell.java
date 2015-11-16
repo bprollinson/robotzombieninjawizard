@@ -32,7 +32,6 @@ public class VitalZapSpell extends Spell
         System.out.println("Casting Vital Zap");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int damagePercentage = 5 * character.getSpellPoints(15);
 
@@ -96,7 +95,7 @@ public class VitalZapSpell extends Spell
         return true;
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(15);
         return Math.max(200 - 10 * spellLevel, 1);

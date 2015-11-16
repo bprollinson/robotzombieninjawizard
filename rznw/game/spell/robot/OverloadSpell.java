@@ -29,7 +29,6 @@ public class OverloadSpell extends Spell
     {
         System.out.println("Casting Overload");
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         MapElement characterElement = character.getMapElement();
         Map map = gameWorld.getMap();
@@ -53,7 +52,7 @@ public class OverloadSpell extends Spell
         character.damage(50);
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(2);
         return Math.max(200 - 10 * spellLevel, 1);

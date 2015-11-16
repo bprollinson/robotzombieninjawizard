@@ -12,6 +12,7 @@ public abstract class Spell
 
     public abstract boolean canCast(MainCharacter character);
     public abstract void cast(GameWorld gameWorld);
+    public abstract int getMPCost(MainCharacter character);
 
     public void cast(GameWorld gameWorld, int direction)
     {

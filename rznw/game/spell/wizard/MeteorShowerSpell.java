@@ -31,7 +31,6 @@ public class MeteorShowerSpell extends Spell
         System.out.println("Casting Meteor Shower");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int radius = 1 + (int)Math.floor(character.getSpellPoints(1) / 4);
         int hitProbability = 5 * character.getSpellPoints(1);
@@ -69,7 +68,7 @@ public class MeteorShowerSpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(1);
         return Math.max(200 - 10 * spellLevel, 1);

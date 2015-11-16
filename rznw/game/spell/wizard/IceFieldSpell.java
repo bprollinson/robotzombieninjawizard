@@ -31,7 +31,6 @@ public class IceFieldSpell extends Spell
         System.out.println("Casting Ice Field");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setMP(character.getMP() - this.getMPCost(character));
 
         int radius = 1 + (int)Math.floor(character.getSpellPoints(12) / 4);
         Map map = gameWorld.getMap();
@@ -66,7 +65,7 @@ public class IceFieldSpell extends Spell
         }
     }
 
-    private int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character)
     {
         int spellLevel = character.getSpellPoints(12);
         return Math.max(200 - 10 * spellLevel, 1);
