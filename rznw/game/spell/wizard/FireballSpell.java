@@ -22,17 +22,17 @@ public class FireballSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
 
-    public void cast(GameWorld gameWorld, int direction)
+    public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Fireball");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        int damage = 50 + 10 * character.getSpellPoints(5);
+        int damage = 50 + 10 * spellPoints;
 
         int deltaRow = 0;
         int deltaColumn = 0;
@@ -90,7 +90,7 @@ public class FireballSpell extends Spell
             {
                 MapElement characterElement = character.getMapElement();
 
-                int radius = 1 + (int)Math.floor(character.getSpellPoints(5) / 4);
+                int radius = 1 + (int)Math.floor(spellPoints / 4);
                 Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
                 for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
                 {
@@ -112,10 +112,9 @@ public class FireballSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(5);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 
     public boolean requiresDirectionInput()

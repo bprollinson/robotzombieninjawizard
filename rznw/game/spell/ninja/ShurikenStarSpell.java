@@ -19,7 +19,7 @@ public class ShurikenStarSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Shuriken Star");
         MainCharacter character = gameWorld.getMainCharacter();
@@ -54,7 +54,7 @@ public class ShurikenStarSpell extends Spell
                     if (collisionElement instanceof EnemyMapElement)
                     {
                         System.out.println("Shuriken Star hit: " + collisionElement.getRow() + "," + collisionElement.getColumn());
-                        int damage = 60 + 15 * character.getSpellPoints(5);
+                        int damage = 60 + 15 * spellPoints;
                         Character enemy = ((EnemyMapElement)collisionElement).getCharacter();
                         enemy.damage(damage);
 
@@ -74,9 +74,8 @@ public class ShurikenStarSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(5);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 }

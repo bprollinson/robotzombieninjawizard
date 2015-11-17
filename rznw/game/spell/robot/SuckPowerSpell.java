@@ -12,19 +12,19 @@ import rznw.map.element.MapElement;
 
 public class SuckPowerSpell extends Spell
 {
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Suck Power");
         MainCharacter character = gameWorld.getMainCharacter();
 
         MapElement characterElement = character.getMapElement();
         Map map = gameWorld.getMap();
-        int radius = 1 + (int)Math.floor(character.getSpellPoints(3) / 2);
+        int radius = 1 + (int)Math.floor(spellPoints / 2);
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            int maxMPStolen = 10 * character.getSpellPoints(3);
+            int maxMPStolen = 10 * spellPoints;
             int MPStolen = Math.min(enemy.getMP(), maxMPStolen);
             System.out.println("Stealing MP: " + MPStolen);
 
@@ -33,7 +33,7 @@ public class SuckPowerSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
         return 10;
     }

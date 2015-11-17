@@ -9,11 +9,11 @@ import rznw.map.element.Wall;
 
 public class RocketJumpSpell extends Spell
 {
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
 
-    public void cast(GameWorld gameWorld, int direction)
+    public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Rocket Jump");
 
@@ -68,10 +68,9 @@ public class RocketJumpSpell extends Spell
         map.setElement(row, column, characterElement);
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(5);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 
     public boolean requiresDirectionInput()

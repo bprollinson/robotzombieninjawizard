@@ -9,21 +9,21 @@ import rznw.map.element.RockWall;
 
 public class RockWallSpell extends Spell
 {
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
 
-    public void cast(GameWorld gameWorld, int direction)
+    public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Rock Wall");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        int wallWidth = 1 + 2 * (int)Math.floor(character.getSpellPoints(0) / 4);
+        int wallWidth = 1 + 2 * (int)Math.floor(spellPoints / 4);
         System.out.println("Wall width: " + wallWidth);
-        int wallDistance = Math.max(1, 5 - (int)Math.floor(character.getSpellPoints(0) / 4));
+        int wallDistance = Math.max(1, 5 - (int)Math.floor(spellPoints / 4));
         System.out.println("Wall distance: " + wallDistance);
-        int wallHP = 10 * character.getSpellPoints(0);
+        int wallHP = 10 * spellPoints;
         System.out.println("Wall HP: " + wallHP);
 
         int deltaRow = 0;
@@ -69,7 +69,7 @@ public class RockWallSpell extends Spell
             deltaRow = 1;
         }
 
-        int sideWidth = (int)Math.floor(character.getSpellPoints(0) / 4);
+        int sideWidth = (int)Math.floor(spellPoints / 4);
 
         for (int i = 1; i <= sideWidth; i++)
         {
@@ -96,10 +96,9 @@ public class RockWallSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(0);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 
     public boolean requiresDirectionInput()

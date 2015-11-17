@@ -18,17 +18,17 @@ public class VitalZapSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
 
-    public void cast(GameWorld gameWorld, int direction)
+    public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Vital Zap");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        int damagePercentage = 5 * character.getSpellPoints(15);
+        int damagePercentage = 5 * spellPoints;
 
         int deltaRow = 0;
         int deltaColumn = 0;
@@ -90,9 +90,8 @@ public class VitalZapSpell extends Spell
         return true;
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(15);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 }

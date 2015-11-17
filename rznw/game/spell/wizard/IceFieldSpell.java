@@ -21,13 +21,13 @@ public class IceFieldSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Ice Field");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        int radius = 1 + (int)Math.floor(character.getSpellPoints(12) / 4);
+        int radius = 1 + (int)Math.floor(spellPoints / 4);
         Map map = gameWorld.getMap();
         MapElement characterElement = character.getMapElement();
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
@@ -48,7 +48,7 @@ public class IceFieldSpell extends Spell
             }
             else
             {
-                int probabilityToFreeze = 5 * character.getSpellPoints(12);
+                int probabilityToFreeze = 5 * spellPoints;
                 int random = RandomNumberGenerator.randomInteger(1, 100);
 
                 if (random <= probabilityToFreeze)
@@ -60,9 +60,8 @@ public class IceFieldSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(12);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 }

@@ -6,16 +6,15 @@ import rznw.map.GameWorld;
 
 public class HealSpell extends Spell
 {
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Heal");
         MainCharacter character = gameWorld.getMainCharacter();
-        character.heal(10 * character.getSpellPoints(13));
+        character.heal(10 * spellPoints);
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(13);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 }

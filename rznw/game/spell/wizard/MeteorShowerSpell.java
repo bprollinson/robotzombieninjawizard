@@ -21,14 +21,14 @@ public class MeteorShowerSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Meteor Shower");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        int radius = 1 + (int)Math.floor(character.getSpellPoints(1) / 4);
-        int hitProbability = 5 * character.getSpellPoints(1);
+        int radius = 1 + (int)Math.floor(spellPoints / 4);
+        int hitProbability = 5 * spellPoints;
 
         Map map = gameWorld.getMap();
         MapElement characterElement = character.getMapElement();
@@ -45,7 +45,7 @@ public class MeteorShowerSpell extends Spell
                 System.out.println("Meteor hit!");
 
                 System.out.println("Before: " + enemy.getHP());
-                int damage = 50 + 50 * character.getSpellPoints(1);
+                int damage = 50 + 50 * spellPoints;
                 enemy.damage(damage);
                 System.out.println("After: " + enemy.getHP());
 
@@ -63,9 +63,8 @@ public class MeteorShowerSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(1);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 }

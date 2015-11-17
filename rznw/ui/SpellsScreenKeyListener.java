@@ -33,6 +33,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         {
             SpellFactory spellFactory = this.gameWorld.getMainCharacter().getSpellFactory();
             Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
+            int spellPoints = this.gameWorld.getMainCharacter().getSpellPoints(this.state.getEntryNumber());
 
             switch (event.getKeyCode())
             {
@@ -40,32 +41,32 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 case KeyEvent.VK_NUMPAD8:
                 case KeyEvent.VK_KP_UP:
                     System.out.println("Casting upward");
-                    spell.cast(this.gameWorld, Spell.DIRECTION_UP);
+                    spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_UP);
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_NUMPAD2:
                 case KeyEvent.VK_KP_DOWN:
                     System.out.println("Casting downward");
-                    spell.cast(this.gameWorld, Spell.DIRECTION_DOWN);
+                    spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_DOWN);
                     break;
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_NUMPAD4:
                 case KeyEvent.VK_KP_LEFT:
                     System.out.println("Casting leftward");
-                    spell.cast(this.gameWorld, Spell.DIRECTION_LEFT);
+                    spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_LEFT);
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_NUMPAD6:
                 case KeyEvent.VK_KP_RIGHT:
                     System.out.println("Casting rightward");
-                    spell.cast(this.gameWorld, Spell.DIRECTION_RIGHT);
+                    spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_RIGHT);
                     break;
                 default:
                     return;
             }
 
             MainCharacter character = gameWorld.getMainCharacter();
-            int MPCost = spell.getMPCost(character);
+            int MPCost = spell.getMPCost(character, spellPoints);
             character.setMP(character.getMP() - MPCost);
 
             return;
@@ -93,8 +94,9 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                         }
                         else
                         {
-                            spell.cast(gameWorld);
-                            int MPCost = spell.getMPCost(character);
+                            int points = this.gameWorld.getMainCharacter().getSpellPoints(this.state.getEntryNumber());
+                            spell.cast(gameWorld, points);
+                            int MPCost = spell.getMPCost(character, points);
                             character.setMP(character.getMP() - MPCost);
                             this.spellCast = true;
                         }

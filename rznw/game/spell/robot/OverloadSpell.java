@@ -20,7 +20,7 @@ public class OverloadSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Overload");
         MainCharacter character = gameWorld.getMainCharacter();
@@ -32,7 +32,7 @@ public class OverloadSpell extends Spell
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             System.out.println("Before: " + enemy.getHP());
-            int damage = 100 + 20 * character.getSpellPoints(2);
+            int damage = 100 + 20 * spellPoints;
             enemy.damage(damage);
             System.out.println("After: " + enemy.getHP());
 
@@ -47,9 +47,8 @@ public class OverloadSpell extends Spell
         character.damage(50);
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(2);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 }

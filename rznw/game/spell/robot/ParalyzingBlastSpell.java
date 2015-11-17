@@ -19,17 +19,17 @@ public class ParalyzingBlastSpell extends Spell
         this.killBonusGranter = new KillBonusGranter();
     }
 
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
 
-    public void cast(GameWorld gameWorld, int direction)
+    public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Paralyzing Blast");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        int damage = 20 + 10 * character.getSpellPoints(7);
+        int damage = 20 + 10 * spellPoints;
 
         int deltaRow = 0;
         int deltaColumn = 0;
@@ -83,7 +83,7 @@ public class ParalyzingBlastSpell extends Spell
                 }
                 else
                 {
-                    int probabilityToFreeze = 5 * character.getSpellPoints(7);
+                    int probabilityToFreeze = 5 * spellPoints;
                     int random = RandomNumberGenerator.randomInteger(1, 100);
 
                     if (random <= probabilityToFreeze)
@@ -96,10 +96,9 @@ public class ParalyzingBlastSpell extends Spell
         }
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(7);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 
     public boolean requiresDirectionInput()

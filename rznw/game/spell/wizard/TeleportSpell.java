@@ -18,13 +18,13 @@ import rznw.map.element.Void;
 
 public class TeleportSpell extends Spell
 {
-    public void cast(GameWorld gameWorld)
+    public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Teleport");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
-        MapElement newPositionElement = this.getNewPositionElement(gameWorld);
+        MapElement newPositionElement = this.getNewPositionElement(gameWorld, spellPoints);
 
         Map map = gameWorld.getMap();
         int oldRow = character.getMapElement().getRow();
@@ -38,13 +38,12 @@ public class TeleportSpell extends Spell
         map.setElementVisited(character, newPositionElement.getRow(), newPositionElement.getColumn());
     }
 
-    public int getMPCost(MainCharacter character)
+    public int getMPCost(MainCharacter character, int spellPoints)
     {
-        int spellLevel = character.getSpellPoints(9);
-        return Math.max(200 - 10 * spellLevel, 1);
+        return Math.max(200 - 10 * spellPoints, 1);
     }
 
-    private MapElement getNewPositionElement(GameWorld gameWorld)
+    private MapElement getNewPositionElement(GameWorld gameWorld, int spellPoints)
     {
         HashMap<MapElement, Double> minDistanceMap = new HashMap<MapElement, Double>();
 
@@ -69,7 +68,7 @@ public class TeleportSpell extends Spell
             }
         });
 
-        double positionPercentage = Math.floor(50 + 50 * Math.min(gameWorld.getMainCharacter().getSpellPoints(9) / 20.0, 1));
+        double positionPercentage = Math.floor(50 + 50 * Math.min(spellPoints / 20.0, 1));
         System.out.println("position percentage: " + positionPercentage);
         int position = (int)Math.floor(positionPercentage / 100 * (minDistanceList.size() - 1));
 
