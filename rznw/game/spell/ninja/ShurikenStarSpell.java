@@ -1,7 +1,6 @@
 package rznw.game.spell.ninja;
 
 import rznw.game.Character;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -12,13 +11,6 @@ import rznw.map.element.Projectile;
 
 public class ShurikenStarSpell extends Spell
 {
-    private KillBonusGranter killBonusGranter;
-
-    public ShurikenStarSpell()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Shuriken Star");
@@ -57,12 +49,6 @@ public class ShurikenStarSpell extends Spell
                         int damage = 60 + 15 * spellPoints;
                         Character enemy = ((EnemyMapElement)collisionElement).getCharacter();
                         enemy.damage(damage);
-
-                        if (enemy.isDead())
-                        {
-                            this.killBonusGranter.grantKillBonuses(character, enemy);
-                            map.setElement(collisionElement.getRow(), collisionElement.getColumn(), null);
-                        }
                     } else {
                         System.out.println("Shuriken Star miss: " + collisionElement.getRow() + "," + collisionElement.getColumn());
                     }

@@ -2,7 +2,6 @@ package rznw.turn;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
@@ -13,13 +12,6 @@ import rznw.turn.positionchange.PositionChange;
 
 public class CollisionHandler
 {
-    private KillBonusGranter killBonusGranter;
-
-    public CollisionHandler()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public boolean handleCollision(Character character, Map map, PositionChange positionChange)
     {
         int newRow = positionChange.getFinalRow();
@@ -118,10 +110,5 @@ public class CollisionHandler
         }
 
         otherCharacter.damage(character.getDamage());
-        if (otherCharacter.isDead() && otherCharacter instanceof EnemyCharacter)
-        {
-            this.killBonusGranter.grantKillBonuses(character, otherCharacter);
-            map.setElement(collisionTest.getRow(), collisionTest.getColumn(), null);
-        }
     }
 }

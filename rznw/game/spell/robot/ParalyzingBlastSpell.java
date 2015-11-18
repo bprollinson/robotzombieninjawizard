@@ -1,7 +1,6 @@
 package rznw.game.spell.robot;
 
 import rznw.game.Character;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -12,13 +11,6 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ParalyzingBlastSpell extends Spell
 {
-    private KillBonusGranter killBonusGranter;
-
-    public ParalyzingBlastSpell()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
@@ -76,12 +68,7 @@ public class ParalyzingBlastSpell extends Spell
                 enemy.damage(damage);
                 System.out.println("After: " + enemy.getHP());
 
-                if (enemy.isDead())
-                {
-                    this.killBonusGranter.grantKillBonuses(character, enemy);
-                    map.setElement(element.getRow(), element.getColumn(), null);
-                }
-                else
+                if (!enemy.isDead())
                 {
                     int probabilityToFreeze = 5 * spellPoints;
 

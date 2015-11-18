@@ -6,9 +6,11 @@ import java.util.Iterator;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
 import rznw.map.element.TrapMapElement;
@@ -24,11 +26,13 @@ public class MainCharacterTurnHandler
 
     private GameWorld gameWorld;
     private CharacterSummaryRenderer renderer;
+    private KillBonusGranter killBonusGranter;
 
     public MainCharacterTurnHandler(GameWorld gameWorld, CharacterSummaryRenderer renderer)
     {
         this.gameWorld = gameWorld;
         this.renderer = renderer;
+        this.killBonusGranter = new KillBonusGranter();
     }
 
     public void handleTurn(KeyEvent event)
@@ -67,6 +71,8 @@ public class MainCharacterTurnHandler
         {
             this.handleMainCharacterRevival();
         }
+
+        this.handlePostEnemyTurns();
 
         this.renderer.render(this.gameWorld);
     }
@@ -199,6 +205,29 @@ public class MainCharacterTurnHandler
             }
 
             enemy.getStatusEffects().processTurn();
+        }
+    }
+
+    public void handlePostEnemyTurns()
+    {
+        Map map = this.gameWorld.getMap();
+        Character character = this.gameWorld.getMainCharacter();
+
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                MapElement element = map.getElement(row, column);
+                if (element instanceof EnemyMapElement)
+                {
+                    Character enemy = ((EnemyMapElement)element).getCharacter();
+                    if (enemy.isDead())
+                    {
+                        this.killBonusGranter.grantKillBonuses(character, enemy);
+                        map.setElement(element.getRow(), element.getColumn(), null);
+                    }
+                }
+            }
         }
     }
 

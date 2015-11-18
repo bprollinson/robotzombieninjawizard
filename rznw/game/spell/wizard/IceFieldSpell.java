@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -14,13 +13,6 @@ import rznw.utility.RandomNumberGenerator;
 
 public class IceFieldSpell extends Spell
 {
-    private KillBonusGranter killBonusGranter;
-
-    public IceFieldSpell()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Ice Field");
@@ -40,13 +32,7 @@ public class IceFieldSpell extends Spell
             enemy.damage(damage);
             System.out.println("After: " + enemy.getHP());
 
-            if (enemy.isDead())
-            {
-                this.killBonusGranter.grantKillBonuses(character, enemy);
-                MapElement enemyMapElement = enemy.getMapElement();
-                map.setElement(enemyMapElement.getRow(), enemyMapElement.getColumn(), null);
-            }
-            else
+            if (!enemy.isDead())
             {
                 int probabilityToFreeze = 5 * spellPoints;
 

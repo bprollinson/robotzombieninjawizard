@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -15,13 +14,6 @@ import rznw.map.element.MapElement;
 
 public class RocketShotSpell extends Spell
 {
-    private KillBonusGranter killBonusGranter;
-
-    public RocketShotSpell()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
@@ -78,12 +70,6 @@ public class RocketShotSpell extends Spell
                 System.out.println("Before: " + enemy.getHP());
                 enemy.damage(damage);
                 System.out.println("After: " + enemy.getHP());
-
-                if (enemy.isDead())
-                {
-                    this.killBonusGranter.grantKillBonuses(character, enemy);
-                    map.setElement(element.getRow(), element.getColumn(), null);
-                }
             }
 
             if (element != null)
@@ -100,13 +86,6 @@ public class RocketShotSpell extends Spell
                     System.out.println("Before: " + enemy.getHP());
                     enemy.damage(damage);
                     System.out.println("After: " + enemy.getHP());
-
-                    if (enemy.isDead())
-                    {
-                        this.killBonusGranter.grantKillBonuses(character, enemy);
-                        MapElement enemyMapElement = enemy.getMapElement();
-                        map.setElement(enemyMapElement.getRow(), enemyMapElement.getColumn(), null);
-                    }
                 }
             }
         }

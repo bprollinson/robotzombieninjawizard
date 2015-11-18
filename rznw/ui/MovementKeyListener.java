@@ -32,6 +32,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
         if (previousState == DispatchKeyListener.STATE_INVENTORY_SCREEN || previousState == DispatchKeyListener.STATE_SPELLS_SCREEN || previousState == DispatchKeyListener.STATE_SKILLS_SCREEN)
         {
             this.turnHandler.handleEnemyTurns();
+            this.turnHandler.handlePostEnemyTurns();
         }
 
         MainCharacter character = gameWorld.getMainCharacter();

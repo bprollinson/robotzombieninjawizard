@@ -1,7 +1,6 @@
 package rznw.game.spell.wizard;
 
 import rznw.game.Character;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -12,13 +11,6 @@ import rznw.map.element.Wall;
 
 public class HeatRaySpell extends Spell
 {
-    private KillBonusGranter killBonusGranter;
-
-    public HeatRaySpell()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints)
     {
     }
@@ -78,12 +70,6 @@ public class HeatRaySpell extends Spell
                 System.out.println("Before: " + enemy.getHP());
                 enemy.damage(damage);
                 System.out.println("After: " + enemy.getHP());
-
-                if (enemy.isDead())
-                {
-                    this.killBonusGranter.grantKillBonuses(character, enemy);
-                    map.setElement(element.getRow(), element.getColumn(), null);
-                }
             }
         }
     }

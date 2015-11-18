@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -13,13 +12,6 @@ import rznw.map.element.MapElement;
 
 public class EarthquakeSpell extends Spell
 {
-    private KillBonusGranter killBonusGranter;
-
-    public EarthquakeSpell()
-    {
-        this.killBonusGranter = new KillBonusGranter();
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Earthquake");
@@ -36,13 +28,6 @@ public class EarthquakeSpell extends Spell
             int damage = 50 + 10 * spellPoints;
             enemy.damage(damage);
             System.out.println("After: " + enemy.getHP());
-
-            if (enemy.isDead())
-            {
-                this.killBonusGranter.grantKillBonuses(character, enemy);
-                MapElement enemyMapElement = enemy.getMapElement();
-                map.setElement(enemyMapElement.getRow(), enemyMapElement.getColumn(), null);
-            }
         }
     }
 
