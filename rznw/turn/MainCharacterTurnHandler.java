@@ -136,9 +136,8 @@ public class MainCharacterTurnHandler
                 properTrap.spring();
 
                 int disarmProbability = 5 * character.getSkillPoints(11);
-                int random = RandomNumberGenerator.randomInteger(1, 100);
 
-                if (random <= disarmProbability)
+                if (RandomNumberGenerator.rollSucceeds(disarmProbability))
                 {
                     System.out.println("Disarmed trap");
                 }
@@ -173,8 +172,7 @@ public class MainCharacterTurnHandler
         int revivalProbability = 5 * character.getStatPoints(2);
         System.out.println("Revival probability: " + revivalProbability);
 
-        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
-        if (randomNumber <= revivalProbability)
+        if (RandomNumberGenerator.rollSucceeds(revivalProbability))
         {
             System.out.println("Reviving");
             character.setHP(1);

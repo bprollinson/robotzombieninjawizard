@@ -76,8 +76,7 @@ public class Map
                 int trapRevealProbability = 5 * character.getStatPoints(7);
                 System.out.println("Trap reveal probability: " + trapRevealProbability);
 
-                int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
-                if (randomNumber <= trapRevealProbability)
+                if (RandomNumberGenerator.rollSucceeds(trapRevealProbability))
                 {
                     System.out.println("Detected the trap!");
                     ((TrapMapElement)backgroundElement).find();

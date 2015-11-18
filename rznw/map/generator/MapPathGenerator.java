@@ -86,8 +86,7 @@ public class MapPathGenerator
             {
                 if (!pathCollection.isDirectlyAdjacent(i, j))
                 {
-                    int random = RandomNumberGenerator.randomInteger(1, 100);
-                    if (random <= MapPathGenerator.RANDOM_PATH_PROBABILITY)
+                    if (RandomNumberGenerator.rollSucceeds(MapPathGenerator.RANDOM_PATH_PROBABILITY))
                     {
                         this.addPath(map, rooms, pathCollection, i, j);
                     }

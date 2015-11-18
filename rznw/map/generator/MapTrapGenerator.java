@@ -21,9 +21,7 @@ public class MapTrapGenerator
             {
                 for (int column = room.getStartX() + 1; column < room.getEndX(); column++)
                 {
-                    int random = RandomNumberGenerator.randomInteger(1, 100);
-
-                    if (map.getBackgroundElement(row, column) == null && random <= this.getTrapProbability(map.getLevel()))
+                    if (map.getBackgroundElement(row, column) == null && RandomNumberGenerator.rollSucceeds(this.getTrapProbability(map.getLevel())))
                     {
                         TrapMapElement trap = new TrapMapElement(row, column);
                         map.setBackgroundElement(row, column, trap);

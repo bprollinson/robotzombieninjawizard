@@ -36,11 +36,9 @@ public class MeteorShowerSpell extends Spell
 
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
-            int random = RandomNumberGenerator.randomInteger(1, 100);
-
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
 
-            if (random <= hitProbability)
+            if (RandomNumberGenerator.rollSucceeds(hitProbability))
             {
                 System.out.println("Meteor hit!");
 

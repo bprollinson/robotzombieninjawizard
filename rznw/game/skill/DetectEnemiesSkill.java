@@ -24,8 +24,7 @@ public class DetectEnemiesSkill extends Skill
         System.out.println("Using Detect Enemies");
 
         int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkillPoints(5);
-        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
-        if (randomNumber > successProbability)
+        if (!RandomNumberGenerator.rollSucceeds(successProbability))
         {
             System.out.println("Failure");
             return;

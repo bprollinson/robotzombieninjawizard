@@ -22,8 +22,7 @@ public class FindStairsSkill extends Skill
 
         MainCharacter character = gameWorld.getMainCharacter();
         int successProbability = 20 + 5 * character.getSkillPoints(7);
-        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
-        if (randomNumber > successProbability)
+        if (!RandomNumberGenerator.rollSucceeds(successProbability))
         {
             System.out.println("Failure");
             return;

@@ -84,9 +84,8 @@ public class ParalyzingBlastSpell extends Spell
                 else
                 {
                     int probabilityToFreeze = 5 * spellPoints;
-                    int random = RandomNumberGenerator.randomInteger(1, 100);
 
-                    if (random <= probabilityToFreeze)
+                    if (RandomNumberGenerator.rollSucceeds(probabilityToFreeze))
                     {
                         System.out.println("Enemy paralyzed");
                         enemy.getStatusEffects().freeze();

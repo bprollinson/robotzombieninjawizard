@@ -288,18 +288,16 @@ public abstract class MainCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
         int toHitPercent = 50 + 2 *  this.getStatPoints(4);
 
-        return randomNumber <= toHitPercent;
+        return RandomNumberGenerator.rollSucceeds(toHitPercent);
     }
 
     public boolean dodgesAttack()
     {
-        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
         int toDodgePercent = 2 *  this.getStatPoints(5);
 
-        return randomNumber <= toDodgePercent;
+        return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
     private int getStepsForHeal()
@@ -346,8 +344,7 @@ public abstract class MainCharacter extends Character
             {
                 int manaRiverProbability = this.getSkillPoints(15);
 
-                int random = RandomNumberGenerator.randomInteger(1, 100);
-                if (random <= manaRiverProbability)
+                if (RandomNumberGenerator.rollSucceeds(manaRiverProbability))
                 {
                     this.MP = this.getMaxMP();
                 }

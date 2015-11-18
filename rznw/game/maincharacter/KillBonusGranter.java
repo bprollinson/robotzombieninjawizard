@@ -60,9 +60,8 @@ public class KillBonusGranter
         if (mainCharacter.getSkillPoints(3) > 0)
         {
             int probability = 5 * mainCharacter.getSkillPoints(3);
-            int random = RandomNumberGenerator.randomInteger(1, 100);
 
-            if (random <= probability)
+            if (RandomNumberGenerator.rollSucceeds(probability))
             {
                 itemGroup = new InventoryItemGroup(new Potion(), 1);
                 mainCharacter.getInventory().addItems(itemGroup);

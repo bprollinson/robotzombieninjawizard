@@ -11,4 +11,11 @@ public class RandomNumberGenerator
 
         return minValue + offset;
     }
+
+    public static boolean rollSucceeds(int probability)
+    {
+        int random = RandomNumberGenerator.randomInteger(1, 100);
+
+        return random <= probability;
+    }
 }
