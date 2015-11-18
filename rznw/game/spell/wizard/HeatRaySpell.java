@@ -59,6 +59,11 @@ public class HeatRaySpell extends Spell
             row += deltaRow;
             column += deltaColumn;
 
+            if (row < 0 || row >= Map.NUM_ROWS || column < 0 || column >= Map.NUM_COLUMNS)
+            {
+                break;
+            }
+
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
