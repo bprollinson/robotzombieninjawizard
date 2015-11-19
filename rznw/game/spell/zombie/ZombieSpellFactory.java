@@ -7,6 +7,12 @@ public class ZombieSpellFactory extends SpellFactory
 {
     public Spell getSpell(int spellIndex)
     {
-        return null;
+        switch (spellIndex)
+        {
+            case 4:
+                return new FeedFleshSpell();
+            default:
+                return null;
+        }
     }
 }
