@@ -58,20 +58,8 @@ public class MainCharacterTurnHandler
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
 
-        this.handleTrapCollision();
-
-        if (!character.isDead())
-        {
-            this.handleMainCharacterRegeneration();
-        }
-
+        this.handlePostCharacterTurn();
         this.handleEnemyTurns();
-
-        if (character.isDead())
-        {
-            this.handleMainCharacterRevival();
-        }
-
         this.handlePostEnemyTurns();
 
         this.renderer.render(this.gameWorld);
@@ -119,10 +107,21 @@ public class MainCharacterTurnHandler
         map.setElement(newRow, newColumn, mapElement);
         mapElement.setRow(newRow);
         mapElement.setColumn(newColumn);
+    }
 
-        if (character instanceof MainCharacter)
+    public void handlePostCharacterTurn()
+    {
+        Map map = this.gameWorld.getMap();
+        Character character = this.gameWorld.getMainCharacter();
+        MapElement characterMapElement = character.getMapElement();
+
+        map.setElementVisited((MainCharacter)character, characterMapElement.getRow(), characterMapElement.getColumn());
+
+        this.handleTrapCollision();
+
+        if (!character.isDead())
         {
-            map.setElementVisited((MainCharacter)character, newRow, newColumn);
+            this.handleMainCharacterRegeneration();
         }
     }
 
@@ -212,6 +211,11 @@ public class MainCharacterTurnHandler
     {
         Map map = this.gameWorld.getMap();
         Character character = this.gameWorld.getMainCharacter();
+
+        if (character.isDead())
+        {
+            this.handleMainCharacterRevival();
+        }
 
         for (int row = 0; row < Map.NUM_ROWS; row++)
         {
