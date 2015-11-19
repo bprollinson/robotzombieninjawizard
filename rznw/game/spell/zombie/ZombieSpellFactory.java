@@ -11,6 +11,8 @@ public class ZombieSpellFactory extends SpellFactory
         {
             case 4:
                 return new FeedFleshSpell();
+            case 6:
+                return new FeedPastSpell();
             default:
                 return null;
         }
