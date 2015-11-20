@@ -9,6 +9,8 @@ public class NinjaSpellFactory extends SpellFactory
     {
         switch (spellIndex)
         {
+            case 0:
+                return new StunStrikeSpell();
             case 5:
                 return new ShurikenStarSpell();
             default:
