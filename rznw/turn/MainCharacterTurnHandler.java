@@ -203,7 +203,7 @@ public class MainCharacterTurnHandler
                 this.handleCharacterTurn(enemyPositionChange, enemy);
             }
 
-            enemy.getStatusEffects().processTurn();
+            enemy.getStatusEffects().processTurn(enemy);
         }
     }
 

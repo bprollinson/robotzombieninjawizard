@@ -13,6 +13,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new FeedFleshSpell();
             case 6:
                 return new FeedPastSpell();
+            case 9:
+                return new PoisonCloudSpell();
             default:
                 return null;
         }
