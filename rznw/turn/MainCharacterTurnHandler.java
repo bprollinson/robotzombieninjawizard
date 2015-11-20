@@ -10,6 +10,7 @@ import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.element.Blotch;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
@@ -201,6 +202,15 @@ public class MainCharacterTurnHandler
                 EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
 
                 this.handleCharacterTurn(enemyPositionChange, enemy);
+            }
+
+            Map map = this.gameWorld.getMap();
+            MapElement enemyMapElement = enemy.getMapElement();
+            MapElement backgroundElement = map.getBackgroundElement(enemyMapElement.getRow(), enemyMapElement.getColumn());
+            if (backgroundElement instanceof Blotch)
+            {
+                System.out.println("Poisoning enemy from blotch");
+                enemy.getStatusEffects().poison();
             }
 
             enemy.getStatusEffects().processTurn(enemy);

@@ -15,6 +15,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new FeedPastSpell();
             case 9:
                 return new PoisonCloudSpell();
+            case 11:
+                return new BlotchSpell();
             default:
                 return null;
         }
