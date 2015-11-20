@@ -9,6 +9,8 @@ public class RobotSpellFactory extends SpellFactory
     {
         switch (spellIndex)
         {
+            case 1:
+                return new ElectricFieldSpell();
             case 2:
                 return new OverloadSpell();
             case 3:
