@@ -13,6 +13,8 @@ public class NinjaSpellFactory extends SpellFactory
                 return new StunStrikeSpell();
             case 1:
                 return new RoundhouseStrikeSpell();
+            case 2:
+                return new PoisonStrikeSpell();
             case 5:
                 return new ShurikenStarSpell();
             default:
