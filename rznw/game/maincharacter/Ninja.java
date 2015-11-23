@@ -39,7 +39,7 @@ public class Ninja extends MainCharacter
         "Throws a projectile in a straight line. When this collides with an enemy, that enemy damaged and is pushed back.",
         "Throws a projectile in all eight directions.",
         "Throws a projectile in a straight line. When this collides with an enemy, it explodes, confusing all enemies within a radius of the impact.",
-        "Throws a projectile in a straight line. When this collides with an enemy, it explodes, causing damage to all enemies within a radius of the impact, and has a chance to confuse those enemies.",
+        "Throws a projectile in a straight line. When this collides with an enemy, it explodes, causing damage to all enemies within a radius of the impact, and has a chance to stun those enemies.",
         "Has a chance to steal gold from an ememy within melee combat range.",
         "Has a chance to steal an item from an enemy within melee combat range.",
         "Has a chance to steal a piece of equipment from an enemy within melee combat range.",
