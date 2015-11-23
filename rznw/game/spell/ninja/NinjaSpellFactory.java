@@ -19,6 +19,8 @@ public class NinjaSpellFactory extends SpellFactory
                 return new PinStrikeSpell();
             case 5:
                 return new ShurikenStarSpell();
+            case 7:
+                return new StunBombSpell();
             default:
                 return null;
         }
