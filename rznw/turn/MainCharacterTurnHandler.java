@@ -243,6 +243,8 @@ public class MainCharacterTurnHandler
                 }
             }
         }
+
+        character.getStatusEffects().processTurn(character);
     }
 
     public void renderSummary()

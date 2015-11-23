@@ -369,6 +369,14 @@ public abstract class MainCharacter extends Character
             System.out.println("Padding damage: " + padding);
         }
 
+        if (this.getStatusEffects().isReversingPain())
+        {
+            System.out.println("Reversing pain!");
+
+            this.HP += damage - padding;
+            return;
+        }
+
         this.HP -= damage - padding;
 
         int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(13) * (damage - padding));

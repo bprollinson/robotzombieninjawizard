@@ -20,6 +20,7 @@ public abstract class Character
     {
         this.HP = HP;
         this.MP = MP;
+        this.statusEffects = new StatusEffects();
     }
 
     public MapElement getMapElement()
