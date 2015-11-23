@@ -21,6 +21,8 @@ public class NinjaSpellFactory extends SpellFactory
                 return new ShurikenStarSpell();
             case 7:
                 return new StunBombSpell();
+            case 8:
+                return new StealGoldSpell();
             default:
                 return null;
         }
