@@ -23,6 +23,8 @@ public class NinjaSpellFactory extends SpellFactory
                 return new StunBombSpell();
             case 8:
                 return new StealGoldSpell();
+            case 11:
+                return new StealExperienceSpell();
             case 14:
                 return new ReversePainSpell();
             default:
