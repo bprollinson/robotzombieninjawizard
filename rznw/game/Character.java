@@ -40,7 +40,7 @@ public abstract class Character
         this.MP = Math.min(this.MP + MP, this.getMaxMP());
     }
 
-    public void damage(int damage)
+    public void damage(int damage, Character damageSource)
     {
         this.HP -= damage;
     }

@@ -29,7 +29,7 @@ public class IceFieldSpell extends Spell
 
             System.out.println("Before: " + enemy.getHP());
             int damage = 20;
-            enemy.damage(damage);
+            enemy.damage(damage, character);
             System.out.println("After: " + enemy.getHP());
 
             if (!enemy.isDead())

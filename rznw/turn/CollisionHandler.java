@@ -109,6 +109,6 @@ public class CollisionHandler
             System.out.println("Enemy character melee hit!");
         }
 
-        otherCharacter.damage(character.getDamage());
+        otherCharacter.damage(character.getDamage(), character);
     }
 }

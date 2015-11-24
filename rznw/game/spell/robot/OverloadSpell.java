@@ -25,11 +25,11 @@ public class OverloadSpell extends Spell
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             System.out.println("Before: " + enemy.getHP());
             int damage = 100 + 20 * spellPoints;
-            enemy.damage(damage);
+            enemy.damage(damage, character);
             System.out.println("After: " + enemy.getHP());
         }
 
-        character.damage(50);
+        character.damage(50, character);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

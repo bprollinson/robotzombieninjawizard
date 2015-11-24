@@ -9,6 +9,7 @@ public class StatusEffects
     boolean frozen = false;
     boolean poisoned = false;
     boolean isReversingPain = false;
+    boolean deathStriking = false;
 
     public void freeze()
     {
@@ -35,6 +36,21 @@ public class StatusEffects
         return this.isReversingPain;
     }
 
+    public void enableDeathStrike()
+    {
+        this.deathStriking = true;
+    }
+
+    public boolean isDeathStriking()
+    {
+        return this.deathStriking;
+    }
+
+    public void disableDeathStrike()
+    {
+        this.deathStriking = false;
+    }
+
     public void processTurn(Character character)
     {
         this.frozen = false;
@@ -42,7 +58,7 @@ public class StatusEffects
         if (this.poisoned)
         {
             System.out.println("Damaging enemy due to poison");
-            character.damage(StatusEffects.POISON_DAMAGE);
+            character.damage(StatusEffects.POISON_DAMAGE, null);
         }
 
         this.isReversingPain = false;

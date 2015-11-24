@@ -68,7 +68,7 @@ public class RocketShotSpell extends Spell
 
                 Character enemy = ((EnemyMapElement)element).getCharacter();
                 System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage);
+                enemy.damage(damage, character);
                 System.out.println("After: " + enemy.getHP());
             }
 
@@ -84,7 +84,7 @@ public class RocketShotSpell extends Spell
 
                     EnemyCharacter enemy = (EnemyCharacter)iterator.next();
                     System.out.println("Before: " + enemy.getHP());
-                    enemy.damage(damage);
+                    enemy.damage(damage, character);
                     System.out.println("After: " + enemy.getHP());
                 }
             }

@@ -150,7 +150,7 @@ public class MainCharacterTurnHandler
                 else
                 {
                     System.out.println("It's a trap!");
-                    character.damage(20);
+                    character.damage(20, null);
                 }
             }
         }

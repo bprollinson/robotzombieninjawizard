@@ -1,6 +1,7 @@
 package rznw.game.maincharacter;
 
 import rznw.game.Character;
+import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -359,7 +360,7 @@ public abstract class MainCharacter extends Character
         return 2 + this.getStatPoints(6);
     }
 
-    public void damage(int damage)
+    public void damage(int damage, Character damageSource)
     {
         int paddingPercent = 2 * this.getStatPoints(9);
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
@@ -384,6 +385,20 @@ public abstract class MainCharacter extends Character
         {
             System.out.println("Healing MP from damage: " + MPFromDamage);
             this.healMP(MPFromDamage);
+        }
+
+        if (this.getStatusEffects().isDeathStriking() && damageSource instanceof EnemyCharacter)
+        {
+            System.out.println("Checking death strike");
+
+            int deathStrikeProbability = 5 * this.getSpellPoints(15);
+            if (RandomNumberGenerator.rollSucceeds(deathStrikeProbability))
+            {
+                System.out.println("Killing with death strike");
+                damageSource.setHP(0);
+            }
+
+            this.getStatusEffects().disableDeathStrike();
         }
     }
 

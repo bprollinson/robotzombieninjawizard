@@ -26,7 +26,7 @@ public class EarthquakeSpell extends Spell
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             System.out.println("Before: " + enemy.getHP());
             int damage = 50 + 10 * spellPoints;
-            enemy.damage(damage);
+            enemy.damage(damage, character);
             System.out.println("After: " + enemy.getHP());
         }
     }

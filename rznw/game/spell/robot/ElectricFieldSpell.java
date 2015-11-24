@@ -62,7 +62,7 @@ public class ElectricFieldSpell extends Spell
 
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             System.out.println("Enemy HP before: " + enemy.getHP());
-            enemy.damage(damage);
+            enemy.damage(damage, gameWorld.getMainCharacter());
             System.out.println("Enemy HP after: " + enemy.getHP());
         }
     }

@@ -27,6 +27,8 @@ public class NinjaSpellFactory extends SpellFactory
                 return new StealExperienceSpell();
             case 14:
                 return new ReversePainSpell();
+            case 15:
+                return new DeathStrikeSpell();
             default:
                 return null;
         }

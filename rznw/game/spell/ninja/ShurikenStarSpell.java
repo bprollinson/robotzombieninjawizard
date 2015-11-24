@@ -48,7 +48,7 @@ public class ShurikenStarSpell extends Spell
                         System.out.println("Shuriken Star hit: " + collisionElement.getRow() + "," + collisionElement.getColumn());
                         int damage = 60 + 15 * spellPoints;
                         Character enemy = ((EnemyMapElement)collisionElement).getCharacter();
-                        enemy.damage(damage);
+                        enemy.damage(damage, character);
                     } else {
                         System.out.println("Shuriken Star miss: " + collisionElement.getRow() + "," + collisionElement.getColumn());
                     }
