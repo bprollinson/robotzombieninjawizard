@@ -4,11 +4,19 @@ import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
+import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
     public EnemyAIBasedPositionChange getPositionChange(MainCharacter character)
     {
+        if (this.getStatusEffects().isConfused())
+        {
+            System.out.println("Enemy is confused!");
+
+            return this.getRandomPositionChange();
+        }
+
         int enemyRow = this.getMapElement().getRow();
         int enemyColumn = this.getMapElement().getColumn();
 
@@ -36,6 +44,23 @@ public abstract class EnemyCharacter extends Character
         }
 
         return new EnemyAIBasedPositionChange(this, deltaRow, deltaColumn);
+    }
+
+    public EnemyAIBasedPositionChange getRandomPositionChange()
+    {
+        EnemyAIBasedPositionChange possibleChanges[] = {
+           new EnemyAIBasedPositionChange(this, -1, -1),
+           new EnemyAIBasedPositionChange(this, -1, 0),
+           new EnemyAIBasedPositionChange(this, -1, 1),
+           new EnemyAIBasedPositionChange(this, 0, -1),
+           new EnemyAIBasedPositionChange(this, 0, 1),
+           new EnemyAIBasedPositionChange(this, 1, -1),
+           new EnemyAIBasedPositionChange(this, 1, 0),
+           new EnemyAIBasedPositionChange(this, 1, 1)
+        };
+
+        int randomPosition = RandomNumberGenerator.randomInteger(0, possibleChanges.length - 1);
+        return possibleChanges[randomPosition];
     }
 
     public int getMaxHP()

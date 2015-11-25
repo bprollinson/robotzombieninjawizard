@@ -10,6 +10,7 @@ public class StatusEffects
     boolean poisoned = false;
     boolean isReversingPain = false;
     boolean deathStriking = false;
+    int confuseTurns = 0;
 
     public void freeze()
     {
@@ -51,6 +52,16 @@ public class StatusEffects
         this.deathStriking = false;
     }
 
+    public void confuse()
+    {
+        this.confuseTurns = 3;
+    }
+
+    public boolean isConfused()
+    {
+        return this.confuseTurns > 0;
+    }
+
     public void processTurn(Character character)
     {
         this.frozen = false;
@@ -62,5 +73,10 @@ public class StatusEffects
         }
 
         this.isReversingPain = false;
+
+        if (this.confuseTurns > 0)
+        {
+            this.confuseTurns--;
+        }
     }
 }
