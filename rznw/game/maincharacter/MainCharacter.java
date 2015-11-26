@@ -387,6 +387,24 @@ public abstract class MainCharacter extends Character
             this.healMP(MPFromDamage);
         }
 
+        if (this.getStatusEffects().isCounterstriking() && damageSource instanceof EnemyCharacter)
+        {
+            System.out.println("Checking counterstrike");
+
+            int counterstrikeProbability = 10 * this.getSpellPoints(13);
+            if (RandomNumberGenerator.rollSucceeds(counterstrikeProbability))
+            {
+                System.out.println("Damaging with counterstrike");
+
+                int counterstrikeDamage = 10 * this.getSpellPoints(13);
+                System.out.println("Enemy hp before: " + damageSource.getHP());
+                damageSource.damage(counterstrikeDamage, this);
+                System.out.println("Enemy hp after: " + damageSource.getHP());
+            }
+
+            this.getStatusEffects().disableCounterstrike();
+        }
+
         if (this.getStatusEffects().isDeathStriking() && damageSource instanceof EnemyCharacter)
         {
             System.out.println("Checking death strike");

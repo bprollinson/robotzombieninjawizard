@@ -10,6 +10,7 @@ public class StatusEffects
     boolean poisoned = false;
     boolean isReversingPain = false;
     boolean deathStriking = false;
+    boolean counterstriking = false;
     int confuseTurns = 0;
 
     public void freeze()
@@ -50,6 +51,21 @@ public class StatusEffects
     public void disableDeathStrike()
     {
         this.deathStriking = false;
+    }
+
+    public void enableCounterstrike()
+    {
+        this.counterstriking = true;
+    }
+
+    public boolean isCounterstriking()
+    {
+        return this.counterstriking;
+    }
+
+    public void disableCounterstrike()
+    {
+        this.counterstriking = false;
     }
 
     public void confuse()
