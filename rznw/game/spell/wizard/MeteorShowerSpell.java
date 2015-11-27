@@ -36,7 +36,7 @@ public class MeteorShowerSpell extends Spell
 
                 System.out.println("Before: " + enemy.getHP());
                 int damage = 50 + 50 * spellPoints;
-                enemy.damage(damage, character);
+                enemy.damage(damage, character, gameWorld);
                 System.out.println("After: " + enemy.getHP());
             }
             else

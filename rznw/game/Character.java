@@ -1,5 +1,6 @@
 package rznw.game;
 
+import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 
 public abstract class Character
@@ -40,7 +41,7 @@ public abstract class Character
         this.MP = Math.min(this.MP + MP, this.getMaxMP());
     }
 
-    public void damage(int damage, Character damageSource)
+    public void damage(int damage, Character damageSource, GameWorld gameWorld)
     {
         this.HP -= damage;
     }

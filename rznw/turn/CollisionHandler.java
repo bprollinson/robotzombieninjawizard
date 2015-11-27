@@ -8,11 +8,12 @@ import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
+import rznw.map.GameWorld;
 import rznw.turn.positionchange.PositionChange;
 
 public class CollisionHandler
 {
-    public boolean handleCollision(Character character, Map map, PositionChange positionChange)
+    public boolean handleCollision(Character character, Map map, PositionChange positionChange, GameWorld gameWorld)
     {
         int newRow = positionChange.getFinalRow();
         int newColumn = positionChange.getFinalColumn();
@@ -44,7 +45,7 @@ public class CollisionHandler
             return true;
         }
 
-        this.handleCharacterInteraction(character, (CharacterMapElement)collisionTest, map);
+        this.handleCharacterInteraction(character, (CharacterMapElement)collisionTest, map, gameWorld);
 
         return true;
     }
@@ -69,7 +70,7 @@ public class CollisionHandler
         return true;
     }
 
-    private void handleCharacterInteraction(Character character, CharacterMapElement collisionTest, Map map)
+    private void handleCharacterInteraction(Character character, CharacterMapElement collisionTest, Map map, GameWorld gameWorld)
     {
         if (!character.meleeAttackHits())
         {
@@ -109,6 +110,6 @@ public class CollisionHandler
             System.out.println("Enemy character melee hit!");
         }
 
-        otherCharacter.damage(character.getDamage(), character);
+        otherCharacter.damage(character.getDamage(), character, gameWorld);
     }
 }

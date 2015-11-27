@@ -93,7 +93,7 @@ public class MainCharacterTurnHandler
         Map map = this.gameWorld.getMap();
 
         CollisionHandler collisionHandler = new CollisionHandler();
-        boolean collided = collisionHandler.handleCollision(character, map, positionChange);
+        boolean collided = collisionHandler.handleCollision(character, map, positionChange, this.gameWorld);
         if (collided)
         {
             return;
@@ -150,7 +150,7 @@ public class MainCharacterTurnHandler
                 else
                 {
                     System.out.println("It's a trap!");
-                    character.damage(20, null);
+                    character.damage(20, null, this.gameWorld);
                 }
             }
         }
@@ -213,7 +213,7 @@ public class MainCharacterTurnHandler
                 enemy.getStatusEffects().poison();
             }
 
-            enemy.getStatusEffects().processTurn(enemy);
+            enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
     }
 
@@ -244,7 +244,7 @@ public class MainCharacterTurnHandler
             }
         }
 
-        character.getStatusEffects().processTurn(character);
+        character.getStatusEffects().processTurn(character, this.gameWorld);
     }
 
     public void renderSummary()

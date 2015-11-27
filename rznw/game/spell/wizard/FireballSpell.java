@@ -68,7 +68,7 @@ public class FireballSpell extends Spell
 
                 Character enemy = ((EnemyMapElement)element).getCharacter();
                 System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character);
+                enemy.damage(damage, character, gameWorld);
                 System.out.println("After: " + enemy.getHP());
             }
 
@@ -84,7 +84,7 @@ public class FireballSpell extends Spell
 
                     EnemyCharacter enemy = (EnemyCharacter)iterator.next();
                     System.out.println("Before: " + enemy.getHP());
-                    enemy.damage(damage, character);
+                    enemy.damage(damage, character, gameWorld);
                     System.out.println("After: " + enemy.getHP());
                 }
             }

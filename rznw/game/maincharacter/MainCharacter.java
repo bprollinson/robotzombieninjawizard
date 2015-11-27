@@ -5,8 +5,10 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-import rznw.game.spell.SpellFactory;
 import rznw.game.skill.SkillFactory;
+import rznw.game.spell.SpellFactory;
+import rznw.game.spell.ninja.SmokeBombSpell;
+import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
 public abstract class MainCharacter extends Character
@@ -360,7 +362,7 @@ public abstract class MainCharacter extends Character
         return 2 + this.getStatPoints(6);
     }
 
-    public void damage(int damage, Character damageSource)
+    public void damage(int damage, Character damageSource, GameWorld gameWorld)
     {
         int paddingPercent = 2 * this.getStatPoints(9);
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
@@ -398,7 +400,7 @@ public abstract class MainCharacter extends Character
 
                 int counterstrikeDamage = 10 * this.getSpellPoints(13);
                 System.out.println("Enemy hp before: " + damageSource.getHP());
-                damageSource.damage(counterstrikeDamage, this);
+                damageSource.damage(counterstrikeDamage, this, gameWorld);
                 System.out.println("Enemy hp after: " + damageSource.getHP());
             }
 
@@ -417,6 +419,20 @@ public abstract class MainCharacter extends Character
             }
 
             this.getStatusEffects().disableDeathStrike();
+        }
+
+        if (this.getStatusEffects().smokeBombEnabled() && damageSource instanceof EnemyCharacter)
+        {
+            System.out.println("Checking smoke bomb");
+
+            int smokeBombProbability = 5 * this.getSpellPoints(12);
+            if (RandomNumberGenerator.rollSucceeds(smokeBombProbability))
+            {
+                System.out.println("Escaping with smoke bomb");
+                SmokeBombSpell.escape(gameWorld);
+            }
+
+            this.getStatusEffects().disableSmokeBomb();
         }
     }
 

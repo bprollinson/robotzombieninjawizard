@@ -55,7 +55,7 @@ public class FeedPastSpell extends Spell
             int experience = (int)Math.floor(experiencePercentage * ((EnemyCharacter)enemy).getExperienceReward() / 100.0);
 
             System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character);
+            enemy.damage(damage, character, gameWorld);
             System.out.println("After: " + enemy.getHP());
 
             System.out.println("Bonus experience: " + experience);

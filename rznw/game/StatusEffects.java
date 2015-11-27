@@ -1,6 +1,7 @@
 package rznw.game;
 
 import rznw.game.Character;
+import rznw.map.GameWorld;
 
 public class StatusEffects
 {
@@ -10,6 +11,7 @@ public class StatusEffects
     boolean poisoned = false;
     boolean isReversingPain = false;
     boolean deathStriking = false;
+    boolean smokeBombEnabled = false;
     boolean counterstriking = false;
     int confuseTurns = 0;
 
@@ -53,6 +55,21 @@ public class StatusEffects
         this.deathStriking = false;
     }
 
+    public void enableSmokeBomb()
+    {
+        this.smokeBombEnabled = true;
+    }
+
+    public boolean smokeBombEnabled()
+    {
+        return this.smokeBombEnabled;
+    }
+
+    public void disableSmokeBomb()
+    {
+        this.smokeBombEnabled = false;
+    }
+
     public void enableCounterstrike()
     {
         this.counterstriking = true;
@@ -78,14 +95,14 @@ public class StatusEffects
         return this.confuseTurns > 0;
     }
 
-    public void processTurn(Character character)
+    public void processTurn(Character character, GameWorld gameWorld)
     {
         this.frozen = false;
 
         if (this.poisoned)
         {
             System.out.println("Damaging enemy due to poison");
-            character.damage(StatusEffects.POISON_DAMAGE, null);
+            character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld);
         }
 
         this.isReversingPain = false;

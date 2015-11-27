@@ -27,6 +27,8 @@ public class NinjaSpellFactory extends SpellFactory
                 return new StealGoldSpell();
             case 11:
                 return new StealExperienceSpell();
+            case 12:
+                return new SmokeBombSpell();
             case 13:
                 return new CounterstrikeSpell();
             case 14:
