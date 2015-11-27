@@ -10,6 +10,7 @@ import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
 import rznw.map.GameWorld;
 import rznw.turn.positionchange.PositionChange;
+import rznw.utility.RandomNumberGenerator;
 
 public class CollisionHandler
 {
@@ -111,5 +112,19 @@ public class CollisionHandler
         }
 
         otherCharacter.damage(character.getDamage(), character, gameWorld);
+
+        if (character.getStatusEffects().signalWeaponEnabled())
+        {
+            System.out.println("Checking signal weapon");
+
+            int confuseProbability = 5 * ((MainCharacter)character).getSpellPoints(14);
+            System.out.println("Confuse probability: " + confuseProbability);
+
+            if (RandomNumberGenerator.rollSucceeds(confuseProbability))
+            {
+                System.out.println("Confuse successful!");
+                otherCharacter.getStatusEffects().confuse();
+            }
+        }
     }
 }

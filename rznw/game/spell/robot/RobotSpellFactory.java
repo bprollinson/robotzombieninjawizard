@@ -23,6 +23,8 @@ public class RobotSpellFactory extends SpellFactory
                 return new RocketShotSpell();
             case 7:
                 return new ParalyzingBlastSpell();
+            case 14:
+                return new SignalWeaponSpell();
             default:
                 return null;
         }

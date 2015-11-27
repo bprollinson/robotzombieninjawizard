@@ -14,6 +14,7 @@ public class StatusEffects
     boolean smokeBombEnabled = false;
     boolean counterstriking = false;
     int confuseTurns = 0;
+    int signalWeaponTurns = 0;
 
     public void freeze()
     {
@@ -95,6 +96,16 @@ public class StatusEffects
         return this.confuseTurns > 0;
     }
 
+    public void enableSignalWeapon(int numTurns)
+    {
+        this.signalWeaponTurns = numTurns;
+    }
+
+    public boolean signalWeaponEnabled()
+    {
+        return this.signalWeaponTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         this.frozen = false;
@@ -110,6 +121,12 @@ public class StatusEffects
         if (this.confuseTurns > 0)
         {
             this.confuseTurns--;
+        }
+
+        if (this.signalWeaponTurns > 0)
+        {
+            System.out.println("Used up one turn of signal weapon");
+            this.signalWeaponTurns--;
         }
     }
 }
