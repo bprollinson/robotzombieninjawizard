@@ -19,6 +19,8 @@ public class WizardSpellFactory extends SpellFactory
                 return new FireballSpell();
             case 6:
                 return new HeatRaySpell();
+            case 8:
+                return new RepelSpell();
             case 9:
                 return new TeleportSpell();
             case 12:

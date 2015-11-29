@@ -1,0 +1,114 @@
+package rznw.game.spell.wizard;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.HashMap;
+
+import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.Spell;
+import rznw.map.GameWorld;
+import rznw.map.Map;
+import rznw.map.element.MapElement;
+
+public class RepelSpell extends Spell
+{
+    public void cast(GameWorld gameWorld, int spellPoints)
+    {
+        System.out.println("Casting Repel");
+
+        MainCharacter character = gameWorld.getMainCharacter();
+        Map map = gameWorld.getMap();
+
+        int radius = 1 + (int)Math.floor(spellPoints / 4);
+        int pushDistance = 1 + (int)Math.floor(spellPoints / 4);
+
+        System.out.println("Repel radius: " + radius);
+        System.out.println("Repel distance: " + pushDistance);
+
+        MapElement characterElement = character.getMapElement();
+        Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
+
+        HashMap<MapElement, Double> distanceMap = new HashMap<MapElement, Double>();
+        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+        {
+            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+            MapElement enemyMapElement = enemy.getMapElement();
+
+            double distance = Math.sqrt(Math.pow(characterElement.getRow() - enemyMapElement.getRow(), 2) + Math.pow(characterElement.getColumn() - enemyMapElement.getColumn(), 2));
+            distanceMap.put(enemyMapElement, distance);
+        }
+
+        List<java.util.Map.Entry<MapElement, Double>> distanceList = new LinkedList<java.util.Map.Entry<MapElement, Double>>(distanceMap.entrySet());
+        Collections.sort(distanceList, new Comparator<java.util.Map.Entry<MapElement, Double>>()
+        {
+            public int compare(java.util.Map.Entry<MapElement, Double> o1, java.util.Map.Entry<MapElement, Double> o2)
+            {
+                return -o1.getValue().compareTo(o2.getValue());
+            }
+        });
+
+        HashMap<MapElement, int[]> directionMap = new HashMap<MapElement, int[]>();
+        for (int i = 0; i < distanceList.size(); i++)
+        {
+            MapElement key = distanceList.get(i).getKey();
+
+            int deltaRow = 0;
+            if (key.getRow() < characterElement.getRow())
+            {
+                deltaRow = -1;
+            }
+            if (key.getRow() > characterElement.getRow())
+            {
+                deltaRow = 1;
+            }
+
+            int deltaColumn = 0;
+            if (key.getColumn() < characterElement.getColumn())
+            {
+                deltaColumn = -1;
+            }
+            if (key.getColumn() > characterElement.getColumn())
+            {
+                deltaColumn = 1;
+            }
+
+            directionMap.put(key, new int[]{deltaRow, deltaColumn});
+        }
+
+        for (int i = 0; i < pushDistance; i++)
+        {
+            System.out.println("In pushDistance iteration");
+
+            for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+            {
+                System.out.println("Have an enemy");
+                EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+                MapElement enemyElement = enemy.getMapElement();
+                int[] directions = directionMap.get(enemyElement);
+
+                int oldRow = enemyElement.getRow();
+                int oldColumn = enemyElement.getColumn();
+                int newRow = oldRow + directions[0];
+                int newColumn = oldColumn + directions[1];
+
+                if (map.getElement(newRow, newColumn) == null)
+                {
+                    enemyElement.setRow(newRow);
+                    enemyElement.setColumn(newColumn);
+                    map.setElement(oldRow, oldColumn, null);
+                    map.setElement(newRow, newColumn, enemyElement);
+                }
+            }
+        }
+    }
+
+    public int getMPCost(MainCharacter character, int spellPoints)
+    {
+        return Math.max(200 - 10 * spellPoints, 1);
+    }
+}
