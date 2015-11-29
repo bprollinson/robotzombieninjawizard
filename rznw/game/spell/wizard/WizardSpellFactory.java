@@ -25,6 +25,8 @@ public class WizardSpellFactory extends SpellFactory
                 return new RepelSpell();
             case 9:
                 return new TeleportSpell();
+            case 10:
+                return new RicochetBlastSpell();
             case 12:
                 return new IceFieldSpell();
             case 13:
