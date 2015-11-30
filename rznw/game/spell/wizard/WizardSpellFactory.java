@@ -27,6 +27,8 @@ public class WizardSpellFactory extends SpellFactory
                 return new TeleportSpell();
             case 10:
                 return new RicochetBlastSpell();
+            case 11:
+                return new UpdraftSpell();
             case 12:
                 return new IceFieldSpell();
             case 13:

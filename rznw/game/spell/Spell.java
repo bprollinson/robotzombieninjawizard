@@ -13,8 +13,10 @@ public abstract class Spell
     public abstract void cast(GameWorld gameWorld, int spellPoints);
     public abstract int getMPCost(MainCharacter character, int spellPoints);
 
-    public boolean canCast(MainCharacter character, int spellPoints)
+    public boolean canCast(GameWorld gameWorld, int spellPoints)
     {
+        MainCharacter character = gameWorld.getMainCharacter();
+
         return spellPoints > 0 && character.getMP() >= this.getMPCost(character, spellPoints);
     }
 

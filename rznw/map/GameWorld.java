@@ -24,6 +24,12 @@ public class GameWorld
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
     }
 
+    public void generatePreviousMap()
+    {
+        System.out.println("Generating dungeon level " + (this.map.getLevel() - 1));
+        this.map = this.mapGenerator.generate(this.character, this.characterGenerator, this.map.getLevel() - 1);
+    }
+
     public void generateNextMap()
     {
         System.out.println("Generating dungeon level " + (this.map.getLevel() + 1));

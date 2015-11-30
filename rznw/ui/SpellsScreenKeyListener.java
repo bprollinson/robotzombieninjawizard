@@ -82,7 +82,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                     Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
                     int spellPoints = character.getSpellPoints(this.state.getEntryNumber());
 
-                    if (spell != null && spell.canCast(character, spellPoints))
+                    if (spell != null && spell.canCast(gameWorld, spellPoints))
                     {
                         if (spell.requiresDirectionInput())
                         {
