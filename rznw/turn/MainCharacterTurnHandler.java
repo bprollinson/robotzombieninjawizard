@@ -12,6 +12,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.Blotch;
 import rznw.map.element.EnemyMapElement;
+import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
 import rznw.map.element.TrapMapElement;
@@ -213,6 +214,15 @@ public class MainCharacterTurnHandler
                 enemy.getStatusEffects().poison();
             }
 
+            if (backgroundElement instanceof FireElement)
+            {
+                System.out.println("Enemy runs into fire element");
+                int damage = 10 * character.getSpellPoints(4);
+                System.out.println("Enemy HP before: " + enemy.getHP());
+                enemy.damage(damage, character, this.gameWorld);
+                System.out.println("Enemy HP after: " + enemy.getHP());
+            }
+
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
     }
@@ -239,6 +249,19 @@ public class MainCharacterTurnHandler
                     {
                         this.killBonusGranter.grantKillBonuses(character, enemy);
                         map.setElement(element.getRow(), element.getColumn(), null);
+                    }
+                }
+
+                element = map.getBackgroundElement(row, column);
+                if (element instanceof FireElement)
+                {
+                    FireElement fireElement = (FireElement)element;
+                    fireElement.decreaseDuration();
+
+                    if (fireElement.isExpired())
+                    {
+                        MapElement previousMapElement = fireElement.getPreviousMapElement();
+                        map.setBackgroundElement(fireElement.getRow(), fireElement.getColumn(), previousMapElement);
                     }
                 }
             }
