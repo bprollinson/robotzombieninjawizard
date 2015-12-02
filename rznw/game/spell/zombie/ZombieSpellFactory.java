@@ -9,6 +9,8 @@ public class ZombieSpellFactory extends SpellFactory
     {
         switch (spellIndex)
         {
+            case 2:
+                return new ThornSkinSpell();
             case 4:
                 return new FeedFleshSpell();
             case 6:

@@ -407,6 +407,16 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().disableCounterstrike();
         }
 
+        if (this.getStatusEffects().thornSkinEnabled())
+        {
+            System.out.println("Attacking back with thorn skin");
+
+            int thornSkinDamage = 5 * this.getSpellPoints(2);
+            System.out.println("Enemy hp before: " + damageSource.getHP());
+            damageSource.damage(thornSkinDamage, this, gameWorld);
+            System.out.println("Enemy hp after: " + damageSource.getHP());
+        }
+
         if (this.getStatusEffects().isDeathStriking() && damageSource instanceof EnemyCharacter)
         {
             System.out.println("Checking death strike");

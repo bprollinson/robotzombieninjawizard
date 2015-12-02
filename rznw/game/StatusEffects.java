@@ -15,6 +15,7 @@ public class StatusEffects
     boolean counterstriking = false;
     int confuseTurns = 0;
     int signalWeaponTurns = 0;
+    int thornSkinTurns = 0;
 
     public void freeze()
     {
@@ -106,6 +107,16 @@ public class StatusEffects
         return this.signalWeaponTurns > 0;
     }
 
+    public void enableThornSkin(int numTurns)
+    {
+        this.thornSkinTurns = numTurns;
+    }
+
+    public boolean thornSkinEnabled()
+    {
+        return this.thornSkinTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         this.frozen = false;
@@ -127,6 +138,11 @@ public class StatusEffects
         {
             System.out.println("Used up one turn of signal weapon");
             this.signalWeaponTurns--;
+        }
+
+        if (this.thornSkinTurns > 0)
+        {
+            this.thornSkinTurns--;
         }
     }
 }
