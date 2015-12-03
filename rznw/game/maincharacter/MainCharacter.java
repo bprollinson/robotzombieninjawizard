@@ -407,7 +407,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().disableCounterstrike();
         }
 
-        if (this.getStatusEffects().thornSkinEnabled())
+        if (this.getStatusEffects().thornSkinEnabled() && damageSource instanceof EnemyCharacter)
         {
             System.out.println("Attacking back with thorn skin");
 
@@ -415,6 +415,13 @@ public abstract class MainCharacter extends Character
             System.out.println("Enemy hp before: " + damageSource.getHP());
             damageSource.damage(thornSkinDamage, this, gameWorld);
             System.out.println("Enemy hp after: " + damageSource.getHP());
+        }
+
+        if (this.getStatusEffects().poisonSkinEnabled() && damageSource instanceof EnemyCharacter)
+        {
+            System.out.println("Poisoning with poison skin");
+
+            damageSource.getStatusEffects().poison();
         }
 
         if (this.getStatusEffects().isDeathStriking() && damageSource instanceof EnemyCharacter)

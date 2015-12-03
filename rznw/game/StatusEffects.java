@@ -16,6 +16,7 @@ public class StatusEffects
     int confuseTurns = 0;
     int signalWeaponTurns = 0;
     int thornSkinTurns = 0;
+    int poisonSkinTurns = 0;
 
     public void freeze()
     {
@@ -115,6 +116,16 @@ public class StatusEffects
     public boolean thornSkinEnabled()
     {
         return this.thornSkinTurns > 0;
+    }
+
+    public void enablePoisonSkin(int numTurns)
+    {
+        this.poisonSkinTurns = numTurns;
+    }
+
+    public boolean poisonSkinEnabled()
+    {
+        return this.poisonSkinTurns > 0;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

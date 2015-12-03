@@ -32,7 +32,7 @@ public class Zombie extends MainCharacter
         "Explode Zombies"
     };
     private static String[] spellDescription = {
-        "Enemies become temporarily poisoned when physically attacking you for a period of time. This does not affect ranged attacks.",
+        "Enemies become poisoned when physically attacking you for a period of time. This does not affect ranged attacks.",
         "Reduce all damage you take for a period of time by increasing your defense. This affects all types of damage.",
         "Enemies take damage when physically attacking you for a period of time. This does not affect ranged attacks.",
         "Enemies have a chance to become stunned when physically attacking you for a period of time. This does not affect ranged attacks.",
