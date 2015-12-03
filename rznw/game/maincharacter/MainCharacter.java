@@ -365,10 +365,15 @@ public abstract class MainCharacter extends Character
     public void damage(int damage, Character damageSource, GameWorld gameWorld)
     {
         int paddingPercent = 2 * this.getStatPoints(9);
+        if (this.getStatusEffects().isResistingDamage())
+        {
+            paddingPercent += 2 * this.getSpellPoints(1);
+        }
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
 
         if (padding > 0)
         {
+            System.out.println("Padding percent: " + paddingPercent);
             System.out.println("Padding damage: " + padding);
         }
 

@@ -11,6 +11,8 @@ public class ZombieSpellFactory extends SpellFactory
         {
             case 0:
                 return new PoisonSkinSpell();
+            case 1:
+                return new ResistDamageSpell();
             case 2:
                 return new ThornSkinSpell();
             case 3:

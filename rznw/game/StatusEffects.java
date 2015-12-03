@@ -18,6 +18,7 @@ public class StatusEffects
     int thornSkinTurns = 0;
     int poisonSkinTurns = 0;
     int barbedSkinTurns = 0;
+    int resistDamageTurns = 0;
 
     public void freeze()
     {
@@ -144,6 +145,16 @@ public class StatusEffects
         return this.barbedSkinTurns > 0;
     }
 
+    public void enableResistDamage(int numTurns)
+    {
+        this.resistDamageTurns = numTurns;
+    }
+
+    public boolean isResistingDamage()
+    {
+        return this.resistDamageTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -183,6 +194,11 @@ public class StatusEffects
         if (this.barbedSkinTurns > 0)
         {
             this.barbedSkinTurns--;
+        }
+
+        if (this.resistDamageTurns > 0)
+        {
+            this.resistDamageTurns--;
         }
     }
 }
