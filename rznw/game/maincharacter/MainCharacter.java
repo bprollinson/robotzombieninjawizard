@@ -451,6 +451,18 @@ public abstract class MainCharacter extends Character
 
             this.getStatusEffects().disableSmokeBomb();
         }
+
+        if (this.getStatusEffects().barbedSkinEnabled() && damageSource instanceof EnemyCharacter)
+        {
+            System.out.println("Checking barbed skin");
+
+            int barbedSkinProbability = 5 * this.getSpellPoints(3);
+            if (RandomNumberGenerator.rollSucceeds(barbedSkinProbability))
+            {
+                System.out.println("Stunning with barbed skin");
+                damageSource.getStatusEffects().freeze(2);
+            }
+        }
     }
 
     public void heal(int HP)

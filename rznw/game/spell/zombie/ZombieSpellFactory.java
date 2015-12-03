@@ -13,6 +13,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new PoisonSkinSpell();
             case 2:
                 return new ThornSkinSpell();
+            case 3:
+                return new BarbedSkinSpell();
             case 4:
                 return new FeedFleshSpell();
             case 6:

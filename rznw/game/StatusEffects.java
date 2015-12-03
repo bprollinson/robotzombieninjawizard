@@ -7,7 +7,7 @@ public class StatusEffects
 {
     private static final int POISON_DAMAGE = 10;
 
-    boolean frozen = false;
+    int frozenTurns = 0;
     boolean poisoned = false;
     boolean isReversingPain = false;
     boolean deathStriking = false;
@@ -17,10 +17,16 @@ public class StatusEffects
     int signalWeaponTurns = 0;
     int thornSkinTurns = 0;
     int poisonSkinTurns = 0;
+    int barbedSkinTurns = 0;
 
     public void freeze()
     {
-        this.frozen = true;
+        this.frozenTurns = 1;
+    }
+
+    public void freeze(int numTurns)
+    {
+        this.frozenTurns = numTurns;
     }
 
     public void poison()
@@ -35,7 +41,7 @@ public class StatusEffects
 
     public boolean isFrozen()
     {
-        return this.frozen;
+        return this.frozenTurns > 0;
     }
 
     public boolean isReversingPain()
@@ -128,9 +134,22 @@ public class StatusEffects
         return this.poisonSkinTurns > 0;
     }
 
+    public void enableBarbedSkin(int numTurns)
+    {
+        this.barbedSkinTurns = numTurns;
+    }
+
+    public boolean barbedSkinEnabled()
+    {
+        return this.barbedSkinTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
-        this.frozen = false;
+        if (this.frozenTurns > 0)
+        {
+            this.frozenTurns--;
+        }
 
         if (this.poisoned)
         {
@@ -154,6 +173,16 @@ public class StatusEffects
         if (this.thornSkinTurns > 0)
         {
             this.thornSkinTurns--;
+        }
+
+        if (this.poisonSkinTurns > 0)
+        {
+            this.poisonSkinTurns--;
+        }
+
+        if (this.barbedSkinTurns > 0)
+        {
+            this.barbedSkinTurns--;
         }
     }
 }
