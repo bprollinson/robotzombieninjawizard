@@ -19,6 +19,7 @@ public class StatusEffects
     int poisonSkinTurns = 0;
     int barbedSkinTurns = 0;
     int resistDamageTurns = 0;
+    int infectiousRageTurns = 0;
 
     public void freeze()
     {
@@ -155,6 +156,16 @@ public class StatusEffects
         return this.resistDamageTurns > 0;
     }
 
+    public void enableInfectiousRage(int numTurns)
+    {
+        this.infectiousRageTurns = numTurns;
+    }
+
+    public boolean infectiousRageEnabled()
+    {
+        return this.infectiousRageTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -199,6 +210,11 @@ public class StatusEffects
         if (this.resistDamageTurns > 0)
         {
             this.resistDamageTurns--;
+        }
+
+        if (this.infectiousRageTurns > 0)
+        {
+            this.infectiousRageTurns--;
         }
     }
 }

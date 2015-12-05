@@ -2,7 +2,9 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.map.GameWorld;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
 
@@ -98,5 +100,18 @@ public abstract class EnemyCharacter extends Character
     public boolean dodgesAttack()
     {
         return false;
+    }
+
+    public void damage(int damage, Character damageSource, GameWorld gameWorld)
+    {
+        if (damageSource instanceof Zombie && damageSource.getStatusEffects().infectiousRageEnabled())
+        {
+            System.out.println("Infectious rage is enabled");
+            System.out.println("Base damage: " + damage);
+            damage = (int)Math.floor(1.5 * damage);
+            System.out.println("Rage damage: " + damage);
+        }
+
+        super.damage(damage, damageSource, gameWorld);
     }
 }

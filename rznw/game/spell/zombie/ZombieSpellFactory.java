@@ -27,6 +27,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new LocustSwarmSpell();
             case 9:
                 return new PoisonCloudSpell();
+            case 10:
+                return new InfectiousRageSpell();
             case 11:
                 return new BlotchSpell();
             default:
