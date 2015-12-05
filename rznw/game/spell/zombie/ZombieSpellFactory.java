@@ -21,6 +21,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new FeedFleshSpell();
             case 6:
                 return new FeedPastSpell();
+            case 7:
+                return new FeedMindSpell();
             case 8:
                 return new LocustSwarmSpell();
             case 9:
