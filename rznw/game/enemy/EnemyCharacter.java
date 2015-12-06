@@ -102,7 +102,7 @@ public abstract class EnemyCharacter extends Character
         return false;
     }
 
-    public void damage(int damage, Character damageSource, GameWorld gameWorld)
+    public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
         if (damageSource instanceof Zombie && damageSource.getStatusEffects().infectiousRageEnabled())
         {
@@ -112,6 +112,14 @@ public abstract class EnemyCharacter extends Character
             System.out.println("Rage damage: " + damage);
         }
 
-        super.damage(damage, damageSource, gameWorld);
+        if (damageSource instanceof Zombie && damageSource.getStatusEffects().feedBrainEnabled() && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        {
+            System.out.println("Feed brain is enabled");
+            System.out.println("Base damage: " + damage);
+            damage = (int)Math.floor(1.6 * damage);
+            System.out.println("Feed brain damage: " + damage);
+        }
+
+        super.damage(damage, damageSource, gameWorld, damageSourceType);
     }
 }

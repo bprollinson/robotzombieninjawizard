@@ -151,7 +151,7 @@ public class MainCharacterTurnHandler
                 else
                 {
                     System.out.println("It's a trap!");
-                    character.damage(20, null, this.gameWorld);
+                    character.damage(20, null, this.gameWorld, Character.DAMAGE_SOURCE_OTHER);
                 }
             }
         }
@@ -219,7 +219,7 @@ public class MainCharacterTurnHandler
                 System.out.println("Enemy runs into fire element");
                 int damage = 10 * character.getSpellPoints(4);
                 System.out.println("Enemy HP before: " + enemy.getHP());
-                enemy.damage(damage, character, this.gameWorld);
+                enemy.damage(damage, character, this.gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                 System.out.println("Enemy HP after: " + enemy.getHP());
             }
 

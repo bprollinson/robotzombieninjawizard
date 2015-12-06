@@ -5,6 +5,10 @@ import rznw.map.element.MapElement;
 
 public abstract class Character
 {
+    public static int DAMAGE_SOURCE_OTHER = 0;
+    public static int DAMAGE_SOURCE_PHYSICAL = 1;
+    public static int DAMAGE_SOURCE_MAGICAL = 2;
+
     protected int HP;
     protected int MP;
     protected StatusEffects statusEffects;
@@ -41,7 +45,7 @@ public abstract class Character
         this.MP = Math.min(this.MP + MP, this.getMaxMP());
     }
 
-    public void damage(int damage, Character damageSource, GameWorld gameWorld)
+    public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
         this.HP -= damage;
     }

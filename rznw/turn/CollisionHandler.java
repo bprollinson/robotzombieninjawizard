@@ -111,7 +111,7 @@ public class CollisionHandler
             System.out.println("Enemy character melee hit!");
         }
 
-        otherCharacter.damage(character.getDamage(), character, gameWorld);
+        otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
 
         if (character.getStatusEffects().signalWeaponEnabled())
         {

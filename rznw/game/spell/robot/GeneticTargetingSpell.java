@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
@@ -89,7 +90,7 @@ public class GeneticTargetingSpell extends Spell
                         System.out.println("Finding an enemy of the same type at: " + row + ", " + column + " : " + element);
 
                         System.out.println("HP before: " + enemy.getHP());
-                        enemy.damage(damage, character, gameWorld);
+                        enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                         System.out.println("HP after: " + enemy.getHP());
                     }
                 }

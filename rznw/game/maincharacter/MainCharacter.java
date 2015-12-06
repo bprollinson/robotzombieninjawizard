@@ -362,7 +362,7 @@ public abstract class MainCharacter extends Character
         return 2 + this.getStatPoints(6);
     }
 
-    public void damage(int damage, Character damageSource, GameWorld gameWorld)
+    public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
         int paddingPercent = 2 * this.getStatPoints(9);
         if (this.getStatusEffects().isResistingDamage())
@@ -405,7 +405,7 @@ public abstract class MainCharacter extends Character
 
                 int counterstrikeDamage = 10 * this.getSpellPoints(13);
                 System.out.println("Enemy hp before: " + damageSource.getHP());
-                damageSource.damage(counterstrikeDamage, this, gameWorld);
+                damageSource.damage(counterstrikeDamage, this, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                 System.out.println("Enemy hp after: " + damageSource.getHP());
             }
 
@@ -418,7 +418,7 @@ public abstract class MainCharacter extends Character
 
             int thornSkinDamage = 5 * this.getSpellPoints(2);
             System.out.println("Enemy hp before: " + damageSource.getHP());
-            damageSource.damage(thornSkinDamage, this, gameWorld);
+            damageSource.damage(thornSkinDamage, this, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("Enemy hp after: " + damageSource.getHP());
         }
 

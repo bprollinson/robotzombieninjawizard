@@ -65,7 +65,7 @@ public class VitalZapSpell extends Spell
                 Character enemy = ((EnemyMapElement)element).getCharacter();
                 System.out.println("Before: " + enemy.getHP());
                 int damage = (int)Math.floor(damagePercentage / 100.0 * enemy.getHP());
-                enemy.damage(damage, character, gameWorld);
+                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                 System.out.println("After: " + enemy.getHP());
             }
         }

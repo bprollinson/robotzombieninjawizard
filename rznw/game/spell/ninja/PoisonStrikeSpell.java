@@ -70,7 +70,7 @@ public class PoisonStrikeSpell extends Spell
 
             Character enemy = ((EnemyMapElement)enemyElement).getCharacter();
             System.out.println("Enemy HP before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld);
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("Enemy HP after: " + enemy.getHP());
 
             enemy.getStatusEffects().poison();

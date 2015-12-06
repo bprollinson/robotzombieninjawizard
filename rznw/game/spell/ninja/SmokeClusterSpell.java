@@ -69,7 +69,7 @@ public class SmokeClusterSpell extends Spell
 
                 Character enemy = ((EnemyMapElement)element).getCharacter();
                 System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld);
+                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                 System.out.println("After: " + enemy.getHP());
             }
 

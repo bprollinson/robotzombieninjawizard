@@ -1,5 +1,6 @@
 package rznw.game.spell.wizard;
 
+import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
@@ -72,7 +73,7 @@ public class RicochetBlastSpell extends Spell
     {
         System.out.println("Performing a ricochet");
         System.out.println("HP before: " + ((EnemyMapElement)element).getCharacter().getHP());
-        ((EnemyMapElement)element).getCharacter().damage(damage, character, gameWorld);
+        ((EnemyMapElement)element).getCharacter().damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
         System.out.println("HP after: " + ((EnemyMapElement)element).getCharacter().getHP());
 
         while (true)

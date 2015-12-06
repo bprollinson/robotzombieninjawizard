@@ -19,6 +19,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new BarbedSkinSpell();
             case 4:
                 return new FeedFleshSpell();
+            case 5:
+                return new FeedBrainSpell();
             case 6:
                 return new FeedPastSpell();
             case 7:

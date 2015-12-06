@@ -20,6 +20,7 @@ public class StatusEffects
     int barbedSkinTurns = 0;
     int resistDamageTurns = 0;
     int infectiousRageTurns = 0;
+    int feedBrainTurns = 0;
 
     public void freeze()
     {
@@ -166,6 +167,16 @@ public class StatusEffects
         return this.infectiousRageTurns > 0;
     }
 
+    public void enableFeedBrain(int numTurns)
+    {
+        this.feedBrainTurns = numTurns;
+    }
+
+    public boolean feedBrainEnabled()
+    {
+        return this.feedBrainTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -176,7 +187,7 @@ public class StatusEffects
         if (this.poisoned)
         {
             System.out.println("Damaging enemy due to poison");
-            character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld);
+            character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
         }
 
         this.isReversingPain = false;
@@ -215,6 +226,11 @@ public class StatusEffects
         if (this.infectiousRageTurns > 0)
         {
             this.infectiousRageTurns--;
+        }
+
+        if (this.feedBrainTurns > 0)
+        {
+            this.feedBrainTurns--;
         }
     }
 }

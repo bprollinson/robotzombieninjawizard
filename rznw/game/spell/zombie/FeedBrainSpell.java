@@ -1,4 +1,4 @@
-package rznw.game.spell.wizard;
+package rznw.game.spell.zombie;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
@@ -7,9 +7,8 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
-import rznw.map.element.Wall;
 
-public class HeatRaySpell extends Spell
+public class FeedBrainSpell extends Spell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {
@@ -17,11 +16,11 @@ public class HeatRaySpell extends Spell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Heat Ray");
-
+        System.out.println("Casting Feed Brain");
         MainCharacter character = gameWorld.getMainCharacter();
+        Map map = gameWorld.getMap();
 
-        int damage = 50 + 10 * spellPoints;
+        MapElement characterElement = character.getMapElement();
 
         int deltaRow = 0;
         int deltaColumn = 0;
@@ -42,35 +41,22 @@ public class HeatRaySpell extends Spell
                 break;
         }
 
-        boolean wallFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
+        int row = characterElement.getRow() + deltaRow;
+        int column = characterElement.getColumn() + deltaColumn;
 
-        while (!wallFound)
+        MapElement element = map.getElement(row, column);
+        if (element instanceof EnemyMapElement)
         {
-            row += deltaRow;
-            column += deltaColumn;
+            int damage = 50 + 10 * spellPoints;
 
-            if (row < 0 || row >= Map.NUM_ROWS || column < 0 || column >= Map.NUM_COLUMNS)
-            {
-                break;
-            }
+            Character enemy = ((EnemyMapElement)element).getCharacter();
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
+            System.out.println("Before: " + enemy.getHP());
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("After: " + enemy.getHP());
 
-            if (element instanceof Wall)
-            {
-                wallFound = true;
-            }
-
-            if (element instanceof EnemyMapElement)
-            {
-                Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-            }
+            int numTurns = 2 + (int)Math.floor(spellPoints / 4);
+            character.getStatusEffects().enableFeedBrain(numTurns);
         }
     }
 

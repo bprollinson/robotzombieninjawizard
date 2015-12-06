@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
@@ -86,7 +87,7 @@ public class ArcLightningSpell extends Spell
             EnemyMapElement enemyElement = (EnemyMapElement)iterator.next();
             System.out.println("Damaging enemy at: " + enemyElement.getRow() + " , " + enemyElement.getColumn());
             System.out.println("HP before: " + enemyElement.getCharacter().getHP());
-            enemyElement.getCharacter().damage(damage, character, gameWorld);
+            enemyElement.getCharacter().damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("HP after: " + enemyElement.getCharacter().getHP());
         }
     }
