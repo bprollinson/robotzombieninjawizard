@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import rznw.game.Character;
+import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
@@ -15,6 +16,7 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
+import rznw.map.element.SummonedZombieMapElement;
 import rznw.map.element.TrapMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
@@ -186,8 +188,26 @@ public class MainCharacterTurnHandler
         }
     }
 
+    private void handleSummonedZombieTurns()
+    {
+        MainCharacter character = this.gameWorld.getMainCharacter();
+
+        Collection<SummonedCharacter> summons = this.gameWorld.getMap().getSummons();
+        for (Iterator iterator = summons.iterator(); iterator.hasNext();)
+        {
+            SummonedCharacter summon = (SummonedCharacter)iterator.next();
+            EnemyAIBasedPositionChange summonPositionChange = summon.getPositionChange(this.gameWorld);
+
+            this.handleCharacterTurn(summonPositionChange, summon);
+
+            summon.getStatusEffects().processTurn(summon, this.gameWorld);
+        }
+    }
+
     public void handleEnemyTurns()
     {
+        this.handleSummonedZombieTurns();
+
         MainCharacter character = this.gameWorld.getMainCharacter();
 
         Collection<EnemyCharacter> enemies = this.gameWorld.getMap().getEnemies();
@@ -248,6 +268,15 @@ public class MainCharacterTurnHandler
                     if (enemy.isDead())
                     {
                         this.killBonusGranter.grantKillBonuses(character, enemy);
+                        map.setElement(element.getRow(), element.getColumn(), null);
+                    }
+                }
+
+                if (element instanceof SummonedZombieMapElement)
+                {
+                    Character zombie = ((SummonedZombieMapElement)element).getCharacter();
+                    if (zombie.isDead())
+                    {
                         map.setElement(element.getRow(), element.getColumn(), null);
                     }
                 }

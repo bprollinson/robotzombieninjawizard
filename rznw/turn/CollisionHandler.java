@@ -1,11 +1,13 @@
 package rznw.turn;
 
 import rznw.game.Character;
+import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
+import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
 import rznw.map.GameWorld;
@@ -63,6 +65,11 @@ public class CollisionHandler
             return false;
         }
 
+        if (collisionTest instanceof MainCharacterMapElement && character instanceof SummonedCharacter)
+        {
+            return false;
+        }
+
         if (collisionTest instanceof EnemyMapElement && character instanceof EnemyCharacter)
         {
             return false;
@@ -111,7 +118,27 @@ public class CollisionHandler
             System.out.println("Enemy character melee hit!");
         }
 
+        if (otherCharacter instanceof SummonedCharacter)
+        {
+            System.out.println("Summoned character HP before: " + otherCharacter.getHP());
+        }
+
+        if (otherCharacter instanceof EnemyCharacter && character instanceof SummonedCharacter)
+        {
+            System.out.println("Summon is hitting an enemy, HP before: " + otherCharacter.getHP());
+        }
+
         otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+
+        if (otherCharacter instanceof EnemyCharacter && character instanceof SummonedCharacter)
+        {
+            System.out.println("Summon is hitting an enemy, HP after: " + otherCharacter.getHP());
+        }
+
+        if (otherCharacter instanceof SummonedCharacter)
+        {
+            System.out.println("Summoned character HP after: " + otherCharacter.getHP());
+        }
 
         if (character.getStatusEffects().signalWeaponEnabled())
         {

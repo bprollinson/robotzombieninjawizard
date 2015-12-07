@@ -3,9 +3,11 @@ package rznw.map;
 import java.util.Collection;
 import java.util.Vector;
 
+import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.map.element.SummonedZombieMapElement;
 import rznw.map.element.TrapMapElement;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.utility.RandomNumberGenerator;
@@ -129,6 +131,27 @@ public class Map
         }
 
         return enemies;
+    }
+
+    public Collection<SummonedCharacter> getSummons()
+    {
+        Collection<SummonedCharacter> summons = new Vector<SummonedCharacter>();
+
+        for (int i = 0; i < Map.NUM_ROWS; i++)
+        {
+            for (int j = 0; j < Map.NUM_COLUMNS; j++)
+            {
+                MapElement element = this.elements[i][j];
+
+                if (element instanceof SummonedZombieMapElement)
+                {
+                    SummonedCharacter summonedCharacter = (SummonedCharacter)((SummonedZombieMapElement)element).getCharacter();
+                    summons.add(summonedCharacter);
+                }
+            }
+        }
+
+        return summons;
     }
 
     public Collection<EnemyCharacter> getEnemiesInRectangle(int minRow, int minColumn, int maxRow, int maxColumn)

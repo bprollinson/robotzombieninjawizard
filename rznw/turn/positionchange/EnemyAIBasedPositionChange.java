@@ -1,13 +1,13 @@
 package rznw.turn.positionchange;
 
-import rznw.game.enemy.EnemyCharacter;
+import rznw.game.Character;
 import rznw.map.element.MapElement;
 
 public class EnemyAIBasedPositionChange extends PositionChange
 {
-    public EnemyAIBasedPositionChange(EnemyCharacter enemy, int deltaRow, int deltaColumn)
+    public EnemyAIBasedPositionChange(Character character, int deltaRow, int deltaColumn)
     {
-        MapElement element = enemy.getMapElement();
+        MapElement element = character.getMapElement();
 
         this.initialRow = element.getRow();
         this.initialColumn = element.getColumn();

@@ -33,6 +33,11 @@ public abstract class Character
         return this.mapElement;
     }
 
+    public void setMapElement(MapElement mapElement)
+    {
+        this.mapElement = mapElement;
+    }
+
     public abstract void generateMapElement(int row, int column);
 
     public void heal(int HP)

@@ -33,6 +33,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new InfectiousRageSpell();
             case 11:
                 return new BlotchSpell();
+            case 12:
+                return new SummonZombieSpell();
             default:
                 return null;
         }
