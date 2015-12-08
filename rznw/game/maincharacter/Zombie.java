@@ -45,7 +45,7 @@ public class Zombie extends MainCharacter
         "Increase all damage you deal for a period time. Using this spell will poison you.",
         "Leaves a poison spot on the ground. Enemies who come into contact with this spot will become poisoned.",
         "Summons a zombie that will independently battle enemies. This zombie will attack enemies in melee combat. It will continue to battle until its HP are exhausted.",
-        "The next enemy killed by you or one of your zombies will turn into a zombie. This zombie will independently battle enemies in melee combat and stay within a radius of you. It will continue to battle until its HP are exhausted.",
+        "The next enemy killed by you or one of your zombies will turn into a zombie. This zombie will independently battle enemies in melee combat. It will continue to battle until its HP are exhausted.",
         "Each zombie you control has a chance to multiply, creating an additional zombie.",
         "Each zombie you control explodes, dealing damage to all enemies within a radius of it."
     };

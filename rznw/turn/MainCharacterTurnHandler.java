@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import rznw.game.Character;
 import rznw.game.SummonedCharacter;
+import rznw.game.SummonedZombie;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
@@ -250,7 +251,7 @@ public class MainCharacterTurnHandler
     public void handlePostEnemyTurns()
     {
         Map map = this.gameWorld.getMap();
-        Character character = this.gameWorld.getMainCharacter();
+        MainCharacter character = this.gameWorld.getMainCharacter();
 
         if (character.isDead())
         {
@@ -269,6 +270,21 @@ public class MainCharacterTurnHandler
                     {
                         this.killBonusGranter.grantKillBonuses(character, enemy);
                         map.setElement(element.getRow(), element.getColumn(), null);
+
+                        if (character.getStatusEffects().isInferringZombie())
+                        {
+                            character.getStatusEffects().disableInferZombie();
+
+                            System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
+
+                            int maxHP = 200 + 10 * character.getSpellPoints(13);
+                            System.out.println("Max HP is: " + maxHP);
+
+                            SummonedZombie zombie = new SummonedZombie(maxHP);
+                            SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
+                            zombie.setMapElement(zombieElement);
+                            gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
+                        }
                     }
                 }
 

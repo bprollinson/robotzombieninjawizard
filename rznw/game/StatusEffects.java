@@ -21,6 +21,7 @@ public class StatusEffects
     int resistDamageTurns = 0;
     int infectiousRageTurns = 0;
     int feedBrainTurns = 0;
+    boolean inferZombie = false;
 
     public void freeze()
     {
@@ -175,6 +176,21 @@ public class StatusEffects
     public boolean feedBrainEnabled()
     {
         return this.feedBrainTurns > 0;
+    }
+
+    public void enableInferZombie()
+    {
+        this.inferZombie = true;
+    }
+
+    public boolean isInferringZombie()
+    {
+        return this.inferZombie;
+    }
+
+    public void disableInferZombie()
+    {
+        this.inferZombie = false;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)
