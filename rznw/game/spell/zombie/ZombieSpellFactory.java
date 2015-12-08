@@ -35,6 +35,8 @@ public class ZombieSpellFactory extends SpellFactory
                 return new BlotchSpell();
             case 12:
                 return new SummonZombieSpell();
+            case 14:
+                return new MultiplyZombiesSpell();
             case 15:
                 return new ExplodeZombiesSpell();
             default:
