@@ -191,13 +191,18 @@ public class MainCharacterTurnHandler
 
     private void handleSummonedZombieTurns()
     {
+        System.out.println("Handling summon turns");
+
         MainCharacter character = this.gameWorld.getMainCharacter();
 
         Collection<SummonedCharacter> summons = this.gameWorld.getMap().getSummons();
         for (Iterator iterator = summons.iterator(); iterator.hasNext();)
         {
+            System.out.println("Have a summon");
+
             SummonedCharacter summon = (SummonedCharacter)iterator.next();
             EnemyAIBasedPositionChange summonPositionChange = summon.getPositionChange(this.gameWorld);
+            System.out.println("Position change: " + summonPositionChange.getInitialRow() + ", " + summonPositionChange.getInitialColumn() + " -> " + summonPositionChange.getFinalRow() + ", " + summonPositionChange.getFinalColumn());
 
             this.handleCharacterTurn(summonPositionChange, summon);
 

@@ -7,6 +7,7 @@ import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.map.element.SummonedGolemMapElement;
 import rznw.map.element.SummonedZombieMapElement;
 import rznw.map.element.TrapMapElement;
 import rznw.game.maincharacter.MainCharacter;
@@ -146,6 +147,12 @@ public class Map
                 if (element instanceof SummonedZombieMapElement)
                 {
                     SummonedCharacter summonedCharacter = (SummonedCharacter)((SummonedZombieMapElement)element).getCharacter();
+                    summons.add(summonedCharacter);
+                }
+
+                if (element instanceof SummonedGolemMapElement)
+                {
+                    SummonedCharacter summonedCharacter = (SummonedCharacter)((SummonedGolemMapElement)element).getCharacter();
                     summons.add(summonedCharacter);
                 }
             }

@@ -15,6 +15,8 @@ public class WizardSpellFactory extends SpellFactory
                 return new MeteorShowerSpell();
             case 2:
                 return new EarthquakeSpell();
+            case 3:
+                return new SummonGolemSpell();
             case 4:
                 return new RingOfFireSpell();
             case 5:
