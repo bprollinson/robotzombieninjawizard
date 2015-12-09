@@ -251,6 +251,13 @@ public class MainCharacterTurnHandler
 
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
+
+        if (character.getStatusEffects().isSkippingTurn())
+        {
+            System.out.println("Enemies take a turn while you are sleeping");
+            character.getStatusEffects().processTurn(character, gameWorld);
+            this.handleEnemyTurns();
+        }
     }
 
     public void handlePostEnemyTurns()

@@ -22,6 +22,7 @@ public class StatusEffects
     int infectiousRageTurns = 0;
     int feedBrainTurns = 0;
     boolean inferZombie = false;
+    int turnsToSkip = 0;
 
     public void freeze()
     {
@@ -193,6 +194,16 @@ public class StatusEffects
         this.inferZombie = false;
     }
 
+    public void skipTurns(int turnsToSkip)
+    {
+        this.turnsToSkip = turnsToSkip;
+    }
+
+    public boolean isSkippingTurn()
+    {
+        return this.turnsToSkip > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -247,6 +258,11 @@ public class StatusEffects
         if (this.feedBrainTurns > 0)
         {
             this.feedBrainTurns--;
+        }
+
+        if (this.turnsToSkip > 0)
+        {
+            this.turnsToSkip--;
         }
     }
 }
