@@ -2,6 +2,7 @@ package rznw.game.spell.ninja;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.DirectedSpell;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -9,12 +10,8 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
 
-public class StunStrikeSpell extends Spell
+public class StunStrikeSpell extends DirectedSpell
 {
-    public void cast(GameWorld gameWorld, int spellPoints)
-    {
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Stun Strike");
@@ -86,10 +83,5 @@ public class StunStrikeSpell extends Spell
     public int getMPCost(MainCharacter character, int spellPoints)
     {
         return Math.max(200 - 10 * spellPoints, 1);
-    }
-
-    public boolean requiresDirectionInput()
-    {
-        return true;
     }
 }

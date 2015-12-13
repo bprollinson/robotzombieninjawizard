@@ -3,7 +3,7 @@ package rznw.game.spell.zombie;
 import rznw.game.SummonedCharacter;
 import rznw.game.SummonedZombie;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MultiplyZombiesSpell extends Spell
+public class MultiplyZombiesSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

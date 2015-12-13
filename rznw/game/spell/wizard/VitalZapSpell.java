@@ -2,18 +2,15 @@ package rznw.game.spell.wizard;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.DirectedSpell;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 
-public class VitalZapSpell extends Spell
+public class VitalZapSpell extends DirectedSpell
 {
-    public void cast(GameWorld gameWorld, int spellPoints)
-    {
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Vital Zap");
@@ -69,11 +66,6 @@ public class VitalZapSpell extends Spell
                 System.out.println("After: " + enemy.getHP());
             }
         }
-    }
-
-    public boolean requiresDirectionInput()
-    {
-        return true;
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

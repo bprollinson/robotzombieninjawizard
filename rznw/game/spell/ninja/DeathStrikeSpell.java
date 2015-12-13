@@ -1,10 +1,10 @@
 package rznw.game.spell.ninja;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 
-public class DeathStrikeSpell extends Spell
+public class DeathStrikeSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

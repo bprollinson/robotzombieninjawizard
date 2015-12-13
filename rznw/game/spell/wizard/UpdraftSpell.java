@@ -1,12 +1,12 @@
 package rznw.game.spell.wizard;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 
-public class UpdraftSpell extends Spell
+public class UpdraftSpell extends UndirectedSpell
 {
     public boolean canCast(GameWorld gameWorld, int spellPoints)
     {

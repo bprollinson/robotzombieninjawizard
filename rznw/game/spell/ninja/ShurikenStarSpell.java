@@ -2,14 +2,14 @@ package rznw.game.spell.ninja;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Projectile;
 
-public class ShurikenStarSpell extends Spell
+public class ShurikenStarSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

@@ -2,6 +2,7 @@ package rznw.game.spell.zombie;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.DirectedSpell;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -9,12 +10,8 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
 
-public class FeedMindSpell extends Spell
+public class FeedMindSpell extends DirectedSpell
 {
-    public void cast(GameWorld gameWorld, int spellPoints)
-    {
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Feed Mind");
@@ -68,10 +65,5 @@ public class FeedMindSpell extends Spell
     public int getMPCost(MainCharacter character, int spellPoints)
     {
         return Math.max(200 - 10 * spellPoints, 1);
-    }
-
-    public boolean requiresDirectionInput()
-    {
-        return true;
     }
 }

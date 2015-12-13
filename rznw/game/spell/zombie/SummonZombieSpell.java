@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.game.SummonedZombie;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -15,7 +15,7 @@ import rznw.map.element.MapElement;
 import rznw.map.element.SummonedZombieMapElement;
 import rznw.map.element.Void;
 
-public class SummonZombieSpell extends Spell
+public class SummonZombieSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

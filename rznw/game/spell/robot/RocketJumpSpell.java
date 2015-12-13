@@ -1,18 +1,15 @@
 package rznw.game.spell.robot;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.DirectedSpell;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.Wall;
 
-public class RocketJumpSpell extends Spell
+public class RocketJumpSpell extends DirectedSpell
 {
-    public void cast(GameWorld gameWorld, int spellPoints)
-    {
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Rocket Jump");
@@ -71,10 +68,5 @@ public class RocketJumpSpell extends Spell
     public int getMPCost(MainCharacter character, int spellPoints)
     {
         return Math.max(200 - 10 * spellPoints, 1);
-    }
-
-    public boolean requiresDirectionInput()
-    {
-        return true;
     }
 }

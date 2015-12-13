@@ -1,10 +1,10 @@
 package rznw.game.spell.wizard;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 
-public class HealSpell extends Spell
+public class HealSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

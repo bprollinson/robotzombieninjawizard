@@ -1,13 +1,13 @@
 package rznw.game.spell.wizard;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 
-public class RingOfFireSpell extends Spell
+public class RingOfFireSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

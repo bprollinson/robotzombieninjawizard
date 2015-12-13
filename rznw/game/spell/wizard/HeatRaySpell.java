@@ -2,6 +2,7 @@ package rznw.game.spell.wizard;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.DirectedSpell;
 import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -9,12 +10,8 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Wall;
 
-public class HeatRaySpell extends Spell
+public class HeatRaySpell extends DirectedSpell
 {
-    public void cast(GameWorld gameWorld, int spellPoints)
-    {
-    }
-
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Heat Ray");
@@ -77,10 +74,5 @@ public class HeatRaySpell extends Spell
     public int getMPCost(MainCharacter character, int spellPoints)
     {
         return Math.max(200 - 10 * spellPoints, 1);
-    }
-
-    public boolean requiresDirectionInput()
-    {
-        return true;
     }
 }

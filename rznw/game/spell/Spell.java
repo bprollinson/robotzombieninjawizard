@@ -11,22 +11,14 @@ public abstract class Spell
     public static final int DIRECTION_RIGHT = 3;
 
     public abstract void cast(GameWorld gameWorld, int spellPoints);
+    public abstract void cast(GameWorld gameWorld, int spellPoints, int direction);
     public abstract int getMPCost(MainCharacter character, int spellPoints);
+    public abstract boolean requiresDirectionInput();
 
     public boolean canCast(GameWorld gameWorld, int spellPoints)
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
         return spellPoints > 0 && character.getMP() >= this.getMPCost(character, spellPoints);
-    }
-
-    public void cast(GameWorld gameWorld, int spellPoints, int direction)
-    {
-        this.cast(gameWorld, spellPoints);
-    }
-
-    public boolean requiresDirectionInput()
-    {
-        return false;
     }
 }

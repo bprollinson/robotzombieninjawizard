@@ -1,10 +1,10 @@
 package rznw.game.spell.robot;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 
-public class PowerDownSpell extends Spell
+public class PowerDownSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {

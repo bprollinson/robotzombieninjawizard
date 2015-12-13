@@ -4,7 +4,7 @@ import rznw.game.Character;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.spell.Spell;
+import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -12,7 +12,7 @@ import rznw.map.element.MapElement;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class ExplodeZombiesSpell extends Spell
+public class ExplodeZombiesSpell extends UndirectedSpell
 {
     public void cast(GameWorld gameWorld, int spellPoints)
     {
