@@ -2,10 +2,10 @@ package rznw.game.spell.robot;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
-import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class RocketPackSpell extends DirectedSpell
 {
@@ -21,36 +21,19 @@ public class RocketPackSpell extends DirectedSpell
         Map map = gameWorld.getMap();
         map.setElement(startRow, startColumn, null);
 
-        int deltaRow = 0;
-        int deltaColumn = 0;
-
-        switch(direction)
-        {
-            case Spell.DIRECTION_UP:
-                deltaRow = -1;
-                break;
-            case Spell.DIRECTION_DOWN:
-                deltaRow = 1;
-                break;
-            case Spell.DIRECTION_LEFT:
-                deltaColumn = -1;
-                break;
-            case Spell.DIRECTION_RIGHT:
-                deltaColumn = 1;
-                break;
-        }
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
         int row = startRow;
         int column = startColumn;
 
         while (map.getElement(row, column) == null)
         {
-            row += deltaRow;
-            column += deltaColumn;
+            row += positionChange.getDeltaRow();
+            column += positionChange.getDeltaColumn();
         }
 
-        row -= deltaRow;
-        column -= deltaColumn;
+        row -= positionChange.getDeltaRow();
+        column -= positionChange.getDeltaColumn();
 
         MapElement characterElement = character.getMapElement();
         characterElement.setRow(row);

@@ -7,11 +7,11 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
-import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.turn.positionchange.SpellBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
 
 public class SmokeClusterSpell extends DirectedSpell
@@ -24,24 +24,7 @@ public class SmokeClusterSpell extends DirectedSpell
 
         int damage = 50 + 10 * spellPoints;
 
-        int deltaRow = 0;
-        int deltaColumn = 0;
-
-        switch(direction)
-        {
-            case Spell.DIRECTION_UP:
-                deltaRow = -1;
-                break;
-            case Spell.DIRECTION_DOWN:
-                deltaRow = 1;
-                break;
-            case Spell.DIRECTION_LEFT:
-                deltaColumn = -1;
-                break;
-            case Spell.DIRECTION_RIGHT:
-                deltaColumn = 1;
-                break;
-        }
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
         boolean objectFound = false;
         int row = character.getMapElement().getRow();
@@ -49,8 +32,8 @@ public class SmokeClusterSpell extends DirectedSpell
 
         while (!objectFound)
         {
-            row += deltaRow;
-            column += deltaColumn;
+            row += positionChange.getDeltaRow();
+            column += positionChange.getDeltaColumn();
 
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);

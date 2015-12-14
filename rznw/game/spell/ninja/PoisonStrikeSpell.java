@@ -3,11 +3,11 @@ package rznw.game.spell.ninja;
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
-import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class PoisonStrikeSpell extends DirectedSpell
 {
@@ -23,36 +23,19 @@ public class PoisonStrikeSpell extends DirectedSpell
         Map map = gameWorld.getMap();
         map.setElement(startRow, startColumn, null);
 
-        int deltaRow = 0;
-        int deltaColumn = 0;
-
-        switch(direction)
-        {
-            case Spell.DIRECTION_UP:
-                deltaRow = -1;
-                break;
-            case Spell.DIRECTION_DOWN:
-                deltaRow = 1;
-                break;
-            case Spell.DIRECTION_LEFT:
-                deltaColumn = -1;
-                break;
-            case Spell.DIRECTION_RIGHT:
-                deltaColumn = 1;
-                break;
-        }
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
         int enemyRow = startRow;
         int enemyColumn = startColumn;
 
         while (map.getElement(enemyRow, enemyColumn) == null)
         {
-            enemyRow += deltaRow;
-            enemyColumn += deltaColumn;
+            enemyRow += positionChange.getDeltaRow();
+            enemyColumn += positionChange.getDeltaColumn();
         }
 
-        int characterRow = enemyRow - deltaRow;
-        int characterColumn = enemyColumn - deltaColumn;
+        int characterRow = enemyRow - positionChange.getDeltaRow();
+        int characterColumn = enemyColumn - positionChange.getDeltaColumn();
 
         MapElement characterElement = character.getMapElement();
         characterElement.setRow(characterRow);

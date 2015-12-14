@@ -26,6 +26,16 @@ public class PositionChange
         return this.initialColumn;
     }
 
+    public int getDeltaRow()
+    {
+        return this.deltaRow;
+    }
+
+    public int getDeltaColumn()
+    {
+        return this.deltaColumn;
+    }
+
     public int getFinalRow()
     {
         return this.finalRow;

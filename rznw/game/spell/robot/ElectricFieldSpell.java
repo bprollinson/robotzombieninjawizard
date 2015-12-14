@@ -7,10 +7,10 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
-import rznw.game.spell.Spell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class ElectricFieldSpell extends DirectedSpell
 {
@@ -23,31 +23,14 @@ public class ElectricFieldSpell extends DirectedSpell
         int radius = 1 + (int)Math.floor(spellPoints / 4);
         System.out.println("Radius is: " + radius);
 
-        int deltaRow = 0;
-        int deltaColumn = 0;
-
-        switch(direction)
-        {
-            case Spell.DIRECTION_UP:
-                deltaRow = -1;
-                break;
-            case Spell.DIRECTION_DOWN:
-                deltaRow = 1;
-                break;
-            case Spell.DIRECTION_LEFT:
-                deltaColumn = -1;
-                break;
-            case Spell.DIRECTION_RIGHT:
-                deltaColumn = 1;
-                break;
-        }
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
 
         System.out.println("Character position is: " + characterElement.getRow() + ", " + characterElement.getColumn());
 
-        int row = characterElement.getRow() + deltaRow * (radius + 1);
-        int column = characterElement.getColumn() + deltaColumn * (radius + 1);
+        int row = characterElement.getRow() + positionChange.getDeltaRow() * (radius + 1);
+        int column = characterElement.getColumn() + positionChange.getDeltaColumn() * (radius + 1);
 
         System.out.println("Center row and column are: " + row + ", " + column);
 
