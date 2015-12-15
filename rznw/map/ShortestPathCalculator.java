@@ -14,7 +14,24 @@ import java.util.Vector;
 
 public class ShortestPathCalculator
 {
-    public static MapPath calculateShortestPath(Map map, MapPoint finalPoint, MapPath[] paths, MapPathCache pathCache, boolean voidWalk)
+    private Map map;
+    private boolean voidWalk;
+
+    public ShortestPathCalculator(Map map, boolean voidWalk)
+    {
+        this.map = map;
+        this.voidWalk = voidWalk;
+    }
+
+    public MapPath calculateShortestPath(MapPoint startPoint, MapPoint endPoint)
+    {
+        MapPathCache pathCache = new MapPathCache();
+        MapPath result = new MapPath(startPoint);
+
+        return this.calculateShortestPath(this.map, endPoint, new MapPath[]{result}, pathCache, this.voidWalk);
+    }
+
+    private MapPath calculateShortestPath(Map map, MapPoint endPoint, MapPath[] paths, MapPathCache pathCache, boolean voidWalk)
     {
         if (paths.length == 0)
         {
@@ -26,7 +43,7 @@ public class ShortestPathCalculator
             MapPath path = paths[i];
             MapPoint currentPoint = path.getCurrentPoint();
 
-            if (currentPoint.equals(finalPoint))
+            if (currentPoint.equals(endPoint))
             {
                 return path;
             }
@@ -43,7 +60,7 @@ public class ShortestPathCalculator
         {
             MapPath upPath = paths[i].getSubsequentPath(new PathDirectionUp());
             MapPoint upPathPoint = upPath.getCurrentPoint();
-            if (upPathPoint.getY() >= 0 && !pathCache.pathIsUsed(upPath) && !(map.getElement(upPathPoint.getY(), upPathPoint.getX()) instanceof Wall) || upPath.getCurrentPoint().equals(finalPoint))
+            if (upPathPoint.getY() >= 0 && !pathCache.pathIsUsed(upPath) && !(map.getElement(upPathPoint.getY(), upPathPoint.getX()) instanceof Wall) || upPath.getCurrentPoint().equals(endPoint))
             {
                 if (voidWalk || !(map.getElement(upPathPoint.getY(), upPathPoint.getX()) instanceof Void))
                 {
@@ -53,7 +70,7 @@ public class ShortestPathCalculator
 
             MapPath downPath = paths[i].getSubsequentPath(new PathDirectionDown());
             MapPoint downPathPoint = downPath.getCurrentPoint();
-            if (downPathPoint.getY() < Map.NUM_ROWS && !pathCache.pathIsUsed(downPath) && !(map.getElement(downPathPoint.getY(), downPathPoint.getX()) instanceof Wall) || downPath.getCurrentPoint().equals(finalPoint))
+            if (downPathPoint.getY() < Map.NUM_ROWS && !pathCache.pathIsUsed(downPath) && !(map.getElement(downPathPoint.getY(), downPathPoint.getX()) instanceof Wall) || downPath.getCurrentPoint().equals(endPoint))
             {
                 if (voidWalk || !(map.getElement(downPathPoint.getY(), downPathPoint.getX()) instanceof Void))
                 {
@@ -63,7 +80,7 @@ public class ShortestPathCalculator
 
             MapPath leftPath = paths[i].getSubsequentPath(new PathDirectionLeft());
             MapPoint leftPathPoint = leftPath.getCurrentPoint();
-            if (leftPathPoint.getX() >= 0 && !pathCache.pathIsUsed(leftPath) && !(map.getElement(leftPathPoint.getY(), leftPathPoint.getX()) instanceof Wall) || leftPath.getCurrentPoint().equals(finalPoint))
+            if (leftPathPoint.getX() >= 0 && !pathCache.pathIsUsed(leftPath) && !(map.getElement(leftPathPoint.getY(), leftPathPoint.getX()) instanceof Wall) || leftPath.getCurrentPoint().equals(endPoint))
             {
                 if (voidWalk || !(map.getElement(leftPathPoint.getY(), leftPathPoint.getX()) instanceof Void))
                 {
@@ -73,7 +90,7 @@ public class ShortestPathCalculator
 
             MapPath rightPath = paths[i].getSubsequentPath(new PathDirectionRight());
             MapPoint rightPathPoint = rightPath.getCurrentPoint();
-            if (rightPathPoint.getX() < Map.NUM_COLUMNS && !pathCache.pathIsUsed(rightPath) && !(map.getElement(rightPathPoint.getY(), rightPathPoint.getX()) instanceof Wall) || rightPath.getCurrentPoint().equals(finalPoint))
+            if (rightPathPoint.getX() < Map.NUM_COLUMNS && !pathCache.pathIsUsed(rightPath) && !(map.getElement(rightPathPoint.getY(), rightPathPoint.getX()) instanceof Wall) || rightPath.getCurrentPoint().equals(endPoint))
             {
                 if (voidWalk || !(map.getElement(rightPathPoint.getY(), rightPathPoint.getX()) instanceof Void))
                 {
@@ -84,7 +101,7 @@ public class ShortestPathCalculator
 
         Vector<MapPath> uniquePaths = ShortestPathCalculator.makePathsUnique(newPaths);
 
-        return ShortestPathCalculator.calculateShortestPath(map, finalPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache, voidWalk);
+        return this.calculateShortestPath(map, endPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache, voidWalk);
     }
 
     private static Vector<MapPath> makePathsUnique(Vector<MapPath> paths)

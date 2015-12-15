@@ -28,10 +28,8 @@ public abstract class EnemyCharacter extends Character
 
         MapPoint startPoint = new MapPoint(this.getMapElement().getColumn(), this.getMapElement().getRow());
         MapPoint endPoint = new MapPoint(character.getMapElement().getColumn(), character.getMapElement().getRow());
-        MapPath result = new MapPath(startPoint);
-        MapPathCache pathCache = new MapPathCache();
-
-        MapPath path = ShortestPathCalculator.calculateShortestPath(gameWorld.getMap(), endPoint, new MapPath[]{result}, pathCache, false);
+        ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false);
+        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
 
         System.out.println("Path: " + path);
 
