@@ -226,7 +226,7 @@ public class MainCharacterTurnHandler
             }
             else
             {
-                EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(character);
+                EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(this.gameWorld);
 
                 this.handleCharacterTurn(enemyPositionChange, enemy);
             }

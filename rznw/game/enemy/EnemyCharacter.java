@@ -5,12 +5,17 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
+import rznw.map.ShortestPathCalculator;
+import rznw.map.generator.MapPoint;
+import rznw.map.generator.direction.PathDirection;
+import rznw.map.generator.path.MapPath;
+import rznw.map.generator.path.MapPathCache;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
-    public EnemyAIBasedPositionChange getPositionChange(MainCharacter character)
+    public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
         if (this.getStatusEffects().isConfused())
         {
@@ -19,33 +24,22 @@ public abstract class EnemyCharacter extends Character
             return this.getRandomPositionChange();
         }
 
-        int enemyRow = this.getMapElement().getRow();
-        int enemyColumn = this.getMapElement().getColumn();
+        MainCharacter character = gameWorld.getMainCharacter();
 
-        int characterRow = character.getMapElement().getRow();
-        int characterColumn = character.getMapElement().getColumn();
+        MapPoint startPoint = new MapPoint(this.getMapElement().getColumn(), this.getMapElement().getRow());
+        MapPoint endPoint = new MapPoint(character.getMapElement().getColumn(), character.getMapElement().getRow());
+        MapPath result = new MapPath(startPoint);
+        MapPathCache pathCache = new MapPathCache();
 
-        int deltaRow = 0;
-        if (enemyRow < characterRow)
-        {
-            deltaRow = 1;
-        }
-        if (enemyRow > characterRow)
-        {
-            deltaRow = -1;
-        }
+        MapPath path = ShortestPathCalculator.calculateShortestPath(gameWorld.getMap(), endPoint, new MapPath[]{result}, pathCache, false);
 
-        int deltaColumn = 0;
-        if (enemyColumn < characterColumn)
-        {
-            deltaColumn = 1;
-        }
-        if (enemyColumn > characterColumn)
-        {
-            deltaColumn = -1;
-        }
+        System.out.println("Path: " + path);
 
-        return new EnemyAIBasedPositionChange(this, deltaRow, deltaColumn);
+        PathDirection firstDirection = path.getDirection(0);
+
+        System.out.println("Direction: " + firstDirection.getDeltaY() + ", " + firstDirection.getDeltaX());
+
+        return new EnemyAIBasedPositionChange(this, firstDirection.getDeltaY(), firstDirection.getDeltaX());
     }
 
     public EnemyAIBasedPositionChange getRandomPositionChange()
