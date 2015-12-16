@@ -117,7 +117,7 @@ public class MainCharacterTurnHandler
     public void handlePostCharacterTurn()
     {
         Map map = this.gameWorld.getMap();
-        Character character = this.gameWorld.getMainCharacter();
+        MainCharacter character = this.gameWorld.getMainCharacter();
         MapElement characterMapElement = character.getMapElement();
 
         map.setElementVisited((MainCharacter)character, characterMapElement.getRow(), characterMapElement.getColumn());
@@ -128,6 +128,8 @@ public class MainCharacterTurnHandler
         {
             this.handleMainCharacterRegeneration();
         }
+
+        this.clearEnemies(map, character);
     }
 
     private void handleTrapCollision()
@@ -270,35 +272,13 @@ public class MainCharacterTurnHandler
             this.handleMainCharacterRevival();
         }
 
+        this.clearEnemies(map, character);
+
         for (int row = 0; row < Map.NUM_ROWS; row++)
         {
             for (int column = 0; column < Map.NUM_COLUMNS; column++)
             {
                 MapElement element = map.getElement(row, column);
-                if (element instanceof EnemyMapElement)
-                {
-                    Character enemy = ((EnemyMapElement)element).getCharacter();
-                    if (enemy.isDead())
-                    {
-                        this.killBonusGranter.grantKillBonuses(character, enemy);
-                        map.setElement(element.getRow(), element.getColumn(), null);
-
-                        if (character.getStatusEffects().isInferringZombie())
-                        {
-                            character.getStatusEffects().disableInferZombie();
-
-                            System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
-
-                            int maxHP = 200 + 10 * character.getSpellPoints(13);
-                            System.out.println("Max HP is: " + maxHP);
-
-                            SummonedZombie zombie = new SummonedZombie(maxHP);
-                            SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
-                            zombie.setMapElement(zombieElement);
-                            gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
-                        }
-                    }
-                }
 
                 if (element instanceof SummonedZombieMapElement)
                 {
@@ -330,5 +310,40 @@ public class MainCharacterTurnHandler
     public void renderSummary()
     {
         this.renderer.render(this.gameWorld);
+    }
+
+    private void clearEnemies(Map map, MainCharacter character)
+    {
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                MapElement element = map.getElement(row, column);
+                if (element instanceof EnemyMapElement)
+                {
+                    Character enemy = ((EnemyMapElement)element).getCharacter();
+                    if (enemy.isDead())
+                    {
+                        this.killBonusGranter.grantKillBonuses(character, enemy);
+                        map.setElement(element.getRow(), element.getColumn(), null);
+
+                        if (character.getStatusEffects().isInferringZombie())
+                        {
+                            character.getStatusEffects().disableInferZombie();
+
+                            System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
+
+                            int maxHP = 200 + 10 * character.getSpellPoints(13);
+                            System.out.println("Max HP is: " + maxHP);
+
+                            SummonedZombie zombie = new SummonedZombie(maxHP);
+                            SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
+                            zombie.setMapElement(zombieElement);
+                            gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
