@@ -2,9 +2,13 @@ package rznw.game;
 
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.ShortestPathCalculator;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Void;
+import rznw.map.generator.MapPoint;
+import rznw.map.generator.direction.PathDirection;
+import rznw.map.generator.path.MapPath;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 import java.util.Collections;
@@ -72,26 +76,13 @@ public abstract class SummonedCharacter extends Character
 
         MapElement closestElement = minDistanceList.get(0).getKey();
 
-        int deltaRow = 0;
-        if (closestElement.getRow() < this.getMapElement().getRow())
-        {
-            deltaRow = -1;
-        }
-        if (closestElement.getRow() > this.getMapElement().getRow())
-        {
-            deltaRow = 1;
-        }
+        MapPoint startPoint = new MapPoint(this.getMapElement().getColumn(), this.getMapElement().getRow());
+        MapPoint endPoint = new MapPoint(closestElement.getColumn(), closestElement.getRow());
+        ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
+        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
 
-        int deltaColumn = 0;
-        if (closestElement.getColumn() < this.getMapElement().getColumn())
-        {
-            deltaColumn = -1;
-        }
-        if (closestElement.getColumn() > this.getMapElement().getColumn())
-        {
-            deltaColumn = 1;
-        }
+        PathDirection firstDirection = path.getDirection(0);
 
-        return new EnemyAIBasedPositionChange(this, deltaRow, deltaColumn);
+        return new EnemyAIBasedPositionChange(this, firstDirection.getDeltaY(), firstDirection.getDeltaX());
     }
 }

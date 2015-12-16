@@ -17,6 +17,7 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
+import rznw.map.element.SummonedGolemMapElement;
 import rznw.map.element.SummonedZombieMapElement;
 import rznw.map.element.TrapMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
@@ -284,6 +285,15 @@ public class MainCharacterTurnHandler
                 {
                     Character zombie = ((SummonedZombieMapElement)element).getCharacter();
                     if (zombie.isDead())
+                    {
+                        map.setElement(element.getRow(), element.getColumn(), null);
+                    }
+                }
+
+                if (element instanceof SummonedGolemMapElement)
+                {
+                    Character golem = ((SummonedGolemMapElement)element).getCharacter();
+                    if (golem.isDead())
                     {
                         map.setElement(element.getRow(), element.getColumn(), null);
                     }
