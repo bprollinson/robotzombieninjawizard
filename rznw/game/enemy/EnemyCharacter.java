@@ -22,7 +22,10 @@ public abstract class EnemyCharacter extends Character
     {
         if (this.getStatusEffects().isConfused() || this.distanceFromMainCharacter(gameWorld) > EnemyCharacter.SIGHT_RADIUS)
         {
-            System.out.println("Enemy is confused!");
+            if (this.getStatusEffects().isConfused())
+            {
+                System.out.println("Enemy is confused!");
+            }
 
             return this.getRandomPositionChange();
         }
