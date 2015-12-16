@@ -6,6 +6,7 @@ import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
 import rznw.map.ShortestPathCalculator;
+import rznw.map.element.MapElement;
 import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
 import rznw.map.generator.path.MapPath;
@@ -15,9 +16,11 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
+    private static int SIGHT_RADIUS = 10;
+
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
-        if (this.getStatusEffects().isConfused())
+        if (this.getStatusEffects().isConfused() || this.distanceFromMainCharacter(gameWorld) > EnemyCharacter.SIGHT_RADIUS)
         {
             System.out.println("Enemy is confused!");
 
@@ -113,5 +116,15 @@ public abstract class EnemyCharacter extends Character
         }
 
         super.damage(damage, damageSource, gameWorld, damageSourceType);
+    }
+
+    private double distanceFromMainCharacter(GameWorld gameWorld)
+    {
+        MainCharacter character = gameWorld.getMainCharacter();
+
+        MapElement element = this.getMapElement();
+        MapElement characterElement = character.getMapElement();
+
+        return Math.sqrt(Math.pow(element.getRow() - characterElement.getRow(), 2) + Math.pow(element.getColumn() - characterElement.getColumn(), 2));
     }
 }
