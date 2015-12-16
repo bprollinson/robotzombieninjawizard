@@ -143,7 +143,7 @@ public class MapPathGenerator
             this.roomRenderer.renderRoom(paddedMap, paddedRoom.getStartX(), paddedRoom.getStartY(), paddedRoom.getEndX(), paddedRoom.getEndY());
         }
 
-        ShortestPathCalculator pathCalculator = new ShortestPathCalculator(paddedMap, true);
+        ShortestPathCalculator pathCalculator = new ShortestPathCalculator(paddedMap, true, false);
 
         return pathCalculator.calculateShortestPath(point1, point2);
     }

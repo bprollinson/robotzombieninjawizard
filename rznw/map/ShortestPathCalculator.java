@@ -8,6 +8,10 @@ import rznw.map.generator.direction.PathDirectionDown;
 import rznw.map.generator.direction.PathDirectionLeft;
 import rznw.map.generator.direction.PathDirectionRight;
 import rznw.map.generator.direction.PathDirectionUp;
+import rznw.map.generator.direction.PathDirectionUpLeft;
+import rznw.map.generator.direction.PathDirectionUpRight;
+import rznw.map.generator.direction.PathDirectionDownLeft;
+import rznw.map.generator.direction.PathDirectionDownRight;
 import rznw.map.generator.path.MapPath;
 import rznw.map.generator.path.MapPathCache;
 
@@ -17,11 +21,13 @@ public class ShortestPathCalculator
 {
     private Map map;
     private boolean voidWalk;
+    private boolean allowDiagonal;
 
-    public ShortestPathCalculator(Map map, boolean voidWalk)
+    public ShortestPathCalculator(Map map, boolean voidWalk, boolean allowDiagonal)
     {
         this.map = map;
         this.voidWalk = voidWalk;
+        this.allowDiagonal = allowDiagonal;
     }
 
     public MapPath calculateShortestPath(MapPoint startPoint, MapPoint endPoint)
@@ -29,10 +35,10 @@ public class ShortestPathCalculator
         MapPathCache pathCache = new MapPathCache();
         MapPath result = new MapPath(startPoint);
 
-        return this.calculateShortestPath(this.map, endPoint, new MapPath[]{result}, pathCache, this.voidWalk);
+        return this.calculateShortestPath(this.map, endPoint, new MapPath[]{result}, pathCache, this.voidWalk, this.allowDiagonal);
     }
 
-    private MapPath calculateShortestPath(Map map, MapPoint endPoint, MapPath[] paths, MapPathCache pathCache, boolean voidWalk)
+    private MapPath calculateShortestPath(Map map, MapPoint endPoint, MapPath[] paths, MapPathCache pathCache, boolean voidWalk, boolean allowDiagonal)
     {
         if (paths.length == 0)
         {
@@ -64,6 +70,20 @@ public class ShortestPathCalculator
             new PathDirectionRight()
         };
 
+        if (allowDiagonal)
+        {
+            possibleDirections = new PathDirection[]{
+                new PathDirectionUp(),
+                new PathDirectionDown(),
+                new PathDirectionLeft(),
+                new PathDirectionRight(),
+                new PathDirectionUpLeft(),
+                new PathDirectionUpRight(),
+                new PathDirectionDownLeft(),
+                new PathDirectionDownRight()
+            };
+        }
+
         for (int i = 0; i < paths.length; i++)
         {
             for (int j = 0; j < possibleDirections.length; j++)
@@ -84,7 +104,7 @@ public class ShortestPathCalculator
 
         Vector<MapPath> uniquePaths = ShortestPathCalculator.makePathsUnique(newPaths);
 
-        return this.calculateShortestPath(map, endPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache, voidWalk);
+        return this.calculateShortestPath(map, endPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache, voidWalk, allowDiagonal);
     }
 
     private static Vector<MapPath> makePathsUnique(Vector<MapPath> paths)
