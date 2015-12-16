@@ -39,6 +39,11 @@ public class StatusEffects
         this.poisoned = true;
     }
 
+    public void healPoison()
+    {
+        this.poisoned = false;
+    }
+
     public void reversePain()
     {
         this.isReversingPain = true;
