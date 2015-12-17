@@ -8,10 +8,11 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
     private static final int ENTRY_SKILLS = 1;
     private static final int ENTRY_SPELLS = 2;
     private static final int ENTRY_INVENTORY = 3;
-    private static final int ENTRY_SAVE = 4;
-    private static final int ENTRY_LOAD = 5;
-    private static final int ENTRY_NEW_GAME = 6;
-    private static final int ENTRY_EXIT = 7;
+    private static final int ENTRY_EQUIPMENT = 4;
+    private static final int ENTRY_SAVE = 5;
+    private static final int ENTRY_LOAD = 6;
+    private static final int ENTRY_NEW_GAME = 7;
+    private static final int ENTRY_EXIT = 8;
 
     private MainMenuRenderer mainMenuRenderer;
     private MenuState state;
@@ -19,7 +20,7 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
     public MainMenuKeyListener(MainMenuRenderer mainMenuRenderer)
     {
         this.mainMenuRenderer = mainMenuRenderer;
-        this.state = new MenuState(7);
+        this.state = new MenuState(8);
     }
 
     public void keyPressed(KeyEvent event)

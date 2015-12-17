@@ -31,10 +31,11 @@ public class MainMenuRenderer
         this.renderCenteredString(6, "Skills");
         this.renderCenteredString(8, "Spells");
         this.renderCenteredString(10, "Inventory");
-        this.renderCenteredString(12, "Save Game");
-        this.renderCenteredString(14, "Load Game");
-        this.renderCenteredString(16, "New Game");
-        this.renderCenteredString(18, "Exit");
+        this.renderCenteredString(12, "Equipment");
+        this.renderCenteredString(14, "Save Game");
+        this.renderCenteredString(16, "Load Game");
+        this.renderCenteredString(18, "New Game");
+        this.renderCenteredString(20, "Exit");
 
         this.renderCursor(state);
     }
