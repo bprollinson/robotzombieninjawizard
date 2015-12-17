@@ -78,6 +78,11 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_INVENTORY_SCREEN;
         }
 
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EQUIPMENT)
+        {
+            return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;
+        }
+
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_SAVE)
         {
             return DispatchKeyListener.STATE_SAVE_SCREEN;
