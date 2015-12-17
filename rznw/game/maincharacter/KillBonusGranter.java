@@ -51,9 +51,9 @@ public class KillBonusGranter
 
     private void grantItems(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
     {
-        InventoryItemGroup itemGroup = enemyCharacter.getItemDrops();
-        if (itemGroup != null)
+        if (enemyCharacter.isDroppingItems())
         {
+            InventoryItemGroup itemGroup = enemyCharacter.getItemDrops();
             mainCharacter.getInventory().addItems(itemGroup);
         }
 
@@ -63,7 +63,7 @@ public class KillBonusGranter
 
             if (RandomNumberGenerator.rollSucceeds(probability))
             {
-                itemGroup = new InventoryItemGroup(new Potion(), 1);
+                InventoryItemGroup itemGroup = new InventoryItemGroup(new Potion(), 1);
                 mainCharacter.getInventory().addItems(itemGroup);
             }
         }
