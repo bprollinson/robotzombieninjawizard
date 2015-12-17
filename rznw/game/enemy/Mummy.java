@@ -1,5 +1,6 @@
 package rznw.game.enemy;
 
+import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.element.EnemyMapElement;
@@ -14,9 +15,12 @@ public class Mummy extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Mummy.mapCharacter, this);
     }
 
-    public boolean isDroppingItems()
+    public boolean isDroppingItems(MainCharacter mainCharacter)
     {
-        return RandomNumberGenerator.rollSucceeds(50);
+        int probability = 50 + 2 * mainCharacter.getSkillPoints(6);
+        System.out.println("Item drop probability: " + probability);
+
+        return RandomNumberGenerator.rollSucceeds(probability);
     }
 
     public InventoryItemGroup getItemDrops()

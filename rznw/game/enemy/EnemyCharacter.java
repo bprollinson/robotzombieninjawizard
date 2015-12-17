@@ -83,7 +83,7 @@ public abstract class EnemyCharacter extends Character
         return 20;
     }
 
-    public abstract boolean isDroppingItems();
+    public abstract boolean isDroppingItems(MainCharacter mainCharacter);
 
     public abstract InventoryItemGroup getItemDrops();
 

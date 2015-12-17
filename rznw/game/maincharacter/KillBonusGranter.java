@@ -51,7 +51,7 @@ public class KillBonusGranter
 
     private void grantItems(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
     {
-        if (enemyCharacter.isDroppingItems())
+        if (enemyCharacter.isDroppingItems(mainCharacter))
         {
             InventoryItemGroup itemGroup = enemyCharacter.getItemDrops();
             mainCharacter.getInventory().addItems(itemGroup);
