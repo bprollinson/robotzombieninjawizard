@@ -3,6 +3,7 @@ package rznw.game.enemy;
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
+import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
 import rznw.map.ShortestPathCalculator;
@@ -86,6 +87,10 @@ public abstract class EnemyCharacter extends Character
     public abstract boolean isDroppingItems(MainCharacter mainCharacter);
 
     public abstract InventoryItemGroup getItemDrops();
+
+    public abstract boolean isDroppingEquipment();
+
+    public abstract EquipmentGroup getEquipmentDrops();
 
     public int getExperienceReward()
     {

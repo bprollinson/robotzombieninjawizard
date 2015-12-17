@@ -2,6 +2,7 @@ package rznw.game.maincharacter;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -118,6 +119,7 @@ public abstract class MainCharacter extends Character
     private int[] skills;
     private int[] spells;
     private Inventory inventory;
+    private Equipment equipment;
 
     private int HPSteps = 0;
     private int MPSteps = 0;
@@ -139,6 +141,7 @@ public abstract class MainCharacter extends Character
         }
 
         this.inventory = new Inventory();
+        this.equipment = new Equipment();
 
         this.HP = this.getMaxHP();
         this.MP = this.getMaxMP();
@@ -215,6 +218,11 @@ public abstract class MainCharacter extends Character
     public Inventory getInventory()
     {
         return this.inventory;
+    }
+
+    public Equipment getEquipment()
+    {
+        return this.equipment;
     }
 
     public void setLevel(int level)

@@ -3,6 +3,7 @@ package rznw.game.maincharacter;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.utility.RandomNumberGenerator;
@@ -22,6 +23,7 @@ public class KillBonusGranter
         this.grantExperience(mainCharacter, enemyCharacter);
         this.grantGold(mainCharacter, enemyCharacter);
         this.grantItems(mainCharacter, enemyCharacter);
+        this.grantEquipment(mainCharacter, enemyCharacter);
     }
 
     private void grantExperience(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
@@ -66,6 +68,15 @@ public class KillBonusGranter
                 InventoryItemGroup itemGroup = new InventoryItemGroup(new Potion(), 1);
                 mainCharacter.getInventory().addItems(itemGroup);
             }
+        }
+    }
+
+    private void grantEquipment(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
+    {
+        if (enemyCharacter.isDroppingEquipment())
+        {
+            EquipmentGroup equipmentGroup = enemyCharacter.getEquipmentDrops();
+            mainCharacter.getEquipment().addEquipment(equipmentGroup);
         }
     }
 }
