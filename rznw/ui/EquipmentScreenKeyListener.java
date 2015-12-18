@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class EquipmentScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int ENTRY_WEAPONS = 0;
+
     private EquipmentScreenRenderer equipmentScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
@@ -50,6 +52,11 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == EquipmentScreenKeyListener.ENTRY_WEAPONS)
+        {
+            return DispatchKeyListener.STATE_WEAPONS_SCREEN;
         }
 
         return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;
