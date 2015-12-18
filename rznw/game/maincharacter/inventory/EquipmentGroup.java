@@ -25,4 +25,9 @@ public class EquipmentGroup
     {
         this.numItems += numItems;
     }
+
+    public String getDisplayString()
+    {
+        return this.numItems + " " + item.getDisplayName();
+    }
 }

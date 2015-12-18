@@ -1,5 +1,6 @@
 package rznw.ui;
 
+import rznw.game.maincharacter.inventory.Equipment;
 import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
@@ -8,6 +9,7 @@ public class WeaponsScreenKeyListener extends StateTransitionKeyListener
 {
     private WeaponsScreenRenderer weaponsScreenRenderer;
     private GameWorld gameWorld;
+    private MenuState state;
 
     public WeaponsScreenKeyListener(WeaponsScreenRenderer weaponsScreenRenderer, GameWorld gameWorld)
     {
@@ -17,11 +19,28 @@ public class WeaponsScreenKeyListener extends StateTransitionKeyListener
 
     public void keyPressed(KeyEvent event)
     {
+        switch (event.getKeyCode())
+        {
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_NUMPAD8:
+            case KeyEvent.VK_KP_UP:
+                this.state.moveUp();
+                break;
+            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_NUMPAD2:
+            case KeyEvent.VK_KP_DOWN:
+                this.state.moveDown();
+                break;
+        }
+
+        this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
     }
 
     public void enterState(int previousState)
     {
-        this.weaponsScreenRenderer.render();
+        Equipment equipment = gameWorld.getMainCharacter().getEquipment();
+        this.state = new MenuState(equipment.getNumWeaponGroups());
+        this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
     }
 
     public void exitState(KeyEvent event)

@@ -4,4 +4,5 @@ import rznw.game.maincharacter.MainCharacter;
 
 public abstract class EquipmentItem
 {
+    public abstract String getDisplayName();
 }
