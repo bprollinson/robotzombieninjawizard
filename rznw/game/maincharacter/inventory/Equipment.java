@@ -64,12 +64,48 @@ public class Equipment
 
         for (int i = 0; i < this.equipmentGroups.size(); i++)
         {
-            if (pos == targetPosition)
+            if (pos == targetPosition && this.equipmentGroups.get(i).getItem() instanceof Weapon)
             {
                 return this.equipmentGroups.get(i);
             }
 
             if (this.equipmentGroups.get(i).getItem() instanceof Weapon)
+            {
+                pos++;
+            }
+        }
+
+        return null;
+    }
+
+    public int getNumShieldGroups()
+    {
+        int result = 0;
+
+        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        {
+            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
+            if (equipmentGroup.getItem() instanceof Shield)
+            {
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    public EquipmentGroup getShieldGroup(int targetPosition)
+    {
+        int pos = 0;
+
+        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        {
+            if (pos == targetPosition && this.equipmentGroups.get(i).getItem() instanceof Shield)
+            {
+                return this.equipmentGroups.get(i);
+            }
+
+            if (this.equipmentGroups.get(i).getItem() instanceof Shield)
             {
                 pos++;
             }
