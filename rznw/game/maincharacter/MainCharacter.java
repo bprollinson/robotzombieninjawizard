@@ -6,6 +6,7 @@ import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
@@ -206,6 +207,15 @@ public abstract class MainCharacter extends Character
     public int getDamage()
     {
         int damage = 50 + 5 * this.getStatPoints(8);
+
+        Weapon weapon = this.getEquipment().getEquippedWeapon();
+        if (weapon != null)
+        {
+            int weaponDamage = weapon.getDamage();
+            System.out.println("Additional weapon damage: " + weaponDamage);
+            damage += weaponDamage;
+        }
+
         double bloodRageFactor = this.getSkillPoints(2) / 100.0 * (this.getMaxHP() - this.getHP()) / this.getMaxHP();
 
         if (bloodRageFactor > 0.0) {

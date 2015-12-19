@@ -6,4 +6,9 @@ public class WoodenSword extends Weapon
     {
         return "Wooden Sword";
     }
+
+    public int getDamage()
+    {
+        return 10;
+    }
 }

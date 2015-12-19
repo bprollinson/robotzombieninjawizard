@@ -90,14 +90,14 @@ public class Equipment
         this.equippedWeapon = weaponGroupIndex;
     }
 
-    public EquipmentItem getEquippedWeapon()
+    public Weapon getEquippedWeapon()
     {
         if (this.equippedWeapon == -1)
         {
             return null;
         }
 
-        return this.getWeaponGroup(this.equippedWeapon).getItem();
+        return (Weapon)this.getWeaponGroup(this.equippedWeapon).getItem();
     }
 
     public int getNumShieldGroups()
