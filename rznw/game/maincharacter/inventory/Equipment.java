@@ -6,6 +6,7 @@ public class Equipment
 {
     Vector<EquipmentGroup> equipmentGroups;
     private int equippedWeapon = -1;
+    private int equippedShield = -1;
 
     public Equipment()
     {
@@ -96,7 +97,7 @@ public class Equipment
             return null;
         }
 
-        return this.equipmentGroups.get(this.equippedWeapon).getItem();
+        return this.getWeaponGroup(this.equippedWeapon).getItem();
     }
 
     public int getNumShieldGroups()
@@ -133,5 +134,25 @@ public class Equipment
         }
 
         return null;
+    }
+
+    public void unequipShield()
+    {
+        this.equippedShield = -1;
+    }
+
+    public void equipShield(int shieldGroupIndex)
+    {
+        this.equippedShield = shieldGroupIndex;
+    }
+
+    public EquipmentItem getEquippedShield()
+    {
+        if (this.equippedShield == -1)
+        {
+            return null;
+        }
+
+        return this.getShieldGroup(this.equippedShield).getItem();
     }
 }

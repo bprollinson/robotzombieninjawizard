@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 
 public class ShieldsScreenRenderer extends MenuScreenRenderer
 {
@@ -15,7 +16,14 @@ public class ShieldsScreenRenderer extends MenuScreenRenderer
         this.clearScreen();
         this.renderCenteredString(1, "Shields");
 
-        this.frame.renderDisplayString(3, 2, "Equipped: N/A");
+        String equippedShieldDescription = "N/A";
+        EquipmentItem shield = character.getEquipment().getEquippedShield();
+        if (shield != null)
+        {
+            equippedShieldDescription = shield.getDisplayName();
+        }
+
+        this.frame.renderDisplayString(3, 2, "Equipped: " + equippedShieldDescription);
         this.frame.renderDisplayString(5, 2, "Unequip");
 
         int numShieldGroups = character.getEquipment().getNumShieldGroups();

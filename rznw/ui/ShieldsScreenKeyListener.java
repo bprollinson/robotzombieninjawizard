@@ -31,6 +31,17 @@ public class ShieldsScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_KP_DOWN:
                 this.state.moveDown();
                 break;
+            case KeyEvent.VK_ENTER:
+                if (this.state.getEntryNumber() == 0)
+                {
+                    this.gameWorld.getMainCharacter().getEquipment().unequipShield();
+                }
+                else
+                {
+                    this.gameWorld.getMainCharacter().getEquipment().equipShield(this.state.getEntryNumber() - 1);
+                }
+
+                break;
         }
 
         this.shieldsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
