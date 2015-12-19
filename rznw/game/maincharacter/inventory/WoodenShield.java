@@ -6,4 +6,14 @@ public class WoodenShield extends Shield
     {
         return "Wooden Shield";
     }
+
+    public int getDodgePercent()
+    {
+        return 5;
+    }
+
+    public int getPaddingPercent()
+    {
+        return 5;
+    }
 }

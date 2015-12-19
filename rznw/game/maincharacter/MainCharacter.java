@@ -6,6 +6,7 @@ import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
@@ -318,6 +319,14 @@ public abstract class MainCharacter extends Character
     {
         int toDodgePercent = 2 *  this.getStatPoints(5);
 
+        Shield shield = this.getEquipment().getEquippedShield();
+        if (shield != null)
+        {
+            int shieldDodgePercent = shield.getDodgePercent();
+            System.out.println("Additional shield chance to dodge: " + shieldDodgePercent);
+            toDodgePercent += shieldDodgePercent;
+        }
+
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
@@ -387,6 +396,15 @@ public abstract class MainCharacter extends Character
         {
             paddingPercent += 2 * this.getSpellPoints(1);
         }
+
+        Shield shield = this.getEquipment().getEquippedShield();
+        if (shield != null)
+        {
+            int shieldPaddingPercent = shield.getPaddingPercent();
+            System.out.println("Additional shield padding percent: " + shieldPaddingPercent);
+            paddingPercent += shieldPaddingPercent;
+        }
+
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
 
         if (padding > 0)

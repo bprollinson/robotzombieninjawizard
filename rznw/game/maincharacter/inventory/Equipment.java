@@ -146,13 +146,13 @@ public class Equipment
         this.equippedShield = shieldGroupIndex;
     }
 
-    public EquipmentItem getEquippedShield()
+    public Shield getEquippedShield()
     {
         if (this.equippedShield == -1)
         {
             return null;
         }
 
-        return this.getShieldGroup(this.equippedShield).getItem();
+        return (Shield)this.getShieldGroup(this.equippedShield).getItem();
     }
 }
