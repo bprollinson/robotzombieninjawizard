@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 
 public class WeaponsScreenRenderer extends MenuScreenRenderer
 {
@@ -15,7 +16,14 @@ public class WeaponsScreenRenderer extends MenuScreenRenderer
         this.clearScreen();
         this.renderCenteredString(1, "Weapons");
 
-        this.frame.renderDisplayString(3, 2, "Equipped: N/A");
+        String equippedWeaponDescription = "N/A";
+        EquipmentItem weapon = character.getEquipment().getEquippedWeapon();
+        if (weapon != null)
+        {
+            equippedWeaponDescription = weapon.getDisplayName();
+        }
+
+        this.frame.renderDisplayString(3, 2, "Equipped: " + equippedWeaponDescription);
         this.frame.renderDisplayString(5, 2, "Unequip");
 
         int numWeaponGroups = character.getEquipment().getNumWeaponGroups();

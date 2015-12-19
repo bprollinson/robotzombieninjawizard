@@ -5,6 +5,7 @@ import java.util.Vector;
 public class Equipment
 {
     Vector<EquipmentGroup> equipmentGroups;
+    private int equippedWeapon = -1;
 
     public Equipment()
     {
@@ -76,6 +77,26 @@ public class Equipment
         }
 
         return null;
+    }
+
+    public void unequipWeapon()
+    {
+        this.equippedWeapon = -1;
+    }
+
+    public void equipWeapon(int weaponGroupIndex)
+    {
+        this.equippedWeapon = weaponGroupIndex;
+    }
+
+    public EquipmentItem getEquippedWeapon()
+    {
+        if (this.equippedWeapon == -1)
+        {
+            return null;
+        }
+
+        return this.equipmentGroups.get(this.equippedWeapon).getItem();
     }
 
     public int getNumShieldGroups()
