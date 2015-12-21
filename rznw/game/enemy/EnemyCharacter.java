@@ -154,7 +154,10 @@ public abstract class EnemyCharacter extends Character
 
     public boolean dodgesAttack()
     {
-        return false;
+        int toDodgePercent = 2 *  this.getStatPoints(EnemyCharacter.STAT_DODGE);
+        System.out.println("Enemy chance to dodge: " + toDodgePercent);
+
+        return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
     public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
