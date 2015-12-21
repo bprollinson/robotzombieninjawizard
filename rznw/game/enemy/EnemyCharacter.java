@@ -17,7 +17,45 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
+    protected static int STAT_ACCURACY = 1;
+    protected static int STAT_SIGHT = 3;
+    protected static int STAT_DAMAGE = 4;
+    protected static int STAT_PADDING = 4;
+
     private static int SIGHT_RADIUS = 10;
+
+    private int level;
+
+    /**
+     * Health
+     * Accuracy
+     * Dodge
+     * Sight
+     * Damage
+     * Padding
+     * Mana
+     * Mana Burn
+     */
+    private int[] stats;
+
+    public EnemyCharacter(int level)
+    {
+        super();
+
+        this.level = level;
+
+        this.stats = new int[8];
+
+        for (int i = 0; i < this.stats.length; i++)
+        {
+            this.stats[i] = 0;
+        }
+
+        this.applyStatSequence();
+
+        this.HP = this.getMaxHP();
+        this.MP = this.getMaxMP();
+    }
 
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
@@ -99,7 +137,10 @@ public abstract class EnemyCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        return true;
+        int toHitPercent = 50 + 2 * this.getStatPoints(EnemyCharacter.STAT_ACCURACY);
+        System.out.println("Enemy melee percent: " + toHitPercent);
+
+        return RandomNumberGenerator.rollSucceeds(toHitPercent);
     }
 
     public boolean dodgesAttack()
@@ -128,6 +169,24 @@ public abstract class EnemyCharacter extends Character
         super.damage(damage, damageSource, gameWorld, damageSourceType);
     }
 
+    private int getStatPoints(int statNumber)
+    {
+        return this.stats[statNumber];
+    }
+
+    private void applyStatSequence()
+    {
+        int desiredSequenceLength = 4 * this.level;
+
+        int[] statSequence = this.getStatSequence();
+
+        for (int i = 0; i < desiredSequenceLength; i++)
+        {
+            int statIndex = statSequence[i % statSequence.length];
+            this.stats[statIndex]++;
+        }
+    }
+
     private double distanceFromMainCharacter(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();
@@ -137,4 +196,6 @@ public abstract class EnemyCharacter extends Character
 
         return Math.sqrt(Math.pow(element.getRow() - characterElement.getRow(), 2) + Math.pow(element.getColumn() - characterElement.getColumn(), 2));
     }
+
+    protected abstract int[] getStatSequence();
 }

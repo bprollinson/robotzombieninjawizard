@@ -310,7 +310,7 @@ public abstract class MainCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        int toHitPercent = 50 + 2 *  this.getStatPoints(4);
+        int toHitPercent = 50 + 2 * this.getStatPoints(4);
 
         return RandomNumberGenerator.rollSucceeds(toHitPercent);
     }

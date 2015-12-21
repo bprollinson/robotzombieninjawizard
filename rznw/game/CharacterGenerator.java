@@ -34,14 +34,8 @@ public class CharacterGenerator
         return null;
     }
 
-    public EnemyCharacter generateEnemy(int level)
+    public EnemyCharacter generateEnemy(int dungeonLevel)
     {
-        EnemyCharacter[] enemyList = new EnemyCharacter[]
-        {
-            new Werewolf(),
-            new Mummy()
-        };
-
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
             {70, 100},
@@ -49,7 +43,7 @@ public class CharacterGenerator
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
-        int levelIndex = Math.min(level - 1, 1);
+        int levelIndex = Math.min(dungeonLevel - 1, 1);
 
         int index = -1;
 
@@ -62,6 +56,17 @@ public class CharacterGenerator
             }
         }
 
-        return enemyList[index];
+        int enemyLevel = RandomNumberGenerator.randomInteger(0, 2 * dungeonLevel - 1);
+        System.out.println("Generating enemy with level: " + enemyLevel);
+
+        switch (index)
+        {
+            case 0:
+                return new Werewolf(enemyLevel);
+            case 1:
+                return new Mummy(enemyLevel);
+        }
+
+        return null;
     } 
 }

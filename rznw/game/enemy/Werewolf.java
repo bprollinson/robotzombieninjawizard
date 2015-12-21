@@ -12,6 +12,20 @@ public class Werewolf extends EnemyCharacter
 {
     private static char mapCharacter = 'w';
 
+    public Werewolf(int level)
+    {
+        super(level);
+    }
+
+    public int[] getStatSequence()
+    {
+        return new int[]{
+          EnemyCharacter.STAT_DAMAGE,
+          EnemyCharacter.STAT_DAMAGE,
+          EnemyCharacter.STAT_ACCURACY
+        };
+    }
+
     public void generateMapElement(int row, int column)
     {
         this.mapElement = new EnemyMapElement(row, column, Werewolf.mapCharacter, this);
