@@ -17,7 +17,9 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
+    protected static int STAT_HEALTH = 0;
     protected static int STAT_ACCURACY = 1;
+    protected static int STAT_DODGE = 2;
     protected static int STAT_SIGHT = 3;
     protected static int STAT_DAMAGE = 4;
     protected static int STAT_PADDING = 5;
