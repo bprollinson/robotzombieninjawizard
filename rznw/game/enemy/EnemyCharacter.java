@@ -22,8 +22,6 @@ public abstract class EnemyCharacter extends Character
     protected static int STAT_DAMAGE = 4;
     protected static int STAT_PADDING = 5;
 
-    private static int SIGHT_RADIUS = 10;
-
     private int level;
 
     /**
@@ -59,7 +57,7 @@ public abstract class EnemyCharacter extends Character
 
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
-        if (this.getStatusEffects().isConfused() || this.distanceFromMainCharacter(gameWorld) > EnemyCharacter.SIGHT_RADIUS)
+        if (this.getStatusEffects().isConfused() || this.distanceFromMainCharacter(gameWorld) > this.getViewRadius())
         {
             if (this.getStatusEffects().isConfused())
             {
@@ -207,6 +205,11 @@ public abstract class EnemyCharacter extends Character
         MapElement characterElement = character.getMapElement();
 
         return Math.sqrt(Math.pow(element.getRow() - characterElement.getRow(), 2) + Math.pow(element.getColumn() - characterElement.getColumn(), 2));
+    }
+
+    private int getViewRadius()
+    {
+        return 5 + this.getStatPoints(EnemyCharacter.STAT_SIGHT);
     }
 
     protected abstract int[] getStatSequence();
