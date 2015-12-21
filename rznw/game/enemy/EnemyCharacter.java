@@ -114,7 +114,8 @@ public abstract class EnemyCharacter extends Character
 
     public int getDamage()
     {
-        return 10;
+        System.out.println("Enemy damage: " + (10 + 2 * this.getStatPoints(EnemyCharacter.STAT_DAMAGE)));
+        return 10 + 2 * this.getStatPoints(EnemyCharacter.STAT_DAMAGE);
     }
 
     public int getNumGold()
