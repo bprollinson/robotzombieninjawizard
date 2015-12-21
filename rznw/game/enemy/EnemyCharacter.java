@@ -20,7 +20,7 @@ public abstract class EnemyCharacter extends Character
     protected static int STAT_ACCURACY = 1;
     protected static int STAT_SIGHT = 3;
     protected static int STAT_DAMAGE = 4;
-    protected static int STAT_PADDING = 4;
+    protected static int STAT_PADDING = 5;
 
     private static int SIGHT_RADIUS = 10;
 
@@ -151,6 +151,17 @@ public abstract class EnemyCharacter extends Character
 
     public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
+        int paddingPercent = 2 * this.getStatPoints(EnemyCharacter.STAT_PADDING);
+
+        int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
+
+        if (padding > 0)
+        {
+            System.out.println("Enemy is preventing " + padding + " damage via padding");
+        }
+
+        damage -= padding;
+
         if (damageSource instanceof Zombie && damageSource.getStatusEffects().infectiousRageEnabled())
         {
             System.out.println("Infectious rage is enabled");
