@@ -6,6 +6,7 @@ import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.SkillFactory;
@@ -327,6 +328,14 @@ public abstract class MainCharacter extends Character
             toDodgePercent += shieldDodgePercent;
         }
 
+        Armor armor = this.getEquipment().getEquippedArmor();
+        if (armor != null)
+        {
+            int armorDodgePercent = armor.getDodgePercent();
+            System.out.println("Additional armor chance to dodge: " + armorDodgePercent);
+            toDodgePercent += armorDodgePercent;
+        }
+
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
@@ -403,6 +412,14 @@ public abstract class MainCharacter extends Character
             int shieldPaddingPercent = shield.getPaddingPercent();
             System.out.println("Additional shield padding percent: " + shieldPaddingPercent);
             paddingPercent += shieldPaddingPercent;
+        }
+
+        Armor armor = this.getEquipment().getEquippedArmor();
+        if (armor != null)
+        {
+            int armorPaddingPercent = armor.getPaddingPercent();
+            System.out.println("Additional armor padding percent: " + armorPaddingPercent);
+            paddingPercent += armorPaddingPercent;
         }
 
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
