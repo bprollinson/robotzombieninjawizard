@@ -14,6 +14,7 @@ public class EquipmentScreenRenderer extends MenuScreenRenderer
 
         this.renderCenteredString(4, "Weapons");
         this.renderCenteredString(6, "Shields");
+        this.renderCenteredString(8, "Armor");
 
         this.renderCursor(state);
     }

@@ -8,6 +8,7 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
 {
     private static final int ENTRY_WEAPONS = 0;
     private static final int ENTRY_SHIELDS = 1;
+    private static final int ENTRY_ARMOR = 2;
 
     private EquipmentScreenRenderer equipmentScreenRenderer;
     private GameWorld gameWorld;
@@ -17,7 +18,7 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
     {
         this.equipmentScreenRenderer = equipmentScreenRenderer;
         this.gameWorld = gameWorld;
-        this.state = new MenuState(1);
+        this.state = new MenuState(2);
     }
 
     public void keyPressed(KeyEvent event)
@@ -63,6 +64,11 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == EquipmentScreenKeyListener.ENTRY_SHIELDS)
         {
             return DispatchKeyListener.STATE_SHIELDS_SCREEN;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == EquipmentScreenKeyListener.ENTRY_ARMOR)
+        {
+            return DispatchKeyListener.STATE_ARMOR_SCREEN;
         }
 
         return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;

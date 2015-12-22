@@ -36,6 +36,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_EQUIPMENT_SCREEN, new EquipmentScreenKeyListener(new EquipmentScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_WEAPONS_SCREEN, new WeaponsScreenKeyListener(new WeaponsScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_SHIELDS_SCREEN, new ShieldsScreenKeyListener(new ShieldsScreenRenderer(frame), gameWorld));
+        this.listeners.put(DispatchKeyListener.STATE_ARMOR_SCREEN, new ArmorScreenKeyListener(new ArmorScreenRenderer(frame), gameWorld));
     }
 
     public StateTransitionKeyListener getListener(int state)

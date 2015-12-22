@@ -7,6 +7,7 @@ public class Equipment
     Vector<EquipmentGroup> equipmentGroups;
     private int equippedWeapon = -1;
     private int equippedShield = -1;
+    private int equippedArmor = -1;
 
     public Equipment()
     {
@@ -154,5 +155,61 @@ public class Equipment
         }
 
         return (Shield)this.getShieldGroup(this.equippedShield).getItem();
+    }
+
+    public int getNumArmorGroups()
+    {
+        int result = 0;
+
+        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        {
+            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
+            if (equipmentGroup.getItem() instanceof Armor)
+            {
+                result++;
+            }
+        }
+
+        return result;
+    }
+
+    public EquipmentGroup getArmorGroup(int targetPosition)
+    {
+        int pos = 0;
+
+        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        {
+            if (pos == targetPosition && this.equipmentGroups.get(i).getItem() instanceof Armor)
+            {
+                return this.equipmentGroups.get(i);
+            }
+
+            if (this.equipmentGroups.get(i).getItem() instanceof Armor)
+            {
+                pos++;
+            }
+        }
+
+        return null;
+    }
+
+    public void unequipArmor()
+    {
+        this.equippedArmor = -1;
+    }
+
+    public void equipArmor(int armorGroupIndex)
+    {
+        this.equippedArmor = armorGroupIndex;
+    }
+
+    public Armor getEquippedArmor()
+    {
+        if (this.equippedArmor == -1)
+        {
+            return null;
+        }
+
+        return (Armor)this.getArmorGroup(this.equippedArmor).getItem();
     }
 }
