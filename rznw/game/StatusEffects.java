@@ -23,6 +23,7 @@ public class StatusEffects
     int feedBrainTurns = 0;
     boolean inferZombie = false;
     int turnsToSkip = 0;
+    int armorBreakPercent = 0;
 
     public void freeze()
     {
@@ -207,6 +208,16 @@ public class StatusEffects
     public boolean isSkippingTurn()
     {
         return this.turnsToSkip > 0;
+    }
+
+    public void breakArmor(int armorBreakPercent)
+    {
+        this.armorBreakPercent = armorBreakPercent;
+    }
+
+    public int getArmorBreakPercent()
+    {
+        return this.armorBreakPercent;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

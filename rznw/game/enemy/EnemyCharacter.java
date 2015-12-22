@@ -173,6 +173,14 @@ public abstract class EnemyCharacter extends Character
 
         damage -= padding;
 
+        if (this.getStatusEffects().getArmorBreakPercent() > 0)
+        {
+            int armorBreakPercent = this.getStatusEffects().getArmorBreakPercent();
+            damage += armorBreakPercent;
+
+            System.out.println("Enemy armor break percent: " + armorBreakPercent);
+        }
+
         if (damageSource instanceof Zombie && damageSource.getStatusEffects().infectiousRageEnabled())
         {
             System.out.println("Infectious rage is enabled");
