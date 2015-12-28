@@ -37,4 +37,15 @@ public class SuckPowerSpell extends UndirectedSpell
     {
         return 10;
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int radius = 1 + (int)Math.floor(spellPoints / 2);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "MP stolen: " + 10 * spellPoints,
+            "Radius: " + radius
+        };
+    }
 }

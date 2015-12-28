@@ -24,4 +24,15 @@ public class PowerDownSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int turnsToSkip = Math.max(5 - (int)Math.floor(spellPoints / 4), 1);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "HP healed: " + 30 * spellPoints,
+            "Turns skipped: " + turnsToSkip
+        };
+    }
 }

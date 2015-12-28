@@ -66,4 +66,13 @@ public class SummonZombieSpell extends UndirectedSpell
 
         return distanceList.get(0).getKey();
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Zombie HP: " + (100 + 5 * spellPoints),
+            "Zombie damage: 10"
+        };
+    }
 }

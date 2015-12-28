@@ -44,4 +44,15 @@ public class FeedBrainSpell extends DirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int damage = 50 + 10 * spellPoints;
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage: " + damage,
+            "Additional magic damage: 60%"
+        };
+    }
 }

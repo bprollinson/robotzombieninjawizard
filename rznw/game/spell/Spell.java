@@ -14,6 +14,15 @@ public abstract class Spell
     public abstract void cast(GameWorld gameWorld, int spellPoints, int direction);
     public abstract int getMPCost(MainCharacter character, int spellPoints);
     public abstract boolean requiresDirectionInput();
+    //public abstract String[] getStats(MainCharacter character, int spellPoints);
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        return new String[] {
+            "line 1",
+            "line 2"
+        };
+    }
 
     public boolean canCast(GameWorld gameWorld, int spellPoints)
     {

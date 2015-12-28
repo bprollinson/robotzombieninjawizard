@@ -18,4 +18,15 @@ public class InferZombieSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int maxHP = 200 + 10 * spellPoints;
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Zombie HP: " + maxHP,
+            "Zombie damage: 10"
+        };
+    }
 }

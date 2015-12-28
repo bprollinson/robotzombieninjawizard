@@ -29,9 +29,11 @@ public abstract class MenuScreenRenderer
         this.frame.renderDisplayString(row, column, string);
     }
 
-    protected void renderStringWithNewlines(int row, String string)
+    protected int renderStringWithNewlines(int row, String string)
     {
         String remainingString = string;
+
+        int numLines = 1;
 
         while (remainingString.length() > MenuScreenRenderer.NUM_COLUMNS)
         {
@@ -42,8 +44,11 @@ public abstract class MenuScreenRenderer
 
             remainingString = remainingString.substring(lastSpacePos + 1);
             row++;
+            numLines++;
         }
 
         this.frame.renderDisplayString(row, 0, remainingString);
+
+        return numLines;
     }
 }

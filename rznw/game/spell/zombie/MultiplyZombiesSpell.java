@@ -82,4 +82,15 @@ public class MultiplyZombiesSpell extends UndirectedSpell
 
         return distanceList.get(0).getKey();
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int summonSpellPoints = character.getSpellPoints(12);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Zombie HP: " + (100 + 5 * summonSpellPoints),
+            "Zombie damage: 10"
+        };
+    }
 }

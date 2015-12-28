@@ -48,4 +48,13 @@ public class ExplodeZombiesSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage: " + (100 + 20 * spellPoints),
+            "Radius: 1"
+        };
+    }
 }

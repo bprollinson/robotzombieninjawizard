@@ -21,4 +21,16 @@ public class InfectiousRageSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int numTurns = 2 + (int)Math.floor(spellPoints / 4);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Additional damage: 50%",
+            "Turns: " + numTurns,
+            "Poison damage to you: 10 per turn"
+        };
+    }
 }

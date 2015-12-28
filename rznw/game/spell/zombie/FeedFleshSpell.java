@@ -42,4 +42,16 @@ public class FeedFleshSpell extends DirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int damage = 50 + 10 * spellPoints;
+        int healHP = (int)Math.floor(damage / 2);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage: " + damage,
+            "Healing: " + healHP + " HP"
+        };
+    }
 }
