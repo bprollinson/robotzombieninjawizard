@@ -74,6 +74,11 @@ public abstract class SummonedCharacter extends Character
             }
         });
 
+        if (minDistanceList.size() == 0)
+        {
+            return new EnemyAIBasedPositionChange(this, 0, 0);
+        }
+
         MapElement closestElement = minDistanceList.get(0).getKey();
 
         MapPoint startPoint = new MapPoint(this.getMapElement().getColumn(), this.getMapElement().getRow());
