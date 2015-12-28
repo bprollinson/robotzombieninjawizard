@@ -9,6 +9,11 @@ public class Herb extends InventoryItem
         return "Herb";
     }
 
+    public String getDescription()
+    {
+        return "Cures poison.";
+    }
+
     public void useOnCharacter(MainCharacter character)
     {
         character.getStatusEffects().healPoison();

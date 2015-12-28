@@ -9,6 +9,11 @@ public class Potion extends InventoryItem
         return "Potion";
     }
 
+    public String getDescription()
+    {
+        return "Heals 50 HP.";
+    }
+
     public void useOnCharacter(MainCharacter character)
     {
         character.heal(50);

@@ -7,10 +7,13 @@ import java.awt.event.KeyEvent;
 
 public class InventoryScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private InventoryScreenRenderer inventoryScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
     private boolean itemUsed;
+    private boolean showingDescription = false;
 
     public InventoryScreenKeyListener(InventoryScreenRenderer inventoryScreenRenderer, GameWorld gameWorld)
     {
@@ -46,9 +49,15 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
                     this.state.moveDown();
                 }
                 break;
+            case InventoryScreenKeyListener.KEY_I:
+                if (this.state != null)
+                {
+                    this.showingDescription = !this.showingDescription;
+                }
+                break;
         }
 
-        this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
+        this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 
     public void enterState(int previousState)
@@ -56,7 +65,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         this.itemUsed = false;
 
         this.fixPosition();
-        this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
+        this.inventoryScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 
     public void exitState(KeyEvent event)
