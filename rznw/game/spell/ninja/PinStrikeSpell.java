@@ -77,4 +77,15 @@ public class PinStrikeSpell extends DirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int distance = 1 + (int)Math.floor(spellPoints / 4);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage: " + (10 + 10 * spellPoints),
+            "Pushback distance: " + distance
+        };
+    }
 }

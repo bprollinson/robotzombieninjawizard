@@ -67,4 +67,13 @@ public class StunStrikeSpell extends DirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage: " + (20 + 10 * spellPoints),
+            "Chance to stun: " + 5 * spellPoints + "%"
+        };
+    }
 }
