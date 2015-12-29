@@ -63,4 +63,15 @@ public class StealExperienceSpell extends DirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int numExperiencePercent = 20 + 10 * spellPoints;
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Chance to steal: " + 5 * spellPoints + "%",
+            "Experience stolen: " + numExperiencePercent + "% of base enemy exp"
+        };
+    }
 }
