@@ -18,4 +18,14 @@ public class ReversePainSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage taken: 0",
+            "HP healed: 100% of enemy damage",
+            "Number of turns: 1"
+        };
+    }
 }
