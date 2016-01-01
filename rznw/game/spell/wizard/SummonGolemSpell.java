@@ -66,4 +66,13 @@ public class SummonGolemSpell extends UndirectedSpell
 
         return distanceList.get(0).getKey();
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Golem HP: " + (100 + 5 * spellPoints),
+            "Golem damage: 10"
+        };
+    }
 }
