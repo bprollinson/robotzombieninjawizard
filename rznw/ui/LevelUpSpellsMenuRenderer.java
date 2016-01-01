@@ -1,6 +1,8 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.spell.Spell;
+import rznw.game.spell.SpellFactory;
 
 public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
 {
@@ -20,7 +22,40 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
         {
             this.renderCenteredString(1, mainCharacter.getSpellName(state.getEntryNumber()));
 
-            this.renderStringWithNewlines(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
+            int row = 3;
+
+            row += this.renderStringWithNewlines(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
+            row++;
+
+            int spellPoints = mainCharacter.getSpellPoints(state.getEntryNumber());
+            SpellFactory factory = mainCharacter.getSpellFactory();
+            Spell spell = factory.getSpell(state.getEntryNumber());
+
+            if (spell != null)
+            {
+                if (spellPoints > 0)
+                {
+                    this.frame.renderDisplayString(row, 0, "Current level:");
+                    row++;
+
+                    String[] currentLevelStats = spell.getStats(mainCharacter, spellPoints);
+                    for (int i = 0; i < currentLevelStats.length; i++)
+                    {
+                        this.frame.renderDisplayString(row + i, 0, currentLevelStats[i]);
+                    }
+
+                    row += currentLevelStats.length + 1;
+                }
+
+                this.frame.renderDisplayString(row, 0, "Next level:");
+                row++;
+
+                String[] nextLevelStats = spell.getStats(mainCharacter, spellPoints + 1);
+                for (int i = 0; i < nextLevelStats.length; i++)
+                {
+                    this.frame.renderDisplayString(row + i, 0, nextLevelStats[i]);
+                }
+            }
 
             this.renderCenteredString(30, "Press 'i' to return to the spell menu");
         }
