@@ -98,4 +98,14 @@ public class TeleportSpell extends UndirectedSpell
 
         return result;
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        double positionPercentage = Math.floor(50 + 50 * Math.min(spellPoints / 20.0, 1));
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Safety percentage: " + positionPercentage + "%"
+        };
+    }
 }
