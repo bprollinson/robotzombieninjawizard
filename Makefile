@@ -1,3 +1,6 @@
+full:
+	make clean
+	make test
 test:
 	javac ./*.java
 clean:
