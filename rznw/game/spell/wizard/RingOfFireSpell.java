@@ -62,4 +62,16 @@ public class RingOfFireSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int duration = 2 + (int)Math.floor(spellPoints / 4);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Radius: 2",
+            "Turns: " + duration,
+            "Damage per turn: " + 10 * spellPoints
+        };
+    }
 }

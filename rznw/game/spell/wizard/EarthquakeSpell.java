@@ -36,4 +36,17 @@ public class EarthquakeSpell extends UndirectedSpell
     {
         return Math.max(200 - 10 * spellPoints, 1);
     }
+
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int radius = 1 + (int)Math.floor(spellPoints / 2);
+        int damage = 50 + 10 * spellPoints;
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Radius: " + radius,
+            "Hit probability: 100%",
+            "Damage: " + damage
+        };
+    }
 }
