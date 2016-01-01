@@ -97,4 +97,15 @@ public class ArcLightningSpell extends DirectedSpell
         return Math.max(200 - 10 * spellPoints, 1);
     }
 
+    public String[] getStats(MainCharacter character, int spellPoints)
+    {
+        int damage = 50 + 10 * spellPoints;
+        int radius = 1 + (int)Math.floor(spellPoints / 4);
+
+        return new String[] {
+            "MP cost: " + this.getMPCost(character, spellPoints),
+            "Damage: " + damage,
+            "Jump radius: " + radius
+        };
+    }
 }
