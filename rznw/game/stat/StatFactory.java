@@ -8,6 +8,12 @@ public class StatFactory
         {
             case 0:
                 return new HealthStat();
+            case 1:
+                return new PhysicalRegenerationStat();
+            case 2:
+                return new LastBreathStat();
+            case 3:
+                return new LifeBondStat();
             default:
                 return null;
         }
