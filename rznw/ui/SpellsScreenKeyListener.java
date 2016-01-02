@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.game.spell.SpellFactory;
 import rznw.map.GameWorld;
+import rznw.turn.MainCharacterTurnHandler;
 
 import java.awt.event.KeyEvent;
 
@@ -14,6 +15,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
     private SpellsScreenRenderer spellsScreenRenderer;
     private GameWorld gameWorld;
     private MapRenderer mapRenderer;
+    private MainCharacterTurnHandler turnHandler;
     private MenuState state;
     private boolean spellCast;
     private boolean requiresDirection;
@@ -25,6 +27,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         this.gameWorld = gameWorld;
         this.state = new MenuState(15);
         this.mapRenderer = mapRenderer;
+        this.turnHandler = new MainCharacterTurnHandler(gameWorld, null);
     }
 
     public void keyPressed(KeyEvent event)
@@ -42,24 +45,36 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 case KeyEvent.VK_KP_UP:
                     System.out.println("Casting upward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_UP);
+                    this.turnHandler.handlePostCharacterTurn();
+                    this.turnHandler.handleEnemyTurns();
+                    this.turnHandler.handlePostEnemyTurns();
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_NUMPAD2:
                 case KeyEvent.VK_KP_DOWN:
                     System.out.println("Casting downward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_DOWN);
+                    this.turnHandler.handlePostCharacterTurn();
+                    this.turnHandler.handleEnemyTurns();
+                    this.turnHandler.handlePostEnemyTurns();
                     break;
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_NUMPAD4:
                 case KeyEvent.VK_KP_LEFT:
                     System.out.println("Casting leftward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_LEFT);
+                    this.turnHandler.handlePostCharacterTurn();
+                    this.turnHandler.handleEnemyTurns();
+                    this.turnHandler.handlePostEnemyTurns();
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_NUMPAD6:
                 case KeyEvent.VK_KP_RIGHT:
                     System.out.println("Casting rightward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_RIGHT);
+                    this.turnHandler.handlePostCharacterTurn();
+                    this.turnHandler.handleEnemyTurns();
+                    this.turnHandler.handlePostEnemyTurns();
                     break;
                 default:
                     return;
@@ -96,6 +111,9 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                         {
                             int points = this.gameWorld.getMainCharacter().getSpellPoints(this.state.getEntryNumber());
                             spell.cast(gameWorld, points);
+                            this.turnHandler.handlePostCharacterTurn();
+                            this.turnHandler.handleEnemyTurns();
+                            this.turnHandler.handlePostEnemyTurns();
                             int MPCost = spell.getMPCost(character, points);
                             character.setMP(character.getMP() - MPCost);
                             this.spellCast = true;
