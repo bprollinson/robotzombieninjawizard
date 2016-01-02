@@ -14,6 +14,22 @@ public class StatFactory
                 return new LastBreathStat();
             case 3:
                 return new LifeBondStat();
+            case 4:
+                return new AccuracyStat();
+            case 5:
+                return new DodgeStat();
+            case 6:
+                return new SightStat();
+            case 7:
+                return new FindTrapsStat();
+            case 8:
+                return new DamageStat();
+            case 9:
+                return new PaddingStat();
+            case 12:
+                return new ManaStat();
+            case 13:
+                return new MentalRegenerationStat();
             default:
                 return null;
         }
