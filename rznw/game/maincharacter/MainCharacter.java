@@ -11,6 +11,7 @@ import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
+import rznw.game.stat.StatFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
@@ -300,6 +301,11 @@ public abstract class MainCharacter extends Character
         InventoryItem item = this.inventory.getItemGroup(itemIndex).getItem();
         item.useOnCharacter(this);
         this.inventory.removeItems(new InventoryItemGroup(item, 1));
+    }
+
+    public StatFactory getStatFactory()
+    {
+        return new StatFactory();
     }
 
     public abstract SpellFactory getSpellFactory();

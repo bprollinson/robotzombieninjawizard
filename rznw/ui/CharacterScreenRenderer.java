@@ -2,6 +2,8 @@ package rznw.ui;
 
 import rznw.game.maincharacter.ExperienceCalculator;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.stat.Stat;
+import rznw.game.stat.StatFactory;
 import rznw.map.GameWorld;
 
 public class CharacterScreenRenderer extends MenuScreenRenderer
@@ -34,7 +36,37 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
 
                 this.renderCenteredString(1, mainCharacter.getStatName(state.getEntryNumber() - 1));
 
-                this.renderStringWithNewlines(3, mainCharacter.getStatDescription(state.getEntryNumber() - 1));
+                int row = 3;
+
+                row += this.renderStringWithNewlines(3, mainCharacter.getStatDescription(state.getEntryNumber() - 1));
+                row++;
+
+                int statPoints = mainCharacter.getStatPoints(state.getEntryNumber() - 1);
+                StatFactory factory = mainCharacter.getStatFactory();
+                Stat stat = factory.getStat(state.getEntryNumber() - 1);
+
+                if (stat != null)
+                {
+                    this.frame.renderDisplayString(row, 0, "Current level:");
+                    row++;
+
+                    String[] currentLevelStats = stat.getStats(mainCharacter, statPoints);
+                    for (int i = 0; i < currentLevelStats.length; i++)
+                    {
+                        this.frame.renderDisplayString(row + i, 0, currentLevelStats[i]);
+                    }
+
+                    row += currentLevelStats.length + 1;
+
+                    this.frame.renderDisplayString(row, 0, "Next level:");
+                    row++;
+
+                    String[] nextLevelStats = stat.getStats(mainCharacter, statPoints + 1);
+                    for (int i = 0; i < nextLevelStats.length; i++)
+                    {
+                        this.frame.renderDisplayString(row + i, 0, nextLevelStats[i]);
+                    }
+                }
 
                 this.renderCenteredString(29, "Press 'i' to return to the stat menu");
             }
