@@ -285,7 +285,18 @@ public abstract class MainCharacter extends Character
 
     public int getSpellPoints(int spellNumber)
     {
-        return this.spells[spellNumber];
+        int spellPoints = this.spells[spellNumber];
+
+        int manaSeedPoints = this.getSkillPoints(12);
+        int bonusSpellPoints = (int)Math.floor(manaSeedPoints / 4);
+
+        if (bonusSpellPoints > 0)
+        {
+            System.out.println("Bonus spell points: " + bonusSpellPoints);
+            spellPoints += bonusSpellPoints;
+        }
+
+        return spellPoints;
     }
 
     public void resetStateAfterLevelUp()
