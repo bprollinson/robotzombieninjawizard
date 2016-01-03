@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.skill.PassiveSkill;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
 
@@ -20,7 +21,19 @@ public class SkillsScreenRenderer extends MenuScreenRenderer
 
         if (showingDescription)
         {
-            this.renderCenteredString(1, mainCharacter.getSkillName(state.getEntryNumber()));
+            SkillFactory factory = mainCharacter.getSkillFactory();
+            Skill skill = factory.getSkill(state.getEntryNumber());
+            String skillType = "";
+            if (skill instanceof PassiveSkill)
+            {
+                skillType = " (Passive)";
+            }
+            else if (skill != null)
+            {
+                skillType = " (Active)";
+            }
+
+            this.renderCenteredString(1, mainCharacter.getSkillName(state.getEntryNumber()) + skillType);
 
             int row = 3;
 
@@ -28,8 +41,6 @@ public class SkillsScreenRenderer extends MenuScreenRenderer
             row++;
 
             int skillPoints = mainCharacter.getSkillPoints(state.getEntryNumber());
-            SkillFactory factory = mainCharacter.getSkillFactory();
-            Skill skill = factory.getSkill(state.getEntryNumber());
 
             if (skill != null)
             {

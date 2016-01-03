@@ -1,6 +1,9 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.skill.PassiveSkill;
+import rznw.game.skill.Skill;
+import rznw.game.skill.SkillFactory;
 
 public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 {
@@ -18,9 +21,52 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 
         if (showingDescription)
         {
-            this.renderCenteredString(1, mainCharacter.getSkillName(state.getEntryNumber()));
+            SkillFactory factory = mainCharacter.getSkillFactory();
+            Skill skill = factory.getSkill(state.getEntryNumber());
+            String skillType = "";
+            if (skill instanceof PassiveSkill)
+            {
+                skillType = " (Passive)";
+            }
+            else if (skill != null)
+            {
+                skillType = " (Active)";
+            }
 
-            this.renderStringWithNewlines(3, mainCharacter.getSkillDescription(state.getEntryNumber()));
+            this.renderCenteredString(1, mainCharacter.getSkillName(state.getEntryNumber()) + skillType);
+
+            int row = 3;
+
+            row += this.renderStringWithNewlines(3, mainCharacter.getSkillDescription(state.getEntryNumber()));
+            row++;
+
+            int skillPoints = mainCharacter.getSkillPoints(state.getEntryNumber());
+
+            if (skill != null)
+            {
+                if (skillPoints > 0)
+                {
+                    this.frame.renderDisplayString(row, 0, "Current level:");
+                    row++;
+
+                    String[] currentLevelStats = skill.getStats(mainCharacter, skillPoints);
+                    for (int i = 0; i < currentLevelStats.length; i++)
+                    {
+                        this.frame.renderDisplayString(row + i, 0, currentLevelStats[i]);
+                    }
+
+                    row += currentLevelStats.length + 1;
+                }
+
+                this.frame.renderDisplayString(row, 0, "Next level:");
+                row++;
+
+                String[] nextLevelStats = skill.getStats(mainCharacter, skillPoints + 1);
+                for (int i = 0; i < nextLevelStats.length; i++)
+                {
+                    this.frame.renderDisplayString(row + i, 0, nextLevelStats[i]);
+                }
+            }
 
             this.renderCenteredString(30, "Press 'i' to return to the skill menu");
         }
