@@ -7,11 +7,5 @@ public abstract class Skill
 {
     public abstract boolean canUse(GameWorld gameWorld);
     public abstract void use(GameWorld gameWorld);
-
-    public String[] getStats(MainCharacter character, int skillPoints)
-    {
-        return new String[] {
-            "Key: value"
-        };
-    }
+    public abstract String[] getStats(MainCharacter character, int skillPoints);
 }
