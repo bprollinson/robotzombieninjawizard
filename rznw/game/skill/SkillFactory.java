@@ -20,6 +20,8 @@ public class SkillFactory
                 return new AbundanceSkill();
             case 11:
                 return new DisarmTrapsSkill();
+            case 13:
+                return new ManaSuckSkill();
             case 15:
                 return new ManaRiverSkill();
             default:
