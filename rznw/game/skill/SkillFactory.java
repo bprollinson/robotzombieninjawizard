@@ -14,6 +14,8 @@ public class SkillFactory
                 return new PotionFindSkill();
             case 5:
                 return new WaypointSkill();
+            case 6:
+                return new FastHandsSkill();
             case 7:
                 return new FindStairsSkill();
             case 10:
