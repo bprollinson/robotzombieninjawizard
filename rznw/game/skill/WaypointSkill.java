@@ -139,4 +139,13 @@ public class WaypointSkill extends Skill
 
         return backgroundElement != null;
     }
+
+    public String[] getStats(MainCharacter character, int skillPoints)
+    {
+        int successProbability = 20 + 5 * skillPoints;
+
+        return new String[] {
+            "Success probability: " + successProbability + "%"
+        };
+    }
 }
