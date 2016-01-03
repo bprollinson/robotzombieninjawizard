@@ -30,6 +30,8 @@ public class StatFactory
                 return new ManaStat();
             case 13:
                 return new MentalRegenerationStat();
+            case 14:
+                return new ManaBurnStat();
             default:
                 return null;
         }

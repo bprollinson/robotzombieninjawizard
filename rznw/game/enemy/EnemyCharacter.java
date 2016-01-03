@@ -181,6 +181,19 @@ public abstract class EnemyCharacter extends Character
             System.out.println("Enemy armor break percent: " + armorBreakPercent);
         }
 
+        if (damageSource instanceof MainCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        {
+            int bonusDamagePercent = 5 * ((MainCharacter)damageSource).getStatPoints(14);
+
+            if (bonusDamagePercent > 0)
+            {
+                 int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
+                 damage += bonusDamage;
+
+                 System.out.println("Mana burn bonus damage: " + bonusDamage);
+            }
+        }
+
         if (damageSource instanceof Zombie && damageSource.getStatusEffects().infectiousRageEnabled())
         {
             System.out.println("Infectious rage is enabled");
