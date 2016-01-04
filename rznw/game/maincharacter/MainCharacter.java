@@ -219,6 +219,13 @@ public abstract class MainCharacter extends Character
             damage += weaponDamage;
         }
 
+        if (this.getStatusEffects().rageEnabled())
+        {
+            int bonusDamagePercent = 2 * this.getSkillPoints(9);
+            int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
+            System.out.println("Bonus rage damage: " + bonusDamage);
+        }
+
         double bloodRageFactor = this.getSkillPoints(2) / 100.0 * (this.getMaxHP() - this.getHP()) / this.getMaxHP();
 
         if (bloodRageFactor > 0.0) {
@@ -353,6 +360,13 @@ public abstract class MainCharacter extends Character
             toDodgePercent += armorDodgePercent;
         }
 
+        if (this.getStatusEffects().rageEnabled())
+        {
+            int dodgePenalty = Math.max(21 - this.getSkillPoints(9), 1);
+            System.out.println("Dodge penalty: " + dodgePenalty);
+            toDodgePercent -= dodgePenalty;
+        }
+
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
@@ -421,6 +435,13 @@ public abstract class MainCharacter extends Character
         if (this.getStatusEffects().isResistingDamage())
         {
             paddingPercent += 2 * this.getSpellPoints(1);
+        }
+
+        if (this.getStatusEffects().rageEnabled())
+        {
+            int paddingPenalty = Math.max(21 - this.getSkillPoints(9), 1);
+            System.out.println("Padding penalty: " + paddingPenalty);
+            paddingPercent -= paddingPenalty;
         }
 
         Shield shield = this.getEquipment().getEquippedShield();

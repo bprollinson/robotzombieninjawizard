@@ -24,6 +24,7 @@ public class StatusEffects
     boolean inferZombie = false;
     int turnsToSkip = 0;
     int armorBreakPercent = 0;
+    int rageTurns = 0;
 
     public void freeze()
     {
@@ -220,6 +221,16 @@ public class StatusEffects
         return this.armorBreakPercent;
     }
 
+    public void enableRage(int numTurns)
+    {
+        this.rageTurns = numTurns;
+    }
+
+    public boolean rageEnabled()
+    {
+        return this.rageTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -279,6 +290,11 @@ public class StatusEffects
         if (this.turnsToSkip > 0)
         {
             this.turnsToSkip--;
+        }
+
+        if (this.rageTurns > 0)
+        {
+            this.rageTurns--;
         }
     }
 }

@@ -18,6 +18,8 @@ public class SkillFactory
                 return new FastHandsSkill();
             case 7:
                 return new FindStairsSkill();
+            case 9:
+                return new RageSkill();
             case 10:
                 return new AbundanceSkill();
             case 11:
