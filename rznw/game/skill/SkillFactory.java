@@ -6,6 +6,8 @@ public class SkillFactory
     {
         switch (skillIndex)
         {
+            case 0:
+                return new DetectVitalitySkill();
             case 1:
                 return new DetectEnemiesSkill();
             case 2:

@@ -22,7 +22,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_GAME_MOTION, new MovementKeyListener(turnHandler, new MapRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_GAME_ESCAPE_MENU, new MainMenuKeyListener(new MainMenuRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_CHARACTER_SCREEN, new CharacterScreenKeyListener(new CharacterScreenRenderer(frame, gameWorld)));
-        this.listeners.put(DispatchKeyListener.STATE_SKILLS_SCREEN, new SkillsScreenKeyListener(new SkillsScreenRenderer(frame), gameWorld));
+        this.listeners.put(DispatchKeyListener.STATE_SKILLS_SCREEN, new SkillsScreenKeyListener(new SkillsScreenRenderer(frame), gameWorld, turnHandler));
         this.listeners.put(DispatchKeyListener.STATE_SPELLS_SCREEN, new SpellsScreenKeyListener(new SpellsScreenRenderer(frame), gameWorld, new MapRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_INVENTORY_SCREEN, new InventoryScreenKeyListener(new InventoryScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_SAVE_SCREEN, new SaveScreenKeyListener(new SaveScreenRenderer(frame)));
@@ -37,6 +37,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_WEAPONS_SCREEN, new WeaponsScreenKeyListener(new WeaponsScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_SHIELDS_SCREEN, new ShieldsScreenKeyListener(new ShieldsScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_ARMOR_SCREEN, new ArmorScreenKeyListener(new ArmorScreenRenderer(frame), gameWorld));
+        this.listeners.put(DispatchKeyListener.STATE_DETECT_VITALITY, new DetectVitalityScreenKeyListener(new DetectVitalityScreenRenderer(frame), gameWorld));
     }
 
     public StateTransitionKeyListener getListener(int state)

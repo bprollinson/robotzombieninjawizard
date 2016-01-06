@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
 import rznw.map.GameWorld;
+import rznw.turn.MainCharacterTurnHandler;
 
 import java.awt.event.KeyEvent;
 
@@ -13,14 +14,16 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
     private SkillsScreenRenderer skillsScreenRenderer;
     private GameWorld gameWorld;
+    private MainCharacterTurnHandler turnHandler;
     private MenuState state;
     private boolean skillUsed;
     private boolean showingDescription = false;
 
-    public SkillsScreenKeyListener(SkillsScreenRenderer skillsScreenRenderer, GameWorld gameWorld)
+    public SkillsScreenKeyListener(SkillsScreenRenderer skillsScreenRenderer, GameWorld gameWorld, MainCharacterTurnHandler turnHandler)
     {
         this.skillsScreenRenderer = skillsScreenRenderer;
         this.gameWorld = gameWorld;
+        this.turnHandler = turnHandler;
         this.state = new MenuState(15);
     }
 
@@ -86,6 +89,17 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
         if (this.skillUsed)
         {
+            if (this.gameWorld.getMainCharacter().getStatusEffects().detectVitalityEnabled())
+            {
+                this.turnHandler.handlePostCharacterTurn();
+                this.turnHandler.handleEnemyTurns();
+                this.turnHandler.handlePostEnemyTurns();
+
+                this.gameWorld.getMainCharacter().getStatusEffects().disableDetectVitality();
+
+                return DispatchKeyListener.STATE_DETECT_VITALITY;
+            }
+
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
 

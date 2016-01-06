@@ -25,6 +25,7 @@ public class StatusEffects
     int turnsToSkip = 0;
     int armorBreakPercent = 0;
     int rageTurns = 0;
+    int detectVitalityRadius = 0;
 
     public void freeze()
     {
@@ -229,6 +230,21 @@ public class StatusEffects
     public boolean rageEnabled()
     {
         return this.rageTurns > 0;
+    }
+
+    public void enableDetectVitality(int detectVitalityRadius)
+    {
+        this.detectVitalityRadius = detectVitalityRadius;
+    }
+
+    public boolean detectVitalityEnabled()
+    {
+        return this.detectVitalityRadius > 0;
+    }
+
+    public void disableDetectVitality()
+    {
+        this.detectVitalityRadius = 0;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

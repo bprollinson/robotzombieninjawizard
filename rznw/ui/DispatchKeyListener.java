@@ -25,6 +25,7 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_WEAPONS_SCREEN = 18;
     public static final int STATE_SHIELDS_SCREEN = 19;
     public static final int STATE_ARMOR_SCREEN = 20;
+    public static final int STATE_DETECT_VITALITY = 21;
 
     private int state;
     private StateTransitionKeyListenerContainer listenerContainer;
