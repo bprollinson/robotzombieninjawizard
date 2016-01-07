@@ -26,6 +26,7 @@ public class StatusEffects
     int armorBreakPercent = 0;
     int rageTurns = 0;
     int detectVitalityRadius = 0;
+    int itemTradeNumber = 0;
 
     public void freeze()
     {
@@ -245,6 +246,21 @@ public class StatusEffects
     public void disableDetectVitality()
     {
         this.detectVitalityRadius = 0;
+    }
+
+    public void enableItemTrade(int itemTradeNumber)
+    {
+        this.itemTradeNumber = itemTradeNumber;
+    }
+
+    public boolean itemTradeEnabled()
+    {
+        return this.itemTradeNumber > 0;
+    }
+
+    public boolean disableItemTrade()
+    {
+        return this.itemTradeNumber > 0;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

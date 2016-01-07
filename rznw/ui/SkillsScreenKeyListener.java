@@ -100,6 +100,17 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 return DispatchKeyListener.STATE_DETECT_VITALITY;
             }
 
+            if (this.gameWorld.getMainCharacter().getStatusEffects().itemTradeEnabled())
+            {
+                this.turnHandler.handlePostCharacterTurn();
+                this.turnHandler.handleEnemyTurns();
+                this.turnHandler.handlePostEnemyTurns();
+
+                this.gameWorld.getMainCharacter().getStatusEffects().disableItemTrade();
+
+                return DispatchKeyListener.STATE_TRADE_ITEMS;
+            }
+
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
