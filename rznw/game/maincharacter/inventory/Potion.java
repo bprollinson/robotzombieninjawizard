@@ -18,4 +18,9 @@ public class Potion extends InventoryItem
     {
         character.heal(50);
     }
+
+    public int getValue()
+    {
+        return 50;
+    }
 }

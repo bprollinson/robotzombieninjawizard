@@ -9,4 +9,6 @@ public abstract class InventoryItem
     public abstract String getDescription();
 
     public abstract void useOnCharacter(MainCharacter character);
+
+    public abstract int getValue();
 }

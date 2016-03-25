@@ -111,6 +111,17 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 return DispatchKeyListener.STATE_TRADE_ITEMS;
             }
 
+            if (this.gameWorld.getMainCharacter().getStatusEffects().summonShopkeeperEnabled())
+            {
+                this.turnHandler.handlePostCharacterTurn();
+                this.turnHandler.handleEnemyTurns();
+                this.turnHandler.handlePostEnemyTurns();
+
+                this.gameWorld.getMainCharacter().getStatusEffects().disableSummonShopkeeper();
+
+                return DispatchKeyListener.STATE_SHOP;
+            }
+
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
 

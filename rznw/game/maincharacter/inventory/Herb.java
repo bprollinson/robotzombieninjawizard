@@ -18,4 +18,9 @@ public class Herb extends InventoryItem
     {
         character.getStatusEffects().healPoison();
     }
+
+    public int getValue()
+    {
+        return 50;
+    }
 }

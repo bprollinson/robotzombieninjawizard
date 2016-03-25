@@ -27,6 +27,7 @@ public class StatusEffects
     int rageTurns = 0;
     int detectVitalityRadius = 0;
     int itemTradeNumber = 0;
+    int priceReductionPercent = 0;
 
     public void freeze()
     {
@@ -261,6 +262,21 @@ public class StatusEffects
     public boolean disableItemTrade()
     {
         return this.itemTradeNumber > 0;
+    }
+
+    public void enableSummonShopkeeper(int priceReductionPercent)
+    {
+        this.priceReductionPercent = priceReductionPercent;
+    }
+
+    public void disableSummonShopkeeper()
+    {
+        this.priceReductionPercent = 0;
+    }
+
+    public boolean summonShopkeeperEnabled()
+    {
+        return this.priceReductionPercent > 0;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

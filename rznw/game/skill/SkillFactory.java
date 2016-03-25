@@ -14,6 +14,8 @@ public class SkillFactory
                 return new BloodRageSkill();
             case 3:
                 return new PotionFindSkill();
+            case 4:
+                return new SummonShopkeeperSkill();
             case 5:
                 return new WaypointSkill();
             case 6:
