@@ -31,7 +31,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         this.gameWorld = gameWorld;
         this.turnHandler = turnHandler;
         this.topMenuState = new MenuState(4);
-        this.subMenuState = new MenuState(2);
+        this.subMenuState = new MenuState(0);
     }
 
     public void enterState(int previousState)
@@ -53,6 +53,10 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 {
                     this.topMenuState.moveUp();
                 }
+                else
+                {
+                    this.subMenuState.moveUp();
+                }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
@@ -61,11 +65,30 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 {
                     this.topMenuState.moveDown();
                 }
+                else
+                {
+                    this.subMenuState.moveDown();
+                }
                 break;
             case KeyEvent.VK_ENTER:
                 if (!this.inSubmenu && this.topMenuState.getEntryNumber() <= 3)
                 {
                     this.inSubmenu = true;
+
+                    if (this.topMenuState.getEntryNumber() == 2)
+                    {
+                        MainCharacter character = gameWorld.getMainCharacter();
+                        Inventory inventory = character.getInventory();
+                        this.subMenuState = new MenuState(inventory.getNumItemGroups() - 1);
+                    }
+
+                    if (this.topMenuState.getEntryNumber() == 3)
+                    {
+                        MainCharacter character = gameWorld.getMainCharacter();
+                        Equipment equipment = character.getEquipment();
+                        Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
+                        this.subMenuState = new MenuState(equipmentGroups.size() - 1);
+                    }
                 }
                 else if (!this.inSubmenu)
                 {
@@ -85,8 +108,6 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 }
                 else if (this.topMenuState.getEntryNumber() == 3)
                 {
-                    System.out.println("Selling equipment");
-
                     MainCharacter character = gameWorld.getMainCharacter();
                     Equipment equipment = character.getEquipment();
                     Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
@@ -102,7 +123,9 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
                         if (!isEquippedWeapon || equipmentGroup.getNumItems() > 1)
                         {
+                            Inventory inventory = character.getInventory();
                             goldGained = (int)Math.floor(0.6 * equipmentGroup.getItem().getValue());
+                            inventory.addGold(goldGained);
                             equipment.removeEquipment(item);
                         }
                     }
