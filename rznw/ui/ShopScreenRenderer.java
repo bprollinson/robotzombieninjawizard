@@ -1,8 +1,11 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+
+import java.util.Vector;
 
 public class ShopScreenRenderer extends MenuScreenRenderer
 {
@@ -26,7 +29,7 @@ public class ShopScreenRenderer extends MenuScreenRenderer
         this.renderCursor(topMenuState);
     }
 
-    public void renderSubMenu(MainCharacter character, String title, Inventory inventory, MenuState subMenuState)
+    public void renderInventorySubMenu(MainCharacter character, String title, Inventory inventory, MenuState subMenuState)
     {
         this.clearScreen();
 
@@ -37,6 +40,22 @@ public class ShopScreenRenderer extends MenuScreenRenderer
         for (int i = 0; i < numGroups; i++)
         {
             InventoryItemGroup group = character.getInventory().getItemGroup(i);
+            this.frame.renderDisplayString(4 + i, 2, group.getDisplayString());
+        }
+
+        this.renderCursor(subMenuState);
+    }
+
+    public void renderEquipmentSubMenu(MainCharacter character, String title, Vector<EquipmentGroup> equipmentGroups, MenuState subMenuState)
+    {
+        this.clearScreen();
+
+        this.renderCenteredString(0, title);
+        this.frame.renderDisplayString(2, 2, "Gold: " + character.getInventory().getNumGold());
+
+        for (int i = 0; i < equipmentGroups.size(); i++)
+        {
+            EquipmentGroup group = equipmentGroups.get(i);
             this.frame.renderDisplayString(4 + i, 2, group.getDisplayString());
         }
 

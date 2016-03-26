@@ -16,4 +16,9 @@ public class WoodenShield extends Shield
     {
         return 5;
     }
+
+    public int getValue()
+    {
+        return 200;
+    }
 }

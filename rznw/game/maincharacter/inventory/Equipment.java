@@ -28,6 +28,23 @@ public class Equipment
         }
     }
 
+    public void removeEquipment(EquipmentItem item)
+    {
+        int index = this.getEquipmentGroupPosition(new EquipmentGroup(item, 1));
+
+        if (index == -1)
+        {
+            return;
+        }
+
+        this.equipmentGroups.get(index).removeEquipmentFromGroup(1);
+
+        if (this.equipmentGroups.get(index).getNumItems() == 0)
+        {
+            this.equipmentGroups.remove(index);
+        }
+    }
+
     private int getEquipmentGroupPosition(EquipmentGroup equipmentGroup)
     {
         int index = -1;

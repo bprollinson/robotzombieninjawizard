@@ -11,4 +11,9 @@ public class WoodenSword extends Weapon
     {
         return 10;
     }
+
+    public int getValue()
+    {
+        return 200;
+    }
 }
