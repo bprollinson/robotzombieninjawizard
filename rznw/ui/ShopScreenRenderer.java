@@ -39,7 +39,7 @@ public class ShopScreenRenderer extends MenuScreenRenderer
         int numGroups = inventory.getNumItemGroups();
         for (int i = 0; i < numGroups; i++)
         {
-            InventoryItemGroup group = character.getInventory().getItemGroup(i);
+            InventoryItemGroup group = inventory.getItemGroup(i);
             this.frame.renderDisplayString(4 + i, 2, group.getDisplayString());
         }
 

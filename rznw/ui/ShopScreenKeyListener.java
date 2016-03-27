@@ -4,8 +4,10 @@ import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
+import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.maincharacter.MainCharacter;
@@ -24,6 +26,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
     private MenuState subMenuState;
     private boolean inSubmenu;
     private boolean done;
+    private Inventory buyInventory;
 
     public ShopScreenKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld, MainCharacterTurnHandler turnHandler)
     {
@@ -40,6 +43,10 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         this.done = false;
 
         this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
+
+        this.buyInventory = new Inventory();
+        this.buyInventory.addItems(new InventoryItemGroup(new Potion(), 3));
+        this.buyInventory.addItems(new InventoryItemGroup(new Herb(), 3));
     }
 
     public void keyPressed(KeyEvent event)
@@ -75,6 +82,11 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 {
                     this.inSubmenu = true;
 
+                    if (this.topMenuState.getEntryNumber() == 0)
+                    {
+                        this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups() - 1);
+                    }
+
                     if (this.topMenuState.getEntryNumber() == 2)
                     {
                         MainCharacter character = gameWorld.getMainCharacter();
@@ -93,6 +105,20 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 else if (!this.inSubmenu)
                 {
                     this.done = true;
+                }
+                else if (this.topMenuState.getEntryNumber() == 0)
+                {
+                    MainCharacter character = gameWorld.getMainCharacter();
+                    InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber());
+
+                    double priceReductionPercent = 2.0 * character.getSkillPoints(4);
+                    double itemCost = Math.ceil((100.0 - priceReductionPercent) / 100.0 * selectedGroup.getItem().getValue());
+
+                    if (character.getInventory().getNumGold() >= itemCost)
+                    {
+                        character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+                        this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+                    }
                 }
                 else if (this.topMenuState.getEntryNumber() == 2)
                 {
@@ -182,8 +208,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             {
                 case 0:
                     menuTitle = "Buy Items";
-                    inventory = new Inventory();
-                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, inventory, this.subMenuState);
+                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, this.buyInventory, this.subMenuState);
                     break;
                 case 1:
                     menuTitle = "Buy Equipment";
