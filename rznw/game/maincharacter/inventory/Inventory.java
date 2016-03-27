@@ -17,6 +17,11 @@ public class Inventory
         this.numGold += numGold;
     }
 
+    public void removeGold(int numGold)
+    {
+        this.numGold -= numGold;
+    }
+
     public int getNumGold()
     {
         return this.numGold;
