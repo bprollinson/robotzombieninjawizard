@@ -97,6 +97,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
                 this.gameWorld.getMainCharacter().getStatusEffects().disableDetectVitality();
 
+                if (this.gameWorld.getMainCharacter().isDead())
+                {
+                    return DispatchKeyListener.STATE_DEATH_SCREEN;
+                }
+
                 return DispatchKeyListener.STATE_DETECT_VITALITY;
             }
 
@@ -108,6 +113,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
                 this.gameWorld.getMainCharacter().getStatusEffects().disableItemTrade();
 
+                if (this.gameWorld.getMainCharacter().isDead())
+                {
+                    return DispatchKeyListener.STATE_DEATH_SCREEN;
+                }
+
                 return DispatchKeyListener.STATE_TRADE_ITEMS;
             }
 
@@ -118,6 +128,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 this.turnHandler.handlePostEnemyTurns();
 
                 this.gameWorld.getMainCharacter().getStatusEffects().disableSummonShopkeeper();
+
+                if (this.gameWorld.getMainCharacter().isDead())
+                {
+                    return DispatchKeyListener.STATE_DEATH_SCREEN;
+                }
 
                 return DispatchKeyListener.STATE_SHOP;
             }
