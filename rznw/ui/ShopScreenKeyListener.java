@@ -239,29 +239,53 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         else
         {
             String menuTitle;
+            String priceDisplay = "";
+            int price;
             Inventory inventory;
+            double priceReductionPercent;
 
             switch (this.topMenuState.getEntryNumber())
             {
                 case 0:
                     menuTitle = "Buy Items";
-                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, this.buyInventory, this.subMenuState);
+                    priceReductionPercent = 2.0 * gameWorld.getMainCharacter().getSkillPoints(4);
+                    if (this.subMenuState.getEntryNumber() < this.buyInventory.getNumItemGroups())
+                    {
+                        price = (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getValue());
+                        priceDisplay = "Purchase Price: " + price;
+                    }
+                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.subMenuState);
                     break;
                 case 1:
                     menuTitle = "Buy Equipment";
-                    inventory = new Inventory();
-                    this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, this.buyEquipment, this.subMenuState);
+                    priceReductionPercent = 2.0 * gameWorld.getMainCharacter().getSkillPoints(4);
+                    if (this.subMenuState.getEntryNumber() < this.buyEquipment.size())
+                    {
+                        price = (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.buyEquipment.get(this.subMenuState.getEntryNumber()).getItem().getValue());
+                        priceDisplay = "Purchase Price: " + price;
+                    }
+                    this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.subMenuState);
                     break;
                 case 2:
                     menuTitle = "Sell Items";
                     inventory = gameWorld.getMainCharacter().getInventory();
-                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, inventory, this.subMenuState);
+                    if (this.subMenuState.getEntryNumber() < inventory.getNumItemGroups())
+                    {
+                        price = (int)Math.floor(0.6 * inventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getValue());
+                        priceDisplay = "Sell Price: " + price;
+                    }
+                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, inventory, this.subMenuState);
                     break;
                 case 3:
                     menuTitle = "Sell Equipment";
                     Equipment equipment = gameWorld.getMainCharacter().getEquipment();
                     Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                    this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, equipmentGroups, this.subMenuState);
+                    if (this.subMenuState.getEntryNumber() < equipmentGroups.size())
+                    {
+                        price = (int)Math.floor(0.6 * equipmentGroups.get(this.subMenuState.getEntryNumber()).getItem().getValue());
+                        priceDisplay = "Sell Price: " + price;
+                    }
+                    this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, equipmentGroups, this.subMenuState);
                     break;
             }
         }

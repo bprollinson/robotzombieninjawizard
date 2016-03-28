@@ -29,7 +29,7 @@ public class ShopScreenRenderer extends MenuScreenRenderer
         this.renderCursor(topMenuState);
     }
 
-    public void renderInventorySubMenu(MainCharacter character, String title, Inventory inventory, MenuState subMenuState)
+    public void renderInventorySubMenu(MainCharacter character, String title, String priceDisplay, Inventory inventory, MenuState subMenuState)
     {
         this.clearScreen();
 
@@ -43,10 +43,12 @@ public class ShopScreenRenderer extends MenuScreenRenderer
             this.frame.renderDisplayString(4 + i, 2, group.getDisplayString());
         }
 
+        this.frame.renderDisplayString(30, 2, priceDisplay);
+
         this.renderCursor(subMenuState);
     }
 
-    public void renderEquipmentSubMenu(MainCharacter character, String title, Vector<EquipmentGroup> equipmentGroups, MenuState subMenuState)
+    public void renderEquipmentSubMenu(MainCharacter character, String title, String priceDisplay, Vector<EquipmentGroup> equipmentGroups, MenuState subMenuState)
     {
         this.clearScreen();
 
@@ -58,6 +60,8 @@ public class ShopScreenRenderer extends MenuScreenRenderer
             EquipmentGroup group = equipmentGroups.get(i);
             this.frame.renderDisplayString(4 + i, 2, group.getDisplayString());
         }
+
+        this.frame.renderDisplayString(30, 2, priceDisplay);
 
         this.renderCursor(subMenuState);
     }
