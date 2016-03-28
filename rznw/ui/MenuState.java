@@ -35,4 +35,16 @@ public class MenuState
             this.entryNumber++;
         }
     }
+
+    public int getMaxEntryNumber()
+    {
+        return this.maxEntryNumber;
+    }
+
+    public void adjustMaxEntryNumber(int maxEntryNumber)
+    {
+        this.maxEntryNumber = maxEntryNumber;
+
+        this.entryNumber = Math.min(this.entryNumber, this.maxEntryNumber);
+    }
 }

@@ -134,6 +134,8 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                         this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
 
                         character.getInventory().removeGold((int)itemCost);
+
+                        this.subMenuState.adjustMaxEntryNumber(this.buyInventory.getNumItemGroups() - 1);
                     }
                 }
                 else if (this.topMenuState.getEntryNumber() == 1)
@@ -155,6 +157,8 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                         }
 
                         character.getInventory().removeGold((int)equipmentCost);
+
+                        this.subMenuState.adjustMaxEntryNumber(this.buyEquipment.size() - 1);
                     }
                 }
                 else if (this.topMenuState.getEntryNumber() == 2)
@@ -168,6 +172,8 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
                     int goldGained = (int)Math.floor(0.6 * existingGroup.getItem().getValue());
                     inventory.addGold(goldGained);
+
+                    this.subMenuState.adjustMaxEntryNumber(inventory.getNumItemGroups() - 1);
                 }
                 else if (this.topMenuState.getEntryNumber() == 3)
                 {
@@ -216,6 +222,9 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                             equipment.removeEquipment(item);
                         }
                     }
+
+                    equipmentGroups = this.getEquipmentGroups(equipment);
+                    this.subMenuState.adjustMaxEntryNumber(equipmentGroups.size() - 1);
                 }
 
                 break;
@@ -249,7 +258,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 case 0:
                     menuTitle = "Buy Items";
                     priceReductionPercent = 2.0 * gameWorld.getMainCharacter().getSkillPoints(4);
-                    if (this.subMenuState.getEntryNumber() < this.buyInventory.getNumItemGroups())
+                    if (this.subMenuState.getEntryNumber() < this.buyInventory.getNumItemGroups() && this.subMenuState.getEntryNumber() >= 0)
                     {
                         price = (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getValue());
                         priceDisplay = "Purchase Price: " + price;
@@ -259,7 +268,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 case 1:
                     menuTitle = "Buy Equipment";
                     priceReductionPercent = 2.0 * gameWorld.getMainCharacter().getSkillPoints(4);
-                    if (this.subMenuState.getEntryNumber() < this.buyEquipment.size())
+                    if (this.subMenuState.getEntryNumber() < this.buyEquipment.size() && this.subMenuState.getEntryNumber() >= 0)
                     {
                         price = (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.buyEquipment.get(this.subMenuState.getEntryNumber()).getItem().getValue());
                         priceDisplay = "Purchase Price: " + price;
@@ -269,7 +278,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 case 2:
                     menuTitle = "Sell Items";
                     inventory = gameWorld.getMainCharacter().getInventory();
-                    if (this.subMenuState.getEntryNumber() < inventory.getNumItemGroups())
+                    if (this.subMenuState.getEntryNumber() < inventory.getNumItemGroups() && this.subMenuState.getEntryNumber() >= 0)
                     {
                         price = (int)Math.floor(0.6 * inventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getValue());
                         priceDisplay = "Sell Price: " + price;
@@ -280,7 +289,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                     menuTitle = "Sell Equipment";
                     Equipment equipment = gameWorld.getMainCharacter().getEquipment();
                     Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                    if (this.subMenuState.getEntryNumber() < equipmentGroups.size())
+                    if (this.subMenuState.getEntryNumber() < equipmentGroups.size() && this.subMenuState.getEntryNumber() >= 0)
                     {
                         price = (int)Math.floor(0.6 * equipmentGroups.get(this.subMenuState.getEntryNumber()).getItem().getValue());
                         priceDisplay = "Sell Price: " + price;
