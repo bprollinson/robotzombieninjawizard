@@ -89,142 +89,15 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_ENTER:
                 if (!this.inSubmenu && this.topMenuState.getEntryNumber() <= 3)
                 {
-                    this.inSubmenu = true;
-
-                    if (this.topMenuState.getEntryNumber() == 0)
-                    {
-                        this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups() - 1);
-                    }
-
-                    if (this.topMenuState.getEntryNumber() == 1)
-                    {
-                        this.subMenuState = new MenuState(this.buyEquipment.size() - 1);
-                    }
-
-                    if (this.topMenuState.getEntryNumber() == 2)
-                    {
-                        MainCharacter character = gameWorld.getMainCharacter();
-                        Inventory inventory = character.getInventory();
-                        this.subMenuState = new MenuState(inventory.getNumItemGroups() - 1);
-                    }
-
-                    if (this.topMenuState.getEntryNumber() == 3)
-                    {
-                        MainCharacter character = gameWorld.getMainCharacter();
-                        Equipment equipment = character.getEquipment();
-                        Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                        this.subMenuState = new MenuState(equipmentGroups.size() - 1);
-                    }
+                    this.moveIntoSubmenu();
                 }
                 else if (!this.inSubmenu)
                 {
                     this.done = true;
                 }
-                else if (this.topMenuState.getEntryNumber() == 0)
+                else
                 {
-                    MainCharacter character = gameWorld.getMainCharacter();
-                    InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber());
-
-                    double priceReductionPercent = 2.0 * character.getSkillPoints(4);
-                    double itemCost = Math.ceil((100.0 - priceReductionPercent) / 100.0 * selectedGroup.getItem().getValue());
-
-                    if (character.getInventory().getNumGold() >= itemCost)
-                    {
-                        character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
-                        this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
-
-                        character.getInventory().removeGold((int)itemCost);
-
-                        this.subMenuState.adjustMaxEntryNumber(this.buyInventory.getNumItemGroups() - 1);
-                    }
-                }
-                else if (this.topMenuState.getEntryNumber() == 1)
-                {
-                    MainCharacter character = gameWorld.getMainCharacter();
-                    EquipmentGroup selectedGroup = this.buyEquipment.get(this.subMenuState.getEntryNumber());
-
-                    double priceReductionPercent = 2.0 * character.getSkillPoints(4);
-                    double equipmentCost = Math.ceil((100.0 - priceReductionPercent) / 100.0 * selectedGroup.getItem().getValue());
-
-                    if (character.getInventory().getNumGold() >= equipmentCost)
-                    {
-                        character.getEquipment().addEquipment(new EquipmentGroup(selectedGroup.getItem(), 1));
-
-                        selectedGroup.removeEquipmentFromGroup(1);
-                        if (selectedGroup.getNumItems() == 0)
-                        {
-                            this.buyEquipment.remove(this.subMenuState.getEntryNumber());
-                        }
-
-                        character.getInventory().removeGold((int)equipmentCost);
-
-                        this.subMenuState.adjustMaxEntryNumber(this.buyEquipment.size() - 1);
-                    }
-                }
-                else if (this.topMenuState.getEntryNumber() == 2)
-                {
-                    MainCharacter character = gameWorld.getMainCharacter();
-
-                    Inventory inventory = character.getInventory();
-                    InventoryItemGroup existingGroup = inventory.getItemGroup(this.subMenuState.getEntryNumber());
-                    InventoryItemGroup removalGroup = new InventoryItemGroup(existingGroup.getItem(), 1);
-                    inventory.removeItems(removalGroup);
-
-                    int goldGained = (int)Math.floor(0.6 * existingGroup.getItem().getValue());
-                    inventory.addGold(goldGained);
-
-                    this.subMenuState.adjustMaxEntryNumber(inventory.getNumItemGroups() - 1);
-                }
-                else if (this.topMenuState.getEntryNumber() == 3)
-                {
-                    MainCharacter character = gameWorld.getMainCharacter();
-                    Equipment equipment = character.getEquipment();
-                    Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                    EquipmentGroup equipmentGroup = equipmentGroups.get(this.subMenuState.getEntryNumber());
-                    EquipmentItem item = equipmentGroup.getItem();
-
-                    int goldGained = 0;
-
-                    if (item instanceof Weapon)
-                    {
-                        Weapon equippedWeapon = equipment.getEquippedWeapon();
-                        boolean isEquippedWeapon = equippedWeapon != null && item.getClass().equals(equippedWeapon.getClass());
-
-                        if (!isEquippedWeapon || equipmentGroup.getNumItems() > 1)
-                        {
-                            Inventory inventory = character.getInventory();
-                            goldGained = (int)Math.floor(0.6 * equipmentGroup.getItem().getValue());
-                            inventory.addGold(goldGained);
-                            equipment.removeEquipment(item);
-                        }
-                    }
-
-                    if (item instanceof Shield)
-                    {
-                        Shield equippedShield = equipment.getEquippedShield();
-                        boolean isEquippedShield = equippedShield != null && item.getClass().equals(equippedShield.getClass());
-
-                        if (!isEquippedShield || equipmentGroup.getNumItems() > 1)
-                        {
-                            goldGained = (int)Math.floor(0.6 * equipmentGroup.getItem().getValue());
-                            equipment.removeEquipment(item);
-                        }
-                    }
-
-                    if (item instanceof Armor)
-                    {
-                        Armor equippedArmor = equipment.getEquippedArmor();
-                        boolean isEquippedArmor = equippedArmor != null && item.getClass().equals(equippedArmor.getClass());
-
-                        if (!isEquippedArmor || equipmentGroup.getNumItems() > 1)
-                        {
-                            goldGained = (int)Math.floor(0.6 * equipmentGroup.getItem().getValue());
-                            equipment.removeEquipment(item);
-                        }
-                    }
-
-                    equipmentGroups = this.getEquipmentGroups(equipment);
-                    this.subMenuState.adjustMaxEntryNumber(equipmentGroups.size() - 1);
+                    this.processBuySell();
                 }
 
                 break;
@@ -247,56 +120,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         }
         else
         {
-            String menuTitle;
-            String priceDisplay = "";
-            int price;
-            Inventory inventory;
-            double priceReductionPercent;
-
-            switch (this.topMenuState.getEntryNumber())
-            {
-                case 0:
-                    menuTitle = "Buy Items";
-                    priceReductionPercent = 2.0 * gameWorld.getMainCharacter().getSkillPoints(4);
-                    if (this.subMenuState.getEntryNumber() < this.buyInventory.getNumItemGroups() && this.subMenuState.getEntryNumber() >= 0)
-                    {
-                        price = (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getValue());
-                        priceDisplay = "Purchase Price: " + price;
-                    }
-                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.subMenuState);
-                    break;
-                case 1:
-                    menuTitle = "Buy Equipment";
-                    priceReductionPercent = 2.0 * gameWorld.getMainCharacter().getSkillPoints(4);
-                    if (this.subMenuState.getEntryNumber() < this.buyEquipment.size() && this.subMenuState.getEntryNumber() >= 0)
-                    {
-                        price = (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.buyEquipment.get(this.subMenuState.getEntryNumber()).getItem().getValue());
-                        priceDisplay = "Purchase Price: " + price;
-                    }
-                    this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.subMenuState);
-                    break;
-                case 2:
-                    menuTitle = "Sell Items";
-                    inventory = gameWorld.getMainCharacter().getInventory();
-                    if (this.subMenuState.getEntryNumber() < inventory.getNumItemGroups() && this.subMenuState.getEntryNumber() >= 0)
-                    {
-                        price = (int)Math.floor(0.6 * inventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getValue());
-                        priceDisplay = "Sell Price: " + price;
-                    }
-                    this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, inventory, this.subMenuState);
-                    break;
-                case 3:
-                    menuTitle = "Sell Equipment";
-                    Equipment equipment = gameWorld.getMainCharacter().getEquipment();
-                    Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                    if (this.subMenuState.getEntryNumber() < equipmentGroups.size() && this.subMenuState.getEntryNumber() >= 0)
-                    {
-                        price = (int)Math.floor(0.6 * equipmentGroups.get(this.subMenuState.getEntryNumber()).getItem().getValue());
-                        priceDisplay = "Sell Price: " + price;
-                    }
-                    this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, equipmentGroups, this.subMenuState);
-                    break;
-            }
+            this.renderSubMenu();
         }
     }
 
@@ -337,5 +161,199 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         }
 
         return result;
+    }
+
+    private void moveIntoSubmenu()
+    {
+        this.inSubmenu = true;
+        MainCharacter character;
+
+        switch (this.topMenuState.getEntryNumber())
+        {
+            case 0:
+                this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups() - 1);
+                break;
+            case 1:
+                this.subMenuState = new MenuState(this.buyEquipment.size() - 1);
+                break;
+            case 2:
+                character = gameWorld.getMainCharacter();
+                Inventory inventory = character.getInventory();
+                this.subMenuState = new MenuState(inventory.getNumItemGroups() - 1);            
+                break;
+            case 3:
+                character = gameWorld.getMainCharacter();
+                Equipment equipment = character.getEquipment();
+                Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
+                this.subMenuState = new MenuState(equipmentGroups.size() - 1);
+                break;
+        }
+    }
+
+    private void renderSubMenu()
+    {
+        String menuTitle;
+        String priceDisplay = "";
+        int price;
+        Inventory inventory;
+
+        switch (this.topMenuState.getEntryNumber())
+        {
+            case 0:
+                menuTitle = "Buy Items";
+                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                {
+                    price = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
+                    priceDisplay = "Purchase Price: " + price;
+                }
+                this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.subMenuState);
+                break;
+            case 1:
+                menuTitle = "Buy Equipment";
+                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                {
+                    price = this.buyEquipment.get(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
+                    priceDisplay = "Purchase Price: " + price;
+                }
+                this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.subMenuState);
+                break;
+            case 2:
+                menuTitle = "Sell Items";
+                inventory = gameWorld.getMainCharacter().getInventory();
+                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                {
+                    price = inventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
+                    priceDisplay = "Sell Price: " + price;
+                }
+                this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, inventory, this.subMenuState);
+                break;
+            case 3:
+                menuTitle = "Sell Equipment";
+                Equipment equipment = gameWorld.getMainCharacter().getEquipment();
+                Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
+                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                {
+                    price = equipmentGroups.get(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
+                    priceDisplay = "Sell Price: " + price;
+                }
+                this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, equipmentGroups, this.subMenuState);
+                break;
+            }
+    }
+
+    private void processBuySell()
+    {
+        if (this.subMenuState.getEntryNumber() < 0)
+        {
+            return;
+        }
+
+        if (this.topMenuState.getEntryNumber() == 0)
+        {
+            MainCharacter character = gameWorld.getMainCharacter();
+            InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber());
+
+            int itemCost = selectedGroup.getItem().getBuyPrice(character);
+
+            if (character.getInventory().getNumGold() >= itemCost)
+            {
+                character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+                this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+
+                character.getInventory().removeGold((int)itemCost);
+
+                this.subMenuState.adjustMaxEntryNumber(this.buyInventory.getNumItemGroups() - 1);
+            }
+        }
+        else if (this.topMenuState.getEntryNumber() == 1)
+        {
+            MainCharacter character = gameWorld.getMainCharacter();
+            EquipmentGroup selectedGroup = this.buyEquipment.get(this.subMenuState.getEntryNumber());
+
+            int equipmentCost = selectedGroup.getItem().getBuyPrice(character);
+
+            if (character.getInventory().getNumGold() >= equipmentCost)
+            {
+                character.getEquipment().addEquipment(new EquipmentGroup(selectedGroup.getItem(), 1));
+
+                selectedGroup.removeEquipmentFromGroup(1);
+                if (selectedGroup.getNumItems() == 0)
+                {
+                    this.buyEquipment.remove(this.subMenuState.getEntryNumber());
+                }
+
+                character.getInventory().removeGold((int)equipmentCost);
+
+                this.subMenuState.adjustMaxEntryNumber(this.buyEquipment.size() - 1);
+            }
+        }
+        else if (this.topMenuState.getEntryNumber() == 2)
+        {
+            MainCharacter character = gameWorld.getMainCharacter();
+
+            Inventory inventory = character.getInventory();
+            InventoryItemGroup existingGroup = inventory.getItemGroup(this.subMenuState.getEntryNumber());
+            InventoryItemGroup removalGroup = new InventoryItemGroup(existingGroup.getItem(), 1);
+            inventory.removeItems(removalGroup);
+
+            int goldGained = existingGroup.getItem().getSellPrice();
+            inventory.addGold(goldGained);
+
+            this.subMenuState.adjustMaxEntryNumber(inventory.getNumItemGroups() - 1);
+        }
+        else if (this.topMenuState.getEntryNumber() == 3)
+        {
+            MainCharacter character = gameWorld.getMainCharacter();
+            Equipment equipment = character.getEquipment();
+            Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
+            EquipmentGroup equipmentGroup = equipmentGroups.get(this.subMenuState.getEntryNumber());
+            EquipmentItem item = equipmentGroup.getItem();
+
+            boolean itemSold = false;
+
+            if (item instanceof Weapon)
+            {
+                Weapon equippedWeapon = equipment.getEquippedWeapon();
+                boolean isEquippedWeapon = equippedWeapon != null && item.getClass().equals(equippedWeapon.getClass());
+
+                if (!isEquippedWeapon || equipmentGroup.getNumItems() > 1)
+                {
+                    itemSold = true;
+                }
+            }
+
+            if (item instanceof Shield)
+            {
+                Shield equippedShield = equipment.getEquippedShield();
+                boolean isEquippedShield = equippedShield != null && item.getClass().equals(equippedShield.getClass());
+
+                if (!isEquippedShield || equipmentGroup.getNumItems() > 1)
+                {
+                    itemSold = true;
+                }
+            }
+
+            if (item instanceof Armor)
+            {
+                Armor equippedArmor = equipment.getEquippedArmor();
+                boolean isEquippedArmor = equippedArmor != null && item.getClass().equals(equippedArmor.getClass());
+
+                if (!isEquippedArmor || equipmentGroup.getNumItems() > 1)
+                {
+                    itemSold = true;
+                }
+            }
+
+            if (itemSold)
+            {
+                Inventory inventory = character.getInventory();
+                int goldGained = equipmentGroup.getItem().getSellPrice();
+                inventory.addGold(goldGained);
+                equipment.removeEquipment(item);
+            }
+
+            equipmentGroups = this.getEquipmentGroups(equipment);
+            this.subMenuState.adjustMaxEntryNumber(equipmentGroups.size() - 1);
+        }
     }
 }
