@@ -17,6 +17,8 @@ public class RicochetBlastSpell extends DirectedSpell
 
         MainCharacter character = gameWorld.getMainCharacter();
 
+        System.out.println("Main character position: " + character.getMapElement().getRow() + ", " + character.getMapElement().getColumn());
+
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
         boolean objectFound = false;
@@ -33,13 +35,15 @@ public class RicochetBlastSpell extends DirectedSpell
 
             if (element != null)
             {
+                System.out.println("Found element at: " + row + ", " + column);
                 objectFound = true;
             }
 
             if (element instanceof EnemyMapElement)
             {
                 System.out.println("Hit an enemy!");
-                int damage = 10 * spellPoints;
+                //int damage = 10 * spellPoints;
+                int damage = 1;
 
                 while (element != null)
                 {
