@@ -164,22 +164,22 @@ public abstract class EnemyCharacter extends Character
     {
         int paddingPercent = 2 * this.getStatPoints(EnemyCharacter.STAT_PADDING);
 
-        int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
-
-        if (padding > 0)
-        {
-            System.out.println("Enemy is preventing " + padding + " damage via padding");
-        }
-
-        damage -= padding;
-
         if (this.getStatusEffects().getArmorBreakPercent() > 0)
         {
             int armorBreakPercent = this.getStatusEffects().getArmorBreakPercent();
-            damage += armorBreakPercent;
+            paddingPercent -= armorBreakPercent;
 
             System.out.println("Enemy armor break percent: " + armorBreakPercent);
         }
+
+        int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
+
+        if (padding != 0)
+        {
+            System.out.println("Enemy is preventing " + padding + " of " + damage + " damage via padding");
+        }
+
+        damage -= padding;
 
         if (damageSource instanceof MainCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
