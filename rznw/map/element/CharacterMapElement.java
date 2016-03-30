@@ -24,4 +24,9 @@ public abstract class CharacterMapElement extends MapElement
     {
         return this.character;
     }
+
+    public void setCharacter(Character character)
+    {
+        this.character = character;
+    }
 }

@@ -27,6 +27,8 @@ public class RobotSpellFactory extends SpellFactory
                 return new ParalyzingBlastSpell();
             case 8:
                 return new GeneticTargetingSpell();
+            case 9:
+                return new LevelDownSpell();
             case 14:
                 return new SignalWeaponSpell();
             default:

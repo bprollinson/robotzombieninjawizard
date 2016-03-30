@@ -57,6 +57,11 @@ public abstract class EnemyCharacter extends Character
         this.MP = this.getMaxMP();
     }
 
+    public int getLevel()
+    {
+        return this.level;
+    }
+
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
         if (this.getStatusEffects().isConfused() || this.distanceFromMainCharacter(gameWorld) > this.getViewRadius())
