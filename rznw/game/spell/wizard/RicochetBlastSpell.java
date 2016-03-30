@@ -42,8 +42,7 @@ public class RicochetBlastSpell extends DirectedSpell
             if (element instanceof EnemyMapElement)
             {
                 System.out.println("Hit an enemy!");
-                //int damage = 10 * spellPoints;
-                int damage = 1;
+                int damage = 10 * spellPoints;
 
                 while (element != null)
                 {
