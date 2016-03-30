@@ -29,6 +29,8 @@ public class RobotSpellFactory extends SpellFactory
                 return new GeneticTargetingSpell();
             case 9:
                 return new LevelDownSpell();
+            case 11:
+                return new LevelUpSpell();
             case 14:
                 return new SignalWeaponSpell();
             default:
