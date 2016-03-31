@@ -104,7 +104,7 @@ public abstract class MainCharacter extends Character
         "Summons a shopkeeper who buys and sells goods.",
         "Sets up a waypoint or allows you to return to one.",
         "Increases enemy item drop rate.",
-        "Shows you the position of the nearest set of stairs.",
+        "Shows you the position of the nearest set of stairs within your available radius.",
         "Allows you to trade in multiple items for a new random item.",
         "Increases your damage but decreases your defense for a period of time.",
         "Increases the amount of gold you receive from enemies.",

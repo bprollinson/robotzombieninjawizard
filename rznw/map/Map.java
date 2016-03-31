@@ -7,6 +7,7 @@ import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.map.element.Stairs;
 import rznw.map.element.SummonedGolemMapElement;
 import rznw.map.element.SummonedZombieMapElement;
 import rznw.map.element.TrapMapElement;
@@ -109,6 +110,28 @@ public class Map
             for (int column = minColumn; column <= maxColumn; column++)
             {
                 this.setVisible(character, row, column);
+            }
+        }
+
+        radius = 3 * character.getSkillPoints(7);
+        System.out.println("Looking for stairs with radius: " + radius);
+        minRow = Math.max(i - radius, 0);
+        maxRow = Math.min(i + radius, Map.NUM_ROWS - 1);
+        minColumn = Math.max(j - radius, 0);
+        maxColumn = Math.min(j + radius, Map.NUM_COLUMNS - 1);
+
+        for (int row = minRow; row <= maxRow; row++)
+        {
+            for (int column = minColumn; column <= maxColumn; column++)
+            {
+                if (this.getBackgroundElement(row, column) instanceof Stairs)
+                {
+                    if (!this.isVisible(row, column))
+                    {
+                        System.out.println("Found stairs using skill");
+                    }
+                    this.setVisible(character, row, column);
+                }
             }
         }
     }
