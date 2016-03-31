@@ -28,6 +28,8 @@ public class StatusEffects
     int detectVitalityRadius = 0;
     int itemTradeNumber = 0;
     int priceReductionPercent = 0;
+    int bonusDropProbability = 0;
+    int bonusGoldPercent = 0;
 
     public void freeze()
     {
@@ -277,6 +279,22 @@ public class StatusEffects
     public boolean summonShopkeeperEnabled()
     {
         return this.priceReductionPercent > 0;
+    }
+
+    public void enableBoostGenetics(int bonusDropProbability, int bonusGoldPercent)
+    {
+        this.bonusDropProbability = bonusDropProbability;
+        this.bonusGoldPercent = bonusGoldPercent;
+    }
+
+    public int getBonusDropProbability()
+    {
+        return this.bonusDropProbability;
+    }
+
+    public int getBonusGoldPercent()
+    {
+        return this.bonusGoldPercent;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

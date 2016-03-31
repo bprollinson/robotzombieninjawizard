@@ -33,6 +33,7 @@ public class Mummy extends EnemyCharacter
     public boolean isDroppingItems(MainCharacter mainCharacter)
     {
         int probability = 50 + 2 * mainCharacter.getSkillPoints(6);
+        probability += this.getStatusEffects().getBonusDropProbability();
         System.out.println("Item drop probability: " + probability);
 
         return RandomNumberGenerator.rollSucceeds(probability);
@@ -45,7 +46,11 @@ public class Mummy extends EnemyCharacter
 
     public boolean isDroppingEquipment()
     {
-        return RandomNumberGenerator.rollSucceeds(10);
+        int probability = 10;
+        probability += this.getStatusEffects().getBonusDropProbability();
+        System.out.println("Equipment drop probability: " + probability);
+
+        return RandomNumberGenerator.rollSucceeds(probability);
     }
 
     public EquipmentGroup getEquipmentDrops()

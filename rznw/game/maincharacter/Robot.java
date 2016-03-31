@@ -42,7 +42,7 @@ public class Robot extends MainCharacter
         "Damages an enemy and has a chance to stun them. The blast travels in a straight line.",
         "Deals damage to the nearest enemy, and all on the current dungeon level of the same type. The nearest enemies is targeted automatically regardless of position.",
         "Levels down all enemies within a radius of you. This decreases their power, but also decreases the rewards achieved for defeating them.",
-        "Increases the drop rate of enemies within a radius of you. This increases both the amount of gold and the frequency of items dropped.",
+        "Increases the drop rate of enemies within a radius of you. This increases both the amount of gold and the frequency of items and equipment dropped.",
         "Levels up all enemies within a radius of you. This increases the rewards achieved for defeating them, but also increases their power.",
         "Damages a nearby enemy. Your character will possibly steal an item from that enemy.",
         "Damages a nearby enemy. If this attack kills that enemy, your defense is temporarily increased.",

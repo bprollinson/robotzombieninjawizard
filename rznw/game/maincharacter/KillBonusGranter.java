@@ -46,6 +46,7 @@ public class KillBonusGranter
     {
         int baseGold = enemyCharacter.getNumGold();
         int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkillPoints(10));
+        bonusGoldPercent += enemyCharacter.getStatusEffects().getBonusGoldPercent();
         int bonusGold = (int)(baseGold * bonusGoldPercent / 100);
 
         mainCharacter.getInventory().addGold(baseGold + bonusGold);
