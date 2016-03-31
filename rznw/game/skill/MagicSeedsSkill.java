@@ -1,15 +1,34 @@
 package rznw.game.skill;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 
-public class MagicSeedsSkill extends PassiveSkill
+public class MagicSeedsSkill extends Skill
 {
+    public boolean canUse(GameWorld gameWorld)
+    {
+        MainCharacter character = gameWorld.getMainCharacter();
+
+        return character.getSkillPoints(12) > 0;
+    }
+
+    public void use(GameWorld gameWorld)
+    {
+        System.out.println("Using Magic Seeds");
+
+        int skillPoints = gameWorld.getMainCharacter().getSkillPoints(12);
+        int numTurns = 2 + (int)Math.floor(skillPoints / 4);
+        gameWorld.getMainCharacter().getStatusEffects().enableMagicSeeds(numTurns);
+    }
+
     public String[] getStats(MainCharacter character, int skillPoints)
     {
         int bonusSpellLevels = (int)Math.floor(skillPoints / 4);
+        int numTurns = 2 + (int)Math.floor(skillPoints / 4);
 
         return new String[] {
-            "Bonus spell levels: " + bonusSpellLevels
+            "Bonus spell levels: " + bonusSpellLevels,
+            "Turns: " + numTurns
         };
     }
 }

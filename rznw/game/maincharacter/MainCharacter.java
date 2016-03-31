@@ -294,11 +294,13 @@ public abstract class MainCharacter extends Character
     {
         int spellPoints = this.spells[spellNumber];
 
-        int manaSeedPoints = this.getSkillPoints(12);
-        int bonusSpellPoints = (int)Math.floor(manaSeedPoints / 4);
+        int bonusSpellPoints = 0;
 
-        if (bonusSpellPoints > 0)
+        if (this.getStatusEffects().magicSeedsEnabled())
         {
+            int magicSeedPoints = this.getSkillPoints(12);
+            bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
+
             System.out.println("Bonus spell points: " + bonusSpellPoints);
             spellPoints += bonusSpellPoints;
         }
