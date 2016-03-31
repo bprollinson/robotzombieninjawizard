@@ -31,6 +31,7 @@ public class StatusEffects
     int bonusDropProbability = 0;
     int bonusGoldPercent = 0;
     int magicSeedsTurns = 0;
+    int manaSuckTurns = 0;
 
     public void freeze()
     {
@@ -308,6 +309,16 @@ public class StatusEffects
         this.magicSeedsTurns = numTurns;
     }
 
+    public boolean manaSuckEnabled()
+    {
+        return this.manaSuckTurns > 0;
+    }
+
+    public void enableManaSuck(int numTurns)
+    {
+        this.manaSuckTurns = numTurns;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -377,6 +388,11 @@ public class StatusEffects
         if (this.magicSeedsTurns > 0)
         {
             this.magicSeedsTurns--;
+        }
+
+        if (this.manaSuckTurns > 0)
+        {
+            this.manaSuckTurns--;
         }
     }
 }
