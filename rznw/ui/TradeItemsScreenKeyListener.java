@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Herb;
+import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
@@ -117,7 +118,14 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
 
         System.out.println("Generated item is: " + item.getDisplayName());
 
-        this.gameWorld.getMainCharacter().getInventory().addItems(new InventoryItemGroup(item, 1));
+        try
+        {
+            this.gameWorld.getMainCharacter().getInventory().addItems(new InventoryItemGroup(item, 1));
+        }
+        catch (InventoryFullException ife)
+        {
+            System.out.println("Inventory full");
+        }
     }
 
     private void removeSelectedItems()

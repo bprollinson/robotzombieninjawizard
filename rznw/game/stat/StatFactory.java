@@ -26,6 +26,8 @@ public class StatFactory
                 return new DamageStat();
             case 9:
                 return new PaddingStat();
+            case 10:
+                return new UnencumberanceStat();
             case 12:
                 return new ManaStat();
             case 13:

@@ -7,6 +7,7 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.Inventory;
+import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.maincharacter.inventory.Shield;
@@ -48,9 +49,15 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
 
-        this.buyInventory = new Inventory();
-        this.buyInventory.addItems(new InventoryItemGroup(new Potion(), 3));
-        this.buyInventory.addItems(new InventoryItemGroup(new Herb(), 3));
+        this.buyInventory = new Inventory(null);
+        try
+        {
+            this.buyInventory.addItems(new InventoryItemGroup(new Potion(), 3));
+            this.buyInventory.addItems(new InventoryItemGroup(new Herb(), 3));
+        }
+        catch (InventoryFullException ife)
+        {
+        }
 
         this.buyEquipment = new Vector<EquipmentGroup>();
         this.buyEquipment.add(new EquipmentGroup(new AssassinsCloak(), 1));
@@ -257,12 +264,19 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
             if (character.getInventory().getNumGold() >= itemCost)
             {
-                character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
-                this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+                try
+                {
+                    character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+                    this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
 
-                character.getInventory().removeGold((int)itemCost);
+                    character.getInventory().removeGold((int)itemCost);
 
-                this.subMenuState.adjustMaxEntryNumber(this.buyInventory.getNumItemGroups() - 1);
+                    this.subMenuState.adjustMaxEntryNumber(this.buyInventory.getNumItemGroups() - 1);
+                }
+                catch (InventoryFullException ife)
+                {
+                    System.out.println("Inventory full");
+                }
             }
         }
         else if (this.topMenuState.getEntryNumber() == 1)

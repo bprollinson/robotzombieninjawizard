@@ -2,6 +2,7 @@ package rznw.game.spell.ninja;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
@@ -40,7 +41,14 @@ public class StealItemSpell extends DirectedSpell
 
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                 InventoryItemGroup itemGroup = enemy.getItemDrops();
-                character.getInventory().addItems(itemGroup);
+                try
+                {
+                    character.getInventory().addItems(itemGroup);
+                }
+                catch (InventoryFullException ife)
+                {
+                    System.out.println("Inventory full");
+                }
 
                 System.out.println("Stole item: " + itemGroup.getItem().getDisplayName());
             }

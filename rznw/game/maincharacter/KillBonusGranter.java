@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.utility.RandomNumberGenerator;
@@ -57,7 +58,14 @@ public class KillBonusGranter
         if (enemyCharacter.isDroppingItems(mainCharacter))
         {
             InventoryItemGroup itemGroup = enemyCharacter.getItemDrops();
-            mainCharacter.getInventory().addItems(itemGroup);
+            try
+            {
+                mainCharacter.getInventory().addItems(itemGroup);
+            }
+            catch (InventoryFullException ife)
+            {
+                System.out.println("Inventory full");
+            }
         }
 
         if (mainCharacter.getSkillPoints(3) > 0)
@@ -67,7 +75,14 @@ public class KillBonusGranter
             if (RandomNumberGenerator.rollSucceeds(probability))
             {
                 InventoryItemGroup itemGroup = new InventoryItemGroup(new Potion(), 1);
-                mainCharacter.getInventory().addItems(itemGroup);
+                try
+                {
+                    mainCharacter.getInventory().addItems(itemGroup);
+                }
+                catch (InventoryFullException ife)
+                {
+                    System.out.println("Inventory full");
+                }
             }
         }
     }

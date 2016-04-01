@@ -2,14 +2,18 @@ package rznw.game.maincharacter.inventory;
 
 import java.util.Vector;
 
+import rznw.game.maincharacter.MainCharacter;
+
 public class Inventory
 {
     int numGold = 0;
     Vector<InventoryItemGroup> itemGroups;
+    MainCharacter character;
 
-    public Inventory()
+    public Inventory(MainCharacter character)
     {
         this.itemGroups = new Vector<InventoryItemGroup>();
+        this.character = character;
     }
 
     public void addGold(int numGold)
@@ -27,8 +31,10 @@ public class Inventory
         return this.numGold;
     }
 
-    public void addItems(InventoryItemGroup itemGroup)
+    public void addItems(InventoryItemGroup itemGroup) throws InventoryFullException
     {
+        this.assertCanAddItems(itemGroup);
+
         int index = this.getItemGroupPosition(itemGroup);
 
         if (index == -1)
@@ -66,6 +72,29 @@ public class Inventory
     public InventoryItemGroup getItemGroup(int index)
     {
         return this.itemGroups.get(index);
+    }
+
+    private void assertCanAddItems(InventoryItemGroup itemGroup) throws InventoryFullException
+    {
+        if (this.character == null)
+        {
+            return;
+        }
+
+        int statPoints = this.character.getStatPoints(10);
+        int maxSize = 1 + statPoints;
+
+        int index = this.getItemGroupPosition(itemGroup);
+
+        if (index == -1 && this.itemGroups.size() >= maxSize)
+        {
+            throw new InventoryFullException();
+        }
+
+        if (index != -1 && this.itemGroups.get(index).getNumItems() >= maxSize)
+        {
+            throw new InventoryFullException();
+        }
     }
 
     private int getItemGroupPosition(InventoryItemGroup itemGroup)

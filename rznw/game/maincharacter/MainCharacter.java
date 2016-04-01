@@ -144,7 +144,7 @@ public abstract class MainCharacter extends Character
             this.spells[i] = 0;
         }
 
-        this.inventory = new Inventory();
+        this.inventory = new Inventory(this);
         this.equipment = new Equipment();
 
         this.HP = this.getMaxHP();
