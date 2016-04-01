@@ -2,6 +2,7 @@ package rznw.game.spell.ninja;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.element.EnemyMapElement;
@@ -40,9 +41,16 @@ public class StealEquipmentSpell extends DirectedSpell
 
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                 EquipmentGroup equipmentGroup = enemy.getEquipmentDrops();
-                character.getEquipment().addEquipment(equipmentGroup);
 
-                System.out.println("Stole equipment: " + equipmentGroup.getItem().getDisplayName());
+                try
+                {
+                    character.getEquipment().addEquipment(equipmentGroup);
+                    System.out.println("Stole equipment: " + equipmentGroup.getItem().getDisplayName());
+                }
+                catch (EquipmentFullException efe)
+                {
+                    System.out.println("Equipment full");
+                }
             }
             else
             {

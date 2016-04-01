@@ -2,20 +2,26 @@ package rznw.game.maincharacter.inventory;
 
 import java.util.Vector;
 
+import rznw.game.maincharacter.MainCharacter;
+
 public class Equipment
 {
     Vector<EquipmentGroup> equipmentGroups;
     private int equippedWeapon = -1;
     private int equippedShield = -1;
     private int equippedArmor = -1;
+    MainCharacter character;
 
-    public Equipment()
+    public Equipment(MainCharacter character)
     {
         this.equipmentGroups = new Vector<EquipmentGroup>();
+        this.character = character;
     }
 
-    public void addEquipment(EquipmentGroup equipmentGroup)
+    public void addEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
     {
+        this.assertCanAddEquipment(equipmentGroup);
+
         int index = this.getEquipmentGroupPosition(equipmentGroup);
 
         if (index == -1)
@@ -228,5 +234,23 @@ public class Equipment
         }
 
         return (Armor)this.getArmorGroup(this.equippedArmor).getItem();
+    }
+
+    private void assertCanAddEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
+    {
+        int statPoints = this.character.getStatPoints(10);
+        int maxSize = 1 + statPoints;
+
+        int index = this.getEquipmentGroupPosition(equipmentGroup);
+
+        if (index == -1 && this.equipmentGroups.size() >= maxSize)
+        {
+            throw new EquipmentFullException();
+        }
+
+        if (index != -1 && this.equipmentGroups.get(index).getNumItems() >= maxSize)
+        {
+            throw new EquipmentFullException();
+        }
     }
 }

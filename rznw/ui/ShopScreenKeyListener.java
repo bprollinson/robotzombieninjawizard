@@ -3,6 +3,7 @@ package rznw.ui;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.AssassinsCloak;
 import rznw.game.maincharacter.inventory.Equipment;
+import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Herb;
@@ -288,17 +289,24 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
             if (character.getInventory().getNumGold() >= equipmentCost)
             {
-                character.getEquipment().addEquipment(new EquipmentGroup(selectedGroup.getItem(), 1));
-
-                selectedGroup.removeEquipmentFromGroup(1);
-                if (selectedGroup.getNumItems() == 0)
+                try
                 {
-                    this.buyEquipment.remove(this.subMenuState.getEntryNumber());
+                    character.getEquipment().addEquipment(new EquipmentGroup(selectedGroup.getItem(), 1));
+
+                    selectedGroup.removeEquipmentFromGroup(1);
+                    if (selectedGroup.getNumItems() == 0)
+                    {
+                        this.buyEquipment.remove(this.subMenuState.getEntryNumber());
+                    }
+
+                    character.getInventory().removeGold((int)equipmentCost);
+
+                    this.subMenuState.adjustMaxEntryNumber(this.buyEquipment.size() - 1);
                 }
-
-                character.getInventory().removeGold((int)equipmentCost);
-
-                this.subMenuState.adjustMaxEntryNumber(this.buyEquipment.size() - 1);
+                catch (EquipmentFullException efe)
+                {
+                    System.out.println("Equipment full");
+                }
             }
         }
         else if (this.topMenuState.getEntryNumber() == 2)

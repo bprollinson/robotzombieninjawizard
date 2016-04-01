@@ -3,6 +3,7 @@ package rznw.game.spell.robot;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Weapon;
@@ -46,7 +47,14 @@ public class ExtractWeaponSpell extends DirectedSpell
 
                 if (weapon != null)
                 {
-                    character.getEquipment().addEquipment(new EquipmentGroup(weapon, 1));
+                    try
+                    {
+                        character.getEquipment().addEquipment(new EquipmentGroup(weapon, 1));
+                    }
+                    catch (EquipmentFullException efe)
+                    {
+                        System.out.println("Equipment full");
+                    }
                 }
             }
             else
