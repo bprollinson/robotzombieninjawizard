@@ -369,6 +369,13 @@ public abstract class MainCharacter extends Character
             toDodgePercent -= dodgePenalty;
         }
 
+        if (this.getStatusEffects().meatShieldEnabled())
+        {
+            int meatShieldDodgePercent = this.getStatusEffects().getMeatShieldDodgePercent();
+            System.out.println("Meat shield dodge bonus: " + meatShieldDodgePercent);
+            toDodgePercent += meatShieldDodgePercent;
+        }
+
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
@@ -460,6 +467,13 @@ public abstract class MainCharacter extends Character
             int armorPaddingPercent = armor.getPaddingPercent();
             System.out.println("Additional armor padding percent: " + armorPaddingPercent);
             paddingPercent += armorPaddingPercent;
+        }
+
+        if (this.getStatusEffects().meatShieldEnabled())
+        {
+            int meatShieldPaddingPercent = this.getStatusEffects().getMeatShieldPaddingPercent();
+            System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);
+            paddingPercent += meatShieldPaddingPercent;
         }
 
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);

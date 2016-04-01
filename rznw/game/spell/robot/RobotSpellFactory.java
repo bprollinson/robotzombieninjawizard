@@ -35,6 +35,8 @@ public class RobotSpellFactory extends SpellFactory
                 return new LevelUpSpell();
             case 12:
                 return new ExtractWeaponSpell();
+            case 13:
+                return new MeatShieldSpell();
             case 14:
                 return new SignalWeaponSpell();
             default:

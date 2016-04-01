@@ -32,6 +32,9 @@ public class StatusEffects
     int bonusGoldPercent = 0;
     int magicSeedsTurns = 0;
     int manaSuckTurns = 0;
+    int meatShieldTurns = 0;
+    int meatShieldPaddingPercent = 0;
+    int meatShieldDodgePercent = 0;
 
     public void freeze()
     {
@@ -319,6 +322,28 @@ public class StatusEffects
         this.manaSuckTurns = numTurns;
     }
 
+    public int getMeatShieldPaddingPercent()
+    {
+        return this.meatShieldPaddingPercent;
+    }
+
+    public int getMeatShieldDodgePercent()
+    {
+        return this.meatShieldDodgePercent;
+    }
+
+    public boolean meatShieldEnabled()
+    {
+        return this.meatShieldTurns > 0;
+    }
+
+    public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)
+    {
+        this.meatShieldTurns = numTurns;
+        this.meatShieldPaddingPercent = bonusPadding;
+        this.meatShieldDodgePercent = bonusDodge;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -393,6 +418,11 @@ public class StatusEffects
         if (this.manaSuckTurns > 0)
         {
             this.manaSuckTurns--;
+        }
+
+        if (this.meatShieldTurns > 0)
+        {
+            this.meatShieldTurns--;
         }
     }
 }
