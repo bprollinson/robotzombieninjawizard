@@ -4,6 +4,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.Assassin;
 import rznw.game.enemy.Werewolf;
 import rznw.game.enemy.Mummy;
+import rznw.game.enemy.Viper;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Robot;
 import rznw.game.maincharacter.Zombie;
@@ -39,8 +40,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {30, 60, 100},
-            {70, 90, 100}
+            {30, 60, 90, 100},
+            {20, 40, 60, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -68,6 +69,8 @@ public class CharacterGenerator
                 return new Mummy(enemyLevel);
             case 2:
                 return new Assassin(enemyLevel);
+            case 3:
+                return new Viper(enemyLevel);
         }
 
         return null;
