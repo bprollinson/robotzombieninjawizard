@@ -158,5 +158,9 @@ public class CollisionHandler
         {
             ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter);
         }
+        else
+        {
+            ((MainCharacter)character).damagedEnemyCharacter((EnemyCharacter)otherCharacter);
+        }
     }
 }

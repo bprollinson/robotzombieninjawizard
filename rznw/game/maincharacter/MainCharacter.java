@@ -592,4 +592,14 @@ public abstract class MainCharacter extends Character
 
         super.heal(HP + bonusHP);
     }
+
+    public void damagedEnemyCharacter(EnemyCharacter enemyCharacter)
+    {
+        Weapon weapon = this.equipment.getEquippedWeapon();
+
+        if (weapon != null)
+        {
+            weapon.damagedEnemyCharacter(enemyCharacter);
+        }
+    }
 }

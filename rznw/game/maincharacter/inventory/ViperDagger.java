@@ -1,5 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
+import rznw.game.enemy.EnemyCharacter;
+
 public class ViperDagger extends Weapon
 {
     public String getDisplayName()
@@ -15,5 +17,11 @@ public class ViperDagger extends Weapon
     public int getValue()
     {
         return 400;
+    }
+
+    public void damagedEnemyCharacter(EnemyCharacter enemyCharacter)
+    {
+        System.out.println("Enemy is poisoned by the viper dagger");
+        enemyCharacter.getStatusEffects().poison();
     }
 }
