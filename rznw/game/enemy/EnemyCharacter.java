@@ -254,4 +254,8 @@ public abstract class EnemyCharacter extends Character
     }
 
     protected abstract int[] getStatSequence();
+
+    public void damagedMainCharacter(MainCharacter mainCharacter)
+    {
+    }
 }

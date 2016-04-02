@@ -153,5 +153,10 @@ public class CollisionHandler
                 otherCharacter.getStatusEffects().confuse();
             }
         }
+
+        if (character instanceof EnemyCharacter)
+        {
+            ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter);
+        }
     }
 }

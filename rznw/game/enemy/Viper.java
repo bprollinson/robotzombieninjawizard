@@ -61,4 +61,10 @@ public class Viper extends EnemyCharacter
     {
         return new EquipmentGroup(new ViperDagger(), 1);
     }
+
+    public void damagedMainCharacter(MainCharacter mainCharacter)
+    {
+        System.out.println("Stung by the viper - you are poisoned");
+        mainCharacter.getStatusEffects().poison();
+    }
 }
