@@ -3,9 +3,6 @@ package rznw.game.spell.robot;
 import java.util.Collection;
 import java.util.Iterator;
 
-import rznw.game.enemy.Assassin;
-import rznw.game.enemy.Mummy;
-import rznw.game.enemy.Werewolf;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
@@ -35,32 +32,12 @@ public class LevelDownSpell extends UndirectedSpell
                 int levelDifference = spellPoints;
                 int newLevel = Math.max(enemy.getLevel() - levelDifference, 1);
 
-                EnemyCharacter newEnemy = null;
+                EnemyCharacter newEnemy = enemy.getNewInstance(newLevel);
 
-                if (enemy instanceof Werewolf)
-                {
-                    newEnemy = new Werewolf(newLevel);
-                }
-                else if (enemy instanceof Mummy)
-                {
-                    newEnemy = new Mummy(newLevel);
-                }
-                else if (enemy instanceof Assassin)
-                {
-                    newEnemy = new Assassin(newLevel);
-                }
-
-                if (newEnemy != null)
-                {
-                    System.out.println("Replaced enemy");
-                    CharacterMapElement mapElement = (CharacterMapElement)enemy.getMapElement();
-                    mapElement.setCharacter(newEnemy);
-                    newEnemy.setMapElement(mapElement);
-                }
-                else
-                {
-                    System.out.println("Unsupported enemy type");
-                }
+                System.out.println("Replaced enemy");
+                CharacterMapElement mapElement = (CharacterMapElement)enemy.getMapElement();
+                mapElement.setCharacter(newEnemy);
+                newEnemy.setMapElement(mapElement);
             }
             else
             {

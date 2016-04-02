@@ -17,6 +17,11 @@ public class Mummy extends EnemyCharacter
         super(level);
     }
 
+    public Mummy getNewInstance(int level)
+    {
+        return new Mummy(level);
+    }
+
     public int[] getStatSequence()
     {
         return new int[]{

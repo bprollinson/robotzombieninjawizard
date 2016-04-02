@@ -57,6 +57,8 @@ public abstract class EnemyCharacter extends Character
         this.MP = this.getMaxMP();
     }
 
+    public abstract EnemyCharacter getNewInstance(int level);
+
     public int getLevel()
     {
         return this.level;

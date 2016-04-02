@@ -17,6 +17,11 @@ public class Werewolf extends EnemyCharacter
         super(level);
     }
 
+    public Werewolf getNewInstance(int level)
+    {
+        return new Werewolf(level);
+    }
+
     public int[] getStatSequence()
     {
         return new int[]{

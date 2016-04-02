@@ -17,6 +17,11 @@ public class Assassin extends EnemyCharacter
         super(level);
     }
 
+    public Assassin getNewInstance(int level)
+    {
+        return new Assassin(level);
+    }
+
     public int[] getStatSequence()
     {
         return new int[]{
