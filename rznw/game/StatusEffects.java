@@ -121,6 +121,11 @@ public class StatusEffects
         this.confuseTurns = 3;
     }
 
+    public void healConfusion()
+    {
+        this.confuseTurns = 0;
+    }
+
     public boolean isConfused()
     {
         return this.confuseTurns > 0;
