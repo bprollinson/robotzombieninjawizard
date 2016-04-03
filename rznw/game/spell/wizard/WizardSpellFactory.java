@@ -37,6 +37,8 @@ public class WizardSpellFactory extends SpellFactory
                 return new IceFieldSpell();
             case 13:
                 return new HealSpell();
+            case 14:
+                return new CleanseSpell();
             case 15:
                 return new VitalZapSpell();
             default:
