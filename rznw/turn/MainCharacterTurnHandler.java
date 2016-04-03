@@ -275,9 +275,9 @@ public class MainCharacterTurnHandler
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
 
-        if (character.getStatusEffects().isSkippingTurn())
+        if (character.getStatusEffects().isSkippingTurn() || character.getStatusEffects().isFrozen())
         {
-            System.out.println("Enemies take a turn while you are sleeping");
+            System.out.println("Enemies take a turn while you are sleeping / frozen");
             character.getStatusEffects().processTurn(character, gameWorld);
             this.handleEnemyTurns();
         }
