@@ -61,6 +61,26 @@ public class MainCharacterTurnHandler
         }
 
         MainCharacter character = this.gameWorld.getMainCharacter();
+
+        if (character.getStatusEffects().isConfused())
+        {
+            System.out.println("Main character is confused!");
+
+            int[] keyCodes = {
+                KeyEvent.VK_UP,
+                KeyEvent.VK_DOWN,
+                KeyEvent.VK_LEFT,
+                KeyEvent.VK_RIGHT,
+                KeyEvent.VK_NUMPAD7,
+                KeyEvent.VK_NUMPAD9,
+                KeyEvent.VK_NUMPAD1,
+                KeyEvent.VK_NUMPAD3
+            };
+
+            int randomPosition = RandomNumberGenerator.randomInteger(0, keyCodes.length - 1);
+            event.setKeyCode(keyCodes[randomPosition]);
+        }
+
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
 
