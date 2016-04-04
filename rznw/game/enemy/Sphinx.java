@@ -1,5 +1,7 @@
 package rznw.game.enemy;
 
+import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -68,5 +70,10 @@ probability = 100;
     {
         System.out.println("Given a riddle by the Sphinx - you are confused");
         mainCharacter.getStatusEffects().confuse();
+    }
+
+    public EnemyActionCalculator getActionCalculator()
+    {
+        return new EnemyMeleeActionCalculator();
     }
 }

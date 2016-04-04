@@ -1,5 +1,7 @@
 package rznw.game.enemy;
 
+import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -62,5 +64,10 @@ public class Werewolf extends EnemyCharacter
     public EquipmentGroup getEquipmentDrops()
     {
         return new EquipmentGroup(new WoodenShield(), 1);
+    }
+
+    public EnemyActionCalculator getActionCalculator()
+    {
+        return new EnemyMeleeActionCalculator();
     }
 }

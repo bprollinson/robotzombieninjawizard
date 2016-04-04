@@ -1,5 +1,7 @@
 package rznw.game.enemy;
 
+import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.AssassinsCloak;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
@@ -61,5 +63,10 @@ public class Assassin extends EnemyCharacter
     public EquipmentGroup getEquipmentDrops()
     {
         return new EquipmentGroup(new AssassinsCloak(), 1);
+    }
+
+    public EnemyActionCalculator getActionCalculator()
+    {
+        return new EnemyMeleeActionCalculator();
     }
 }

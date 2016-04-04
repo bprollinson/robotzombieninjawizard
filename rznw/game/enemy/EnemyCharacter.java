@@ -1,17 +1,13 @@
 package rznw.game.enemy;
 
 import rznw.game.Character;
+import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
-import rznw.map.ShortestPathCalculator;
 import rznw.map.element.MapElement;
-import rznw.map.generator.MapPoint;
-import rznw.map.generator.direction.PathDirection;
-import rznw.map.generator.path.MapPath;
-import rznw.map.generator.path.MapPathCache;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
 
@@ -64,49 +60,11 @@ public abstract class EnemyCharacter extends Character
         return this.level;
     }
 
+    public abstract EnemyActionCalculator getActionCalculator(); 
+
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
-        if (this.getStatusEffects().isConfused() || this.distanceFromMainCharacter(gameWorld) > this.getViewRadius())
-        {
-            if (this.getStatusEffects().isConfused())
-            {
-                System.out.println("Enemy is confused!");
-            }
-
-            return this.getRandomPositionChange();
-        }
-
-        MainCharacter character = gameWorld.getMainCharacter();
-
-        MapPoint startPoint = new MapPoint(this.getMapElement().getColumn(), this.getMapElement().getRow());
-        MapPoint endPoint = new MapPoint(character.getMapElement().getColumn(), character.getMapElement().getRow());
-        ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
-        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
-
-        System.out.println("Path: " + path);
-
-        PathDirection firstDirection = path.getDirection(0);
-
-        System.out.println("Direction: " + firstDirection.getDeltaY() + ", " + firstDirection.getDeltaX());
-
-        return new EnemyAIBasedPositionChange(this, firstDirection.getDeltaY(), firstDirection.getDeltaX());
-    }
-
-    public EnemyAIBasedPositionChange getRandomPositionChange()
-    {
-        EnemyAIBasedPositionChange possibleChanges[] = {
-           new EnemyAIBasedPositionChange(this, -1, -1),
-           new EnemyAIBasedPositionChange(this, -1, 0),
-           new EnemyAIBasedPositionChange(this, -1, 1),
-           new EnemyAIBasedPositionChange(this, 0, -1),
-           new EnemyAIBasedPositionChange(this, 0, 1),
-           new EnemyAIBasedPositionChange(this, 1, -1),
-           new EnemyAIBasedPositionChange(this, 1, 0),
-           new EnemyAIBasedPositionChange(this, 1, 1)
-        };
-
-        int randomPosition = RandomNumberGenerator.randomInteger(0, possibleChanges.length - 1);
-        return possibleChanges[randomPosition];
+        return this.getActionCalculator().getPositionChange(gameWorld, this);
     }
 
     public int getMaxHP()
@@ -238,7 +196,7 @@ public abstract class EnemyCharacter extends Character
         }
     }
 
-    private double distanceFromMainCharacter(GameWorld gameWorld)
+    public double distanceFromMainCharacter(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -248,7 +206,7 @@ public abstract class EnemyCharacter extends Character
         return Math.sqrt(Math.pow(element.getRow() - characterElement.getRow(), 2) + Math.pow(element.getColumn() - characterElement.getColumn(), 2));
     }
 
-    private int getViewRadius()
+    public int getViewRadius()
     {
         return 5 + this.getStatPoints(EnemyCharacter.STAT_SIGHT);
     }

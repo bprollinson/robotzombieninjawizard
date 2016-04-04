@@ -1,5 +1,7 @@
 package rznw.game.enemy;
 
+import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.FullPotion;
@@ -66,5 +68,10 @@ public class Viper extends EnemyCharacter
     {
         System.out.println("Stung by the viper - you are poisoned");
         mainCharacter.getStatusEffects().poison();
+    }
+
+    public EnemyActionCalculator getActionCalculator()
+    {
+        return new EnemyMeleeActionCalculator();
     }
 }

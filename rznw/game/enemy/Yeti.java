@@ -1,5 +1,7 @@
 package rznw.game.enemy;
 
+import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.IceRod;
@@ -73,5 +75,10 @@ public class Yeti extends EnemyCharacter
             System.out.println("You are frozen");
             mainCharacter.getStatusEffects().freeze();
         }
+    }
+
+    public EnemyActionCalculator getActionCalculator()
+    {
+        return new EnemyMeleeActionCalculator();
     }
 }
