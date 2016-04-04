@@ -4,7 +4,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
-public class EnemyMeleeActionCalculator extends EnemyActionCalculator
+public class EnemyProjectileSpellActionCalculator extends EnemyActionCalculator
 {
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {

@@ -2,6 +2,7 @@ package rznw.game;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.Assassin;
+import rznw.game.enemy.Enchanter;
 import rznw.game.enemy.Werewolf;
 import rznw.game.enemy.Mummy;
 import rznw.game.enemy.Sphinx;
@@ -42,8 +43,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {15, 30, 45, 60, 75, 100},
-            {10, 20, 30, 40, 50, 100}
+            {15, 30, 45, 60, 75, 90, 100},
+            {10, 20, 30, 40, 50, 60, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -77,6 +78,8 @@ public class CharacterGenerator
                 return new Sphinx(enemyLevel);
             case 5:
                 return new Yeti(enemyLevel);
+            case 6:
+                return new Enchanter(enemyLevel);
         }
 
         return null;
