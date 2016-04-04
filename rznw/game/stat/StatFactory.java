@@ -28,6 +28,8 @@ public class StatFactory
                 return new PaddingStat();
             case 10:
                 return new UnencumberanceStat();
+            case 11:
+                return new ThickSkinStat();
             case 12:
                 return new ManaStat();
             case 13:
