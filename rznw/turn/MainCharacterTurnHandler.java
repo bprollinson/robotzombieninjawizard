@@ -8,6 +8,7 @@ import rznw.game.Character;
 import rznw.game.SummonedCharacter;
 import rznw.game.SummonedZombie;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.enemy.action.EnemyAction;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
@@ -249,9 +250,17 @@ public class MainCharacterTurnHandler
             }
             else
             {
-                EnemyAIBasedPositionChange enemyPositionChange = enemy.getPositionChange(this.gameWorld);
+                EnemyAction enemyAction = enemy.getAction(this.gameWorld);
 
-                this.handleCharacterTurn(enemyPositionChange, enemy);
+                if (enemyAction.isPositionChange())
+                {
+                    this.handleCharacterTurn(enemyAction.getPositionChange(), enemy);
+                }
+
+                if (enemyAction.isSpell())
+                {
+                    System.out.println("Enemy is casting a spell");
+                }
             }
 
             Map map = this.gameWorld.getMap();

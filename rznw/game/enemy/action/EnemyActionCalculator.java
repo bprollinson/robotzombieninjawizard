@@ -12,9 +12,9 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyActionCalculator
 {
-    public abstract EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter);
+    public abstract EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter);
 
-    protected EnemyAIBasedPositionChange getConfusionPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
+    protected EnemyAction getConfusionPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
         if (enemyCharacter.getStatusEffects().isConfused() || enemyCharacter.distanceFromMainCharacter(gameWorld) > enemyCharacter.getViewRadius())
         {
@@ -23,13 +23,13 @@ public abstract class EnemyActionCalculator
                 System.out.println("Enemy is confused!");
             }
 
-            return this.getRandomPositionChange(enemyCharacter);
+            return new EnemyMovementAction(this.getRandomPositionChange(enemyCharacter));
         }
 
         return null;
     }
 
-    protected EnemyAIBasedPositionChange getPathBasedPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
+    protected EnemyMovementAction getPathBasedPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -44,7 +44,7 @@ public abstract class EnemyActionCalculator
 
         System.out.println("Direction: " + firstDirection.getDeltaY() + ", " + firstDirection.getDeltaX());
 
-        return new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaY(), firstDirection.getDeltaX());
+        return new EnemyMovementAction(new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaY(), firstDirection.getDeltaX()));
     }
 
     private EnemyAIBasedPositionChange getRandomPositionChange(EnemyCharacter enemyCharacter)

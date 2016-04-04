@@ -1,6 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.Character;
+import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
@@ -8,7 +9,6 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
-import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
@@ -54,9 +54,9 @@ public abstract class EnemyCharacter extends Character
 
     public abstract EnemyActionCalculator getActionCalculator(); 
 
-    public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
+    public EnemyAction getAction(GameWorld gameWorld)
     {
-        return this.getActionCalculator().getPositionChange(gameWorld, this);
+        return this.getActionCalculator().getAction(gameWorld, this);
     }
 
     public int getMaxHP()

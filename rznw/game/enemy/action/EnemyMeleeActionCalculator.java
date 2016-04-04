@@ -2,13 +2,12 @@ package rznw.game.enemy.action;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
-import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 public class EnemyMeleeActionCalculator extends EnemyActionCalculator
 {
-    public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
+    public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        EnemyAIBasedPositionChange confusionPositionChange = this.getConfusionPositionChange(gameWorld, enemyCharacter);
+        EnemyAction confusionPositionChange = this.getConfusionPositionChange(gameWorld, enemyCharacter);
         if (confusionPositionChange != null)
         {
             return confusionPositionChange;
