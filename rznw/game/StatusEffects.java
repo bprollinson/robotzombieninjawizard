@@ -11,34 +11,34 @@ public class StatusEffects
 
     private Character character;
 
-    int frozenTurns = 0;
-    boolean poisoned = false;
-    boolean isReversingPain = false;
-    boolean deathStriking = false;
-    boolean smokeBombEnabled = false;
-    boolean counterstriking = false;
-    int confuseTurns = 0;
-    int signalWeaponTurns = 0;
-    int thornSkinTurns = 0;
-    int poisonSkinTurns = 0;
-    int barbedSkinTurns = 0;
-    int resistDamageTurns = 0;
-    int infectiousRageTurns = 0;
-    int feedBrainTurns = 0;
-    boolean inferZombie = false;
-    int turnsToSkip = 0;
-    int armorBreakPercent = 0;
-    int rageTurns = 0;
-    int detectVitalityRadius = 0;
-    int itemTradeNumber = 0;
-    int priceReductionPercent = 0;
-    int bonusDropProbability = 0;
-    int bonusGoldPercent = 0;
-    int magicSeedsTurns = 0;
-    int manaSuckTurns = 0;
-    int meatShieldTurns = 0;
-    int meatShieldPaddingPercent = 0;
-    int meatShieldDodgePercent = 0;
+    private int frozenTurns = 0;
+    private boolean poisoned = false;
+    private boolean isReversingPain = false;
+    private boolean deathStriking = false;
+    private boolean smokeBombEnabled = false;
+    private boolean counterstriking = false;
+    private int confuseTurns = 0;
+    private int signalWeaponTurns = 0;
+    private int thornSkinTurns = 0;
+    private int poisonSkinTurns = 0;
+    private int barbedSkinTurns = 0;
+    private int resistDamageTurns = 0;
+    private int infectiousRageTurns = 0;
+    private int feedBrainTurns = 0;
+    private boolean inferZombie = false;
+    private int turnsToSkip = 0;
+    private int armorBreakPercent = 0;
+    private int rageTurns = 0;
+    private int detectVitalityRadius = 0;
+    private int itemTradeNumber = 0;
+    private int priceReductionPercent = 0;
+    private int bonusDropProbability = 0;
+    private int bonusGoldPercent = 0;
+    private int magicSeedsTurns = 0;
+    private int manaSuckTurns = 0;
+    private int meatShieldTurns = 0;
+    private int meatShieldPaddingPercent = 0;
+    private int meatShieldDodgePercent = 0;
 
     public StatusEffects(Character character)
     {
