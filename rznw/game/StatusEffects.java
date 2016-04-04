@@ -1,11 +1,15 @@
 package rznw.game;
 
 import rznw.game.Character;
+import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.utility.RandomNumberGenerator;
 
 public class StatusEffects
 {
     private static final int POISON_DAMAGE = 10;
+
+    private Character character;
 
     int frozenTurns = 0;
     boolean poisoned = false;
@@ -36,9 +40,17 @@ public class StatusEffects
     int meatShieldPaddingPercent = 0;
     int meatShieldDodgePercent = 0;
 
+    public StatusEffects(Character character)
+    {
+        this.character = character;
+    }
+
     public void freeze()
     {
-        this.frozenTurns = 1;
+        if (!this.thickSkinDodgesEffect())
+        {
+            this.frozenTurns = 1;
+        }
     }
 
     public void freeze(int numTurns)
@@ -48,7 +60,10 @@ public class StatusEffects
 
     public void poison()
     {
-        this.poisoned = true;
+        if (!this.thickSkinDodgesEffect())
+        {
+            this.poisoned = true;
+        }
     }
 
     public void healPoison()
@@ -118,7 +133,10 @@ public class StatusEffects
 
     public void confuse()
     {
-        this.confuseTurns = 3;
+        if (!this.thickSkinDodgesEffect())
+        {
+            this.confuseTurns = 3;
+        }
     }
 
     public void healConfusion()
@@ -349,6 +367,26 @@ public class StatusEffects
         this.meatShieldDodgePercent = bonusDodge;
     }
 
+    private boolean thickSkinDodgesEffect()
+    {
+        if (!(this.character instanceof MainCharacter))
+        {
+            return false;
+        }
+
+        int statPoints = ((MainCharacter)this.character).getStatPoints(11);
+        int probability = 5 * statPoints;
+
+        boolean success = RandomNumberGenerator.rollSucceeds(probability);
+
+        if (success)
+        {
+            System.out.println("Dodging status effect due to thick skin");
+        }
+
+        return success;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -358,7 +396,7 @@ public class StatusEffects
 
         if (this.poisoned)
         {
-            System.out.println("Damaging enemy due to poison");
+            System.out.println("Damaging character due to poison");
             character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
         }
 

@@ -18,14 +18,14 @@ public abstract class Character
     {
         this.HP = this.getMaxHP();
         this.MP = this.getMaxMP();
-        this.statusEffects = new StatusEffects();
+        this.statusEffects = new StatusEffects(this);
     }
 
     public Character(int HP, int MP)
     {
         this.HP = HP;
         this.MP = MP;
-        this.statusEffects = new StatusEffects();
+        this.statusEffects = new StatusEffects(this);
     }
 
     public MapElement getMapElement()
