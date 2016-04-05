@@ -37,6 +37,11 @@ public class EnemyRadiusSpellActionCalculator extends EnemyActionCalculator
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
         MapElement enemyMapElement = enemyCharacter.getMapElement();
 
+        if (enemyCharacter.getHP() == enemyCharacter.getMaxHP())
+        {
+            return null;
+        }
+
         if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > EnemyRadiusSpellActionCalculator.RADIUS || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > EnemyRadiusSpellActionCalculator.RADIUS)
         {
             return null;
