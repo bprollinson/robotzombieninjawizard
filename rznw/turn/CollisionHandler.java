@@ -128,7 +128,7 @@ public class CollisionHandler
             System.out.println("Summon is hitting an enemy, HP before: " + otherCharacter.getHP());
         }
 
-        otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+        int damage = otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
 
         if (otherCharacter instanceof EnemyCharacter && character instanceof SummonedCharacter)
         {
@@ -156,7 +156,7 @@ public class CollisionHandler
 
         if (character instanceof EnemyCharacter)
         {
-            ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter);
+            ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter, damage);
         }
         else
         {

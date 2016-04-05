@@ -90,6 +90,19 @@ public class Nosferatu extends EnemyCharacterWithSpell
         return new EquipmentGroup(new BloodSword(), 1);
     }
 
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
+    {
+        System.out.println("Attacked by nosferatu");
+        System.out.println("Nosferatu HP before: " + this.getHP());
+
+        int healHP = (int)Math.floor(0.1 * damage);
+        this.heal(healHP);
+        System.out.println("Nosferatu heals by: " + healHP);
+        System.out.println("Nosferatu HP after: " + this.getHP());
+
+        this.heal(healHP);
+    }
+
     public EnemyActionCalculator getActionCalculator()
     {
         return new EnemyRadiusSpellActionCalculator();

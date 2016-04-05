@@ -66,7 +66,7 @@ probability = 100;
         return new EquipmentGroup(new RiddleWand(), 1);
     }
 
-    public void damagedMainCharacter(MainCharacter mainCharacter)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
     {
         System.out.println("Given a riddle by the Sphinx - you are confused");
         mainCharacter.getStatusEffects().confuse();

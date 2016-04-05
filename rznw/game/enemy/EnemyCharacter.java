@@ -125,7 +125,7 @@ public abstract class EnemyCharacter extends Character
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }
 
-    public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
+    public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
         int paddingPercent = 2 * this.getStatPoints(EnemyCharacter.STAT_PADDING);
 
@@ -175,7 +175,7 @@ public abstract class EnemyCharacter extends Character
             System.out.println("Feed brain damage: " + damage);
         }
 
-        super.damage(damage, damageSource, gameWorld, damageSourceType);
+        return super.damage(damage, damageSource, gameWorld, damageSourceType);
     }
 
     public int getStatPoints(int statNumber)
@@ -213,7 +213,7 @@ public abstract class EnemyCharacter extends Character
 
     protected abstract int[] getStatSequence();
 
-    public void damagedMainCharacter(MainCharacter mainCharacter)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
     {
     }
 }

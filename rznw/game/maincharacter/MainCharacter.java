@@ -438,7 +438,7 @@ public abstract class MainCharacter extends Character
         return 2 + this.getStatPoints(6);
     }
 
-    public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
+    public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
@@ -457,7 +457,7 @@ public abstract class MainCharacter extends Character
             if (RandomNumberGenerator.rollSucceeds(dodgePercent))
             {
                 System.out.println("Successfully dodged magic");
-                return;
+                return 0;
             }
         }
 
@@ -539,7 +539,7 @@ public abstract class MainCharacter extends Character
             System.out.println("Reversing pain!");
 
             this.HP += damage - padding;
-            return;
+            return 0;
         }
 
         this.HP -= damage - padding;
@@ -628,6 +628,8 @@ public abstract class MainCharacter extends Character
                 damageSource.getStatusEffects().freeze(2);
             }
         }
+
+        return damage - padding;
     }
 
     public void heal(int HP)

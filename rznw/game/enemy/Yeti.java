@@ -66,7 +66,7 @@ public class Yeti extends EnemyCharacter
         return new EquipmentGroup(new IceRod(), 1);
     }
 
-    public void damagedMainCharacter(MainCharacter mainCharacter)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
     {
         System.out.println("Struck by the yeti");
 

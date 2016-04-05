@@ -50,9 +50,11 @@ public abstract class Character
         this.MP = Math.min(this.MP + MP, this.getMaxMP());
     }
 
-    public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
+    public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
         this.HP -= damage;
+
+        return damage;
     }
 
     public boolean isDead()
