@@ -17,6 +17,16 @@ public class MagicShield extends Shield
         return 4;
     }
 
+    public int getMagicDodgePercent()
+    {
+        return 20;
+    }
+
+    public int getMagicPaddingPercent()
+    {
+        return 20;
+    }
+
     public int getValue()
     {
         return 400;

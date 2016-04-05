@@ -445,6 +445,15 @@ public abstract class MainCharacter extends Character
             System.out.println("Hit by a magical source");
             int dodgePercent = 5 * this.getSkillPoints(14);
             System.out.println("Magic dodge change: " + dodgePercent);
+
+            Shield shield = this.getEquipment().getEquippedShield();
+            if (shield != null)
+            {
+                int shieldDodgePercent = shield.getMagicDodgePercent();
+                System.out.println("Shield magic dodge percent: " + shieldDodgePercent);
+                dodgePercent += shieldDodgePercent;
+            }
+
             if (RandomNumberGenerator.rollSucceeds(dodgePercent))
             {
                 System.out.println("Successfully dodged magic");
@@ -461,6 +470,15 @@ public abstract class MainCharacter extends Character
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
             int magicPaddingPercent = 5 * this.getStatPoints(15);
+
+            Shield shield = this.getEquipment().getEquippedShield();
+            if (shield != null)
+            {
+                int shieldPaddingPercent = shield.getMagicPaddingPercent();
+                System.out.println("Shield magic padding percent: " + shieldPaddingPercent);
+                magicPaddingPercent += shieldPaddingPercent;
+            }
+
             System.out.println("Preventing " + magicPaddingPercent + "% of damage");
             paddingPercent += magicPaddingPercent;
         }
