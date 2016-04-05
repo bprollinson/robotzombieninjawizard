@@ -36,6 +36,8 @@ public class StatFactory
                 return new MentalRegenerationStat();
             case 14:
                 return new ManaBurnStat();
+            case 15:
+                return new MagicResistanceStat();
             default:
                 return null;
         }

@@ -446,6 +446,14 @@ public abstract class MainCharacter extends Character
             paddingPercent += 2 * this.getSpellPoints(1);
         }
 
+        if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        {
+            System.out.println("Hit by a magical source");
+            int magicPaddingPercent = 5 * this.getStatPoints(15);
+            System.out.println("Preventing " + magicPaddingPercent + "% of damage");
+            paddingPercent += magicPaddingPercent;
+        }
+
         if (this.getStatusEffects().rageEnabled())
         {
             int paddingPenalty = Math.max(21 - this.getSkillPoints(9), 1);
