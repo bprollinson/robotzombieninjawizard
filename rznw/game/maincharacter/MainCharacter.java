@@ -440,6 +440,18 @@ public abstract class MainCharacter extends Character
 
     public void damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
+        if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        {
+            System.out.println("Hit by a magical source");
+            int dodgePercent = 5 * this.getSkillPoints(14);
+            System.out.println("Magic dodge change: " + dodgePercent);
+            if (RandomNumberGenerator.rollSucceeds(dodgePercent))
+            {
+                System.out.println("Successfully dodged magic");
+                return;
+            }
+        }
+
         int paddingPercent = 2 * this.getStatPoints(9);
         if (this.getStatusEffects().isResistingDamage())
         {
@@ -448,7 +460,6 @@ public abstract class MainCharacter extends Character
 
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
-            System.out.println("Hit by a magical source");
             int magicPaddingPercent = 5 * this.getStatPoints(15);
             System.out.println("Preventing " + magicPaddingPercent + "% of damage");
             paddingPercent += magicPaddingPercent;

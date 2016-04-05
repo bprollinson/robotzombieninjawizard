@@ -34,6 +34,8 @@ public class SkillFactory
                 return new MagicSeedsSkill();
             case 13:
                 return new ManaSuckSkill();
+            case 14:
+                return new ProtectiveFieldSkill();
             case 15:
                 return new ManaRiverSkill();
             default:
