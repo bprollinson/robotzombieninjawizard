@@ -22,7 +22,7 @@ public abstract class EnemyCharacter extends Character
     protected static int STAT_MANA = 6;
     protected static int STAT_MANA_BURN = 7;
 
-    private int level;
+    protected int level;
 
     private int[] stats;
 
@@ -74,7 +74,7 @@ public abstract class EnemyCharacter extends Character
 
     public int getMaxMP()
     {
-        return 100;
+        return 200;
     }
 
     public int getDamage()

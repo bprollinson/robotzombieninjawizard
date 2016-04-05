@@ -1,6 +1,8 @@
 package rznw.game.enemy.action;
 
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.enemy.EnemyCharacterWithSpell;
+import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -78,6 +80,21 @@ public class EnemyProjectileSpellActionCalculator extends EnemyActionCalculator
             return null;
         }
 
-        return new EnemySpellAction();
+        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
+
+        if (spellPoints == 0)
+        {
+            return null;
+        }
+
+        EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(0);
+        int MPCost = enemySpell.getMPCost(spellPoints);
+
+        if (MPCost > enemyCharacter.getMP())
+        {
+            return null;
+        }
+
+        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
     }
 }

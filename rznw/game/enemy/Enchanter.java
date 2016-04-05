@@ -2,6 +2,8 @@ package rznw.game.enemy;
 
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyProjectileSpellActionCalculator;
+import rznw.game.enemy.spell.EnemySpell;
+import rznw.game.enemy.spell.ZapSpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -10,13 +12,16 @@ import rznw.game.maincharacter.inventory.ManaPotion;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
 
-public class Enchanter extends EnemyCharacter
+public class Enchanter extends EnemyCharacterWithSpell
 {
+    private static final int SPELL_ZAP = 0;
+
     private static char mapCharacter = 'e';
+    private static int numSpells = 1;
 
     public Enchanter(int level)
     {
-        super(level);
+        super(level, Enchanter.numSpells);
     }
 
     public Enchanter getNewInstance(int level)
@@ -33,6 +38,24 @@ public class Enchanter extends EnemyCharacter
           EnemyCharacter.STAT_MANA_BURN,
           EnemyCharacter.STAT_SIGHT,
         };
+    }
+
+    public int[] getSpellSequence()
+    {
+        return new int[]{
+          Enchanter.SPELL_ZAP
+        };
+    }
+
+    public EnemySpell getSpell(int index)
+    {
+        switch (index)
+        {
+            case Enchanter.SPELL_ZAP:
+                return new ZapSpell();
+            default:
+                return null;
+        }
     }
 
     public void generateMapElement(int row, int column)

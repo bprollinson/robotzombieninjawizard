@@ -9,6 +9,7 @@ import rznw.game.SummonedCharacter;
 import rznw.game.SummonedZombie;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.action.EnemyAction;
+import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
@@ -260,6 +261,12 @@ public class MainCharacterTurnHandler
                 if (enemyAction.isSpell())
                 {
                     System.out.println("Enemy is casting a spell");
+
+                    EnemySpell spell = enemyAction.getSpell();
+                    spell.cast(gameWorld, enemy, enemyAction.getSpellPoints());
+
+                    int MPCost = spell.getMPCost(enemyAction.getSpellPoints());
+                    enemy.setMP(enemy.getMP() - MPCost);
                 }
             }
 
