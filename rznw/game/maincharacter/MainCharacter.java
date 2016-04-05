@@ -503,6 +503,19 @@ public abstract class MainCharacter extends Character
             System.out.println("Padding damage: " + padding);
         }
 
+        if (damageSource instanceof EnemyCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        {
+            int bonusDamagePercent = 5 * ((EnemyCharacter)damageSource).getStatPoints(EnemyCharacter.STAT_MANA_BURN);
+
+            if (bonusDamagePercent > 0)
+            {
+                 int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * (damage - padding));
+                 damage += bonusDamage;
+
+                 System.out.println("Enemy mana burn bonus damage: " + bonusDamage);
+            }
+        }
+
         if (this.getStatusEffects().isReversingPain())
         {
             System.out.println("Reversing pain!");

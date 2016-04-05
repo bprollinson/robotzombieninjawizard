@@ -13,14 +13,14 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
-    protected static int STAT_HEALTH = 0;
-    protected static int STAT_ACCURACY = 1;
-    protected static int STAT_DODGE = 2;
-    protected static int STAT_SIGHT = 3;
-    protected static int STAT_DAMAGE = 4;
-    protected static int STAT_PADDING = 5;
-    protected static int STAT_MANA = 6;
-    protected static int STAT_MANA_BURN = 7;
+    public static int STAT_HEALTH = 0;
+    public static int STAT_ACCURACY = 1;
+    public static int STAT_DODGE = 2;
+    public static int STAT_SIGHT = 3;
+    public static int STAT_DAMAGE = 4;
+    public static int STAT_PADDING = 5;
+    public static int STAT_MANA = 6;
+    public static int STAT_MANA_BURN = 7;
 
     protected int level;
 
@@ -178,7 +178,7 @@ public abstract class EnemyCharacter extends Character
         super.damage(damage, damageSource, gameWorld, damageSourceType);
     }
 
-    private int getStatPoints(int statNumber)
+    public int getStatPoints(int statNumber)
     {
         return this.stats[statNumber];
     }
