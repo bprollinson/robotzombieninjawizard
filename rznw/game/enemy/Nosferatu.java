@@ -1,58 +1,40 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.EnemyActionCalculator;
-import rznw.game.enemy.action.EnemyProjectileSpellActionCalculator;
+import rznw.game.enemy.action.EnemyRadiusSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
-import rznw.game.enemy.spell.ZapSpell;
+import rznw.game.enemy.spell.VampireWaveSpell;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.BloodSword;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-import rznw.game.maincharacter.inventory.MagicShield;
-import rznw.game.maincharacter.inventory.ManaPotion;
+import rznw.game.maincharacter.inventory.Potion;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
 
-public class Enchanter extends EnemyCharacterWithSpell
+public class Nosferatu extends EnemyCharacterWithSpell
 {
-    private static final int SPELL_ZAP = 0;
+    private static final int SPELL_VAMPIRE_WAVE = 0;
 
-    private static char mapCharacter = 'e';
+    private static char mapCharacter = 'n';
     private static int numSpells = 1;
 
-    public Enchanter(int level)
+    public Nosferatu(int level)
     {
-        super(level, Enchanter.numSpells);
+        super(level, Nosferatu.numSpells);
     }
 
-    public Enchanter getNewInstance(int level)
+    public Nosferatu getNewInstance(int level)
     {
-        return new Enchanter(level);
-    }
-
-    public int[] getStatSequence()
-    {
-        return new int[]{
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_MANA_BURN,
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_MANA_BURN,
-          EnemyCharacter.STAT_SIGHT
-        };
-    }
-
-    public int[] getSpellSequence()
-    {
-        return new int[]{
-          Enchanter.SPELL_ZAP
-        };
+        return new Nosferatu(level);
     }
 
     public EnemySpell getSpell(int index)
     {
         switch (index)
         {
-            case Enchanter.SPELL_ZAP:
-                return new ZapSpell();
+            case Nosferatu.SPELL_VAMPIRE_WAVE:
+                return new VampireWaveSpell();
             default:
                 return null;
         }
@@ -60,7 +42,24 @@ public class Enchanter extends EnemyCharacterWithSpell
 
     public void generateMapElement(int row, int column)
     {
-        this.mapElement = new EnemyMapElement(row, column, Enchanter.mapCharacter, this);
+        this.mapElement = new EnemyMapElement(row, column, Nosferatu.mapCharacter, this);
+    }
+
+    public int[] getStatSequence()
+    {
+        return new int[]{
+          EnemyCharacter.STAT_MANA,
+          EnemyCharacter.STAT_MANA_BURN,
+          EnemyCharacter.STAT_DAMAGE,
+          EnemyCharacter.STAT_ACCURACY
+        };
+    }
+
+    public int[] getSpellSequence()
+    {
+        return new int[]{
+          Nosferatu.SPELL_VAMPIRE_WAVE
+        };
     }
 
     public boolean isDroppingItems(MainCharacter mainCharacter)
@@ -74,7 +73,7 @@ public class Enchanter extends EnemyCharacterWithSpell
 
     public InventoryItemGroup getItemDrops()
     {
-        return new InventoryItemGroup(new ManaPotion(), 1);
+        return new InventoryItemGroup(new Potion(), 1);
     }
 
     public boolean isDroppingEquipment()
@@ -88,11 +87,11 @@ public class Enchanter extends EnemyCharacterWithSpell
 
     public EquipmentGroup getEquipmentDrops()
     {
-        return new EquipmentGroup(new MagicShield(), 1);
+        return new EquipmentGroup(new BloodSword(), 1);
     }
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyProjectileSpellActionCalculator();
+        return new EnemyRadiusSpellActionCalculator();
     }
 }
