@@ -61,11 +61,11 @@ public abstract class EnemyCharacter extends Character
 
     public int getMaxHP()
     {
-        int result = 100;
+        int result = 200;
 
         if (this.stats != null)
         {
-            result += 10 * this.getStatPoints(EnemyCharacter.STAT_HEALTH);
+            result += 20 * this.getStatPoints(EnemyCharacter.STAT_HEALTH);
             System.out.println("Enemy max HP: " + result);
         }
 
@@ -74,7 +74,15 @@ public abstract class EnemyCharacter extends Character
 
     public int getMaxMP()
     {
-        return 200;
+        int result = 200;
+
+        if (this.stats != null)
+        {
+            result += 20 * this.getStatPoints(EnemyCharacter.STAT_MANA);
+            System.out.println("Enemy max MP: " + result);
+        }
+
+        return result;
     }
 
     public int getDamage()
