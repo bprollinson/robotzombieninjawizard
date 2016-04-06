@@ -1,6 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.MainCharacter;
 
 public class RiddleWand extends Weapon
 {
@@ -19,7 +20,7 @@ public class RiddleWand extends Weapon
         return 400;
     }
 
-    public void damagedEnemyCharacter(EnemyCharacter enemyCharacter)
+    public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage)
     {
         System.out.println("Enemy is confused by the riddle wand");
         enemyCharacter.getStatusEffects().confuse();
