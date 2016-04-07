@@ -5,6 +5,7 @@ import rznw.game.enemy.Assassin;
 import rznw.game.enemy.Enchanter;
 import rznw.game.enemy.Mummy;
 import rznw.game.enemy.Nosferatu;
+import rznw.game.enemy.RockMan;
 import rznw.game.enemy.Sphinx;
 import rznw.game.enemy.Viper;
 import rznw.game.enemy.Werewolf;
@@ -44,8 +45,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {10, 20, 30, 45, 50, 60, 70, 100},
-            {10, 20, 30, 40, 50, 60, 70, 100}
+            {10, 20, 30, 45, 50, 60, 70, 80, 100},
+            {10, 20, 30, 40, 50, 60, 70, 80, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -83,6 +84,8 @@ public class CharacterGenerator
                 return new Enchanter(enemyLevel);
             case 7:
                 return new Nosferatu(enemyLevel);
+            case 8:
+                return new RockMan(enemyLevel);
         }
 
         return null;
