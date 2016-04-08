@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Shield;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.EnemyMapElement;
@@ -100,6 +101,12 @@ public class CollisionHandler
             if (otherCharacter instanceof MainCharacter)
             {
                 System.out.println("Main character dodge!");
+
+                Shield shield = ((MainCharacter)otherCharacter).getEquipment().getEquippedShield();
+                if (shield != null)
+                {
+                    shield.dodgesAttack((MainCharacter)otherCharacter);
+                }
             }
             else
             {
