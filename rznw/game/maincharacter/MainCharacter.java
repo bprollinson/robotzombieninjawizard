@@ -431,6 +431,12 @@ public abstract class MainCharacter extends Character
                 this.manaRiverSteps = 0;
             }
         }
+
+        Armor armor = this.getEquipment().getEquippedArmor();
+        if (armor != null)
+        {
+            armor.step(this);
+        }
     }
 
     public int getViewRadius()
