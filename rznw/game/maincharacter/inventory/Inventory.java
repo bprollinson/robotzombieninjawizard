@@ -24,6 +24,11 @@ public class Inventory
     public void removeGold(int numGold)
     {
         this.numGold -= numGold;
+
+        if (this.numGold < 0)
+        {
+            this.numGold = 0;
+        }
     }
 
     public int getNumGold()

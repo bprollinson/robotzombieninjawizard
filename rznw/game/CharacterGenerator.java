@@ -9,6 +9,7 @@ import rznw.game.enemy.Mummy;
 import rznw.game.enemy.Nosferatu;
 import rznw.game.enemy.RockMan;
 import rznw.game.enemy.Sphinx;
+import rznw.game.enemy.Thief;
 import rznw.game.enemy.Viper;
 import rznw.game.enemy.Werewolf;
 import rznw.game.enemy.Yeti;
@@ -47,8 +48,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 100}
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 100},
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -92,6 +93,8 @@ public class CharacterGenerator
                 return new HealthNinja(enemyLevel);
             case 10:
                 return new Leech(enemyLevel);
+            case 11:
+                return new Thief(enemyLevel);
         }
 
         return null;
