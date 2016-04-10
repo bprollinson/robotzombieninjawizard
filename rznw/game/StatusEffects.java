@@ -39,6 +39,7 @@ public class StatusEffects
     private int meatShieldTurns = 0;
     private int meatShieldPaddingPercent = 0;
     private int meatShieldDodgePercent = 0;
+    private int invisibleTurns = 0;
 
     public StatusEffects(Character character)
     {
@@ -387,6 +388,16 @@ public class StatusEffects
         return success;
     }
 
+    public void makeInvisible(int numTurns)
+    {
+        this.invisibleTurns = numTurns;
+    }
+
+    public boolean isInvisible()
+    {
+        return this.invisibleTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -466,6 +477,11 @@ public class StatusEffects
         if (this.meatShieldTurns > 0)
         {
             this.meatShieldTurns--;
+        }
+
+        if (this.invisibleTurns > 0)
+        {
+            this.invisibleTurns--;
         }
     }
 }

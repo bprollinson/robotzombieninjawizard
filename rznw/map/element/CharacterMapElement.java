@@ -5,7 +5,7 @@ import rznw.game.Character;
 public abstract class CharacterMapElement extends MapElement
 {
     private char displayCharacter;
-    private Character character;
+    protected Character character;
 
     public CharacterMapElement(int row, int column, char displayCharacter, Character character)
     {
