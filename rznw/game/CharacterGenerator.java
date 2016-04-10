@@ -2,6 +2,7 @@ package rznw.game;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.Assassin;
+import rznw.game.enemy.Dragon;
 import rznw.game.enemy.Enchanter;
 import rznw.game.enemy.HealthNinja;
 import rznw.game.enemy.InvisibleWizard;
@@ -49,8 +50,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 100}
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 100},
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -98,6 +99,8 @@ public class CharacterGenerator
                 return new Thief(enemyLevel);
             case 12:
                 return new InvisibleWizard(enemyLevel);
+            case 13:
+                return new Dragon(enemyLevel);
         }
 
         return null;

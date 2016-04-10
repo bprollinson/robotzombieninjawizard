@@ -216,4 +216,8 @@ public abstract class EnemyCharacter extends Character
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
     {
     }
+
+    public void damagedByMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
+    {
+    }
 }
