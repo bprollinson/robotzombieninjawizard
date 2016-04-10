@@ -6,7 +6,7 @@ public class FullManaPotion extends InventoryItem
 {
     public String getDisplayName()
     {
-        return "Full Potion";
+        return "Full Mana Potion";
     }
 
     public String getDescription()
