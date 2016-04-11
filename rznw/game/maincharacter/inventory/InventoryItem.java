@@ -1,6 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 
 public abstract class InventoryItem
 {
@@ -8,7 +9,7 @@ public abstract class InventoryItem
 
     public abstract String getDescription();
 
-    public abstract void useOnCharacter(MainCharacter character);
+    public abstract void useOnCharacter(MainCharacter character, GameWorld gameWorld);
 
     public abstract int getValue();
 

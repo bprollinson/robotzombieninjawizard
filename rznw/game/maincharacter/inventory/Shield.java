@@ -21,4 +21,9 @@ public abstract class Shield extends EquipmentItem
     public void dodgesAttack(MainCharacter mainCharacter)
     {
     }
+
+    public int getViewRadiusBonus()
+    {
+        return 0;
+    }
 }

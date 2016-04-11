@@ -14,6 +14,7 @@ import rznw.game.enemy.Sphinx;
 import rznw.game.enemy.Thief;
 import rznw.game.enemy.Viper;
 import rznw.game.enemy.Werewolf;
+import rznw.game.enemy.XRayCat;
 import rznw.game.enemy.Yeti;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Robot;
@@ -50,8 +51,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 100}
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 100},
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -101,6 +102,8 @@ public class CharacterGenerator
                 return new InvisibleWizard(enemyLevel);
             case 13:
                 return new Dragon(enemyLevel);
+            case 14:
+                return new XRayCat(enemyLevel);
         }
 
         return null;

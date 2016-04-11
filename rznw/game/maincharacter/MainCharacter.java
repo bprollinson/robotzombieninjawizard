@@ -316,10 +316,10 @@ public abstract class MainCharacter extends Character
 
     public abstract String getCharacterClass();
 
-    public void useItem(int itemIndex)
+    public void useItem(int itemIndex, GameWorld gameWorld)
     {
         InventoryItem item = this.inventory.getItemGroup(itemIndex).getItem();
-        item.useOnCharacter(this);
+        item.useOnCharacter(this, gameWorld);
         this.inventory.removeItems(new InventoryItemGroup(item, 1));
     }
 
@@ -441,7 +441,15 @@ public abstract class MainCharacter extends Character
 
     public int getViewRadius()
     {
-        return 2 + this.getStatPoints(6);
+        int equipmentBonus = 0;
+
+        Shield shield = this.getEquipment().getEquippedShield();
+        if (shield != null)
+        {
+            equipmentBonus = shield.getViewRadiusBonus();
+        }
+
+        return 2 + this.getStatPoints(6) + equipmentBonus;
     }
 
     public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)

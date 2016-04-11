@@ -29,7 +29,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
                 if (this.state != null)
                 {
                     MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
-                    mainCharacter.useItem(this.state.getEntryNumber());
+                    mainCharacter.useItem(this.state.getEntryNumber(), this.gameWorld);
                     this.itemUsed = true;
                 }
                 break;

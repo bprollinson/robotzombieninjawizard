@@ -1,6 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 
 public class Potion extends InventoryItem
 {
@@ -14,7 +15,7 @@ public class Potion extends InventoryItem
         return "Heals 50 HP.";
     }
 
-    public void useOnCharacter(MainCharacter character)
+    public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
         character.heal(50);
     }
