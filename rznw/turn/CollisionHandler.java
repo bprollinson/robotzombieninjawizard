@@ -164,6 +164,7 @@ public class CollisionHandler
         if (character instanceof EnemyCharacter)
         {
             ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter, damage);
+            ((MainCharacter)otherCharacter).damagedByEnemyCharacter((EnemyCharacter)character, damage, gameWorld);
         }
         else
         {

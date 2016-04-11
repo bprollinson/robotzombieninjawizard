@@ -660,4 +660,14 @@ public abstract class MainCharacter extends Character
             weapon.damagedEnemyCharacter(this, enemyCharacter, damage);
         }
     }
+
+    public void damagedByEnemyCharacter(EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
+    {
+        Armor armor = this.equipment.getEquippedArmor();
+
+        if (armor != null)
+        {
+            armor.damagedByEnemyCharacter(this, enemyCharacter, damage, gameWorld);
+        }
+    }
 }
