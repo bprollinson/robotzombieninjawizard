@@ -161,14 +161,14 @@ public class CollisionHandler
             }
         }
 
-        if (character instanceof EnemyCharacter)
+        if (character instanceof EnemyCharacter && otherCharacter instanceof MainCharacter)
         {
             ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter, damage);
             ((MainCharacter)otherCharacter).damagedByEnemyCharacter((EnemyCharacter)character, damage, gameWorld);
         }
-        else
+        else if (character instanceof MainCharacter && otherCharacter instanceof EnemyCharacter)
         {
-            ((MainCharacter)character).damagedEnemyCharacter((EnemyCharacter)otherCharacter, damage);
+            ((MainCharacter)character).damagedEnemyCharacter((EnemyCharacter)otherCharacter, damage, gameWorld);
             ((EnemyCharacter)otherCharacter).damagedByMainCharacter((MainCharacter)character, damage, gameWorld);
         }
     }
