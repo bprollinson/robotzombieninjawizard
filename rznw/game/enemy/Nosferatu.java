@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.BloodSword;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
+import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
 
@@ -90,7 +91,7 @@ public class Nosferatu extends EnemyCharacterWithSpell
         return new EquipmentGroup(new BloodSword(), 1);
     }
 
-    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Attacked by nosferatu");
         System.out.println("Nosferatu HP before: " + this.getHP());

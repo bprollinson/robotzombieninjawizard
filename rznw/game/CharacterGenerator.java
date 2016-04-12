@@ -13,6 +13,7 @@ import rznw.game.enemy.Nosferatu;
 import rznw.game.enemy.RockMan;
 import rznw.game.enemy.Sphinx;
 import rznw.game.enemy.Thief;
+import rznw.game.enemy.Undertaker;
 import rznw.game.enemy.Viper;
 import rznw.game.enemy.Werewolf;
 import rznw.game.enemy.XRayCat;
@@ -52,8 +53,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 100}
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 100},
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -107,6 +108,8 @@ public class CharacterGenerator
                 return new XRayCat(enemyLevel);
             case 15:
                 return new BeastSummoner(enemyLevel);
+            case 16:
+                return new Undertaker(enemyLevel);
         }
 
         return null;

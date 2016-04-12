@@ -213,7 +213,7 @@ public abstract class EnemyCharacter extends Character
 
     protected abstract int[] getStatSequence();
 
-    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
     }
 

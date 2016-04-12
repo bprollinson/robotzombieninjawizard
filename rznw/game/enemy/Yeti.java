@@ -7,6 +7,7 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.IceRod;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.SanityDrop;
+import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
 
@@ -66,7 +67,7 @@ public class Yeti extends EnemyCharacter
         return new EquipmentGroup(new IceRod(), 1);
     }
 
-    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Struck by the yeti");
 

@@ -7,6 +7,7 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.LeechMail;
 import rznw.game.maincharacter.inventory.ManaPotion;
+import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
 
@@ -73,7 +74,7 @@ public class Leech extends EnemyCharacter
         return new EnemyMeleeActionCalculator();
     }
 
-    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Your are being leeched!");
 

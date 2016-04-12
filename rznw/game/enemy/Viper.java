@@ -7,6 +7,7 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.ViperDagger;
+import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
 
@@ -64,7 +65,7 @@ public class Viper extends EnemyCharacter
         return new EquipmentGroup(new ViperDagger(), 1);
     }
 
-    public void damagedMainCharacter(MainCharacter mainCharacter, int damage)
+    public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Stung by the viper - you are poisoned");
         mainCharacter.getStatusEffects().poison();
