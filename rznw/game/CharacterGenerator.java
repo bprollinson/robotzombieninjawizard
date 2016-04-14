@@ -3,6 +3,7 @@ package rznw.game;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.Assassin;
 import rznw.game.enemy.BeastSummoner;
+import rznw.game.enemy.Crusher;
 import rznw.game.enemy.Dragon;
 import rznw.game.enemy.Enchanter;
 import rznw.game.enemy.HealthNinja;
@@ -54,8 +55,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 100}
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100},
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -113,6 +114,8 @@ public class CharacterGenerator
                 return new Undertaker(enemyLevel);
             case 17:
                 return new Phantasm(enemyLevel);
+            case 18:
+                return new Crusher(enemyLevel);
         }
 
         return null;

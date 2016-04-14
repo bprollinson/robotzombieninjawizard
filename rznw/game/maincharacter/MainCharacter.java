@@ -339,6 +339,13 @@ public abstract class MainCharacter extends Character
     {
         int toHitPercent = 50 + 2 * this.getStatPoints(4);
 
+        Weapon weapon = this.getEquipment().getEquippedWeapon();
+        if (weapon != null)
+        {
+            System.out.println("Adjusting to hit percent");
+            toHitPercent += weapon.getToHitBonus();
+        }
+
         return RandomNumberGenerator.rollSucceeds(toHitPercent);
     }
 
