@@ -11,6 +11,7 @@ import rznw.game.enemy.InvisibleWizard;
 import rznw.game.enemy.Leech;
 import rznw.game.enemy.Mummy;
 import rznw.game.enemy.Nosferatu;
+import rznw.game.enemy.Oni;
 import rznw.game.enemy.Phantasm;
 import rznw.game.enemy.RockMan;
 import rznw.game.enemy.Sphinx;
@@ -55,8 +56,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100}
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100},
+            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -116,6 +117,8 @@ public class CharacterGenerator
                 return new Phantasm(enemyLevel);
             case 18:
                 return new Crusher(enemyLevel);
+            case 19:
+                return new Oni(enemyLevel);
         }
 
         return null;
