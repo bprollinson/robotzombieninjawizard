@@ -8,6 +8,7 @@ import rznw.game.enemy.Dragon;
 import rznw.game.enemy.Enchanter;
 import rznw.game.enemy.HealthNinja;
 import rznw.game.enemy.InvisibleWizard;
+import rznw.game.enemy.Javelineer;
 import rznw.game.enemy.Leech;
 import rznw.game.enemy.Mummy;
 import rznw.game.enemy.Nosferatu;
@@ -56,8 +57,8 @@ public class CharacterGenerator
     {
         int[][] cumulativeEnemyProbabilities = new int[][]
         {
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100},
-            {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100}
+            {4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 100},
+            {4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 100}
         };
 
         int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
@@ -119,6 +120,8 @@ public class CharacterGenerator
                 return new Crusher(enemyLevel);
             case 19:
                 return new Oni(enemyLevel);
+            case 20:
+                return new Javelineer(enemyLevel);
         }
 
         return null;
