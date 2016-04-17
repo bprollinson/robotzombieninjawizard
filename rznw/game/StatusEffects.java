@@ -2,6 +2,7 @@ package rznw.game;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Armor;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
@@ -377,6 +378,13 @@ public class StatusEffects
 
         int statPoints = ((MainCharacter)this.character).getStatPoints(11);
         int probability = 5 * statPoints;
+
+        Armor armor = ((MainCharacter)character).getEquipment().getEquippedArmor();
+        if (armor != null)
+        {
+            System.out.println("Adding additional thick skin stats from armor");
+            probability += armor.getThickSkinBonus();
+        }
 
         boolean success = RandomNumberGenerator.rollSucceeds(probability);
 

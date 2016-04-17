@@ -10,6 +10,11 @@ public abstract class Armor extends EquipmentItem
 
     public abstract int getPaddingPercent();
 
+    public int getThickSkinBonus()
+    {
+        return 0;
+    }
+
     public void step(MainCharacter character)
     {
     }
