@@ -68,6 +68,11 @@ public class StatusEffects
         }
     }
 
+    public boolean isPoisoned()
+    {
+        return this.poisoned;
+    }
+
     public void healPoison()
     {
         this.poisoned = false;
