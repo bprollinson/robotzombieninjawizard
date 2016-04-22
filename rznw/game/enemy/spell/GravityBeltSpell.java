@@ -11,7 +11,7 @@ public class GravityBeltSpell extends EnemySpell
 {
     public void cast(GameWorld gameWorld, EnemyCharacter enemyCharacter, int spellPoints)
     {
-        System.out.println("Enemy is casting zap with spell points of: " + spellPoints);
+        System.out.println("Enemy is casting gravity belt with spell points of: " + spellPoints);
 
         int damage = 40 + 10 * spellPoints;
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
