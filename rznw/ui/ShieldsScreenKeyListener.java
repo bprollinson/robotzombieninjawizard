@@ -7,9 +7,12 @@ import java.awt.event.KeyEvent;
 
 public class ShieldsScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private ShieldsScreenRenderer shieldsScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean showingDescription = false;
 
     public ShieldsScreenKeyListener(ShieldsScreenRenderer shieldsScreenRenderer, GameWorld gameWorld)
     {
@@ -42,16 +45,22 @@ public class ShieldsScreenKeyListener extends StateTransitionKeyListener
                 }
 
                 break;
+            case ShieldsScreenKeyListener.KEY_I:
+                if (this.state != null && this.state.getEntryNumber() > 0)
+                {
+                    this.showingDescription = !this.showingDescription;
+                }
+                break;
         }
 
-        this.shieldsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
+        this.shieldsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 
     public void enterState(int previousState)
     {
         Equipment equipment = gameWorld.getMainCharacter().getEquipment();
         this.state = new MenuState(equipment.getNumShieldGroups());
-        this.shieldsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
+        this.shieldsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 
     public void exitState(KeyEvent event)

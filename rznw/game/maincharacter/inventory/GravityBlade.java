@@ -15,6 +15,18 @@ public class GravityBlade extends Weapon
         return "Gravity Blade";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "",
+            "Pushes enemies away from you",
+            "Push distance : 3 spaces",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

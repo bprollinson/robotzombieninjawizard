@@ -7,6 +7,16 @@ public class ProtectivePlate extends Armor
         return "Protective Plate";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 4;

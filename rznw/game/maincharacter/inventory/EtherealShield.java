@@ -7,6 +7,16 @@ public class EtherealShield extends Shield
         return "Ethereal Shield";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 8;

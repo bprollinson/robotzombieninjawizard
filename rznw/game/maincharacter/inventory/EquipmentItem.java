@@ -6,6 +6,8 @@ public abstract class EquipmentItem
 {
     public abstract String getDisplayName();
 
+    public abstract String[] getStats();
+
     public abstract int getValue();
 
     public int getBuyPrice(MainCharacter character)

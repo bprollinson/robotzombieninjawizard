@@ -11,6 +11,17 @@ public class PoisonCloth extends Armor
         return "Leech Mail";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "Poisons attacking enemies when they damage you",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 4;

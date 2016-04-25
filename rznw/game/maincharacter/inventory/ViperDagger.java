@@ -11,6 +11,16 @@ public class ViperDagger extends Weapon
         return "Viper Dagger";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Poisons enemies",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

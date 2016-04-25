@@ -12,6 +12,17 @@ public class InvisibilityWand extends Weapon
         return "Invisibility Wand";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Has a chance to make opponents vanish",
+            "Chance to vanish: 5%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

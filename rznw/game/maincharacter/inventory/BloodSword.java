@@ -11,6 +11,18 @@ public class BloodSword extends Weapon
         return "Blood Sword";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "",
+            "Steals health from enemies",
+            "Health stolen: 10% of damage",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

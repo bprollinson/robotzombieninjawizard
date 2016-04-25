@@ -22,6 +22,16 @@ public class WandOfSummoning extends Weapon
         return "Wand of Summoning";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Summons golems on contact",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

@@ -16,6 +16,18 @@ public class MagicJavelin extends Weapon
         return "Magic Javelin";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Performs magic damage to enemies in a diagonal line from a damaged enemy",
+            "Additional damage radius: 1",
+            "Additional damage: " + MagicJavelin.DAMAGE,
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

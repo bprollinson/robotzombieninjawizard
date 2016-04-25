@@ -9,6 +9,18 @@ public class HealShield extends Shield
         return "Heal Shield";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "Heals you when you dodge an enemy attack",
+            "Heal amount: 5 HP",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 6;

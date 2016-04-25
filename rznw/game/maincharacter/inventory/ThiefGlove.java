@@ -11,6 +11,17 @@ public class ThiefGlove extends Weapon
         return "Thief Glove";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Steals gold from enemies",
+            "Gold stolen: 10",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

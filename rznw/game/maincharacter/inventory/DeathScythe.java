@@ -12,6 +12,16 @@ public class DeathScythe extends Weapon
         return "Death Scythe";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Bonus damage: 50% of remaining enemy HP",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

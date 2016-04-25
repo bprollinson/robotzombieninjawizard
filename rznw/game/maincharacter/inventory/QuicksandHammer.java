@@ -16,6 +16,18 @@ public class QuicksandHammer extends Weapon
         return "Quicksand Hammer";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Pulls nearby enemies in on contact",
+            "Pull radius: 10 squares",
+            "Pull distance: 1 square",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 10;

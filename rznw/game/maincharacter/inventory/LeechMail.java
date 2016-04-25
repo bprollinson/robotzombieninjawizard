@@ -9,6 +9,18 @@ public class LeechMail extends Armor
         return "Leech Mail";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "Heals you as you explore new territory",
+            "MP recovered: 1 per step",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 4;

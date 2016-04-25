@@ -7,9 +7,12 @@ import java.awt.event.KeyEvent;
 
 public class WeaponsScreenKeyListener extends StateTransitionKeyListener
 {
+    private static final int KEY_I = 73;
+
     private WeaponsScreenRenderer weaponsScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean showingDescription = false;
 
     public WeaponsScreenKeyListener(WeaponsScreenRenderer weaponsScreenRenderer, GameWorld gameWorld)
     {
@@ -42,16 +45,22 @@ public class WeaponsScreenKeyListener extends StateTransitionKeyListener
                 }
 
                 break;
+            case WeaponsScreenKeyListener.KEY_I:
+                if (this.state != null && this.state.getEntryNumber() > 0)
+                {
+                    this.showingDescription = !this.showingDescription;
+                }
+                break;
         }
 
-        this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
+        this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 
     public void enterState(int previousState)
     {
         Equipment equipment = gameWorld.getMainCharacter().getEquipment();
         this.state = new MenuState(equipment.getNumWeaponGroups());
-        this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state);
+        this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 
     public void exitState(KeyEvent event)

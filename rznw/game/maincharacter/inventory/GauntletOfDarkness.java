@@ -12,6 +12,17 @@ public class GauntletOfDarkness extends Weapon
         return "Gauntlet of Darkness";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Sets enemy HP to 1",
+            "Chance to zap HP: 25%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

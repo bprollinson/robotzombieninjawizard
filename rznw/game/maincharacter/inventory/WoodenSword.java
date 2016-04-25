@@ -7,6 +7,15 @@ public class WoodenSword extends Weapon
         return "Wooden Sword";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 10;

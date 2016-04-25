@@ -7,6 +7,16 @@ public class CrusherHammer extends Weapon
         return "Crusher Hammer";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "To hit bonus: " + this.getToHitBonus() + "%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 30;

@@ -7,6 +7,18 @@ public class MagicShield extends Shield
         return "Magic Shield";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "Dodge against magic attacks: + " + this.getMagicDodgePercent() + "%",
+            "Padding against magic attacks: + " + this.getMagicPaddingPercent() + "%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 4;

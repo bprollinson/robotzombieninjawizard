@@ -12,6 +12,18 @@ public class DragonPlate extends Armor
         return "Dragon Plate";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Dodge: " + this.getDodgePercent() + "%",
+            "Padding: " + this.getPaddingPercent() + "%",
+            "Damages enemies who damage you",
+            "Enemy damage: 10",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDodgePercent()
     {
         return 4;

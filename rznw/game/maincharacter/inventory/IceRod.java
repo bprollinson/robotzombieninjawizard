@@ -12,6 +12,18 @@ public class IceRod extends Weapon
         return "Ice Rod";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "",
+            "Freezes enemies",
+            "Chance to freeze: 50%",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;

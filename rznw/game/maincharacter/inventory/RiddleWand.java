@@ -11,6 +11,16 @@ public class RiddleWand extends Weapon
         return "Riddle Wand";
     }
 
+    public String[] getStats()
+    {
+        return new String[] {
+            "Damage: " + this.getDamage(),
+            "Confuses enemies",
+            "",
+            "Value: " + this.getValue()
+        };
+    }
+
     public int getDamage()
     {
         return 8;
