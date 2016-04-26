@@ -107,7 +107,14 @@ public abstract class EnemyCharacter extends Character
 
     public abstract InventoryItemGroup getItemDrops();
 
-    public abstract boolean isDroppingEquipment();
+    public final boolean isDroppingEquipment()
+    {
+        int probability = 10;
+        probability += this.getStatusEffects().getBonusDropProbability();
+        System.out.println("Equipment drop probability: " + probability);
+
+        return RandomNumberGenerator.rollSucceeds(probability);
+    }
 
     public abstract EquipmentGroup getEquipmentDrops();
 

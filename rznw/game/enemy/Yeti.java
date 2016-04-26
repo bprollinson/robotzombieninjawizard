@@ -44,15 +44,6 @@ public class Yeti extends EnemyCharacter
         return new InventoryItemGroup(new SanityDrop(), 1);
     }
 
-    public boolean isDroppingEquipment()
-    {
-        int probability = 10;
-        probability += this.getStatusEffects().getBonusDropProbability();
-        System.out.println("Equipment drop probability: " + probability);
-
-        return RandomNumberGenerator.rollSucceeds(probability);
-    }
-
     public EquipmentGroup getEquipmentDrops()
     {
         return new EquipmentGroup(new IceRod(), 1);

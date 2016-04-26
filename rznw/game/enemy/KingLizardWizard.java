@@ -10,7 +10,6 @@ import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.ProtectivePlate;
 import rznw.map.element.EnemyMapElement;
-import rznw.utility.RandomNumberGenerator;
 
 public class KingLizardWizard extends EnemyCharacterWithSpell
 {
@@ -64,15 +63,6 @@ public class KingLizardWizard extends EnemyCharacterWithSpell
     public InventoryItemGroup getItemDrops()
     {
         return new InventoryItemGroup(new Herb(), 1);
-    }
-
-    public boolean isDroppingEquipment()
-    {
-        int probability = 10;
-        probability += this.getStatusEffects().getBonusDropProbability();
-        System.out.println("Equipment drop probability: " + probability);
-
-        return RandomNumberGenerator.rollSucceeds(probability);
     }
 
     public EquipmentGroup getEquipmentDrops()

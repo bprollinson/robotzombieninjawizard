@@ -10,7 +10,6 @@ import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
-import rznw.utility.RandomNumberGenerator;
 
 public class Undertaker extends EnemyCharacter
 {
@@ -44,15 +43,6 @@ public class Undertaker extends EnemyCharacter
     public InventoryItemGroup getItemDrops()
     {
         return new InventoryItemGroup(new FullPotion(), 1);
-    }
-
-    public boolean isDroppingEquipment()
-    {
-        int probability = 10;
-        probability += this.getStatusEffects().getBonusDropProbability();
-        System.out.println("Equipment drop probability: " + probability);
-
-        return RandomNumberGenerator.rollSucceeds(probability);
     }
 
     public EquipmentGroup getEquipmentDrops()
