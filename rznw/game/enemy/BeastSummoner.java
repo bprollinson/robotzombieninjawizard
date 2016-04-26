@@ -64,15 +64,6 @@ public class BeastSummoner extends EnemyCharacterWithSpell
         this.mapElement = new EnemyMapElement(row, column, BeastSummoner.mapCharacter, this);
     }
 
-    public boolean isDroppingItems(MainCharacter mainCharacter)
-    {
-        int probability = 50 + 2 * mainCharacter.getSkillPoints(6);
-        probability += this.getStatusEffects().getBonusDropProbability();
-        System.out.println("Item drop probability: " + probability);
-
-        return RandomNumberGenerator.rollSucceeds(probability);
-    }
-
     public InventoryItemGroup getItemDrops()
     {
         return new InventoryItemGroup(new Potion(), 1);

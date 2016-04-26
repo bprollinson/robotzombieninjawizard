@@ -61,15 +61,6 @@ public class Javelineer extends EnemyCharacterWithSpell
         };
     }
 
-    public boolean isDroppingItems(MainCharacter mainCharacter)
-    {
-        int probability = 50 + 2 * mainCharacter.getSkillPoints(6);
-        probability += this.getStatusEffects().getBonusDropProbability();
-        System.out.println("Item drop probability: " + probability);
-
-        return RandomNumberGenerator.rollSucceeds(probability);
-    }
-
     public InventoryItemGroup getItemDrops()
     {
         return new InventoryItemGroup(new Bomb(), 1);

@@ -96,7 +96,14 @@ public abstract class EnemyCharacter extends Character
         return 20;
     }
 
-    public abstract boolean isDroppingItems(MainCharacter mainCharacter);
+    public boolean isDroppingItems(MainCharacter mainCharacter)
+    {
+        int probability = 50 + 2 * mainCharacter.getSkillPoints(6);
+        probability += this.getStatusEffects().getBonusDropProbability();
+        System.out.println("Item drop probability: " + probability);
+
+        return RandomNumberGenerator.rollSucceeds(probability);
+    }
 
     public abstract InventoryItemGroup getItemDrops();
 

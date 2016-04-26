@@ -39,15 +39,6 @@ public class Sphinx extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Sphinx.mapCharacter, this);
     }
 
-    public boolean isDroppingItems(MainCharacter mainCharacter)
-    {
-        int probability = 50 + 2 * mainCharacter.getSkillPoints(6);
-        probability += this.getStatusEffects().getBonusDropProbability();
-        System.out.println("Item drop probability: " + probability);
-probability = 100;
-        return RandomNumberGenerator.rollSucceeds(probability);
-    }
-
     public InventoryItemGroup getItemDrops()
     {
         return new InventoryItemGroup(new ManaPotion(), 1);
@@ -58,7 +49,7 @@ probability = 100;
         int probability = 10;
         probability += this.getStatusEffects().getBonusDropProbability();
         System.out.println("Equipment drop probability: " + probability);
-probability = 100;
+
         return RandomNumberGenerator.rollSucceeds(probability);
     }
 
