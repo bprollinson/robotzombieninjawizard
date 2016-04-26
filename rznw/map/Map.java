@@ -18,6 +18,7 @@ public class Map
 {
     public static final int NUM_ROWS = 30;
     public static final int NUM_COLUMNS = 40;
+    public static final int MAX_LEVEL = 12;
 
     private int level;
     private MapElement[][] elements;
@@ -214,5 +215,10 @@ public class Map
     {
         System.out.println("Setting a map square as visited");
         this.visited[i][j] = true;
+    }
+
+    public boolean isLastLevel()
+    {
+        return this.level == Map.MAX_LEVEL;
     }
 }

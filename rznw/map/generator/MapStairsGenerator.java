@@ -11,6 +11,11 @@ public class MapStairsGenerator
 {
     public void placeStairs(Map map, List<MapArea> rooms)
     {
+        if (map.isLastLevel())
+        {
+            return;
+        }
+
         int roomIndex = RandomNumberGenerator.randomInteger(0, rooms.size() - 1);
         MapArea room = rooms.get(roomIndex);
         int posX = RandomNumberGenerator.randomInteger(room.getStartX() + 1, room.getEndX() - 1);
