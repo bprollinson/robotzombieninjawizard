@@ -4,7 +4,7 @@ import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ShieldOfSight;
 import rznw.game.maincharacter.inventory.XRayDrop;
 import rznw.map.element.EnemyMapElement;
@@ -39,9 +39,9 @@ public class XRayCat extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, XRayCat.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new XRayDrop(), 1);
+        return new XRayDrop();
     }
 
     public EquipmentGroup getEquipmentDrops()

@@ -6,7 +6,7 @@ import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
@@ -105,7 +105,7 @@ public abstract class EnemyCharacter extends Character
         return RandomNumberGenerator.rollSucceeds(probability);
     }
 
-    public abstract InventoryItemGroup getItemDrops();
+    public abstract InventoryItem getItemDrop();
 
     public final boolean isDroppingEquipment()
     {

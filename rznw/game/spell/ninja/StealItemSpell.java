@@ -40,7 +40,7 @@ public class StealItemSpell extends DirectedSpell
                 System.out.println("Steal success");
 
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
-                InventoryItemGroup itemGroup = enemy.getItemDrops();
+                InventoryItemGroup itemGroup = new InventoryItemGroup(enemy.getItemDrop(), 1);
                 try
                 {
                     character.getInventory().addItems(itemGroup);

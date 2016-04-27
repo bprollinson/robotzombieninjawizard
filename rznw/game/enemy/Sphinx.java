@@ -4,7 +4,7 @@ import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ManaPotion;
 import rznw.game.maincharacter.inventory.RiddleWand;
 import rznw.map.GameWorld;
@@ -38,9 +38,9 @@ public class Sphinx extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Sphinx.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new ManaPotion(), 1);
+        return new ManaPotion();
     }
 
     public EquipmentGroup getEquipmentDrops()

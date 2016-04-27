@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.IceRod;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.SanityDrop;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
@@ -39,9 +39,9 @@ public class Yeti extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Yeti.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new SanityDrop(), 1);
+        return new SanityDrop();
     }
 
     public EquipmentGroup getEquipmentDrops()

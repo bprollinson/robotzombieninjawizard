@@ -7,7 +7,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.DeathScythe;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.FullPotion;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 
@@ -40,9 +40,9 @@ public class Undertaker extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Undertaker.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new FullPotion(), 1);
+        return new FullPotion();
     }
 
     public EquipmentGroup getEquipmentDrops()

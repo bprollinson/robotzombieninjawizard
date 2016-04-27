@@ -7,7 +7,7 @@ import rznw.game.enemy.spell.InvisibilitySpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.FullManaPotion;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InvisibilityWand;
 import rznw.map.element.DisappearingEnemyMapElement;
 
@@ -60,9 +60,9 @@ public class InvisibleWizard extends EnemyCharacterWithSpell
         this.mapElement = new DisappearingEnemyMapElement(row, column, InvisibleWizard.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new FullManaPotion(), 1);
+        return new FullManaPotion();
     }
 
     public EquipmentGroup getEquipmentDrops()

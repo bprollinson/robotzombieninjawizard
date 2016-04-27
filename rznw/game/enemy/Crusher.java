@@ -6,7 +6,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Bomb;
 import rznw.game.maincharacter.inventory.CrusherHammer;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 
@@ -39,9 +39,9 @@ public class Crusher extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Crusher.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new Bomb(), 1);
+        return new Bomb();
     }
 
     public EquipmentGroup getEquipmentDrops()

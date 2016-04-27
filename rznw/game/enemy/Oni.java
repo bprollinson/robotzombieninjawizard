@@ -8,7 +8,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.GauntletOfDarkness;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.element.EnemyMapElement;
 
 public class Oni extends EnemyCharacterWithSpell
@@ -58,9 +58,9 @@ public class Oni extends EnemyCharacterWithSpell
         };
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new FullPotion(), 1);
+        return new FullPotion();
     }
 
     public EquipmentGroup getEquipmentDrops()

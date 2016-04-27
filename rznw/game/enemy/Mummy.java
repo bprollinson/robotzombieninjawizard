@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.WoodenSword;
 import rznw.map.element.EnemyMapElement;
 
@@ -36,9 +36,9 @@ public class Mummy extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Mummy.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new Herb(), 1);
+        return new Herb();
     }
 
     public EquipmentGroup getEquipmentDrops()

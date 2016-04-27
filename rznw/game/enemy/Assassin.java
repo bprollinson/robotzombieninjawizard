@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.AssassinsCloak;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.map.element.EnemyMapElement;
 
@@ -36,9 +36,9 @@ public class Assassin extends EnemyCharacter
         this.mapElement = new EnemyMapElement(row, column, Assassin.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new Potion(), 1);
+        return new Potion();
     }
 
     public EquipmentGroup getEquipmentDrops()

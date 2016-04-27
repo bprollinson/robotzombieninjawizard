@@ -6,7 +6,7 @@ import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.ZapSpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.MagicShield;
 import rznw.game.maincharacter.inventory.ManaPotion;
 import rznw.map.element.EnemyMapElement;
@@ -62,9 +62,9 @@ public class Enchanter extends EnemyCharacterWithSpell
         this.mapElement = new EnemyMapElement(row, column, Enchanter.mapCharacter, this);
     }
 
-    public InventoryItemGroup getItemDrops()
+    public InventoryItem getItemDrop()
     {
-        return new InventoryItemGroup(new ManaPotion(), 1);
+        return new ManaPotion();
     }
 
     public EquipmentGroup getEquipmentDrops()
