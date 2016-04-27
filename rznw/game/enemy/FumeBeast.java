@@ -5,7 +5,7 @@ import rznw.game.enemy.action.FumeBeastActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.FumeCloudSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.PoisonCloth;
@@ -67,9 +67,9 @@ public class FumeBeast extends EnemyCharacterWithSpell
         return new Herb();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new PoisonCloth(), 1);
+        return new PoisonCloth();
     }
 
     public EnemyActionCalculator getActionCalculator()

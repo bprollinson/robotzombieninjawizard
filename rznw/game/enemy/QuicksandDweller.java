@@ -5,7 +5,7 @@ import rznw.game.enemy.action.QuicksandDwellerActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.QuicksandPullSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.maincharacter.inventory.QuicksandHammer;
@@ -65,9 +65,9 @@ public class QuicksandDweller extends EnemyCharacterWithSpell
         return new Potion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new QuicksandHammer(), 1);
+        return new QuicksandHammer();
     }
 
     public EnemyActionCalculator getActionCalculator()

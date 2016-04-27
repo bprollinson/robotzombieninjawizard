@@ -4,6 +4,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
@@ -40,12 +41,12 @@ public class StealEquipmentSpell extends DirectedSpell
                 System.out.println("Steal success");
 
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
-                EquipmentGroup equipmentGroup = enemy.getEquipmentDrops();
+                EquipmentItem equipmentItem = enemy.getEquipmentDrop();
 
                 try
                 {
-                    character.getEquipment().addEquipment(equipmentGroup);
-                    System.out.println("Stole equipment: " + equipmentGroup.getItem().getDisplayName());
+                    character.getEquipment().addEquipment(new EquipmentGroup(equipmentItem, 1));
+                    System.out.println("Stole equipment: " + equipmentItem.getDisplayName());
                 }
                 catch (EquipmentFullException efe)
                 {

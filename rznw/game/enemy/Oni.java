@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyProjectileSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.ParticleOfDarknessSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.GauntletOfDarkness;
 import rznw.game.maincharacter.inventory.InventoryItem;
@@ -63,9 +63,9 @@ public class Oni extends EnemyCharacterWithSpell
         return new FullPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new GauntletOfDarkness(), 1);
+        return new GauntletOfDarkness();
     }
 
     public EnemyActionCalculator getActionCalculator()

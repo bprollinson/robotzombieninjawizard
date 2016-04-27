@@ -3,7 +3,7 @@ package rznw.game.enemy;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.IceRod;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.SanityDrop;
@@ -44,9 +44,9 @@ public class Yeti extends EnemyCharacter
         return new SanityDrop();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new IceRod(), 1);
+        return new IceRod();
     }
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

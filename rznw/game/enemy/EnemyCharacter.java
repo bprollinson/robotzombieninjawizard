@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
@@ -116,7 +116,7 @@ public abstract class EnemyCharacter extends Character
         return RandomNumberGenerator.rollSucceeds(probability);
     }
 
-    public abstract EquipmentGroup getEquipmentDrops();
+    public abstract EquipmentItem getEquipmentDrop();
 
     public int getExperienceReward()
     {

@@ -3,7 +3,7 @@ package rznw.game.enemy;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.maincharacter.inventory.WoodenShield;
@@ -42,9 +42,9 @@ public class Werewolf extends EnemyCharacter
         return new Potion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new WoodenShield(), 1);
+        return new WoodenShield();
     }
 
     public EnemyActionCalculator getActionCalculator()

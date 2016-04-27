@@ -6,7 +6,7 @@ import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.VampireWaveSpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.BloodSword;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.map.GameWorld;
@@ -67,9 +67,9 @@ public class Nosferatu extends EnemyCharacterWithSpell
         return new Potion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new BloodSword(), 1);
+        return new BloodSword();
     }
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

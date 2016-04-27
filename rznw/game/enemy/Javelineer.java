@@ -6,7 +6,7 @@ import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.MagicJavelinSpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Bomb;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.MagicJavelin;
 import rznw.map.element.EnemyMapElement;
@@ -65,9 +65,9 @@ public class Javelineer extends EnemyCharacterWithSpell
         return new Bomb();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new MagicJavelin(), 1);
+        return new MagicJavelin();
     }
 
     public EnemyActionCalculator getActionCalculator()

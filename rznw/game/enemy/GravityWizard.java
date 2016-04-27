@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyProjectileSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.GravityBeltSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.GravityBlade;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ManaPotion;
@@ -65,9 +65,9 @@ public class GravityWizard extends EnemyCharacterWithSpell
         return new ManaPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new GravityBlade(), 1);
+        return new GravityBlade();
     }
 
     public EnemyActionCalculator getActionCalculator()

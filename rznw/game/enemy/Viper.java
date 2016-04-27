@@ -3,7 +3,7 @@ package rznw.game.enemy;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ViperDagger;
@@ -41,9 +41,9 @@ public class Viper extends EnemyCharacter
         return new FullPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new ViperDagger(), 1);
+        return new ViperDagger();
     }
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

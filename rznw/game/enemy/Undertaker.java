@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.DeathScythe;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
@@ -45,9 +45,9 @@ public class Undertaker extends EnemyCharacter
         return new FullPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new DeathScythe(), 1);
+        return new DeathScythe();
     }
 
     public EnemyActionCalculator getActionCalculator()

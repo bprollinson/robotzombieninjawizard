@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Bomb;
 import rznw.game.maincharacter.inventory.CrusherHammer;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
@@ -44,9 +44,9 @@ public class Crusher extends EnemyCharacter
         return new Bomb();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new CrusherHammer(), 1);
+        return new CrusherHammer();
     }
 
     public EnemyActionCalculator getActionCalculator()

@@ -3,7 +3,7 @@ package rznw.game.enemy;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.EtherealShield;
 import rznw.game.maincharacter.inventory.FullManaPotion;
 import rznw.game.maincharacter.inventory.InventoryItem;
@@ -41,9 +41,9 @@ public class Phantasm extends EnemyCharacter
         return new FullManaPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new EtherealShield(), 1);
+        return new EtherealShield();
     }
 
     public EnemyActionCalculator getActionCalculator()

@@ -80,17 +80,16 @@ public class ExtractWeaponSpell extends DirectedSpell
 
     private Weapon getWeapon(EnemyCharacter enemy)
     {
-        EquipmentGroup drops = enemy.getEquipmentDrops();
+        EquipmentItem drop = enemy.getEquipmentDrop();
 
-        if (drops == null)
+        if (drop == null)
         {
             return null;
         }
 
-        EquipmentItem dropItem = drops.getItem();
-        if (dropItem instanceof Weapon)
+        if (drop instanceof Weapon)
         {
-            return (Weapon)dropItem;
+            return (Weapon)drop;
         }
 
         return new WoodenSword();

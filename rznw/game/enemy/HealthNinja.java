@@ -5,7 +5,7 @@ import rznw.game.enemy.action.HealthNinjaActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.SuperHealSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.HealShield;
 import rznw.game.maincharacter.inventory.InventoryItem;
@@ -66,9 +66,9 @@ public class HealthNinja extends EnemyCharacterWithSpell
         return new FullPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new HealShield(), 1);
+        return new HealShield();
     }
 
     public EnemyActionCalculator getActionCalculator()

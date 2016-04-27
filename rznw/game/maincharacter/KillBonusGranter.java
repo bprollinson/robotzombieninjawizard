@@ -92,7 +92,7 @@ public class KillBonusGranter
     {
         if (enemyCharacter.isDroppingEquipment())
         {
-            EquipmentGroup equipmentGroup = enemyCharacter.getEquipmentDrops();
+            EquipmentGroup equipmentGroup = new EquipmentGroup(enemyCharacter.getEquipmentDrop(), 1);
             try
             {
                 mainCharacter.getEquipment().addEquipment(equipmentGroup);

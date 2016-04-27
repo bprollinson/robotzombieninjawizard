@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyProjectileSpellActionCalculator;
 import rznw.game.enemy.spell.AcidSpitSpell;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ProtectivePlate;
@@ -65,9 +65,9 @@ public class KingLizardWizard extends EnemyCharacterWithSpell
         return new Herb();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new ProtectivePlate(), 1);
+        return new ProtectivePlate();
     }
 
     public EnemyActionCalculator getActionCalculator()

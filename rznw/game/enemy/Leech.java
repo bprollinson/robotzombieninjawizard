@@ -3,7 +3,7 @@ package rznw.game.enemy;
 import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.action.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.LeechMail;
 import rznw.game.maincharacter.inventory.ManaPotion;
@@ -45,9 +45,9 @@ public class Leech extends EnemyCharacter
         return new ManaPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new LeechMail(), 1);
+        return new LeechMail();
     }
 
     public EnemyActionCalculator getActionCalculator()

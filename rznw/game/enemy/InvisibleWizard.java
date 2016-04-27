@@ -5,7 +5,7 @@ import rznw.game.enemy.action.InvisibleWizardActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.InvisibilitySpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.FullManaPotion;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InvisibilityWand;
@@ -65,9 +65,9 @@ public class InvisibleWizard extends EnemyCharacterWithSpell
         return new FullManaPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new InvisibilityWand(), 1);
+        return new InvisibilityWand();
     }
 
     public EnemyActionCalculator getActionCalculator()

@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.SummonBeastSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.maincharacter.inventory.WandOfSummoning;
@@ -68,9 +68,9 @@ public class BeastSummoner extends EnemyCharacterWithSpell
         return new Potion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new WandOfSummoning(), 1);
+        return new WandOfSummoning();
     }
 
     public EnemyActionCalculator getActionCalculator()

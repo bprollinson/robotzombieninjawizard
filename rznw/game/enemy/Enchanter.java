@@ -5,7 +5,7 @@ import rznw.game.enemy.action.EnemyProjectileSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.ZapSpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.MagicShield;
 import rznw.game.maincharacter.inventory.ManaPotion;
@@ -67,9 +67,9 @@ public class Enchanter extends EnemyCharacterWithSpell
         return new ManaPotion();
     }
 
-    public EquipmentGroup getEquipmentDrops()
+    public EquipmentItem getEquipmentDrop()
     {
-        return new EquipmentGroup(new MagicShield(), 1);
+        return new MagicShield();
     }
 
     public EnemyActionCalculator getActionCalculator()
