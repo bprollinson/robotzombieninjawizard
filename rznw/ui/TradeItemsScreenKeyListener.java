@@ -96,9 +96,7 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
             this.assignRandomItem();
             this.removeSelectedItems();
 
-            this.turnHandler.handlePostCharacterTurn();
-            this.turnHandler.handleEnemyTurns();
-            this.turnHandler.handlePostEnemyTurns();
+            this.turnHandler.handlePostTurn();
 
             return DispatchKeyListener.STATE_GAME_MOTION;
         }

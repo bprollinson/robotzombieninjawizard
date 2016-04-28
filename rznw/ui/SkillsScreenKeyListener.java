@@ -91,9 +91,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
         {
             if (this.gameWorld.getMainCharacter().getStatusEffects().detectVitalityEnabled())
             {
-                this.turnHandler.handlePostCharacterTurn();
-                this.turnHandler.handleEnemyTurns();
-                this.turnHandler.handlePostEnemyTurns();
+                this.turnHandler.handlePostTurn();
 
                 this.gameWorld.getMainCharacter().getStatusEffects().disableDetectVitality();
 
@@ -107,9 +105,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
             if (this.gameWorld.getMainCharacter().getStatusEffects().itemTradeEnabled())
             {
-                this.turnHandler.handlePostCharacterTurn();
-                this.turnHandler.handleEnemyTurns();
-                this.turnHandler.handlePostEnemyTurns();
+                this.turnHandler.handlePostTurn();
 
                 this.gameWorld.getMainCharacter().getStatusEffects().disableItemTrade();
 
@@ -123,9 +119,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
             if (this.gameWorld.getMainCharacter().getStatusEffects().summonShopkeeperEnabled())
             {
-                this.turnHandler.handlePostCharacterTurn();
-                this.turnHandler.handleEnemyTurns();
-                this.turnHandler.handlePostEnemyTurns();
+                this.turnHandler.handlePostTurn();
 
                 this.gameWorld.getMainCharacter().getStatusEffects().disableSummonShopkeeper();
 

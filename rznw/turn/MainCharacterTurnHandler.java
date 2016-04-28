@@ -86,11 +86,16 @@ public class MainCharacterTurnHandler
         KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
 
+        this.handlePostTurn();
+
+        this.renderer.render(this.gameWorld);
+    }
+
+    public void handlePostTurn()
+    {
         this.handlePostCharacterTurn();
         this.handleEnemyTurns();
         this.handlePostEnemyTurns();
-
-        this.renderer.render(this.gameWorld);
     }
 
     private boolean eventIsFloorChange(KeyEvent event)
@@ -137,7 +142,7 @@ public class MainCharacterTurnHandler
         mapElement.setColumn(newColumn);
     }
 
-    public void handlePostCharacterTurn()
+    private void handlePostCharacterTurn()
     {
         Map map = this.gameWorld.getMap();
         MainCharacter character = this.gameWorld.getMainCharacter();
@@ -235,7 +240,7 @@ public class MainCharacterTurnHandler
         }
     }
 
-    public void handleEnemyTurns()
+    private void handleEnemyTurns()
     {
         this.handleSummonedZombieTurns();
 
@@ -299,7 +304,7 @@ public class MainCharacterTurnHandler
         }
     }
 
-    public void handlePostEnemyTurns()
+    private void handlePostEnemyTurns()
     {
         Map map = this.gameWorld.getMap();
         MainCharacter character = this.gameWorld.getMainCharacter();
