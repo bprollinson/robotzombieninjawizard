@@ -1,12 +1,12 @@
 package rznw.turn.positionchange;
 
-import rznw.game.maincharacter.MainCharacter;
+import rznw.game.Character;
 import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
 
 public class RandomPositionChange extends PositionChange
 {
-    public RandomPositionChange(MainCharacter character)
+    public RandomPositionChange(Character character)
     {
         MapElement mapElement = character.getMapElement();
 

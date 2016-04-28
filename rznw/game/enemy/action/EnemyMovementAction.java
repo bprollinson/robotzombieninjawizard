@@ -1,14 +1,13 @@
 package rznw.game.enemy.action;
 
 import rznw.game.enemy.spell.EnemySpell;
-import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
 
 public class EnemyMovementAction extends EnemyAction
 {
-    private EnemyAIBasedPositionChange positionChange;
+    private PositionChange positionChange;
 
-    public EnemyMovementAction(EnemyAIBasedPositionChange positionChange)
+    public EnemyMovementAction(PositionChange positionChange)
     {
         this.positionChange = positionChange;
     }

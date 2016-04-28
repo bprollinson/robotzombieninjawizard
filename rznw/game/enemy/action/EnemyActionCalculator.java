@@ -8,7 +8,7 @@ import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
 import rznw.map.generator.path.MapPath;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
-import rznw.utility.RandomNumberGenerator;
+import rznw.turn.positionchange.RandomPositionChange;
 
 public abstract class EnemyActionCalculator
 {
@@ -23,7 +23,7 @@ public abstract class EnemyActionCalculator
                 System.out.println("Enemy is confused!");
             }
 
-            return new EnemyMovementAction(this.getRandomPositionChange(enemyCharacter));
+            return new EnemyMovementAction(new RandomPositionChange(enemyCharacter));
         }
 
         return null;
@@ -45,22 +45,5 @@ public abstract class EnemyActionCalculator
         System.out.println("Direction: " + firstDirection.getDeltaY() + ", " + firstDirection.getDeltaX());
 
         return new EnemyMovementAction(new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaY(), firstDirection.getDeltaX()));
-    }
-
-    private EnemyAIBasedPositionChange getRandomPositionChange(EnemyCharacter enemyCharacter)
-    {
-        EnemyAIBasedPositionChange possibleChanges[] = {
-           new EnemyAIBasedPositionChange(enemyCharacter, -1, -1),
-           new EnemyAIBasedPositionChange(enemyCharacter, -1, 0),
-           new EnemyAIBasedPositionChange(enemyCharacter, -1, 1),
-           new EnemyAIBasedPositionChange(enemyCharacter, 0, -1),
-           new EnemyAIBasedPositionChange(enemyCharacter, 0, 1),
-           new EnemyAIBasedPositionChange(enemyCharacter, 1, -1),
-           new EnemyAIBasedPositionChange(enemyCharacter, 1, 0),
-           new EnemyAIBasedPositionChange(enemyCharacter, 1, 1)
-        };
-
-        int randomPosition = RandomNumberGenerator.randomInteger(0, possibleChanges.length - 1);
-        return possibleChanges[randomPosition];
     }
 }
