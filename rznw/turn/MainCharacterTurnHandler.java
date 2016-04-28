@@ -96,12 +96,7 @@ public class MainCharacterTurnHandler
 
         Map map = this.gameWorld.getMap();
 
-        if (event.isShiftDown() && event.getKeyCode() == MainCharacterTurnHandler.KEY_V && map.getBackgroundElement(row, column) instanceof Stairs)
-        {
-            return true;
-        }
-
-        return false;
+        return event.isShiftDown() && event.getKeyCode() == MainCharacterTurnHandler.KEY_V && map.getBackgroundElement(row, column) instanceof Stairs;
     }
 
     private void handleCharacterTurn(PositionChange positionChange, Character character)
