@@ -25,6 +25,7 @@ import rznw.map.element.TrapMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
+import rznw.turn.positionchange.RandomPositionChange;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.utility.RandomNumberGenerator;
 
@@ -63,27 +64,15 @@ public class MainCharacterTurnHandler
         }
 
         MainCharacter character = this.gameWorld.getMainCharacter();
+        PositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
 
         if (character.getStatusEffects().isConfused())
         {
             System.out.println("Main character is confused!");
 
-            int[] keyCodes = {
-                KeyEvent.VK_UP,
-                KeyEvent.VK_DOWN,
-                KeyEvent.VK_LEFT,
-                KeyEvent.VK_RIGHT,
-                KeyEvent.VK_NUMPAD7,
-                KeyEvent.VK_NUMPAD9,
-                KeyEvent.VK_NUMPAD1,
-                KeyEvent.VK_NUMPAD3
-            };
-
-            int randomPosition = RandomNumberGenerator.randomInteger(0, keyCodes.length - 1);
-            event.setKeyCode(keyCodes[randomPosition]);
+            characterPositionChange = new RandomPositionChange(character);
         }
 
-        KeyBasedPositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
         this.handleCharacterTurn(characterPositionChange, character);
 
         this.handlePostTurn();
