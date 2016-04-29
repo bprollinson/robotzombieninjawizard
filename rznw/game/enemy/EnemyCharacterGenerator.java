@@ -1,30 +1,29 @@
 package rznw.game.enemy;
 
+import rznw.utility.RandomMatrix;
 import rznw.utility.RandomNumberGenerator;
 
 public class EnemyCharacterGenerator
 {
     public EnemyCharacter generateCharacter(int dungeonLevel)
     {
-        int[][] cumulativeEnemyProbabilities = new int[][]
+        int[][] enemyProbabilities = new int[][]
         {
-            {4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 100},
-            {4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96, 100}
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4}
         };
 
-        int randomNumber = RandomNumberGenerator.randomInteger(1, 100);
-        int levelIndex = Math.min(dungeonLevel - 1, 1);
-
-        int index = -1;
-
-        for (int i = 0; i < cumulativeEnemyProbabilities[levelIndex].length; i++)
-        {
-            if (randomNumber <= cumulativeEnemyProbabilities[levelIndex][i])
-            {
-                index = i;
-                break;
-            }
-        }
+        RandomMatrix matrix = new RandomMatrix(enemyProbabilities);
+        int index = matrix.getRandomSelection(dungeonLevel);
 
         int enemyLevel = RandomNumberGenerator.randomInteger(0, 2 * dungeonLevel - 1);
         System.out.println("Generating enemy with level: " + enemyLevel);
