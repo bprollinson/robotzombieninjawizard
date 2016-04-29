@@ -19,11 +19,12 @@ public class EnemyCharacterGenerator
             {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
             {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
             {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
+            {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4},
             {4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4}
         };
 
         RandomMatrix matrix = new RandomMatrix(enemyProbabilities);
-        int index = matrix.getRandomSelection(dungeonLevel);
+        int index = matrix.getRandomSelection(dungeonLevel - 1);
 
         int enemyLevel = RandomNumberGenerator.randomInteger(0, 2 * dungeonLevel - 1);
         System.out.println("Generating enemy with level: " + enemyLevel);
