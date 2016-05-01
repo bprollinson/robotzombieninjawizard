@@ -25,6 +25,11 @@ public class RandomMatrix
                 cumulativeProbability += this.probabilityMatrix[row][column];
                 this.cumulativeProbabilityMatrix[row][column] = cumulativeProbability;
             }
+
+            if (cumulativeProbability != 100)
+            {
+                throw new RuntimeException("Incorrect cumulative probability for row: " + row + " - " + cumulativeProbability);
+            }
         }
     }
 
