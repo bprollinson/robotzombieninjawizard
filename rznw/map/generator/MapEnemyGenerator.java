@@ -11,8 +11,8 @@ import java.util.List;
 
 public class MapEnemyGenerator
 {
-    private static int BASE_ENEMY_PROBABILITY = 10;
-    private static int ENEMY_PROBABILITY_PER_LEVEL = 5;
+    private static int BASE_ENEMY_PROBABILITY = 5;
+    private static int ENEMY_PROBABILITY_PER_LEVEL = 1;
 
     public void generateEnemies(Map map, CharacterGenerator characterGenerator, List<MapArea> rooms)
     {
