@@ -15,10 +15,8 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
-import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
-import rznw.map.element.SummonedMinionMapElement;
 import rznw.map.element.SummonedZombieMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
@@ -268,27 +266,15 @@ public class MainCharacterTurnHandler
             for (int column = 0; column < Map.NUM_COLUMNS; column++)
             {
                 MapElement element = map.getElement(row, column);
-
-                if (element instanceof SummonedMinionMapElement)
+                if (element != null)
                 {
-                    Character enemy = ((SummonedMinionMapElement)element).getCharacter();
-                    if (enemy.isDead())
-                    {
-                        map.setElement(element.getRow(), element.getColumn(), null);
-                    }
+                    element.processTurn(map);
                 }
 
                 element = map.getBackgroundElement(row, column);
-                if (element instanceof FireElement)
+                if (element != null)
                 {
-                    FireElement fireElement = (FireElement)element;
-                    fireElement.decreaseDuration();
-
-                    if (fireElement.isExpired())
-                    {
-                        MapElement previousMapElement = fireElement.getPreviousMapElement();
-                        map.setBackgroundElement(fireElement.getRow(), fireElement.getColumn(), previousMapElement);
-                    }
+                    element.processTurn(map);
                 }
             }
         }

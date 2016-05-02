@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.map.Map;
 
 public class FireElement extends MapElement
 {
@@ -47,5 +48,16 @@ public class FireElement extends MapElement
         System.out.println("Enemy HP before: " + enemyCharacter.getHP());
         enemyCharacter.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
         System.out.println("Enemy HP after: " + enemyCharacter.getHP());
+    }
+
+    public void processTurn(Map map)
+    {
+        this.decreaseDuration();
+
+        if (this.isExpired())
+        {
+            MapElement previousMapElement = this.getPreviousMapElement();
+            map.setBackgroundElement(this.getRow(), this.getColumn(), previousMapElement);
+        }
     }
 }
