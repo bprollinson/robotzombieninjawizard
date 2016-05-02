@@ -14,7 +14,6 @@ import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
-import rznw.map.element.Blotch;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
@@ -262,19 +261,10 @@ public class MainCharacterTurnHandler
             Map map = this.gameWorld.getMap();
             MapElement enemyMapElement = enemy.getMapElement();
             MapElement backgroundElement = map.getBackgroundElement(enemyMapElement.getRow(), enemyMapElement.getColumn());
-            if (backgroundElement instanceof Blotch)
-            {
-                System.out.println("Poisoning enemy from blotch");
-                enemy.getStatusEffects().poison();
-            }
 
-            if (backgroundElement instanceof FireElement)
+            if (backgroundElement != null)
             {
-                System.out.println("Enemy runs into fire element");
-                int damage = 10 * character.getSpellPoints(4);
-                System.out.println("Enemy HP before: " + enemy.getHP());
-                enemy.damage(damage, character, this.gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("Enemy HP after: " + enemy.getHP());
+                backgroundElement.collideWithEnemy(gameWorld, enemy);
             }
 
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
