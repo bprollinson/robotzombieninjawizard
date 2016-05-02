@@ -20,7 +20,6 @@ import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
 import rznw.map.element.SummonedMinionMapElement;
 import rznw.map.element.SummonedZombieMapElement;
-import rznw.map.element.TrapMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
@@ -133,7 +132,11 @@ public class MainCharacterTurnHandler
 
         map.setElementVisited((MainCharacter)character, characterMapElement.getRow(), characterMapElement.getColumn());
 
-        this.handleTrapCollision();
+        MapElement backgroundElement = map.getBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn());
+        if (backgroundElement != null)
+        {
+            backgroundElement.collideWithMainCharacter(this.gameWorld, character);
+        }
 
         if (!character.isDead())
         {
@@ -141,36 +144,6 @@ public class MainCharacterTurnHandler
         }
 
         this.clearEnemies(map, character);
-    }
-
-    private void handleTrapCollision()
-    {
-        MainCharacter character = this.gameWorld.getMainCharacter();
-        MapElement characterMapElement = character.getMapElement();
-
-        Map map = this.gameWorld.getMap();
-        MapElement trap = map.getBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn());
-        if (trap instanceof TrapMapElement)
-        {
-            TrapMapElement properTrap = (TrapMapElement)trap;
-
-            if (!properTrap.isSprung())
-            {
-                properTrap.spring();
-
-                int disarmProbability = 5 * character.getSkillPoints(11);
-
-                if (RandomNumberGenerator.rollSucceeds(disarmProbability))
-                {
-                    System.out.println("Disarmed trap");
-                }
-                else
-                {
-                    System.out.println("It's a trap!");
-                    character.damage(20, null, this.gameWorld, Character.DAMAGE_SOURCE_OTHER);
-                }
-            }
-        }
     }
 
     private void handleMainCharacterRegeneration()

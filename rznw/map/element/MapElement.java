@@ -2,6 +2,7 @@ package rznw.map.element;
 
 import rznw.map.GameWorld;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.MainCharacter;
 
 public abstract class MapElement
 {
@@ -34,6 +35,10 @@ public abstract class MapElement
     public void setColumn(int column)
     {
         this.column = column;
+    }
+
+    public void collideWithMainCharacter(GameWorld gameWorld, MainCharacter mainCharacter)
+    {
     }
 
     public void collideWithEnemy(GameWorld gameWorld, EnemyCharacter enemyCharacter)

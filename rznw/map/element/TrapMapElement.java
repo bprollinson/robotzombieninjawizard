@@ -1,5 +1,11 @@
 package rznw.map.element;
 
+import rznw.game.Character;
+import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
+import rznw.map.Map;
+import rznw.utility.RandomNumberGenerator;
+
 public class TrapMapElement extends MapElement
 {
     private boolean visible = false;
@@ -25,12 +31,12 @@ public class TrapMapElement extends MapElement
         return ' ';
     }
 
-    public boolean isSprung()
+    private boolean isSprung()
     {
         return sprung;
     }
 
-    public void spring()
+    private void spring()
     {
         this.sprung = true;
     }
@@ -38,5 +44,27 @@ public class TrapMapElement extends MapElement
     public void find()
     {
         this.visible = true;
+    }
+
+    public void collideWithMainCharacter(GameWorld gameWorld, MainCharacter mainCharacter)
+    {
+        Map map = gameWorld.getMap();
+
+        if (!this.isSprung())
+        {
+            this.spring();
+
+            int disarmProbability = 5 * mainCharacter.getSkillPoints(11);
+
+            if (RandomNumberGenerator.rollSucceeds(disarmProbability))
+            {
+                System.out.println("Disarmed trap");
+            }
+            else
+            {
+                System.out.println("It's a trap!");
+                mainCharacter.damage(20, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+            }
+        }
     }
 }
