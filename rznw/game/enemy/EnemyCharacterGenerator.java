@@ -1,5 +1,6 @@
 package rznw.game.enemy;
 
+import rznw.map.Map;
 import rznw.utility.RandomMatrix;
 import rznw.utility.RandomNumberGenerator;
 
@@ -84,5 +85,12 @@ public class EnemyCharacterGenerator
         }
 
         return null;
+    }
+
+    public EnemyCharacter generateEndBoss()
+    {
+        int enemyLevel = 2 * Map.MAX_LEVEL - 1;
+
+        return new Zenith(enemyLevel);
     }
 }

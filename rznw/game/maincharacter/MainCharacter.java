@@ -439,6 +439,12 @@ public abstract class MainCharacter extends Character
             }
         }
 
+        Weapon weapon = this.getEquipment().getEquippedWeapon();
+        if (weapon != null)
+        {
+            weapon.step(this);
+        }
+
         Armor armor = this.getEquipment().getEquippedArmor();
         if (armor != null)
         {

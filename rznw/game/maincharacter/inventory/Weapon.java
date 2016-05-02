@@ -13,6 +13,10 @@ public abstract class Weapon extends EquipmentItem
         return 0;
     }
 
+    public void step(MainCharacter character)
+    {
+    }
+
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
     }

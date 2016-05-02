@@ -54,7 +54,7 @@ public class EnemyRadiusSpellActionCalculator extends EnemyActionCalculator
             return null;
         }
 
-EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(0);
+        EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(0);
         int MPCost = enemySpell.getMPCost(spellPoints);
 
         if (MPCost > enemyCharacter.getMP())

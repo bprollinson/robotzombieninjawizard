@@ -15,5 +15,10 @@ public class CharacterGenerator
     public EnemyCharacter generateEnemy(int dungeonLevel)
     {
         return new EnemyCharacterGenerator().generateCharacter(dungeonLevel);
-    } 
+    }
+
+    public EnemyCharacter generateEndBoss()
+    {
+        return new EnemyCharacterGenerator().generateEndBoss();
+    }
 }
