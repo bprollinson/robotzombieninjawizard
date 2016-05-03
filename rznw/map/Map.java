@@ -9,9 +9,7 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
 import rznw.map.element.SummonedMinionMapElement;
-import rznw.map.element.TrapMapElement;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.utility.RandomNumberGenerator;
 
 public class Map
 {
@@ -74,17 +72,9 @@ public class Map
         if (this.visible[i][j] == false)
         {
             MapElement backgroundElement = this.getBackgroundElement(i, j);
-            if (backgroundElement instanceof TrapMapElement)
+            if (backgroundElement != null)
             {
-                System.out.println("A trap is in range");
-                int trapRevealProbability = 5 * character.getStatPoints(7);
-                System.out.println("Trap reveal probability: " + trapRevealProbability);
-
-                if (RandomNumberGenerator.rollSucceeds(trapRevealProbability))
-                {
-                    System.out.println("Detected the trap!");
-                    ((TrapMapElement)backgroundElement).find();
-                }
+                backgroundElement.reveal(character);
             }
         }
 

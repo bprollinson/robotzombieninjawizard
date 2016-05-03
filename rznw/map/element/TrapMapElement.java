@@ -41,7 +41,7 @@ public class TrapMapElement extends MapElement
         this.sprung = true;
     }
 
-    public void find()
+    private void find()
     {
         this.visible = true;
     }
@@ -65,6 +65,19 @@ public class TrapMapElement extends MapElement
                 System.out.println("It's a trap!");
                 mainCharacter.damage(20, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
             }
+        }
+    }
+
+    public void reveal(MainCharacter mainCharacter)
+    {
+        System.out.println("A trap is in range");
+        int trapRevealProbability = 5 * mainCharacter.getStatPoints(7);
+        System.out.println("Trap reveal probability: " + trapRevealProbability);
+
+        if (RandomNumberGenerator.rollSucceeds(trapRevealProbability))
+        {
+            System.out.println("Detected the trap!");
+            this.find();
         }
     }
 }

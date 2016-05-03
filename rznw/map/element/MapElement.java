@@ -49,4 +49,8 @@ public abstract class MapElement
     public void collideWithEnemy(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
     }
+
+    public void reveal(MainCharacter mainCharacter)
+    {
+    }
 }
