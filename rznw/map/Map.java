@@ -8,8 +8,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
-import rznw.map.element.SummonedGolemMapElement;
-import rznw.map.element.SummonedZombieMapElement;
+import rznw.map.element.SummonedMinionMapElement;
 import rznw.map.element.TrapMapElement;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.utility.RandomNumberGenerator;
@@ -168,15 +167,9 @@ public class Map
             {
                 MapElement element = this.elements[i][j];
 
-                if (element instanceof SummonedZombieMapElement)
+                if (element instanceof SummonedMinionMapElement)
                 {
-                    SummonedCharacter summonedCharacter = (SummonedCharacter)((SummonedZombieMapElement)element).getCharacter();
-                    summons.add(summonedCharacter);
-                }
-
-                if (element instanceof SummonedGolemMapElement)
-                {
-                    SummonedCharacter summonedCharacter = (SummonedCharacter)((SummonedGolemMapElement)element).getCharacter();
+                    SummonedCharacter summonedCharacter = (SummonedCharacter)((SummonedMinionMapElement)element).getCharacter();
                     summons.add(summonedCharacter);
                 }
             }
