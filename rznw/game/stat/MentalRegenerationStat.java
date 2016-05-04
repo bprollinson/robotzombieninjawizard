@@ -4,6 +4,16 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class MentalRegenerationStat extends Stat
 {
+    public String getDisplayName()
+    {
+        return "Mental Regeneration";
+    }
+
+    public String getDescription()
+    {
+        return "Increases the amount of MP you recover while exploring the dungeon.";
+    }
+
     public String[] getStats(MainCharacter character, int statPoints)
     {
         String numStepsDisplay = "N/A";

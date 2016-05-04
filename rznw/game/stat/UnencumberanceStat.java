@@ -4,6 +4,16 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class UnencumberanceStat extends Stat
 {
+    public String getDisplayName()
+    {
+        return "Unencumberance";
+    }
+
+    public String getDescription()
+    {
+        return "Increases the amount you can carry in your inventory.";
+    }
+
     public String[] getStats(MainCharacter character, int statPoints)
     {
         int numSlots = 1 + statPoints;

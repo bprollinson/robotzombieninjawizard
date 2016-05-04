@@ -4,6 +4,16 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class PhysicalRegenerationStat extends Stat
 {
+    public String getDisplayName()
+    {
+        return "Physical Regeneration";
+    }
+
+    public String getDescription()
+    {
+        return "Increases the amount of HP you recover while exploring the dungeon.";
+    }
+
     public String[] getStats(MainCharacter character, int statPoints)
     {
         String numStepsDisplay = "N/A";

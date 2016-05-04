@@ -158,12 +158,12 @@ public abstract class MainCharacter extends Character
 
     public static String getStatName(int statNumber)
     {
-        return MainCharacter.statName[statNumber];
+        return MainCharacter.getStatFactory().getStat(statNumber).getDisplayName();
     }
 
     public static String getStatDescription(int statNumber)
     {
-        return MainCharacter.statDescription[statNumber];
+        return MainCharacter.getStatFactory().getStat(statNumber).getDescription();
     }
 
     public static String getSkillCategory(int categoryNumber)
@@ -323,7 +323,7 @@ public abstract class MainCharacter extends Character
         this.inventory.removeItems(new InventoryItemGroup(item, 1));
     }
 
-    public StatFactory getStatFactory()
+    public static StatFactory getStatFactory()
     {
         return new StatFactory();
     }
