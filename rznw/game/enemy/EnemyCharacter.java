@@ -3,8 +3,8 @@ package rznw.game.enemy;
 import rznw.game.Character;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.calculator.EnemyCharacterDamageReceivedCalculator;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.Zombie;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
@@ -141,53 +141,7 @@ public abstract class EnemyCharacter extends Character
 
     public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
-        int paddingPercent = 2 * this.getStatPoints(EnemyCharacter.STAT_PADDING);
-
-        if (this.getStatusEffects().getArmorBreakPercent() > 0)
-        {
-            int armorBreakPercent = this.getStatusEffects().getArmorBreakPercent();
-            paddingPercent -= armorBreakPercent;
-
-            System.out.println("Enemy armor break percent: " + armorBreakPercent);
-        }
-
-        int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
-
-        if (padding != 0)
-        {
-            System.out.println("Enemy is preventing " + padding + " of " + damage + " damage via padding");
-        }
-
-        damage -= padding;
-
-        if (damageSource instanceof MainCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
-        {
-            int bonusDamagePercent = 5 * ((MainCharacter)damageSource).getStatPoints(14);
-
-            if (bonusDamagePercent > 0)
-            {
-                 int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
-                 damage += bonusDamage;
-
-                 System.out.println("Mana burn bonus damage: " + bonusDamage);
-            }
-        }
-
-        if (damageSource instanceof Zombie && damageSource.getStatusEffects().infectiousRageEnabled())
-        {
-            System.out.println("Infectious rage is enabled");
-            System.out.println("Base damage: " + damage);
-            damage = (int)Math.floor(1.5 * damage);
-            System.out.println("Rage damage: " + damage);
-        }
-
-        if (damageSource instanceof Zombie && damageSource.getStatusEffects().feedBrainEnabled() && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
-        {
-            System.out.println("Feed brain is enabled");
-            System.out.println("Base damage: " + damage);
-            damage = (int)Math.floor(1.6 * damage);
-            System.out.println("Feed brain damage: " + damage);
-        }
+        damage = new EnemyCharacterDamageReceivedCalculator().getDamage(this, damage, damageSource, damageSourceType);
 
         return super.damage(damage, damageSource, gameWorld, damageSourceType);
     }
