@@ -9,6 +9,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class FindStairsSkill extends PassiveSkill
 {
+    public String getDisplayName()
+    {
+        return "Find Stairs";
+    }
+
+    public String getDescription()
+    {
+        return "Shows you the position of the nearest set of stairs within your available radius.";
+    }
+
     public String[] getStats(MainCharacter character, int skillPoints)
     {
         return new String[] {

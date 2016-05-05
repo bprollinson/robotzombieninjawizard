@@ -9,6 +9,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class WaypointSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Waypoint";
+    }
+
+    public String getDescription()
+    {
+        return "Sets up a waypoint or allows you to return to one.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

@@ -5,6 +5,16 @@ import rznw.map.GameWorld;
 
 public class SummonShopkeeperSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Summon Shopkeeper";
+    }
+
+    public String getDescription()
+    {
+        return "Summons a shopkeeper who buys and sells goods.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

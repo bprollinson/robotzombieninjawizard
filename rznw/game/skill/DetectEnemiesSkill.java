@@ -12,6 +12,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class DetectEnemiesSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Detect Enemies";
+    }
+
+    public String getDescription()
+    {
+        return "Detects the position of enemies.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

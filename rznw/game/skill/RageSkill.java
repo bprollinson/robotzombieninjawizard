@@ -5,6 +5,16 @@ import rznw.map.GameWorld;
 
 public class RageSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Rage";
+    }
+
+    public String getDescription()
+    {
+        return "Increases your damage but decreases your defense for a period of time.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

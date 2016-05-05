@@ -39,44 +39,6 @@ public abstract class MainCharacter extends Character
         "Magic"
     };
 
-    private static String[] skillName = {
-        "Detect Vitality",
-        "Detect Enemies",
-        "Blood Rage",
-        "Potion Find",
-        "Summon Shopkeeper",
-        "Waypoint",
-        "Fast Hands",
-        "Find Stairs",
-        "Item Trade",
-        "Rage",
-        "Abundance",
-        "Disarm Traps",
-        "Magic Seeds",
-        "Mana Suck",
-        "Protective Field",
-        "Mana River"
-    };
-
-    private static String[] skillDescription = {
-        "Detects enemy HP.",
-        "Detects the position of enemies.",
-        "Increases the damage you deal when injured.",
-        "Increases your chance of finding potions from enemies.",
-        "Summons a shopkeeper who buys and sells goods.",
-        "Sets up a waypoint or allows you to return to one.",
-        "Increases enemy item drop rate.",
-        "Shows you the position of the nearest set of stairs within your available radius.",
-        "Allows you to trade in multiple items for a new random item.",
-        "Increases your damage but decreases your defense for a period of time.",
-        "Increases the amount of gold you receive from enemies.",
-        "Has a chance to automatically disarm traps you encounter.",
-        "Increases your effective spell levels.",
-        "You receive MP from damage you receive.",
-        "Grants you additional chance of avoiding magic damage.",
-        "Provides you with a periodic chance to refill your MP."
-    };
-
     private int level = 0;
     private int experience = 0;
     private int pendingLevels = 0;
@@ -135,12 +97,12 @@ public abstract class MainCharacter extends Character
 
     public static String getSkillName(int skillNumber)
     {
-        return MainCharacter.skillName[skillNumber];
+        return MainCharacter.getSkillFactory().getSkill(skillNumber).getDisplayName();
     }
 
     public static String getSkillDescription(int skillNumber)
     {
-        return MainCharacter.skillDescription[skillNumber];
+        return MainCharacter.getSkillFactory().getSkill(skillNumber).getDescription();
     }
 
     public abstract String getSpellCategory(int categoryNumber);
@@ -292,7 +254,7 @@ public abstract class MainCharacter extends Character
 
     public abstract SpellFactory getSpellFactory();
 
-    public SkillFactory getSkillFactory()
+    public static SkillFactory getSkillFactory()
     {
         return new SkillFactory();
     }

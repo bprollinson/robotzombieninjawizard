@@ -7,6 +7,16 @@ import rznw.map.GameWorld;
 
 public class ItemTradeSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Item Trade";
+    }
+
+    public String getDescription()
+    {
+        return "Allows you to trade in multiple items for a new random item.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

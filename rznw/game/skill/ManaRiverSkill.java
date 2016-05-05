@@ -4,6 +4,16 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class ManaRiverSkill extends PassiveSkill
 {
+    public String getDisplayName()
+    {
+        return "Mana River";
+    }
+
+    public String getDescription()
+    {
+        return "Provides you with a periodic chance to refill your MP.";
+    }
+
     public String[] getStats(MainCharacter character, int skillPoints)
     {
         String numStepsDisplay = "N/A";

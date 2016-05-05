@@ -5,6 +5,16 @@ import rznw.map.GameWorld;
 
 public class MagicSeedsSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Magic Seeds";
+    }
+
+    public String getDescription()
+    {
+        return "Increases your effective spell levels.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

@@ -5,6 +5,16 @@ import rznw.map.GameWorld;
 
 public class DetectVitalitySkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Detect Vitality";
+    }
+
+    public String getDescription()
+    {
+        return "Detects enemy HP.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();

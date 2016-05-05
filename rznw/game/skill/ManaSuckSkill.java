@@ -5,6 +5,16 @@ import rznw.map.GameWorld;
 
 public class ManaSuckSkill extends Skill
 {
+    public String getDisplayName()
+    {
+        return "Mana Suck";
+    }
+
+    public String getDescription()
+    {
+        return "You receive MP from damage you receive.";
+    }
+
     public boolean canUse(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();
