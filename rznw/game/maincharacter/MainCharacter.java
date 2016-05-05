@@ -2,6 +2,7 @@ package rznw.game.maincharacter;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.maincharacter.calculator.MainCharacterDamageDealtCalculator;
 import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
@@ -133,30 +134,7 @@ public abstract class MainCharacter extends Character
 
     public int getDamage()
     {
-        int damage = 50 + 5 * this.getStatPoints(8);
-
-        Weapon weapon = this.getEquipment().getEquippedWeapon();
-        if (weapon != null)
-        {
-            int weaponDamage = weapon.getDamage();
-            System.out.println("Additional weapon damage: " + weaponDamage);
-            damage += weaponDamage;
-        }
-
-        if (this.getStatusEffects().rageEnabled())
-        {
-            int bonusDamagePercent = 2 * this.getSkillPoints(9);
-            int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
-            System.out.println("Bonus rage damage: " + bonusDamage);
-        }
-
-        double bloodRageFactor = this.getSkillPoints(2) / 100.0 * (this.getMaxHP() - this.getHP()) / this.getMaxHP();
-
-        if (bloodRageFactor > 0.0) {
-            System.out.println("Blood rage factor: " + bloodRageFactor);
-        }
-
-        return (int)Math.floor(damage * (1 + bloodRageFactor));
+        return new MainCharacterDamageDealtCalculator().getDamage(this);
     }
 
     public Inventory getInventory()
