@@ -3,6 +3,7 @@ package rznw.game.maincharacter;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.calculator.MainCharacterDamageDealtCalculator;
+import rznw.game.maincharacter.calculator.MainCharacterDamageReceivedCalculator;
 import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
@@ -369,113 +370,23 @@ public abstract class MainCharacter extends Character
 
     public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
     {
-        if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
-        {
-            System.out.println("Hit by a magical source");
-            int dodgePercent = 5 * this.getSkillPoints(14);
-            System.out.println("Magic dodge change: " + dodgePercent);
+        damage = new MainCharacterDamageReceivedCalculator().getDamage(this, damage, damageSource, damageSourceType);
 
-            Shield shield = this.getEquipment().getEquippedShield();
-            if (shield != null)
-            {
-                int shieldDodgePercent = shield.getMagicDodgePercent();
-                System.out.println("Shield magic dodge percent: " + shieldDodgePercent);
-                dodgePercent += shieldDodgePercent;
-            }
-
-            if (RandomNumberGenerator.rollSucceeds(dodgePercent))
-            {
-                System.out.println("Successfully dodged magic");
-                return 0;
-            }
-        }
-
-        int paddingPercent = 2 * this.getStatPoints(9);
-        if (this.getStatusEffects().isResistingDamage())
-        {
-            paddingPercent += 2 * this.getSpellPoints(1);
-        }
-
-        if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
-        {
-            int magicPaddingPercent = 5 * this.getStatPoints(15);
-
-            Shield shield = this.getEquipment().getEquippedShield();
-            if (shield != null)
-            {
-                int shieldPaddingPercent = shield.getMagicPaddingPercent();
-                System.out.println("Shield magic padding percent: " + shieldPaddingPercent);
-                magicPaddingPercent += shieldPaddingPercent;
-            }
-
-            System.out.println("Preventing " + magicPaddingPercent + "% of damage");
-            paddingPercent += magicPaddingPercent;
-        }
-
-        if (this.getStatusEffects().rageEnabled())
-        {
-            int paddingPenalty = Math.max(21 - this.getSkillPoints(9), 1);
-            System.out.println("Padding penalty: " + paddingPenalty);
-            paddingPercent -= paddingPenalty;
-        }
-
-        Shield shield = this.getEquipment().getEquippedShield();
-        if (shield != null)
-        {
-            int shieldPaddingPercent = shield.getPaddingPercent();
-            System.out.println("Additional shield padding percent: " + shieldPaddingPercent);
-            paddingPercent += shieldPaddingPercent;
-        }
-
-        Armor armor = this.getEquipment().getEquippedArmor();
-        if (armor != null)
-        {
-            int armorPaddingPercent = armor.getPaddingPercent();
-            System.out.println("Additional armor padding percent: " + armorPaddingPercent);
-            paddingPercent += armorPaddingPercent;
-        }
-
-        if (this.getStatusEffects().meatShieldEnabled())
-        {
-            int meatShieldPaddingPercent = this.getStatusEffects().getMeatShieldPaddingPercent();
-            System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);
-            paddingPercent += meatShieldPaddingPercent;
-        }
-
-        int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
-
-        if (padding > 0)
-        {
-            System.out.println("Padding percent: " + paddingPercent);
-            System.out.println("Padding damage: " + padding);
-        }
-
-        if (damageSource instanceof EnemyCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
-        {
-            int bonusDamagePercent = 5 * ((EnemyCharacter)damageSource).getStatPoints(EnemyCharacter.STAT_MANA_BURN);
-
-            if (bonusDamagePercent > 0)
-            {
-                 int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * (damage - padding));
-                 damage += bonusDamage;
-
-                 System.out.println("Enemy mana burn bonus damage: " + bonusDamage);
-            }
-        }
-
-        if (this.getStatusEffects().isReversingPain())
-        {
-            System.out.println("Reversing pain!");
-
-            this.HP += damage - padding;
+        if (damage < 0) {
+            this.HP += (-damage);
             return 0;
         }
 
-        this.HP -= damage - padding;
+        if (damage == 0)
+        {
+            return damage;
+        }
+
+        this.HP -= damage;
 
         if (this.getStatusEffects().manaSuckEnabled())
         {
-            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(13) * (damage - padding));
+            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(13) * damage);
             if (MPFromDamage > 0)
             {
                 System.out.println("Healing MP from damage: " + MPFromDamage);
@@ -558,7 +469,7 @@ public abstract class MainCharacter extends Character
             }
         }
 
-        return damage - padding;
+        return damage;
     }
 
     public void heal(int HP)
