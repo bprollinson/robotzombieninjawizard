@@ -3,6 +3,7 @@ package rznw.game.enemy;
 import rznw.game.Character;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.calculator.EnemyCharacterDamageDealtCalculator;
 import rznw.game.enemy.calculator.EnemyCharacterDamageReceivedCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentItem;
@@ -87,8 +88,7 @@ public abstract class EnemyCharacter extends Character
 
     public int getDamage()
     {
-        System.out.println("Enemy damage: " + (10 + 2 * this.getStatPoints(EnemyCharacter.STAT_DAMAGE)));
-        return 10 + 2 * this.getStatPoints(EnemyCharacter.STAT_DAMAGE);
+        return new EnemyCharacterDamageDealtCalculator().getDamage(this);
     }
 
     public int getNumGold()
