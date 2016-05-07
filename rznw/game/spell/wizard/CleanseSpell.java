@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class CleanseSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Cleanse";
+    }
+
+    public String getDescription()
+    {
+        return "Has a chance to heal all status effects currently affecting you. MP cost decreases and chance to succeed increases as spell level increases.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Cleanse");

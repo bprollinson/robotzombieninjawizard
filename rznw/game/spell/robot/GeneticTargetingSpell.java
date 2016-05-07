@@ -20,6 +20,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class GeneticTargetingSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Genetic Targeting";
+    }
+
+    public String getDescription()
+    {
+        return "Deals damage to the nearest enemy, and all on the current dungeon level of the same type. The nearest enemies is targeted automatically regardless of position.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Genetic Targeting");

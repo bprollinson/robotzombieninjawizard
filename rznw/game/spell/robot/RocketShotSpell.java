@@ -15,6 +15,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class RocketShotSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Rocket Shot";
+    }
+
+    public String getDescription()
+    {
+        return "Shoots an exploding projectile at your enemies, also causing damage to enemies around the blast area. The rocket travels in a straight line.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Rocket Shot");

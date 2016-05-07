@@ -13,6 +13,16 @@ import rznw.map.element.MapElement;
 
 public class OverloadSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Overload";
+    }
+
+    public String getDescription()
+    {
+        return "You explode, dealing damage to yourself and nearby enemies.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Overload");

@@ -18,6 +18,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ExtractWeaponSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Extract Weapon";
+    }
+
+    public String getDescription()
+    {
+        return "Damages a nearby enemy. Your character will possibly steal an item from that enemy.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Extract Weapon");

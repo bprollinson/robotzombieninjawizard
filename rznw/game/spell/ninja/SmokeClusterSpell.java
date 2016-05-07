@@ -16,6 +16,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class SmokeClusterSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Smoke Cluster";
+    }
+
+    public String getDescription()
+    {
+        return "Throws a projectile in a straight line. When this collides with an enemy, it explodes, confusing all enemies within a radius of the impact.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Smoke Bomb");

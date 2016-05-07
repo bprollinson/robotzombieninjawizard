@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class ReversePainSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Reverse Pain";
+    }
+
+    public String getDescription()
+    {
+        return "Until your next turn, damage you would receive from enemies is converted into restored HP.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Reverse Pain");

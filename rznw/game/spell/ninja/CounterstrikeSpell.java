@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class CounterstrikeSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Counterstrike";
+    }
+
+    public String getDescription()
+    {
+        return "The next time you are damaged by an enemy, you have a chance to auto-attack that enemy, dealing damage.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Counterstrike");

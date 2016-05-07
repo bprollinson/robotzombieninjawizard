@@ -8,6 +8,16 @@ import rznw.map.element.MapElement;
 
 public class UpdraftSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Updraft";
+    }
+
+    public String getDescription()
+    {
+        return "Allows you to travel back up to the previous dungeon level. This regenerates a random level of difficulty one less than the current level. Can't be used on the first dungeon level.";
+    }
+
     public boolean canCast(GameWorld gameWorld, int spellPoints)
     {
         if (!super.canCast(gameWorld, spellPoints))

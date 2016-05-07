@@ -18,6 +18,16 @@ import rznw.map.element.Void;
 
 public class TeleportSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Teleport";
+    }
+
+    public String getDescription()
+    {
+        return "Allows you to escape your surroundings, moving you to a safer location. As your spell level increases, the probability of arriving in a safe location increases.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Teleport");

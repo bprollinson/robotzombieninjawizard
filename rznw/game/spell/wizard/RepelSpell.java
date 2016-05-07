@@ -17,6 +17,16 @@ import rznw.map.element.MapElement;
 
 public class RepelSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Repel";
+    }
+
+    public String getDescription()
+    {
+        return "Pushes nearby enemies away. The distance and radius of effect increase with your spell level.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Repel");

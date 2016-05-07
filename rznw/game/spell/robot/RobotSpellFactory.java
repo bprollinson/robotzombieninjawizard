@@ -39,6 +39,8 @@ public class RobotSpellFactory extends SpellFactory
                 return new MeatShieldSpell();
             case 14:
                 return new SignalWeaponSpell();
+            case 15:
+                return new PowerSearchSpell();
             default:
                 return null;
         }

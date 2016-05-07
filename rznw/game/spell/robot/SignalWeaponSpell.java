@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class SignalWeaponSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Signal Weapon";
+    }
+
+    public String getDescription()
+    {
+        return "Temporarily grants you the possibility of confusing enemies during melee combat.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Signal Weapon");

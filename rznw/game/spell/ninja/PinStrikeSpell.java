@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class PinStrikeSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Pin Strike";
+    }
+
+    public String getDescription()
+    {
+        return "Throws a projectile in a straight line. When this collides with an enemy, that enemy damaged and is pushed back.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Pin Strike");

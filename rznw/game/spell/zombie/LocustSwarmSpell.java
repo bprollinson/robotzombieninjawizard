@@ -16,6 +16,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class LocustSwarmSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Locust Swarm";
+    }
+
+    public String getDescription()
+    {
+        return "Shoots a projectile that chains between enemies. Travels in a straight line, then jumps between enemies within a radius of eachother. Attacks each enemy at most once.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Locust Swarm");

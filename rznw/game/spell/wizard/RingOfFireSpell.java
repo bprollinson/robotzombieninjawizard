@@ -9,6 +9,16 @@ import rznw.map.element.MapElement;
 
 public class RingOfFireSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Ring of Fire";
+    }
+
+    public String getDescription()
+    {
+        return "Creates a ring of fire three spaces away from you. The damage and duration increase as your spell level increases.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Ring of Fire");

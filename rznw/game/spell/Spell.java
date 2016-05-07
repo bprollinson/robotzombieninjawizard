@@ -10,6 +10,9 @@ public abstract class Spell
     public static final int DIRECTION_LEFT = 2;
     public static final int DIRECTION_RIGHT = 3;
 
+    public abstract String getDisplayName();
+    public abstract String getDescription();
+
     public abstract void cast(GameWorld gameWorld, int spellPoints);
     public abstract void cast(GameWorld gameWorld, int spellPoints, int direction);
     public abstract int getMPCost(MainCharacter character, int spellPoints);

@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class ResistDamageSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Resist Damage";
+    }
+
+    public String getDescription()
+    {
+        return "Reduce all damage you take for a period of time by increasing your defense. This affects all types of damage.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Resist Damage");

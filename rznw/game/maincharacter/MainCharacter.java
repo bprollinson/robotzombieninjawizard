@@ -109,9 +109,15 @@ public abstract class MainCharacter extends Character
 
     public abstract String getSpellCategory(int categoryNumber);
 
-    public abstract String getSpellName(int spellNumber);
+    public String getSpellName(int spellNumber)
+    {
+        return this.getSpellFactory().getSpell(spellNumber).getDisplayName();
+    }
 
-    public abstract String getSpellDescription(int spellNumber);
+    public String getSpellDescription(int spellNumber)
+    {
+        return this.getSpellFactory().getSpell(spellNumber).getDescription();
+    }
 
     public int getLevel()
     {

@@ -14,6 +14,16 @@ import java.util.Iterator;
 
 public class ExplodeZombiesSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Explode Zombies";
+    }
+
+    public String getDescription()
+    {
+        return "Each zombie you control explodes, dealing damage to all enemies within a radius of it.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Explode Zombies");

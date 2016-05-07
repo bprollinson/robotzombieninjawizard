@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class MeatShieldSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Meat Shield";
+    }
+
+    public String getDescription()
+    {
+        return "Damages a nearby enemy. If this attack kills that enemy, your defense is temporarily increased.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Meat Shield");

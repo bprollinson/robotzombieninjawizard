@@ -10,6 +10,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class RocketJumpSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Rocket Jump";
+    }
+
+    public String getDescription()
+    {
+        return "Allows you to zip across the map, jumping over obstacles in your path.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Rocket Jump");

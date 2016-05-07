@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class ThornSkinSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Thorn Skin";
+    }
+
+    public String getDescription()
+    {
+        return "Enemies take damage when physically attacking you for a period of time. This does not affect ranged attacks.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Thorn Skin");

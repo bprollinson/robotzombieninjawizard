@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class BarbedSkinSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Barbed Skin";
+    }
+
+    public String getDescription()
+    {
+        return "Enemies have a chance to become stunned when physically attacking you for a period of time. This does not affect ranged attacks.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Barbed Skin");

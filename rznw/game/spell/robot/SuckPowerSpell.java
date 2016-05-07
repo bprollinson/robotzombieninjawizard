@@ -12,6 +12,16 @@ import rznw.map.element.MapElement;
 
 public class SuckPowerSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Suck Power";
+    }
+
+    public String getDescription()
+    {
+        return "Steals MP from nearby enemies.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Suck Power");

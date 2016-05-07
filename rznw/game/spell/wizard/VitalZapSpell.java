@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class VitalZapSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Vital Zap";
+    }
+
+    public String getDescription()
+    {
+        return "Shoots a projectile in the chosen direction. This projectile deals damage to an opponent equal to a percentage of that opponent's remaining HP. The percentage increases as your spell level increases.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Vital Zap");

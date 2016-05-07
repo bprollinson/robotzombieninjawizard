@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class RicochetBlastSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Ricochet Blast";
+    }
+
+    public String getDescription()
+    {
+        return "Shoots a projectile in the chosen direction. An enemy hit by this projectile will be shot back, hitting and damaging other enemies in a chain reaction.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Ricochet Blast");

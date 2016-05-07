@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class PoisonSkinSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Poison Skin";
+    }
+
+    public String getDescription()
+    {
+        return "Enemies become poisoned when physically attacking you for a period of time. This does not affect ranged attacks.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Poison Skin");

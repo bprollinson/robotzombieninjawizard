@@ -21,6 +21,16 @@ import java.util.List;
 
 public class MultiplyZombiesSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Multiply Zombies";
+    }
+
+    public String getDescription()
+    {
+        return "Each zombie you control has a chance to multiply, creating an additional zombie.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Multiply Zombies");

@@ -8,6 +8,16 @@ import rznw.map.element.MapElement;
 
 public class BlotchSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Blotch";
+    }
+
+    public String getDescription()
+    {
+        return "Leaves a poison spot on the ground. Enemies who come into contact with this spot will become poisoned.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Blotch");

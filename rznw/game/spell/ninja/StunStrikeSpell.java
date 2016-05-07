@@ -12,6 +12,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class StunStrikeSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Stun Strike";
+    }
+
+    public String getDescription()
+    {
+        return "You lunge in a straight line until an enemy is encountered. You damage that enemy, with a chance to stun it.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Stun Strike");

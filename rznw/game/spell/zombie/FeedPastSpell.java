@@ -12,6 +12,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class FeedPastSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Feed Past";
+    }
+
+    public String getDescription()
+    {
+        return "Deals damage to an enemy and grants you some experience. Has the same range as melee combat.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Feed Past");

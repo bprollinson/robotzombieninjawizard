@@ -13,6 +13,16 @@ import rznw.map.element.MapElement;
 
 public class LevelUpSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Level Up";
+    }
+
+    public String getDescription()
+    {
+        return "Levels up all enemies within a radius of you. This increases the rewards achieved for defeating them, but also increases their power.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Level Up");

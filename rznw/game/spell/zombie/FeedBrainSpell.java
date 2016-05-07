@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class FeedBrainSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Feed Brain";
+    }
+
+    public String getDescription()
+    {
+        return "Deals damage to an enemy and temporarily increases your magic power. Has the same range as melee combat.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Feed Brain");

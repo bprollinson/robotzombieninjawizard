@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class PowerDownSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Power Down";
+    }
+
+    public String getDescription()
+    {
+        return "Powers down your systems to regenerate lost health.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Power Down");

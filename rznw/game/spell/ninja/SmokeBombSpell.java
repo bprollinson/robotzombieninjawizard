@@ -18,6 +18,16 @@ import rznw.map.element.Void;
 
 public class SmokeBombSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Smoke Bomb";
+    }
+
+    public String getDescription()
+    {
+        return "The next time you are damaged by an enemy, you have a chance to escape to a safe location.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Smoke Bomb");

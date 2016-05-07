@@ -12,6 +12,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ParalyzingBlastSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Paralyzing Blast";
+    }
+
+    public String getDescription()
+    {
+        return "Damages an enemy and has a chance to stun them. The blast travels in a straight line.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Paralyzing Blast");

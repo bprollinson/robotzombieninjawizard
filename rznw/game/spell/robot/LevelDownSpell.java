@@ -13,6 +13,16 @@ import rznw.map.element.MapElement;
 
 public class LevelDownSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Level Down";
+    }
+
+    public String getDescription()
+    {
+        return "Levels down all enemies within a radius of you. This decreases their power, but also decreases the rewards achieved for defeating them.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Level Down");

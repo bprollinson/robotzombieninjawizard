@@ -16,6 +16,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class StunBombSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Stun Bomb";
+    }
+
+    public String getDescription()
+    {
+        return "Throws a projectile in a straight line. When this collides with an enemy, it explodes, causing damage to all enemies within a radius of the impact, and has a chance to stun those enemies.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Stun Bomb");

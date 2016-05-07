@@ -11,6 +11,16 @@ import rznw.map.element.Projectile;
 
 public class ShurikenStarSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Shuriken Star";
+    }
+
+    public String getDescription()
+    {
+        return "Throws a projectile in all eight directions.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Shuriken Star");

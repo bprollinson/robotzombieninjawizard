@@ -13,6 +13,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class PoisonCloudSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Poison Cloud";
+    }
+
+    public String getDescription()
+    {
+        return "Poisons all enemies within an area. The area can be in any of the four directions from you.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Poison Cloud");

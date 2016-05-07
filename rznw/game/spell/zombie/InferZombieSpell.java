@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class InferZombieSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Infer Zombie";
+    }
+
+    public String getDescription()
+    {
+        return "The next enemy killed by you or one of your zombies will turn into a zombie. This zombie will independently battle enemies in melee combat. It will continue to battle until its HP are exhausted.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Infer Zombie");

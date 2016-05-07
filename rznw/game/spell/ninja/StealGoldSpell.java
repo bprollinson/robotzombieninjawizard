@@ -13,6 +13,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class StealGoldSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Steal Gold";
+    }
+
+    public String getDescription()
+    {
+        return "Has a chance to steal gold from an ememy within melee combat range.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Steal Gold");

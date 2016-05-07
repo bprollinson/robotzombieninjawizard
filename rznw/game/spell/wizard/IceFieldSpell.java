@@ -14,6 +14,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class IceFieldSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Ice Field";
+    }
+
+    public String getDescription()
+    {
+        return "Damages all enemies within a radius of you, with a chance to freeze each one. Radius and chance to freeze increase as spell level increases.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Ice Field");

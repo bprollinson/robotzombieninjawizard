@@ -10,6 +10,16 @@ import rznw.map.element.RockWall;
 
 public class RockWallSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Rock Wall";
+    }
+
+    public String getDescription()
+    {
+        return "Generates a barrier on any side of you, protecting you from enemeny attack. The length, distance and duration of the barrier depend on your spell level. The wall can only be damaged by melee attack but cannot dodge attacks.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Rock Wall");

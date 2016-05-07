@@ -14,6 +14,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class ElectricFieldSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Electric Field";
+    }
+
+    public String getDescription()
+    {
+        return "Causes widespread damage over an area on the map in any of the four directions from you.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Electric Field");

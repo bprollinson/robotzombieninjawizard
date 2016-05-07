@@ -12,6 +12,16 @@ import rznw.map.element.MapElement;
 
 public class BoostGeneticsSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Boost Genetics";
+    }
+
+    public String getDescription()
+    {
+        return "Increases the drop rate of enemies within a radius of you. This increases both the amount of gold and the frequency of items and equipment dropped.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Boost Genetics");

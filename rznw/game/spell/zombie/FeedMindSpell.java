@@ -12,6 +12,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class FeedMindSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Feed Mind";
+    }
+
+    public String getDescription()
+    {
+        return "Deals damage to an enemy and has a chance to confuse that enemy. Has the same range as melee combat.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Feed Mind");

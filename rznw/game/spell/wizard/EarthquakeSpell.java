@@ -13,6 +13,16 @@ import rznw.map.element.MapElement;
 
 public class EarthquakeSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Earthquake";
+    }
+
+    public String getDescription()
+    {
+        return "The earth trembles, damaging all enemies within a radius of you. This radius increases with your spell level.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Earthquake");

@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class InfectiousRageSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Infectious Rage";
+    }
+
+    public String getDescription()
+    {
+        return "Increase all damage you deal for a period time. Using this spell will poison you.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Infectious Rage");

@@ -12,6 +12,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class HeatRaySpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Heat Ray";
+    }
+
+    public String getDescription()
+    {
+        return "Travels through enemies, damaging them all until a wall is encountered.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Heat Ray");

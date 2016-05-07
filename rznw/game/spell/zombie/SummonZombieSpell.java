@@ -17,6 +17,16 @@ import rznw.map.element.Void;
 
 public class SummonZombieSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Summon Zombie";
+    }
+
+    public String getDescription()
+    {
+        return "Summons a zombie that will independently battle enemies. This zombie will attack enemies in melee combat. It will continue to battle until its HP are exhausted.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Summon Zombie");

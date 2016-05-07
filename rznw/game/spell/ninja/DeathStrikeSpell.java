@@ -6,6 +6,16 @@ import rznw.map.GameWorld;
 
 public class DeathStrikeSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Death Strike";
+    }
+
+    public String getDescription()
+    {
+        return "The next time you are damaged by an enemy, you have a chance to auto-kill that enemy.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Death Strike");

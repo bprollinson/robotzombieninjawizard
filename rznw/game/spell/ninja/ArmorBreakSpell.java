@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class ArmorBreakSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Armor Break";
+    }
+
+    public String getDescription()
+    {
+        return "You lunge in a straight line until an enemy is encountered. You damage that enemy and decrease its defensive capability.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Armor Break");

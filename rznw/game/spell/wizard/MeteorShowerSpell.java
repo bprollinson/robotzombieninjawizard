@@ -14,6 +14,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class MeteorShowerSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Meteor Shower";
+    }
+
+    public String getDescription()
+    {
+        return "Meteors rain down from the sky, crushing your enemies. The radius and concentration of the meteors varies with your spell level.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Meteor Shower");

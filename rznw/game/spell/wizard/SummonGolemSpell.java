@@ -17,6 +17,16 @@ import rznw.map.element.Void;
 
 public class SummonGolemSpell extends UndirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Summon Golem";
+    }
+
+    public String getDescription()
+    {
+        return "Summons a golem to fight alongside you. This golem will wander around independently, continuing to battle until its HP are exhausted. Only one golem may be summoned at any time.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints)
     {
         System.out.println("Casting Summon Golem");

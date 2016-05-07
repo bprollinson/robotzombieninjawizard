@@ -15,6 +15,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class FireballSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Fireball";
+    }
+
+    public String getDescription()
+    {
+        return "Shoot a projectile in any direction. When this projectile hits an enemy or object, it explodes, damaging all enemies close to the blast area. The blast radius increases with your spell level.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Fireball");

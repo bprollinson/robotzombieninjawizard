@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class FeedFleshSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Feed Flesh";
+    }
+
+    public String getDescription()
+    {
+        return "Deals damage to an enemy and heals some of your HP. Has the same range as melee combat.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Feed Flesh");

@@ -11,6 +11,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class PoisonStrikeSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Poison Strike";
+    }
+
+    public String getDescription()
+    {
+        return "You lunge in a straight line until an enemy is encountered. You damage that enemy, poisoning it.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Poison Strike");

@@ -15,6 +15,16 @@ import rznw.utility.RandomNumberGenerator;
 
 public class StealEquipmentSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Steal Equipment";
+    }
+
+    public String getDescription()
+    {
+        return "Has a chance to steal a piece of equipment from an enemy within melee combat range.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Steal Equipment");

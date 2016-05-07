@@ -14,6 +14,16 @@ import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class RoundhouseStrikeSpell extends DirectedSpell
 {
+    public String getDisplayName()
+    {
+        return "Roundhouse Strike";
+    }
+
+    public String getDescription()
+    {
+        return "You lunge in a straight line until an enemy is encountered. Then, you perform a roundhouse kick, damaging all enemies in spaces adjacent to you.";
+    }
+
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
         System.out.println("Casting Roundhouse Strike");
