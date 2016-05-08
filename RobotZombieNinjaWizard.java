@@ -7,7 +7,7 @@ import rznw.ui.DispatchKeyListener;
 import rznw.ui.MainGameFrame;
 import rznw.ui.StateTransitionKeyListenerContainer;
 
-public class Test
+public class RobotZombieNinjaWizard
 {
     public static void main(String[] args)
     {
