@@ -32,10 +32,11 @@ public class MainMenuRenderer
         this.renderCenteredString(8, "Spells");
         this.renderCenteredString(10, "Inventory");
         this.renderCenteredString(12, "Equipment");
-        this.renderCenteredString(14, "Save Game");
-        this.renderCenteredString(16, "Load Game");
-        this.renderCenteredString(18, "New Game");
-        this.renderCenteredString(20, "Exit");
+        this.renderCenteredString(14, "Instructions");
+        this.renderCenteredString(16, "Save Game");
+        this.renderCenteredString(18, "Load Game");
+        this.renderCenteredString(20, "New Game");
+        this.renderCenteredString(22, "Exit");
 
         this.renderCursor(state);
     }
@@ -50,6 +51,6 @@ public class MainMenuRenderer
     {
         int row = MainMenuRenderer.MENU_ENTRY_FIRST_ROW + state.getEntryNumber() * MainMenuRenderer.MENU_ROW_HEIGHT;
 
-        this.frame.renderDisplayCharacter(row, 13, 'X');
+        this.frame.renderDisplayCharacter(row, 12, 'X');
     }
 }

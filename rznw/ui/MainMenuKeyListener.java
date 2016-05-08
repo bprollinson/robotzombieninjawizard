@@ -9,10 +9,11 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
     private static final int ENTRY_SPELLS = 2;
     private static final int ENTRY_INVENTORY = 3;
     private static final int ENTRY_EQUIPMENT = 4;
-    private static final int ENTRY_SAVE = 5;
-    private static final int ENTRY_LOAD = 6;
-    private static final int ENTRY_NEW_GAME = 7;
-    private static final int ENTRY_EXIT = 8;
+    private static final int ENTRY_INSTRUCTIONS = 5;
+    private static final int ENTRY_SAVE = 6;
+    private static final int ENTRY_LOAD = 7;
+    private static final int ENTRY_NEW_GAME = 8;
+    private static final int ENTRY_EXIT = 9;
 
     private MainMenuRenderer mainMenuRenderer;
     private MenuState state;
@@ -81,6 +82,11 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EQUIPMENT)
         {
             return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;
+        }
+
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_INSTRUCTIONS)
+        {
+            return DispatchKeyListener.STATE_INSTRUCTIONS_SCREEN;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_SAVE)
