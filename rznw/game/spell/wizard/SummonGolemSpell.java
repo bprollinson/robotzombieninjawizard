@@ -11,6 +11,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.game.SummonedGolem;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapScraper;
 import rznw.map.element.MapElement;
 import rznw.map.element.SummonedGolemMapElement;
 import rznw.map.element.Void;
@@ -25,6 +26,18 @@ public class SummonGolemSpell extends UndirectedSpell
     public String getDescription()
     {
         return "Summons a golem to fight alongside you. This golem will wander around independently, continuing to battle until its HP are exhausted. Only one golem may be summoned at any time.";
+    }
+
+    public boolean canCast(GameWorld gameWorld, int spellPoints)
+    {
+        MapScraper mapScraper = new MapScraper();
+
+        if (mapScraper.mapContainsElementOfType(gameWorld.getMap(), SummonedGolemMapElement.class))
+        {
+            return false;
+        }
+
+        return super.canCast(gameWorld, spellPoints);
     }
 
     public void cast(GameWorld gameWorld, int spellPoints)

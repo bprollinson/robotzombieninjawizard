@@ -73,4 +73,22 @@ public class MapScraper
 
         return enemies;
     }
+
+    public boolean mapContainsElementOfType(Map map, Class clazz)
+    {
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                MapElement element = map.getElement(row, column);
+
+                if (element != null && element.getClass().isAssignableFrom(clazz))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
