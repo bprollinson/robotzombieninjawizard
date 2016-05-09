@@ -82,7 +82,7 @@ public class MapScraper
             {
                 MapElement element = map.getElement(row, column);
 
-                if (element != null && element.getClass().isAssignableFrom(clazz))
+                if (element != null && clazz.isInstance(element))
                 {
                     return true;
                 }
