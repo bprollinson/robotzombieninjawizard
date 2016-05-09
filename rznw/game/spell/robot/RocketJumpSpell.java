@@ -5,6 +5,7 @@ import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.map.element.Void;
 import rznw.map.element.Wall;
 import rznw.turn.positionchange.SpellBasedPositionChange;
 
@@ -37,7 +38,7 @@ public class RocketJumpSpell extends DirectedSpell
         int row = startRow;
         int column = startColumn;
 
-        while (!(map.getElement(row, column) instanceof Wall))
+        while (!(map.getElement(row, column) instanceof Wall) && !(map.getElement(row, column) instanceof Void))
         {
             row += positionChange.getDeltaRow();
             column += positionChange.getDeltaColumn();
