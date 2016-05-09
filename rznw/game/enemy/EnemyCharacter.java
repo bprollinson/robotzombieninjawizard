@@ -93,7 +93,7 @@ public abstract class EnemyCharacter extends Character
 
     public int getNumGold()
     {
-        return 20;
+        return 20 + 5 * this.level;
     }
 
     public boolean isDroppingItems(MainCharacter mainCharacter)
@@ -120,7 +120,7 @@ public abstract class EnemyCharacter extends Character
 
     public int getExperienceReward()
     {
-        return 20;
+        return 20 + 5 * this.level;
     }
 
     public boolean meleeAttackHits()
