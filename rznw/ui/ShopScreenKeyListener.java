@@ -344,7 +344,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 }
             }
 
-            if (item instanceof Shield)
+            if (item.isShield())
             {
                 Shield equippedShield = equipment.getEquippedShield();
                 boolean isEquippedShield = equippedShield != null && item.getClass().equals(equippedShield.getClass());

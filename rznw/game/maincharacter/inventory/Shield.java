@@ -26,4 +26,9 @@ public abstract class Shield extends EquipmentItem
     {
         return 0;
     }
+
+    public boolean isShield()
+    {
+        return true;
+    }
 }

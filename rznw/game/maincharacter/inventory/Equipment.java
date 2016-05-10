@@ -131,7 +131,7 @@ public class Equipment
         for (int i = 0; i < this.equipmentGroups.size(); i++)
         {
             EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
-            if (equipmentGroup.getItem() instanceof Shield)
+            if (equipmentGroup.getItem().isShield())
             {
                 result++;
             }
@@ -146,12 +146,12 @@ public class Equipment
 
         for (int i = 0; i < this.equipmentGroups.size(); i++)
         {
-            if (pos == targetPosition && this.equipmentGroups.get(i).getItem() instanceof Shield)
+            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().isShield())
             {
                 return this.equipmentGroups.get(i);
             }
 
-            if (this.equipmentGroups.get(i).getItem() instanceof Shield)
+            if (this.equipmentGroups.get(i).getItem().isShield())
             {
                 pos++;
             }
