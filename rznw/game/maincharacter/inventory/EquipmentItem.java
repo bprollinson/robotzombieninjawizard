@@ -26,4 +26,9 @@ public abstract class EquipmentItem
     {
         return false;
     }
+
+    public boolean isArmor()
+    {
+        return false;
+    }
 }

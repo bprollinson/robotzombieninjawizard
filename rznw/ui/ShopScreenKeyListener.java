@@ -355,7 +355,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 }
             }
 
-            if (item instanceof Armor)
+            if (item.isArmor())
             {
                 Armor equippedArmor = equipment.getEquippedArmor();
                 boolean isEquippedArmor = equippedArmor != null && item.getClass().equals(equippedArmor.getClass());

@@ -15,6 +15,11 @@ public abstract class Armor extends EquipmentItem
         return 0;
     }
 
+    public boolean isArmor()
+    {
+        return true;
+    }
+
     public void step(MainCharacter character)
     {
     }
