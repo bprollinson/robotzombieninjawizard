@@ -97,7 +97,7 @@ public class ExtractWeaponSpell extends DirectedSpell
             return null;
         }
 
-        if (drop instanceof Weapon)
+        if (drop.isWeapon())
         {
             return (Weapon)drop;
         }

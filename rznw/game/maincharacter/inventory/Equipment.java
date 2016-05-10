@@ -75,7 +75,7 @@ public class Equipment
         for (int i = 0; i < this.equipmentGroups.size(); i++)
         {
             EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
-            if (equipmentGroup.getItem() instanceof Weapon)
+            if (equipmentGroup.getItem().isWeapon())
             {
                 result++;
             }
@@ -90,12 +90,12 @@ public class Equipment
 
         for (int i = 0; i < this.equipmentGroups.size(); i++)
         {
-            if (pos == targetPosition && this.equipmentGroups.get(i).getItem() instanceof Weapon)
+            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().isWeapon())
             {
                 return this.equipmentGroups.get(i);
             }
 
-            if (this.equipmentGroups.get(i).getItem() instanceof Weapon)
+            if (this.equipmentGroups.get(i).getItem().isWeapon())
             {
                 pos++;
             }

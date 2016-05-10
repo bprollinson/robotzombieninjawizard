@@ -13,6 +13,11 @@ public abstract class Weapon extends EquipmentItem
         return 0;
     }
 
+    public boolean isWeapon()
+    {
+        return true;
+    }
+
     public void step(MainCharacter character)
     {
     }

@@ -333,7 +333,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
             boolean itemSold = false;
 
-            if (item instanceof Weapon)
+            if (item.isWeapon())
             {
                 Weapon equippedWeapon = equipment.getEquippedWeapon();
                 boolean isEquippedWeapon = equippedWeapon != null && item.getClass().equals(equippedWeapon.getClass());

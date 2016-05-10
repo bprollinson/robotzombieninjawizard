@@ -21,4 +21,9 @@ public abstract class EquipmentItem
     {
         return (int)Math.floor(0.6 * this.getValue());
     }
+
+    public boolean isWeapon()
+    {
+        return false;
+    }
 }
