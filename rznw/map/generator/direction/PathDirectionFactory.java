@@ -39,29 +39,9 @@ public class PathDirectionFactory
 
         for (int i = 0; i < direction.length; i++)
         {
-            oppositeDirection[i] = PathDirectionFactory.getOppositeDirection(direction[i]);
+            oppositeDirection[i] = direction[i].getOppositeDirection();
         }
 
         return oppositeDirection;
-    }
-
-    public static PathDirection getOppositeDirection(PathDirection direction)
-    {
-        if (direction instanceof PathDirectionUp)
-        {
-            return new PathDirectionDown();
-        }
-
-        if (direction instanceof PathDirectionDown)
-        {
-            return new PathDirectionUp();
-        }
-
-        if (direction instanceof PathDirectionLeft)
-        {
-            return new PathDirectionRight();
-        }
-
-        return new PathDirectionLeft();
     }
 }

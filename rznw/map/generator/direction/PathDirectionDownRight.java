@@ -11,4 +11,9 @@ public class PathDirectionDownRight extends PathDirection
     {
         return "4";
     }
+
+    public PathDirection getOppositeDirection()
+    {
+        return new PathDirectionUpLeft();
+    }
 }

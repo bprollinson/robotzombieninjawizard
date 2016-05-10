@@ -20,4 +20,6 @@ public abstract class PathDirection
     {
         return this.deltaY;
     }
+
+    public abstract PathDirection getOppositeDirection();
 }

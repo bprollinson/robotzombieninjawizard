@@ -4,7 +4,6 @@ import rznw.map.Map;
 import rznw.map.element.Path;
 import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
-import rznw.map.generator.direction.PathDirectionFactory;
 
 public class PathRenderer
 {
@@ -21,7 +20,7 @@ public class PathRenderer
 
         MapPoint point1 = points[0];
         PathDirection direction1 = path.getDirection(0);
-        direction1 = PathDirectionFactory.getOppositeDirection(direction1);
+        direction1 = direction1.getOppositeDirection();
         int x1 = point1.getX() + direction1.getDeltaX();
         int y1 = point1.getY() + direction1.getDeltaY();
         map.setElement(y1, x1, null);
