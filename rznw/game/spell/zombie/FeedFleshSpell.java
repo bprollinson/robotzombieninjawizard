@@ -35,7 +35,7 @@ public class FeedFleshSpell extends DirectedSpell
         int column = characterElement.getColumn() + positionChange.getDeltaColumn();
 
         MapElement element = map.getElement(row, column);
-        if (element instanceof EnemyMapElement)
+        if (element != null && element.isEnemy())
         {
             int damage = 50 + 10 * spellPoints;
             int healHP = (int)Math.floor(damage / 2);

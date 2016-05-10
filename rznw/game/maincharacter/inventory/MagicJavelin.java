@@ -55,7 +55,7 @@ public class MagicJavelin extends Weapon
         int column = mainCharacter.getMapElement().getColumn() + deltaColumn;
 
         MapElement element = gameWorld.getMap().getElement(row, column);
-        if (element instanceof EnemyMapElement)
+        if (element != null && element.isEnemy())
         {
             System.out.println("Enemy is jabbed!");
 

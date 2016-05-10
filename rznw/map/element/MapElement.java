@@ -38,6 +38,11 @@ public abstract class MapElement
         this.column = column;
     }
 
+    public boolean isEnemy()
+    {
+        return false;
+    }
+
     public void collideWithMainCharacter(GameWorld gameWorld, MainCharacter mainCharacter)
     {
     }

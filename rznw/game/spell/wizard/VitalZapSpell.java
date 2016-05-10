@@ -43,12 +43,14 @@ public class VitalZapSpell extends DirectedSpell
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
-            if (element != null)
+            if (element == null)
             {
-                objectFound = true;
+                continue;
             }
 
-            if (element instanceof EnemyMapElement)
+            objectFound = true;
+
+            if (element != null && element.isEnemy())
             {
                 System.out.println("Hit an enemy");
 

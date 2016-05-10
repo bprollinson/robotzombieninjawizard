@@ -71,7 +71,7 @@ public class CollisionHandler
             return false;
         }
 
-        if (collisionTest instanceof EnemyMapElement && character instanceof EnemyCharacter)
+        if (collisionTest.isEnemy() && character instanceof EnemyCharacter)
         {
             return false;
         }

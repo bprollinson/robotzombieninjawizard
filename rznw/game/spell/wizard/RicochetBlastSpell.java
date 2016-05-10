@@ -43,13 +43,15 @@ public class RicochetBlastSpell extends DirectedSpell
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
-            if (element != null)
+            if (element == null)
             {
-                System.out.println("Found element at: " + row + ", " + column);
-                objectFound = true;
+                continue;
             }
 
-            if (element instanceof EnemyMapElement)
+            System.out.println("Found element at: " + row + ", " + column);
+            objectFound = true;
+
+            if (element.isEnemy())
             {
                 System.out.println("Hit an enemy!");
                 int damage = 10 * spellPoints;
@@ -74,7 +76,7 @@ public class RicochetBlastSpell extends DirectedSpell
             int newRow = element.getRow() + deltaRow;
             int newColumn = element.getColumn() + deltaColumn;
 
-            if (map.getElement(newRow, newColumn) instanceof EnemyMapElement)
+            if (map.getElement(newRow, newColumn) != null && map.getElement(newRow, newColumn).isEnemy())
             {
                 return map.getElement(newRow, newColumn);
             }

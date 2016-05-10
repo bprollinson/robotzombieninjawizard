@@ -3,7 +3,6 @@ package rznw.game;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.ShortestPathCalculator;
-import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Void;
 import rznw.map.generator.MapPoint;
@@ -57,7 +56,7 @@ public abstract class SummonedCharacter extends Character
             for (int column = 0; column < Map.NUM_COLUMNS; column++)
             {
                 MapElement element = gameWorld.getMap().getElement(row, column);
-                if (element instanceof EnemyMapElement)
+                if (element != null && element.isEnemy())
                 {
                     double distance = Math.sqrt(Math.pow(element.getRow() - this.getMapElement().getRow(), 2) + Math.pow(element.getColumn() - this.getMapElement().getColumn(), 2));
                     minDistanceMap.put(new Void(row, column), distance);

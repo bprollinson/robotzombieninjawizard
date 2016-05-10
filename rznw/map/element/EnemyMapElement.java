@@ -8,4 +8,9 @@ public class EnemyMapElement extends CharacterMapElement
     {
         super(row, column, displayCharacter, enemyCharacter);
     }
+
+    public boolean isEnemy()
+    {
+        return true;
+    }
 }

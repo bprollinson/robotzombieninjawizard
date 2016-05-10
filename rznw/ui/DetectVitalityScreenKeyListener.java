@@ -109,7 +109,7 @@ public class DetectVitalityScreenKeyListener extends StateTransitionKeyListener
                 MapElement characterElement = character.getMapElement();
                 double distance = Math.sqrt(Math.pow(characterElement.getRow() - i, 2) + Math.pow(characterElement.getColumn() - j, 2));
 
-                if (element instanceof EnemyMapElement && (visible || distance <= radius)) {
+                if (element != null && element.isEnemy() && (visible || distance <= radius)) {
                     enemies.add((EnemyMapElement)element);
                 }
             }

@@ -48,12 +48,14 @@ public class SmokeClusterSpell extends DirectedSpell
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
-            if (element != null)
+            if (element == null)
             {
-                objectFound = true;
+                continue;
             }
 
-            if (element instanceof EnemyMapElement)
+            objectFound = true;
+
+            if (element.isEnemy())
             {
                 System.out.println("Direct hit " + element);
 
@@ -63,28 +65,25 @@ public class SmokeClusterSpell extends DirectedSpell
                 System.out.println("After: " + enemy.getHP());
             }
 
-            if (element != null)
+            MapElement characterElement = character.getMapElement();
+
+            int radius = 1 + (int)Math.floor(spellPoints / 4);
+            Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
+            for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
             {
-                MapElement characterElement = character.getMapElement();
+                System.out.println("Indirect hit " + element);
+                EnemyCharacter enemy = (EnemyCharacter)iterator.next();
 
-                int radius = 1 + (int)Math.floor(spellPoints / 4);
-                Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
-                for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+                int confuseProbability = 5 * spellPoints;
+                if (RandomNumberGenerator.rollSucceeds(confuseProbability))
                 {
-                    System.out.println("Indirect hit " + element);
-                    EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+                    System.out.println("Confused");
 
-                    int confuseProbability = 5 * spellPoints;
-                    if (RandomNumberGenerator.rollSucceeds(confuseProbability))
-                    {
-                        System.out.println("Confused");
-
-                        enemy.getStatusEffects().confuse();
-                    }
-                    else
-                    {
-                        System.out.println("Not confused");
-                    }
+                    enemy.getStatusEffects().confuse();
+                }
+                else
+                {
+                    System.out.println("Not confused");
                 }
             }
         }

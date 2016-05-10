@@ -53,7 +53,7 @@ public class ShurikenStarSpell extends UndirectedSpell
                 MapElement collisionElement = map.getElement(projectile.getRow(), projectile.getColumn());
                 if (collisionElement != null)
                 {
-                    if (collisionElement instanceof EnemyMapElement)
+                    if (collisionElement != null && collisionElement.isEnemy())
                     {
                         System.out.println("Shuriken Star hit: " + collisionElement.getRow() + "," + collisionElement.getColumn());
                         int damage = 60 + 15 * spellPoints;

@@ -39,7 +39,7 @@ public class ExtractWeaponSpell extends DirectedSpell
         Map map = gameWorld.getMap();
         MapElement collisionElement = map.getElement(positionChange.getFinalRow(), positionChange.getFinalColumn());
 
-        if (collisionElement instanceof EnemyMapElement)
+        if (collisionElement != null && collisionElement.isEnemy())
         {
             System.out.println("Is an enemy");
 

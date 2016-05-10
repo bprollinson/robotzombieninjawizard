@@ -21,7 +21,7 @@ public class MapScraper
             {
                 MapElement element = map.getElement(i, j);
 
-                if (element instanceof EnemyMapElement)
+                if (element != null && element.isEnemy())
                 {
                     EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                     enemies.add(enemyCharacter);
@@ -63,7 +63,7 @@ public class MapScraper
             {
                 MapElement element = map.getElement(i, j);
 
-                if (element instanceof EnemyMapElement && i >= minRow && i <= maxRow && j >= minColumn && j <= maxColumn)
+                if (element != null && element.isEnemy() && i >= minRow && i <= maxRow && j >= minColumn && j <= maxColumn)
                 {
                     EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                     enemies.add(enemyCharacter);

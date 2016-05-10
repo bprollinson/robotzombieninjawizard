@@ -31,7 +31,7 @@ public class MeatShieldSpell extends DirectedSpell
 
         Map map = gameWorld.getMap();
         MapElement element = map.getElement(positionChange.getFinalRow(), positionChange.getFinalColumn());
-        if (element instanceof EnemyMapElement)
+        if (element != null && element.isEnemy())
         {
             int damage = 50 + 10 * spellPoints;
 

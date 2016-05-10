@@ -47,12 +47,14 @@ public class RocketShotSpell extends DirectedSpell
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
-            if (element != null)
+            if (element == null)
             {
-                objectFound = true;
+                continue;
             }
 
-            if (element instanceof EnemyMapElement)
+            objectFound = true;
+
+            if (element.isEnemy())
             {
                 System.out.println("Direct hit " + element);
 
@@ -62,21 +64,18 @@ public class RocketShotSpell extends DirectedSpell
                 System.out.println("After: " + enemy.getHP());
             }
 
-            if (element != null)
+            MapElement characterElement = character.getMapElement();
+
+            int radius = 1 + (int)Math.floor(spellPoints / 4);
+            Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
+            for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
             {
-                MapElement characterElement = character.getMapElement();
+                System.out.println("Indirect hit " + element);
 
-                int radius = 1 + (int)Math.floor(spellPoints / 4);
-                Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
-                for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
-                {
-                    System.out.println("Indirect hit " + element);
-
-                    EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-                    System.out.println("Before: " + enemy.getHP());
-                    enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                    System.out.println("After: " + enemy.getHP());
-                }
+                EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+                System.out.println("Before: " + enemy.getHP());
+                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+                System.out.println("After: " + enemy.getHP());
             }
         }
     }

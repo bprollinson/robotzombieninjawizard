@@ -91,7 +91,7 @@ public class GeneticTargetingSpell extends UndirectedSpell
             {
                 MapElement element = map.getElement(row, column);
 
-                if (element != null && element instanceof EnemyMapElement)
+                if (element != null && element.isEnemy())
                 {
                     EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
 

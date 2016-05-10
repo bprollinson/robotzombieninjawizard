@@ -68,7 +68,7 @@ public class DetectVitalityScreenRenderer
                 MapElement characterElement = character.getMapElement();
                 double distance = Math.sqrt(Math.pow(characterElement.getRow() - i, 2) + Math.pow(characterElement.getColumn() - j, 2));
 
-                if (element instanceof EnemyMapElement && (visible || distance <= radius)) {
+                if (element != null && element.isEnemy() && (visible || distance <= radius)) {
                     displayCharacter = Character.forDigit(digit, 10);
                     digit = (digit + 1) % 10;
                 }

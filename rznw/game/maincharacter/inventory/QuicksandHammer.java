@@ -73,7 +73,7 @@ public class QuicksandHammer extends Weapon
                     continue;
                 }
 
-                if (map.getElement(row, column) instanceof EnemyMapElement)
+                if (map.getElement(row, column) != null && map.getElement(row, column).isEnemy())
                 {
                     enemyElements.add((EnemyMapElement)map.getElement(row, column));
                 }

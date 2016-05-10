@@ -40,7 +40,7 @@ public class StealGoldSpell extends DirectedSpell
         Map map = gameWorld.getMap();
         MapElement element = map.getElement(row, column);
 
-        if (element instanceof EnemyMapElement)
+        if (element != null && element.isEnemy())
         {
             int stealProbability = 5 * spellPoints;
 

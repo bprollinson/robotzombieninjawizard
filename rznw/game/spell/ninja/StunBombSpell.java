@@ -48,12 +48,14 @@ public class StunBombSpell extends DirectedSpell
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
-            if (element != null)
+            if (element == null)
             {
-                objectFound = true;
+                continue;
             }
 
-            if (element instanceof EnemyMapElement)
+            objectFound = true;
+
+            if (element.isEnemy())
             {
                 System.out.println("Direct hit " + element);
 
@@ -63,28 +65,25 @@ public class StunBombSpell extends DirectedSpell
                 System.out.println("After: " + enemy.getHP());
             }
 
-            if (element != null)
+            MapElement characterElement = character.getMapElement();
+
+            int radius = 1 + (int)Math.floor(spellPoints / 4);
+            Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
+            for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
             {
-                MapElement characterElement = character.getMapElement();
+                EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+                System.out.println("Indirect hit " + enemy);
 
-                int radius = 1 + (int)Math.floor(spellPoints / 4);
-                Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
-                for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+                int stunProbability = 5 * spellPoints;
+                if (RandomNumberGenerator.rollSucceeds(stunProbability))
                 {
-                    EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-                    System.out.println("Indirect hit " + enemy);
+                    System.out.println("Stunned");
 
-                    int stunProbability = 5 * spellPoints;
-                    if (RandomNumberGenerator.rollSucceeds(stunProbability))
-                    {
-                        System.out.println("Stunned");
-
-                        enemy.getStatusEffects().freeze();
-                    }
-                    else
-                    {
-                        System.out.println("Not stunned");
-                    }
+                    enemy.getStatusEffects().freeze();
+                }
+                else
+                {
+                    System.out.println("Not stunned");
                 }
             }
         }

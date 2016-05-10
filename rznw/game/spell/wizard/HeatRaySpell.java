@@ -49,12 +49,17 @@ public class HeatRaySpell extends DirectedSpell
             Map map = gameWorld.getMap();
             MapElement element = map.getElement(row, column);
 
+            if (element == null)
+            {
+                continue;
+            }
+
             if (element instanceof Wall)
             {
                 wallFound = true;
             }
 
-            if (element instanceof EnemyMapElement)
+            if (element.isEnemy())
             {
                 Character enemy = ((EnemyMapElement)element).getCharacter();
                 System.out.println("Before: " + enemy.getHP());

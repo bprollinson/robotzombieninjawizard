@@ -294,7 +294,7 @@ public class MainCharacterTurnHandler
             for (int column = 0; column < Map.NUM_COLUMNS; column++)
             {
                 MapElement element = map.getElement(row, column);
-                if (element instanceof EnemyMapElement)
+                if (element != null && element.isEnemy())
                 {
                     Character enemy = ((EnemyMapElement)element).getCharacter();
                     if (enemy.isDead())

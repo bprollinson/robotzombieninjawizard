@@ -54,7 +54,7 @@ public class StunStrikeSpell extends DirectedSpell
         map.setElement(characterRow, characterColumn, characterElement);
 
         MapElement enemyElement = map.getElement(enemyRow, enemyColumn);
-        if (enemyElement instanceof EnemyMapElement)
+        if (enemyElement != null && enemyElement.isEnemy())
         {
             System.out.println("Hitting enemy");
             int damage = 20 + 10 * spellPoints;

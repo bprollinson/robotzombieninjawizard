@@ -51,7 +51,7 @@ public class LocustSwarmSpell extends DirectedSpell
         }
 
         MapElement element = map.getElement(row, column);
-        if (element instanceof EnemyMapElement)
+        if (element != null && element.isEnemy())
         {
             HashSet<EnemyMapElement> currentSet = new HashSet<EnemyMapElement>();
             HashSet<EnemyMapElement> totalSet = new HashSet<EnemyMapElement>();
