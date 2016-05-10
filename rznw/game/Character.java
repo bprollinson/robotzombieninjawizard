@@ -101,6 +101,11 @@ public abstract class Character
         return this.statusEffects;
     }
 
+    public boolean isEnemy()
+    {
+        return false;
+    }
+
     public abstract int getDamage();
 
     public abstract boolean meleeAttackHits();

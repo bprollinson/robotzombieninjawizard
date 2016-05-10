@@ -181,6 +181,11 @@ public abstract class EnemyCharacter extends Character
 
     protected abstract int[] getStatSequence();
 
+    public boolean isEnemy()
+    {
+        return true;
+    }
+
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
     }

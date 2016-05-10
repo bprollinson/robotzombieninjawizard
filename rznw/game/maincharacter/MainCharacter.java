@@ -400,7 +400,12 @@ public abstract class MainCharacter extends Character
             }
         }
 
-        if (this.getStatusEffects().isCounterstriking() && damageSource instanceof EnemyCharacter)
+        if (damageSource == null)
+        {
+            return damage;
+        }
+
+        if (this.getStatusEffects().isCounterstriking() && damageSource.isEnemy())
         {
             System.out.println("Checking counterstrike");
 
@@ -418,7 +423,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().disableCounterstrike();
         }
 
-        if (this.getStatusEffects().thornSkinEnabled() && damageSource instanceof EnemyCharacter)
+        if (this.getStatusEffects().thornSkinEnabled() && damageSource.isEnemy())
         {
             System.out.println("Attacking back with thorn skin");
 
@@ -428,14 +433,14 @@ public abstract class MainCharacter extends Character
             System.out.println("Enemy hp after: " + damageSource.getHP());
         }
 
-        if (this.getStatusEffects().poisonSkinEnabled() && damageSource instanceof EnemyCharacter)
+        if (this.getStatusEffects().poisonSkinEnabled() && damageSource.isEnemy())
         {
             System.out.println("Poisoning with poison skin");
 
             damageSource.getStatusEffects().poison();
         }
 
-        if (this.getStatusEffects().isDeathStriking() && damageSource instanceof EnemyCharacter)
+        if (this.getStatusEffects().isDeathStriking() && damageSource.isEnemy())
         {
             System.out.println("Checking death strike");
 
@@ -449,7 +454,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().disableDeathStrike();
         }
 
-        if (this.getStatusEffects().smokeBombEnabled() && damageSource instanceof EnemyCharacter)
+        if (this.getStatusEffects().smokeBombEnabled() && damageSource.isEnemy())
         {
             System.out.println("Checking smoke bomb");
 
@@ -463,7 +468,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().disableSmokeBomb();
         }
 
-        if (this.getStatusEffects().barbedSkinEnabled() && damageSource instanceof EnemyCharacter)
+        if (this.getStatusEffects().barbedSkinEnabled() && damageSource.isEnemy())
         {
             System.out.println("Checking barbed skin");
 

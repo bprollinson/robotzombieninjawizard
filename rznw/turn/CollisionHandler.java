@@ -71,7 +71,7 @@ public class CollisionHandler
             return false;
         }
 
-        if (collisionTest.isEnemy() && character instanceof EnemyCharacter)
+        if (collisionTest.isEnemy() && character.isEnemy())
         {
             return false;
         }
@@ -130,14 +130,14 @@ public class CollisionHandler
             System.out.println("Summoned character HP before: " + otherCharacter.getHP());
         }
 
-        if (otherCharacter instanceof EnemyCharacter && character instanceof SummonedCharacter)
+        if (otherCharacter.isEnemy() && character instanceof SummonedCharacter)
         {
             System.out.println("Summon is hitting an enemy, HP before: " + otherCharacter.getHP());
         }
 
         int damage = otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
 
-        if (otherCharacter instanceof EnemyCharacter && character instanceof SummonedCharacter)
+        if (otherCharacter.isEnemy() && character instanceof SummonedCharacter)
         {
             System.out.println("Summon is hitting an enemy, HP after: " + otherCharacter.getHP());
         }
@@ -161,12 +161,12 @@ public class CollisionHandler
             }
         }
 
-        if (character instanceof EnemyCharacter && otherCharacter instanceof MainCharacter)
+        if (character.isEnemy() && otherCharacter instanceof MainCharacter)
         {
             ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter, damage, gameWorld);
             ((MainCharacter)otherCharacter).damagedByEnemyCharacter((EnemyCharacter)character, damage, gameWorld);
         }
-        else if (character instanceof MainCharacter && otherCharacter instanceof EnemyCharacter)
+        else if (character instanceof MainCharacter && otherCharacter.isEnemy())
         {
             ((MainCharacter)character).damagedEnemyCharacter((EnemyCharacter)otherCharacter, damage, gameWorld);
             ((EnemyCharacter)otherCharacter).damagedByMainCharacter((MainCharacter)character, damage, gameWorld);

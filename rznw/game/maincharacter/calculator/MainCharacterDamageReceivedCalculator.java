@@ -92,7 +92,7 @@ public class MainCharacterDamageReceivedCalculator
             System.out.println("Padding damage: " + padding);
         }
 
-        if (damageSource instanceof EnemyCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        if (damageSource != null && damageSource.isEnemy() && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
             int bonusDamagePercent = 5 * ((EnemyCharacter)damageSource).getStatPoints(EnemyCharacter.STAT_MANA_BURN);
 
