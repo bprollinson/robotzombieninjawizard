@@ -28,7 +28,7 @@ public class EnemyCharacterDamageReceivedCalculator
 
         damage -= padding;
 
-        if (damageSource instanceof MainCharacter && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        if (damageSource != null && damageSource.isMainCharacter() && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
             int bonusDamagePercent = 5 * ((MainCharacter)damageSource).getStatPoints(14);
 

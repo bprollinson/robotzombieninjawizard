@@ -106,6 +106,11 @@ public abstract class Character
         return false;
     }
 
+    public boolean isMainCharacter()
+    {
+        return false;
+    }
+
     public abstract int getDamage();
 
     public abstract boolean meleeAttackHits();

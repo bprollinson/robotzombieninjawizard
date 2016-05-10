@@ -496,6 +496,11 @@ public abstract class MainCharacter extends Character
         super.heal(HP + bonusHP);
     }
 
+    public boolean isMainCharacter()
+    {
+        return true;
+    }
+
     public void damagedEnemyCharacter(EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         Weapon weapon = this.equipment.getEquippedWeapon();

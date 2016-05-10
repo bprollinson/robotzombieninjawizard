@@ -83,7 +83,7 @@ public class CollisionHandler
     {
         if (!character.meleeAttackHits())
         {
-            if (character instanceof MainCharacter)
+            if (character.isMainCharacter())
             {
                 System.out.println("Main character melee miss!");
             }
@@ -98,7 +98,7 @@ public class CollisionHandler
         Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
         if (otherCharacter.dodgesAttack())
         {
-            if (otherCharacter instanceof MainCharacter)
+            if (otherCharacter.isMainCharacter())
             {
                 System.out.println("Main character dodge!");
 
@@ -116,7 +116,7 @@ public class CollisionHandler
             return;
         }
 
-        if (character instanceof MainCharacter)
+        if (character.isMainCharacter())
         {
             System.out.println("Main character melee hit!");
         }
@@ -161,12 +161,12 @@ public class CollisionHandler
             }
         }
 
-        if (character.isEnemy() && otherCharacter instanceof MainCharacter)
+        if (character.isEnemy() && otherCharacter.isMainCharacter())
         {
             ((EnemyCharacter)character).damagedMainCharacter((MainCharacter)otherCharacter, damage, gameWorld);
             ((MainCharacter)otherCharacter).damagedByEnemyCharacter((EnemyCharacter)character, damage, gameWorld);
         }
-        else if (character instanceof MainCharacter && otherCharacter.isEnemy())
+        else if (character.isMainCharacter() && otherCharacter.isEnemy())
         {
             ((MainCharacter)character).damagedEnemyCharacter((EnemyCharacter)otherCharacter, damage, gameWorld);
             ((EnemyCharacter)otherCharacter).damagedByMainCharacter((MainCharacter)character, damage, gameWorld);

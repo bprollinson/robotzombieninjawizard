@@ -376,7 +376,7 @@ public class StatusEffects
 
     private boolean thickSkinDodgesEffect()
     {
-        if (!(this.character instanceof MainCharacter))
+        if (!this.character.isMainCharacter())
         {
             return false;
         }

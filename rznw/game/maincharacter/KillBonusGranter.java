@@ -14,7 +14,7 @@ public class KillBonusGranter
 {
     public void grantKillBonuses(Character character, Character otherCharacter)
     {
-        if (!(character instanceof MainCharacter) || !(otherCharacter.isEnemy()))
+        if (!character.isMainCharacter() || !otherCharacter.isEnemy())
         {
             return;
         }
