@@ -46,7 +46,7 @@ public class MapPath implements Cloneable
         {
             PathDirection direction = this.path.get(i);
 
-            currentPoint = new MapPoint(currentPoint.getX() + direction.getDeltaColumn(), currentPoint.getY() + direction.getDeltaRow());
+            currentPoint = new MapPoint(currentPoint.getRow() + direction.getDeltaRow(), currentPoint.getColumn() + direction.getDeltaColumn());
             result[i + 1] = currentPoint;
         }
 
@@ -73,7 +73,7 @@ public class MapPath implements Cloneable
 
     public void addPathDirection(PathDirection direction)
     {
-        this.currentPoint = new MapPoint(this.currentPoint.getX() + direction.getDeltaColumn(), this.currentPoint.getY() + direction.getDeltaRow());
+        this.currentPoint = new MapPoint(this.currentPoint.getRow() + direction.getDeltaRow(), this.currentPoint.getColumn() + direction.getDeltaColumn());
         this.path.add(direction);
     }
 

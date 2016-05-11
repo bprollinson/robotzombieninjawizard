@@ -2,37 +2,37 @@ package rznw.map.generator;
 
 public class MapPoint
 {
-    private int x;
-    private int y;
+    private int row;
+    private int column;
 
-    public MapPoint(int x, int y)
+    public MapPoint(int row, int column)
     {
-        this.x = x;
-        this.y = y;
+        this.row = row;
+        this.column = column;
     }
 
-    public int getX()
+    public int getRow()
     {
-        return this.x;
+        return this.row;
     }
 
-    public int getY()
+    public int getColumn()
     {
-        return this.y;
+        return this.column;
     }
 
     public MapPoint clone()
     {
-        return new MapPoint(this.x, this.y);
+        return new MapPoint(this.row, this.column);
     }
 
     public boolean equals(MapPoint otherPoint)
     {
-        return this.x == otherPoint.getX() && this.y == otherPoint.getY();
+        return this.row == otherPoint.getRow() && this.column == otherPoint.getColumn();
     }
 
     public String toString()
     {
-        return "(" + this.x + "," + this.y + ")";
+        return "(" + this.row + "," + this.column + ")";
     }
 }

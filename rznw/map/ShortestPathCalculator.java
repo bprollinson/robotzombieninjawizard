@@ -92,9 +92,9 @@ public class ShortestPathCalculator
                 MapPath path = paths[i].getSubsequentPath(possibleDirection);
                 MapPoint point = path.getCurrentPoint();
 
-                if (point.getY() >= 0 && point.getY() < Map.NUM_ROWS && point.getX() >= 0 && point.getX() < Map.NUM_COLUMNS && !(map.getElement(point.getY(), point.getX()) instanceof Wall) || path.getCurrentPoint().equals(endPoint))
+                if (point.getRow() >= 0 && point.getRow() < Map.NUM_ROWS && point.getColumn() >= 0 && point.getColumn() < Map.NUM_COLUMNS && !(map.getElement(point.getRow(), point.getColumn()) instanceof Wall) || path.getCurrentPoint().equals(endPoint))
                 {
-                    if (voidWalk || !(map.getElement(point.getY(), point.getX()) instanceof Void))
+                    if (voidWalk || !(map.getElement(point.getRow(), point.getColumn()) instanceof Void))
                     {
                         newPaths.add(path);
                     }

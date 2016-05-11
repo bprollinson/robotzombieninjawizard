@@ -14,21 +14,21 @@ public class PathRenderer
         for (int i = 0; i < points.length; i++)
         {
             MapPoint point = points[i];
-            map.setElement(point.getY(), point.getX(), null);
-            map.setBackgroundElement(point.getY(), point.getX(), new Path(point.getY(), point.getX()));
+            map.setElement(point.getRow(), point.getColumn(), null);
+            map.setBackgroundElement(point.getRow(), point.getColumn(), new Path(point.getRow(), point.getColumn()));
         }
 
         MapPoint point1 = points[0];
         PathDirection direction1 = path.getDirection(0);
         direction1 = direction1.getOppositeDirection();
-        int x1 = point1.getX() + direction1.getDeltaColumn();
-        int y1 = point1.getY() + direction1.getDeltaRow();
-        map.setElement(y1, x1, null);
+        int row1 = point1.getRow() + direction1.getDeltaRow();
+        int column1 = point1.getColumn() + direction1.getDeltaColumn();
+        map.setElement(row1, column1, null);
 
         MapPoint point2 = points[points.length - 1];
         PathDirection direction2 = path.getDirection(points.length - 2);
-        int x2 = point2.getX() + direction2.getDeltaColumn();
-        int y2 = point2.getY() + direction2.getDeltaRow();
-        map.setElement(y2, x2, null);
+        int row2 = point2.getRow() + direction2.getDeltaRow();
+        int column2 = point2.getColumn() + direction2.getDeltaColumn();
+        map.setElement(row2, column2, null);
     }
 }

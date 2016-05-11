@@ -124,7 +124,7 @@ public class MapPathGenerator
         for (int i = 0; i < wallPoints.length; i++)
         {
             MapPoint wallPoint = wallPoints[i];
-            possiblePoints[i] = new MapPoint(wallPoint.getX() + directionFromRoom.getDeltaColumn(), wallPoint.getY() + directionFromRoom.getDeltaRow());
+            possiblePoints[i] = new MapPoint(wallPoint.getRow() + directionFromRoom.getDeltaRow(), wallPoint.getColumn() + directionFromRoom.getDeltaColumn());
         }
 
         int randomIndex = RandomNumberGenerator.randomInteger(0, possiblePoints.length - 1);

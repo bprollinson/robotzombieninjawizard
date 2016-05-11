@@ -33,7 +33,7 @@ public class MapAreaPointAggregator
         for (int i = 0; i < numPoints; i++)
         {
             int pointX = area.getStartX() + i + 1;
-            points[i] = new MapPoint(pointX, pointY);
+            points[i] = new MapPoint(pointY, pointX);
         }
 
         return points;
@@ -47,7 +47,7 @@ public class MapAreaPointAggregator
         for (int i = 0; i < numPoints; i++)
         {
             int pointY = area.getStartY() + i + 1;
-            points[i] = new MapPoint(pointX, pointY);
+            points[i] = new MapPoint(pointY, pointX);
         }
 
         return points;

@@ -33,8 +33,8 @@ public abstract class EnemyActionCalculator
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        MapPoint startPoint = new MapPoint(enemyCharacter.getMapElement().getColumn(), enemyCharacter.getMapElement().getRow());
-        MapPoint endPoint = new MapPoint(character.getMapElement().getColumn(), character.getMapElement().getRow());
+        MapPoint startPoint = new MapPoint(enemyCharacter.getMapElement().getRow(), enemyCharacter.getMapElement().getColumn());
+        MapPoint endPoint = new MapPoint(character.getMapElement().getRow(), character.getMapElement().getColumn());
         ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
         MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
 
