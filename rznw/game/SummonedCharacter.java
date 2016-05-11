@@ -47,6 +47,11 @@ public abstract class SummonedCharacter extends Character
         return false;
     }
 
+    public boolean isSummon()
+    {
+        return true;
+    }
+
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
         HashMap<MapElement, Double> minDistanceMap = new HashMap<MapElement, Double>();

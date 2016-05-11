@@ -1,7 +1,6 @@
 package rznw.turn;
 
 import rznw.game.Character;
-import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Shield;
@@ -66,7 +65,7 @@ public class CollisionHandler
             return false;
         }
 
-        if (collisionTest instanceof MainCharacterMapElement && character instanceof SummonedCharacter)
+        if (collisionTest instanceof MainCharacterMapElement && character.isSummon())
         {
             return false;
         }
@@ -125,24 +124,24 @@ public class CollisionHandler
             System.out.println("Enemy character melee hit!");
         }
 
-        if (otherCharacter instanceof SummonedCharacter)
+        if (otherCharacter.isSummon())
         {
             System.out.println("Summoned character HP before: " + otherCharacter.getHP());
         }
 
-        if (otherCharacter.isEnemy() && character instanceof SummonedCharacter)
+        if (otherCharacter.isEnemy() && character.isSummon())
         {
             System.out.println("Summon is hitting an enemy, HP before: " + otherCharacter.getHP());
         }
 
         int damage = otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
 
-        if (otherCharacter.isEnemy() && character instanceof SummonedCharacter)
+        if (otherCharacter.isEnemy() && character.isSummon())
         {
             System.out.println("Summon is hitting an enemy, HP after: " + otherCharacter.getHP());
         }
 
-        if (otherCharacter instanceof SummonedCharacter)
+        if (otherCharacter.isSummon())
         {
             System.out.println("Summoned character HP after: " + otherCharacter.getHP());
         }
