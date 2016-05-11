@@ -2,23 +2,23 @@ package rznw.map.generator.direction;
 
 public abstract class PathDirection
 {
-    protected int deltaX;
-    protected int deltaY;
+    protected int deltaRow;
+    protected int deltaColumn;
 
-    public PathDirection(int deltaX, int deltaY)
+    public PathDirection(int deltaRow, int deltaColumn)
     {
-        this.deltaX = deltaX;
-        this.deltaY = deltaY;
+        this.deltaRow = deltaRow;
+        this.deltaColumn = deltaColumn;
     }
 
-    public int getDeltaX()
+    public int getDeltaRow()
     {
-        return this.deltaX;
+        return this.deltaRow;
     }
 
-    public int getDeltaY()
+    public int getDeltaColumn()
     {
-        return this.deltaY;
+        return this.deltaColumn;
     }
 
     public abstract PathDirection getOppositeDirection();

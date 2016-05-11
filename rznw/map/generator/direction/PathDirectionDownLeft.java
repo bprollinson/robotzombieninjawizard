@@ -4,7 +4,7 @@ public class PathDirectionDownLeft extends PathDirection
 {
     public PathDirectionDownLeft()
     {
-        super(1, -1);
+        super(-1, 1);
     }
 
     public String toString()

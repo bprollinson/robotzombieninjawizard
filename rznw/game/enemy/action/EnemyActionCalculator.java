@@ -42,8 +42,8 @@ public abstract class EnemyActionCalculator
 
         PathDirection firstDirection = path.getDirection(0);
 
-        System.out.println("Direction: " + firstDirection.getDeltaY() + ", " + firstDirection.getDeltaX());
+        System.out.println("Direction: " + firstDirection.getDeltaRow() + ", " + firstDirection.getDeltaColumn());
 
-        return new EnemyMovementAction(new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaY(), firstDirection.getDeltaX()));
+        return new EnemyMovementAction(new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaRow(), firstDirection.getDeltaColumn()));
     }
 }

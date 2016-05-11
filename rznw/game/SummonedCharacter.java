@@ -87,6 +87,6 @@ public abstract class SummonedCharacter extends Character
 
         PathDirection firstDirection = path.getDirection(0);
 
-        return new EnemyAIBasedPositionChange(this, firstDirection.getDeltaY(), firstDirection.getDeltaX());
+        return new EnemyAIBasedPositionChange(this, firstDirection.getDeltaRow(), firstDirection.getDeltaColumn());
     }
 }

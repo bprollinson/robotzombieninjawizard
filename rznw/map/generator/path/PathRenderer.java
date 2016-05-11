@@ -21,14 +21,14 @@ public class PathRenderer
         MapPoint point1 = points[0];
         PathDirection direction1 = path.getDirection(0);
         direction1 = direction1.getOppositeDirection();
-        int x1 = point1.getX() + direction1.getDeltaX();
-        int y1 = point1.getY() + direction1.getDeltaY();
+        int x1 = point1.getX() + direction1.getDeltaColumn();
+        int y1 = point1.getY() + direction1.getDeltaRow();
         map.setElement(y1, x1, null);
 
         MapPoint point2 = points[points.length - 1];
         PathDirection direction2 = path.getDirection(points.length - 2);
-        int x2 = point2.getX() + direction2.getDeltaX();
-        int y2 = point2.getY() + direction2.getDeltaY();
+        int x2 = point2.getX() + direction2.getDeltaColumn();
+        int y2 = point2.getY() + direction2.getDeltaRow();
         map.setElement(y2, x2, null);
     }
 }

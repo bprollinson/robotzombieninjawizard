@@ -2,25 +2,22 @@ package rznw.map.generator.area;
 
 import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
-import rznw.map.generator.direction.PathDirectionUp;
-import rznw.map.generator.direction.PathDirectionDown;
-import rznw.map.generator.direction.PathDirectionLeft;
 
 public class MapAreaPointAggregator
 {
     public MapPoint[] getWallPoints(MapArea area, PathDirection directionOut)
     {
-        if (directionOut instanceof PathDirectionUp)
+        if (directionOut.getDeltaRow() < 0)
         {
             return this.getHorizontalWallPoints(area, area.getStartY());
         }
 
-        if (directionOut instanceof PathDirectionDown)
+        if (directionOut.getDeltaRow() > 0)
         {
             return this.getHorizontalWallPoints(area, area.getEndY());
         }
 
-        if (directionOut instanceof PathDirectionLeft)
+        if (directionOut.getDeltaColumn() < 0)
         {
             return this.getVerticalWallPoints(area, area.getStartX());
         }
