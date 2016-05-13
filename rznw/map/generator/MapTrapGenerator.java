@@ -17,9 +17,9 @@ public class MapTrapGenerator
         for (int i = 0; i < rooms.size(); i++)
         {
             MapArea room = rooms.get(i);
-            for (int row = room.getStartY() + 1; row < room.getEndY(); row++)
+            for (int row = room.getStartRow() + 1; row < room.getEndRow(); row++)
             {
-                for (int column = room.getStartX() + 1; column < room.getEndX(); column++)
+                for (int column = room.getStartColumn() + 1; column < room.getEndColumn(); column++)
                 {
                     if (map.getBackgroundElement(row, column) == null && RandomNumberGenerator.rollSucceeds(this.getTrapProbability(map.getLevel())))
                     {

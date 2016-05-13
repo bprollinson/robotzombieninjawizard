@@ -34,7 +34,7 @@ public class MapTerrainGenerator
 
         Vector<MapArea> rooms = new Vector<MapArea>();
 
-        MapArea largestOpenArea = new MapArea(0, 0, Map.NUM_COLUMNS - 1, Map.NUM_ROWS - 1);
+        MapArea largestOpenArea = new MapArea(0, 0, Map.NUM_ROWS - 1, Map.NUM_COLUMNS - 1);
         int maxRoomSize = largestOpenArea.getSmallestDimensionSize();
 
         while (maxRoomSize >= MapTerrainGenerator.MIN_ROOM_SIZE)
@@ -55,14 +55,14 @@ public class MapTerrainGenerator
         int width = RandomNumberGenerator.randomInteger(MapTerrainGenerator.MIN_ROOM_SIZE, maxRoomSize);
         int height = RandomNumberGenerator.randomInteger(MapTerrainGenerator.MIN_ROOM_SIZE, maxRoomSize);
 
-        int startX = RandomNumberGenerator.randomInteger(largestOpenArea.getStartX(), largestOpenArea.getMaxStartXForRectangle(width));
-        int startY = RandomNumberGenerator.randomInteger(largestOpenArea.getStartY(), largestOpenArea.getMaxStartYForRectangle(height));
+        int startX = RandomNumberGenerator.randomInteger(largestOpenArea.getStartColumn(), largestOpenArea.getMaxStartColumnForRectangle(width));
+        int startY = RandomNumberGenerator.randomInteger(largestOpenArea.getStartRow(), largestOpenArea.getMaxStartRowForRectangle(height));
         int endX = startX + width - 1;
         int endY = startY + height - 1;
 
         this.roomRenderer.renderRoom(map, startX, startY, endX, endY);
 
-        return new MapArea(startX, startY, endX, endY);
+        return new MapArea(startY, startX, endY, endX);
     }
 
     private MapArea calculateLargestOpenArea(Map map, List<MapArea> rooms)
@@ -72,7 +72,7 @@ public class MapTerrainGenerator
             for (int row = 0; row < Map.NUM_ROWS - width; row++) {
                 for (int column = 0; column < Map.NUM_COLUMNS - width; column++) {
 
-                    MapArea openArea = new MapArea(column, row, column + width - 1, row + width - 1);
+                    MapArea openArea = new MapArea(row, column, row + width - 1, column + width - 1);
                     MapArea openAreaWithBorders = this.padder.addBordersToOpenArea(openArea, MapTerrainGenerator.ROOM_BUFFER_SIZE);
                     if (!this.collision.wallExistsWithinRectangle(map, openAreaWithBorders) && !this.collision.areaFallsWithinAnotherArea(openArea, rooms))
                     {

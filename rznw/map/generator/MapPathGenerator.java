@@ -140,7 +140,7 @@ public class MapPathGenerator
             MapArea room = rooms.get(i);
             MapArea paddedRoom = this.padder.addBordersToOpenArea(room, 1);
 
-            this.roomRenderer.renderRoom(paddedMap, paddedRoom.getStartX(), paddedRoom.getStartY(), paddedRoom.getEndX(), paddedRoom.getEndY());
+            this.roomRenderer.renderRoom(paddedMap, paddedRoom.getStartColumn(), paddedRoom.getStartRow(), paddedRoom.getEndColumn(), paddedRoom.getEndRow());
         }
 
         ShortestPathCalculator pathCalculator = new ShortestPathCalculator(paddedMap, true, false);

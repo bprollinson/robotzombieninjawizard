@@ -18,8 +18,8 @@ public class MapStairsGenerator
 
         int roomIndex = RandomNumberGenerator.randomInteger(0, rooms.size() - 1);
         MapArea room = rooms.get(roomIndex);
-        int posX = RandomNumberGenerator.randomInteger(room.getStartX() + 1, room.getEndX() - 1);
-        int posY = RandomNumberGenerator.randomInteger(room.getStartY() + 1, room.getEndY() - 1);
+        int posX = RandomNumberGenerator.randomInteger(room.getStartColumn() + 1, room.getEndColumn() - 1);
+        int posY = RandomNumberGenerator.randomInteger(room.getStartRow() + 1, room.getEndRow() - 1);
 
         map.setBackgroundElement(posY, posX, new Stairs(posY, posX));
     }

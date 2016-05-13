@@ -2,89 +2,89 @@ package rznw.map.generator.area;
 
 public class MapArea
 {
-    private int startX;
-    private int startY;
-    private int endX;
-    private int endY;
+    private int startRow;
+    private int startColumn;
+    private int endRow;
+    private int endColumn;
 
-    public MapArea(int startX, int startY, int endX, int endY)
+    public MapArea(int startRow, int startColumn, int endRow, int endColumn)
     {
-        this.startX = startX;
-        this.startY = startY;
-        this.endX = endX;
-        this.endY = endY;
+        this.startRow = startRow;
+        this.startColumn = startColumn;
+        this.endRow = endRow;
+        this.endColumn = endColumn;
     }
 
-    public int getStartX()
+    public int getStartRow()
     {
-        return this.startX;
+        return this.startRow;
     }
 
-    public int getStartY()
+    public int getStartColumn()
     {
-        return this.startY;
+        return this.startColumn;
     }
 
-    public int getEndX()
+    public int getEndRow()
     {
-        return this.endX;
+        return this.endRow;
     }
 
-    public int getEndY()
+    public int getEndColumn()
     {
-        return this.endY;
+        return this.endColumn;
     }
 
     public int getWidth()
     {
-        return this.endX - this.startX + 1;
+        return this.endColumn - this.startColumn + 1;
     }
 
     public int getHeight()
     {
-        return this.endY - this.startY + 1;
+        return this.endRow - this.startRow + 1;
     }
 
-    public int getMaxStartXForRectangle(int width)
+    public int getMaxStartRowForRectangle(int height)
     {
-        return this.endX - width + 1;
+        return this.endRow - height + 1;
     }
 
-    public int getMaxStartYForRectangle(int height)
+    public int getMaxStartColumnForRectangle(int width)
     {
-        return this.endY - height + 1;
+        return this.endColumn - width + 1;
     }
 
     public int getSmallestDimensionSize()
     {
-        int width = this.getWidth();
         int height = this.getHeight();
+        int width = this.getWidth();
 
-        return Math.min(width, height);
+        return Math.min(height, width);
     }
 
     public boolean fallsWithin(MapArea otherArea)
     {
-        return this.startX > otherArea.getStartX() && this.endX < otherArea.getEndX() && this.startY > otherArea.getStartY() && this.endY < otherArea.getEndY();
+        return this.startColumn > otherArea.getStartColumn() && this.endColumn < otherArea.getEndColumn() && this.startRow > otherArea.getStartRow() && this.endRow < otherArea.getEndRow();
     }
 
     public double getDistanceTo(MapArea otherArea)
     {
-        double centerX = this.getCenterX();
-        double centerY = this.getCenterY();
-        double otherCenterX = otherArea.getCenterX();
-        double otherCenterY = otherArea.getCenterY();
+        double centerRow = this.getCenterRow();
+        double centerColumn = this.getCenterColumn();
+        double otherCenterRow = otherArea.getCenterRow();
+        double otherCenterColumn = otherArea.getCenterColumn();
 
-        return Math.sqrt(Math.pow((otherCenterX - centerX), 2) + Math.pow((otherCenterY - centerY), 2));
+        return Math.sqrt(Math.pow((otherCenterRow - centerRow), 2) + Math.pow((otherCenterColumn - centerColumn), 2));
     }
 
-    public double getCenterX()
+    private double getCenterRow()
     {
-        return (this.startX + this.endX + 1) / 2;
+        return (this.startRow + this.endRow + 1) / 2;
     }
 
-    public double getCenterY()
+    private double getCenterColumn()
     {
-        return (this.startY + this.endY + 1) / 2;
+        return (this.startColumn + this.endColumn + 1) / 2;
     }
 }

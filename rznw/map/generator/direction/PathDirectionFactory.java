@@ -10,22 +10,22 @@ public class PathDirectionFactory
     {
         Vector<PathDirection> result = new Vector<PathDirection>();
 
-        if (startRoom.getEndX() < endRoom.getStartX())
+        if (startRoom.getEndColumn() < endRoom.getStartColumn())
         {
             result.add(new PathDirectionRight());
         }
 
-        if (startRoom.getStartX() > endRoom.getEndX())
+        if (startRoom.getStartColumn() > endRoom.getEndColumn())
         {
             result.add(new PathDirectionLeft());
         }
 
-        if (startRoom.getEndY() < endRoom.getStartY())
+        if (startRoom.getEndRow() < endRoom.getStartRow())
         {
             result.add(new PathDirectionDown());
         }
 
-        if (startRoom.getStartY() > endRoom.getEndY())
+        if (startRoom.getStartRow() > endRoom.getEndRow())
         {
             result.add(new PathDirectionUp());
         }

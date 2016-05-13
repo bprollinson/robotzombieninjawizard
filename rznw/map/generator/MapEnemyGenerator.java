@@ -24,9 +24,9 @@ public class MapEnemyGenerator
         for (int i = 0; i < rooms.size(); i++)
         {
             MapArea room = rooms.get(i);
-            for (int row = room.getStartY() + 1; row < room.getEndY(); row++)
+            for (int row = room.getStartRow() + 1; row < room.getEndRow(); row++)
             {
-                for (int column = room.getStartX() + 1; column < room.getEndX(); column++)
+                for (int column = room.getStartColumn() + 1; column < room.getEndColumn(); column++)
                 {
                     if (map.getElement(row, column) == null && RandomNumberGenerator.rollSucceeds(this.getEnemyProbability(map.getLevel())))
                     {
@@ -56,8 +56,8 @@ public class MapEnemyGenerator
 
         while (!done)
         {
-            row = RandomNumberGenerator.randomInteger(room.getStartY() + 1, room.getEndY() - 1);
-            column = RandomNumberGenerator.randomInteger(room.getStartX() + 1, room.getEndX() + 1);
+            row = RandomNumberGenerator.randomInteger(room.getStartRow() + 1, room.getEndRow() - 1);
+            column = RandomNumberGenerator.randomInteger(room.getStartColumn() + 1, room.getEndColumn() + 1);
 
             if (map.getElement(row, column) == null)
             {
