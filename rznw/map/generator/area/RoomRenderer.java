@@ -17,23 +17,23 @@ public class RoomRenderer
         }
     }
 
-    public void renderRoom(Map map, int startX, int startY, int endX, int endY)
+    public void renderRoom(Map map, int startColumn, int startRow, int endColumn, int endRow)
     {
-        for (int i = startX; i <= endX; i++)
+        for (int i = startColumn; i <= endColumn; i++)
         {
-            map.setElement(startY, i, new Wall(startY, i));
-            map.setElement(endY, i, new Wall(endY, i));
+            map.setElement(startRow, i, new Wall(startRow, i));
+            map.setElement(endRow, i, new Wall(endRow, i));
         }
 
-        for (int i = startY; i <= endY; i++)
+        for (int i = startRow; i <= endRow; i++)
         {
-            map.setElement(i, startX, new Wall(i, startX));
-            map.setElement(i, endX, new Wall(i, endX));
+            map.setElement(i, startColumn, new Wall(i, startColumn));
+            map.setElement(i, endColumn, new Wall(i, endColumn));
         }
 
-        for (int i = startY + 1; i < endY; i++)
+        for (int i = startRow + 1; i < endRow; i++)
         {
-            for (int j = startX + 1; j < endX; j++)
+            for (int j = startColumn + 1; j < endColumn; j++)
             {
                 map.setElement(i, j, null);
             }

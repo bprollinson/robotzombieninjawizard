@@ -52,17 +52,17 @@ public class MapTerrainGenerator
     private MapArea generateRoom(Map map, MapArea largestOpenArea, int maxRoomSize)
     {
         maxRoomSize = Math.min(maxRoomSize, MapTerrainGenerator.MAX_ROOM_SIZE);
-        int width = RandomNumberGenerator.randomInteger(MapTerrainGenerator.MIN_ROOM_SIZE, maxRoomSize);
         int height = RandomNumberGenerator.randomInteger(MapTerrainGenerator.MIN_ROOM_SIZE, maxRoomSize);
+        int width = RandomNumberGenerator.randomInteger(MapTerrainGenerator.MIN_ROOM_SIZE, maxRoomSize);
 
-        int startX = RandomNumberGenerator.randomInteger(largestOpenArea.getStartColumn(), largestOpenArea.getMaxStartColumnForRectangle(width));
-        int startY = RandomNumberGenerator.randomInteger(largestOpenArea.getStartRow(), largestOpenArea.getMaxStartRowForRectangle(height));
-        int endX = startX + width - 1;
-        int endY = startY + height - 1;
+        int startRow = RandomNumberGenerator.randomInteger(largestOpenArea.getStartRow(), largestOpenArea.getMaxStartRowForRectangle(height));
+        int startColumn = RandomNumberGenerator.randomInteger(largestOpenArea.getStartColumn(), largestOpenArea.getMaxStartColumnForRectangle(width));
+        int endRow = startRow + height - 1;
+        int endColumn = startColumn + width - 1;
 
-        this.roomRenderer.renderRoom(map, startX, startY, endX, endY);
+        this.roomRenderer.renderRoom(map, startColumn, startRow, endColumn, endRow);
 
-        return new MapArea(startY, startX, endY, endX);
+        return new MapArea(startRow, startColumn, endRow, endColumn);
     }
 
     private MapArea calculateLargestOpenArea(Map map, List<MapArea> rooms)
