@@ -17,7 +17,7 @@ public class RoomRenderer
         }
     }
 
-    public void renderRoom(Map map, int startColumn, int startRow, int endColumn, int endRow)
+    public void renderRoom(Map map, int startRow, int startColumn, int endRow, int endColumn)
     {
         for (int i = startColumn; i <= endColumn; i++)
         {

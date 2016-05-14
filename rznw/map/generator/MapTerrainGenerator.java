@@ -60,7 +60,7 @@ public class MapTerrainGenerator
         int endRow = startRow + height - 1;
         int endColumn = startColumn + width - 1;
 
-        this.roomRenderer.renderRoom(map, startColumn, startRow, endColumn, endRow);
+        this.roomRenderer.renderRoom(map, startRow, startColumn, endRow, endColumn);
 
         return new MapArea(startRow, startColumn, endRow, endColumn);
     }
