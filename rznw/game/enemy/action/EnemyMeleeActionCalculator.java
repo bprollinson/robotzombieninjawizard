@@ -1,18 +1,16 @@
 package rznw.game.enemy.action;
 
-import rznw.game.enemy.EnemyCharacter;
-import rznw.map.GameWorld;
+import rznw.game.enemy.action.choice.ConfusionChoice;
+import rznw.game.enemy.action.choice.EnemyActionChoice;
+import rznw.game.enemy.action.choice.MovementChoice;
 
-public class EnemyMeleeActionCalculator extends EnemyActionCalculator
+public class EnemyMeleeActionCalculator extends GenericEnemyActionCalculator
 {
-    public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
+    public EnemyActionChoice[] getChoiceList()
     {
-        EnemyAction confusionPositionChange = this.getConfusionPositionChange(gameWorld, enemyCharacter);
-        if (confusionPositionChange != null)
-        {
-            return confusionPositionChange;
-        }
-
-        return this.getPathBasedPositionChange(gameWorld, enemyCharacter);
+        return new EnemyActionChoice[] {
+            new ConfusionChoice(),
+            new MovementChoice()
+        };
     }
 }
