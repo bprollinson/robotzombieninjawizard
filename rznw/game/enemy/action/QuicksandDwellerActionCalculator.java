@@ -1,62 +1,19 @@
 package rznw.game.enemy.action;
 
-import rznw.game.enemy.EnemyCharacter;
-import rznw.game.enemy.EnemyCharacterWithSpell;
-import rznw.game.enemy.spell.EnemySpell;
-import rznw.game.maincharacter.MainCharacter;
-import rznw.map.GameWorld;
-import rznw.map.element.MapElement;
+import rznw.game.enemy.action.choice.EnemyActionChoice;
 
-public class QuicksandDwellerActionCalculator extends EnemyActionCalculator
+import rznw.game.enemy.action.choice.ConfusionChoice;
+import rznw.game.enemy.action.choice.MovementChoice;
+import rznw.game.enemy.action.choice.RadialSpellChoice;
+
+public class QuicksandDwellerActionCalculator extends GenericEnemyActionCalculator
 {
-    private static final int RADIUS = 4;
-
-    public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
+    public EnemyActionChoice[] getChoiceList()
     {
-        EnemyAction confusionPositionChange = this.getConfusionPositionChange(gameWorld, enemyCharacter);
-        if (confusionPositionChange != null)
-        {
-            return confusionPositionChange;
-        }
-
-        EnemySpellAction spellAction = this.getSpellAction(gameWorld, enemyCharacter);
-        if (spellAction != null)
-        {
-            return spellAction;
-        }
-
-        return this.getPathBasedPositionChange(gameWorld, enemyCharacter);
-    }
-
-    private EnemySpellAction getSpellAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
-    {
-        System.out.println("In getSpellAction");
-
-        MainCharacter mainCharacter = gameWorld.getMainCharacter();
-
-        MapElement mainCharacterMapElement = mainCharacter.getMapElement();
-        MapElement enemyMapElement = enemyCharacter.getMapElement();
-
-        if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > QuicksandDwellerActionCalculator.RADIUS || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > QuicksandDwellerActionCalculator.RADIUS)
-        {
-            return null;
-        }
-
-        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
-
-        if (spellPoints == 0)
-        {
-            return null;
-        }
-
-EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(0);
-        int MPCost = enemySpell.getMPCost(spellPoints);
-
-        if (MPCost > enemyCharacter.getMP())
-        {
-            return null;
-        }
-
-        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
+        return new EnemyActionChoice[] {
+            new ConfusionChoice(),
+            new RadialSpellChoice(4),
+            new MovementChoice()
+        };
     }
 }
