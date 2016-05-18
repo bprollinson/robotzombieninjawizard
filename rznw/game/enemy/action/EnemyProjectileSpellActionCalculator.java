@@ -11,7 +11,7 @@ public class EnemyProjectileSpellActionCalculator extends GenericEnemyActionCalc
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new ProjectileSpellChoice(),
+            new ProjectileSpellChoice(0),
             new MovementChoice()
         };
     }

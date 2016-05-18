@@ -7,67 +7,37 @@ import rznw.game.enemy.action.EnemySpellAction;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
-import rznw.map.Map;
 import rznw.map.element.MapElement;
 
-public class ProjectileSpellChoice implements EnemyActionChoice
+public class RadialHealthBasedSpellChoice implements EnemyActionChoice
 {
     private int spellIndex;
+    private int radius;
 
-    public ProjectileSpellChoice(int spellIndex)
+    public RadialHealthBasedSpellChoice(int spellIndex, int radius)
     {
         this.spellIndex = spellIndex;
+        this.radius = radius;
     }
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("In getSpellAction");
+        System.out.println("Radial spell?");
 
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
         MapElement enemyMapElement = enemyCharacter.getMapElement();
 
-        int deltaRow = 0;
-        int deltaColumn = 0;
-
-        if (mainCharacterMapElement.getRow() != enemyMapElement.getRow())
+        if (mainCharacter.getHP() < Math.floor(0.6 * mainCharacter.getMaxHP()))
         {
-            deltaRow = mainCharacterMapElement.getRow() < enemyMapElement.getRow() ? -1 : 1;
-        }
-
-        if (mainCharacterMapElement.getColumn() != enemyMapElement.getColumn())
-        {
-            deltaColumn = mainCharacterMapElement.getColumn() < enemyMapElement.getColumn() ? -1 : 1;
-        }
-
-        if (deltaRow != 0 && deltaColumn != 0)
-        {
+            System.out.println("Main character too damaged");
             return null;
         }
 
-        Map map = gameWorld.getMap();
-        boolean obstacleFound = false;
-
-        int row = enemyMapElement.getRow() + deltaRow;
-        int column = enemyMapElement.getColumn() + deltaColumn;
-        int targetRow = mainCharacterMapElement.getRow();
-        int targetColumn = mainCharacterMapElement.getColumn();
-
-        while (row != targetRow || column != targetColumn)
+        if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > this.radius || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > this.radius)
         {
-            if (map.getElement(row, column) != null)
-            {
-                obstacleFound = true;
-                break;
-            }
-
-            row += deltaRow;
-            column += deltaColumn;
-        }
-
-        if (obstacleFound)
-        {
+            System.out.println("Main character too far away");
             return null;
         }
 
@@ -75,6 +45,7 @@ public class ProjectileSpellChoice implements EnemyActionChoice
 
         if (spellPoints == 0)
         {
+            System.out.println("No spell points");
             return null;
         }
 
@@ -83,6 +54,7 @@ public class ProjectileSpellChoice implements EnemyActionChoice
 
         if (MPCost > enemyCharacter.getMP())
         {
+            System.out.println("Not enough MP");
             return null;
         }
 
