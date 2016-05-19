@@ -1,6 +1,7 @@
 package rznw.game.enemy.action;
 
 import rznw.game.enemy.action.choice.ConfusionChoice;
+import rznw.game.enemy.action.choice.DamagedEscapeChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.PartialHealSpellChoice;
@@ -11,7 +12,8 @@ public class HealthNinjaActionCalculator extends EnemyActionCalculator
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new PartialHealSpellChoice(2),
+            new DamagedEscapeChoice(2),
+            new PartialHealSpellChoice(),
             new MovementChoice()
         };
     }
