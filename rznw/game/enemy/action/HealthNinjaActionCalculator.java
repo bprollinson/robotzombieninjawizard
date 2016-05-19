@@ -13,7 +13,7 @@ public class HealthNinjaActionCalculator extends EnemyActionCalculator
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
             new DamagedEscapeChoice(2),
-            new PartialHealSpellChoice(),
+            new PartialHealSpellChoice(0),
             new MovementChoice()
         };
     }

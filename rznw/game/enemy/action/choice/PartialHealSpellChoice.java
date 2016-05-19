@@ -11,38 +11,40 @@ import rznw.map.element.MapElement;
 
 public class PartialHealSpellChoice implements EnemyActionChoice
 {
+    private int spellIndex;
+
+    public PartialHealSpellChoice(int spellIndex)
+    {
+        this.spellIndex = spellIndex;
+    }
+
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("In getSpellAction");
-
-        MainCharacter mainCharacter = gameWorld.getMainCharacter();
-
-        MapElement mainCharacterMapElement = mainCharacter.getMapElement();
-        MapElement enemyMapElement = enemyCharacter.getMapElement();
+        System.out.println("Zenith healing?");
 
         if (enemyCharacter.getHP() > Math.floor(0.6 * enemyCharacter.getMaxHP()))
         {
-            System.out.println("Too healthy - just attacking");
+            System.out.println("Too healthy");
             return null;
         }
 
-        System.out.println("Healing!");
-
-        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
+        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(this.spellIndex);
 
         if (spellPoints == 0)
         {
+            System.out.println("No spell points");
             return null;
         }
 
-        EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(0);
+        EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(this.spellIndex);
         int MPCost = enemySpell.getMPCost(spellPoints);
 
         if (MPCost > enemyCharacter.getMP())
         {
+            System.out.println("Not enough MP");
             return null;
         }
 
-        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
+        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(this.spellIndex), spellPoints);
     }
 }
