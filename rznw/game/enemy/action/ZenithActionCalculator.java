@@ -8,7 +8,7 @@ import rznw.game.enemy.action.choice.ProjectileSpellChoice;
 import rznw.game.enemy.action.choice.RadialHealthBasedSpellChoice;
 import rznw.game.enemy.action.choice.ZenithHealSpellChoice;
 
-public class ZenithActionCalculator extends GenericEnemyActionCalculator
+public class ZenithActionCalculator extends EnemyActionCalculator
 {
     private static final int RADIUS = 2;
 

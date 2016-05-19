@@ -5,7 +5,7 @@ import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.PartialHealSpellChoice;
 
-public class HealthNinjaActionCalculator extends GenericEnemyActionCalculator
+public class HealthNinjaActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {

@@ -5,7 +5,7 @@ import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.InvisibleRadialSpellChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 
-public class InvisibleWizardActionCalculator extends GenericEnemyActionCalculator
+public class InvisibleWizardActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {

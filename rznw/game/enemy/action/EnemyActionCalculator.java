@@ -1,49 +1,27 @@
 package rznw.game.enemy.action;
 
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.MainCharacter;
+import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.map.GameWorld;
-import rznw.map.ShortestPathCalculator;
-import rznw.map.generator.MapPoint;
-import rznw.map.generator.direction.PathDirection;
-import rznw.map.generator.path.MapPath;
-import rznw.turn.positionchange.EnemyAIBasedPositionChange;
-import rznw.turn.positionchange.RandomPositionChange;
 
 public abstract class EnemyActionCalculator
 {
-    public abstract EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter);
+    public abstract EnemyActionChoice[] getChoiceList();
 
-    protected EnemyAction getConfusionPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
+    public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        if (enemyCharacter.getStatusEffects().isConfused() || enemyCharacter.distanceFromMainCharacter(gameWorld) > enemyCharacter.getViewRadius())
-        {
-            if (enemyCharacter.getStatusEffects().isConfused())
-            {
-                System.out.println("Enemy is confused!");
-            }
+        EnemyActionChoice[] choiceList = this.getChoiceList();
 
-            return new EnemyMovementAction(new RandomPositionChange(enemyCharacter));
+        for (int i = 0; i < choiceList.length; i++)
+        {
+            EnemyAction action = choiceList[i].getAction(gameWorld, enemyCharacter);
+
+            if (action != null)
+            {
+                return action;
+            }
         }
 
         return null;
-    }
-
-    protected EnemyMovementAction getPathBasedPositionChange(GameWorld gameWorld, EnemyCharacter enemyCharacter)
-    {
-        MainCharacter character = gameWorld.getMainCharacter();
-
-        MapPoint startPoint = new MapPoint(enemyCharacter.getMapElement().getRow(), enemyCharacter.getMapElement().getColumn());
-        MapPoint endPoint = new MapPoint(character.getMapElement().getRow(), character.getMapElement().getColumn());
-        ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
-        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
-
-        System.out.println("Path: " + path);
-
-        PathDirection firstDirection = path.getDirection(0);
-
-        System.out.println("Direction: " + firstDirection.getDeltaRow() + ", " + firstDirection.getDeltaColumn());
-
-        return new EnemyMovementAction(new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaRow(), firstDirection.getDeltaColumn()));
     }
 }

@@ -5,7 +5,7 @@ import rznw.game.enemy.action.choice.DiagonalSpellChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 
-public class JavelineerActionCalculator extends GenericEnemyActionCalculator
+public class JavelineerActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {

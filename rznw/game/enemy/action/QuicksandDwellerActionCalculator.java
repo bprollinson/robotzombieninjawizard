@@ -6,7 +6,7 @@ import rznw.game.enemy.action.choice.ConfusionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.RadialSpellChoice;
 
-public class QuicksandDwellerActionCalculator extends GenericEnemyActionCalculator
+public class QuicksandDwellerActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {

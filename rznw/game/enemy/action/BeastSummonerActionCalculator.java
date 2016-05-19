@@ -5,7 +5,7 @@ import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.RadialSpellChoice;
 
-public class BeastSummonerActionCalculator extends GenericEnemyActionCalculator
+public class BeastSummonerActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {
