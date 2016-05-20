@@ -1,17 +1,17 @@
-package rznw.game.enemy.action;
+package rznw.game.enemy.action.calculator;
 
 import rznw.game.enemy.action.choice.ConfusionChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
-import rznw.game.enemy.action.choice.InvisibleRadialSpellChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
+import rznw.game.enemy.action.choice.ProjectileSpellChoice;
 
-public class InvisibleWizardActionCalculator extends EnemyActionCalculator
+public class EnemyProjectileSpellActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new InvisibleRadialSpellChoice(2),
+            new ProjectileSpellChoice(0),
             new MovementChoice()
         };
     }

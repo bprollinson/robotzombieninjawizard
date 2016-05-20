@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
-import rznw.game.enemy.action.EnemyActionCalculator;
-import rznw.game.enemy.action.ZenithActionCalculator;
+import rznw.game.enemy.action.calculator.EnemyActionCalculator;
+import rznw.game.enemy.action.calculator.ZenithActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.HealSpell;
 import rznw.game.enemy.spell.HealthZapSpell;

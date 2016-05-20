@@ -2,7 +2,7 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.enemy.action.EnemyAction;
-import rznw.game.enemy.action.EnemyActionCalculator;
+import rznw.game.enemy.action.calculator.EnemyActionCalculator;
 import rznw.game.enemy.calculator.EnemyCharacterDamageDealtCalculator;
 import rznw.game.enemy.calculator.EnemyCharacterDamageReceivedCalculator;
 import rznw.game.maincharacter.MainCharacter;

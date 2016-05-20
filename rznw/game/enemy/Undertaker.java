@@ -1,8 +1,8 @@
 package rznw.game.enemy;
 
 import rznw.game.Character;
-import rznw.game.enemy.action.EnemyActionCalculator;
-import rznw.game.enemy.action.EnemyMeleeActionCalculator;
+import rznw.game.enemy.action.calculator.EnemyActionCalculator;
+import rznw.game.enemy.action.calculator.EnemyMeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.DeathScythe;
 import rznw.game.maincharacter.inventory.EquipmentItem;

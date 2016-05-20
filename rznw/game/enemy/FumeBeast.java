@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
-import rznw.game.enemy.action.EnemyActionCalculator;
-import rznw.game.enemy.action.FumeBeastActionCalculator;
+import rznw.game.enemy.action.calculator.EnemyActionCalculator;
+import rznw.game.enemy.action.calculator.FumeBeastActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.FumeCloudSpell;
 import rznw.game.maincharacter.MainCharacter;

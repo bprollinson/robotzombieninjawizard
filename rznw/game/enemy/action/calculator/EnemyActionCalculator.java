@@ -1,6 +1,7 @@
-package rznw.game.enemy.action;
+package rznw.game.enemy.action.calculator;
 
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.map.GameWorld;
 

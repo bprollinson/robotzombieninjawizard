@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
-import rznw.game.enemy.action.EnemyActionCalculator;
-import rznw.game.enemy.action.InvisibleWizardActionCalculator;
+import rznw.game.enemy.action.calculator.EnemyActionCalculator;
+import rznw.game.enemy.action.calculator.InvisibleWizardActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.InvisibilitySpell;
 import rznw.game.maincharacter.MainCharacter;

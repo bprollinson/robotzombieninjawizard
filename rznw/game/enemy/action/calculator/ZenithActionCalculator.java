@@ -1,4 +1,4 @@
-package rznw.game.enemy.action;
+package rznw.game.enemy.action.calculator;
 
 import rznw.game.enemy.Zenith;
 import rznw.game.enemy.action.choice.ConfusionChoice;

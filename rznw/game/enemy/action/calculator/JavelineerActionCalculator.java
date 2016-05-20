@@ -1,17 +1,17 @@
-package rznw.game.enemy.action;
+package rznw.game.enemy.action.calculator;
 
 import rznw.game.enemy.action.choice.ConfusionChoice;
+import rznw.game.enemy.action.choice.DiagonalSpellChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
-import rznw.game.enemy.action.choice.HealSpellChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 
-public class EnemyRadiusSpellActionCalculator extends EnemyActionCalculator
+public class JavelineerActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new HealSpellChoice(),
+            new DiagonalSpellChoice(),
             new MovementChoice()
         };
     }

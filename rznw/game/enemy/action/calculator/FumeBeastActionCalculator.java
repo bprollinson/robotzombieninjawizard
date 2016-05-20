@@ -1,19 +1,17 @@
-package rznw.game.enemy.action;
+package rznw.game.enemy.action.calculator;
 
 import rznw.game.enemy.action.choice.ConfusionChoice;
-import rznw.game.enemy.action.choice.DamagedEscapeChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
-import rznw.game.enemy.action.choice.PartialHealSpellChoice;
+import rznw.game.enemy.action.choice.RadialPoisonSpellChoice;
 
-public class HealthNinjaActionCalculator extends EnemyActionCalculator
+public class FumeBeastActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new DamagedEscapeChoice(2),
-            new PartialHealSpellChoice(0),
+            new RadialPoisonSpellChoice(),
             new MovementChoice()
         };
     }

@@ -1,17 +1,18 @@
-package rznw.game.enemy.action;
+package rznw.game.enemy.action.calculator;
+
+import rznw.game.enemy.action.choice.EnemyActionChoice;
 
 import rznw.game.enemy.action.choice.ConfusionChoice;
-import rznw.game.enemy.action.choice.DiagonalSpellChoice;
-import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
+import rznw.game.enemy.action.choice.RadialSpellChoice;
 
-public class JavelineerActionCalculator extends EnemyActionCalculator
+public class QuicksandDwellerActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new DiagonalSpellChoice(),
+            new RadialSpellChoice(4),
             new MovementChoice()
         };
     }
