@@ -4,12 +4,11 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.EnemyCharacterWithSpell;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemySpellAction;
-import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 
-public class InvisibleRadialSpellChoice implements EnemyActionChoice
+public class InvisibleRadialSpellChoice extends EnemyActionChoice
 {
     private int radius;
 
@@ -37,20 +36,12 @@ public class InvisibleRadialSpellChoice implements EnemyActionChoice
             return null;
         }
 
+        if (!this.canCastSpell(enemyCharacter, 0))
+        {
+            return null;
+        }
+
         int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
-
-        if (spellPoints == 0)
-        {
-            return null;
-        }
-
-        EnemySpell enemySpell = ((EnemyCharacterWithSpell)enemyCharacter).getSpell(0);
-        int MPCost = enemySpell.getMPCost(spellPoints);
-
-        if (MPCost > enemyCharacter.getMP())
-        {
-            return null;
-        }
 
         return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
     }

@@ -8,7 +8,7 @@ import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
-public class DamagedEscapeChoice implements EnemyActionChoice
+public class DamagedEscapeChoice extends EnemyActionChoice
 {
     private int radius;
 

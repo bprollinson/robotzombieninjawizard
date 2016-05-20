@@ -11,7 +11,7 @@ import rznw.map.generator.direction.PathDirection;
 import rznw.map.generator.path.MapPath;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
-public class MovementChoice implements EnemyActionChoice
+public class MovementChoice extends EnemyActionChoice
 {
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {

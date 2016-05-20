@@ -6,7 +6,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
 import rznw.turn.positionchange.RandomPositionChange;
 
-public class ConfusionChoice implements EnemyActionChoice
+public class ConfusionChoice extends EnemyActionChoice
 {
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
