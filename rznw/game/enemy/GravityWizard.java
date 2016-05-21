@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.EnemyProjectileSpellActionCalculator;
+import rznw.game.enemy.action.calculator.ProjectileSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.GravityBeltSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -72,6 +72,6 @@ public class GravityWizard extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyProjectileSpellActionCalculator();
+        return new ProjectileSpellActionCalculator();
     }
 }
