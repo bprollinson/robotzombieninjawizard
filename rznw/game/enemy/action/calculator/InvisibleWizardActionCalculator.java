@@ -2,8 +2,8 @@ package rznw.game.enemy.action.calculator;
 
 import rznw.game.enemy.action.choice.ConfusionChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
-import rznw.game.enemy.action.choice.InvisibleRadialSpellChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
+import rznw.game.enemy.action.choice.RadialInvisibilitySpellChoice;
 
 public class InvisibleWizardActionCalculator extends EnemyActionCalculator
 {
@@ -11,7 +11,7 @@ public class InvisibleWizardActionCalculator extends EnemyActionCalculator
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new InvisibleRadialSpellChoice(2),
+            new RadialInvisibilitySpellChoice(2),
             new MovementChoice()
         };
     }

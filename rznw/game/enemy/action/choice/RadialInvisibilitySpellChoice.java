@@ -8,9 +8,14 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 
-public class HealSpellChoice extends EnemyActionChoice
+public class RadialInvisibilitySpellChoice extends EnemyActionChoice
 {
-    private static final int RADIUS = 2;
+    private int radius;
+
+    public RadialInvisibilitySpellChoice(int radius)
+    {
+        this.radius = radius;
+    }
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
@@ -21,12 +26,12 @@ public class HealSpellChoice extends EnemyActionChoice
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
         MapElement enemyMapElement = enemyCharacter.getMapElement();
 
-        if (enemyCharacter.getHP() == enemyCharacter.getMaxHP())
+        if (enemyCharacter.getStatusEffects().isInvisible())
         {
             return null;
         }
 
-        if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > HealSpellChoice.RADIUS || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > HealSpellChoice.RADIUS)
+        if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > this.radius || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > this.radius)
         {
             return null;
         }
