@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.InvisibleWizardActionCalculator;
+import rznw.game.enemy.action.calculator.RadialInvisibilitySpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.InvisibilitySpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -72,6 +72,6 @@ public class InvisibleWizard extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new InvisibleWizardActionCalculator();
+        return new RadialInvisibilitySpellActionCalculator();
     }
 }

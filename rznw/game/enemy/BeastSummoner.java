@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
-import rznw.game.enemy.action.calculator.BeastSummonerActionCalculator;
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
+import rznw.game.enemy.action.calculator.RadialSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.SummonBeastSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -75,6 +75,6 @@ public class BeastSummoner extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new BeastSummonerActionCalculator();
+        return new RadialSpellActionCalculator(2);
     }
 }

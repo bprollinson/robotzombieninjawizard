@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.HealthNinjaActionCalculator;
+import rznw.game.enemy.action.calculator.EscapeAndHealActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.SuperHealSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -73,6 +73,6 @@ public class HealthNinja extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new HealthNinjaActionCalculator();
+        return new EscapeAndHealActionCalculator();
     }
 }

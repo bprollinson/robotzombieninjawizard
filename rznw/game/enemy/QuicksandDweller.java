@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.QuicksandDwellerActionCalculator;
+import rznw.game.enemy.action.calculator.RadialSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.QuicksandPullSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -72,6 +72,6 @@ public class QuicksandDweller extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new QuicksandDwellerActionCalculator();
+        return new RadialSpellActionCalculator(4);
     }
 }

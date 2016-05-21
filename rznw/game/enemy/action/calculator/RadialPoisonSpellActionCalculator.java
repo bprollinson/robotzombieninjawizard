@@ -5,7 +5,7 @@ import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.RadialPoisonSpellChoice;
 
-public class FumeBeastActionCalculator extends EnemyActionCalculator
+public class RadialPoisonSpellActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {

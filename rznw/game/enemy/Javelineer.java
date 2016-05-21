@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
+import rznw.game.enemy.action.calculator.DiagonalSpellActionCalculator;
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.JavelineerActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.MagicJavelinSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -72,6 +72,6 @@ public class Javelineer extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new JavelineerActionCalculator();
+        return new DiagonalSpellActionCalculator();
     }
 }

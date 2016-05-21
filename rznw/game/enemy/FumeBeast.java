@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.FumeBeastActionCalculator;
+import rznw.game.enemy.action.calculator.RadialPoisonSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.FumeCloudSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -74,6 +74,6 @@ public class FumeBeast extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new FumeBeastActionCalculator();
+        return new RadialPoisonSpellActionCalculator();
     }
 }
