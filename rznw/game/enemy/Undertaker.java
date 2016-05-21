@@ -2,7 +2,7 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.EnemyMeleeActionCalculator;
+import rznw.game.enemy.action.calculator.MeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.DeathScythe;
 import rznw.game.maincharacter.inventory.EquipmentItem;
@@ -52,7 +52,7 @@ public class Undertaker extends EnemyCharacter
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyMeleeActionCalculator();
+        return new MeleeActionCalculator();
     }
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

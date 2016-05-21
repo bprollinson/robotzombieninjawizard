@@ -2,7 +2,7 @@ package rznw.game.enemy;
 
 import rznw.game.Character;
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.EnemyMeleeActionCalculator;
+import rznw.game.enemy.action.calculator.MeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.DragonPlate;
 import rznw.game.maincharacter.inventory.EquipmentItem;
@@ -53,7 +53,7 @@ public class Dragon extends EnemyCharacter
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyMeleeActionCalculator();
+        return new MeleeActionCalculator();
     }
 
     public void damagedByMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.EnemyMeleeActionCalculator;
+import rznw.game.enemy.action.calculator.MeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Bomb;
 import rznw.game.maincharacter.inventory.CrusherHammer;
@@ -51,7 +51,7 @@ public class Crusher extends EnemyCharacter
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyMeleeActionCalculator();
+        return new MeleeActionCalculator();
     }
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.EnemyMeleeActionCalculator;
+import rznw.game.enemy.action.calculator.MeleeActionCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.EtherealShield;
@@ -48,7 +48,7 @@ public class Phantasm extends EnemyCharacter
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyMeleeActionCalculator();
+        return new MeleeActionCalculator();
     }
 
     public boolean dodgesAttack()
