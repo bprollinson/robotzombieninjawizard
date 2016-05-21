@@ -10,7 +10,14 @@ import rznw.map.element.MapElement;
 
 public class RadialPoisonSpellChoice extends EnemyActionChoice
 {
-    private static final int RADIUS = 3;
+    private int spellIndex;
+    private int radius;
+
+    public RadialPoisonSpellChoice(int spellIndex, int radius)
+    {
+        this.spellIndex = spellIndex;
+        this.radius = radius;
+    }
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
@@ -27,20 +34,20 @@ public class RadialPoisonSpellChoice extends EnemyActionChoice
             return null;
         }
 
-        if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > RadialPoisonSpellChoice.RADIUS || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > RadialPoisonSpellChoice.RADIUS)
+        if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > this.radius || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > this.radius)
         {
             return null;
         }
 
-        if (!this.canCastSpell(enemyCharacter, 0))
+        if (!this.canCastSpell(enemyCharacter, this.spellIndex))
         {
             return null;
         }
 
-        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
+        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(this.spellIndex);
 
         System.out.println("Poisoning!");
 
-        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
+        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(this.spellIndex), spellPoints);
     }
 }

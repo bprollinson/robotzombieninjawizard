@@ -10,10 +10,12 @@ import rznw.map.element.MapElement;
 
 public class RadialSpellChoice extends EnemyActionChoice
 {
+    private int spellIndex;
     private int radius;
 
-    public RadialSpellChoice(int radius)
+    public RadialSpellChoice(int spellIndex, int radius)
     {
+        this.spellIndex = spellIndex;
         this.radius = radius;
     }
 
@@ -31,13 +33,13 @@ public class RadialSpellChoice extends EnemyActionChoice
             return null;
         }
 
-        if (!this.canCastSpell(enemyCharacter, 0))
+        if (!this.canCastSpell(enemyCharacter, this.spellIndex))
         {
             return null;
         }
 
-        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
+        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(this.spellIndex);
 
-        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
+        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(this.spellIndex), spellPoints);
     }
 }

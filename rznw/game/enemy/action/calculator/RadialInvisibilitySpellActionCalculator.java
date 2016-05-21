@@ -11,7 +11,7 @@ public class RadialInvisibilitySpellActionCalculator extends EnemyActionCalculat
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new RadialInvisibilitySpellChoice(2),
+            new RadialInvisibilitySpellChoice(0, 2),
             new MovementChoice()
         };
     }

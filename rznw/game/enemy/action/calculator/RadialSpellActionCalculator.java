@@ -18,7 +18,7 @@ public class RadialSpellActionCalculator extends EnemyActionCalculator
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new RadialSpellChoice(this.radius),
+            new RadialSpellChoice(0, this.radius),
             new MovementChoice()
         };
     }

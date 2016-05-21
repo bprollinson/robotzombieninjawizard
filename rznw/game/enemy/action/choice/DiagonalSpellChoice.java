@@ -10,6 +10,13 @@ import rznw.map.element.MapElement;
 
 public class DiagonalSpellChoice extends EnemyActionChoice
 {
+    private int spellIndex;
+
+    public DiagonalSpellChoice(int spellIndex)
+    {
+        this.spellIndex = spellIndex;
+    }
+
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
         System.out.println("In getSpellAction");
@@ -38,13 +45,13 @@ public class DiagonalSpellChoice extends EnemyActionChoice
             return null;
         }
 
-        if (!this.canCastSpell(enemyCharacter, 0))
+        if (!this.canCastSpell(enemyCharacter, this.spellIndex))
         {
             return null;
         }
 
-        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(0);
+        int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(this.spellIndex);
 
-        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(0), spellPoints);
+        return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(this.spellIndex), spellPoints);
     }
 }

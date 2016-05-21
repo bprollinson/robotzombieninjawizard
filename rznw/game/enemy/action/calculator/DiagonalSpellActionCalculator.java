@@ -11,7 +11,7 @@ public class DiagonalSpellActionCalculator extends EnemyActionCalculator
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new DiagonalSpellChoice(),
+            new DiagonalSpellChoice(0),
             new MovementChoice()
         };
     }
