@@ -5,7 +5,7 @@ import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.RadialBasedHealAnySpellChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 
-public class EnemyRadiusSpellActionCalculator extends EnemyActionCalculator
+public class RadialHealSpellActionCalculator extends EnemyActionCalculator
 {
     public EnemyActionChoice[] getChoiceList()
     {

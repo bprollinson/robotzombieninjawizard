@@ -1,7 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
-import rznw.game.enemy.action.calculator.EnemyRadiusSpellActionCalculator;
+import rznw.game.enemy.action.calculator.RadialHealSpellActionCalculator;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.enemy.spell.VampireWaveSpell;
 import rznw.game.maincharacter.MainCharacter;
@@ -87,6 +87,6 @@ public class Nosferatu extends EnemyCharacterWithSpell
 
     public EnemyActionCalculator getActionCalculator()
     {
-        return new EnemyRadiusSpellActionCalculator();
+        return new RadialHealSpellActionCalculator();
     }
 }
