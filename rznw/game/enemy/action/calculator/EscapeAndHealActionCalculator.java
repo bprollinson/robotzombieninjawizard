@@ -8,12 +8,15 @@ import rznw.game.enemy.action.choice.PartialHealSpellChoice;
 
 public class EscapeAndHealActionCalculator extends EnemyActionCalculator
 {
+    private static final int SPELL_INDEX = 0;
+    private static final int RADIUS = 2;
+
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new DamagedEscapeChoice(2),
-            new PartialHealSpellChoice(0),
+            new DamagedEscapeChoice(EscapeAndHealActionCalculator.RADIUS),
+            new PartialHealSpellChoice(EscapeAndHealActionCalculator.SPELL_INDEX),
             new MovementChoice()
         };
     }

@@ -7,11 +7,13 @@ import rznw.game.enemy.action.choice.MovementChoice;
 
 public class DiagonalSpellActionCalculator extends EnemyActionCalculator
 {
+    private static final int SPELL_INDEX = 0;
+
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new DiagonalSpellChoice(0),
+            new DiagonalSpellChoice(DiagonalSpellActionCalculator.SPELL_INDEX),
             new MovementChoice()
         };
     }

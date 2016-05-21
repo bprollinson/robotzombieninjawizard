@@ -7,11 +7,13 @@ import rznw.game.enemy.action.choice.ProjectileSpellChoice;
 
 public class ProjectileSpellActionCalculator extends EnemyActionCalculator
 {
+    private static final int SPELL_INDEX = 0;
+
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
             new ConfusionChoice(),
-            new ProjectileSpellChoice(0),
+            new ProjectileSpellChoice(ProjectileSpellActionCalculator.SPELL_INDEX),
             new MovementChoice()
         };
     }
