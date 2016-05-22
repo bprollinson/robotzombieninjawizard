@@ -93,6 +93,11 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_COMPLETED;
         }
 
+        if (this.gameWorld.getMainCharacter().getPendingLevels() > 0)
+        {
+            return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
+        }
+
         if (this.itemUsed)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;

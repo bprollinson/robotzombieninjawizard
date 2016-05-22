@@ -89,59 +89,40 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
         if (this.skillUsed)
         {
+            this.turnHandler.handlePostTurn();
+
+            if (this.gameWorld.getMainCharacter().isDead())
+            {
+                return DispatchKeyListener.STATE_DEATH_SCREEN;
+            }
+
+            if (this.gameWorld.gameCompleted())
+            {
+                return DispatchKeyListener.STATE_GAME_COMPLETED;
+            }
+
+            if (this.gameWorld.getMainCharacter().getPendingLevels() > 0)
+            {
+                return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
+            }
+
             if (this.gameWorld.getMainCharacter().getStatusEffects().detectVitalityEnabled())
             {
-                this.turnHandler.handlePostTurn();
-
                 this.gameWorld.getMainCharacter().getStatusEffects().disableDetectVitality();
-
-                if (this.gameWorld.getMainCharacter().isDead())
-                {
-                    return DispatchKeyListener.STATE_DEATH_SCREEN;
-                }
-
-                if (this.gameWorld.gameCompleted())
-                {
-                    return DispatchKeyListener.STATE_GAME_COMPLETED;
-                }
 
                 return DispatchKeyListener.STATE_DETECT_VITALITY;
             }
 
             if (this.gameWorld.getMainCharacter().getStatusEffects().itemTradeEnabled())
             {
-                this.turnHandler.handlePostTurn();
-
                 this.gameWorld.getMainCharacter().getStatusEffects().disableItemTrade();
-
-                if (this.gameWorld.getMainCharacter().isDead())
-                {
-                    return DispatchKeyListener.STATE_DEATH_SCREEN;
-                }
-
-                if (this.gameWorld.gameCompleted())
-                {
-                    return DispatchKeyListener.STATE_GAME_COMPLETED;
-                }
 
                 return DispatchKeyListener.STATE_TRADE_ITEMS;
             }
 
             if (this.gameWorld.getMainCharacter().getStatusEffects().summonShopkeeperEnabled())
             {
-                this.turnHandler.handlePostTurn();
-
                 this.gameWorld.getMainCharacter().getStatusEffects().disableSummonShopkeeper();
-
-                if (this.gameWorld.getMainCharacter().isDead())
-                {
-                    return DispatchKeyListener.STATE_DEATH_SCREEN;
-                }
-
-                if (this.gameWorld.gameCompleted())
-                {
-                    return DispatchKeyListener.STATE_GAME_COMPLETED;
-                }
 
                 return DispatchKeyListener.STATE_SHOP;
             }
