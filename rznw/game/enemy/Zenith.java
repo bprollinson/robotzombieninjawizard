@@ -86,4 +86,9 @@ public class Zenith extends EnemyCharacterWithSpell
     {
         return new ZenithActionCalculator();
     }
+
+    public boolean isFinalBoss()
+    {
+        return true;
+    }
 }

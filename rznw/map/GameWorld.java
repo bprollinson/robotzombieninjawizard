@@ -10,6 +10,7 @@ public class GameWorld
     private MapGenerator mapGenerator;
     private MainCharacter character;
     private Map map;
+    private boolean gameCompleted = false;
 
     public GameWorld(CharacterGenerator characterGenerator, MapGenerator mapGenerator)
     {
@@ -22,6 +23,7 @@ public class GameWorld
         System.out.println("Generating dungeon level 1");
         this.character = characterGenerator.generateMainCharacter(characterClass);
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
+        this.gameCompleted = false;
     }
 
     public void generatePreviousMap()
@@ -44,5 +46,15 @@ public class GameWorld
     public Map getMap()
     {
         return this.map;
+    }
+
+    public void flagGameCompleted()
+    {
+        this.gameCompleted = true;
+    }
+
+    public boolean gameCompleted()
+    {
+        return this.gameCompleted;
     }
 }

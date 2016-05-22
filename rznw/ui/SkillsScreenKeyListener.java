@@ -100,6 +100,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                     return DispatchKeyListener.STATE_DEATH_SCREEN;
                 }
 
+                if (this.gameWorld.gameCompleted())
+                {
+                    return DispatchKeyListener.STATE_GAME_COMPLETED;
+                }
+
                 return DispatchKeyListener.STATE_DETECT_VITALITY;
             }
 
@@ -114,6 +119,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                     return DispatchKeyListener.STATE_DEATH_SCREEN;
                 }
 
+                if (this.gameWorld.gameCompleted())
+                {
+                    return DispatchKeyListener.STATE_GAME_COMPLETED;
+                }
+
                 return DispatchKeyListener.STATE_TRADE_ITEMS;
             }
 
@@ -126,6 +136,11 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 if (this.gameWorld.getMainCharacter().isDead())
                 {
                     return DispatchKeyListener.STATE_DEATH_SCREEN;
+                }
+
+                if (this.gameWorld.gameCompleted())
+                {
+                    return DispatchKeyListener.STATE_GAME_COMPLETED;
                 }
 
                 return DispatchKeyListener.STATE_SHOP;

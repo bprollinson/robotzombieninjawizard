@@ -116,6 +116,11 @@ public abstract class Character
         return false;
     }
 
+    public boolean isFinalBoss()
+    {
+        return false;
+    }
+
     public abstract int getDamage();
 
     public abstract boolean meleeAttackHits();

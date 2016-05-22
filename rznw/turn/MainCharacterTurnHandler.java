@@ -316,6 +316,11 @@ public class MainCharacterTurnHandler
                             zombie.setMapElement(zombieElement);
                             gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
                         }
+
+                        if (enemy.isFinalBoss())
+                        {
+                            this.gameWorld.flagGameCompleted();
+                        }
                     }
                 }
             }

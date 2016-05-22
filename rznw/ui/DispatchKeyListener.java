@@ -29,6 +29,7 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_TRADE_ITEMS = 22;
     public static final int STATE_SHOP = 23;
     public static final int STATE_INSTRUCTIONS_SCREEN = 24;
+    public static final int STATE_GAME_COMPLETED = 25;
 
     private int state;
     private StateTransitionKeyListenerContainer listenerContainer;
