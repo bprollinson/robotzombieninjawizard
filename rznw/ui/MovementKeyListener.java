@@ -29,7 +29,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        if (previousState == DispatchKeyListener.STATE_INVENTORY_SCREEN || previousState == DispatchKeyListener.STATE_SKILLS_SCREEN)
+        if (previousState == DispatchKeyListener.STATE_SKILLS_SCREEN)
         {
             this.turnHandler.handlePostTurn();
         }

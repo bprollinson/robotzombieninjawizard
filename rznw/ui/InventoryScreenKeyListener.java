@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.turn.MainCharacterTurnHandler;
 
 import java.awt.event.KeyEvent;
 
@@ -11,14 +12,16 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
 
     private InventoryScreenRenderer inventoryScreenRenderer;
     private GameWorld gameWorld;
+    private MainCharacterTurnHandler turnHandler;
     private MenuState state;
     private boolean itemUsed;
     private boolean showingDescription = false;
 
-    public InventoryScreenKeyListener(InventoryScreenRenderer inventoryScreenRenderer, GameWorld gameWorld)
+    public InventoryScreenKeyListener(InventoryScreenRenderer inventoryScreenRenderer, GameWorld gameWorld, MainCharacterTurnHandler turnHandler)
     {
         this.inventoryScreenRenderer = inventoryScreenRenderer;
         this.gameWorld = gameWorld;
+        this.turnHandler = turnHandler;
     }
 
     public void keyPressed(KeyEvent event)
@@ -30,6 +33,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
                 {
                     MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
                     mainCharacter.useItem(this.state.getEntryNumber(), this.gameWorld);
+                    this.turnHandler.handlePostTurn();
                     this.itemUsed = true;
                 }
                 break;
@@ -77,6 +81,16 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+        }
+
+        if (this.gameWorld.getMainCharacter().isDead())
+        {
+            return DispatchKeyListener.STATE_DEATH_SCREEN;
+        }
+
+        if (this.gameWorld.gameCompleted())
+        {
+            return DispatchKeyListener.STATE_GAME_COMPLETED;
         }
 
         if (this.itemUsed)
