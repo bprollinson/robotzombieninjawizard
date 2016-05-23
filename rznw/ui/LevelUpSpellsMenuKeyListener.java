@@ -80,6 +80,11 @@ public class LevelUpSpellsMenuKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_LEVEL_UP_SPELLS_MENU;
         }
 
+        if (this.gameWorld.gameCompleted())
+        {
+            return DispatchKeyListener.STATE_GAME_COMPLETED;
+        }
+
         return DispatchKeyListener.STATE_GAME_MOTION;
     }
 }
