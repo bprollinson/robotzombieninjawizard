@@ -41,6 +41,7 @@ public class StatusEffects
     private int meatShieldPaddingPercent = 0;
     private int meatShieldDodgePercent = 0;
     private int invisibleTurns = 0;
+    private int powerSearchTurns = 0;
 
     public StatusEffects(Character character)
     {
@@ -411,6 +412,16 @@ public class StatusEffects
         return this.invisibleTurns > 0;
     }
 
+    public void enablePowerSearch(int numTurns)
+    {
+        this.powerSearchTurns = numTurns;
+    }
+
+    public boolean powerSearchEnabled()
+    {
+        return this.powerSearchTurns > 0;
+    }
+
     public void processTurn(Character character, GameWorld gameWorld)
     {
         if (this.frozenTurns > 0)
@@ -495,6 +506,11 @@ public class StatusEffects
         if (this.invisibleTurns > 0)
         {
             this.invisibleTurns--;
+        }
+
+        if (this.powerSearchTurns > 0)
+        {
+            this.powerSearchTurns--;
         }
     }
 }

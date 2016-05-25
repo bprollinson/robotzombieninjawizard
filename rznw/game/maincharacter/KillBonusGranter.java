@@ -8,6 +8,7 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
+import rznw.game.spell.robot.PowerSearchSpell;
 import rznw.utility.RandomNumberGenerator;
 
 public class KillBonusGranter
@@ -59,6 +60,13 @@ public class KillBonusGranter
         if (enemyCharacter.isDroppingItems(mainCharacter))
         {
             InventoryItemGroup itemGroup = new InventoryItemGroup(enemyCharacter.getItemDrop(), 1);
+
+            if (mainCharacter.getStatusEffects().powerSearchEnabled())
+            {
+                System.out.println("Upgrading item via power search");
+                itemGroup = PowerSearchSpell.getUpgradedItemGroup(itemGroup, mainCharacter.getSpellPoints(15));
+            }
+
             try
             {
                 mainCharacter.getInventory().addItems(itemGroup);
