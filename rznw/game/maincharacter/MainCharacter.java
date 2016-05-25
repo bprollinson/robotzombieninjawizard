@@ -228,8 +228,8 @@ public abstract class MainCharacter extends Character
     public void useItem(int itemIndex, GameWorld gameWorld)
     {
         InventoryItem item = this.inventory.getItemGroup(itemIndex).getItem();
-        item.useOnCharacter(this, gameWorld);
         this.inventory.removeItems(new InventoryItemGroup(item, 1));
+        item.useOnCharacter(this, gameWorld);
     }
 
     public static StatFactory getStatFactory()
