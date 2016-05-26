@@ -1,11 +1,23 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Bomb;
+import rznw.game.maincharacter.inventory.FullManaPotion;
+import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.maincharacter.inventory.ManaPotion;
+import rznw.game.maincharacter.inventory.MegaBomb;
 import rznw.game.maincharacter.inventory.Potion;
+import rznw.game.maincharacter.inventory.ReplenishingFullManaPotion;
+import rznw.game.maincharacter.inventory.ReplenishingFullPotion;
+import rznw.game.maincharacter.inventory.ReplenishingHerb;
+import rznw.game.maincharacter.inventory.ReplenishingSanityDrop;
+import rznw.game.maincharacter.inventory.ReplenishingXRayDrop;
+import rznw.game.maincharacter.inventory.SanityDrop;
+import rznw.game.maincharacter.inventory.XRayDrop;
 import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
 import rznw.utility.RandomNumberGenerator;
@@ -107,8 +119,20 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
     private void assignRandomItem()
     {
         InventoryItem[] possibleItems = new InventoryItem[] {
+            new Bomb(),
+            new FullManaPotion(),
+            new FullPotion(),
+            new Herb(),
+            new ManaPotion(),
+            new MegaBomb(),
             new Potion(),
-            new Herb()
+            new ReplenishingFullManaPotion(),
+            new ReplenishingFullPotion(),
+            new ReplenishingHerb(),
+            new ReplenishingSanityDrop(),
+            new ReplenishingXRayDrop(),
+            new SanityDrop(),
+            new XRayDrop()
         };
 
         int index = RandomNumberGenerator.randomInteger(0, possibleItems.length - 1);
