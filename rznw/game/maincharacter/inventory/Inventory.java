@@ -52,6 +52,14 @@ public class Inventory
         }
     }
 
+    public void addItems(Vector<InventoryItemGroup> itemGroups) throws InventoryFullException
+    {
+        for (int i = 0; i < itemGroups.size(); i++)
+        {
+            this.addItems(itemGroups.get(i));
+        }
+    }
+
     public void removeItems(InventoryItemGroup itemGroup)
     {
         int index = this.getItemGroupPosition(itemGroup);

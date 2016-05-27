@@ -1,20 +1,16 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.inventory.Armor;
-import rznw.game.maincharacter.inventory.AssassinsCloak;
 import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
-import rznw.game.maincharacter.inventory.Herb;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-import rznw.game.maincharacter.inventory.Potion;
+import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
-import rznw.game.maincharacter.inventory.WoodenShield;
-import rznw.game.maincharacter.inventory.WoodenSword;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
@@ -51,19 +47,17 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
 
         this.buyInventory = new Inventory(null);
+        Vector<InventoryItemGroup> items = RandomInventoryGenerator.getRandomItems(2);
+
         try
         {
-            this.buyInventory.addItems(new InventoryItemGroup(new Potion(), 3));
-            this.buyInventory.addItems(new InventoryItemGroup(new Herb(), 3));
+            this.buyInventory.addItems(items);
         }
         catch (InventoryFullException ife)
         {
         }
 
-        this.buyEquipment = new Vector<EquipmentGroup>();
-        this.buyEquipment.add(new EquipmentGroup(new AssassinsCloak(), 1));
-        this.buyEquipment.add(new EquipmentGroup(new WoodenShield(), 1));
-        this.buyEquipment.add(new EquipmentGroup(new WoodenSword(), 1));
+        this.buyEquipment = RandomInventoryGenerator.getRandomEquipments(2);
     }
 
     public void keyPressed(KeyEvent event)
