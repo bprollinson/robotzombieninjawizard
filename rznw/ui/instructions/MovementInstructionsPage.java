@@ -14,6 +14,8 @@ public class MovementInstructionsPage extends InstructionsPage
             "",
             "Your character can move horizontally, vertically, or diagonally, one space at a time.",
             "",
+            "Pressing the center number pad key (5) allows you to skip your turn.",
+            "",
             "Walls (#) are impassable, and separate rooms from the void that surrounds them.",
             "",
             "Use passageways (*) to traverse between rooms.",
