@@ -42,11 +42,6 @@ public class MainCharacterTurnHandler
 
     public void handleTurn(KeyEvent event)
     {
-        if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
-        {
-            return;
-        }
-
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
@@ -62,6 +57,11 @@ public class MainCharacterTurnHandler
 
         MainCharacter character = this.gameWorld.getMainCharacter();
         PositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
+
+        if (!characterPositionChange.isChange())
+        {
+            return;
+        }
 
         if (character.getStatusEffects().isConfused())
         {
