@@ -1,5 +1,6 @@
 package rznw.game.maincharacter.inventory;
 
+import rznw.game.maincharacter.MainCharacter;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Arrays;
@@ -7,7 +8,26 @@ import java.util.Vector;
 
 public class RandomInventoryGenerator
 {
-    public static Vector<InventoryItemGroup> getRandomItems(int numItems)
+    private static Vector<InventoryItemGroup> selectedItems;
+    private static Vector<EquipmentGroup> selectedEquipments;
+
+    public static void handleRegeneration(MainCharacter mainCharacter, int numItems, int numEquipments)
+    {
+        if (mainCharacter.getStatusEffects().regenerateShopEnabled())
+        {
+            mainCharacter.getStatusEffects().disableRegenerateShop();
+
+            RandomInventoryGenerator.regenerateSelectedItems(numItems);
+            RandomInventoryGenerator.regenerateSelectedEquipments(numEquipments);
+        }
+    }
+
+    public static Vector<InventoryItemGroup> getRandomItems()
+    {
+        return RandomInventoryGenerator.selectedItems;
+    }
+
+    private static void regenerateSelectedItems(int numItems)
     {
         InventoryItemGroup[] possibleItemsArray = new InventoryItemGroup[] {
             new InventoryItemGroup(new Bomb(), 1),
@@ -20,19 +40,22 @@ public class RandomInventoryGenerator
             new InventoryItemGroup(new XRayDrop(), 1)
         };
         Vector<InventoryItemGroup> possibleItems = new Vector<InventoryItemGroup>(Arrays.asList(possibleItemsArray));
-        Vector<InventoryItemGroup> selectedItems = new Vector<InventoryItemGroup>();
+        RandomInventoryGenerator.selectedItems = new Vector<InventoryItemGroup>();
 
         for (int i = 0; i < numItems; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleItems.size() - 1);
-            selectedItems.add(possibleItems.get(randomIndex));
+            RandomInventoryGenerator.selectedItems.add(possibleItems.get(randomIndex));
             possibleItems.remove(randomIndex);
         }
-
-        return selectedItems;
     }
 
-    public static Vector<EquipmentGroup> getRandomEquipments(int numEquipments)
+    public static Vector<EquipmentGroup> getRandomEquipments()
+    {
+        return RandomInventoryGenerator.selectedEquipments;
+    }
+
+    private static void regenerateSelectedEquipments(int numEquipments)
     {
         EquipmentGroup[] possibleEquipmentsArray = new EquipmentGroup[] {
             new EquipmentGroup(new DeathScythe(), 1),
@@ -62,15 +85,13 @@ public class RandomInventoryGenerator
             new EquipmentGroup(new EtherealShield(), 1)
         };
         Vector<EquipmentGroup> possibleEquipments = new Vector<EquipmentGroup>(Arrays.asList(possibleEquipmentsArray));
-        Vector<EquipmentGroup> selectedEquipments = new Vector<EquipmentGroup>();
+        RandomInventoryGenerator.selectedEquipments = new Vector<EquipmentGroup>();
 
         for (int i = 0; i < numEquipments; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleEquipments.size() - 1);
-            selectedEquipments.add(possibleEquipments.get(randomIndex));
+            RandomInventoryGenerator.selectedEquipments.add(possibleEquipments.get(randomIndex));
             possibleEquipments.remove(randomIndex);
         }
-
-        return selectedEquipments;
     }
 }

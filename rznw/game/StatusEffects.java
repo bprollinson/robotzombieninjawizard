@@ -42,6 +42,7 @@ public class StatusEffects
     private int meatShieldDodgePercent = 0;
     private int invisibleTurns = 0;
     private int powerSearchTurns = 0;
+    private boolean regenerateShop = true;
 
     public StatusEffects(Character character)
     {
@@ -420,6 +421,21 @@ public class StatusEffects
     public boolean powerSearchEnabled()
     {
         return this.powerSearchTurns > 0;
+    }
+
+    public boolean regenerateShopEnabled()
+    {
+        return this.regenerateShop;
+    }
+
+    public void enableRegenerateShop()
+    {
+        this.regenerateShop = true;
+    }
+
+    public void disableRegenerateShop()
+    {
+        this.regenerateShop = false;
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

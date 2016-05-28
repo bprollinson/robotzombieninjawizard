@@ -50,6 +50,7 @@ public class MainCharacterTurnHandler
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
+            this.gameWorld.getMainCharacter().getStatusEffects().enableRegenerateShop();
             this.gameWorld.generateNextMap();
             Map map = this.gameWorld.getMap();
             MapElement characterElement = this.gameWorld.getMainCharacter().getMapElement();
