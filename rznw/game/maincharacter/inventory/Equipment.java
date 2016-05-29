@@ -6,11 +6,11 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class Equipment
 {
-    Vector<EquipmentGroup> equipmentGroups;
+    private Vector<EquipmentGroup> equipmentGroups;
     private int equippedWeapon = -1;
     private int equippedShield = -1;
     private int equippedArmor = -1;
-    MainCharacter character;
+    private MainCharacter character;
 
     public Equipment(MainCharacter character)
     {
