@@ -75,22 +75,7 @@ public class Equipment
 
     public EquipmentGroup getWeaponGroup(int targetPosition)
     {
-        int pos = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().isWeapon())
-            {
-                return this.equipmentGroups.get(i);
-            }
-
-            if (this.equipmentGroups.get(i).getItem().isWeapon())
-            {
-                pos++;
-            }
-        }
-
-        return null;
+        return this.getGroupOfType(Weapon.EQUIPMENT_TYPE, targetPosition);
     }
 
     public void unequipWeapon()
@@ -120,22 +105,7 @@ public class Equipment
 
     public EquipmentGroup getShieldGroup(int targetPosition)
     {
-        int pos = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().isShield())
-            {
-                return this.equipmentGroups.get(i);
-            }
-
-            if (this.equipmentGroups.get(i).getItem().isShield())
-            {
-                pos++;
-            }
-        }
-
-        return null;
+        return this.getGroupOfType(Shield.EQUIPMENT_TYPE, targetPosition);
     }
 
     public void unequipShield()
@@ -165,22 +135,7 @@ public class Equipment
 
     public EquipmentGroup getArmorGroup(int targetPosition)
     {
-        int pos = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().isArmor())
-            {
-                return this.equipmentGroups.get(i);
-            }
-
-            if (this.equipmentGroups.get(i).getItem().isArmor())
-            {
-                pos++;
-            }
-        }
-
-        return null;
+        return this.getGroupOfType(Armor.EQUIPMENT_TYPE, targetPosition);
     }
 
     public void unequipArmor()
@@ -235,5 +190,25 @@ public class Equipment
         }
 
         return result;
+    }
+
+    private EquipmentGroup getGroupOfType(int requiredType, int targetPosition)
+    {
+        int pos = 0;
+
+        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        {
+            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().getEquipmentType() == requiredType)
+            {
+                return this.equipmentGroups.get(i);
+            }
+
+            if (this.equipmentGroups.get(i).getItem().getEquipmentType() == requiredType)
+            {
+                pos++;
+            }
+        }
+
+        return null;
     }
 }
