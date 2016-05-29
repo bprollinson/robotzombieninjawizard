@@ -6,7 +6,14 @@ import rznw.map.GameWorld;
 
 public abstract class Weapon extends EquipmentItem
 {
+    public static final int EQUIPMENT_TYPE = 1;
+
     public abstract int getDamage();
+
+    public int getEquipmentType()
+    {
+        return Weapon.EQUIPMENT_TYPE;
+    }
 
     public int getToHitBonus()
     {

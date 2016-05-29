@@ -4,9 +4,16 @@ import rznw.game.maincharacter.MainCharacter;
 
 public abstract class Shield extends EquipmentItem
 {
+    public static final int EQUIPMENT_TYPE = 2;
+
     public abstract int getDodgePercent();
 
     public abstract int getPaddingPercent();
+
+    public int getEquipmentType()
+    {
+        return Shield.EQUIPMENT_TYPE;
+    }
 
     public int getMagicDodgePercent()
     {

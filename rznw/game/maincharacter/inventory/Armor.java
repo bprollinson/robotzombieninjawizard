@@ -6,9 +6,16 @@ import rznw.map.GameWorld;
 
 public abstract class Armor extends EquipmentItem
 {
+    public static final int EQUIPMENT_TYPE = 3;
+
     public abstract int getDodgePercent();
 
     public abstract int getPaddingPercent();
+
+    public int getEquipmentType()
+    {
+        return Armor.EQUIPMENT_TYPE;
+    }
 
     public int getThickSkinBonus()
     {

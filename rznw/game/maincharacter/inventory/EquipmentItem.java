@@ -10,6 +10,8 @@ public abstract class EquipmentItem
 
     public abstract int getValue();
 
+    public abstract int getEquipmentType();
+
     public int getBuyPrice(MainCharacter character)
     {
         int priceReductionPercent = (int)(2.0 * character.getSkillPoints(4));

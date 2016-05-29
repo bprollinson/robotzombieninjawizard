@@ -70,18 +70,7 @@ public class Equipment
 
     public int getNumWeaponGroups()
     {
-        int result = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
-            if (equipmentGroup.getItem().isWeapon())
-            {
-                result++;
-            }
-        }
-
-        return result;
+        return this.getNumGroupsOfType(Weapon.EQUIPMENT_TYPE);
     }
 
     public EquipmentGroup getWeaponGroup(int targetPosition)
@@ -126,18 +115,7 @@ public class Equipment
 
     public int getNumShieldGroups()
     {
-        int result = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
-            if (equipmentGroup.getItem().isShield())
-            {
-                result++;
-            }
-        }
-
-        return result;
+        return this.getNumGroupsOfType(Shield.EQUIPMENT_TYPE);
     }
 
     public EquipmentGroup getShieldGroup(int targetPosition)
@@ -182,18 +160,7 @@ public class Equipment
 
     public int getNumArmorGroups()
     {
-        int result = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
-            if (equipmentGroup.getItem().isArmor())
-            {
-                result++;
-            }
-        }
-
-        return result;
+        return this.getNumGroupsOfType(Armor.EQUIPMENT_TYPE);
     }
 
     public EquipmentGroup getArmorGroup(int targetPosition)
@@ -252,5 +219,21 @@ public class Equipment
         {
             throw new EquipmentFullException();
         }
+    }
+
+    private int getNumGroupsOfType(int requiredType)
+    {
+        int result = 0;
+
+        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        {
+            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
+            if (equipmentGroup.getItem().getEquipmentType() == requiredType)
+            {
+                result++;
+            }
+        }
+
+        return result;
     }
 }
