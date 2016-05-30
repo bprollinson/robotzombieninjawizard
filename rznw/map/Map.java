@@ -31,12 +31,12 @@ public class Map
         this.visible = new boolean[Map.NUM_ROWS][Map.NUM_COLUMNS];
         this.visited = new boolean[Map.NUM_ROWS][Map.NUM_COLUMNS];
 
-        for (int i = 0; i < Map.NUM_ROWS; i++)
+        for (int row = 0; row < Map.NUM_ROWS; row++)
         {
-            for (int j = 0; j < Map.NUM_COLUMNS; j++)
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
             {
-                this.visible[i][j] = false;
-                this.visited[i][j] = false;
+                this.visible[row][column] = false;
+                this.visited[row][column] = false;
             }
         }
     }
@@ -46,80 +46,80 @@ public class Map
         return this.level;
     }
 
-    public MapElement getElement(int i, int j)
+    public MapElement getElement(int row, int column)
     {
-        return this.elements[i][j];
+        return this.elements[row][column];
     }
 
-    public MapElement getBackgroundElement(int i, int j)
+    public MapElement getBackgroundElement(int row, int column)
     {
-        return this.backgroundElements[i][j];
+        return this.backgroundElements[row][column];
     }
 
-    public void setElement(int i, int j, MapElement element)
+    public void setElement(int row, int column, MapElement element)
     {
-        this.elements[i][j] = element;
+        this.elements[row][column] = element;
     }
 
-    public void setBackgroundElement(int i, int j, MapElement element)
+    public void setBackgroundElement(int row, int column, MapElement element)
     {
-        this.backgroundElements[i][j] = element;
+        this.backgroundElements[row][column] = element;
     }
 
-    public void setVisible(MainCharacter character, int i, int j)
+    public void setVisible(MainCharacter character, int row, int column)
     {
-        if (this.visible[i][j] == false)
+        if (this.visible[row][column] == false)
         {
-            MapElement backgroundElement = this.getBackgroundElement(i, j);
+            MapElement backgroundElement = this.getBackgroundElement(row, column);
             if (backgroundElement != null)
             {
                 backgroundElement.reveal(character);
             }
         }
 
-        this.visible[i][j] = true;
+        this.visible[row][column] = true;
     }
 
-    public boolean isVisible(int i, int j)
+    public boolean isVisible(int row, int column)
     {
-        return this.visible[i][j];
+        return this.visible[row][column];
     }
 
-    public void setElementVisited(MainCharacter character, int i, int j)
+    public void setElementVisited(MainCharacter character, int row, int column)
     {
         int radius = character.getViewRadius();
 
-        int minRow = Math.max(i - radius, 0);
-        int maxRow = Math.min(i + radius, Map.NUM_ROWS - 1);
-        int minColumn = Math.max(j - radius, 0);
-        int maxColumn = Math.min(j + radius, Map.NUM_COLUMNS - 1);
+        int minRow = Math.max(row - radius, 0);
+        int maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);
+        int minColumn = Math.max(column - radius, 0);
+        int maxColumn = Math.min(column + radius, Map.NUM_COLUMNS - 1);
 
-        for (int row = minRow; row <= maxRow; row++)
+        for (int rangeRow = minRow; rangeRow <= maxRow; rangeRow++)
         {
-            for (int column = minColumn; column <= maxColumn; column++)
+            for (int rangeColumn = minColumn; rangeColumn <= maxColumn; rangeColumn++)
             {
-                this.setVisible(character, row, column);
+                this.setVisible(character, rangeRow, rangeColumn);
             }
         }
 
         radius = 3 * character.getSkillPoints(7);
         System.out.println("Looking for stairs with radius: " + radius);
-        minRow = Math.max(i - radius, 0);
-        maxRow = Math.min(i + radius, Map.NUM_ROWS - 1);
-        minColumn = Math.max(j - radius, 0);
-        maxColumn = Math.min(j + radius, Map.NUM_COLUMNS - 1);
+        minRow = Math.max(row - radius, 0);
+        maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);
+        minColumn = Math.max(column - radius, 0);
+        maxColumn = Math.min(column + radius, Map.NUM_COLUMNS - 1);
 
-        for (int row = minRow; row <= maxRow; row++)
+        for (int rangeRow = minRow; rangeRow <= maxRow; rangeRow++)
         {
-            for (int column = minColumn; column <= maxColumn; column++)
+            for (int rangeColumn = minColumn; rangeColumn <= maxColumn; rangeColumn++)
             {
-                if (this.getBackgroundElement(row, column) instanceof Stairs)
+                if (this.getBackgroundElement(rangeRow, rangeColumn) instanceof Stairs)
                 {
-                    if (!this.isVisible(row, column))
+                    if (!this.isVisible(rangeRow, rangeColumn))
                     {
                         System.out.println("Found stairs using skill");
                     }
-                    this.setVisible(character, row, column);
+                    this.setVisible(character, rangeRow, rangeColumn);
                 }
             }
         }
@@ -140,15 +140,15 @@ public class Map
         return new MapScraper().getEnemiesInRectangle(this, minRow, minColumn, maxRow, maxColumn);
     }
 
-    public boolean elementVisited(int i, int j)
+    public boolean elementVisited(int row, int column)
     {
-        return this.visited[i][j];
+        return this.visited[row][column];
     }
 
-    public void visit(int i, int j)
+    public void visit(int row, int column)
     {
         System.out.println("Setting a map square as visited");
-        this.visited[i][j] = true;
+        this.visited[row][column] = true;
     }
 
     public boolean isLastLevel()
