@@ -22,6 +22,6 @@ public class Potion extends InventoryItem
 
     public int getValue()
     {
-        return 50;
+        return 100;
     }
 }
