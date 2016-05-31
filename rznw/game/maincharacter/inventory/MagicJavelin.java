@@ -33,11 +33,6 @@ public class MagicJavelin extends Weapon
         return 8;
     }
 
-    public int getValue()
-    {
-        return 400;
-    }
-
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         this.damageEnemyInPosition(mainCharacter, gameWorld, -1, -1);

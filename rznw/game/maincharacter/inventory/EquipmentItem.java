@@ -8,8 +8,6 @@ public abstract class EquipmentItem
 
     public abstract String[] getStats();
 
-    public abstract int getValue();
-
     public abstract int getEquipmentType();
 
     public int getBuyPrice(MainCharacter character)
@@ -37,5 +35,10 @@ public abstract class EquipmentItem
     public boolean isArmor()
     {
         return false;
+    }
+
+    public int getValue()
+    {
+        return 400;
     }
 }

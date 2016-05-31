@@ -27,11 +27,6 @@ public class DeathScythe extends Weapon
         return 8;
     }
 
-    public int getValue()
-    {
-        return 400;
-    }
-
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Scything opponent!");

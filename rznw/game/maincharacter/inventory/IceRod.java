@@ -29,11 +29,6 @@ public class IceRod extends Weapon
         return 8;
     }
 
-    public int getValue()
-    {
-        return 400;
-    }
-
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Enemy is frozen by the ice rod");

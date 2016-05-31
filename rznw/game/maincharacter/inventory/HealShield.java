@@ -31,11 +31,6 @@ public class HealShield extends Shield
         return 3;
     }
 
-    public int getValue()
-    {
-        return 200;
-    }
-
     public void dodgesAttack(MainCharacter mainCharacter)
     {
         System.out.println("Dodged attack with heal shield - healing 5 HP");

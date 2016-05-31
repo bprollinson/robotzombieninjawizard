@@ -28,11 +28,6 @@ public class ShieldOfSight extends Shield
         return 4;
     }
 
-    public int getValue()
-    {
-        return 400;
-    }
-
     public int getViewRadiusBonus()
     {
         return 4;

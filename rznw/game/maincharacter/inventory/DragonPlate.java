@@ -34,11 +34,6 @@ public class DragonPlate extends Armor
         return 4;
     }
 
-    public int getValue()
-    {
-        return 200;
-    }
-
     public void damagedByEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Damaged by an enemy character");

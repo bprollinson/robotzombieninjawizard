@@ -38,9 +38,4 @@ public class MagicShield extends Shield
     {
         return 20;
     }
-
-    public int getValue()
-    {
-        return 400;
-    }
 }

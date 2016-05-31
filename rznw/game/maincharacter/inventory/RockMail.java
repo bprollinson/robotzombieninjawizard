@@ -26,9 +26,4 @@ public class RockMail extends Armor
     {
         return 10;
     }
-
-    public int getValue()
-    {
-        return 200;
-    }
 }

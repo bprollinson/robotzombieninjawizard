@@ -26,9 +26,4 @@ public class EtherealShield extends Shield
     {
         return 0;
     }
-
-    public int getValue()
-    {
-        return 400;
-    }
 }

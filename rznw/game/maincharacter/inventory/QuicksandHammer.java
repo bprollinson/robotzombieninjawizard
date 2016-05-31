@@ -33,11 +33,6 @@ public class QuicksandHammer extends Weapon
         return 10;
     }
 
-    public int getValue()
-    {
-        return 400;
-    }
-
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         for (int radius = 2; radius <= 10; radius++)

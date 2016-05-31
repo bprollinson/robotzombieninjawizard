@@ -27,11 +27,6 @@ public class ProtectivePlate extends Armor
         return 4;
     }
 
-    public int getValue()
-    {
-        return 200;
-    }
-
     public int getThickSkinBonus()
     {
         return 50;

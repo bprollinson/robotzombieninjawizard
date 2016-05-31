@@ -32,11 +32,6 @@ public class PoisonCloth extends Armor
         return 4;
     }
 
-    public int getValue()
-    {
-        return 200;
-    }
-
     public void damagedByEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
         System.out.println("Poisoning enemy with poison cloth");

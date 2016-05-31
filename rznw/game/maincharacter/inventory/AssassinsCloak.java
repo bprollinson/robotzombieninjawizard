@@ -26,9 +26,4 @@ public class AssassinsCloak extends Armor
     {
         return 1;
     }
-
-    public int getValue()
-    {
-        return 200;
-    }
 }

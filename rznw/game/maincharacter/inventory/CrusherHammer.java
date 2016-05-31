@@ -26,9 +26,4 @@ public class CrusherHammer extends Weapon
     {
         return -10;
     }
-
-    public int getValue()
-    {
-        return 200;
-    }
 }
