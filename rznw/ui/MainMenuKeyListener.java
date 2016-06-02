@@ -21,7 +21,7 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
     public MainMenuKeyListener(MainMenuRenderer mainMenuRenderer)
     {
         this.mainMenuRenderer = mainMenuRenderer;
-        this.state = new MenuState(8);
+        this.state = new MenuState(9);
     }
 
     public void keyPressed(KeyEvent event)
