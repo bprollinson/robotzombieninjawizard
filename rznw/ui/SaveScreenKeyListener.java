@@ -2,15 +2,21 @@ package rznw.ui;
 
 import java.awt.event.KeyEvent;
 
+import rznw.map.GameWorld;
+
+import rznw.save.GameSaver;
+
 public class SaveScreenKeyListener extends StateTransitionKeyListener
 {
     private SaveScreenRenderer saveScreenRenderer;
     private MenuState state;
+    private GameWorld gameWorld;
 
-    public SaveScreenKeyListener(SaveScreenRenderer saveScreenRenderer)
+    public SaveScreenKeyListener(SaveScreenRenderer saveScreenRenderer, GameWorld gameWorld)
     {
         this.saveScreenRenderer = saveScreenRenderer;
         this.state = new MenuState(9);
+        this.gameWorld = gameWorld;
     }
 
     public void keyPressed(KeyEvent event)
@@ -26,6 +32,10 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
                 this.state.moveDown();
+                break;
+            case KeyEvent.VK_ENTER:
+                GameSaver gameSaver = new GameSaver();
+                gameSaver.save(this.gameWorld, this.state.getEntryNumber());
                 break;
         }
 

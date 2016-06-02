@@ -25,7 +25,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_SKILLS_SCREEN, new SkillsScreenKeyListener(new SkillsScreenRenderer(frame), gameWorld, turnHandler));
         this.listeners.put(DispatchKeyListener.STATE_SPELLS_SCREEN, new SpellsScreenKeyListener(new SpellsScreenRenderer(frame), gameWorld, new MapRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_INVENTORY_SCREEN, new InventoryScreenKeyListener(new InventoryScreenRenderer(frame), gameWorld, turnHandler));
-        this.listeners.put(DispatchKeyListener.STATE_SAVE_SCREEN, new SaveScreenKeyListener(new SaveScreenRenderer(frame)));
+        this.listeners.put(DispatchKeyListener.STATE_SAVE_SCREEN, new SaveScreenKeyListener(new SaveScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_LOAD_SCREEN, new LoadScreenKeyListener(new LoadScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_NEW_GAME_SCREEN, new NewGameScreenKeyListener(new NewGameScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_EXIT_SCREEN, new ExitScreenKeyListener(new ExitScreenRenderer(frame)));
