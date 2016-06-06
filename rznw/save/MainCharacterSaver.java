@@ -4,22 +4,19 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 
-public class MainCharacterSaver implements ComponentSaver
+public class MainCharacterSaver extends ComponentSaver
 {
     public void save(GameWorld gameWorld, BufferedWriter fileWriter)
     {
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
-        try
+        this.writeLine(fileWriter, mainCharacter.getLevel());
+        this.writeLine(fileWriter, mainCharacter.getExperience());
+
+        for (int i = 0; i < 16; i++)
         {
-            fileWriter.write("" + mainCharacter.getLevel());
-            fileWriter.newLine();
-            fileWriter.write("" + mainCharacter.getExperience());
-        }
-        catch (IOException ioe)
-        {
+            this.writeLine(fileWriter, mainCharacter.getStatPoints(i));
         }
     }
 }
