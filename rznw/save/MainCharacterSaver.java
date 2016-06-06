@@ -18,5 +18,15 @@ public class MainCharacterSaver extends ComponentSaver
         {
             this.writeLine(fileWriter, mainCharacter.getStatPoints(i));
         }
+
+        for (int i = 0; i < 16; i++)
+        {
+            this.writeLine(fileWriter, mainCharacter.getSkillPoints(i));
+        }
+
+        for (int i = 0; i < 16; i++)
+        {
+            this.writeLine(fileWriter, mainCharacter.getSpellPoints(i));
+        }
     }
 }
