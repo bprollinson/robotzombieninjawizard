@@ -12,6 +12,8 @@ public class MapSaver extends ComponentSaver
     {
         Map map = gameWorld.getMap();
 
+        this.writeLine(fileWriter, this.getNumMapElements(map));
+
         this.writeLine(fileWriter, map.getLevel());
 
         for (int row = 0; row < Map.NUM_ROWS; row++)
@@ -27,5 +29,23 @@ public class MapSaver extends ComponentSaver
                 }
             }
         }
+    }
+
+    private int getNumMapElements(Map map)
+    {
+        int numElements = 0;
+
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                if (map.getElement(row, column) != null)
+                {
+                    numElements++;
+                }
+            }
+        }
+
+        return numElements;
     }
 }
