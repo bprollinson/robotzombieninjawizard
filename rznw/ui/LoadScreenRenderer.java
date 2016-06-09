@@ -7,7 +7,7 @@ public class LoadScreenRenderer extends MenuScreenRenderer
         super(frame);
     }
 
-    public void render()
+    public void render(MenuState state)
     {
         this.clearScreen();
         this.renderCenteredString(1, "Load");
@@ -16,5 +16,12 @@ public class LoadScreenRenderer extends MenuScreenRenderer
         {
             this.renderCenteredString(4 + 2 * i, "Slot " + (i + 1));
         }
+
+        this.renderCursor(state);
+    }
+
+    private void renderCursor(MenuState state)
+    {
+        this.frame.renderDisplayCharacter(4 + 2 * state.getEntryNumber(), 14, 'X');
     }
 }
