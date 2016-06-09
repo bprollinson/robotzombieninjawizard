@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.Character;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
@@ -23,7 +24,8 @@ public class EnemySaver extends ComponentSaver
 
                 if (element != null && element.isEnemy())
                 {
-                    this.writeLine(fileWriter, ((EnemyMapElement)element).getCharacter().getClass().getName());
+                    Character enemyCharacter = ((EnemyMapElement)element).getCharacter();
+                    this.writeEnemyInfo(fileWriter, enemyCharacter);
                 }
             }
         }
@@ -47,5 +49,12 @@ public class EnemySaver extends ComponentSaver
         }
 
         return numEnemies;
+    }
+
+    private void writeEnemyInfo(BufferedWriter fileWriter, Character enemyCharacter)
+    {
+        this.writeLine(fileWriter, enemyCharacter.getClass().getName());
+        this.writeLine(fileWriter, enemyCharacter.getHP());
+        this.writeLine(fileWriter, enemyCharacter.getMP());
     }
 }
