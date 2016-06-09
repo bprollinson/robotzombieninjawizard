@@ -11,5 +11,10 @@ public class LoadScreenRenderer extends MenuScreenRenderer
     {
         this.clearScreen();
         this.renderCenteredString(1, "Load");
+
+        for (int i = 0; i < 10; i++)
+        {
+            this.renderCenteredString(4 + 2 * i, "Slot " + (i + 1));
+        }
     }
 }
