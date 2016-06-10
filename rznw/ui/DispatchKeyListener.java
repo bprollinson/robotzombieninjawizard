@@ -31,6 +31,7 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_INSTRUCTIONS_SCREEN = 24;
     public static final int STATE_GAME_COMPLETED = 25;
     public static final int STATE_SAVE_CONFIRMATION_SCREEN = 26;
+    public static final int STATE_LOAD_CONFIRMATION_SCREEN = 27;
 
     private int state;
     private StateTransitionKeyListenerContainer listenerContainer;

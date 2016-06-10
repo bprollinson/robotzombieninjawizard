@@ -48,6 +48,11 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
         }
 
+        if (event.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            return DispatchKeyListener.STATE_LOAD_CONFIRMATION_SCREEN;
+        }
+
         return DispatchKeyListener.STATE_LOAD_SCREEN;
     }
 }
