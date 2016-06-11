@@ -2,15 +2,20 @@ package rznw.ui;
 
 import java.awt.event.KeyEvent;
 
+import rznw.map.GameWorld;
+import rznw.save.GameLoader;
+
 public class LoadScreenKeyListener extends StateTransitionKeyListener
 {
     private LoadScreenRenderer loadScreenRenderer;
     private MenuState state;
+    private GameWorld gameWorld;
 
-    public LoadScreenKeyListener(LoadScreenRenderer loadScreenRenderer)
+    public LoadScreenKeyListener(LoadScreenRenderer loadScreenRenderer, GameWorld gameWorld)
     {
         this.loadScreenRenderer = loadScreenRenderer;
         this.state = new MenuState(9);
+        this.gameWorld = gameWorld;
     }
 
     public void keyPressed(KeyEvent event)
@@ -26,6 +31,10 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
                 this.state.moveDown();
+                break;
+            case KeyEvent.VK_ENTER:
+                GameLoader gameLoader = new GameLoader();
+                gameLoader.load(this.gameWorld, this.state.getEntryNumber());
                 break;
         }
 
