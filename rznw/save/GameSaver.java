@@ -12,7 +12,7 @@ public class GameSaver
     public void save(GameWorld gameWorld, int slot)
     {
         this.makeDirectory();
-        File saveFile = this.makeSaveFile(gameWorld, slot);
+        File saveFile = this.makeSaveFile(slot);
         this.saveComponentInfo(gameWorld, saveFile);
     }
 
@@ -25,7 +25,7 @@ public class GameSaver
         }
     }
 
-    private File makeSaveFile(GameWorld gameWorld, int slot)
+    private File makeSaveFile(int slot)
     {
         String fileName = (slot + 1) + ".sav";
         String filePath = "saves/" + fileName;
