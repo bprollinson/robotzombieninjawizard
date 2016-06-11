@@ -2,10 +2,10 @@ package rznw.game.maincharacter;
 
 public class MainCharacterGenerator
 {
-    private static final int CLASS_ROBOT = 0;
-    private static final int CLASS_ZOMBIE = 1;
-    private static final int CLASS_NINJA = 2;
-    private static final int CLASS_WIZARD = 3;
+    public static final int CLASS_ROBOT = 0;
+    public static final int CLASS_ZOMBIE = 1;
+    public static final int CLASS_NINJA = 2;
+    public static final int CLASS_WIZARD = 3;
 
     public MainCharacter generateCharacter(int characterClass)
     {

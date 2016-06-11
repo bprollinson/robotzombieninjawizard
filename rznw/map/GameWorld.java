@@ -2,6 +2,7 @@ package rznw.map;
 
 import rznw.game.CharacterGenerator;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.MainCharacterGenerator;
 import rznw.map.generator.MapGenerator;
 
 public class GameWorld
@@ -23,6 +24,13 @@ public class GameWorld
         System.out.println("Generating dungeon level 1");
         this.character = characterGenerator.generateMainCharacter(characterClass);
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
+        this.gameCompleted = false;
+    }
+
+    public void initializeFromLoad(int dungeonLevel)
+    {
+        this.character = characterGenerator.generateMainCharacter(MainCharacterGenerator.CLASS_ROBOT);
+        this.map = this.mapGenerator.generate(this.character, this.characterGenerator, dungeonLevel);
         this.gameCompleted = false;
     }
 
