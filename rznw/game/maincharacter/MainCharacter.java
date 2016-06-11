@@ -174,6 +174,11 @@ public abstract class MainCharacter extends Character
         this.experience += experience;
     }
 
+    public void setExperience(int experience)
+    {
+        this.experience = experience;
+    }
+
     public void addStatPoint(int statNumber)
     {
         this.stats[statNumber]++;
@@ -184,6 +189,11 @@ public abstract class MainCharacter extends Character
         return this.stats[statNumber];
     }
 
+    public void setStatPoints(int statNumber, int points)
+    {
+        this.stats[statNumber] = points;
+    }
+
     public void addSkillPoint(int skillNumber)
     {
         this.skills[skillNumber]++;
@@ -192,6 +202,11 @@ public abstract class MainCharacter extends Character
     public int getSkillPoints(int skillNumber)
     {
         return this.skills[skillNumber];
+    }
+
+    public void setSkillPoints(int skillNumber, int points)
+    {
+        this.skills[skillNumber] = points;
     }
 
     public void addSpellPoint(int spellNumber)
@@ -215,6 +230,11 @@ public abstract class MainCharacter extends Character
         }
 
         return spellPoints;
+    }
+
+    public void setSpellPoints(int spellNumber, int points)
+    {
+        this.spells[spellNumber] = points;
     }
 
     public void resetStateAfterLevelUp()
