@@ -40,12 +40,11 @@ public class GameLoader
 
         try
         {
-            System.out.println("Sample line: " + fileReader.readLine());
+            gameWorld.generateMainCharacter(Integer.parseInt(fileReader.readLine()));
         }
         catch (IOException ioe)
         {
         }
-
         gameWorld.initializeFromLoad(1);
 
         try

@@ -27,9 +27,13 @@ public class GameWorld
         this.gameCompleted = false;
     }
 
+    public void generateMainCharacter(int characterClass)
+    {
+        this.character = this.characterGenerator.generateMainCharacter(characterClass);
+    }
+
     public void initializeFromLoad(int dungeonLevel)
     {
-        this.character = characterGenerator.generateMainCharacter(MainCharacterGenerator.CLASS_ROBOT);
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, dungeonLevel);
         this.gameCompleted = false;
     }
