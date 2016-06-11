@@ -24,6 +24,11 @@ public class Robot extends MainCharacter
         return "Robot";
     }
 
+    public int getCharacterClassNumber()
+    {
+        return MainCharacterGenerator.CLASS_ROBOT;
+    }
+
     public String getSpellCategory(int categoryNumber)
     {
         return Robot.spellCategory[categoryNumber];

@@ -24,6 +24,11 @@ public class Ninja extends MainCharacter
         return "Ninja";
     }
 
+    public int getCharacterClassNumber()
+    {
+        return MainCharacterGenerator.CLASS_NINJA;
+    }
+
     public String getSpellCategory(int categoryNumber)
     {
         return Ninja.spellCategory[categoryNumber];

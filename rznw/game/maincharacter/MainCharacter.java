@@ -225,6 +225,8 @@ public abstract class MainCharacter extends Character
 
     public abstract String getCharacterClass();
 
+    public abstract int getCharacterClassNumber();
+
     public void useItem(int itemIndex, GameWorld gameWorld)
     {
         InventoryItem item = this.inventory.getItemGroup(itemIndex).getItem();

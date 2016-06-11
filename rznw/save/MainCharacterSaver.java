@@ -11,6 +11,7 @@ public class MainCharacterSaver extends ComponentSaver
     {
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
+        this.writeLine(fileWriter, mainCharacter.getCharacterClassNumber());
         this.writeLine(fileWriter, mainCharacter.getLevel());
         this.writeLine(fileWriter, mainCharacter.getExperience());
 

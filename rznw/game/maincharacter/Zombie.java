@@ -24,6 +24,11 @@ public class Zombie extends MainCharacter
         return "Zombie";
     }
 
+    public int getCharacterClassNumber()
+    {
+        return MainCharacterGenerator.CLASS_ZOMBIE;
+    }
+
     public String getSpellCategory(int categoryNumber)
     {
         return Zombie.spellCategory[categoryNumber];

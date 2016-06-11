@@ -24,6 +24,11 @@ public class Wizard extends MainCharacter
         return "Wizard";
     }
 
+    public int getCharacterClassNumber()
+    {
+        return MainCharacterGenerator.CLASS_WIZARD;
+    }
+
     public String getSpellCategory(int categoryNumber)
     {
         return Wizard.spellCategory[categoryNumber];
