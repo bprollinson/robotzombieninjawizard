@@ -38,14 +38,13 @@ public class GameLoader
             return;
         }
 
-        try
+        ComponentLoader[] componentLoaders = this.getComponentLoaders();
+
+        for (int i = 0; i < componentLoaders.length; i++)
         {
-            gameWorld.generateMainCharacter(Integer.parseInt(fileReader.readLine()));
+            ComponentLoader componentLoader = componentLoaders[i];
+            componentLoader.load(gameWorld, fileReader);
         }
-        catch (IOException ioe)
-        {
-        }
-        gameWorld.initializeFromLoad(1);
 
         try
         {
@@ -54,5 +53,14 @@ public class GameLoader
         catch (IOException ioe)
         {
         }
+    }
+
+
+    private ComponentLoader[] getComponentLoaders()
+    {
+        return new ComponentLoader[] {
+            new MainCharacterLoader(),
+            new MapLoader()
+        };
     }
 }
