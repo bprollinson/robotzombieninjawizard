@@ -14,6 +14,8 @@ public class InventorySaver extends ComponentSaver
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
         Inventory inventory = mainCharacter.getInventory();
 
+        this.writeLine(fileWriter, inventory.getNumGold());
+
         this.writeLine(fileWriter, inventory.getNumItemGroups());
 
         for (int i = 0; i < inventory.getNumItemGroups(); i++)
