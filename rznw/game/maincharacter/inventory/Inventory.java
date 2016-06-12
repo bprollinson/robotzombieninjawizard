@@ -36,6 +36,11 @@ public class Inventory
         return this.numGold;
     }
 
+    public void setNumGold(int numGold)
+    {
+        this.numGold = numGold;
+    }
+
     public void addItems(InventoryItemGroup itemGroup) throws InventoryFullException
     {
         this.assertCanAddItems(itemGroup);
