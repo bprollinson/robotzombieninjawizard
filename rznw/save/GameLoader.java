@@ -60,6 +60,7 @@ public class GameLoader
     {
         return new ComponentLoader[] {
             new MainCharacterLoader(),
+            new EnemyLoader(),
             new MapLoader()
         };
     }
