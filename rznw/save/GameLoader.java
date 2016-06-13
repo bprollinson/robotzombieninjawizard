@@ -55,14 +55,14 @@ public class GameLoader
         }
     }
 
-
     private ComponentLoader[] getComponentLoaders()
     {
         return new ComponentLoader[] {
             new MainCharacterLoader(),
             new EnemyLoader(),
             new MapLoader(),
-            new InventoryLoader()
+            new InventoryLoader(),
+            new EquipmentLoader()
         };
     }
 }
