@@ -12,6 +12,7 @@ import rznw.map.element.MapElement;
 
 public class MegaBomb extends InventoryItem
 {
+    private static int ITEM_NUMBER = 6;
     private static int RADIUS = 4;
     private static int DAMAGE = 300;
 
@@ -42,5 +43,10 @@ public class MegaBomb extends InventoryItem
     public int getValue()
     {
         return 200;
+    }
+
+    public int getItemNumber()
+    {
+        return MegaBomb.ITEM_NUMBER;
     }
 }

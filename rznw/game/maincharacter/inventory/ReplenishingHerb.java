@@ -6,6 +6,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingHerb extends Herb
 {
+    private static int ITEM_NUMBER = 10;
+
     public String getDisplayName()
     {
         return "Replenishing Herb";
@@ -35,5 +37,10 @@ public class ReplenishingHerb extends Herb
     public int getValue()
     {
         return 100;
+    }
+
+    public int getItemNumber()
+    {
+        return ReplenishingHerb.ITEM_NUMBER;
     }
 }

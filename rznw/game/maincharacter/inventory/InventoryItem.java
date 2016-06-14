@@ -24,4 +24,6 @@ public abstract class InventoryItem
     {
         return (int)Math.floor(0.6 * this.getValue());
     }
+
+    public abstract int getItemNumber();
 }

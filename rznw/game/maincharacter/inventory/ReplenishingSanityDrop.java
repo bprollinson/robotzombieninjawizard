@@ -6,6 +6,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingSanityDrop extends SanityDrop
 {
+    private static int ITEM_NUMBER = 11;
+
     public String getDisplayName()
     {
         return "Replenishing Sanity Drop";
@@ -35,5 +37,10 @@ public class ReplenishingSanityDrop extends SanityDrop
     public int getValue()
     {
         return 100;
+    }
+
+    public int getItemNumber()
+    {
+        return ReplenishingSanityDrop.ITEM_NUMBER;
     }
 }

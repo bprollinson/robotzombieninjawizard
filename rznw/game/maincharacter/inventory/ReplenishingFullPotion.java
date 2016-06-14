@@ -6,6 +6,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingFullPotion extends FullPotion
 {
+    private static int ITEM_NUMBER = 9;
+
     public String getDisplayName()
     {
         return "Replenishing Full Potion";
@@ -35,5 +37,10 @@ public class ReplenishingFullPotion extends FullPotion
     public int getValue()
     {
         return 400;
+    }
+
+    public int getItemNumber()
+    {
+        return ReplenishingFullPotion.ITEM_NUMBER;
     }
 }

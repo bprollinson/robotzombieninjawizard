@@ -22,7 +22,7 @@ public class InventorySaver extends ComponentSaver
         {
             InventoryItemGroup itemGroup = inventory.getItemGroup(i);
 
-            this.writeLine(fileWriter, itemGroup.getItem().getDisplayName());
+            this.writeLine(fileWriter, itemGroup.getItem().getItemNumber());
             this.writeLine(fileWriter, itemGroup.getNumItems());
         }
     }

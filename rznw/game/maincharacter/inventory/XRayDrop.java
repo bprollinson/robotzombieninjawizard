@@ -6,6 +6,8 @@ import rznw.map.Map;
 
 public class XRayDrop extends InventoryItem
 {
+    private static int ITEM_NUMBER = 14;
+
     public String getDisplayName()
     {
         return "X-Ray Drop";
@@ -32,5 +34,10 @@ public class XRayDrop extends InventoryItem
     public int getValue()
     {
         return 200;
+    }
+
+    public int getItemNumber()
+    {
+        return XRayDrop.ITEM_NUMBER;
     }
 }
