@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class SanityDrop extends InventoryItem
 {
-    private static int ITEM_NUMBER = 13;
+    public static final int ITEM_NUMBER = 13;
 
     public String getDisplayName()
     {

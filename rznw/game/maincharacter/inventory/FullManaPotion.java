@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class FullManaPotion extends InventoryItem
 {
-    private static int ITEM_NUMBER = 2;
+    public static final int ITEM_NUMBER = 2;
 
     public String getDisplayName()
     {

@@ -6,7 +6,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingFullManaPotion extends FullManaPotion
 {
-    private static int ITEM_NUMBER = 8;
+    public static final int ITEM_NUMBER = 8;
 
     public String getDisplayName()
     {

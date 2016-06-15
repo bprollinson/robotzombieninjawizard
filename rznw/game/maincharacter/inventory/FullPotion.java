@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class FullPotion extends InventoryItem
 {
-    private static int ITEM_NUMBER = 3;
+    public static final int ITEM_NUMBER = 3;
 
     public String getDisplayName()
     {

@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class Potion extends InventoryItem
 {
-    private static int ITEM_NUMBER = 7;
+    public static final int ITEM_NUMBER = 7;
 
     public String getDisplayName()
     {

@@ -6,7 +6,7 @@ import rznw.map.Map;
 
 public class XRayDrop extends InventoryItem
 {
-    private static int ITEM_NUMBER = 14;
+    public static final int ITEM_NUMBER = 14;
 
     public String getDisplayName()
     {

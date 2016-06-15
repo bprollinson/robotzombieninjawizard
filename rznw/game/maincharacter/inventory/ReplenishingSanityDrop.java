@@ -6,7 +6,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingSanityDrop extends SanityDrop
 {
-    private static int ITEM_NUMBER = 11;
+    public static final int ITEM_NUMBER = 11;
 
     public String getDisplayName()
     {

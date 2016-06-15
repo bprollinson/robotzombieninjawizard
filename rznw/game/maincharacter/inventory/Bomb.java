@@ -12,7 +12,7 @@ import rznw.map.element.MapElement;
 
 public class Bomb extends InventoryItem
 {
-    private static int ITEM_NUMBER = 1;
+    public static final int ITEM_NUMBER = 1;
     private static int RADIUS = 2;
     private static int DAMAGE = 100;
 

@@ -2,6 +2,9 @@ package rznw.save;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Inventory;
+import rznw.game.maincharacter.inventory.InventoryFullException;
+import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;
@@ -21,9 +24,18 @@ public class InventoryLoader extends ComponentLoader
 
         for (int i = 0; i < numInventoryGroups; i++)
         {
-            String itemName = this.readLine(fileReader);
+            int itemIndex = this.readInteger(fileReader);
             int itemQuantity = this.readInteger(fileReader);
-            System.out.println("Inventory group: " + itemName + " - " + itemQuantity);      
+            System.out.println("Inventory group: " + itemIndex + " - " + itemQuantity);
+
+            InventoryItem item = InventoryItemFactory.factory(itemIndex);
+            try
+            {
+                inventory.addItems(new InventoryItemGroup(item, itemQuantity));
+            }
+            catch (InventoryFullException ife)
+            {
+            }
         }
     }
 }

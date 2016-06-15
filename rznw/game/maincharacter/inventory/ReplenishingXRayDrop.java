@@ -6,7 +6,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingXRayDrop extends XRayDrop
 {
-    private static int ITEM_NUMBER = 12;
+    public static final int ITEM_NUMBER = 12;
 
     public String getDisplayName()
     {

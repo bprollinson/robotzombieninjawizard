@@ -6,7 +6,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class ReplenishingFullPotion extends FullPotion
 {
-    private static int ITEM_NUMBER = 9;
+    public static final int ITEM_NUMBER = 9;
 
     public String getDisplayName()
     {

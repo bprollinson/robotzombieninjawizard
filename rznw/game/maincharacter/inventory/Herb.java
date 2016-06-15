@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class Herb extends InventoryItem
 {
-    private static int ITEM_NUMBER = 4;
+    public static final int ITEM_NUMBER = 4;
 
     public String getDisplayName()
     {

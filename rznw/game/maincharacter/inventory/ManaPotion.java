@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class ManaPotion extends InventoryItem
 {
-    private static int ITEM_NUMBER = 5;
+    public static final int ITEM_NUMBER = 5;
 
     public String getDisplayName()
     {
