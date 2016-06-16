@@ -4,6 +4,8 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class HealShield extends Shield
 {
+    private static final int EQUIPMENT_NUMBER = 17;
+
     public String getDisplayName()
     {
         return "Heal Shield";
@@ -36,5 +38,10 @@ public class HealShield extends Shield
         System.out.println("Dodged attack with heal shield - healing 5 HP");
 
         mainCharacter.heal(5);
+    }
+
+    public int getEquipmentNumber()
+    {
+        return HealShield.EQUIPMENT_NUMBER;
     }
 }

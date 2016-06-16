@@ -41,4 +41,6 @@ public abstract class EquipmentItem
     {
         return 400;
     }
+
+    public abstract int getEquipmentNumber();
 }

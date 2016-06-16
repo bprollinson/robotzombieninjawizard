@@ -7,6 +7,8 @@ import rznw.map.GameWorld;
 
 public class DragonPlate extends Armor
 {
+    private static final int EQUIPMENT_NUMBER = 22;
+
     public String getDisplayName()
     {
         return "Dragon Plate";
@@ -39,5 +41,10 @@ public class DragonPlate extends Armor
         System.out.println("Damaged by an enemy character");
 
         enemyCharacter.damage(10, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+    }
+
+    public int getEquipmentNumber()
+    {
+        return DragonPlate.EQUIPMENT_NUMBER;
     }
 }

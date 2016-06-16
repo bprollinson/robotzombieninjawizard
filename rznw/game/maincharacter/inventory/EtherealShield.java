@@ -2,6 +2,8 @@ package rznw.game.maincharacter.inventory;
 
 public class EtherealShield extends Shield
 {
+    private static final int EQUIPMENT_NUMBER = 16;
+
     public String getDisplayName()
     {
         return "Ethereal Shield";
@@ -25,5 +27,10 @@ public class EtherealShield extends Shield
     public int getPaddingPercent()
     {
         return 0;
+    }
+
+    public int getEquipmentNumber()
+    {
+        return EtherealShield.EQUIPMENT_NUMBER;
     }
 }

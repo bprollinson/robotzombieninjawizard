@@ -7,6 +7,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class GauntletOfDarkness extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 4;
+
     public String getDisplayName()
     {
         return "Gauntlet of Darkness";
@@ -37,5 +39,10 @@ public class GauntletOfDarkness extends Weapon
             System.out.println("Gauntlet success");
             enemyCharacter.setHP(1);
         }
+    }
+
+    public int getEquipmentNumber()
+    {
+        return GauntletOfDarkness.EQUIPMENT_NUMBER;
     }
 }

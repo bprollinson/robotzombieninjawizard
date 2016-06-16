@@ -6,6 +6,8 @@ import rznw.map.GameWorld;
 
 public class ViperDagger extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 12;
+
     public String getDisplayName()
     {
         return "Viper Dagger";
@@ -30,5 +32,10 @@ public class ViperDagger extends Weapon
     {
         System.out.println("Enemy is poisoned by the viper dagger");
         enemyCharacter.getStatusEffects().poison();
+    }
+
+    public int getEquipmentNumber()
+    {
+        return ViperDagger.EQUIPMENT_NUMBER;
     }
 }

@@ -6,9 +6,11 @@ import rznw.map.GameWorld;
 
 public class PoisonCloth extends Armor
 {
+    private static final int EQUIPMENT_NUMBER = 24;
+
     public String getDisplayName()
     {
-        return "Leech Mail";
+        return "Poison Cloth";
     }
 
     public String[] getStats()
@@ -37,5 +39,10 @@ public class PoisonCloth extends Armor
         System.out.println("Poisoning enemy with poison cloth");
 
         enemyCharacter.getStatusEffects().poison();
+    }
+
+    public int getEquipmentNumber()
+    {
+        return PoisonCloth.EQUIPMENT_NUMBER;
     }
 }

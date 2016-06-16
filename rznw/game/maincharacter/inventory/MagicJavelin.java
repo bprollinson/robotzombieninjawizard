@@ -9,6 +9,7 @@ import rznw.map.element.MapElement;
 
 public class MagicJavelin extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 8;
     private static int DAMAGE = 50;
 
     public String getDisplayName()
@@ -57,5 +58,10 @@ public class MagicJavelin extends Weapon
             EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
             enemyCharacter.damage(MagicJavelin.DAMAGE, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
         }
+    }
+
+    public int getEquipmentNumber()
+    {
+        return MagicJavelin.EQUIPMENT_NUMBER;
     }
 }

@@ -17,6 +17,8 @@ import rznw.map.element.Void;
 
 public class WandOfSummoning extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 13;
+
     public String getDisplayName()
     {
         return "Wand of Summoning";
@@ -81,5 +83,10 @@ public class WandOfSummoning extends Weapon
         });
 
         return distanceList.get(0).getKey();
+    }
+
+    public int getEquipmentNumber()
+    {
+        return WandOfSummoning.EQUIPMENT_NUMBER;
     }
 }

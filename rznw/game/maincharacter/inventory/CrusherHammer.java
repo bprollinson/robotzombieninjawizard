@@ -2,6 +2,8 @@ package rznw.game.maincharacter.inventory;
 
 public class CrusherHammer extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 2;
+
     public String getDisplayName()
     {
         return "Crusher Hammer";
@@ -25,5 +27,10 @@ public class CrusherHammer extends Weapon
     public int getToHitBonus()
     {
         return -10;
+    }
+
+    public int getEquipmentNumber()
+    {
+        return CrusherHammer.EQUIPMENT_NUMBER;
     }
 }

@@ -7,6 +7,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class IceRod extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 6;
+
     public String getDisplayName()
     {
         return "Ice Rod";
@@ -37,5 +39,10 @@ public class IceRod extends Weapon
         {
             enemyCharacter.getStatusEffects().freeze();
         }
+    }
+
+    public int getEquipmentNumber()
+    {
+        return IceRod.EQUIPMENT_NUMBER;
     }
 }

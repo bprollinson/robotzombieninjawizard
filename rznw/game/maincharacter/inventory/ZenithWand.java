@@ -6,6 +6,8 @@ import rznw.map.GameWorld;
 
 public class ZenithWand extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 15;
+
     public String getDisplayName()
     {
         return "Zenith Wand";
@@ -45,5 +47,10 @@ public class ZenithWand extends Weapon
         System.out.println("Hitting enemy with zenith wand");
 
         mainCharacter.healMP(20);
+    }
+
+    public int getEquipmentNumber()
+    {
+        return ZenithWand.EQUIPMENT_NUMBER;
     }
 }

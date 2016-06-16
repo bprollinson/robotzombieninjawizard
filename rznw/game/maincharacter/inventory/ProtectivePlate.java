@@ -2,6 +2,8 @@ package rznw.game.maincharacter.inventory;
 
 public class ProtectivePlate extends Armor
 {
+    private static final int EQUIPMENT_NUMBER = 25;
+
     public String getDisplayName()
     {
         return "Protective Plate";
@@ -30,5 +32,10 @@ public class ProtectivePlate extends Armor
     public int getThickSkinBonus()
     {
         return 50;
+    }
+
+    public int getEquipmentNumber()
+    {
+        return ProtectivePlate.EQUIPMENT_NUMBER;
     }
 }

@@ -7,6 +7,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class InvisibilityWand extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 7;
+
     public String getDisplayName()
     {
         return "Invisibility Wand";
@@ -37,5 +39,10 @@ public class InvisibilityWand extends Weapon
             System.out.println("It makes them disappear");
             enemyCharacter.setHP(0);
         }
+    }
+
+    public int getEquipmentNumber()
+    {
+        return InvisibilityWand.EQUIPMENT_NUMBER;
     }
 }

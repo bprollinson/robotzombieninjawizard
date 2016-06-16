@@ -6,6 +6,8 @@ import rznw.map.GameWorld;
 
 public class ThiefGlove extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 11;
+
     public String getDisplayName()
     {
         return "Thief Glove";
@@ -31,5 +33,10 @@ public class ThiefGlove extends Weapon
     {
         System.out.println("Stealing gold from the enemy");
         mainCharacter.getInventory().addGold(10);
+    }
+
+    public int getEquipmentNumber()
+    {
+        return ThiefGlove.EQUIPMENT_NUMBER;
     }
 }

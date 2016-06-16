@@ -6,6 +6,8 @@ import rznw.map.GameWorld;
 
 public class BloodSword extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 1;
+
     public String getDisplayName()
     {
         return "Blood Sword";
@@ -36,5 +38,10 @@ public class BloodSword extends Weapon
         System.out.println("Healing " + healHP + " from " + damage + " damage");
 
         mainCharacter.heal(healHP);
+    }
+
+    public int getEquipmentNumber()
+    {
+        return BloodSword.EQUIPMENT_NUMBER;
     }
 }

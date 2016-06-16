@@ -11,6 +11,8 @@ import java.util.Vector;
 
 public class QuicksandHammer extends Weapon
 {
+    private static final int EQUIPMENT_NUMBER = 9;
+
     public String getDisplayName()
     {
         return "Quicksand Hammer";
@@ -112,5 +114,10 @@ public class QuicksandHammer extends Weapon
                 map.setElement(newRow, newColumn, enemyMapElement);
             }
         }
+    }
+
+    public int getEquipmentNumber()
+    {
+        return QuicksandHammer.EQUIPMENT_NUMBER;
     }
 }

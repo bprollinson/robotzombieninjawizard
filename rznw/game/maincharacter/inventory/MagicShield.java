@@ -2,6 +2,8 @@ package rznw.game.maincharacter.inventory;
 
 public class MagicShield extends Shield
 {
+    private static final int EQUIPMENT_NUMBER = 18;
+
     public String getDisplayName()
     {
         return "Magic Shield";
@@ -37,5 +39,10 @@ public class MagicShield extends Shield
     public int getMagicPaddingPercent()
     {
         return 20;
+    }
+
+    public int getEquipmentNumber()
+    {
+        return MagicShield.EQUIPMENT_NUMBER;
     }
 }

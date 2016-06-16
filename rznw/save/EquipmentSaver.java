@@ -20,7 +20,7 @@ public class EquipmentSaver extends ComponentSaver
         {
             EquipmentGroup weaponGroup = equipment.getWeaponGroup(i);
 
-            this.writeLine(fileWriter, weaponGroup.getItem().getDisplayName());
+            this.writeLine(fileWriter, weaponGroup.getItem().getEquipmentNumber());
             this.writeLine(fileWriter, weaponGroup.getNumItems());
         }
 
@@ -30,7 +30,7 @@ public class EquipmentSaver extends ComponentSaver
         {
             EquipmentGroup shieldGroup = equipment.getShieldGroup(i);
 
-            this.writeLine(fileWriter, shieldGroup.getItem().getDisplayName());
+            this.writeLine(fileWriter, shieldGroup.getItem().getEquipmentNumber());
             this.writeLine(fileWriter, shieldGroup.getNumItems());
         }
 
@@ -40,7 +40,7 @@ public class EquipmentSaver extends ComponentSaver
         {
             EquipmentGroup armorGroup = equipment.getArmorGroup(i);
 
-            this.writeLine(fileWriter, armorGroup.getItem().getDisplayName());
+            this.writeLine(fileWriter, armorGroup.getItem().getEquipmentNumber());
             this.writeLine(fileWriter, armorGroup.getNumItems());
         }
     }

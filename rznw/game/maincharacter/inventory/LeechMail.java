@@ -4,6 +4,8 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class LeechMail extends Armor
 {
+    private static final int EQUIPMENT_NUMBER = 23;
+
     public String getDisplayName()
     {
         return "Leech Mail";
@@ -34,5 +36,10 @@ public class LeechMail extends Armor
     public void step(MainCharacter character)
     {
         character.healMP(1);
+    }
+
+    public int getEquipmentNumber()
+    {
+        return LeechMail.EQUIPMENT_NUMBER;
     }
 }
