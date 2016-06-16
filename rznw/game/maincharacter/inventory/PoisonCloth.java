@@ -6,7 +6,7 @@ import rznw.map.GameWorld;
 
 public class PoisonCloth extends Armor
 {
-    private static final int EQUIPMENT_NUMBER = 24;
+    public static final int EQUIPMENT_NUMBER = 24;
 
     public String getDisplayName()
     {

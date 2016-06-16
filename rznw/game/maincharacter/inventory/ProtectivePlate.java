@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class ProtectivePlate extends Armor
 {
-    private static final int EQUIPMENT_NUMBER = 25;
+    public static final int EQUIPMENT_NUMBER = 25;
 
     public String getDisplayName()
     {

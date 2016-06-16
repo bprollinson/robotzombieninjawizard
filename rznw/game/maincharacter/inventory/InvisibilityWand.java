@@ -7,7 +7,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class InvisibilityWand extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 7;
+    public static final int EQUIPMENT_NUMBER = 7;
 
     public String getDisplayName()
     {

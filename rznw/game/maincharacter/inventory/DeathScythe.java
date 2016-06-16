@@ -7,7 +7,7 @@ import rznw.map.GameWorld;
 
 public class DeathScythe extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 3;
+    public static final int EQUIPMENT_NUMBER = 3;
 
     public String getDisplayName()
     {

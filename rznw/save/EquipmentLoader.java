@@ -1,5 +1,10 @@
 package rznw.save;
 
+import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Equipment;
+import rznw.game.maincharacter.inventory.EquipmentFullException;
+import rznw.game.maincharacter.inventory.EquipmentGroup;
+import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;
@@ -13,9 +18,11 @@ public class EquipmentLoader extends ComponentLoader
 
         for (int i = 0; i < numWeaponGroups; i++)
         {
-            String weaponName = this.readLine(fileReader);
+            int weaponIndex = this.readInteger(fileReader);
             int weaponQuantity = this.readInteger(fileReader);
-            System.out.println("Weapon group: " + weaponName + " - " + weaponQuantity);
+            System.out.println("Weapon group: " + weaponIndex + " - " + weaponQuantity);
+
+            this.addEquipment(gameWorld, weaponIndex, weaponQuantity);
         }
 
         int numShieldGroups = this.readInteger(fileReader);
@@ -23,9 +30,11 @@ public class EquipmentLoader extends ComponentLoader
 
         for (int i = 0; i < numShieldGroups; i++)
         {
-            String shieldName = this.readLine(fileReader);
+            int shieldIndex = this.readInteger(fileReader);
             int shieldQuantity = this.readInteger(fileReader);
-            System.out.println("Shield group: " + shieldName + " - " + shieldQuantity);
+            System.out.println("Shield group: " + shieldIndex + " - " + shieldQuantity);
+
+            this.addEquipment(gameWorld, shieldIndex, shieldQuantity);
         }
 
         int numArmorGroups = this.readInteger(fileReader);
@@ -33,9 +42,26 @@ public class EquipmentLoader extends ComponentLoader
 
         for (int i = 0; i < numArmorGroups; i++)
         {
-            String armorName = this.readLine(fileReader);
+            int armorIndex = this.readInteger(fileReader);
             int armorQuantity = this.readInteger(fileReader);
-            System.out.println("Armor group: " + armorName + " - " + armorQuantity);
+            System.out.println("Armor group: " + armorIndex + " - " + armorQuantity);
+
+            this.addEquipment(gameWorld, armorIndex, armorQuantity);
+        }
+    }
+
+    private void addEquipment(GameWorld gameWorld, int equipmentIndex, int equipmentQuantity)
+    {
+        MainCharacter character = gameWorld.getMainCharacter();
+        Equipment equipment = character.getEquipment();
+
+        EquipmentItem equipmentItem = EquipmentItemFactory.factory(equipmentIndex);
+        try
+        {
+            equipment.addEquipment(new EquipmentGroup(equipmentItem, equipmentQuantity));
+        }
+        catch (EquipmentFullException ife)
+        {
         }
     }
 }

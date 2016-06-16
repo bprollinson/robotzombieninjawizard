@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class WoodenSword extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 14;
+    public static final int EQUIPMENT_NUMBER = 14;
 
     public String getDisplayName()
     {

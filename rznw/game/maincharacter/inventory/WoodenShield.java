@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class WoodenShield extends Shield
 {
-    private static final int EQUIPMENT_NUMBER = 20;
+    public static final int EQUIPMENT_NUMBER = 20;
 
     public String getDisplayName()
     {

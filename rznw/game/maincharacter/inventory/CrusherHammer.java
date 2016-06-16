@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class CrusherHammer extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 2;
+    public static final int EQUIPMENT_NUMBER = 2;
 
     public String getDisplayName()
     {

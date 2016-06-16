@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class ShieldOfSight extends Shield
 {
-    private static final int EQUIPMENT_NUMBER = 19;
+    public static final int EQUIPMENT_NUMBER = 19;
 
     public String getDisplayName()
     {

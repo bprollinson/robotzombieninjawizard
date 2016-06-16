@@ -4,7 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class LeechMail extends Armor
 {
-    private static final int EQUIPMENT_NUMBER = 23;
+    public static final int EQUIPMENT_NUMBER = 23;
 
     public String getDisplayName()
     {

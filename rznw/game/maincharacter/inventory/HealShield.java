@@ -4,7 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class HealShield extends Shield
 {
-    private static final int EQUIPMENT_NUMBER = 17;
+    public static final int EQUIPMENT_NUMBER = 17;
 
     public String getDisplayName()
     {

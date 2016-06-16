@@ -6,7 +6,7 @@ import rznw.map.GameWorld;
 
 public class ThiefGlove extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 11;
+    public static final int EQUIPMENT_NUMBER = 11;
 
     public String getDisplayName()
     {

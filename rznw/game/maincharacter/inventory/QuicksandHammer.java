@@ -11,7 +11,7 @@ import java.util.Vector;
 
 public class QuicksandHammer extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 9;
+    public static final int EQUIPMENT_NUMBER = 9;
 
     public String getDisplayName()
     {

@@ -17,7 +17,7 @@ import rznw.map.element.Void;
 
 public class WandOfSummoning extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 13;
+    public static final int EQUIPMENT_NUMBER = 13;
 
     public String getDisplayName()
     {

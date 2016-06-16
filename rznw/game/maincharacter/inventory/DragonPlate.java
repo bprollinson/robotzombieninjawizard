@@ -7,7 +7,7 @@ import rznw.map.GameWorld;
 
 public class DragonPlate extends Armor
 {
-    private static final int EQUIPMENT_NUMBER = 22;
+    public static final int EQUIPMENT_NUMBER = 22;
 
     public String getDisplayName()
     {

@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class EtherealShield extends Shield
 {
-    private static final int EQUIPMENT_NUMBER = 16;
+    public static final int EQUIPMENT_NUMBER = 16;
 
     public String getDisplayName()
     {

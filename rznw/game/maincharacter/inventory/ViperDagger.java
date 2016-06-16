@@ -6,7 +6,7 @@ import rznw.map.GameWorld;
 
 public class ViperDagger extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 12;
+    public static final int EQUIPMENT_NUMBER = 12;
 
     public String getDisplayName()
     {

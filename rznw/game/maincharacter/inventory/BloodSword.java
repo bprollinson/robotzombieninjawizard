@@ -6,7 +6,7 @@ import rznw.map.GameWorld;
 
 public class BloodSword extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 1;
+    public static final int EQUIPMENT_NUMBER = 1;
 
     public String getDisplayName()
     {

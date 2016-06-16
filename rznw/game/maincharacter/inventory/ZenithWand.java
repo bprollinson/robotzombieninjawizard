@@ -6,7 +6,7 @@ import rznw.map.GameWorld;
 
 public class ZenithWand extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 15;
+    public static final int EQUIPMENT_NUMBER = 15;
 
     public String getDisplayName()
     {

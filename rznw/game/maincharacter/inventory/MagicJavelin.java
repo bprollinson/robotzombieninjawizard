@@ -9,7 +9,7 @@ import rznw.map.element.MapElement;
 
 public class MagicJavelin extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 8;
+    public static final int EQUIPMENT_NUMBER = 8;
     private static int DAMAGE = 50;
 
     public String getDisplayName()

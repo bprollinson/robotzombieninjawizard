@@ -7,7 +7,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class IceRod extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 6;
+    public static final int EQUIPMENT_NUMBER = 6;
 
     public String getDisplayName()
     {

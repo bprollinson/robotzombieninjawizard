@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class AssassinsCloak extends Armor
 {
-    private static final int EQUIPMENT_NUMBER = 21;
+    public static final int EQUIPMENT_NUMBER = 21;
 
     public String getDisplayName()
     {

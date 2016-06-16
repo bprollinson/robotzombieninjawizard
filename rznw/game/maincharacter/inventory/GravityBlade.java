@@ -8,7 +8,7 @@ import rznw.map.element.MapElement;
 
 public class GravityBlade extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 5;
+    public static final int EQUIPMENT_NUMBER = 5;
     private static int DISTANCE = 3;
 
     public String getDisplayName()

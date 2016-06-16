@@ -6,7 +6,7 @@ import rznw.map.GameWorld;
 
 public class RiddleWand extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 10;
+    public static final int EQUIPMENT_NUMBER = 10;
 
     public String getDisplayName()
     {

@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class RockMail extends Armor
 {
-    private static final int EQUIPMENT_NUMBER = 26;
+    public static final int EQUIPMENT_NUMBER = 26;
 
     public String getDisplayName()
     {

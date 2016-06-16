@@ -7,7 +7,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class GauntletOfDarkness extends Weapon
 {
-    private static final int EQUIPMENT_NUMBER = 4;
+    public static final int EQUIPMENT_NUMBER = 4;
 
     public String getDisplayName()
     {

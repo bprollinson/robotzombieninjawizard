@@ -2,7 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 public class MagicShield extends Shield
 {
-    private static final int EQUIPMENT_NUMBER = 18;
+    public static final int EQUIPMENT_NUMBER = 18;
 
     public String getDisplayName()
     {
