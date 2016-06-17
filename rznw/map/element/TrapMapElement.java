@@ -8,6 +8,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class TrapMapElement extends MapElement
 {
+    private static final int ELEMENT_NUMBER = 12;
+
     private boolean visible = false;
     private boolean sprung = false;
 
@@ -79,5 +81,10 @@ public class TrapMapElement extends MapElement
             System.out.println("Detected the trap!");
             this.find();
         }
+    }
+
+    public int getElementNumber()
+    {
+        return TrapMapElement.ELEMENT_NUMBER;
     }
 }

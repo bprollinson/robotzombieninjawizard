@@ -26,7 +26,7 @@ public class MapSaver extends ComponentSaver
                 {
                     this.writeLine(fileWriter, row);
                     this.writeLine(fileWriter, column);
-                    this.writeLine(fileWriter, element.getClass().getName());
+                    this.writeLine(fileWriter, element.getElementNumber());
                 }
             }
         }

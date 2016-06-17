@@ -4,6 +4,8 @@ import rznw.game.enemy.EnemyCharacter;
 
 public class EnemyMapElement extends CharacterMapElement
 {
+    private static final int ELEMENT_NUMBER = 3;
+
     public EnemyMapElement(int row, int column, char displayCharacter, EnemyCharacter enemyCharacter)
     {
         super(row, column, displayCharacter, enemyCharacter);
@@ -12,5 +14,10 @@ public class EnemyMapElement extends CharacterMapElement
     public boolean isEnemy()
     {
         return true;
+    }
+
+    public int getElementNumber()
+    {
+        return EnemyMapElement.ELEMENT_NUMBER;
     }
 }

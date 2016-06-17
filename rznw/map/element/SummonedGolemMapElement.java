@@ -4,8 +4,15 @@ import rznw.game.SummonedCharacter;
 
 public class SummonedGolemMapElement extends SummonedMinionMapElement
 {
+    private static final int ELEMENT_NUMBER = 10;
+
     public SummonedGolemMapElement(int row, int column, SummonedCharacter summonedCharacter)
     {
         super(row, column, 'G', summonedCharacter);
+    }
+
+    public int getElementNumber()
+    {
+        return SummonedGolemMapElement.ELEMENT_NUMBER;
     }
 }

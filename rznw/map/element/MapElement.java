@@ -58,4 +58,6 @@ public abstract class MapElement
     public void reveal(MainCharacter mainCharacter)
     {
     }
+
+    public abstract int getElementNumber();
 }

@@ -2,6 +2,8 @@ package rznw.map.element;
 
 public class RockWall extends MapElement
 {
+    private static final int ELEMENT_NUMBER = 8;
+
     private int HP;
 
     public RockWall(int row, int column, int HP)
@@ -24,5 +26,10 @@ public class RockWall extends MapElement
     public int getHP()
     {
         return this.HP;
+    }
+
+    public int getElementNumber()
+    {
+        return RockWall.ELEMENT_NUMBER;
     }
 }

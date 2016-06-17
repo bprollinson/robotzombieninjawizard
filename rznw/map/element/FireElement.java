@@ -8,6 +8,8 @@ import rznw.map.Map;
 
 public class FireElement extends MapElement
 {
+    private static final int ELEMENT_NUMBER = 4;
+
     private MapElement previousMapElement;
     private int duration;
 
@@ -59,5 +61,10 @@ public class FireElement extends MapElement
             MapElement previousMapElement = this.getPreviousMapElement();
             map.setBackgroundElement(this.getRow(), this.getColumn(), previousMapElement);
         }
+    }
+
+    public int getElementNumber()
+    {
+        return FireElement.ELEMENT_NUMBER;
     }
 }

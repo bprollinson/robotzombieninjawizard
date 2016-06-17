@@ -5,6 +5,8 @@ import rznw.map.GameWorld;
 
 public class Blotch extends MapElement
 {
+    private static final int ELEMENT_NUMBER = 1;
+
     public Blotch(int row, int column)
     {
         super(row, column);
@@ -19,5 +21,10 @@ public class Blotch extends MapElement
     {
         System.out.println("Poisoning enemy from blotch");
         enemyCharacter.getStatusEffects().poison();
+    }
+
+    public int getElementNumber()
+    {
+        return Blotch.ELEMENT_NUMBER;
     }
 }
