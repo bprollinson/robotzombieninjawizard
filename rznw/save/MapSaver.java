@@ -30,6 +30,23 @@ public class MapSaver extends ComponentSaver
                 }
             }
         }
+
+        this.writeLine(fileWriter, this.getNumMapBackgroundElements(map));
+
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                MapElement element = map.getBackgroundElement(row, column);
+
+                if (element != null)
+                {
+                    this.writeLine(fileWriter, row);
+                    this.writeLine(fileWriter, column);
+                    this.writeLine(fileWriter, element.getElementNumber());
+                }
+            }
+        }
     }
 
     private int getNumMapElements(Map map)
@@ -41,6 +58,24 @@ public class MapSaver extends ComponentSaver
             for (int column = 0; column < Map.NUM_COLUMNS; column++)
             {
                 if (map.getElement(row, column) != null)
+                {
+                    numElements++;
+                }
+            }
+        }
+
+        return numElements;
+    }
+
+    private int getNumMapBackgroundElements(Map map)
+    {
+        int numElements = 0;
+
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                if (map.getBackgroundElement(row, column) != null)
                 {
                     numElements++;
                 }

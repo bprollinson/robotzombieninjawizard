@@ -15,10 +15,10 @@ public class MapLoader extends ComponentLoader
 
         gameWorld.initializeFromLoad(dungeonLevel);
 
+        Map map = gameWorld.getMap();
+
         int numMapElements = this.readInteger(fileReader);
         System.out.println("Num map elements: " + numMapElements);
-
-        Map map = gameWorld.getMap();
 
         for (int i = 0; i < numMapElements; i++)
         {
@@ -33,6 +33,25 @@ public class MapLoader extends ComponentLoader
             if (element != null)
             {
                 map.setElement(row, column, element);
+            }
+        }
+
+        int numMapBackgroundElements = this.readInteger(fileReader);
+        System.out.println("Num map background elements: " + numMapBackgroundElements);
+
+        for (int i = 0; i < numMapBackgroundElements; i++)
+        {
+            int row = this.readInteger(fileReader);
+            int column = this.readInteger(fileReader);
+            int elementIndex = this.readInteger(fileReader);
+
+            System.out.println(row + ", " + column);
+            System.out.println(elementIndex);
+
+            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column);
+            if (element != null)
+            {
+                map.setBackgroundElement(row, column, element);
             }
         }
     }
