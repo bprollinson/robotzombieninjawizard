@@ -2,7 +2,7 @@ package rznw.map.element;
 
 public class Path extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 6;
+    public static final int ELEMENT_NUMBER = 6;
 
     public Path(int row, int column)
     {

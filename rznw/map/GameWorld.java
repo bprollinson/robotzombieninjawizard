@@ -34,7 +34,7 @@ public class GameWorld
 
     public void initializeFromLoad(int dungeonLevel)
     {
-        this.map = this.mapGenerator.generate(this.character, this.characterGenerator, dungeonLevel);
+        this.map = new Map(dungeonLevel);
         this.gameCompleted = false;
     }
 

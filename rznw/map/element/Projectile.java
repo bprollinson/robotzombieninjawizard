@@ -2,7 +2,7 @@ package rznw.map.element;
 
 public class Projectile extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 7;
+    public static final int ELEMENT_NUMBER = 7;
 
     public Projectile(int row, int column)
     {

@@ -5,7 +5,7 @@ import rznw.map.GameWorld;
 
 public class Blotch extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 1;
+    public static final int ELEMENT_NUMBER = 1;
 
     public Blotch(int row, int column)
     {

@@ -2,7 +2,7 @@ package rznw.map.element;
 
 public class Void extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 13;
+    public static final int ELEMENT_NUMBER = 13;
 
     public Void(int row, int column)
     {

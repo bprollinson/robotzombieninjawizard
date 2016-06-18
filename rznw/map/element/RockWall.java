@@ -2,7 +2,7 @@ package rznw.map.element;
 
 public class RockWall extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 8;
+    public static final int ELEMENT_NUMBER = 8;
 
     private int HP;
 

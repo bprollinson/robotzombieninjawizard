@@ -1,6 +1,8 @@
 package rznw.save;
 
 import rznw.map.GameWorld;
+import rznw.map.Map;
+import rznw.map.element.MapElement;
 
 import java.io.BufferedReader;
 
@@ -16,14 +18,22 @@ public class MapLoader extends ComponentLoader
         int numMapElements = this.readInteger(fileReader);
         System.out.println("Num map elements: " + numMapElements);
 
+        Map map = gameWorld.getMap();
+
         for (int i = 0; i < numMapElements; i++)
         {
             int row = this.readInteger(fileReader);
             int column = this.readInteger(fileReader);
-            String elementType = this.readLine(fileReader);
+            int elementIndex = this.readInteger(fileReader);
 
             System.out.println(row + ", " + column);
-            System.out.println(elementType);
+            System.out.println(elementIndex);
+
+            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column);
+            if (element != null)
+            {
+                map.setElement(row, column, element);
+            }
         }
     }
 }

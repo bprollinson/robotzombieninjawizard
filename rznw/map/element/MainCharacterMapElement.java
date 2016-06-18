@@ -4,7 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 
 public class MainCharacterMapElement extends CharacterMapElement
 {
-    private static final int ELEMENT_NUMBER = 5;
+    public static final int ELEMENT_NUMBER = 5;
 
     public MainCharacterMapElement(int row, int column, char displayCharacter, MainCharacter mainCharacter)
     {

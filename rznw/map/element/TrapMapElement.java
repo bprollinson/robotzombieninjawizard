@@ -8,7 +8,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class TrapMapElement extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 12;
+    public static final int ELEMENT_NUMBER = 12;
 
     private boolean visible = false;
     private boolean sprung = false;

@@ -4,7 +4,7 @@ import rznw.game.enemy.EnemyCharacter;
 
 public class EnemyMapElement extends CharacterMapElement
 {
-    private static final int ELEMENT_NUMBER = 3;
+    public static final int ELEMENT_NUMBER = 3;
 
     public EnemyMapElement(int row, int column, char displayCharacter, EnemyCharacter enemyCharacter)
     {

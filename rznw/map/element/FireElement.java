@@ -8,7 +8,7 @@ import rznw.map.Map;
 
 public class FireElement extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 4;
+    public static final int ELEMENT_NUMBER = 4;
 
     private MapElement previousMapElement;
     private int duration;

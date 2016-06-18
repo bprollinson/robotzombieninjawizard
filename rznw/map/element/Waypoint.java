@@ -2,7 +2,7 @@ package rznw.map.element;
 
 public class Waypoint extends MapElement
 {
-    private static final int ELEMENT_NUMBER = 15;
+    public static final int ELEMENT_NUMBER = 15;
 
     public Waypoint(int row, int column)
     {
