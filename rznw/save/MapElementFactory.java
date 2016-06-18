@@ -46,7 +46,7 @@ public class MapElementFactory
             case RockWall.ELEMENT_NUMBER:
                 break;
             case Stairs.ELEMENT_NUMBER:
-                break;
+                return new Stairs(row, column);
             case SummonedGolemMapElement.ELEMENT_NUMBER:
                 break;
             case SummonedZombieMapElement.ELEMENT_NUMBER:
