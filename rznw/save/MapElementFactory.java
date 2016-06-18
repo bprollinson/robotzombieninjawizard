@@ -54,7 +54,7 @@ public class MapElementFactory
             case TrapMapElement.ELEMENT_NUMBER:
                 break;
             case Void.ELEMENT_NUMBER:
-                break;
+                return new Void(row, column);
             case Wall.ELEMENT_NUMBER:
                 return new Wall(row, column);
             case Waypoint.ELEMENT_NUMBER:
