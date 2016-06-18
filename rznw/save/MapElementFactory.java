@@ -58,7 +58,7 @@ public class MapElementFactory
             case Wall.ELEMENT_NUMBER:
                 return new Wall(row, column);
             case Waypoint.ELEMENT_NUMBER:
-                break;
+                return new Waypoint(row, column);
         }
 
         return null;
