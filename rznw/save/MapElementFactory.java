@@ -42,7 +42,7 @@ public class MapElementFactory
             case Path.ELEMENT_NUMBER:
                 return new Path(row, column);
             case Projectile.ELEMENT_NUMBER:
-                break;
+                return new Projectile(row, column);
             case RockWall.ELEMENT_NUMBER:
                 break;
             case Stairs.ELEMENT_NUMBER:
