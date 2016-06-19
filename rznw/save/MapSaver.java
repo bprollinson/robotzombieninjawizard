@@ -3,6 +3,7 @@ package rznw.save;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.map.element.RockWall;
 
 import java.io.BufferedWriter;
 
@@ -27,6 +28,7 @@ public class MapSaver extends ComponentSaver
                     this.writeLine(fileWriter, row);
                     this.writeLine(fileWriter, column);
                     this.writeLine(fileWriter, element.getElementNumber());
+                    this.writeLine(fileWriter, this.getElementMetadata(element));
                 }
             }
         }
@@ -44,6 +46,7 @@ public class MapSaver extends ComponentSaver
                     this.writeLine(fileWriter, row);
                     this.writeLine(fileWriter, column);
                     this.writeLine(fileWriter, element.getElementNumber());
+                    this.writeLine(fileWriter, this.getElementMetadata(element));
                 }
             }
         }
@@ -83,5 +86,17 @@ public class MapSaver extends ComponentSaver
         }
 
         return numElements;
+    }
+
+    private String getElementMetadata(MapElement element)
+    {
+        String metadata = "";
+
+        if (element instanceof RockWall)
+        {
+            metadata = "" + ((RockWall)element).getHP();
+        }
+
+        return metadata;
     }
 }

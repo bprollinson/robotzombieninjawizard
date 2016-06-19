@@ -25,11 +25,12 @@ public class MapLoader extends ComponentLoader
             int row = this.readInteger(fileReader);
             int column = this.readInteger(fileReader);
             int elementIndex = this.readInteger(fileReader);
+            String metadata = this.readLine(fileReader);
 
             System.out.println(row + ", " + column);
             System.out.println(elementIndex);
 
-            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column);
+            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column, metadata);
             if (element != null)
             {
                 map.setElement(row, column, element);
@@ -44,11 +45,12 @@ public class MapLoader extends ComponentLoader
             int row = this.readInteger(fileReader);
             int column = this.readInteger(fileReader);
             int elementIndex = this.readInteger(fileReader);
+            String metadata = this.readLine(fileReader);
 
             System.out.println(row + ", " + column);
             System.out.println(elementIndex);
 
-            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column);
+            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column, metadata);
             if (element != null)
             {
                 map.setBackgroundElement(row, column, element);

@@ -21,7 +21,7 @@ import rznw.map.element.Waypoint;
 
 public class MapElementFactory
 {
-    public static MapElement factory(GameWorld gameWorld, int elementIndex, int row, int column)
+    public static MapElement factory(GameWorld gameWorld, int elementIndex, int row, int column, String metadata)
     {
         switch (elementIndex)
         {
@@ -44,7 +44,7 @@ public class MapElementFactory
             case Projectile.ELEMENT_NUMBER:
                 return new Projectile(row, column);
             case RockWall.ELEMENT_NUMBER:
-                break;
+                return new RockWall(row, column, Integer.parseInt(metadata));
             case Stairs.ELEMENT_NUMBER:
                 return new Stairs(row, column);
             case SummonedGolemMapElement.ELEMENT_NUMBER:
