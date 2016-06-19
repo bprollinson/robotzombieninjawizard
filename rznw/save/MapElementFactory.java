@@ -26,7 +26,7 @@ public class MapElementFactory
         switch (elementIndex)
         {
             case Blotch.ELEMENT_NUMBER:
-                break;
+                return new Blotch(row, column);
             case DisappearingEnemyMapElement.ELEMENT_NUMBER:
                 break;
             case EnemyMapElement.ELEMENT_NUMBER:
