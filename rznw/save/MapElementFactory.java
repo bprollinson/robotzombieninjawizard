@@ -52,7 +52,22 @@ public class MapElementFactory
             case SummonedZombieMapElement.ELEMENT_NUMBER:
                 break;
             case TrapMapElement.ELEMENT_NUMBER:
-                break;
+                String[] metadataParts = metadata.split(",");
+                boolean isSprung = metadataParts[0].equals("1");
+                boolean isFound = metadataParts[1].equals("1");
+
+                TrapMapElement trapElement = new TrapMapElement(row, column);
+                if (isSprung)
+                {
+                    trapElement.spring();
+                }
+
+                if (isFound)
+                {
+                    trapElement.find();
+                }
+
+                return trapElement;
             case Void.ELEMENT_NUMBER:
                 return new Void(row, column);
             case Wall.ELEMENT_NUMBER:

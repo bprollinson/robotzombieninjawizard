@@ -4,6 +4,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
+import rznw.map.element.TrapMapElement;
 
 import java.io.BufferedWriter;
 
@@ -95,6 +96,15 @@ public class MapSaver extends ComponentSaver
         if (element instanceof RockWall)
         {
             metadata = "" + ((RockWall)element).getHP();
+        }
+
+        if (element instanceof TrapMapElement)
+        {
+            TrapMapElement trapMapElement = (TrapMapElement)element;
+            String isSprungDisplay = trapMapElement.isSprung() ? "1" : "0";
+            String isFoundDisplay = trapMapElement.isFound() ? "1" : "0";
+
+            metadata = isSprungDisplay + "," + isFoundDisplay;
         }
 
         return metadata;

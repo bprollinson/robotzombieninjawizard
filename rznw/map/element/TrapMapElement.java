@@ -33,17 +33,22 @@ public class TrapMapElement extends MapElement
         return ' ';
     }
 
-    private boolean isSprung()
+    public boolean isSprung()
     {
-        return sprung;
+        return this.sprung;
     }
 
-    private void spring()
+    public void spring()
     {
         this.sprung = true;
     }
 
-    private void find()
+    public boolean isFound()
+    {
+        return this.visible;
+    }
+
+    public void find()
     {
         this.visible = true;
     }
