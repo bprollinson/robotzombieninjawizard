@@ -14,11 +14,11 @@ public class EnemyLoader extends ComponentLoader
 
         for (int i = 0; i < numEnemies; i++)
         {
-             String enemyClass = this.readLine(fileReader);
+             int enemyIndex = this.readInteger(fileReader);
              int hp = this.readInteger(fileReader);
              int mp = this.readInteger(fileReader);
 
-             System.out.println("Enemy stats: " + enemyClass + " - " + hp + " - " + mp);
+             System.out.println("Enemy stats: " + enemyIndex + " - " + hp + " - " + mp);
         }
     }
 }
