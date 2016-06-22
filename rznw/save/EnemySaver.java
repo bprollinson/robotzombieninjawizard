@@ -55,6 +55,7 @@ public class EnemySaver extends ComponentSaver
     private void writeEnemyInfo(BufferedWriter fileWriter, Character enemyCharacter)
     {
         this.writeLine(fileWriter, ((EnemyCharacter)enemyCharacter).getEnemyNumber());
+        this.writeLine(fileWriter, ((EnemyCharacter)enemyCharacter).getLevel());
         this.writeLine(fileWriter, enemyCharacter.getHP());
         this.writeLine(fileWriter, enemyCharacter.getMP());
     }

@@ -15,10 +15,11 @@ public class EnemyLoader extends ComponentLoader
         for (int i = 0; i < numEnemies; i++)
         {
              int enemyIndex = this.readInteger(fileReader);
+             int level = this.readInteger(fileReader);
              int hp = this.readInteger(fileReader);
              int mp = this.readInteger(fileReader);
 
-             System.out.println("Enemy stats: " + enemyIndex + " - " + hp + " - " + mp);
+             System.out.println("Enemy stats: " + enemyIndex + " - " + level + " - " + hp + " - " + mp);
         }
     }
 }
