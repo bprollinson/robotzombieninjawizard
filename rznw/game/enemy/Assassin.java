@@ -11,6 +11,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Assassin extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 1;
+
     private static char mapCharacter = 'a';
 
     public Assassin(int level)
@@ -49,5 +51,10 @@ public class Assassin extends EnemyCharacter
     public EnemyActionCalculator getActionCalculator()
     {
         return new MeleeActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Assassin.ENEMY_NUMBER;
     }
 }

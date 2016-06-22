@@ -13,6 +13,8 @@ import rznw.map.element.DisappearingEnemyMapElement;
 
 public class InvisibleWizard extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 9;
+
     private static final int SPELL_INVISIBILITY = 0;
 
     private static char mapCharacter = 'i';
@@ -73,5 +75,10 @@ public class InvisibleWizard extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new RadialInvisibilitySpellActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return InvisibleWizard.ENEMY_NUMBER;
     }
 }

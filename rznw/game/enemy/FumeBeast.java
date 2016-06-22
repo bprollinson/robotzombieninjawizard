@@ -14,6 +14,8 @@ import rznw.map.element.MapElement;
 
 public class FumeBeast extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 6;
+
     private static final int SPELL_FUME_CLOUD = 0;
 
     private static char mapCharacter = 'f';
@@ -75,5 +77,10 @@ public class FumeBeast extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new RadialPoisonSpellActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return FumeBeast.ENEMY_NUMBER;
     }
 }

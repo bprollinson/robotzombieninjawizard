@@ -11,6 +11,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class RockMan extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 18;
+
     private static char mapCharacter = 'r';
 
     public RockMan(int level)
@@ -52,5 +54,10 @@ public class RockMan extends EnemyCharacter
     public EnemyActionCalculator getActionCalculator()
     {
         return new MeleeActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return RockMan.ENEMY_NUMBER;
     }
 }

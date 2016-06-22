@@ -11,6 +11,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class XRayCat extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 24;
+
     private static char mapCharacter = 'x';
 
     public XRayCat(int level)
@@ -57,5 +59,10 @@ public class XRayCat extends EnemyCharacter
     public int getViewRadius()
     {
         return 100;
+    }
+
+    public int getEnemyNumber()
+    {
+        return XRayCat.ENEMY_NUMBER;
     }
 }

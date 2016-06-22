@@ -11,6 +11,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Phantasm extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 16;
+
     private static char mapCharacter = 'p';
 
     public Phantasm(int level)
@@ -56,5 +58,10 @@ public class Phantasm extends EnemyCharacter
         System.out.println("The phantasm will always dodge your attack!");
 
         return true;
+    }
+
+    public int getEnemyNumber()
+    {
+        return Phantasm.ENEMY_NUMBER;
     }
 }

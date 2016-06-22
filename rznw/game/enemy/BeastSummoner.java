@@ -13,6 +13,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class BeastSummoner extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 2;
+
     private static final int SPELL_SUMMON_BEAST = 0;
 
     private static char mapCharacter = 'b';
@@ -76,5 +78,10 @@ public class BeastSummoner extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new RadialSpellActionCalculator(2);
+    }
+
+    public int getEnemyNumber()
+    {
+        return BeastSummoner.ENEMY_NUMBER;
     }
 }

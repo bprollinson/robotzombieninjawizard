@@ -13,6 +13,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Javelineer extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 10;
+
     private static final int SPELL_MAGIC_JAVELIN = 0;
 
     private static char mapCharacter = 'j';
@@ -73,5 +75,10 @@ public class Javelineer extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new DiagonalSpellActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Javelineer.ENEMY_NUMBER;
     }
 }

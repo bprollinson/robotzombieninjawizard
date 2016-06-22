@@ -12,6 +12,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Sphinx extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 19;
+
     private static char mapCharacter = 's';
 
     public Sphinx(int level)
@@ -57,5 +59,10 @@ public class Sphinx extends EnemyCharacter
     public EnemyActionCalculator getActionCalculator()
     {
         return new MeleeActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Sphinx.ENEMY_NUMBER;
     }
 }

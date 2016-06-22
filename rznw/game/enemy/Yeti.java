@@ -13,6 +13,8 @@ import rznw.utility.RandomNumberGenerator;
 
 public class Yeti extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 25;
+
     private static char mapCharacter = 'y';
 
     public Yeti(int level)
@@ -63,5 +65,10 @@ public class Yeti extends EnemyCharacter
     public EnemyActionCalculator getActionCalculator()
     {
         return new MeleeActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Yeti.ENEMY_NUMBER;
     }
 }

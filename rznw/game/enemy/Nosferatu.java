@@ -14,6 +14,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Nosferatu extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 14;
+
     private static final int SPELL_VAMPIRE_WAVE = 0;
 
     private static char mapCharacter = 'n';
@@ -88,5 +90,10 @@ public class Nosferatu extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new RadialHealSpellActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Nosferatu.ENEMY_NUMBER;
     }
 }

@@ -12,6 +12,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Crusher extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 3;
+
     private static char mapCharacter = 'c';
 
     private int bonusDamagePercent = 0;
@@ -80,5 +82,10 @@ public class Crusher extends EnemyCharacter
     private void enhanceRage()
     {
         this.bonusDamagePercent += 10;
+    }
+
+    public int getEnemyNumber()
+    {
+        return Crusher.ENEMY_NUMBER;
     }
 }

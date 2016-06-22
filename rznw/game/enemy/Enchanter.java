@@ -13,6 +13,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Enchanter extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 5;
+
     private static final int SPELL_ZAP = 0;
 
     private static char mapCharacter = 'e';
@@ -75,5 +77,10 @@ public class Enchanter extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new ProjectileSpellActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Enchanter.ENEMY_NUMBER;
     }
 }

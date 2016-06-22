@@ -12,6 +12,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Viper extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 22;
+
     private static char mapCharacter = 'v';
 
     public Viper(int level)
@@ -55,5 +57,10 @@ public class Viper extends EnemyCharacter
     public EnemyActionCalculator getActionCalculator()
     {
         return new MeleeActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Viper.ENEMY_NUMBER;
     }
 }

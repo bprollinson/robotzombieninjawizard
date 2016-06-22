@@ -13,6 +13,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Undertaker extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 21;
+
     private static char mapCharacter = 'u';
 
     public Undertaker(int level)
@@ -61,5 +63,10 @@ public class Undertaker extends EnemyCharacter
 
         int hp = mainCharacter.getHP() / 2;
         mainCharacter.damage(hp, this, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+    }
+
+    public int getEnemyNumber()
+    {
+        return Undertaker.ENEMY_NUMBER;
     }
 }

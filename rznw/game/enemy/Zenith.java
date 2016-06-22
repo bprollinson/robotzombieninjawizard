@@ -14,6 +14,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Zenith extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 26;
+
     public static final int SPELL_HEALTH_ZAP = 0;
     public static final int SPELL_ZAP = 1;
     public static final int SPELL_HEAL = 2;
@@ -90,5 +92,10 @@ public class Zenith extends EnemyCharacterWithSpell
     public boolean isFinalBoss()
     {
         return true;
+    }
+
+    public int getEnemyNumber()
+    {
+        return Zenith.ENEMY_NUMBER;
     }
 }

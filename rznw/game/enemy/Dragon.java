@@ -13,6 +13,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Dragon extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 4;
+
     private static char mapCharacter = 'd';
 
     public Dragon(int level)
@@ -60,5 +62,10 @@ public class Dragon extends EnemyCharacter
     {
         System.out.println("The dragon retaliates by shooting fire");
         mainCharacter.damage(10, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+    }
+
+    public int getEnemyNumber()
+    {
+        return Dragon.ENEMY_NUMBER;
     }
 }

@@ -193,4 +193,6 @@ public abstract class EnemyCharacter extends Character
     public void damagedByMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
     }
+
+    public abstract int getEnemyNumber();
 }

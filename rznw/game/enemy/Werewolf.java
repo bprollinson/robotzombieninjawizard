@@ -11,6 +11,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Werewolf extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 23;
+
     private static char mapCharacter = 'w';
 
     public Werewolf(int level)
@@ -50,5 +52,10 @@ public class Werewolf extends EnemyCharacter
     public EnemyActionCalculator getActionCalculator()
     {
         return new MeleeActionCalculator();
+    }
+
+    public int getEnemyNumber()
+    {
+        return Werewolf.ENEMY_NUMBER;
     }
 }

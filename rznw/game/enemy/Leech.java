@@ -12,6 +12,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Leech extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 12;
+
     private static char mapCharacter = 'l';
 
     public Leech(int level)
@@ -61,5 +63,10 @@ public class Leech extends EnemyCharacter
 
         int mp = Math.max(mainCharacter.getMP() - 5, 0);
         mainCharacter.setMP(mp);
+    }
+
+    public int getEnemyNumber()
+    {
+        return Leech.ENEMY_NUMBER;
     }
 }

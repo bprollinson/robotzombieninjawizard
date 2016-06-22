@@ -13,6 +13,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class QuicksandDweller extends EnemyCharacterWithSpell
 {
+    private static final int ENEMY_NUMBER = 17;
+
     private static final int SPELL_QUICKSAND_PULL = 0;
 
     private static char mapCharacter = 'q';
@@ -73,5 +75,10 @@ public class QuicksandDweller extends EnemyCharacterWithSpell
     public EnemyActionCalculator getActionCalculator()
     {
         return new RadialSpellActionCalculator(4);
+    }
+
+    public int getEnemyNumber()
+    {
+        return QuicksandDweller.ENEMY_NUMBER;
     }
 }

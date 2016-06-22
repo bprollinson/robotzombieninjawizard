@@ -12,6 +12,8 @@ import rznw.map.element.EnemyMapElement;
 
 public class Thief extends EnemyCharacter
 {
+    private static final int ENEMY_NUMBER = 20;
+
     private static char mapCharacter = 't';
 
     public Thief(int level)
@@ -60,5 +62,10 @@ public class Thief extends EnemyCharacter
         System.out.println("The thief is stealing your gold!");
 
         mainCharacter.getInventory().removeGold(10);
+    }
+
+    public int getEnemyNumber()
+    {
+        return Thief.ENEMY_NUMBER;
     }
 }
