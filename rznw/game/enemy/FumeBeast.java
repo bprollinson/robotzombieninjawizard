@@ -14,7 +14,7 @@ import rznw.map.element.MapElement;
 
 public class FumeBeast extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 6;
+    public static final int ENEMY_NUMBER = 6;
 
     private static final int SPELL_FUME_CLOUD = 0;
 

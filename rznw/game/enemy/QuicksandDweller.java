@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class QuicksandDweller extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 17;
+    public static final int ENEMY_NUMBER = 17;
 
     private static final int SPELL_QUICKSAND_PULL = 0;
 

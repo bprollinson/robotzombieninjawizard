@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class KingLizardWizard extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 11;
+    public static final int ENEMY_NUMBER = 11;
 
     private static final int SPELL_ACID_SPIT = 0;
 

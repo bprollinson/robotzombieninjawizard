@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class HealthNinja extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 8;
+    public static final int ENEMY_NUMBER = 8;
 
     private static final int SPELL_SUPER_HEAL = 0;
 

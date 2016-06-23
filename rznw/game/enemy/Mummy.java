@@ -11,7 +11,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Mummy extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 13;
+    public static final int ENEMY_NUMBER = 13;
 
     private static char mapCharacter = 'm';
 

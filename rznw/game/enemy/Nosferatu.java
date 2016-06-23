@@ -14,7 +14,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Nosferatu extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 14;
+    public static final int ENEMY_NUMBER = 14;
 
     private static final int SPELL_VAMPIRE_WAVE = 0;
 

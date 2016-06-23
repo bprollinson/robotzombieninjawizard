@@ -14,7 +14,7 @@ import rznw.map.element.MapElement;
 
 public class GravityWizard extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 7;
+    public static final int ENEMY_NUMBER = 7;
 
     private static final int SPELL_GRAVITY_BELT = 0;
 

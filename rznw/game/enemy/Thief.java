@@ -12,7 +12,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Thief extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 20;
+    public static final int ENEMY_NUMBER = 20;
 
     private static char mapCharacter = 't';
 

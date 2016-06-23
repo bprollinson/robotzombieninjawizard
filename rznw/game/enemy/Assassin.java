@@ -11,7 +11,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Assassin extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 1;
+    public static final int ENEMY_NUMBER = 1;
 
     private static char mapCharacter = 'a';
 

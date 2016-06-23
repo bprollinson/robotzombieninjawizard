@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Dragon extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 4;
+    public static final int ENEMY_NUMBER = 4;
 
     private static char mapCharacter = 'd';
 

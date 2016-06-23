@@ -12,7 +12,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Leech extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 12;
+    public static final int ENEMY_NUMBER = 12;
 
     private static char mapCharacter = 'l';
 

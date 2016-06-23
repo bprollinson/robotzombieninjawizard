@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Oni extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 15;
+    public static final int ENEMY_NUMBER = 15;
 
     private static final int SPELL_PARTICLE_OF_DARKNESS = 0;
 

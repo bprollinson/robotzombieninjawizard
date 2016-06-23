@@ -13,7 +13,7 @@ import rznw.map.element.DisappearingEnemyMapElement;
 
 public class InvisibleWizard extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 9;
+    public static final int ENEMY_NUMBER = 9;
 
     private static final int SPELL_INVISIBILITY = 0;
 

@@ -11,7 +11,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Werewolf extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 23;
+    public static final int ENEMY_NUMBER = 23;
 
     private static char mapCharacter = 'w';
 

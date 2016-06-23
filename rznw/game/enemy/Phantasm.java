@@ -11,7 +11,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Phantasm extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 16;
+    public static final int ENEMY_NUMBER = 16;
 
     private static char mapCharacter = 'p';
 

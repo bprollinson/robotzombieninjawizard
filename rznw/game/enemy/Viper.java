@@ -12,7 +12,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Viper extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 22;
+    public static final int ENEMY_NUMBER = 22;
 
     private static char mapCharacter = 'v';
 

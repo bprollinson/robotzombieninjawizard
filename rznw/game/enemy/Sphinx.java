@@ -12,7 +12,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Sphinx extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 19;
+    public static final int ENEMY_NUMBER = 19;
 
     private static char mapCharacter = 's';
 

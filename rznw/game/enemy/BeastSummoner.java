@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class BeastSummoner extends EnemyCharacterWithSpell
 {
-    private static final int ENEMY_NUMBER = 2;
+    public static final int ENEMY_NUMBER = 2;
 
     private static final int SPELL_SUMMON_BEAST = 0;
 

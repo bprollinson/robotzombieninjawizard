@@ -13,7 +13,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public class Yeti extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 25;
+    public static final int ENEMY_NUMBER = 25;
 
     private static char mapCharacter = 'y';
 

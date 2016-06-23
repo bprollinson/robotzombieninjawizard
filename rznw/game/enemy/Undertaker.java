@@ -13,7 +13,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Undertaker extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 21;
+    public static final int ENEMY_NUMBER = 21;
 
     private static char mapCharacter = 'u';
 

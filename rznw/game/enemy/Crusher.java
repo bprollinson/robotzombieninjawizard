@@ -12,7 +12,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class Crusher extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 3;
+    public static final int ENEMY_NUMBER = 3;
 
     private static char mapCharacter = 'c';
 

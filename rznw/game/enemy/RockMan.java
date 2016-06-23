@@ -11,7 +11,7 @@ import rznw.map.element.EnemyMapElement;
 
 public class RockMan extends EnemyCharacter
 {
-    private static final int ENEMY_NUMBER = 18;
+    public static final int ENEMY_NUMBER = 18;
 
     private static char mapCharacter = 'r';
 

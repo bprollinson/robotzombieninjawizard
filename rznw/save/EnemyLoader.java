@@ -1,6 +1,6 @@
 package rznw.save;
 
-import rznw.game.maincharacter.MainCharacter;
+import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;
@@ -20,6 +20,8 @@ public class EnemyLoader extends ComponentLoader
              int mp = this.readInteger(fileReader);
 
              System.out.println("Enemy stats: " + enemyIndex + " - " + level + " - " + hp + " - " + mp);
+
+             EnemyCharacter enemy = EnemyCharacterFactory.factory(enemyIndex, level);
         }
     }
 }
