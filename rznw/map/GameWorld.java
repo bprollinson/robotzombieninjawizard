@@ -99,4 +99,9 @@ public class GameWorld
     {
         this.enemyIndex++;
     }
+
+    public EnemyCharacter getEnemy(int enemyIndex)
+    {
+        return this.enemySet.get(enemyIndex);
+    }
 }

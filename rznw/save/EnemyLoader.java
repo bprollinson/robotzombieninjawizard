@@ -24,6 +24,8 @@ public class EnemyLoader extends ComponentLoader
              System.out.println("Enemy stats: " + enemyIndex + " - " + level + " - " + hp + " - " + mp);
 
              EnemyCharacter enemy = EnemyCharacterFactory.factory(enemyIndex, level);
+             enemy.setHP(hp);
+             enemy.setMP(mp);
              gameWorld.addEnemyToSet(enemy);
         }
     }

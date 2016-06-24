@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.element.Blotch;
@@ -31,10 +32,11 @@ public class MapElementFactory
                 break;
             case EnemyMapElement.ELEMENT_NUMBER:
                 int enemyIndex = gameWorld.getEnemyIndex();
-                System.out.println("Enemy index: " + enemyIndex);
+                EnemyCharacter enemy = gameWorld.getEnemy(enemyIndex);
                 gameWorld.incrementEnemyIndex();
 
-                break;
+                enemy.generateMapElement(row, column);
+                return enemy.getMapElement();
             case FireElement.ELEMENT_NUMBER:
                 break;
             case MainCharacterMapElement.ELEMENT_NUMBER:
