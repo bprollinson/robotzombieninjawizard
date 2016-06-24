@@ -41,10 +41,9 @@ public class MapElementFactory
                 break;
             case MainCharacterMapElement.ELEMENT_NUMBER:
                 MainCharacter mainCharacter = gameWorld.getMainCharacter();
-                MainCharacterMapElement element = new MainCharacterMapElement(row, column, '?', mainCharacter);
-                mainCharacter.setMapElement(element);
+                mainCharacter.generateMapElement(row, column);
 
-                return element;
+                return mainCharacter.getMapElement();
             case Path.ELEMENT_NUMBER:
                 return new Path(row, column);
             case Projectile.ELEMENT_NUMBER:
