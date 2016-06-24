@@ -16,6 +16,7 @@ public class GameWorld
     private Map map;
     private Vector<EnemyCharacter> enemySet;
     private boolean gameCompleted = false;
+    private int enemyIndex;
 
     public GameWorld(CharacterGenerator characterGenerator, MapGenerator mapGenerator)
     {
@@ -82,5 +83,20 @@ public class GameWorld
     public void addEnemyToSet(EnemyCharacter enemy)
     {
         this.enemySet.add(enemy);
+    }
+
+    public void initializeEnemyIndex()
+    {
+        this.enemyIndex = 0;
+    }
+
+    public int getEnemyIndex()
+    {
+        return this.enemyIndex;
+    }
+
+    public void incrementEnemyIndex()
+    {
+        this.enemyIndex++;
     }
 }

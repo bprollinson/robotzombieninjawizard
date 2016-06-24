@@ -30,6 +30,10 @@ public class MapElementFactory
             case DisappearingEnemyMapElement.ELEMENT_NUMBER:
                 break;
             case EnemyMapElement.ELEMENT_NUMBER:
+                int enemyIndex = gameWorld.getEnemyIndex();
+                System.out.println("Enemy index: " + enemyIndex);
+                gameWorld.incrementEnemyIndex();
+
                 break;
             case FireElement.ELEMENT_NUMBER:
                 break;

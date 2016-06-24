@@ -20,6 +20,8 @@ public class MapLoader extends ComponentLoader
         int numMapElements = this.readInteger(fileReader);
         System.out.println("Num map elements: " + numMapElements);
 
+        gameWorld.initializeEnemyIndex();
+
         for (int i = 0; i < numMapElements; i++)
         {
             int row = this.readInteger(fileReader);
