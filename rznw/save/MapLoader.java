@@ -56,5 +56,7 @@ public class MapLoader extends ComponentLoader
                 map.setBackgroundElement(row, column, element);
             }
         }
+
+        gameWorld.clearEnemySet();
     }
 }

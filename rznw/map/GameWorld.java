@@ -1,9 +1,12 @@
 package rznw.map;
 
 import rznw.game.CharacterGenerator;
+import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.MainCharacterGenerator;
 import rznw.map.generator.MapGenerator;
+
+import java.util.Vector;
 
 public class GameWorld
 {
@@ -11,6 +14,7 @@ public class GameWorld
     private MapGenerator mapGenerator;
     private MainCharacter character;
     private Map map;
+    private Vector<EnemyCharacter> enemySet;
     private boolean gameCompleted = false;
 
     public GameWorld(CharacterGenerator characterGenerator, MapGenerator mapGenerator)
@@ -68,5 +72,15 @@ public class GameWorld
     public boolean gameCompleted()
     {
         return this.gameCompleted;
+    }
+
+    public void clearEnemySet()
+    {
+        this.enemySet = new Vector<EnemyCharacter>();
+    }
+
+    public void addEnemyToSet(EnemyCharacter enemy)
+    {
+        this.enemySet.add(enemy);
     }
 }
