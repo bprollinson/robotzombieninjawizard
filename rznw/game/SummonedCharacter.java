@@ -18,6 +18,8 @@ import java.util.List;
 
 public abstract class SummonedCharacter extends Character
 {
+    public abstract int getSummonNumber();
+
     public void generateMapElement(int row, int column)
     {
     }

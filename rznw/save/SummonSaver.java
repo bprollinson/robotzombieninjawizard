@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.SummonedCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -14,6 +15,24 @@ public class SummonSaver extends ComponentSaver
         Map map = gameWorld.getMap();
 
         this.writeLine(fileWriter, this.getNumSummons(map));
+
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                MapElement element = map.getElement(row, column);
+
+                if (element instanceof SummonedMinionMapElement)
+                {
+                    SummonedMinionMapElement summonElement = (SummonedMinionMapElement)element;
+                    SummonedCharacter summonCharacter = (SummonedCharacter)summonElement.getCharacter();
+
+                    this.writeLine(fileWriter, summonCharacter.getSummonNumber());
+                    this.writeLine(fileWriter, summonCharacter.getMaxHP());
+                    this.writeLine(fileWriter, summonCharacter.getHP());
+                }
+            }
+        }
     }
 
     private int getNumSummons(Map map)
