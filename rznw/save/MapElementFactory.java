@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
@@ -53,8 +54,16 @@ public class MapElementFactory
             case Stairs.ELEMENT_NUMBER:
                 return new Stairs(row, column);
             case SummonedGolemMapElement.ELEMENT_NUMBER:
-                break;
+                int summonIndex = gameWorld.getSummonIndex();
+                SummonedCharacter summon = gameWorld.getSummon(summonIndex);
+                gameWorld.incrementSummonIndex();
+
+                MapElement element = new SummonedGolemMapElement(row, column, summon);
+                summon.setMapElement(element);
+
+                return element;
             case SummonedZombieMapElement.ELEMENT_NUMBER:
+                gameWorld.incrementSummonIndex();
                 break;
             case TrapMapElement.ELEMENT_NUMBER:
                 String[] metadataParts = metadata.split(",");

@@ -21,6 +21,7 @@ public class MapLoader extends ComponentLoader
         System.out.println("Num map elements: " + numMapElements);
 
         gameWorld.initializeEnemyIndex();
+        gameWorld.initializeSummonIndex();
 
         for (int i = 0; i < numMapElements; i++)
         {

@@ -19,6 +19,7 @@ public class GameWorld
     private Vector<SummonedCharacter> summonSet;
     private boolean gameCompleted = false;
     private int enemyIndex;
+    private int summonIndex;
 
     public GameWorld(CharacterGenerator characterGenerator, MapGenerator mapGenerator)
     {
@@ -107,13 +108,33 @@ public class GameWorld
         return this.enemyIndex;
     }
 
+    public void initializeSummonIndex()
+    {
+        this.summonIndex = 0;
+    }
+
     public void incrementEnemyIndex()
     {
         this.enemyIndex++;
     }
 
+    public int getSummonIndex()
+    {
+        return this.summonIndex;
+    }
+
+    public void incrementSummonIndex()
+    {
+        this.summonIndex++;
+    }
+
     public EnemyCharacter getEnemy(int enemyIndex)
     {
         return this.enemySet.get(enemyIndex);
+    }
+
+    public SummonedCharacter getSummon(int summonIndex)
+    {
+        return this.summonSet.get(summonIndex);
     }
 }
