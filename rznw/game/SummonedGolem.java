@@ -2,7 +2,7 @@ package rznw.game;
 
 public class SummonedGolem extends SummonedCharacter
 {
-    private static final int SUMMON_NUMBER = 1;
+    public static final int SUMMON_NUMBER = 1;
 
     private int maxHP;
 

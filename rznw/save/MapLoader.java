@@ -60,5 +60,6 @@ public class MapLoader extends ComponentLoader
         }
 
         gameWorld.clearEnemySet();
+        gameWorld.clearSummonSet();
     }
 }

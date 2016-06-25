@@ -1,6 +1,7 @@
 package rznw.map;
 
 import rznw.game.CharacterGenerator;
+import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.MainCharacterGenerator;
@@ -15,6 +16,7 @@ public class GameWorld
     private MainCharacter character;
     private Map map;
     private Vector<EnemyCharacter> enemySet;
+    private Vector<SummonedCharacter> summonSet;
     private boolean gameCompleted = false;
     private int enemyIndex;
 
@@ -83,6 +85,16 @@ public class GameWorld
     public void addEnemyToSet(EnemyCharacter enemy)
     {
         this.enemySet.add(enemy);
+    }
+
+    public void clearSummonSet()
+    {
+        this.summonSet = new Vector<SummonedCharacter>();
+    }
+
+    public void addSummonToSet(SummonedCharacter summon)
+    {
+        this.summonSet.add(summon);
     }
 
     public void initializeEnemyIndex()

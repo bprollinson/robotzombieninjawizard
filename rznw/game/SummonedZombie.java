@@ -2,7 +2,7 @@ package rznw.game;
 
 public class SummonedZombie extends SummonedCharacter
 {
-    private static final int SUMMON_NUMBER = 2;
+    public static final int SUMMON_NUMBER = 2;
 
     private int maxHP;
 
