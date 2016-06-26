@@ -63,8 +63,14 @@ public class MapElementFactory
 
                 return element;
             case SummonedZombieMapElement.ELEMENT_NUMBER:
+                int zombieIndex = gameWorld.getSummonIndex();
+                SummonedCharacter zombie = gameWorld.getSummon(zombieIndex);
                 gameWorld.incrementSummonIndex();
-                break;
+
+                MapElement zombieElement = new SummonedZombieMapElement(row, column, zombie);
+                zombie.setMapElement(zombieElement);
+
+                return zombieElement;
             case TrapMapElement.ELEMENT_NUMBER:
                 String[] metadataParts = metadata.split(",");
                 boolean isSprung = metadataParts[0].equals("1");
