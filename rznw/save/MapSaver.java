@@ -1,7 +1,9 @@
 package rznw.save;
 
+import rznw.game.Character;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.element.DisappearingEnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
 import rznw.map.element.TrapMapElement;
@@ -105,6 +107,13 @@ public class MapSaver extends ComponentSaver
             String isFoundDisplay = trapMapElement.isFound() ? "1" : "0";
 
             metadata = isSprungDisplay + "," + isFoundDisplay;
+        }
+
+        if (element instanceof DisappearingEnemyMapElement)
+        {
+            Character enemyCharacter = ((DisappearingEnemyMapElement)element).getCharacter();
+
+            metadata = "" + enemyCharacter.getStatusEffects().getInvisibilityTurns();
         }
 
         return metadata;

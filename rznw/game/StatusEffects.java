@@ -413,6 +413,11 @@ public class StatusEffects
         return this.invisibleTurns > 0;
     }
 
+    public int getInvisibilityTurns()
+    {
+        return this.invisibleTurns;
+    }
+
     public void enablePowerSearch(int numTurns)
     {
         this.powerSearchTurns = numTurns;

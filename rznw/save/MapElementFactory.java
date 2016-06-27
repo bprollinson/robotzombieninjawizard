@@ -30,7 +30,13 @@ public class MapElementFactory
             case Blotch.ELEMENT_NUMBER:
                 return new Blotch(row, column);
             case DisappearingEnemyMapElement.ELEMENT_NUMBER:
-                break;
+                int invisibleEnemyIndex = gameWorld.getEnemyIndex();
+                EnemyCharacter invisibleEnemy = gameWorld.getEnemy(invisibleEnemyIndex);
+                gameWorld.incrementEnemyIndex();
+
+                invisibleEnemy.generateMapElement(row, column);
+                invisibleEnemy.getStatusEffects().makeInvisible(Integer.parseInt(metadata));
+                return invisibleEnemy.getMapElement();
             case EnemyMapElement.ELEMENT_NUMBER:
                 int enemyIndex = gameWorld.getEnemyIndex();
                 EnemyCharacter enemy = gameWorld.getEnemy(enemyIndex);
