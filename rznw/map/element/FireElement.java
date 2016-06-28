@@ -31,6 +31,11 @@ public class FireElement extends MapElement
         return this.duration <= 0;
     }
 
+    public int getDuration()
+    {
+        return this.duration;
+    }
+
     public MapElement getPreviousMapElement()
     {
         return this.previousMapElement;

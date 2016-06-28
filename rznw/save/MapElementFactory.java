@@ -45,7 +45,7 @@ public class MapElementFactory
                 enemy.generateMapElement(row, column);
                 return enemy.getMapElement();
             case FireElement.ELEMENT_NUMBER:
-                break;
+                return new FireElement(row, column, null, Integer.parseInt(metadata));
             case MainCharacterMapElement.ELEMENT_NUMBER:
                 MainCharacter mainCharacter = gameWorld.getMainCharacter();
                 mainCharacter.generateMapElement(row, column);

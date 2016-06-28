@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.DisappearingEnemyMapElement;
+import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
 import rznw.map.element.TrapMapElement;
@@ -114,6 +115,11 @@ public class MapSaver extends ComponentSaver
             Character enemyCharacter = ((DisappearingEnemyMapElement)element).getCharacter();
 
             metadata = "" + enemyCharacter.getStatusEffects().getInvisibilityTurns();
+        }
+
+        if (element instanceof FireElement)
+        {
+            metadata = "" + ((FireElement)element).getDuration();
         }
 
         return metadata;
