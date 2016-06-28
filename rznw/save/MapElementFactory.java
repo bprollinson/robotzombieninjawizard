@@ -45,7 +45,14 @@ public class MapElementFactory
                 enemy.generateMapElement(row, column);
                 return enemy.getMapElement();
             case FireElement.ELEMENT_NUMBER:
-                return new FireElement(row, column, null, Integer.parseInt(metadata));
+                MapElement previousElement = null;
+                String[] parts = metadata.split("/", -1);
+                if (parts.length >= 3)
+                {
+                    previousElement = MapElementFactory.factory(gameWorld, Integer.parseInt(parts[1]), row, column, parts[2]);
+                }
+
+                return new FireElement(row, column, previousElement, Integer.parseInt(parts[0]));
             case MainCharacterMapElement.ELEMENT_NUMBER:
                 MainCharacter mainCharacter = gameWorld.getMainCharacter();
                 mainCharacter.generateMapElement(row, column);

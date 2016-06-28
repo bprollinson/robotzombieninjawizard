@@ -119,7 +119,14 @@ public class MapSaver extends ComponentSaver
 
         if (element instanceof FireElement)
         {
-            metadata = "" + ((FireElement)element).getDuration();
+            String previousData = "";
+            MapElement previousElement = ((FireElement)element).getPreviousMapElement();
+            if (previousElement != null)
+            {
+                previousData += previousElement.getElementNumber() + "/" + this.getElementMetadata(previousElement);
+            }
+
+            metadata = "" + ((FireElement)element).getDuration() + "/" + previousData;
         }
 
         return metadata;
