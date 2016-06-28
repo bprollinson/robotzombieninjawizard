@@ -34,16 +34,30 @@ public class RingOfFireSpell extends UndirectedSpell
             int column = characterElement.getColumn() - radius;
             if (row >= 0 && row < Map.NUM_ROWS && column >= 0 && column < Map.NUM_COLUMNS)
             {
+                int localDuration = duration;
                 MapElement existingElement = map.getBackgroundElement(row, column);
-                FireElement fireElement = new FireElement(row, column, existingElement, duration);
+                if (existingElement instanceof FireElement)
+                {
+                    localDuration += ((FireElement)existingElement).getDuration();
+                    existingElement = null;
+                }
+
+                FireElement fireElement = new FireElement(row, column, existingElement, localDuration);
                 map.setBackgroundElement(row, column, fireElement);
             }
 
             column = characterElement.getColumn() + radius;
             if (row >= 0 && row < Map.NUM_ROWS && column >= 0 && column < Map.NUM_COLUMNS)
             {
+                int localDuration = duration;
                 MapElement existingElement = map.getBackgroundElement(row, column);
-                MapElement fireElement = new FireElement(row, column, existingElement, duration);
+                if (existingElement instanceof FireElement)
+                {
+                    localDuration += ((FireElement)existingElement).getDuration();
+                    existingElement = null;
+                }
+
+                FireElement fireElement = new FireElement(row, column, existingElement, localDuration);
                 map.setBackgroundElement(row, column, fireElement);
             }
         }
@@ -53,16 +67,30 @@ public class RingOfFireSpell extends UndirectedSpell
             int row = characterElement.getRow() - radius;
             if (row >= 0 && row < Map.NUM_ROWS && column >= 0 && column < Map.NUM_COLUMNS)
             {
+                int localDuration = duration;
                 MapElement existingElement = map.getBackgroundElement(row, column);
-                FireElement fireElement = new FireElement(row, column, existingElement, duration);
+                if (existingElement instanceof FireElement)
+                {
+                    localDuration += ((FireElement)existingElement).getDuration();
+                    existingElement = null;
+                }
+
+                FireElement fireElement = new FireElement(row, column, existingElement, localDuration);
                 map.setBackgroundElement(row, column, fireElement);
             }
 
             row = characterElement.getRow() + radius;
             if (row >= 0 && row < Map.NUM_ROWS && column >= 0 && column < Map.NUM_COLUMNS)
             {
+                int localDuration = duration;
                 MapElement existingElement = map.getBackgroundElement(row, column);
-                FireElement fireElement = new FireElement(row, column, existingElement, duration);
+                if (existingElement instanceof FireElement)
+                {
+                    localDuration += ((FireElement)existingElement).getDuration();
+                    existingElement = null;
+                }
+
+                FireElement fireElement = new FireElement(row, column, existingElement, localDuration);
                 map.setBackgroundElement(row, column, fireElement);
             }
         }
