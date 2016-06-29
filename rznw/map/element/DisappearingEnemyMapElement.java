@@ -25,4 +25,9 @@ public class DisappearingEnemyMapElement extends EnemyMapElement
     {
         return DisappearingEnemyMapElement.ELEMENT_NUMBER;
     }
+
+    public String getMetadata()
+    {
+        return "" + this.getCharacter().getStatusEffects().getInvisibilityTurns();
+    }
 }

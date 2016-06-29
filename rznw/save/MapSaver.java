@@ -3,11 +3,8 @@ package rznw.save;
 import rznw.game.Character;
 import rznw.map.GameWorld;
 import rznw.map.Map;
-import rznw.map.element.DisappearingEnemyMapElement;
 import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
-import rznw.map.element.RockWall;
-import rznw.map.element.TrapMapElement;
 
 import java.io.BufferedWriter;
 
@@ -95,13 +92,6 @@ public class MapSaver extends ComponentSaver
     private String getElementMetadata(MapElement element)
     {
         String metadata = element.getMetadata();
-
-        if (element instanceof DisappearingEnemyMapElement)
-        {
-            Character enemyCharacter = ((DisappearingEnemyMapElement)element).getCharacter();
-
-            metadata = "" + enemyCharacter.getStatusEffects().getInvisibilityTurns();
-        }
 
         if (element instanceof FireElement)
         {
