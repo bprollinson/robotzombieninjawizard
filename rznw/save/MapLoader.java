@@ -3,6 +3,7 @@ package rznw.save;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.map.element.MapElementFactory;
 
 import java.io.BufferedReader;
 

@@ -1,25 +1,9 @@
-package rznw.save;
+package rznw.map.element;
 
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
-import rznw.map.element.Blotch;
-import rznw.map.element.DisappearingEnemyMapElement;
-import rznw.map.element.EnemyMapElement;
-import rznw.map.element.FireElement;
-import rznw.map.element.MainCharacterMapElement;
-import rznw.map.element.MapElement;
-import rznw.map.element.Path;
-import rznw.map.element.Projectile;
-import rznw.map.element.RockWall;
-import rznw.map.element.Stairs;
-import rznw.map.element.SummonedGolemMapElement;
-import rznw.map.element.SummonedZombieMapElement;
-import rznw.map.element.TrapMapElement;
-import rznw.map.element.Void;
-import rznw.map.element.Wall;
-import rznw.map.element.Waypoint;
 
 public class MapElementFactory
 {
