@@ -72,4 +72,16 @@ public class FireElement extends MapElement
     {
         return FireElement.ELEMENT_NUMBER;
     }
+
+    public String getMetadata()
+    {
+        String previousData = "";
+        MapElement previousElement = this.getPreviousMapElement();
+        if (previousElement != null)
+        {
+            previousData += previousElement.getElementNumber() + "/" + previousElement.getMetadata();
+        }
+
+        return "" + this.getDuration() + "/" + previousData;
+    }
 }

@@ -3,7 +3,6 @@ package rznw.save;
 import rznw.game.Character;
 import rznw.map.GameWorld;
 import rznw.map.Map;
-import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
 
 import java.io.BufferedWriter;
@@ -29,7 +28,7 @@ public class MapSaver extends ComponentSaver
                     this.writeLine(fileWriter, row);
                     this.writeLine(fileWriter, column);
                     this.writeLine(fileWriter, element.getElementNumber());
-                    this.writeLine(fileWriter, this.getElementMetadata(element));
+                    this.writeLine(fileWriter, element.getMetadata());
                 }
             }
         }
@@ -47,7 +46,7 @@ public class MapSaver extends ComponentSaver
                     this.writeLine(fileWriter, row);
                     this.writeLine(fileWriter, column);
                     this.writeLine(fileWriter, element.getElementNumber());
-                    this.writeLine(fileWriter, this.getElementMetadata(element));
+                    this.writeLine(fileWriter, element.getMetadata());
                 }
             }
         }
@@ -87,24 +86,5 @@ public class MapSaver extends ComponentSaver
         }
 
         return numElements;
-    }
-
-    private String getElementMetadata(MapElement element)
-    {
-        String metadata = element.getMetadata();
-
-        if (element instanceof FireElement)
-        {
-            String previousData = "";
-            MapElement previousElement = ((FireElement)element).getPreviousMapElement();
-            if (previousElement != null)
-            {
-                previousData += previousElement.getElementNumber() + "/" + this.getElementMetadata(previousElement);
-            }
-
-            metadata = "" + ((FireElement)element).getDuration() + "/" + previousData;
-        }
-
-        return metadata;
     }
 }
