@@ -32,4 +32,9 @@ public class RockWall extends MapElement
     {
         return RockWall.ELEMENT_NUMBER;
     }
+
+    public String getMetadata()
+    {
+        return "" + this.HP;
+    }
 }

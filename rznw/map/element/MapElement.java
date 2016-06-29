@@ -60,4 +60,9 @@ public abstract class MapElement
     }
 
     public abstract int getElementNumber();
+
+    public String getMetadata()
+    {
+        return "";
+    }
 }

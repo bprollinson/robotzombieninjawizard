@@ -94,12 +94,7 @@ public class MapSaver extends ComponentSaver
 
     private String getElementMetadata(MapElement element)
     {
-        String metadata = "";
-
-        if (element instanceof RockWall)
-        {
-            metadata = "" + ((RockWall)element).getHP();
-        }
+        String metadata = element.getMetadata();
 
         if (element instanceof TrapMapElement)
         {
