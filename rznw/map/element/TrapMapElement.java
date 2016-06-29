@@ -33,7 +33,7 @@ public class TrapMapElement extends MapElement
         return ' ';
     }
 
-    public boolean isSprung()
+    private boolean isSprung()
     {
         return this.sprung;
     }
@@ -43,7 +43,7 @@ public class TrapMapElement extends MapElement
         this.sprung = true;
     }
 
-    public boolean isFound()
+    private boolean isFound()
     {
         return this.visible;
     }
@@ -91,5 +91,13 @@ public class TrapMapElement extends MapElement
     public int getElementNumber()
     {
         return TrapMapElement.ELEMENT_NUMBER;
+    }
+
+    public String getMetadata()
+    {
+        String isSprungDisplay = this.isSprung() ? "1" : "0";
+        String isFoundDisplay = this.isFound() ? "1" : "0";
+
+        return isSprungDisplay + "," + isFoundDisplay;
     }
 }

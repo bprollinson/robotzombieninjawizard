@@ -96,15 +96,6 @@ public class MapSaver extends ComponentSaver
     {
         String metadata = element.getMetadata();
 
-        if (element instanceof TrapMapElement)
-        {
-            TrapMapElement trapMapElement = (TrapMapElement)element;
-            String isSprungDisplay = trapMapElement.isSprung() ? "1" : "0";
-            String isFoundDisplay = trapMapElement.isFound() ? "1" : "0";
-
-            metadata = isSprungDisplay + "," + isFoundDisplay;
-        }
-
         if (element instanceof DisappearingEnemyMapElement)
         {
             Character enemyCharacter = ((DisappearingEnemyMapElement)element).getCharacter();
