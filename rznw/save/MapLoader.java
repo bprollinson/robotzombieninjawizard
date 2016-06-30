@@ -26,18 +26,10 @@ public class MapLoader extends ComponentLoader
 
         for (int i = 0; i < numMapElements; i++)
         {
-            int row = this.readInteger(fileReader);
-            int column = this.readInteger(fileReader);
-            int elementIndex = this.readInteger(fileReader);
-            String metadata = this.readLine(fileReader);
-
-            System.out.println(row + ", " + column);
-            System.out.println(elementIndex);
-
-            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column, metadata);
+            MapElement element = this.createElementFromFile(gameWorld, fileReader);
             if (element != null)
             {
-                map.setElement(row, column, element);
+                map.setElement(element.getRow(), element.getColumn(), element);
             }
         }
 
@@ -46,22 +38,27 @@ public class MapLoader extends ComponentLoader
 
         for (int i = 0; i < numMapBackgroundElements; i++)
         {
-            int row = this.readInteger(fileReader);
-            int column = this.readInteger(fileReader);
-            int elementIndex = this.readInteger(fileReader);
-            String metadata = this.readLine(fileReader);
-
-            System.out.println(row + ", " + column);
-            System.out.println(elementIndex);
-
-            MapElement element = MapElementFactory.factory(gameWorld, elementIndex, row, column, metadata);
+            MapElement element = this.createElementFromFile(gameWorld, fileReader);
             if (element != null)
             {
-                map.setBackgroundElement(row, column, element);
+                map.setBackgroundElement(element.getRow(), element.getColumn(), element);
             }
         }
 
         gameWorld.clearEnemySet();
         gameWorld.clearSummonSet();
+    }
+
+    private MapElement createElementFromFile(GameWorld gameWorld, BufferedReader fileReader)
+    {
+        int row = this.readInteger(fileReader);
+        int column = this.readInteger(fileReader);
+        int elementIndex = this.readInteger(fileReader);
+        String metadata = this.readLine(fileReader);
+
+        System.out.println(row + ", " + column);
+        System.out.println(elementIndex);
+
+        return MapElementFactory.factory(gameWorld, elementIndex, row, column, metadata);
     }
 }
