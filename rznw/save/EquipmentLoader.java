@@ -5,6 +5,7 @@ import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
+import rznw.game.maincharacter.inventory.EquipmentItemFactory;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;

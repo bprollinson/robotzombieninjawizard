@@ -1,32 +1,4 @@
-package rznw.save;
-
-import rznw.game.maincharacter.inventory.AssassinsCloak;
-import rznw.game.maincharacter.inventory.BloodSword;
-import rznw.game.maincharacter.inventory.CrusherHammer;
-import rznw.game.maincharacter.inventory.DeathScythe;
-import rznw.game.maincharacter.inventory.DragonPlate;
-import rznw.game.maincharacter.inventory.EquipmentItem;
-import rznw.game.maincharacter.inventory.EtherealShield;
-import rznw.game.maincharacter.inventory.GauntletOfDarkness;
-import rznw.game.maincharacter.inventory.GravityBlade;
-import rznw.game.maincharacter.inventory.HealShield;
-import rznw.game.maincharacter.inventory.IceRod;
-import rznw.game.maincharacter.inventory.InvisibilityWand;
-import rznw.game.maincharacter.inventory.LeechMail;
-import rznw.game.maincharacter.inventory.MagicJavelin;
-import rznw.game.maincharacter.inventory.MagicShield;
-import rznw.game.maincharacter.inventory.PoisonCloth;
-import rznw.game.maincharacter.inventory.ProtectivePlate;
-import rznw.game.maincharacter.inventory.QuicksandHammer;
-import rznw.game.maincharacter.inventory.RiddleWand;
-import rznw.game.maincharacter.inventory.RockMail;
-import rznw.game.maincharacter.inventory.ShieldOfSight;
-import rznw.game.maincharacter.inventory.ThiefGlove;
-import rznw.game.maincharacter.inventory.ViperDagger;
-import rznw.game.maincharacter.inventory.WandOfSummoning;
-import rznw.game.maincharacter.inventory.WoodenShield;
-import rznw.game.maincharacter.inventory.WoodenSword;
-import rznw.game.maincharacter.inventory.ZenithWand;
+package rznw.game.maincharacter.inventory;
 
 public class EquipmentItemFactory
 {
