@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.maincharacter.inventory.InventoryItemFactory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.map.GameWorld;
 
