@@ -79,6 +79,7 @@ public class GameSaver
             new EnemySaver(),
             new SummonSaver(),
             new MapSaver(),
+            new MapVisibilitySaver(),
             new InventorySaver(),
             new EquipmentSaver()
         };
