@@ -61,8 +61,8 @@ public class GameLoader
             new MainCharacterLoader(),
             new EnemyLoader(),
             new SummonLoader(),
-            new MapVisibilityLoader(),
             new MapLoader(),
+            new MapVisibilityLoader(),
             new InventoryLoader(),
             new EquipmentLoader()
         };
