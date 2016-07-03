@@ -25,6 +25,7 @@ public abstract class MainCharacter extends Character
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
     public static final int STAT_HEALTH = 0;
+    public static final int STAT_PHYSICAL_REGENERATION = 1;
     public static final int STAT_MANA = 12;
 
     private static String[] statCategory = {
@@ -319,7 +320,7 @@ public abstract class MainCharacter extends Character
 
     private int getStepsForHeal()
     {
-        return Math.max(1, 20 - this.getStatPoints(1));
+        return Math.max(1, 20 - this.getStatPoints(MainCharacter.STAT_PHYSICAL_REGENERATION));
     }
 
     private int getStepsForMPHeal()
@@ -334,7 +335,7 @@ public abstract class MainCharacter extends Character
 
     public void incrementSteps()
     {
-        if (this.getStatPoints(1) > 0)
+        if (this.getStatPoints(MainCharacter.STAT_PHYSICAL_REGENERATION) > 0)
         {
             this.HPSteps++;
             if (this.HPSteps >= this.getStepsForHeal())
