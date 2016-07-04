@@ -29,6 +29,7 @@ public abstract class MainCharacter extends Character
     public static final int STAT_LAST_BREATH = 2;
     public static final int STAT_LIFE_BOND = 3;
     public static final int STAT_ACCURACY = 4;
+    public static final int STAT_DODGE = 5;
     public static final int STAT_MANA = 12;
 
     private static String[] statCategory = {
@@ -286,7 +287,7 @@ public abstract class MainCharacter extends Character
 
     public boolean dodgesAttack()
     {
-        int toDodgePercent = 2 *  this.getStatPoints(5);
+        int toDodgePercent = 2 * this.getStatPoints(MainCharacter.STAT_DODGE);
 
         Shield shield = this.getEquipment().getEquippedShield();
         if (shield != null)
