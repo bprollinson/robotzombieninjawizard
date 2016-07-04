@@ -30,6 +30,9 @@ public abstract class MainCharacter extends Character
     public static final int STAT_LIFE_BOND = 3;
     public static final int STAT_ACCURACY = 4;
     public static final int STAT_DODGE = 5;
+    public static final int STAT_SIGHT = 6;
+    public static final int STAT_FIND_TRAPS = 7;
+    public static final int STAT_DAMAGE = 8;
     public static final int STAT_MANA = 12;
 
     private static String[] statCategory = {
@@ -398,7 +401,7 @@ public abstract class MainCharacter extends Character
             equipmentBonus = shield.getViewRadiusBonus();
         }
 
-        return 2 + this.getStatPoints(6) + equipmentBonus;
+        return 2 + this.getStatPoints(MainCharacter.STAT_SIGHT) + equipmentBonus;
     }
 
     public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)

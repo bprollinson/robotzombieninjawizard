@@ -7,7 +7,7 @@ public class MainCharacterDamageDealtCalculator
 {
     public int getDamage(MainCharacter mainCharacter)
     {
-        int damage = 50 + 5 * mainCharacter.getStatPoints(8);
+        int damage = 50 + 5 * mainCharacter.getStatPoints(MainCharacter.STAT_DAMAGE);
 
         Weapon weapon = mainCharacter.getEquipment().getEquippedWeapon();
         if (weapon != null)

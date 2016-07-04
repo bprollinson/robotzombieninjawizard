@@ -78,7 +78,7 @@ public class TrapMapElement extends MapElement
     public void reveal(MainCharacter mainCharacter)
     {
         System.out.println("A trap is in range");
-        int trapRevealProbability = 5 * mainCharacter.getStatPoints(7);
+        int trapRevealProbability = 5 * mainCharacter.getStatPoints(MainCharacter.STAT_FIND_TRAPS);
         System.out.println("Trap reveal probability: " + trapRevealProbability);
 
         if (RandomNumberGenerator.rollSucceeds(trapRevealProbability))
