@@ -27,6 +27,7 @@ public abstract class MainCharacter extends Character
     public static final int STAT_HEALTH = 0;
     public static final int STAT_PHYSICAL_REGENERATION = 1;
     public static final int STAT_LAST_BREATH = 2;
+    public static final int STAT_LIFE_BOND = 3;
     public static final int STAT_MANA = 12;
 
     private static String[] statCategory = {
@@ -509,7 +510,7 @@ public abstract class MainCharacter extends Character
 
     public void heal(int HP)
     {
-        int bonusHPPercent = 5 * this.getStatPoints(3);
+        int bonusHPPercent = 5 * this.getStatPoints(MainCharacter.STAT_LIFE_BOND);
         int bonusHP = (int)Math.floor(bonusHPPercent / 100.0 * HP);
 
         if (bonusHP > 0)
