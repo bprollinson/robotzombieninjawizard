@@ -172,7 +172,7 @@ public class MainCharacterTurnHandler
     private void handleMainCharacterRevival()
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
-        int revivalProbability = 5 * character.getStatPoints(2);
+        int revivalProbability = 5 * character.getStatPoints(MainCharacter.STAT_LAST_BREATH);
         System.out.println("Revival probability: " + revivalProbability);
 
         if (RandomNumberGenerator.rollSucceeds(revivalProbability))
