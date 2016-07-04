@@ -28,6 +28,7 @@ public abstract class MainCharacter extends Character
     public static final int STAT_PHYSICAL_REGENERATION = 1;
     public static final int STAT_LAST_BREATH = 2;
     public static final int STAT_LIFE_BOND = 3;
+    public static final int STAT_ACCURACY = 4;
     public static final int STAT_MANA = 12;
 
     private static String[] statCategory = {
@@ -271,7 +272,7 @@ public abstract class MainCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        int toHitPercent = 50 + 2 * this.getStatPoints(4);
+        int toHitPercent = 50 + 2 * this.getStatPoints(MainCharacter.STAT_ACCURACY);
 
         Weapon weapon = this.getEquipment().getEquippedWeapon();
         if (weapon != null)
