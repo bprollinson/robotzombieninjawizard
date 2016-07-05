@@ -99,7 +99,7 @@ public class Inventory
             return;
         }
 
-        int statPoints = this.character.getStatPoints(10);
+        int statPoints = this.character.getStatPoints(MainCharacter.STAT_UNENCUMBERANCE);
         int maxSize = 1 + statPoints;
 
         int index = this.getItemGroupPosition(itemGroup);

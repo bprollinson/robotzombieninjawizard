@@ -160,7 +160,7 @@ public class Equipment
 
     private void assertCanAddEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
     {
-        int statPoints = this.character.getStatPoints(10);
+        int statPoints = this.character.getStatPoints(MainCharacter.STAT_UNENCUMBERANCE);
         int maxSize = 1 + statPoints;
 
         int index = this.getEquipmentGroupPosition(equipmentGroup);

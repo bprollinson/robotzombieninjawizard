@@ -383,7 +383,7 @@ public class StatusEffects
             return false;
         }
 
-        int statPoints = ((MainCharacter)this.character).getStatPoints(11);
+        int statPoints = ((MainCharacter)this.character).getStatPoints(MainCharacter.STAT_THICK_SKIN);
         int probability = 5 * statPoints;
 
         Armor armor = ((MainCharacter)character).getEquipment().getEquippedArmor();

@@ -1,42 +1,44 @@
 package rznw.game.stat;
 
+import rznw.game.maincharacter.MainCharacter;
+
 public class StatFactory
 {
     public Stat getStat(int statIndex)
     {
         switch(statIndex)
         {
-            case 0:
+            case MainCharacter.STAT_HEALTH:
                 return new HealthStat();
-            case 1:
+            case MainCharacter.STAT_PHYSICAL_REGENERATION:
                 return new PhysicalRegenerationStat();
-            case 2:
+            case MainCharacter.STAT_LAST_BREATH:
                 return new LastBreathStat();
-            case 3:
+            case MainCharacter.STAT_LIFE_BOND:
                 return new LifeBondStat();
-            case 4:
+            case MainCharacter.STAT_ACCURACY:
                 return new AccuracyStat();
-            case 5:
+            case MainCharacter.STAT_DODGE:
                 return new DodgeStat();
-            case 6:
+            case MainCharacter.STAT_SIGHT:
                 return new SightStat();
-            case 7:
+            case MainCharacter.STAT_FIND_TRAPS:
                 return new FindTrapsStat();
-            case 8:
+            case MainCharacter.STAT_DAMAGE:
                 return new DamageStat();
-            case 9:
+            case MainCharacter.STAT_PADDING:
                 return new PaddingStat();
-            case 10:
+            case MainCharacter.STAT_UNENCUMBERANCE:
                 return new UnencumberanceStat();
-            case 11:
+            case MainCharacter.STAT_THICK_SKIN:
                 return new ThickSkinStat();
-            case 12:
+            case MainCharacter.STAT_MANA:
                 return new ManaStat();
-            case 13:
+            case MainCharacter.STAT_MENTAL_REGENERATION:
                 return new MentalRegenerationStat();
-            case 14:
+            case MainCharacter.STAT_MANA_BURN:
                 return new ManaBurnStat();
-            case 15:
+            case MainCharacter.STAT_MAGIC_RESISTANCE:
                 return new MagicResistanceStat();
             default:
                 return null;

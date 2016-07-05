@@ -33,7 +33,13 @@ public abstract class MainCharacter extends Character
     public static final int STAT_SIGHT = 6;
     public static final int STAT_FIND_TRAPS = 7;
     public static final int STAT_DAMAGE = 8;
+    public static final int STAT_PADDING = 9;
+    public static final int STAT_UNENCUMBERANCE = 10;
+    public static final int STAT_THICK_SKIN = 11;
     public static final int STAT_MANA = 12;
+    public static final int STAT_MENTAL_REGENERATION = 13;
+    public static final int STAT_MANA_BURN = 14;
+    public static final int STAT_MAGIC_RESISTANCE = 15;
 
     private static String[] statCategory = {
         "Vitality",
@@ -332,7 +338,7 @@ public abstract class MainCharacter extends Character
 
     private int getStepsForMPHeal()
     {
-        return Math.max(1, 20 - this.getStatPoints(13));
+        return Math.max(1, 20 - this.getStatPoints(MainCharacter.STAT_MENTAL_REGENERATION));
     }
 
     private int getStepsForManaRiver()
@@ -352,7 +358,7 @@ public abstract class MainCharacter extends Character
             }
         }
 
-        if (this.getStatPoints(13) > 0)
+        if (this.getStatPoints(MainCharacter.STAT_MENTAL_REGENERATION) > 0)
         {
             this.MPSteps++;
             if (this.MPSteps >= this.getStepsForMPHeal())
