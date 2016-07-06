@@ -42,6 +42,7 @@ public abstract class MainCharacter extends Character
     public static final int STAT_MAGIC_RESISTANCE = 15;
 
     public static final int SKILL_DETECT_VITALITY = 0;
+    public static final int SKILL_DETECT_ENEMIES = 1;
 
     private static String[] statCategory = {
         "Vitality",
