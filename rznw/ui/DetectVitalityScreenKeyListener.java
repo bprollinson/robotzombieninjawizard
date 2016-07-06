@@ -104,7 +104,7 @@ public class DetectVitalityScreenKeyListener extends StateTransitionKeyListener
                 MapElement element = map.getElement(i, j);
 
                 boolean visible = map.isVisible(i, j);
-                int skillPoints = character.getSkillPoints(0);
+                int skillPoints = character.getSkillPoints(MainCharacter.SKILL_DETECT_VITALITY);
                 int radius = 1 + skillPoints;
                 MapElement characterElement = character.getMapElement();
                 double distance = Math.sqrt(Math.pow(characterElement.getRow() - i, 2) + Math.pow(characterElement.getColumn() - j, 2));
