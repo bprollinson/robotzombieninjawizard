@@ -24,7 +24,7 @@ public class MainCharacterDamageDealtCalculator
             System.out.println("Bonus rage damage: " + bonusDamage);
         }
 
-        double bloodRageFactor = mainCharacter.getSkillPoints(2) / 100.0 * (mainCharacter.getMaxHP() - mainCharacter.getHP()) / mainCharacter.getMaxHP();
+        double bloodRageFactor = mainCharacter.getSkillPoints(MainCharacter.SKILL_BLOOD_RAGE) / 100.0 * (mainCharacter.getMaxHP() - mainCharacter.getHP()) / mainCharacter.getMaxHP();
 
         if (bloodRageFactor > 0.0) {
             System.out.println("Blood rage factor: " + bloodRageFactor);

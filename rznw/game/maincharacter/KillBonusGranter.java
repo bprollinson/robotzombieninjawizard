@@ -77,9 +77,9 @@ public class KillBonusGranter
             }
         }
 
-        if (mainCharacter.getSkillPoints(3) > 0)
+        if (mainCharacter.getSkillPoints(MainCharacter.SKILL_POTION_FIND) > 0)
         {
-            int probability = 5 * mainCharacter.getSkillPoints(3);
+            int probability = 5 * mainCharacter.getSkillPoints(MainCharacter.SKILL_POTION_FIND);
 
             if (RandomNumberGenerator.rollSucceeds(probability))
             {
