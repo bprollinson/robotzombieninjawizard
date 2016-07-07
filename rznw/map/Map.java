@@ -102,7 +102,7 @@ public class Map
             }
         }
 
-        radius = 3 * character.getSkillPoints(7);
+        radius = 3 * character.getSkillPoints(MainCharacter.SKILL_FIND_STAIRS);
         System.out.println("Looking for stairs with radius: " + radius);
         minRow = Math.max(row - radius, 0);
         maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);

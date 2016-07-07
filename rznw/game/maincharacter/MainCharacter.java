@@ -45,6 +45,11 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_DETECT_ENEMIES = 1;
     public static final int SKILL_BLOOD_RAGE = 2;
     public static final int SKILL_POTION_FIND = 3;
+    public static final int SKILL_SUMMON_SHOPKEEPER = 4;
+    public static final int SKILL_WAYPOINT = 5;
+    public static final int SKILL_FAST_HANDS = 6;
+    public static final int SKILL_FIND_STAIRS = 7;
+    public static final int SKILL_ITEM_TRADE = 8;
 
     private static String[] statCategory = {
         "Vitality",

@@ -15,7 +15,7 @@ public abstract class InventoryItem
 
     public int getBuyPrice(MainCharacter character)
     {
-        int priceReductionPercent = (int)(2.0 * character.getSkillPoints(4));
+        int priceReductionPercent = (int)(2.0 * character.getSkillPoints(MainCharacter.SKILL_SUMMON_SHOPKEEPER));
 
         return (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.getValue());
     }
