@@ -56,7 +56,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (mainCharacter.getStatusEffects().rageEnabled())
         {
-            int paddingPenalty = Math.max(21 - mainCharacter.getSkillPoints(9), 1);
+            int paddingPenalty = Math.max(21 - mainCharacter.getSkillPoints(MainCharacter.SKILL_RAGE), 1);
             System.out.println("Padding penalty: " + paddingPenalty);
             paddingPercent -= paddingPenalty;
         }

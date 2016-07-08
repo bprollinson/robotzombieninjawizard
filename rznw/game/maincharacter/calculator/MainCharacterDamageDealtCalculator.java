@@ -19,7 +19,7 @@ public class MainCharacterDamageDealtCalculator
 
         if (mainCharacter.getStatusEffects().rageEnabled())
         {
-            int bonusDamagePercent = 2 * mainCharacter.getSkillPoints(9);
+            int bonusDamagePercent = 2 * mainCharacter.getSkillPoints(MainCharacter.SKILL_RAGE);
             int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
             System.out.println("Bonus rage damage: " + bonusDamage);
         }

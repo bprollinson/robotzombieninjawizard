@@ -50,6 +50,9 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_FAST_HANDS = 6;
     public static final int SKILL_FIND_STAIRS = 7;
     public static final int SKILL_ITEM_TRADE = 8;
+    public static final int SKILL_RAGE = 9;
+    public static final int SKILL_ABUNDANCE = 10;
+    public static final int SKILL_DISARM_TRAPS = 11;
 
     private static String[] statCategory = {
         "Vitality",
@@ -326,7 +329,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().rageEnabled())
         {
-            int dodgePenalty = Math.max(21 - this.getSkillPoints(9), 1);
+            int dodgePenalty = Math.max(21 - this.getSkillPoints(MainCharacter.SKILL_RAGE), 1);
             System.out.println("Dodge penalty: " + dodgePenalty);
             toDodgePercent -= dodgePenalty;
         }
