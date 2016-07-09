@@ -53,6 +53,10 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_RAGE = 9;
     public static final int SKILL_ABUNDANCE = 10;
     public static final int SKILL_DISARM_TRAPS = 11;
+    public static final int SKILL_MAGIC_SEEDS = 12;
+    public static final int SKILL_MANA_SUCK = 13;
+    public static final int SKILL_PROTECTIVE_FIELD = 14;
+    public static final int SKILL_MANA_RIVER = 15;
 
     private static String[] statCategory = {
         "Vitality",
@@ -249,7 +253,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().magicSeedsEnabled())
         {
-            int magicSeedPoints = this.getSkillPoints(12);
+            int magicSeedPoints = this.getSkillPoints(MainCharacter.SKILL_MAGIC_SEEDS);
             bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
 
             System.out.println("Bonus spell points: " + bonusSpellPoints);
@@ -356,7 +360,7 @@ public abstract class MainCharacter extends Character
 
     private int getStepsForManaRiver()
     {
-        return Math.max(1, 20 - this.getSkillPoints(15));
+        return Math.max(1, 20 - this.getSkillPoints(MainCharacter.SKILL_MANA_RIVER));
     }
 
     public void incrementSteps()
@@ -381,12 +385,12 @@ public abstract class MainCharacter extends Character
             }
         }
 
-        if (this.getSkillPoints(15) > 0)
+        if (this.getSkillPoints(MainCharacter.SKILL_MANA_RIVER) > 0)
         {
             this.manaRiverSteps++;
             if (this.manaRiverSteps >= this.getStepsForManaRiver())
             {
-                int manaRiverProbability = this.getSkillPoints(15);
+                int manaRiverProbability = this.getSkillPoints(MainCharacter.SKILL_MANA_RIVER);
 
                 if (RandomNumberGenerator.rollSucceeds(manaRiverProbability))
                 {
@@ -441,7 +445,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().manaSuckEnabled())
         {
-            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(13) * damage);
+            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(MainCharacter.SKILL_MANA_SUCK) * damage);
             if (MPFromDamage > 0)
             {
                 System.out.println("Healing MP from damage: " + MPFromDamage);

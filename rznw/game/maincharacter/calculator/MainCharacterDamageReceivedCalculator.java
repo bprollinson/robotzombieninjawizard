@@ -14,7 +14,7 @@ public class MainCharacterDamageReceivedCalculator
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
             System.out.println("Hit by a magical source");
-            int dodgePercent = 5 * mainCharacter.getSkillPoints(14);
+            int dodgePercent = 5 * mainCharacter.getSkillPoints(MainCharacter.SKILL_PROTECTIVE_FIELD);
             System.out.println("Magic dodge change: " + dodgePercent);
 
             Shield shield = mainCharacter.getEquipment().getEquippedShield();
