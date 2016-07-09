@@ -1,42 +1,44 @@
 package rznw.game.skill;
 
+import rznw.game.maincharacter.MainCharacter;
+
 public class SkillFactory
 {
     public Skill getSkill(int skillIndex)
     {
         switch (skillIndex)
         {
-            case 0:
+            case MainCharacter.SKILL_DETECT_VITALITY:
                 return new DetectVitalitySkill();
-            case 1:
+            case MainCharacter.SKILL_DETECT_ENEMIES:
                 return new DetectEnemiesSkill();
-            case 2:
+            case MainCharacter.SKILL_BLOOD_RAGE:
                 return new BloodRageSkill();
-            case 3:
+            case MainCharacter.SKILL_POTION_FIND:
                 return new PotionFindSkill();
-            case 4:
+            case MainCharacter.SKILL_SUMMON_SHOPKEEPER:
                 return new SummonShopkeeperSkill();
-            case 5:
+            case MainCharacter.SKILL_WAYPOINT:
                 return new WaypointSkill();
-            case 6:
+            case MainCharacter.SKILL_FAST_HANDS:
                 return new FastHandsSkill();
-            case 7:
+            case MainCharacter.SKILL_FIND_STAIRS:
                 return new FindStairsSkill();
-            case 8:
+            case MainCharacter.SKILL_ITEM_TRADE:
                 return new ItemTradeSkill();
-            case 9:
+            case MainCharacter.SKILL_RAGE:
                 return new RageSkill();
-            case 10:
+            case MainCharacter.SKILL_ABUNDANCE:
                 return new AbundanceSkill();
-            case 11:
+            case MainCharacter.SKILL_DISARM_TRAPS:
                 return new DisarmTrapsSkill();
-            case 12:
+            case MainCharacter.SKILL_MAGIC_SEEDS:
                 return new MagicSeedsSkill();
-            case 13:
+            case MainCharacter.SKILL_MANA_SUCK:
                 return new ManaSuckSkill();
-            case 14:
+            case MainCharacter.SKILL_PROTECTIVE_FIELD:
                 return new ProtectiveFieldSkill();
-            case 15:
+            case MainCharacter.SKILL_MANA_RIVER:
                 return new ManaRiverSkill();
             default:
                 return null;
