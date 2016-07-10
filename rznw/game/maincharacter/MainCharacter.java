@@ -24,6 +24,8 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
+    public static final int MAX_SPELL_POINTS = 20;
+
     public static final int STAT_HEALTH = 0;
     public static final int STAT_PHYSICAL_REGENERATION = 1;
     public static final int STAT_LAST_BREATH = 2;
@@ -243,6 +245,16 @@ public abstract class MainCharacter extends Character
     public void addSpellPoint(int spellNumber)
     {
         this.spells[spellNumber]++;
+    }
+
+    public int getSpellPoints(int spellNumber, boolean allowAdjustment)
+    {
+        if (!allowAdjustment)
+        {
+            return this.spells[spellNumber];
+        }
+
+        return this.getSpellPoints(spellNumber);
     }
 
     public int getSpellPoints(int spellNumber)
