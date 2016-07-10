@@ -29,7 +29,7 @@ public class LevelUpSkillsMenuKeyListener extends StateTransitionKeyListener
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
-                if (!this.showingDescription)
+                if (!this.showingDescription && character.getSkillPoints(this.state.getEntryNumber()) < MainCharacter.MAX_SKILL_POINTS)
                 {
                     character.addSkillPoint(this.state.getEntryNumber());
                     this.numPoints--;
