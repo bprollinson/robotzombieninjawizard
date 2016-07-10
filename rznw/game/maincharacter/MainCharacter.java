@@ -24,6 +24,7 @@ public abstract class MainCharacter extends Character
     public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
+    public static final int MAX_STAT_POINTS = 20;
     public static final int MAX_SKILL_POINTS = 20;
     public static final int MAX_SPELL_POINTS = 20;
 
