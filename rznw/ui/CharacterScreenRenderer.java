@@ -83,12 +83,22 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
         this.frame.renderDisplayString(3, 0, "Class: " + character.getCharacterClass());
-        this.frame.renderDisplayString(4, 0, "Level: " + character.getLevel());
+        String levelDisplay = "" + character.getLevel();
+        if (character.getLevel() == MainCharacter.MAX_LEVEL)
+        {
+            levelDisplay += " (max)";
+        }
+        this.frame.renderDisplayString(4, 0, "Level: " + levelDisplay);
         this.frame.renderDisplayString(5, 0, "Total experience: " + character.getExperience());
 
         int requiredTotalExperience = ExperienceCalculator.getRequiredExperience(character.getLevel() + 1);
         int requiredAdditionalExperience = requiredTotalExperience - character.getExperience();
-        this.frame.renderDisplayString(6, 0, "Next level: " + requiredTotalExperience + " (" + requiredAdditionalExperience + " more)");
+        String requiredExperienceDisplay = requiredTotalExperience + " (" + requiredAdditionalExperience + " more)";
+        if (character.getLevel() == MainCharacter.MAX_LEVEL)
+        {
+            requiredExperienceDisplay = "N/A";
+        }
+        this.frame.renderDisplayString(6, 0, "Next level: " + requiredExperienceDisplay);
 
         this.frame.renderDisplayString(8, 0, "Gold: " + character.getInventory().getNumGold());
 
