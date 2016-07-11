@@ -34,6 +34,8 @@ public class KillBonusGranter
         int oldLevel = mainCharacter.getLevel();
 
         int experience = enemyCharacter.getExperienceReward();
+        int maxExperience = ExperienceCalculator.getMaxExperience();
+        experience = Math.min(experience, maxExperience - mainCharacter.getExperience());
         mainCharacter.grantExperience(experience);
         int newLevel = ExperienceCalculator.getLevel(mainCharacter.getExperience());
 

@@ -11,4 +11,9 @@ public class ExperienceCalculator
     {
         return 20 * level * level;
     }
+
+    public static int getMaxExperience()
+    {
+        return 20 * MainCharacter.MAX_LEVEL * MainCharacter.MAX_LEVEL;
+    }
 }
