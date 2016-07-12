@@ -275,7 +275,7 @@ public abstract class MainCharacter extends Character
             spellPoints += bonusSpellPoints;
         }
 
-        return spellPoints;
+        return Math.min(spellPoints, MainCharacter.MAX_SPELL_POINTS);
     }
 
     public void setSpellPoints(int spellNumber, int points)

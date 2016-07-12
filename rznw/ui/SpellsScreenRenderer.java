@@ -89,7 +89,17 @@ public class SpellsScreenRenderer extends MenuScreenRenderer
         {
             int groupPositionDisplay = i + 1;
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, mainCharacter.getSpellName(pointIndex) + ": " + mainCharacter.getSpellPoints(pointIndex));
+
+            int basePoints = mainCharacter.getSpellPoints(pointIndex, false);
+            int points = mainCharacter.getSpellPoints(pointIndex);
+
+            String pointsDisplay = "" + basePoints;
+            if (points != basePoints)
+            {
+                pointsDisplay += " -> " + points;
+            }
+
+            this.frame.renderDisplayString(startRow + i + 1, 2, mainCharacter.getSpellName(pointIndex) + ": " + pointsDisplay);
         }
     }
 
