@@ -30,7 +30,7 @@ public class MainCharacterSaver extends ComponentSaver
 
         for (int i = 0; i < 16; i++)
         {
-            this.writeLine(fileWriter, mainCharacter.getSpellPoints(i));
+            this.writeLine(fileWriter, mainCharacter.getSpellPoints(i, false));
         }
     }
 }
