@@ -20,7 +20,7 @@ public class MapVisibilityLoader extends ComponentLoader
             int row = this.readInteger(fileReader);
             int column = this.readInteger(fileReader);
 
-            map.setVisible(character, row, column);
+            map.setVisible(character, row, column, false);
         }
     }
 }

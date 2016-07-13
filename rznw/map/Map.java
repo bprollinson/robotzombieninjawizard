@@ -66,6 +66,17 @@ public class Map
         this.backgroundElements[row][column] = element;
     }
 
+    public void setVisible(MainCharacter character, int row, int column, boolean reveal)
+    {
+        if (!reveal)
+        {
+            this.visible[row][column] = true;
+            return;
+        }
+
+        this.setVisible(character, row, column);
+    }
+
     public void setVisible(MainCharacter character, int row, int column)
     {
         if (this.visible[row][column] == false)
