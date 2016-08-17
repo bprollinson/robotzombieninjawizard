@@ -7,6 +7,8 @@ import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Iterator;
 
 public class StatusEffects
 {
@@ -467,11 +469,6 @@ public class StatusEffects
 
     public void processTurn(Character character, GameWorld gameWorld)
     {
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) - 1);
-        }
-
         if (this.poisoned)
         {
             System.out.println("Damaging character due to poison");
@@ -480,80 +477,16 @@ public class StatusEffects
 
         this.isReversingPain = false;
 
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_CONFUSION) > 0)
+        Iterator<Map.Entry<Integer, Integer>> iterator = this.statusEffectTurns.entrySet().iterator();
+        while (iterator.hasNext())
         {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, this.statusEffectTurns.get(StatusEffects.EFFECT_CONFUSION) - 1);
-        }
+            Map.Entry<Integer, Integer> pair = iterator.next();
+            int turnsRemaining = pair.getValue();
 
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
-        {
-            System.out.println("Used up one turn of signal weapon");
-            this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, this.statusEffectTurns.get(StatusEffects.EFFECT_SIGNAL_WEAPON) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_THORN_SKIN) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, this.statusEffectTurns.get(StatusEffects.EFFECT_THORN_SKIN) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_POISON_SKIN) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_POISON_SKIN, this.statusEffectTurns.get(StatusEffects.EFFECT_POISON_SKIN) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_BARBED_SKIN) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_BARBED_SKIN, this.statusEffectTurns.get(StatusEffects.EFFECT_BARBED_SKIN) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_RESIST_DAMAGE, this.statusEffectTurns.get(StatusEffects.EFFECT_RESIST_DAMAGE) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_INFECTIOUS_RAGE) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_INFECTIOUS_RAGE, this.statusEffectTurns.get(StatusEffects.EFFECT_INFECTIOUS_RAGE) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_FEED_BRAIN, this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_SKIP) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_SKIP, this.statusEffectTurns.get(StatusEffects.EFFECT_SKIP) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_RAGE) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_RAGE, this.statusEffectTurns.get(StatusEffects.EFFECT_RAGE) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_MAGIC_SEEDS) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_MAGIC_SEEDS, this.statusEffectTurns.get(StatusEffects.EFFECT_MAGIC_SEEDS) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_MANA_SUCK) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_MANA_SUCK, this.statusEffectTurns.get(StatusEffects.EFFECT_MANA_SUCK) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_MEAT_SHIELD, this.statusEffectTurns.get(StatusEffects.EFFECT_MEAT_SHIELD) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_INVISIBLE, this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE) - 1);
-        }
-
-        if (this.statusEffectTurns.get(StatusEffects.EFFECT_POWER_SEARCH) > 0)
-        {
-            this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, this.statusEffectTurns.get(StatusEffects.EFFECT_POWER_SEARCH) - 1);
+            if (turnsRemaining > 0)
+            {
+                this.statusEffectTurns.put(pair.getKey(), turnsRemaining - 1);
+            }
         }
     }
 }
