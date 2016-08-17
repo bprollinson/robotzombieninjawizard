@@ -6,60 +6,82 @@ import rznw.game.maincharacter.inventory.Armor;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
+import java.util.HashMap;
+
 public class StatusEffects
 {
     private static final int POISON_DAMAGE = 10;
 
     private Character character;
 
-    private int frozenTurns = 0;
     private boolean poisoned = false;
     private boolean isReversingPain = false;
     private boolean deathStriking = false;
     private boolean smokeBombEnabled = false;
     private boolean counterstriking = false;
-    private int confuseTurns = 0;
-    private int signalWeaponTurns = 0;
-    private int thornSkinTurns = 0;
-    private int poisonSkinTurns = 0;
-    private int barbedSkinTurns = 0;
-    private int resistDamageTurns = 0;
-    private int infectiousRageTurns = 0;
-    private int feedBrainTurns = 0;
     private boolean inferZombie = false;
-    private int turnsToSkip = 0;
     private int armorBreakPercent = 0;
-    private int rageTurns = 0;
     private int detectVitalityRadius = 0;
     private int itemTradeNumber = 0;
     private int priceReductionPercent = 0;
     private int bonusDropProbability = 0;
     private int bonusGoldPercent = 0;
-    private int magicSeedsTurns = 0;
-    private int manaSuckTurns = 0;
-    private int meatShieldTurns = 0;
     private int meatShieldPaddingPercent = 0;
     private int meatShieldDodgePercent = 0;
-    private int invisibleTurns = 0;
-    private int powerSearchTurns = 0;
     private boolean regenerateShop = true;
+
+    private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
+
+    private static final int EFFECT_SIGNAL_WEAPON = 0;
+    private static final int EFFECT_THORN_SKIN = 1;
+    private static final int EFFECT_POISON_SKIN = 2;
+    private static final int EFFECT_BARBED_SKIN = 3;
+    private static final int EFFECT_RESIST_DAMAGE = 4;
+    private static final int EFFECT_INFECTIOUS_RAGE = 5;
+    private static final int EFFECT_FEED_BRAIN = 6;
+    private static final int EFFECT_SKIP = 7;
+    private static final int EFFECT_RAGE = 8;
+    private static final int EFFECT_MAGIC_SEEDS = 9;
+    private static final int EFFECT_MANA_SUCK = 10;
+    private static final int EFFECT_MEAT_SHIELD = 11;
+    private static final int EFFECT_INVISIBLE = 12;
+    private static final int EFFECT_POWER_SEARCH = 13;
+    private static final int EFFECT_CONFUSION = 14;
+    private static final int EFFECT_FROZEN = 15;
 
     public StatusEffects(Character character)
     {
         this.character = character;
+
+        this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_POISON_SKIN, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_BARBED_SKIN, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_RESIST_DAMAGE, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_INFECTIOUS_RAGE, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_FEED_BRAIN, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_SKIP, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_RAGE, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_MAGIC_SEEDS, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_MANA_SUCK, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_MEAT_SHIELD, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_INVISIBLE, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 0);
+        this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, 0);
     }
 
     public void freeze()
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.frozenTurns = 1;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, 1);
         }
     }
 
     public void freeze(int numTurns)
     {
-        this.frozenTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, numTurns);
     }
 
     public void poison()
@@ -87,7 +109,7 @@ public class StatusEffects
 
     public boolean isFrozen()
     {
-        return this.frozenTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) > 0;
     }
 
     public boolean isReversingPain()
@@ -144,88 +166,88 @@ public class StatusEffects
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.confuseTurns = 3;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 3);
         }
     }
 
     public void healConfusion()
     {
-        this.confuseTurns = 0;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 0);
     }
 
     public boolean isConfused()
     {
-        return this.confuseTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_CONFUSION) > 0;
     }
 
     public void enableSignalWeapon(int numTurns)
     {
-        this.signalWeaponTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, numTurns);
     }
 
     public boolean signalWeaponEnabled()
     {
-        return this.signalWeaponTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_SIGNAL_WEAPON) > 0;
     }
 
     public void enableThornSkin(int numTurns)
     {
-        this.thornSkinTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, numTurns);
     }
 
     public boolean thornSkinEnabled()
     {
-        return this.thornSkinTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_THORN_SKIN) > 0;
     }
 
     public void enablePoisonSkin(int numTurns)
     {
-        this.poisonSkinTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_POISON_SKIN, numTurns);
     }
 
     public boolean poisonSkinEnabled()
     {
-        return this.poisonSkinTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_POISON_SKIN) > 0;
     }
 
     public void enableBarbedSkin(int numTurns)
     {
-        this.barbedSkinTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_BARBED_SKIN, numTurns);
     }
 
     public boolean barbedSkinEnabled()
     {
-        return this.barbedSkinTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_BARBED_SKIN) > 0;
     }
 
     public void enableResistDamage(int numTurns)
     {
-        this.resistDamageTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_RESIST_DAMAGE, numTurns);
     }
 
     public boolean isResistingDamage()
     {
-        return this.resistDamageTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_RESIST_DAMAGE) > 0;
     }
 
     public void enableInfectiousRage(int numTurns)
     {
-        this.infectiousRageTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_INFECTIOUS_RAGE, numTurns);
     }
 
     public boolean infectiousRageEnabled()
     {
-        return this.infectiousRageTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_INFECTIOUS_RAGE) > 0;
     }
 
     public void enableFeedBrain(int numTurns)
     {
-        this.feedBrainTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_FEED_BRAIN, numTurns);
     }
 
     public boolean feedBrainEnabled()
     {
-        return this.feedBrainTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) > 0;
     }
 
     public void enableInferZombie()
@@ -245,12 +267,12 @@ public class StatusEffects
 
     public void skipTurns(int turnsToSkip)
     {
-        this.turnsToSkip = turnsToSkip;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_SKIP, turnsToSkip);
     }
 
     public boolean isSkippingTurn()
     {
-        return this.turnsToSkip > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_SKIP) > 0;
     }
 
     public void breakArmor(int armorBreakPercent)
@@ -265,12 +287,12 @@ public class StatusEffects
 
     public void enableRage(int numTurns)
     {
-        this.rageTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_RAGE, numTurns);
     }
 
     public boolean rageEnabled()
     {
-        return this.rageTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_RAGE) > 0;
     }
 
     public void enableDetectVitality(int detectVitalityRadius)
@@ -336,22 +358,22 @@ public class StatusEffects
 
     public boolean magicSeedsEnabled()
     {
-        return this.magicSeedsTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_MAGIC_SEEDS) > 0;
     }
 
     public void enableMagicSeeds(int numTurns)
     {
-        this.magicSeedsTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_MAGIC_SEEDS, numTurns);
     }
 
     public boolean manaSuckEnabled()
     {
-        return this.manaSuckTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_MANA_SUCK) > 0;
     }
 
     public void enableManaSuck(int numTurns)
     {
-        this.manaSuckTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_MANA_SUCK, numTurns);
     }
 
     public int getMeatShieldPaddingPercent()
@@ -366,12 +388,12 @@ public class StatusEffects
 
     public boolean meatShieldEnabled()
     {
-        return this.meatShieldTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_MEAT_SHIELD) > 0;
     }
 
     public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)
     {
-        this.meatShieldTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_MEAT_SHIELD, numTurns);
         this.meatShieldPaddingPercent = bonusPadding;
         this.meatShieldDodgePercent = bonusDodge;
     }
@@ -405,27 +427,27 @@ public class StatusEffects
 
     public void makeInvisible(int numTurns)
     {
-        this.invisibleTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_INVISIBLE, numTurns);
     }
 
     public boolean isInvisible()
     {
-        return this.invisibleTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE) > 0;
     }
 
     public int getInvisibilityTurns()
     {
-        return this.invisibleTurns;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE);
     }
 
     public void enablePowerSearch(int numTurns)
     {
-        this.powerSearchTurns = numTurns;
+        this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, numTurns);
     }
 
     public boolean powerSearchEnabled()
     {
-        return this.powerSearchTurns > 0;
+        return this.statusEffectTurns.get(StatusEffects.EFFECT_POWER_SEARCH) > 0;
     }
 
     public boolean regenerateShopEnabled()
@@ -445,9 +467,9 @@ public class StatusEffects
 
     public void processTurn(Character character, GameWorld gameWorld)
     {
-        if (this.frozenTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) > 0)
         {
-            this.frozenTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) - 1);
         }
 
         if (this.poisoned)
@@ -458,80 +480,80 @@ public class StatusEffects
 
         this.isReversingPain = false;
 
-        if (this.confuseTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_CONFUSION) > 0)
         {
-            this.confuseTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, this.statusEffectTurns.get(StatusEffects.EFFECT_CONFUSION) - 1);
         }
 
-        if (this.signalWeaponTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
         {
             System.out.println("Used up one turn of signal weapon");
-            this.signalWeaponTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, this.statusEffectTurns.get(StatusEffects.EFFECT_SIGNAL_WEAPON) - 1);
         }
 
-        if (this.thornSkinTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_THORN_SKIN) > 0)
         {
-            this.thornSkinTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, this.statusEffectTurns.get(StatusEffects.EFFECT_THORN_SKIN) - 1);
         }
 
-        if (this.poisonSkinTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_POISON_SKIN) > 0)
         {
-            this.poisonSkinTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_POISON_SKIN, this.statusEffectTurns.get(StatusEffects.EFFECT_POISON_SKIN) - 1);
         }
 
-        if (this.barbedSkinTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_BARBED_SKIN) > 0)
         {
-            this.barbedSkinTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_BARBED_SKIN, this.statusEffectTurns.get(StatusEffects.EFFECT_BARBED_SKIN) - 1);
         }
 
-        if (this.resistDamageTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
         {
-            this.resistDamageTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_RESIST_DAMAGE, this.statusEffectTurns.get(StatusEffects.EFFECT_RESIST_DAMAGE) - 1);
         }
 
-        if (this.infectiousRageTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_INFECTIOUS_RAGE) > 0)
         {
-            this.infectiousRageTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_INFECTIOUS_RAGE, this.statusEffectTurns.get(StatusEffects.EFFECT_INFECTIOUS_RAGE) - 1);
         }
 
-        if (this.feedBrainTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) > 0)
         {
-            this.feedBrainTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_FEED_BRAIN, this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) - 1);
         }
 
-        if (this.turnsToSkip > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_SKIP) > 0)
         {
-            this.turnsToSkip--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_SKIP, this.statusEffectTurns.get(StatusEffects.EFFECT_SKIP) - 1);
         }
 
-        if (this.rageTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_RAGE) > 0)
         {
-            this.rageTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_RAGE, this.statusEffectTurns.get(StatusEffects.EFFECT_RAGE) - 1);
         }
 
-        if (this.magicSeedsTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_MAGIC_SEEDS) > 0)
         {
-            this.magicSeedsTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_MAGIC_SEEDS, this.statusEffectTurns.get(StatusEffects.EFFECT_MAGIC_SEEDS) - 1);
         }
 
-        if (this.manaSuckTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_MANA_SUCK) > 0)
         {
-            this.manaSuckTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_MANA_SUCK, this.statusEffectTurns.get(StatusEffects.EFFECT_MANA_SUCK) - 1);
         }
 
-        if (this.meatShieldTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
-            this.meatShieldTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_MEAT_SHIELD, this.statusEffectTurns.get(StatusEffects.EFFECT_MEAT_SHIELD) - 1);
         }
 
-        if (this.invisibleTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE) > 0)
         {
-            this.invisibleTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_INVISIBLE, this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE) - 1);
         }
 
-        if (this.powerSearchTurns > 0)
+        if (this.statusEffectTurns.get(StatusEffects.EFFECT_POWER_SEARCH) > 0)
         {
-            this.powerSearchTurns--;
+            this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, this.statusEffectTurns.get(StatusEffects.EFFECT_POWER_SEARCH) - 1);
         }
     }
 }
