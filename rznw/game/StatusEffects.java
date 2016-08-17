@@ -16,12 +16,6 @@ public class StatusEffects
 
     private Character character;
 
-    private boolean poisoned = false;
-    private boolean isReversingPain = false;
-    private boolean deathStriking = false;
-    private boolean smokeBombEnabled = false;
-    private boolean counterstriking = false;
-    private boolean inferZombie = false;
     private int armorBreakPercent = 0;
     private int detectVitalityRadius = 0;
     private int itemTradeNumber = 0;
@@ -30,9 +24,17 @@ public class StatusEffects
     private int bonusGoldPercent = 0;
     private int meatShieldPaddingPercent = 0;
     private int meatShieldDodgePercent = 0;
-    private boolean regenerateShop = true;
 
+    private HashMap<Integer, Boolean> statusEffects = new HashMap<Integer, Boolean>();
     private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
+
+    private static final int EFFECT_POISONED = 0;
+    private static final int EFFECT_REVERSE_PAIN = 1;
+    private static final int EFFECT_DEATH_STRIKE = 2;
+    private static final int EFFECT_SMOKE_BOMB = 3;
+    private static final int EFFECT_COUNTERSTRIKE = 4;
+    private static final int EFFECT_INFER_ZOMBIE = 5;
+    private static final int EFFECT_REGENERATE_SHOP = 6;
 
     private static final int EFFECT_SIGNAL_WEAPON = 0;
     private static final int EFFECT_THORN_SKIN = 1;
@@ -54,6 +56,14 @@ public class StatusEffects
     public StatusEffects(Character character)
     {
         this.character = character;
+
+        this.statusEffects.put(StatusEffects.EFFECT_POISONED, false);
+        this.statusEffects.put(StatusEffects.EFFECT_REVERSE_PAIN, false);
+        this.statusEffects.put(StatusEffects.EFFECT_DEATH_STRIKE, false);
+        this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, false);
+        this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, false);
+        this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, false);
+        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, false);
 
         this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, 0);
         this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, 0);
@@ -90,23 +100,23 @@ public class StatusEffects
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.poisoned = true;
+            this.statusEffects.put(StatusEffects.EFFECT_POISONED, true);
         }
     }
 
     public boolean isPoisoned()
     {
-        return this.poisoned;
+        return this.statusEffects.get(StatusEffects.EFFECT_POISONED);
     }
 
     public void healPoison()
     {
-        this.poisoned = false;
+        this.statusEffects.put(StatusEffects.EFFECT_POISONED, false);
     }
 
     public void reversePain()
     {
-        this.isReversingPain = true;
+        this.statusEffects.put(StatusEffects.EFFECT_REVERSE_PAIN, true);
     }
 
     public boolean isFrozen()
@@ -116,52 +126,52 @@ public class StatusEffects
 
     public boolean isReversingPain()
     {
-        return this.isReversingPain;
+        return this.statusEffects.get(StatusEffects.EFFECT_REVERSE_PAIN);
     }
 
     public void enableDeathStrike()
     {
-        this.deathStriking = true;
+        this.statusEffects.put(StatusEffects.EFFECT_DEATH_STRIKE, true);
     }
 
     public boolean isDeathStriking()
     {
-        return this.deathStriking;
+        return this.statusEffects.get(StatusEffects.EFFECT_DEATH_STRIKE);
     }
 
     public void disableDeathStrike()
     {
-        this.deathStriking = false;
+        this.statusEffects.put(StatusEffects.EFFECT_DEATH_STRIKE, false);
     }
 
     public void enableSmokeBomb()
     {
-        this.smokeBombEnabled = true;
+        this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, true);
     }
 
     public boolean smokeBombEnabled()
     {
-        return this.smokeBombEnabled;
+        return this.statusEffects.get(StatusEffects.EFFECT_SMOKE_BOMB);
     }
 
     public void disableSmokeBomb()
     {
-        this.smokeBombEnabled = false;
+        this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, false);
     }
 
     public void enableCounterstrike()
     {
-        this.counterstriking = true;
+        this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, true);
     }
 
     public boolean isCounterstriking()
     {
-        return this.counterstriking;
+        return this.statusEffects.get(StatusEffects.EFFECT_COUNTERSTRIKE);
     }
 
     public void disableCounterstrike()
     {
-        this.counterstriking = false;
+        this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, false);
     }
 
     public void confuse()
@@ -254,17 +264,17 @@ public class StatusEffects
 
     public void enableInferZombie()
     {
-        this.inferZombie = true;
+        this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, true);
     }
 
     public boolean isInferringZombie()
     {
-        return this.inferZombie;
+        return this.statusEffects.get(StatusEffects.EFFECT_INFER_ZOMBIE);
     }
 
     public void disableInferZombie()
     {
-        this.inferZombie = false;
+        this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, false);
     }
 
     public void skipTurns(int turnsToSkip)
@@ -454,28 +464,28 @@ public class StatusEffects
 
     public boolean regenerateShopEnabled()
     {
-        return this.regenerateShop;
+        return this.statusEffects.get(StatusEffects.EFFECT_REGENERATE_SHOP);
     }
 
     public void enableRegenerateShop()
     {
-        this.regenerateShop = true;
+        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, true);
     }
 
     public void disableRegenerateShop()
     {
-        this.regenerateShop = false;
+        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, false);
     }
 
     public void processTurn(Character character, GameWorld gameWorld)
     {
-        if (this.poisoned)
+        if (this.statusEffects.get(StatusEffects.EFFECT_POISONED))
         {
             System.out.println("Damaging character due to poison");
             character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
         }
 
-        this.isReversingPain = false;
+        this.statusEffects.put(StatusEffects.EFFECT_REVERSE_PAIN, false);
 
         Iterator<Map.Entry<Integer, Integer>> iterator = this.statusEffectTurns.entrySet().iterator();
         while (iterator.hasNext())
