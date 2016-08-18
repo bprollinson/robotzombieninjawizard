@@ -16,17 +16,9 @@ public class StatusEffects
 
     private Character character;
 
-    private int armorBreakPercent = 0;
-    private int detectVitalityRadius = 0;
-    private int itemTradeNumber = 0;
-    private int priceReductionPercent = 0;
-    private int bonusDropProbability = 0;
-    private int bonusGoldPercent = 0;
-    private int meatShieldPaddingPercent = 0;
-    private int meatShieldDodgePercent = 0;
-
     private HashMap<Integer, Boolean> statusEffects = new HashMap<Integer, Boolean>();
     private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
+    private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 
     private static final int EFFECT_POISONED = 0;
     private static final int EFFECT_REVERSE_PAIN = 1;
@@ -53,6 +45,15 @@ public class StatusEffects
     private static final int EFFECT_CONFUSION = 14;
     private static final int EFFECT_FROZEN = 15;
 
+    private static final int STAT_ARMOR_BREAK = 0;
+    private static final int STAT_DETECT_VITALITY_RADIUS = 1;
+    private static final int STAT_ITEM_TRADE_NUMBER = 2;
+    private static final int STAT_PRICE_REDUCTION_PERCENT = 3;
+    private static final int STAT_BONUS_DROP_PROBABILITY = 4;
+    private static final int STAT_BONUS_GOLD_PERCENT = 5;
+    private static final int STAT_MEAT_SHIELD_PADDING_PERCENT = 6;
+    private static final int STAT_MEAT_SHIELD_DODGE_PERCENT = 7;
+
     public StatusEffects(Character character)
     {
         this.character = character;
@@ -63,7 +64,7 @@ public class StatusEffects
         this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, false);
         this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, false);
         this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, false);
-        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, false);
+        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, true);
 
         this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, 0);
         this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, 0);
@@ -81,6 +82,15 @@ public class StatusEffects
         this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, 0);
         this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 0);
         this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, 0);
+
+        this.otherStats.put(StatusEffects.STAT_ARMOR_BREAK, 0);
+        this.otherStats.put(StatusEffects.STAT_DETECT_VITALITY_RADIUS, 0);
+        this.otherStats.put(StatusEffects.STAT_ITEM_TRADE_NUMBER, 0);
+        this.otherStats.put(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, 0);
+        this.otherStats.put(StatusEffects.STAT_BONUS_DROP_PROBABILITY, 0);
+        this.otherStats.put(StatusEffects.STAT_BONUS_GOLD_PERCENT, 0);
+        this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT, 0);
+        this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT, 0);
     }
 
     public void freeze()
@@ -289,12 +299,12 @@ public class StatusEffects
 
     public void breakArmor(int armorBreakPercent)
     {
-        this.armorBreakPercent = armorBreakPercent;
+        this.otherStats.put(StatusEffects.STAT_ARMOR_BREAK, armorBreakPercent);
     }
 
     public int getArmorBreakPercent()
     {
-        return this.armorBreakPercent;
+        return this.otherStats.get(StatusEffects.STAT_ARMOR_BREAK);
     }
 
     public void enableRage(int numTurns)
@@ -309,63 +319,63 @@ public class StatusEffects
 
     public void enableDetectVitality(int detectVitalityRadius)
     {
-        this.detectVitalityRadius = detectVitalityRadius;
+        this.otherStats.put(StatusEffects.STAT_DETECT_VITALITY_RADIUS, detectVitalityRadius);
     }
 
     public boolean detectVitalityEnabled()
     {
-        return this.detectVitalityRadius > 0;
+        return this.otherStats.get(StatusEffects.STAT_DETECT_VITALITY_RADIUS) > 0;
     }
 
     public void disableDetectVitality()
     {
-        this.detectVitalityRadius = 0;
+        this.otherStats.put(StatusEffects.STAT_DETECT_VITALITY_RADIUS, 0);
     }
 
     public void enableItemTrade(int itemTradeNumber)
     {
-        this.itemTradeNumber = itemTradeNumber;
+        this.otherStats.put(StatusEffects.STAT_ITEM_TRADE_NUMBER, itemTradeNumber);
     }
 
     public boolean itemTradeEnabled()
     {
-        return this.itemTradeNumber > 0;
+        return this.otherStats.get(StatusEffects.STAT_ITEM_TRADE_NUMBER) > 0;
     }
 
-    public boolean disableItemTrade()
+    public void disableItemTrade()
     {
-        return this.itemTradeNumber > 0;
+        this.otherStats.put(StatusEffects.STAT_ITEM_TRADE_NUMBER, 0);
     }
 
     public void enableSummonShopkeeper(int priceReductionPercent)
     {
-        this.priceReductionPercent = priceReductionPercent;
+        this.otherStats.put(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, priceReductionPercent);
     }
 
     public void disableSummonShopkeeper()
     {
-        this.priceReductionPercent = 0;
+        this.otherStats.put(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, 0);
     }
 
     public boolean summonShopkeeperEnabled()
     {
-        return this.priceReductionPercent > 0;
+        return this.otherStats.get(StatusEffects.STAT_PRICE_REDUCTION_PERCENT) > 0;
     }
 
     public void enableBoostGenetics(int bonusDropProbability, int bonusGoldPercent)
     {
-        this.bonusDropProbability = bonusDropProbability;
-        this.bonusGoldPercent = bonusGoldPercent;
+        this.otherStats.put(StatusEffects.STAT_BONUS_DROP_PROBABILITY, bonusDropProbability);
+        this.otherStats.put(StatusEffects.STAT_BONUS_GOLD_PERCENT, bonusGoldPercent);
     }
 
     public int getBonusDropProbability()
     {
-        return this.bonusDropProbability;
+        return this.otherStats.get(StatusEffects.STAT_BONUS_DROP_PROBABILITY);
     }
 
     public int getBonusGoldPercent()
     {
-        return this.bonusGoldPercent;
+        return this.otherStats.get(StatusEffects.STAT_BONUS_GOLD_PERCENT);
     }
 
     public boolean magicSeedsEnabled()
@@ -390,12 +400,12 @@ public class StatusEffects
 
     public int getMeatShieldPaddingPercent()
     {
-        return this.meatShieldPaddingPercent;
+        return this.otherStats.get(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT);
     }
 
     public int getMeatShieldDodgePercent()
     {
-        return this.meatShieldDodgePercent;
+        return this.otherStats.get(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT);
     }
 
     public boolean meatShieldEnabled()
@@ -406,8 +416,8 @@ public class StatusEffects
     public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)
     {
         this.statusEffectTurns.put(StatusEffects.EFFECT_MEAT_SHIELD, numTurns);
-        this.meatShieldPaddingPercent = bonusPadding;
-        this.meatShieldDodgePercent = bonusDodge;
+        this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT, bonusPadding);
+        this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT, bonusDodge);
     }
 
     private boolean thickSkinDodgesEffect()
