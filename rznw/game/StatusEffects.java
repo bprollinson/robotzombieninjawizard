@@ -102,14 +102,29 @@ public class StatusEffects
         return this.statusEffects.get(index);
     }
 
+    public void setStatusEffect(int index, boolean value)
+    {
+        this.statusEffects.put(index, value);
+    }
+
     public int getStatusEffectTurns(int index)
     {
         return this.statusEffectTurns.get(index);
     }
 
+    public void setStatusEffectTurns(int index, int value)
+    {
+        this.statusEffectTurns.put(index, value);
+    }
+
     public int getStat(int index)
     {
         return this.otherStats.get(index);
+    }
+
+    public void setStat(int index, int value)
+    {
+        this.otherStats.put(index, value);
     }
 
     public void freeze()

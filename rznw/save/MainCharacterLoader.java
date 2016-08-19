@@ -35,17 +35,17 @@ public class MainCharacterLoader extends ComponentLoader
 
         for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECTS; i++)
         {
-            this.readInteger(fileReader);
+            character.getStatusEffects().setStatusEffect(i, this.readInteger(fileReader) == 1);
         }
 
         for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
         {
-            this.readInteger(fileReader);
+            character.getStatusEffects().setStatusEffectTurns(i, this.readInteger(fileReader));
         }
 
         for (int i = 0; i < StatusEffects.NUM_STATS; i++)
         {
-            this.readInteger(fileReader);
+            character.getStatusEffects().setStat(i, this.readInteger(fileReader));
         }
     }
 }
