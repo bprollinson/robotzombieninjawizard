@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
@@ -31,6 +32,21 @@ public class MainCharacterSaver extends ComponentSaver
         for (int i = 0; i < 16; i++)
         {
             this.writeLine(fileWriter, mainCharacter.getSpellPoints(i, false));
+        }
+
+        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECTS; i++)
+        {
+            this.writeLine(fileWriter, mainCharacter.getStatusEffects().getStatusEffect(i) ? 1 : 0);
+        }
+
+        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
+        {
+            this.writeLine(fileWriter, mainCharacter.getStatusEffects().getStatusEffectTurns(i));
+        }
+
+        for (int i = 0; i < StatusEffects.NUM_STATS; i++)
+        {
+            this.writeLine(fileWriter, mainCharacter.getStatusEffects().getStat(i));
         }
     }
 }

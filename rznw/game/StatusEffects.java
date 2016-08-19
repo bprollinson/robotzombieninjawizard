@@ -20,6 +20,10 @@ public class StatusEffects
     private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 
+    public static final int NUM_STATUS_EFFECTS = 7;
+    public static final int NUM_STATUS_EFFECT_TURNS = 16;
+    public static final int NUM_STATS = 8;
+
     private static final int EFFECT_POISONED = 0;
     private static final int EFFECT_REVERSE_PAIN = 1;
     private static final int EFFECT_DEATH_STRIKE = 2;
@@ -91,6 +95,21 @@ public class StatusEffects
         this.otherStats.put(StatusEffects.STAT_BONUS_GOLD_PERCENT, 0);
         this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT, 0);
         this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT, 0);
+    }
+
+    public boolean getStatusEffect(int index)
+    {
+        return this.statusEffects.get(index);
+    }
+
+    public int getStatusEffectTurns(int index)
+    {
+        return this.statusEffectTurns.get(index);
+    }
+
+    public int getStat(int index)
+    {
+        return this.otherStats.get(index);
     }
 
     public void freeze()

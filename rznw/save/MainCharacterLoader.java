@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
@@ -30,6 +31,21 @@ public class MainCharacterLoader extends ComponentLoader
         for (int i = 0; i < 16; i++)
         {
             character.setSpellPoints(i, this.readInteger(fileReader));
+        }
+
+        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECTS; i++)
+        {
+            this.readInteger(fileReader);
+        }
+
+        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
+        {
+            this.readInteger(fileReader);
+        }
+
+        for (int i = 0; i < StatusEffects.NUM_STATS; i++)
+        {
+            this.readInteger(fileReader);
         }
     }
 }
