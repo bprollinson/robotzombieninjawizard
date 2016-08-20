@@ -59,6 +59,7 @@ public class GameLoader
     {
         return new ComponentLoader[] {
             new MainCharacterLoader(),
+            new ShopLoader(),
             new EnemyLoader(),
             new SummonLoader(),
             new MapLoader(),

@@ -76,6 +76,7 @@ public class GameSaver
     {
         return new ComponentSaver[] {
             new MainCharacterSaver(),
+            new ShopSaver(),
             new EnemySaver(),
             new SummonSaver(),
             new MapSaver(),
