@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
 
@@ -16,17 +17,33 @@ public class EnemyLoader extends ComponentLoader
 
         for (int i = 0; i < numEnemies; i++)
         {
-             int enemyIndex = this.readInteger(fileReader);
-             int level = this.readInteger(fileReader);
-             int hp = this.readInteger(fileReader);
-             int mp = this.readInteger(fileReader);
+            int enemyIndex = this.readInteger(fileReader);
+            int level = this.readInteger(fileReader);
+            int hp = this.readInteger(fileReader);
+            int mp = this.readInteger(fileReader);
 
-             System.out.println("Enemy stats: " + enemyIndex + " - " + level + " - " + hp + " - " + mp);
+            System.out.println("Enemy stats: " + enemyIndex + " - " + level + " - " + hp + " - " + mp);
 
-             EnemyCharacter enemy = EnemyCharacterFactory.factory(enemyIndex, level);
-             enemy.setHP(hp);
-             enemy.setMP(mp);
-             gameWorld.addEnemyToSet(enemy);
+            EnemyCharacter enemy = EnemyCharacterFactory.factory(enemyIndex, level);
+            enemy.setHP(hp);
+            enemy.setMP(mp);
+
+            for (int j = 0; j < StatusEffects.NUM_STATUS_EFFECTS; j++)
+            {
+                enemy.getStatusEffects().setStatusEffect(j, this.readInteger(fileReader) == 1);
+            }
+
+            for (int j = 0; j < StatusEffects.NUM_STATUS_EFFECT_TURNS; j++)
+            {
+                enemy.getStatusEffects().setStatusEffectTurns(j, this.readInteger(fileReader));
+            }
+
+            for (int j = 0; j < StatusEffects.NUM_STATS; j++)
+            {
+                enemy.getStatusEffects().setStat(j, this.readInteger(fileReader));
+            }
+
+            gameWorld.addEnemyToSet(enemy);
         }
     }
 }
