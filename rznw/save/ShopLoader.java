@@ -35,7 +35,7 @@ public class ShopLoader extends ComponentLoader
             items.add(new InventoryItemGroup(item, numItems));
         }
 
-        RandomInventoryGenerator.setRandomItems(items);
+        gameWorld.getShopInventory().setRandomItems(items);
 
         Vector<EquipmentGroup> equipments = new Vector<EquipmentGroup>();
 
@@ -49,6 +49,6 @@ public class ShopLoader extends ComponentLoader
             equipments.add(new EquipmentGroup(equipment, numEquipment));
         }
 
-        RandomInventoryGenerator.setRandomEquipment(equipments);
+        gameWorld.getShopInventory().setRandomEquipment(equipments);
     }
 }

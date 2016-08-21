@@ -5,6 +5,7 @@ import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.MainCharacterGenerator;
+import rznw.game.maincharacter.inventory.ShopInventory;
 import rznw.map.generator.MapGenerator;
 
 import java.util.Vector;
@@ -20,11 +21,13 @@ public class GameWorld
     private boolean gameCompleted = false;
     private int enemyIndex;
     private int summonIndex;
+    private ShopInventory shopInventory;
 
     public GameWorld(CharacterGenerator characterGenerator, MapGenerator mapGenerator)
     {
         this.characterGenerator = characterGenerator;
         this.mapGenerator = mapGenerator;
+        this.shopInventory = new ShopInventory();
     }
 
     public void initializeToDefaultState(int characterClass)
@@ -33,6 +36,7 @@ public class GameWorld
         this.character = characterGenerator.generateMainCharacter(characterClass);
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
         this.gameCompleted = false;
+        this.shopInventory = new ShopInventory();
     }
 
     public void generateMainCharacter(int characterClass)
@@ -136,5 +140,10 @@ public class GameWorld
     public SummonedCharacter getSummon(int summonIndex)
     {
         return this.summonSet.get(summonIndex);
+    }
+
+    public ShopInventory getShopInventory()
+    {
+        return this.shopInventory;
     }
 }

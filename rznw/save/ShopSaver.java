@@ -24,7 +24,7 @@ public class ShopSaver extends ComponentSaver
 
         this.writeLine(fileWriter, 1);
 
-        Vector<InventoryItemGroup> items = RandomInventoryGenerator.getRandomItems();
+        Vector<InventoryItemGroup> items = gameWorld.getShopInventory().getRandomItems();
         this.writeLine(fileWriter, items.size());
 
         for (int i = 0; i < items.size(); i++)
@@ -35,7 +35,7 @@ public class ShopSaver extends ComponentSaver
             this.writeLine(fileWriter, itemGroup.getNumItems());
         }
 
-        Vector<EquipmentGroup> equipment = RandomInventoryGenerator.getRandomEquipments();
+        Vector<EquipmentGroup> equipment = gameWorld.getShopInventory().getRandomEquipments();
         this.writeLine(fileWriter, equipment.size());
 
         for (int i = 0; i < equipment.size(); i++)

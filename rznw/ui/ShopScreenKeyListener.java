@@ -46,10 +46,10 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
 
-        RandomInventoryGenerator.handleRegeneration(gameWorld.getMainCharacter(), 2, 2);
+        RandomInventoryGenerator.handleRegeneration(gameWorld, 2, 2);
 
         this.buyInventory = new Inventory(null);
-        Vector<InventoryItemGroup> items = RandomInventoryGenerator.getRandomItems();
+        Vector<InventoryItemGroup> items = gameWorld.getShopInventory().getRandomItems();
 
         try
         {
@@ -59,7 +59,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         {
         }
 
-        this.buyEquipment = RandomInventoryGenerator.getRandomEquipments();
+        this.buyEquipment = gameWorld.getShopInventory().getRandomEquipments();
     }
 
     public void keyPressed(KeyEvent event)

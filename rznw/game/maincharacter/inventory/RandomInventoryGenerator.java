@@ -1,6 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Arrays;
@@ -8,31 +9,20 @@ import java.util.Vector;
 
 public class RandomInventoryGenerator
 {
-    private static Vector<InventoryItemGroup> selectedItems;
-    private static Vector<EquipmentGroup> selectedEquipments;
-
-    public static void handleRegeneration(MainCharacter mainCharacter, int numItems, int numEquipments)
+    public static void handleRegeneration(GameWorld gameWorld, int numItems, int numEquipments)
     {
+        MainCharacter mainCharacter = gameWorld.getMainCharacter();
+
         if (mainCharacter.getStatusEffects().regenerateShopEnabled())
         {
             mainCharacter.getStatusEffects().disableRegenerateShop();
 
-            RandomInventoryGenerator.regenerateSelectedItems(numItems);
-            RandomInventoryGenerator.regenerateSelectedEquipments(numEquipments);
+            RandomInventoryGenerator.regenerateSelectedItems(gameWorld, numItems);
+            RandomInventoryGenerator.regenerateSelectedEquipments(gameWorld, numEquipments);
         }
     }
 
-    public static Vector<InventoryItemGroup> getRandomItems()
-    {
-        return RandomInventoryGenerator.selectedItems;
-    }
-
-    public static void setRandomItems(Vector<InventoryItemGroup> items)
-    {
-        RandomInventoryGenerator.selectedItems = items;
-    }
-
-    private static void regenerateSelectedItems(int numItems)
+    private static void regenerateSelectedItems(GameWorld gameWorld, int numItems)
     {
         InventoryItemGroup[] possibleItemsArray = new InventoryItemGroup[] {
             new InventoryItemGroup(new Bomb(), 1),
@@ -45,27 +35,19 @@ public class RandomInventoryGenerator
             new InventoryItemGroup(new XRayDrop(), 1)
         };
         Vector<InventoryItemGroup> possibleItems = new Vector<InventoryItemGroup>(Arrays.asList(possibleItemsArray));
-        RandomInventoryGenerator.selectedItems = new Vector<InventoryItemGroup>();
+        Vector<InventoryItemGroup> selectedItems = new Vector<InventoryItemGroup>();
 
         for (int i = 0; i < numItems; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleItems.size() - 1);
-            RandomInventoryGenerator.selectedItems.add(possibleItems.get(randomIndex));
+            selectedItems.add(possibleItems.get(randomIndex));
             possibleItems.remove(randomIndex);
         }
+
+        gameWorld.getShopInventory().setRandomItems(selectedItems);
     }
 
-    public static Vector<EquipmentGroup> getRandomEquipments()
-    {
-        return RandomInventoryGenerator.selectedEquipments;
-    }
-
-    public static void setRandomEquipment(Vector<EquipmentGroup> equipment)
-    {
-        RandomInventoryGenerator.selectedEquipments = equipment;
-    }
-
-    private static void regenerateSelectedEquipments(int numEquipments)
+    private static void regenerateSelectedEquipments(GameWorld gameWorld, int numEquipments)
     {
         EquipmentGroup[] possibleEquipmentsArray = new EquipmentGroup[] {
             new EquipmentGroup(new DeathScythe(), 1),
@@ -95,13 +77,15 @@ public class RandomInventoryGenerator
             new EquipmentGroup(new EtherealShield(), 1)
         };
         Vector<EquipmentGroup> possibleEquipments = new Vector<EquipmentGroup>(Arrays.asList(possibleEquipmentsArray));
-        RandomInventoryGenerator.selectedEquipments = new Vector<EquipmentGroup>();
+        Vector selectedEquipments = new Vector<EquipmentGroup>();
 
         for (int i = 0; i < numEquipments; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleEquipments.size() - 1);
-            RandomInventoryGenerator.selectedEquipments.add(possibleEquipments.get(randomIndex));
+            selectedEquipments.add(possibleEquipments.get(randomIndex));
             possibleEquipments.remove(randomIndex);
         }
+
+        gameWorld.getShopInventory().setRandomEquipment(selectedEquipments);
     }
 }
