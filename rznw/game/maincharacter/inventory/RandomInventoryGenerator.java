@@ -27,6 +27,11 @@ public class RandomInventoryGenerator
         return RandomInventoryGenerator.selectedItems;
     }
 
+    public static void setRandomItems(Vector<InventoryItemGroup> items)
+    {
+        RandomInventoryGenerator.selectedItems = items;
+    }
+
     private static void regenerateSelectedItems(int numItems)
     {
         InventoryItemGroup[] possibleItemsArray = new InventoryItemGroup[] {
@@ -53,6 +58,11 @@ public class RandomInventoryGenerator
     public static Vector<EquipmentGroup> getRandomEquipments()
     {
         return RandomInventoryGenerator.selectedEquipments;
+    }
+
+    public static void setRandomEquipment(Vector<EquipmentGroup> equipment)
+    {
+        RandomInventoryGenerator.selectedEquipments = equipment;
     }
 
     private static void regenerateSelectedEquipments(int numEquipments)
