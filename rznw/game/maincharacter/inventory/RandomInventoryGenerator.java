@@ -77,7 +77,7 @@ public class RandomInventoryGenerator
             new EquipmentGroup(new EtherealShield(), 1)
         };
         Vector<EquipmentGroup> possibleEquipments = new Vector<EquipmentGroup>(Arrays.asList(possibleEquipmentsArray));
-        Vector selectedEquipments = new Vector<EquipmentGroup>();
+        Vector<EquipmentGroup> selectedEquipments = new Vector<EquipmentGroup>();
 
         for (int i = 0; i < numEquipments; i++)
         {
