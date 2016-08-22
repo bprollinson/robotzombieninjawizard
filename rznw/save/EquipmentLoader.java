@@ -14,49 +14,25 @@ public class EquipmentLoader extends ComponentLoader
 {
     public void load(GameWorld gameWorld, BufferedReader fileReader)
     {
-        int numWeaponGroups = this.readInteger(fileReader);
-        System.out.println("Num weapon groups: " + numWeaponGroups);
+        int numEquipmentGroups = this.readInteger(fileReader);
+        System.out.println("Num equipment groups: " + numEquipmentGroups);
 
-        for (int i = 0; i < numWeaponGroups; i++)
+        for (int i = 0; i < numEquipmentGroups; i++)
         {
-            int weaponIndex = this.readInteger(fileReader);
-            int weaponQuantity = this.readInteger(fileReader);
-            System.out.println("Weapon group: " + weaponIndex + " - " + weaponQuantity);
+            int equipmentIndex = this.readInteger(fileReader);
+            int equipmentQuantity = this.readInteger(fileReader);
+            System.out.println("Equipment group: " + equipmentIndex + " - " + equipmentQuantity);
 
-            this.addEquipment(gameWorld, weaponIndex, weaponQuantity);
+            this.addEquipment(gameWorld, equipmentIndex, equipmentQuantity);
         }
 
         int equippedWeaponIndex = this.readInteger(fileReader);
         System.out.println("Equipped weapon index: " + equippedWeaponIndex);
         this.equipWeapon(gameWorld, equippedWeaponIndex);
 
-        int numShieldGroups = this.readInteger(fileReader);
-        System.out.println("Num shield groups: " + numShieldGroups);
-
-        for (int i = 0; i < numShieldGroups; i++)
-        {
-            int shieldIndex = this.readInteger(fileReader);
-            int shieldQuantity = this.readInteger(fileReader);
-            System.out.println("Shield group: " + shieldIndex + " - " + shieldQuantity);
-
-            this.addEquipment(gameWorld, shieldIndex, shieldQuantity);
-        }
-
         int equippedShieldIndex = this.readInteger(fileReader);
         System.out.println("Equipped shield index: " + equippedShieldIndex);
         this.equipShield(gameWorld, equippedShieldIndex);
-
-        int numArmorGroups = this.readInteger(fileReader);
-        System.out.println("Num armor groups: " + numArmorGroups);
-
-        for (int i = 0; i < numArmorGroups; i++)
-        {
-            int armorIndex = this.readInteger(fileReader);
-            int armorQuantity = this.readInteger(fileReader);
-            System.out.println("Armor group: " + armorIndex + " - " + armorQuantity);
-
-            this.addEquipment(gameWorld, armorIndex, armorQuantity);
-        }
 
         int equippedArmorIndex = this.readInteger(fileReader);
         System.out.println("Equipped armor index: " + equippedArmorIndex);

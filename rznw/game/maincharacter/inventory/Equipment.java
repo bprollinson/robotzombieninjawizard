@@ -68,6 +68,16 @@ public class Equipment
         return index;
     }
 
+    public int getNumGroups()
+    {
+        return this.equipmentGroups.size();
+    }
+
+    public EquipmentGroup getEquipmentGroup(int groupIndex)
+    {
+        return this.equipmentGroups.get(groupIndex);
+    }
+
     public int getNumWeaponGroups()
     {
         return this.getNumGroupsOfType(Weapon.EQUIPMENT_TYPE);

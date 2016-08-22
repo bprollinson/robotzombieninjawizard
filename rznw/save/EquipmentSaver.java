@@ -15,40 +15,18 @@ public class EquipmentSaver extends ComponentSaver
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
         Equipment equipment = mainCharacter.getEquipment();
 
-        this.writeLine(fileWriter, equipment.getNumWeaponGroups());
+        this.writeLine(fileWriter, equipment.getNumGroups());
 
-        for (int i = 0; i < equipment.getNumWeaponGroups(); i++)
+        for (int i = 0; i < equipment.getNumGroups(); i++)
         {
-            EquipmentGroup weaponGroup = equipment.getWeaponGroup(i);
+            EquipmentGroup equipmentGroup = equipment.getEquipmentGroup(i);
 
-            this.writeLine(fileWriter, weaponGroup.getItem().getEquipmentNumber());
-            this.writeLine(fileWriter, weaponGroup.getNumItems());
+            this.writeLine(fileWriter, equipmentGroup.getItem().getEquipmentNumber());
+            this.writeLine(fileWriter, equipmentGroup.getNumItems());
         }
 
         this.writeEquipmentIndex(fileWriter, equipment.getEquippedWeapon());
-
-        this.writeLine(fileWriter, equipment.getNumShieldGroups());
-
-        for (int i = 0; i < equipment.getNumShieldGroups(); i++)
-        {
-            EquipmentGroup shieldGroup = equipment.getShieldGroup(i);
-
-            this.writeLine(fileWriter, shieldGroup.getItem().getEquipmentNumber());
-            this.writeLine(fileWriter, shieldGroup.getNumItems());
-        }
-
         this.writeEquipmentIndex(fileWriter, equipment.getEquippedShield());
-
-        this.writeLine(fileWriter, equipment.getNumArmorGroups());
-
-        for (int i = 0; i < equipment.getNumArmorGroups(); i++)
-        {
-            EquipmentGroup armorGroup = equipment.getArmorGroup(i);
-
-            this.writeLine(fileWriter, armorGroup.getItem().getEquipmentNumber());
-            this.writeLine(fileWriter, armorGroup.getNumItems());
-        }
-
         this.writeEquipmentIndex(fileWriter, equipment.getEquippedArmor());
     }
 
