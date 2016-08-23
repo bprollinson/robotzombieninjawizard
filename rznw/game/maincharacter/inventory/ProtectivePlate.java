@@ -14,6 +14,8 @@ public class ProtectivePlate extends Armor
         return new String[] {
             "Dodge: " + this.getDodgePercent() + "%",
             "Padding: " + this.getPaddingPercent() + "%",
+            "Increases your probability of dodging status effects",
+            "Additional chance to dodge: 50%",
             "",
             "Value: " + this.getValue()
         };
