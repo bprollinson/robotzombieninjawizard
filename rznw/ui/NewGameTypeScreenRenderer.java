@@ -24,6 +24,6 @@ public class NewGameTypeScreenRenderer extends MenuScreenRenderer
     {
         int row = NewGameTypeScreenRenderer.MENU_ENTRY_FIRST_ROW + state.getEntryNumber() * NewGameTypeScreenRenderer.MENU_ROW_HEIGHT;
 
-        this.frame.renderDisplayCharacter(row, 15, 'X');
+        this.frame.renderDisplayCharacter(row, 11, 'X');
     }
 }

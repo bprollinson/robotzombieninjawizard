@@ -101,7 +101,7 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_NEW_GAME)
         {
-            return DispatchKeyListener.STATE_NEW_GAME_SCREEN;
+            return DispatchKeyListener.STATE_NEW_GAME_TYPE_SCREEN;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EXIT)

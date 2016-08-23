@@ -5,7 +5,8 @@
 1. Run **make** to compile the game
 2. Run **make run** to start the game
 3. Use the arrow keys to select **New Game**, then press **Enter**
-4. Use the arrow keys to select a character class, then press **Enter**
+4. Keep **New Game** selected, and press **Enter**
+5. Use the arrow keys to select a character class, then press **Enter**
 
 ## Viewing Full Instructions
 
