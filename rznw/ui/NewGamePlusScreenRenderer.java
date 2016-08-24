@@ -6,4 +6,10 @@ public class NewGamePlusScreenRenderer extends MenuScreenRenderer
     {
         super(frame);
     }
+
+    public void render()
+    {
+        this.clearScreen();
+        this.renderCenteredString(1, "New Game Plus");
+    }
 }

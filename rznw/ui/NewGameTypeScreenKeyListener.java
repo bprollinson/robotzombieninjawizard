@@ -60,6 +60,8 @@ public class NewGameTypeScreenKeyListener extends StateTransitionKeyListener
             {
                 case 0:
                     return DispatchKeyListener.STATE_NEW_GAME_SCREEN;
+                case 1:
+                    return DispatchKeyListener.STATE_NEW_GAME_PLUS_SCREEN;
             }
         }
 
