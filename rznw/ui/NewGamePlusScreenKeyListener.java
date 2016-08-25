@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
 {
     private NewGamePlusScreenRenderer newGamePlusScreenRenderer;
+    private MenuState state;
 
     public NewGamePlusScreenKeyListener(NewGamePlusScreenRenderer newGamePlusScreenRenderer)
     {
         this.newGamePlusScreenRenderer = newGamePlusScreenRenderer;
+        this.state = new MenuState(9);
     }
 
     public void keyPressed(KeyEvent event)
@@ -17,7 +19,7 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        this.newGamePlusScreenRenderer.render();
+        this.newGamePlusScreenRenderer.render(this.state);
     }
 
     public void exitState(KeyEvent event)
