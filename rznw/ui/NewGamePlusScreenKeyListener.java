@@ -43,6 +43,11 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
+        if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
+        {
+            return DispatchKeyListener.STATE_NEW_GAME_TYPE_SCREEN;
+        }
+
         return DispatchKeyListener.STATE_NEW_GAME_PLUS_SCREEN;
     }
 

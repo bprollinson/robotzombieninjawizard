@@ -35,7 +35,7 @@ public class NewGameTypeScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        if (previousState != DispatchKeyListener.STATE_NEW_GAME_SCREEN)
+        if (previousState != DispatchKeyListener.STATE_NEW_GAME_SCREEN && previousState != DispatchKeyListener.STATE_NEW_GAME_PLUS_SCREEN)
         {
             this.previousState = previousState;
         }
