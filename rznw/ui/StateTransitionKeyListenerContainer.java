@@ -45,7 +45,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_SAVE_CONFIRMATION_SCREEN, new SaveConfirmationScreenKeyListener(new SaveConfirmationScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_LOAD_CONFIRMATION_SCREEN, new LoadConfirmationScreenKeyListener(new LoadConfirmationScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_NEW_GAME_TYPE_SCREEN, new NewGameTypeScreenKeyListener(new NewGameTypeScreenRenderer(frame)));
-        this.listeners.put(DispatchKeyListener.STATE_NEW_GAME_PLUS_SCREEN, new NewGamePlusScreenKeyListener(new NewGamePlusScreenRenderer(frame)));
+        this.listeners.put(DispatchKeyListener.STATE_NEW_GAME_PLUS_SCREEN, new NewGamePlusScreenKeyListener(new NewGamePlusScreenRenderer(frame), gameWorld));
     }
 
     public StateTransitionKeyListener getListener(int state)
