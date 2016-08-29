@@ -53,6 +53,11 @@ public class MapElementFactory
             case SummonedGolemMapElement.ELEMENT_NUMBER:
                 int summonIndex = gameWorld.getSummonIndex();
                 SummonedCharacter summon = gameWorld.getSummon(summonIndex);
+                // TODO: remove this check
+                if (summon == null)
+                {
+                    return null;
+                }
                 gameWorld.incrementSummonIndex();
 
                 MapElement element = new SummonedGolemMapElement(row, column, summon);
@@ -62,6 +67,11 @@ public class MapElementFactory
             case SummonedZombieMapElement.ELEMENT_NUMBER:
                 int zombieIndex = gameWorld.getSummonIndex();
                 SummonedCharacter zombie = gameWorld.getSummon(zombieIndex);
+                // TODO: remove this check
+                if (zombie == null)
+                {
+                    return null;
+                }
                 gameWorld.incrementSummonIndex();
 
                 MapElement zombieElement = new SummonedZombieMapElement(row, column, zombie);

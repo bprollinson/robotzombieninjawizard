@@ -139,6 +139,12 @@ public class GameWorld
 
     public SummonedCharacter getSummon(int summonIndex)
     {
+        //TODO: remove this check
+        if (summonIndex >= this.summonSet.size())
+        {
+            return null;
+        }
+
         return this.summonSet.get(summonIndex);
     }
 
