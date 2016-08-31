@@ -63,8 +63,7 @@ public class NewGamePlusLoader
             // change this
             new EnemyLoader(),
             new NewGamePlusSummonLoader(),
-            // change this
-            new MapLoader(),
+            new NewGamePlusMapLoader(),
             // change this
             new MapVisibilityLoader(),
             new InventoryLoader(),

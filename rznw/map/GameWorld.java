@@ -39,6 +39,12 @@ public class GameWorld
         this.shopInventory = new ShopInventory();
     }
 
+    public void initializeToDefaultStateAfterLoad()
+    {
+        this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
+        this.gameCompleted = false;
+    }
+
     public void generateMainCharacter(int characterClass)
     {
         this.character = this.characterGenerator.generateMainCharacter(characterClass);
