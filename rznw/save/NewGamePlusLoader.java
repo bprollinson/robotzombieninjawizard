@@ -60,8 +60,7 @@ public class NewGamePlusLoader
         return new ComponentLoader[] {
             new MainCharacterLoader(),
             new NewGamePlusShopLoader(),
-            // change this
-            new EnemyLoader(),
+            new NewGamePlusEnemyLoader(),
             new NewGamePlusSummonLoader(),
             new NewGamePlusMapLoader(),
             // change this
