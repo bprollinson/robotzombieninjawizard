@@ -10,9 +10,13 @@ import java.io.FileNotFoundException;
 
 public class GameLoader
 {
-    public void load(GameWorld gameWorld, int slot)
+    public void load(GameWorld gameWorld, int slot) throws MissingFileException
     {
         File saveFile = this.getSaveFile(slot);
+        if (!saveFile.exists())
+        {
+            throw new MissingFileException(saveFile);
+        }
 
         this.loadComponentInfo(gameWorld, saveFile);
     }

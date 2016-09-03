@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import rznw.map.GameWorld;
 import rznw.save.GameLoader;
+import rznw.save.MissingFileException;
 
 public class LoadScreenKeyListener extends StateTransitionKeyListener
 {
@@ -11,6 +12,7 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
     private MenuState state;
     private GameWorld gameWorld;
     private int previousState;
+    private boolean loaded;
 
     public LoadScreenKeyListener(LoadScreenRenderer loadScreenRenderer, GameWorld gameWorld)
     {
@@ -35,7 +37,15 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
                 break;
             case KeyEvent.VK_ENTER:
                 GameLoader gameLoader = new GameLoader();
-                gameLoader.load(this.gameWorld, this.state.getEntryNumber());
+                try
+                {
+                    gameLoader.load(this.gameWorld, this.state.getEntryNumber());
+                    this.loaded = true;
+                }
+                catch (MissingFileException mfe)
+                {
+                }
+
                 break;
         }
 
@@ -45,6 +55,7 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         this.previousState = previousState;
+        this.loaded = false;
 
         this.loadScreenRenderer.render(this.state);
     }
@@ -60,7 +71,7 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
             return this.previousState;
         }
 
-        if (event.getKeyCode() == KeyEvent.VK_ENTER)
+        if (this.loaded)
         {
             return DispatchKeyListener.STATE_LOAD_CONFIRMATION_SCREEN;
         }
