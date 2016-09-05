@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.map.GameWorld;
+import rznw.save.MissingFileException;
 import rznw.save.NewGamePlusLoader;
 
 import java.awt.event.KeyEvent;
@@ -10,6 +11,7 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
     private NewGamePlusScreenRenderer newGamePlusScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private boolean loaded;
 
     public NewGamePlusScreenKeyListener(NewGamePlusScreenRenderer newGamePlusScreenRenderer, GameWorld gameWorld)
     {
@@ -34,7 +36,15 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
                 break;
             case KeyEvent.VK_ENTER:
                 NewGamePlusLoader gameLoader = new NewGamePlusLoader();
-                gameLoader.load(this.gameWorld, this.state.getEntryNumber());
+                try
+                {
+                    gameLoader.load(this.gameWorld, this.state.getEntryNumber());
+                    this.loaded = true;
+                }
+                catch (MissingFileException mfe)
+                {
+                }
+
                 break;
         }
 
@@ -43,6 +53,8 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.loaded = false;
+
         this.newGamePlusScreenRenderer.render(this.state);
     }
 
@@ -57,7 +69,7 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_NEW_GAME_TYPE_SCREEN;
         }
 
-        if (event.getKeyCode() == KeyEvent.VK_ENTER)
+        if (this.loaded)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
