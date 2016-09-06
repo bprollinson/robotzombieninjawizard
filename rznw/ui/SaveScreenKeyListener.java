@@ -10,6 +10,7 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
     private SaveScreenRenderer saveScreenRenderer;
     private MenuState state;
     private GameWorld gameWorld;
+    private int previousState;
 
     public SaveScreenKeyListener(SaveScreenRenderer saveScreenRenderer, GameWorld gameWorld)
     {
@@ -43,6 +44,8 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
+
         this.saveScreenRenderer.render(this.state);
     }
 
@@ -52,6 +55,11 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
+        if (event.getKeyCode() == KeyEvent.VK_ESCAPE && this.previousState == DispatchKeyListener.STATE_GAME_COMPLETED)
+        {
+            return DispatchKeyListener.STATE_START_SCREEN;
+        }
+
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;

@@ -26,6 +26,6 @@ public class GameCompletedScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
-        return DispatchKeyListener.STATE_START_SCREEN;
+        return DispatchKeyListener.STATE_SAVE_SCREEN;
     }
 }
