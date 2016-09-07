@@ -5,6 +5,7 @@ public class GameLoader extends BaseGameLoader
     protected ComponentLoader[] getComponentLoaders()
     {
         return new ComponentLoader[] {
+            new GameCompletedLoader(),
             new MainCharacterLoader(),
             new ShopLoader(),
             new EnemyLoader(),
