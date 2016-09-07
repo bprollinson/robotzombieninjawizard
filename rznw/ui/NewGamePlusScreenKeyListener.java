@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.map.GameWorld;
 import rznw.save.MissingFileException;
+import rznw.save.LoadException;
 import rznw.save.NewGamePlusLoader;
 
 import java.awt.event.KeyEvent;
@@ -42,6 +43,9 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
                     this.loaded = true;
                 }
                 catch (MissingFileException mfe)
+                {
+                }
+                catch (LoadException le)
                 {
                 }
 

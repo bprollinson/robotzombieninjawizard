@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 
 import rznw.map.GameWorld;
 import rznw.save.GameLoader;
+import rznw.save.LoadException;
 import rznw.save.MissingFileException;
 
 public class LoadScreenKeyListener extends StateTransitionKeyListener
@@ -43,6 +44,9 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
                     this.loaded = true;
                 }
                 catch (MissingFileException mfe)
+                {
+                }
+                catch (LoadException le)
                 {
                 }
 

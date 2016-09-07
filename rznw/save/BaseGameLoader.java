@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 
 public abstract class BaseGameLoader
 {
-    public void load(GameWorld gameWorld, int slot) throws MissingFileException
+    public void load(GameWorld gameWorld, int slot) throws MissingFileException, LoadException
     {
         File saveFile = this.getSaveFile(slot);
         if (!saveFile.exists())
@@ -31,7 +31,7 @@ public abstract class BaseGameLoader
         return new File(filePath);
     }
 
-    private void loadComponentInfo(GameWorld gameWorld, File saveFile)
+    private void loadComponentInfo(GameWorld gameWorld, File saveFile) throws LoadException
     {
         BufferedReader fileReader = null;
 
@@ -49,7 +49,23 @@ public abstract class BaseGameLoader
         for (int i = 0; i < componentLoaders.length; i++)
         {
             ComponentLoader componentLoader = componentLoaders[i];
-            componentLoader.load(gameWorld, fileReader);
+
+            try
+            {
+                componentLoader.load(gameWorld, fileReader);
+            }
+            catch (LoadException le)
+            {
+                try
+                {
+                    fileReader.close();
+                }
+                catch (IOException ioe)
+                {
+                }
+
+                throw le;
+            }
         }
 
         try

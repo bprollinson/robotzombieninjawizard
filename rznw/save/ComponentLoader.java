@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public abstract class ComponentLoader
 {
-    public abstract void load(GameWorld gameWorld, BufferedReader fileReader);
+    public abstract void load(GameWorld gameWorld, BufferedReader fileReader) throws LoadException;
 
     protected String readLine(BufferedReader fileReader)
     {
