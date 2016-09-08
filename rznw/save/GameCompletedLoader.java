@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 
 public class GameCompletedLoader extends ComponentLoader
 {
-    public void load(GameWorld gameWorld, BufferedReader fileReader) throws GameCompletedLoadException
+    public void load(GameWorld gameWorld, BufferedReader fileReader) throws LoadException
     {
         int completed = this.readInteger(fileReader);
 

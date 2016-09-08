@@ -43,9 +43,6 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
                     gameLoader.load(this.gameWorld, this.state.getEntryNumber());
                     this.loaded = true;
                 }
-                catch (MissingFileException mfe)
-                {
-                }
                 catch (LoadException le)
                 {
                 }

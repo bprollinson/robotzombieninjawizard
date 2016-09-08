@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 
 public abstract class BaseGameLoader
 {
-    public void load(GameWorld gameWorld, int slot) throws MissingFileException, LoadException
+    public void load(GameWorld gameWorld, int slot) throws LoadException
     {
         File saveFile = this.getSaveFile(slot);
         if (!saveFile.exists())

@@ -2,7 +2,7 @@ package rznw.save;
 
 import java.io.File;
 
-public class MissingFileException extends Exception
+public class MissingFileException extends LoadException
 {
     private File file;
 
