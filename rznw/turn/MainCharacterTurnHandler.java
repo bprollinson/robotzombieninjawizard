@@ -12,6 +12,7 @@ import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
@@ -329,6 +330,8 @@ public class MainCharacterTurnHandler
                         if (enemy.isFinalBoss())
                         {
                             this.gameWorld.flagGameCompleted();
+                            character.getStatusEffects().enableRegenerateShop();
+                            RandomInventoryGenerator.handleRegeneration(this.gameWorld, 2, 2);
                         }
                     }
                 }
