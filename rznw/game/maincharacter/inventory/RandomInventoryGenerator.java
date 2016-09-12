@@ -27,23 +27,24 @@ public class RandomInventoryGenerator
 
     private static void regenerateSelectedItems(GameWorld gameWorld)
     {
-        InventoryItemGroup[] possibleItemsArray = new InventoryItemGroup[] {
-            new InventoryItemGroup(new Bomb(), 1),
-            new InventoryItemGroup(new FullManaPotion(), 1),
-            new InventoryItemGroup(new FullPotion(), 1),
-            new InventoryItemGroup(new Herb(), 1),
-            new InventoryItemGroup(new ManaPotion(), 1),
-            new InventoryItemGroup(new Potion(), 1),
-            new InventoryItemGroup(new SanityDrop(), 1),
-            new InventoryItemGroup(new XRayDrop(), 1)
+        InventoryItem[] possibleItemsArray = new InventoryItem[] {
+            new Bomb(),
+            new FullManaPotion(),
+            new FullPotion(),
+            new Herb(),
+            new ManaPotion(),
+            new Potion(),
+            new SanityDrop(),
+            new XRayDrop()
         };
-        Vector<InventoryItemGroup> possibleItems = new Vector<InventoryItemGroup>(Arrays.asList(possibleItemsArray));
+        Vector<InventoryItem> possibleItems = new Vector<InventoryItem>(Arrays.asList(possibleItemsArray));
         Vector<InventoryItemGroup> selectedItems = new Vector<InventoryItemGroup>();
 
         for (int i = 0; i < RandomInventoryGenerator.NUM_ITEMS; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleItems.size() - 1);
-            selectedItems.add(possibleItems.get(randomIndex));
+            InventoryItem item = possibleItems.get(randomIndex);
+            selectedItems.add(new InventoryItemGroup(item, 1));
             possibleItems.remove(randomIndex);
         }
 
