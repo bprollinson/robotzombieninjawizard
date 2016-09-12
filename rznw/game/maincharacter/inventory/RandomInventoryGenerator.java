@@ -53,40 +53,41 @@ public class RandomInventoryGenerator
 
     private static void regenerateSelectedEquipments(GameWorld gameWorld)
     {
-        EquipmentGroup[] possibleEquipmentsArray = new EquipmentGroup[] {
-            new EquipmentGroup(new DeathScythe(), 1),
-            new EquipmentGroup(new RiddleWand(), 1),
-            new EquipmentGroup(new GravityBlade(), 1),
-            new EquipmentGroup(new QuicksandHammer(), 1),
-            new EquipmentGroup(new IceRod(), 1),
-            new EquipmentGroup(new ThiefGlove(), 1),
-            new EquipmentGroup(new WandOfSummoning(), 1),
-            new EquipmentGroup(new InvisibilityWand(), 1),
-            new EquipmentGroup(new ViperDagger(), 1),
-            new EquipmentGroup(new GauntletOfDarkness(), 1),
-            new EquipmentGroup(new MagicJavelin(), 1),
-            new EquipmentGroup(new BloodSword(), 1),
-            new EquipmentGroup(new CrusherHammer(), 1),
-            new EquipmentGroup(new WoodenSword(), 1),
-            new EquipmentGroup(new LeechMail(), 1),
-            new EquipmentGroup(new PoisonCloth(), 1),
-            new EquipmentGroup(new AssassinsCloak(), 1),
-            new EquipmentGroup(new DragonPlate(), 1),
-            new EquipmentGroup(new ProtectivePlate(), 1),
-            new EquipmentGroup(new RockMail(), 1),
-            new EquipmentGroup(new ShieldOfSight(), 1),
-            new EquipmentGroup(new HealShield(), 1),
-            new EquipmentGroup(new MagicShield(), 1),
-            new EquipmentGroup(new WoodenShield(), 1),
-            new EquipmentGroup(new EtherealShield(), 1)
+        EquipmentItem[] possibleEquipmentsArray = new EquipmentItem[] {
+            new DeathScythe(),
+            new RiddleWand(),
+            new GravityBlade(),
+            new QuicksandHammer(),
+            new IceRod(),
+            new ThiefGlove(),
+            new WandOfSummoning(),
+            new InvisibilityWand(),
+            new ViperDagger(),
+            new GauntletOfDarkness(),
+            new MagicJavelin(),
+            new BloodSword(),
+            new CrusherHammer(),
+            new WoodenSword(),
+            new LeechMail(),
+            new PoisonCloth(),
+            new AssassinsCloak(),
+            new DragonPlate(),
+            new ProtectivePlate(),
+            new RockMail(),
+            new ShieldOfSight(),
+            new HealShield(),
+            new MagicShield(),
+            new WoodenShield(),
+            new EtherealShield()
         };
-        Vector<EquipmentGroup> possibleEquipments = new Vector<EquipmentGroup>(Arrays.asList(possibleEquipmentsArray));
+        Vector<EquipmentItem> possibleEquipments = new Vector<EquipmentItem>(Arrays.asList(possibleEquipmentsArray));
         Vector<EquipmentGroup> selectedEquipments = new Vector<EquipmentGroup>();
 
         for (int i = 0; i < RandomInventoryGenerator.NUM_EQUIPMENTS; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleEquipments.size() - 1);
-            selectedEquipments.add(possibleEquipments.get(randomIndex));
+            EquipmentItem equipment = possibleEquipments.get(randomIndex);
+            selectedEquipments.add(new EquipmentGroup(equipment, 1));
             possibleEquipments.remove(randomIndex);
         }
 
