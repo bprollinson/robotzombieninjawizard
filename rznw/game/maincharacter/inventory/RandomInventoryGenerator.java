@@ -9,7 +9,10 @@ import java.util.Vector;
 
 public class RandomInventoryGenerator
 {
-    public static void handleRegeneration(GameWorld gameWorld, int numItems, int numEquipments)
+    private static final int NUM_ITEMS = 2;
+    private static final int NUM_EQUIPMENTS = 2;
+
+    public static void handleRegeneration(GameWorld gameWorld)
     {
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
@@ -17,12 +20,12 @@ public class RandomInventoryGenerator
         {
             mainCharacter.getStatusEffects().disableRegenerateShop();
 
-            RandomInventoryGenerator.regenerateSelectedItems(gameWorld, numItems);
-            RandomInventoryGenerator.regenerateSelectedEquipments(gameWorld, numEquipments);
+            RandomInventoryGenerator.regenerateSelectedItems(gameWorld);
+            RandomInventoryGenerator.regenerateSelectedEquipments(gameWorld);
         }
     }
 
-    private static void regenerateSelectedItems(GameWorld gameWorld, int numItems)
+    private static void regenerateSelectedItems(GameWorld gameWorld)
     {
         InventoryItemGroup[] possibleItemsArray = new InventoryItemGroup[] {
             new InventoryItemGroup(new Bomb(), 1),
@@ -37,7 +40,7 @@ public class RandomInventoryGenerator
         Vector<InventoryItemGroup> possibleItems = new Vector<InventoryItemGroup>(Arrays.asList(possibleItemsArray));
         Vector<InventoryItemGroup> selectedItems = new Vector<InventoryItemGroup>();
 
-        for (int i = 0; i < numItems; i++)
+        for (int i = 0; i < RandomInventoryGenerator.NUM_ITEMS; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleItems.size() - 1);
             selectedItems.add(possibleItems.get(randomIndex));
@@ -47,7 +50,7 @@ public class RandomInventoryGenerator
         gameWorld.getShopInventory().setRandomItems(selectedItems);
     }
 
-    private static void regenerateSelectedEquipments(GameWorld gameWorld, int numEquipments)
+    private static void regenerateSelectedEquipments(GameWorld gameWorld)
     {
         EquipmentGroup[] possibleEquipmentsArray = new EquipmentGroup[] {
             new EquipmentGroup(new DeathScythe(), 1),
@@ -79,7 +82,7 @@ public class RandomInventoryGenerator
         Vector<EquipmentGroup> possibleEquipments = new Vector<EquipmentGroup>(Arrays.asList(possibleEquipmentsArray));
         Vector<EquipmentGroup> selectedEquipments = new Vector<EquipmentGroup>();
 
-        for (int i = 0; i < numEquipments; i++)
+        for (int i = 0; i < RandomInventoryGenerator.NUM_EQUIPMENTS; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleEquipments.size() - 1);
             selectedEquipments.add(possibleEquipments.get(randomIndex));

@@ -331,7 +331,7 @@ public class MainCharacterTurnHandler
                         {
                             this.gameWorld.flagGameCompleted();
                             character.getStatusEffects().enableRegenerateShop();
-                            RandomInventoryGenerator.handleRegeneration(this.gameWorld, 2, 2);
+                            RandomInventoryGenerator.handleRegeneration(this.gameWorld);
                         }
                     }
                 }

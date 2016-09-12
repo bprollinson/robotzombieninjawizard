@@ -46,7 +46,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
 
-        RandomInventoryGenerator.handleRegeneration(gameWorld, 2, 2);
+        RandomInventoryGenerator.handleRegeneration(gameWorld);
 
         this.buyInventory = new Inventory(null);
         Vector<InventoryItemGroup> items = gameWorld.getShopInventory().getRandomItems();
