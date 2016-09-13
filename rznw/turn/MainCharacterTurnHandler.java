@@ -6,19 +6,14 @@ import java.util.Iterator;
 
 import rznw.game.Character;
 import rznw.game.SummonedCharacter;
-import rznw.game.SummonedZombie;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.spell.EnemySpell;
-import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.map.GameWorld;
 import rznw.map.Map;
-import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
-import rznw.map.element.SummonedZombieMapElement;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
@@ -33,13 +28,11 @@ public class MainCharacterTurnHandler
 
     private GameWorld gameWorld;
     private CharacterSummaryRenderer renderer;
-    private KillBonusGranter killBonusGranter;
 
     public MainCharacterTurnHandler(GameWorld gameWorld, CharacterSummaryRenderer renderer)
     {
         this.gameWorld = gameWorld;
         this.renderer = renderer;
-        this.killBonusGranter = new KillBonusGranter();
     }
 
     public void handleTurn(KeyEvent event)
@@ -88,7 +81,7 @@ public class MainCharacterTurnHandler
 
     public void handlePostTurn()
     {
-        this.handlePostCharacterTurn();
+        new PostCharacterTurnHandler(this.gameWorld).handleTurnFragment();
         this.handleEnemyTurns();
         this.handlePostEnemyTurns();
     }
@@ -130,44 +123,6 @@ public class MainCharacterTurnHandler
         map.setElement(newRow, newColumn, mapElement);
         mapElement.setRow(newRow);
         mapElement.setColumn(newColumn);
-    }
-
-    private void handlePostCharacterTurn()
-    {
-        Map map = this.gameWorld.getMap();
-        MainCharacter character = this.gameWorld.getMainCharacter();
-        MapElement characterMapElement = character.getMapElement();
-
-        map.setElementVisited((MainCharacter)character, characterMapElement.getRow(), characterMapElement.getColumn());
-
-        MapElement backgroundElement = map.getBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn());
-        if (backgroundElement != null)
-        {
-            backgroundElement.collideWithMainCharacter(this.gameWorld, character);
-        }
-
-        if (!character.isDead())
-        {
-            this.handleMainCharacterRegeneration();
-        }
-
-        this.clearEnemies(map, character);
-    }
-
-    private void handleMainCharacterRegeneration()
-    {
-        MapElement mapElement = this.gameWorld.getMainCharacter().getMapElement();
-        int row = mapElement.getRow();
-        int column = mapElement.getColumn();
-
-        Map map = this.gameWorld.getMap();
-        if (!map.elementVisited(row, column))
-        {
-            map.visit(row, column);
-
-            MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
-            mainCharacter.incrementSteps();
-        }
     }
 
     private void handleMainCharacterRevival()
@@ -269,7 +224,7 @@ public class MainCharacterTurnHandler
             this.handleMainCharacterRevival();
         }
 
-        this.clearEnemies(map, character);
+        new EnemyClearer().clearEnemies(this.gameWorld, map, character);
 
         for (int row = 0; row < Map.NUM_ROWS; row++)
         {
@@ -295,47 +250,5 @@ public class MainCharacterTurnHandler
     public void renderSummary()
     {
         this.renderer.render(this.gameWorld);
-    }
-
-    private void clearEnemies(Map map, MainCharacter character)
-    {
-        for (int row = 0; row < Map.NUM_ROWS; row++)
-        {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = map.getElement(row, column);
-                if (element != null && element.isEnemy())
-                {
-                    Character enemy = ((EnemyMapElement)element).getCharacter();
-                    if (enemy.isDead())
-                    {
-                        this.killBonusGranter.grantKillBonuses(character, enemy);
-                        map.setElement(element.getRow(), element.getColumn(), null);
-
-                        if (character.getStatusEffects().isInferringZombie())
-                        {
-                            character.getStatusEffects().disableInferZombie();
-
-                            System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
-
-                            int maxHP = 200 + 10 * character.getSpellPoints(13);
-                            System.out.println("Max HP is: " + maxHP);
-
-                            SummonedZombie zombie = new SummonedZombie(maxHP);
-                            SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
-                            zombie.setMapElement(zombieElement);
-                            gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
-                        }
-
-                        if (enemy.isFinalBoss())
-                        {
-                            this.gameWorld.flagGameCompleted();
-                            character.getStatusEffects().enableRegenerateShop();
-                            RandomInventoryGenerator.handleRegeneration(this.gameWorld);
-                        }
-                    }
-                }
-            }
-        }
     }
 }
