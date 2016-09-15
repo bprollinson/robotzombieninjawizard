@@ -1,25 +1,17 @@
 package rznw.turn;
 
-import java.awt.event.KeyEvent;
-import java.util.Collection;
-import java.util.Iterator;
-
-import rznw.game.Character;
-import rznw.game.SummonedCharacter;
-import rznw.game.enemy.EnemyCharacter;
-import rznw.game.enemy.action.EnemyAction;
-import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
-import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
 import rznw.turn.positionchange.RandomPositionChange;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.utility.RandomNumberGenerator;
+
+import java.awt.event.KeyEvent;
 
 public class MainCharacterTurnHandler
 {
@@ -72,7 +64,7 @@ public class MainCharacterTurnHandler
             characterPositionChange = new RandomPositionChange(character);
         }
 
-        this.handleCharacterTurn(characterPositionChange, character);
+        new CharacterTurnHandler(this.gameWorld).handleTurnFragment(characterPositionChange, character);
 
         this.handlePostTurn();
 
@@ -82,7 +74,7 @@ public class MainCharacterTurnHandler
     public void handlePostTurn()
     {
         new PostCharacterTurnHandler(this.gameWorld).handleTurnFragment();
-        this.handleEnemyTurns();
+        new EnemyTurnHandler(this.gameWorld).handleTurnFragment();
         this.handlePostEnemyTurns();
     }
 
@@ -98,33 +90,6 @@ public class MainCharacterTurnHandler
         return event.isShiftDown() && event.getKeyCode() == MainCharacterTurnHandler.KEY_V && map.getBackgroundElement(row, column) instanceof Stairs;
     }
 
-    private void handleCharacterTurn(PositionChange positionChange, Character character)
-    {
-        if (!positionChange.isChange())
-        {
-            return;
-        }
-
-        Map map = this.gameWorld.getMap();
-
-        CollisionHandler collisionHandler = new CollisionHandler();
-        boolean collided = collisionHandler.handleCollision(character, map, positionChange, this.gameWorld);
-        if (collided)
-        {
-            return;
-        }
-
-        map.setElement(positionChange.getInitialRow(), positionChange.getInitialColumn(), null);
-
-        int newRow = positionChange.getFinalRow();
-        int newColumn = positionChange.getFinalColumn();
-
-        MapElement mapElement = character.getMapElement();
-        map.setElement(newRow, newColumn, mapElement);
-        mapElement.setRow(newRow);
-        mapElement.setColumn(newColumn);
-    }
-
     private void handleMainCharacterRevival()
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
@@ -135,82 +100,6 @@ public class MainCharacterTurnHandler
         {
             System.out.println("Reviving");
             character.setHP(1);
-        }
-    }
-
-    private void handleSummonedZombieTurns()
-    {
-        System.out.println("Handling summon turns");
-
-        MainCharacter character = this.gameWorld.getMainCharacter();
-
-        Collection<SummonedCharacter> summons = this.gameWorld.getMap().getSummons();
-        for (Iterator iterator = summons.iterator(); iterator.hasNext();)
-        {
-            System.out.println("Have a summon");
-
-            SummonedCharacter summon = (SummonedCharacter)iterator.next();
-            EnemyAIBasedPositionChange summonPositionChange = summon.getPositionChange(this.gameWorld);
-            System.out.println("Position change: " + summonPositionChange.getInitialRow() + ", " + summonPositionChange.getInitialColumn() + " -> " + summonPositionChange.getFinalRow() + ", " + summonPositionChange.getFinalColumn());
-
-            this.handleCharacterTurn(summonPositionChange, summon);
-
-            summon.getStatusEffects().processTurn(summon, this.gameWorld);
-        }
-    }
-
-    private void handleEnemyTurns()
-    {
-        this.handleSummonedZombieTurns();
-
-        MainCharacter character = this.gameWorld.getMainCharacter();
-
-        Collection<EnemyCharacter> enemies = this.gameWorld.getMap().getEnemies();
-        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
-        {
-            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            if (enemy.getStatusEffects().isFrozen())
-            {
-                System.out.println("Enemy is frozen!");
-            }
-            else
-            {
-                EnemyAction enemyAction = enemy.getAction(this.gameWorld);
-
-                if (enemyAction.isPositionChange())
-                {
-                    this.handleCharacterTurn(enemyAction.getPositionChange(), enemy);
-                }
-
-                if (enemyAction.isSpell())
-                {
-                    System.out.println("Enemy is casting a spell");
-
-                    EnemySpell spell = enemyAction.getSpell();
-                    spell.cast(gameWorld, enemy, enemyAction.getSpellPoints());
-
-                    int MPCost = spell.getMPCost(enemyAction.getSpellPoints());
-                    enemy.setMP(enemy.getMP() - MPCost);
-                }
-            }
-
-            Map map = this.gameWorld.getMap();
-            MapElement enemyMapElement = enemy.getMapElement();
-            MapElement backgroundElement = map.getBackgroundElement(enemyMapElement.getRow(), enemyMapElement.getColumn());
-
-            if (backgroundElement != null)
-            {
-                backgroundElement.collideWithEnemy(gameWorld, enemy);
-            }
-
-            enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
-        }
-
-        if (character.getStatusEffects().isSkippingTurn() || character.getStatusEffects().isFrozen())
-        {
-            System.out.println("Enemies take a turn while you are sleeping / frozen");
-            character.getStatusEffects().processTurn(character, gameWorld);
-            this.handleEnemyTurns();
         }
     }
 
