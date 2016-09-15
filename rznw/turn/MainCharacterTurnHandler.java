@@ -9,7 +9,6 @@ import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
 import rznw.turn.positionchange.RandomPositionChange;
 import rznw.ui.CharacterSummaryRenderer;
-import rznw.utility.RandomNumberGenerator;
 
 import java.awt.event.KeyEvent;
 
@@ -75,7 +74,7 @@ public class MainCharacterTurnHandler
     {
         new PostCharacterTurnHandler(this.gameWorld).handleTurnFragment();
         new EnemyTurnHandler(this.gameWorld).handleTurnFragment();
-        this.handlePostEnemyTurns();
+        new PostEnemyTurnHandler(this.gameWorld).handleTurnFragment();
     }
 
     private boolean eventIsFloorChange(KeyEvent event)
@@ -88,52 +87,6 @@ public class MainCharacterTurnHandler
         Map map = this.gameWorld.getMap();
 
         return event.isShiftDown() && event.getKeyCode() == MainCharacterTurnHandler.KEY_V && map.getBackgroundElement(row, column) instanceof Stairs;
-    }
-
-    private void handleMainCharacterRevival()
-    {
-        MainCharacter character = this.gameWorld.getMainCharacter();
-        int revivalProbability = 5 * character.getStatPoints(MainCharacter.STAT_LAST_BREATH);
-        System.out.println("Revival probability: " + revivalProbability);
-
-        if (RandomNumberGenerator.rollSucceeds(revivalProbability))
-        {
-            System.out.println("Reviving");
-            character.setHP(1);
-        }
-    }
-
-    private void handlePostEnemyTurns()
-    {
-        Map map = this.gameWorld.getMap();
-        MainCharacter character = this.gameWorld.getMainCharacter();
-
-        if (character.isDead())
-        {
-            this.handleMainCharacterRevival();
-        }
-
-        new EnemyClearer().clearEnemies(this.gameWorld, map, character);
-
-        for (int row = 0; row < Map.NUM_ROWS; row++)
-        {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = map.getElement(row, column);
-                if (element != null)
-                {
-                    element.processTurn(map);
-                }
-
-                element = map.getBackgroundElement(row, column);
-                if (element != null)
-                {
-                    element.processTurn(map);
-                }
-            }
-        }
-
-        character.getStatusEffects().processTurn(character, this.gameWorld);
     }
 
     public void renderSummary()
