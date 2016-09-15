@@ -9,7 +9,6 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
-import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
@@ -162,16 +161,6 @@ public abstract class EnemyCharacter extends Character
             int statIndex = statSequence[i % statSequence.length];
             this.stats[statIndex]++;
         }
-    }
-
-    public double distanceFromMainCharacter(GameWorld gameWorld)
-    {
-        MainCharacter character = gameWorld.getMainCharacter();
-
-        MapElement element = this.getMapElement();
-        MapElement characterElement = character.getMapElement();
-
-        return Math.sqrt(Math.pow(element.getRow() - characterElement.getRow(), 2) + Math.pow(element.getColumn() - characterElement.getColumn(), 2));
     }
 
     public int getViewRadius()
