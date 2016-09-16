@@ -3,6 +3,7 @@ package rznw.game;
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Armor;
+import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
@@ -461,7 +462,7 @@ public class StatusEffects
             return false;
         }
 
-        int statPoints = ((MainCharacter)this.character).getStatPoints(MainCharacter.STAT_THICK_SKIN);
+        int statPoints = ((MainCharacter)this.character).getStatPoints(Stat.STAT_THICK_SKIN);
         int probability = 5 * statPoints;
 
         Armor armor = ((MainCharacter)character).getEquipment().getEquippedArmor();

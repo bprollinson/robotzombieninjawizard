@@ -2,12 +2,13 @@ package rznw.game.maincharacter.calculator;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Weapon;
+import rznw.game.stat.Stat;
 
 public class MainCharacterDamageDealtCalculator
 {
     public int getDamage(MainCharacter mainCharacter)
     {
-        int damage = 50 + 5 * mainCharacter.getStatPoints(MainCharacter.STAT_DAMAGE);
+        int damage = 50 + 5 * mainCharacter.getStatPoints(Stat.STAT_DAMAGE);
 
         Weapon weapon = mainCharacter.getEquipment().getEquippedWeapon();
         if (weapon != null)

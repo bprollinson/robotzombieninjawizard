@@ -1,6 +1,7 @@
 package rznw.turn;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -51,7 +52,7 @@ public class PostEnemyTurnHandler implements TurnFragmentHandler
     private void handleMainCharacterRevival()
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
-        int revivalProbability = 5 * character.getStatPoints(MainCharacter.STAT_LAST_BREATH);
+        int revivalProbability = 5 * character.getStatPoints(Stat.STAT_LAST_BREATH);
         System.out.println("Revival probability: " + revivalProbability);
 
         if (RandomNumberGenerator.rollSucceeds(revivalProbability))

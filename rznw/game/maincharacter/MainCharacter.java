@@ -13,6 +13,7 @@ import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
+import rznw.game.stat.Stat;
 import rznw.game.stat.StatFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
 import rznw.map.GameWorld;
@@ -28,23 +29,6 @@ public abstract class MainCharacter extends Character
     public static final int MAX_STAT_POINTS = 20;
     public static final int MAX_SKILL_POINTS = 20;
     public static final int MAX_SPELL_POINTS = 20;
-
-    public static final int STAT_HEALTH = 0;
-    public static final int STAT_PHYSICAL_REGENERATION = 1;
-    public static final int STAT_LAST_BREATH = 2;
-    public static final int STAT_LIFE_BOND = 3;
-    public static final int STAT_ACCURACY = 4;
-    public static final int STAT_DODGE = 5;
-    public static final int STAT_SIGHT = 6;
-    public static final int STAT_FIND_TRAPS = 7;
-    public static final int STAT_DAMAGE = 8;
-    public static final int STAT_PADDING = 9;
-    public static final int STAT_UNENCUMBERANCE = 10;
-    public static final int STAT_THICK_SKIN = 11;
-    public static final int STAT_MANA = 12;
-    public static final int STAT_MENTAL_REGENERATION = 13;
-    public static final int STAT_MANA_BURN = 14;
-    public static final int STAT_MAGIC_RESISTANCE = 15;
 
     public static final int SKILL_DETECT_VITALITY = 0;
     public static final int SKILL_DETECT_ENEMIES = 1;
@@ -167,12 +151,12 @@ public abstract class MainCharacter extends Character
 
     public int getMaxHP()
     {
-        return 200 + 20 * this.stats[MainCharacter.STAT_HEALTH];
+        return 200 + 20 * this.stats[Stat.STAT_HEALTH];
     }
 
     public int getMaxMP()
     {
-        return 200 + 20 * this.stats[MainCharacter.STAT_MANA];
+        return 200 + 20 * this.stats[Stat.STAT_MANA];
     }
 
     public int getDamage()
@@ -314,7 +298,7 @@ public abstract class MainCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        int toHitPercent = 50 + 2 * this.getStatPoints(MainCharacter.STAT_ACCURACY);
+        int toHitPercent = 50 + 2 * this.getStatPoints(Stat.STAT_ACCURACY);
 
         Weapon weapon = this.getEquipment().getEquippedWeapon();
         if (weapon != null)
@@ -328,7 +312,7 @@ public abstract class MainCharacter extends Character
 
     public boolean dodgesAttack()
     {
-        int toDodgePercent = 2 * this.getStatPoints(MainCharacter.STAT_DODGE);
+        int toDodgePercent = 2 * this.getStatPoints(Stat.STAT_DODGE);
 
         Shield shield = this.getEquipment().getEquippedShield();
         if (shield != null)
@@ -365,12 +349,12 @@ public abstract class MainCharacter extends Character
 
     private int getStepsForHeal()
     {
-        return Math.max(1, 20 - this.getStatPoints(MainCharacter.STAT_PHYSICAL_REGENERATION));
+        return Math.max(1, 20 - this.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION));
     }
 
     private int getStepsForMPHeal()
     {
-        return Math.max(1, 20 - this.getStatPoints(MainCharacter.STAT_MENTAL_REGENERATION));
+        return Math.max(1, 20 - this.getStatPoints(Stat.STAT_MENTAL_REGENERATION));
     }
 
     private int getStepsForManaRiver()
@@ -380,7 +364,7 @@ public abstract class MainCharacter extends Character
 
     public void incrementSteps()
     {
-        if (this.getStatPoints(MainCharacter.STAT_PHYSICAL_REGENERATION) > 0)
+        if (this.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION) > 0)
         {
             this.HPSteps++;
             if (this.HPSteps >= this.getStepsForHeal())
@@ -390,7 +374,7 @@ public abstract class MainCharacter extends Character
             }
         }
 
-        if (this.getStatPoints(MainCharacter.STAT_MENTAL_REGENERATION) > 0)
+        if (this.getStatPoints(Stat.STAT_MENTAL_REGENERATION) > 0)
         {
             this.MPSteps++;
             if (this.MPSteps >= this.getStepsForMPHeal())
@@ -439,7 +423,7 @@ public abstract class MainCharacter extends Character
             equipmentBonus = shield.getViewRadiusBonus();
         }
 
-        return 2 + this.getStatPoints(MainCharacter.STAT_SIGHT) + equipmentBonus;
+        return 2 + this.getStatPoints(Stat.STAT_SIGHT) + equipmentBonus;
     }
 
     public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
@@ -553,7 +537,7 @@ public abstract class MainCharacter extends Character
 
     public void heal(int HP)
     {
-        int bonusHPPercent = 5 * this.getStatPoints(MainCharacter.STAT_LIFE_BOND);
+        int bonusHPPercent = 5 * this.getStatPoints(Stat.STAT_LIFE_BOND);
         int bonusHP = (int)Math.floor(bonusHPPercent / 100.0 * HP);
 
         if (bonusHP > 0)

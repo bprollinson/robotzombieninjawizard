@@ -2,6 +2,7 @@ package rznw.map.element;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.utility.RandomNumberGenerator;
@@ -78,7 +79,7 @@ public class TrapMapElement extends MapElement
     public void reveal(MainCharacter mainCharacter)
     {
         System.out.println("A trap is in range");
-        int trapRevealProbability = 5 * mainCharacter.getStatPoints(MainCharacter.STAT_FIND_TRAPS);
+        int trapRevealProbability = 5 * mainCharacter.getStatPoints(Stat.STAT_FIND_TRAPS);
         System.out.println("Trap reveal probability: " + trapRevealProbability);
 
         if (RandomNumberGenerator.rollSucceeds(trapRevealProbability))

@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
+import rznw.game.stat.Stat;
 
 public class EnemyCharacterDamageReceivedCalculator
 {
@@ -30,7 +31,7 @@ public class EnemyCharacterDamageReceivedCalculator
 
         if (damageSource != null && damageSource.isMainCharacter() && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
-            int bonusDamagePercent = 5 * ((MainCharacter)damageSource).getStatPoints(MainCharacter.STAT_MANA_BURN);
+            int bonusDamagePercent = 5 * ((MainCharacter)damageSource).getStatPoints(Stat.STAT_MANA_BURN);
 
             if (bonusDamagePercent > 0)
             {

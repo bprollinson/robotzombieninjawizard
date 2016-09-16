@@ -1,44 +1,42 @@
 package rznw.game.stat;
 
-import rznw.game.maincharacter.MainCharacter;
-
 public class StatFactory
 {
     public Stat getStat(int statIndex)
     {
         switch(statIndex)
         {
-            case MainCharacter.STAT_HEALTH:
+            case Stat.STAT_HEALTH:
                 return new HealthStat();
-            case MainCharacter.STAT_PHYSICAL_REGENERATION:
+            case Stat.STAT_PHYSICAL_REGENERATION:
                 return new PhysicalRegenerationStat();
-            case MainCharacter.STAT_LAST_BREATH:
+            case Stat.STAT_LAST_BREATH:
                 return new LastBreathStat();
-            case MainCharacter.STAT_LIFE_BOND:
+            case Stat.STAT_LIFE_BOND:
                 return new LifeBondStat();
-            case MainCharacter.STAT_ACCURACY:
+            case Stat.STAT_ACCURACY:
                 return new AccuracyStat();
-            case MainCharacter.STAT_DODGE:
+            case Stat.STAT_DODGE:
                 return new DodgeStat();
-            case MainCharacter.STAT_SIGHT:
+            case Stat.STAT_SIGHT:
                 return new SightStat();
-            case MainCharacter.STAT_FIND_TRAPS:
+            case Stat.STAT_FIND_TRAPS:
                 return new FindTrapsStat();
-            case MainCharacter.STAT_DAMAGE:
+            case Stat.STAT_DAMAGE:
                 return new DamageStat();
-            case MainCharacter.STAT_PADDING:
+            case Stat.STAT_PADDING:
                 return new PaddingStat();
-            case MainCharacter.STAT_UNENCUMBERANCE:
+            case Stat.STAT_UNENCUMBERANCE:
                 return new UnencumberanceStat();
-            case MainCharacter.STAT_THICK_SKIN:
+            case Stat.STAT_THICK_SKIN:
                 return new ThickSkinStat();
-            case MainCharacter.STAT_MANA:
+            case Stat.STAT_MANA:
                 return new ManaStat();
-            case MainCharacter.STAT_MENTAL_REGENERATION:
+            case Stat.STAT_MENTAL_REGENERATION:
                 return new MentalRegenerationStat();
-            case MainCharacter.STAT_MANA_BURN:
+            case Stat.STAT_MANA_BURN:
                 return new ManaBurnStat();
-            case MainCharacter.STAT_MAGIC_RESISTANCE:
+            case Stat.STAT_MAGIC_RESISTANCE:
                 return new MagicResistanceStat();
             default:
                 return null;

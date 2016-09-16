@@ -5,6 +5,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
+import rznw.game.stat.Stat;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterDamageReceivedCalculator
@@ -32,7 +33,7 @@ public class MainCharacterDamageReceivedCalculator
             }
         }
 
-        int paddingPercent = 2 * mainCharacter.getStatPoints(MainCharacter.STAT_PADDING);
+        int paddingPercent = 2 * mainCharacter.getStatPoints(Stat.STAT_PADDING);
         if (mainCharacter.getStatusEffects().isResistingDamage())
         {
             paddingPercent += 2 * mainCharacter.getSpellPoints(1);
@@ -40,7 +41,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
-            int magicPaddingPercent = 5 * mainCharacter.getStatPoints(MainCharacter.STAT_MAGIC_RESISTANCE);
+            int magicPaddingPercent = 5 * mainCharacter.getStatPoints(Stat.STAT_MAGIC_RESISTANCE);
 
             Shield shield = mainCharacter.getEquipment().getEquippedShield();
             if (shield != null)
