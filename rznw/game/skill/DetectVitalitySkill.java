@@ -19,7 +19,7 @@ public class DetectVitalitySkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        return character.getSkillPoints(MainCharacter.SKILL_DETECT_VITALITY) > 0;
+        return character.getSkillPoints(Skill.SKILL_DETECT_VITALITY) > 0;
     }
 
     public void use(GameWorld gameWorld)
@@ -27,7 +27,7 @@ public class DetectVitalitySkill extends Skill
         System.out.println("Using Detect Vitality");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        int skillPoints = character.getSkillPoints(MainCharacter.SKILL_DETECT_VITALITY);
+        int skillPoints = character.getSkillPoints(Skill.SKILL_DETECT_VITALITY);
         int radius = 1 + skillPoints;
         character.getStatusEffects().enableDetectVitality(skillPoints);
     }

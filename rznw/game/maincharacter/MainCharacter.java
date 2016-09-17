@@ -11,6 +11,7 @@ import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
+import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
 import rznw.game.stat.Stat;
@@ -29,23 +30,6 @@ public abstract class MainCharacter extends Character
     public static final int MAX_STAT_POINTS = 20;
     public static final int MAX_SKILL_POINTS = 20;
     public static final int MAX_SPELL_POINTS = 20;
-
-    public static final int SKILL_DETECT_VITALITY = 0;
-    public static final int SKILL_DETECT_ENEMIES = 1;
-    public static final int SKILL_BLOOD_RAGE = 2;
-    public static final int SKILL_POTION_FIND = 3;
-    public static final int SKILL_SUMMON_SHOPKEEPER = 4;
-    public static final int SKILL_WAYPOINT = 5;
-    public static final int SKILL_FAST_HANDS = 6;
-    public static final int SKILL_FIND_STAIRS = 7;
-    public static final int SKILL_ITEM_TRADE = 8;
-    public static final int SKILL_RAGE = 9;
-    public static final int SKILL_ABUNDANCE = 10;
-    public static final int SKILL_DISARM_TRAPS = 11;
-    public static final int SKILL_MAGIC_SEEDS = 12;
-    public static final int SKILL_MANA_SUCK = 13;
-    public static final int SKILL_PROTECTIVE_FIELD = 14;
-    public static final int SKILL_MANA_RIVER = 15;
 
     private static String[] statCategory = {
         "Vitality",
@@ -252,7 +236,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().magicSeedsEnabled())
         {
-            int magicSeedPoints = this.getSkillPoints(MainCharacter.SKILL_MAGIC_SEEDS);
+            int magicSeedPoints = this.getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
             bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
 
             System.out.println("Bonus spell points: " + bonusSpellPoints);
@@ -332,7 +316,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().rageEnabled())
         {
-            int dodgePenalty = Math.max(21 - this.getSkillPoints(MainCharacter.SKILL_RAGE), 1);
+            int dodgePenalty = Math.max(21 - this.getSkillPoints(Skill.SKILL_RAGE), 1);
             System.out.println("Dodge penalty: " + dodgePenalty);
             toDodgePercent -= dodgePenalty;
         }
@@ -359,7 +343,7 @@ public abstract class MainCharacter extends Character
 
     private int getStepsForManaRiver()
     {
-        return Math.max(1, 20 - this.getSkillPoints(MainCharacter.SKILL_MANA_RIVER));
+        return Math.max(1, 20 - this.getSkillPoints(Skill.SKILL_MANA_RIVER));
     }
 
     public void incrementSteps()
@@ -384,12 +368,12 @@ public abstract class MainCharacter extends Character
             }
         }
 
-        if (this.getSkillPoints(MainCharacter.SKILL_MANA_RIVER) > 0)
+        if (this.getSkillPoints(Skill.SKILL_MANA_RIVER) > 0)
         {
             this.manaRiverSteps++;
             if (this.manaRiverSteps >= this.getStepsForManaRiver())
             {
-                int manaRiverProbability = this.getSkillPoints(MainCharacter.SKILL_MANA_RIVER);
+                int manaRiverProbability = this.getSkillPoints(Skill.SKILL_MANA_RIVER);
 
                 if (RandomNumberGenerator.rollSucceeds(manaRiverProbability))
                 {
@@ -444,7 +428,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().manaSuckEnabled())
         {
-            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(MainCharacter.SKILL_MANA_SUCK) * damage);
+            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(Skill.SKILL_MANA_SUCK) * damage);
             if (MPFromDamage > 0)
             {
                 System.out.println("Healing MP from damage: " + MPFromDamage);

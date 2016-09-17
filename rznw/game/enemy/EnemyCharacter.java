@@ -8,6 +8,7 @@ import rznw.game.enemy.calculator.EnemyCharacterDamageReceivedCalculator;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.skill.Skill;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
@@ -97,7 +98,7 @@ public abstract class EnemyCharacter extends Character
 
     public boolean isDroppingItems(MainCharacter mainCharacter)
     {
-        int probability = 50 + 2 * mainCharacter.getSkillPoints(MainCharacter.SKILL_FAST_HANDS);
+        int probability = 50 + 2 * mainCharacter.getSkillPoints(Skill.SKILL_FAST_HANDS);
         probability += this.getStatusEffects().getBonusDropProbability();
         System.out.println("Item drop probability: " + probability);
 

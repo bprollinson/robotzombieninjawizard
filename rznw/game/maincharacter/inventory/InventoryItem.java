@@ -2,6 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.game.skill.Skill;
 
 public abstract class InventoryItem
 {
@@ -15,7 +16,7 @@ public abstract class InventoryItem
 
     public int getBuyPrice(MainCharacter character)
     {
-        int priceReductionPercent = (int)(2.0 * character.getSkillPoints(MainCharacter.SKILL_SUMMON_SHOPKEEPER));
+        int priceReductionPercent = (int)(2.0 * character.getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER));
 
         return (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.getValue());
     }

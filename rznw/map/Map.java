@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.skill.Skill;
 import rznw.map.element.MapElement;
 import rznw.map.element.Stairs;
 import rznw.map.element.SummonedMinionMapElement;
@@ -113,7 +114,7 @@ public class Map
             }
         }
 
-        radius = 3 * character.getSkillPoints(MainCharacter.SKILL_FIND_STAIRS);
+        radius = 3 * character.getSkillPoints(Skill.SKILL_FIND_STAIRS);
         System.out.println("Looking for stairs with radius: " + radius);
         minRow = Math.max(row - radius, 0);
         maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);

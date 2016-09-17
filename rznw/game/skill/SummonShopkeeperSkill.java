@@ -19,7 +19,7 @@ public class SummonShopkeeperSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        return character.getSkillPoints(MainCharacter.SKILL_SUMMON_SHOPKEEPER) > 0;
+        return character.getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER) > 0;
     }
 
     public void use(GameWorld gameWorld)
@@ -27,7 +27,7 @@ public class SummonShopkeeperSkill extends Skill
         System.out.println("Using Rage");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        int skillPoints = character.getSkillPoints(MainCharacter.SKILL_SUMMON_SHOPKEEPER);
+        int skillPoints = character.getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER);
         int priceReductionPercent = 2 * skillPoints;
         character.getStatusEffects().enableSummonShopkeeper(priceReductionPercent);
     }

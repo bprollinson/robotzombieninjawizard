@@ -2,6 +2,7 @@ package rznw.map.element;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -62,7 +63,7 @@ public class TrapMapElement extends MapElement
         {
             this.spring();
 
-            int disarmProbability = 5 * mainCharacter.getSkillPoints(MainCharacter.SKILL_DISARM_TRAPS);
+            int disarmProbability = 5 * mainCharacter.getSkillPoints(Skill.SKILL_DISARM_TRAPS);
 
             if (RandomNumberGenerator.rollSucceeds(disarmProbability))
             {

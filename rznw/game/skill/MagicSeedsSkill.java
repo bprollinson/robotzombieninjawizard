@@ -19,14 +19,14 @@ public class MagicSeedsSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        return character.getSkillPoints(MainCharacter.SKILL_MAGIC_SEEDS) > 0;
+        return character.getSkillPoints(Skill.SKILL_MAGIC_SEEDS) > 0;
     }
 
     public void use(GameWorld gameWorld)
     {
         System.out.println("Using Magic Seeds");
 
-        int skillPoints = gameWorld.getMainCharacter().getSkillPoints(MainCharacter.SKILL_MAGIC_SEEDS);
+        int skillPoints = gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
         int numTurns = 2 + (int)Math.floor(skillPoints / 4);
         gameWorld.getMainCharacter().getStatusEffects().enableMagicSeeds(numTurns);
     }

@@ -18,6 +18,7 @@ import rznw.game.maincharacter.inventory.ReplenishingSanityDrop;
 import rznw.game.maincharacter.inventory.ReplenishingXRayDrop;
 import rznw.game.maincharacter.inventory.SanityDrop;
 import rznw.game.maincharacter.inventory.XRayDrop;
+import rznw.game.skill.Skill;
 import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
 import rznw.utility.RandomNumberGenerator;
@@ -98,7 +99,7 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
-        int skillPoints = this.gameWorld.getMainCharacter().getSkillPoints(MainCharacter.SKILL_ITEM_TRADE);
+        int skillPoints = this.gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_ITEM_TRADE);
         int numToTradeIn = 6 - (int)Math.floor(skillPoints / 5);
 
         if (this.numTradedIn == numToTradeIn)

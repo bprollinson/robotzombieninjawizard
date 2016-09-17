@@ -23,7 +23,7 @@ public class WaypointSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        if (character.getSkillPoints(MainCharacter.SKILL_WAYPOINT) == 0)
+        if (character.getSkillPoints(Skill.SKILL_WAYPOINT) == 0)
         {
             return false;
         }
@@ -37,7 +37,7 @@ public class WaypointSkill extends Skill
     {
         System.out.println("Using Waypoint");
 
-        int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkillPoints(MainCharacter.SKILL_WAYPOINT);
+        int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_WAYPOINT);
         if (!RandomNumberGenerator.rollSucceeds(successProbability))
         {
             System.out.println("Failure");

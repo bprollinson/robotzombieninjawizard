@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.skill.Skill;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
@@ -63,7 +64,7 @@ public class DetectVitalityScreenRenderer
                 char displayCharacter = ' ';
 
                 boolean visible = map.isVisible(i, j);
-                int skillPoints = character.getSkillPoints(MainCharacter.SKILL_DETECT_VITALITY);
+                int skillPoints = character.getSkillPoints(Skill.SKILL_DETECT_VITALITY);
                 int radius = 1 + skillPoints;
                 MapElement characterElement = character.getMapElement();
                 double distance = Math.sqrt(Math.pow(characterElement.getRow() - i, 2) + Math.pow(characterElement.getColumn() - j, 2));

@@ -8,6 +8,7 @@ import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
+import rznw.game.skill.Skill;
 import rznw.game.spell.robot.PowerSearchSpell;
 import rznw.utility.RandomNumberGenerator;
 
@@ -50,7 +51,7 @@ public class KillBonusGranter
     private void grantGold(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
     {
         int baseGold = enemyCharacter.getNumGold();
-        int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkillPoints(MainCharacter.SKILL_ABUNDANCE));
+        int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkillPoints(Skill.SKILL_ABUNDANCE));
         bonusGoldPercent += enemyCharacter.getStatusEffects().getBonusGoldPercent();
         int bonusGold = (int)(baseGold * bonusGoldPercent / 100);
 
@@ -79,9 +80,9 @@ public class KillBonusGranter
             }
         }
 
-        if (mainCharacter.getSkillPoints(MainCharacter.SKILL_POTION_FIND) > 0)
+        if (mainCharacter.getSkillPoints(Skill.SKILL_POTION_FIND) > 0)
         {
-            int probability = 5 * mainCharacter.getSkillPoints(MainCharacter.SKILL_POTION_FIND);
+            int probability = 5 * mainCharacter.getSkillPoints(Skill.SKILL_POTION_FIND);
 
             if (RandomNumberGenerator.rollSucceeds(probability))
             {
