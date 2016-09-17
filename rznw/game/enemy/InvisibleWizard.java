@@ -33,9 +33,9 @@ public class InvisibleWizard extends EnemyCharacterWithSpell
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_ACCURACY,
-          EnemyCharacter.STAT_DAMAGE
+          EnemyStat.STAT_MANA,
+          EnemyStat.STAT_ACCURACY,
+          EnemyStat.STAT_DAMAGE
         };
     }
 

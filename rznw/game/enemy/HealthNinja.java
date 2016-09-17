@@ -33,10 +33,10 @@ public class HealthNinja extends EnemyCharacterWithSpell
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_HEALTH,
-          EnemyCharacter.STAT_HEALTH,
-          EnemyCharacter.STAT_DAMAGE,
-          EnemyCharacter.STAT_ACCURACY
+          EnemyStat.STAT_HEALTH,
+          EnemyStat.STAT_HEALTH,
+          EnemyStat.STAT_DAMAGE,
+          EnemyStat.STAT_ACCURACY
         };
     }
 

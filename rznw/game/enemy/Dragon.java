@@ -30,11 +30,11 @@ public class Dragon extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_HEALTH,
-          EnemyCharacter.STAT_PADDING,
-          EnemyCharacter.STAT_PADDING,
-          EnemyCharacter.STAT_DAMAGE,
-          EnemyCharacter.STAT_ACCURACY
+          EnemyStat.STAT_HEALTH,
+          EnemyStat.STAT_PADDING,
+          EnemyStat.STAT_PADDING,
+          EnemyStat.STAT_DAMAGE,
+          EnemyStat.STAT_ACCURACY
         };
     }
 

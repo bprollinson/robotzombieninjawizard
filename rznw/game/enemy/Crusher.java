@@ -31,8 +31,8 @@ public class Crusher extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_DAMAGE,
-          EnemyCharacter.STAT_ACCURACY
+          EnemyStat.STAT_DAMAGE,
+          EnemyStat.STAT_ACCURACY
         };
     }
 

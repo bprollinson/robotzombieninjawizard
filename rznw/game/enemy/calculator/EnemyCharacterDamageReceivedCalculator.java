@@ -2,6 +2,7 @@ package rznw.game.enemy.calculator;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.enemy.EnemyStat;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.stat.Stat;
@@ -10,7 +11,7 @@ public class EnemyCharacterDamageReceivedCalculator
 {
     public int getDamage(EnemyCharacter enemyCharacter, int damage, Character damageSource, int damageSourceType)
     {
-        int paddingPercent = 2 * enemyCharacter.getStatPoints(EnemyCharacter.STAT_PADDING);
+        int paddingPercent = 2 * enemyCharacter.getStatPoints(EnemyStat.STAT_PADDING);
 
         if (enemyCharacter.getStatusEffects().getArmorBreakPercent() > 0)
         {

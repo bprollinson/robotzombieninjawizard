@@ -29,9 +29,9 @@ public class Sphinx extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_HEALTH,
-          EnemyCharacter.STAT_ACCURACY,
-          EnemyCharacter.STAT_SIGHT
+          EnemyStat.STAT_HEALTH,
+          EnemyStat.STAT_ACCURACY,
+          EnemyStat.STAT_SIGHT
         };
     }
 

@@ -14,15 +14,6 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class EnemyCharacter extends Character
 {
-    public static int STAT_HEALTH = 0;
-    public static int STAT_ACCURACY = 1;
-    public static int STAT_DODGE = 2;
-    public static int STAT_SIGHT = 3;
-    public static int STAT_DAMAGE = 4;
-    public static int STAT_PADDING = 5;
-    public static int STAT_MANA = 6;
-    public static int STAT_MANA_BURN = 7;
-
     protected int level;
 
     private int[] stats;
@@ -66,7 +57,7 @@ public abstract class EnemyCharacter extends Character
 
         if (this.stats != null)
         {
-            result += 20 * this.getStatPoints(EnemyCharacter.STAT_HEALTH);
+            result += 20 * this.getStatPoints(EnemyStat.STAT_HEALTH);
             System.out.println("Enemy max HP: " + result);
         }
 
@@ -79,7 +70,7 @@ public abstract class EnemyCharacter extends Character
 
         if (this.stats != null)
         {
-            result += 20 * this.getStatPoints(EnemyCharacter.STAT_MANA);
+            result += 20 * this.getStatPoints(EnemyStat.STAT_MANA);
             System.out.println("Enemy max MP: " + result);
         }
 
@@ -125,7 +116,7 @@ public abstract class EnemyCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        int toHitPercent = 50 + 2 * this.getStatPoints(EnemyCharacter.STAT_ACCURACY);
+        int toHitPercent = 50 + 2 * this.getStatPoints(EnemyStat.STAT_ACCURACY);
         System.out.println("Enemy melee percent: " + toHitPercent);
 
         return RandomNumberGenerator.rollSucceeds(toHitPercent);
@@ -133,7 +124,7 @@ public abstract class EnemyCharacter extends Character
 
     public boolean dodgesAttack()
     {
-        int toDodgePercent = 2 *  this.getStatPoints(EnemyCharacter.STAT_DODGE);
+        int toDodgePercent = 2 *  this.getStatPoints(EnemyStat.STAT_DODGE);
         System.out.println("Enemy chance to dodge: " + toDodgePercent);
 
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
@@ -166,7 +157,7 @@ public abstract class EnemyCharacter extends Character
 
     public int getViewRadius()
     {
-        return 5 + this.getStatPoints(EnemyCharacter.STAT_SIGHT);
+        return 5 + this.getStatPoints(EnemyStat.STAT_SIGHT);
     }
 
     protected abstract int[] getStatSequence();

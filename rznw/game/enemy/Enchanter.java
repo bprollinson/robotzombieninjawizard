@@ -33,11 +33,11 @@ public class Enchanter extends EnemyCharacterWithSpell
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_MANA_BURN,
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_MANA_BURN,
-          EnemyCharacter.STAT_SIGHT
+          EnemyStat.STAT_MANA,
+          EnemyStat.STAT_MANA_BURN,
+          EnemyStat.STAT_MANA,
+          EnemyStat.STAT_MANA_BURN,
+          EnemyStat.STAT_SIGHT
         };
     }
 

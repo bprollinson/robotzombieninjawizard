@@ -28,8 +28,8 @@ public class Mummy extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_SIGHT,
-          EnemyCharacter.STAT_PADDING
+          EnemyStat.STAT_SIGHT,
+          EnemyStat.STAT_PADDING
         };
     }
 

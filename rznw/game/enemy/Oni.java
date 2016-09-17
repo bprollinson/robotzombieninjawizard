@@ -49,7 +49,7 @@ public class Oni extends EnemyCharacterWithSpell
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_MANA
+          EnemyStat.STAT_MANA
         };
     }
 

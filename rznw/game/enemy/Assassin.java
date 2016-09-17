@@ -28,8 +28,8 @@ public class Assassin extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_DODGE,
-          EnemyCharacter.STAT_HEALTH
+          EnemyStat.STAT_DODGE,
+          EnemyStat.STAT_HEALTH
         };
     }
 

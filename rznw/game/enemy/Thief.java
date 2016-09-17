@@ -29,11 +29,11 @@ public class Thief extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_ACCURACY,
-          EnemyCharacter.STAT_DODGE,
-          EnemyCharacter.STAT_ACCURACY,
-          EnemyCharacter.STAT_DODGE,
-          EnemyCharacter.STAT_HEALTH
+          EnemyStat.STAT_ACCURACY,
+          EnemyStat.STAT_DODGE,
+          EnemyStat.STAT_ACCURACY,
+          EnemyStat.STAT_DODGE,
+          EnemyStat.STAT_HEALTH
         };
     }
 

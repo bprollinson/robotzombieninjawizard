@@ -29,7 +29,7 @@ public class Viper extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_ACCURACY
+          EnemyStat.STAT_ACCURACY
         };
     }
 

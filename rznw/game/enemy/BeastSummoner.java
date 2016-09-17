@@ -33,12 +33,12 @@ public class BeastSummoner extends EnemyCharacterWithSpell
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_MANA,
-          EnemyCharacter.STAT_SIGHT,
-          EnemyCharacter.STAT_ACCURACY,
-          EnemyCharacter.STAT_DAMAGE
+          EnemyStat.STAT_MANA,
+          EnemyStat.STAT_MANA,
+          EnemyStat.STAT_MANA,
+          EnemyStat.STAT_SIGHT,
+          EnemyStat.STAT_ACCURACY,
+          EnemyStat.STAT_DAMAGE
         };
     }
 

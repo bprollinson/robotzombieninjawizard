@@ -29,11 +29,11 @@ public class Leech extends EnemyCharacter
     public int[] getStatSequence()
     {
         return new int[]{
-          EnemyCharacter.STAT_HEALTH,
-          EnemyCharacter.STAT_DAMAGE,
-          EnemyCharacter.STAT_ACCURACY,
-          EnemyCharacter.STAT_DAMAGE,
-          EnemyCharacter.STAT_ACCURACY
+          EnemyStat.STAT_HEALTH,
+          EnemyStat.STAT_DAMAGE,
+          EnemyStat.STAT_ACCURACY,
+          EnemyStat.STAT_DAMAGE,
+          EnemyStat.STAT_ACCURACY
         };
     }
 
