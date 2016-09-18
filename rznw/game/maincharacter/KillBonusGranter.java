@@ -18,7 +18,8 @@ public class KillBonusGranter
     public KillBonusGranter()
     {
         this.components = new KillBonusGranterComponent[] {
-            new ExperienceKillBonusGranter()
+            new ExperienceKillBonusGranter(),
+            new GoldKillBonusGranter()
         };
     }
 
@@ -38,19 +39,8 @@ public class KillBonusGranter
             component.grantKillBonuses(mainCharacter, enemyCharacter);
         }
 
-        this.grantGold(mainCharacter, enemyCharacter);
         this.grantItems(mainCharacter, enemyCharacter);
         this.grantEquipment(mainCharacter, enemyCharacter);
-    }
-
-    private void grantGold(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
-    {
-        int baseGold = enemyCharacter.getNumGold();
-        int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkillPoints(Skill.SKILL_ABUNDANCE));
-        bonusGoldPercent += enemyCharacter.getStatusEffects().getBonusGoldPercent();
-        int bonusGold = (int)(baseGold * bonusGoldPercent / 100);
-
-        mainCharacter.getInventory().addGold(baseGold + bonusGold);
     }
 
     private void grantItems(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
