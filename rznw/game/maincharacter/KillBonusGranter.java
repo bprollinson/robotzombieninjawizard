@@ -2,7 +2,6 @@ package rznw.game.maincharacter;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryFullException;
@@ -14,6 +13,15 @@ import rznw.utility.RandomNumberGenerator;
 
 public class KillBonusGranter
 {
+    private KillBonusGranterComponent[] components;
+
+    public KillBonusGranter()
+    {
+        this.components = new KillBonusGranterComponent[] {
+            new ExperienceKillBonusGranter()
+        };
+    }
+
     public void grantKillBonuses(Character character, Character otherCharacter)
     {
         if (!character.isMainCharacter() || !otherCharacter.isEnemy())
@@ -24,28 +32,15 @@ public class KillBonusGranter
         MainCharacter mainCharacter = (MainCharacter)character;
         EnemyCharacter enemyCharacter = (EnemyCharacter)otherCharacter;
 
-        this.grantExperience(mainCharacter, enemyCharacter);
+        for (int i = 0; i < this.components.length; i++)
+        {
+            KillBonusGranterComponent component = this.components[i];
+            component.grantKillBonuses(mainCharacter, enemyCharacter);
+        }
+
         this.grantGold(mainCharacter, enemyCharacter);
         this.grantItems(mainCharacter, enemyCharacter);
         this.grantEquipment(mainCharacter, enemyCharacter);
-    }
-
-    private void grantExperience(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
-    {
-        int oldLevel = mainCharacter.getLevel();
-
-        int experience = enemyCharacter.getExperienceReward();
-        int maxExperience = ExperienceCalculator.getMaxExperience();
-        experience = Math.min(experience, maxExperience - mainCharacter.getExperience());
-        mainCharacter.grantExperience(experience);
-        int newLevel = ExperienceCalculator.getLevel(mainCharacter.getExperience());
-
-        if (newLevel > oldLevel)
-        {
-            System.out.println("Leveling up " + (newLevel - oldLevel) + " time(s) to level " + newLevel);
-            mainCharacter.setLevel(newLevel);
-            mainCharacter.setPendingLevels(newLevel - oldLevel);
-        }
     }
 
     private void grantGold(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
