@@ -2,6 +2,7 @@ package rznw.game.spell.ninja;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
+import rznw.game.StatusEffects;
 import rznw.map.GameWorld;
 
 public class DeathStrikeSpell extends UndirectedSpell
@@ -21,7 +22,7 @@ public class DeathStrikeSpell extends UndirectedSpell
         System.out.println("Casting Death Strike");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().enableDeathStrike();
+        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_DEATH_STRIKE, true);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

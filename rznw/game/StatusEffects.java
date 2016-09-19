@@ -26,9 +26,9 @@ public class StatusEffects
     public static final int NUM_STATS = 8;
 
     private static final int EFFECT_POISONED = 0;
-    private static final int EFFECT_REVERSE_PAIN = 1;
-    private static final int EFFECT_DEATH_STRIKE = 2;
-    private static final int EFFECT_SMOKE_BOMB = 3;
+    public static final int EFFECT_REVERSE_PAIN = 1;
+    public static final int EFFECT_DEATH_STRIKE = 2;
+    public static final int EFFECT_SMOKE_BOMB = 3;
     private static final int EFFECT_COUNTERSTRIKE = 4;
     private static final int EFFECT_INFER_ZOMBIE = 5;
     private static final int EFFECT_REGENERATE_SHOP = 6;
@@ -159,11 +159,6 @@ public class StatusEffects
         this.statusEffects.put(StatusEffects.EFFECT_POISONED, false);
     }
 
-    public void reversePain()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_REVERSE_PAIN, true);
-    }
-
     public boolean isFrozen()
     {
         return this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) > 0;
@@ -174,24 +169,9 @@ public class StatusEffects
         return this.statusEffects.get(StatusEffects.EFFECT_REVERSE_PAIN);
     }
 
-    public void enableDeathStrike()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_DEATH_STRIKE, true);
-    }
-
     public boolean isDeathStriking()
     {
         return this.statusEffects.get(StatusEffects.EFFECT_DEATH_STRIKE);
-    }
-
-    public void disableDeathStrike()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_DEATH_STRIKE, false);
-    }
-
-    public void enableSmokeBomb()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, true);
     }
 
     public boolean smokeBombEnabled()

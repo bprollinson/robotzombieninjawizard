@@ -11,6 +11,7 @@ import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
+import rznw.game.StatusEffects;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
@@ -487,7 +488,7 @@ public abstract class MainCharacter extends Character
                 damageSource.setHP(0);
             }
 
-            this.getStatusEffects().disableDeathStrike();
+            this.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_DEATH_STRIKE, false);
         }
 
         if (this.getStatusEffects().smokeBombEnabled() && damageSource.isEnemy())

@@ -2,6 +2,7 @@ package rznw.game.spell.ninja;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
+import rznw.game.StatusEffects;
 import rznw.map.GameWorld;
 
 public class ReversePainSpell extends UndirectedSpell
@@ -21,7 +22,7 @@ public class ReversePainSpell extends UndirectedSpell
         System.out.println("Casting Reverse Pain");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().reversePain();
+        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REVERSE_PAIN, true);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
