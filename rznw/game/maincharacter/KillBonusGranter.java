@@ -2,8 +2,6 @@ package rznw.game.maincharacter;
 
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.maincharacter.inventory.EquipmentFullException;
-import rznw.game.maincharacter.inventory.EquipmentGroup;
 
 public class KillBonusGranter
 {
@@ -14,7 +12,8 @@ public class KillBonusGranter
         this.components = new KillBonusGranterComponent[] {
             new ExperienceKillBonusGranter(),
             new GoldKillBonusGranter(),
-            new ItemKillBonusGranter()
+            new ItemKillBonusGranter(),
+            new EquipmentKillBonusGranter()
         };
     }
 
@@ -32,24 +31,6 @@ public class KillBonusGranter
         {
             KillBonusGranterComponent component = this.components[i];
             component.grantKillBonuses(mainCharacter, enemyCharacter);
-        }
-
-        this.grantEquipment(mainCharacter, enemyCharacter);
-    }
-
-    private void grantEquipment(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
-    {
-        if (enemyCharacter.isDroppingEquipment())
-        {
-            EquipmentGroup equipmentGroup = new EquipmentGroup(enemyCharacter.getEquipmentDrop(), 1);
-            try
-            {
-                mainCharacter.getEquipment().addEquipment(equipmentGroup);
-            }
-            catch (EquipmentFullException efe)
-            {
-                System.out.println("Equipment full");
-            }
         }
     }
 }
