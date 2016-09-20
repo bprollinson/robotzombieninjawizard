@@ -1,6 +1,7 @@
 package rznw.turn;
 
 import rznw.game.Character;
+import rznw.game.StatusEffects;
 import rznw.game.SummonedZombie;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
@@ -37,7 +38,7 @@ public class EnemyClearer
 
                         if (character.getStatusEffects().isInferringZombie())
                         {
-                            character.getStatusEffects().disableInferZombie();
+                            character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_INFER_ZOMBIE, false);
 
                             System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
 

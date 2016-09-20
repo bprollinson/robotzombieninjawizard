@@ -457,7 +457,7 @@ public abstract class MainCharacter extends Character
                 System.out.println("Enemy hp after: " + damageSource.getHP());
             }
 
-            this.getStatusEffects().disableCounterstrike();
+            this.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_COUNTERSTRIKE, false);
         }
 
         if (this.getStatusEffects().thornSkinEnabled() && damageSource.isEnemy())
@@ -502,7 +502,7 @@ public abstract class MainCharacter extends Character
                 SmokeBombSpell.escape(gameWorld);
             }
 
-            this.getStatusEffects().disableSmokeBomb();
+            this.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_SMOKE_BOMB, false);
         }
 
         if (this.getStatusEffects().barbedSkinEnabled() && damageSource.isEnemy())

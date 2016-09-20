@@ -25,12 +25,12 @@ public class StatusEffects
     public static final int NUM_STATUS_EFFECT_TURNS = 16;
     public static final int NUM_STATS = 8;
 
-    private static final int EFFECT_POISONED = 0;
+    public static final int EFFECT_POISONED = 0;
     public static final int EFFECT_REVERSE_PAIN = 1;
     public static final int EFFECT_DEATH_STRIKE = 2;
     public static final int EFFECT_SMOKE_BOMB = 3;
-    private static final int EFFECT_COUNTERSTRIKE = 4;
-    private static final int EFFECT_INFER_ZOMBIE = 5;
+    public static final int EFFECT_COUNTERSTRIKE = 4;
+    public static final int EFFECT_INFER_ZOMBIE = 5;
     private static final int EFFECT_REGENERATE_SHOP = 6;
 
     private static final int EFFECT_SIGNAL_WEAPON = 0;
@@ -154,11 +154,6 @@ public class StatusEffects
         return this.statusEffects.get(StatusEffects.EFFECT_POISONED);
     }
 
-    public void healPoison()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_POISONED, false);
-    }
-
     public boolean isFrozen()
     {
         return this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) > 0;
@@ -179,24 +174,9 @@ public class StatusEffects
         return this.statusEffects.get(StatusEffects.EFFECT_SMOKE_BOMB);
     }
 
-    public void disableSmokeBomb()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, false);
-    }
-
-    public void enableCounterstrike()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, true);
-    }
-
     public boolean isCounterstriking()
     {
         return this.statusEffects.get(StatusEffects.EFFECT_COUNTERSTRIKE);
-    }
-
-    public void disableCounterstrike()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, false);
     }
 
     public void confuse()
@@ -287,19 +267,9 @@ public class StatusEffects
         return this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) > 0;
     }
 
-    public void enableInferZombie()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, true);
-    }
-
     public boolean isInferringZombie()
     {
         return this.statusEffects.get(StatusEffects.EFFECT_INFER_ZOMBIE);
-    }
-
-    public void disableInferZombie()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, false);
     }
 
     public void skipTurns(int turnsToSkip)

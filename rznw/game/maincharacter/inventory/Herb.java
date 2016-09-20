@@ -1,5 +1,6 @@
 package rznw.game.maincharacter.inventory;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
@@ -19,7 +20,7 @@ public class Herb extends InventoryItem
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
-        character.getStatusEffects().healPoison();
+        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_POISONED, false);
     }
 
     public int getValue()

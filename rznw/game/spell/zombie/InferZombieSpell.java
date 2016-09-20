@@ -1,5 +1,6 @@
 package rznw.game.spell.zombie;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
@@ -21,7 +22,7 @@ public class InferZombieSpell extends UndirectedSpell
         System.out.println("Casting Infer Zombie");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().enableInferZombie();
+        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_INFER_ZOMBIE, true);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

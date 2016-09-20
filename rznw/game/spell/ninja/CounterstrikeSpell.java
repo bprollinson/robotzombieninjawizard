@@ -1,5 +1,6 @@
 package rznw.game.spell.ninja;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
@@ -21,7 +22,7 @@ public class CounterstrikeSpell extends UndirectedSpell
         System.out.println("Casting Counterstrike");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().enableCounterstrike();
+        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_COUNTERSTRIKE, true);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

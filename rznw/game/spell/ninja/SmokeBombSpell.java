@@ -125,6 +125,7 @@ public class SmokeBombSpell extends UndirectedSpell
 
         return new String[] {
             "MP cost: " + this.getMPCost(character, spellPoints),
+            "Chance to escape: " + 5 * spellPoints + "%",
             "Safety percentage: " + positionPercentage + "%"
         };
     }
