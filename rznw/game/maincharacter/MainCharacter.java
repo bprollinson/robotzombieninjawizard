@@ -442,7 +442,7 @@ public abstract class MainCharacter extends Character
             return damage;
         }
 
-        if (this.getStatusEffects().isCounterstriking() && damageSource.isEnemy())
+        if (this.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_COUNTERSTRIKE) && damageSource.isEnemy())
         {
             System.out.println("Checking counterstrike");
 
@@ -477,7 +477,7 @@ public abstract class MainCharacter extends Character
             damageSource.getStatusEffects().poison();
         }
 
-        if (this.getStatusEffects().isDeathStriking() && damageSource.isEnemy())
+        if (this.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_DEATH_STRIKE) && damageSource.isEnemy())
         {
             System.out.println("Checking death strike");
 
@@ -491,7 +491,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_DEATH_STRIKE, false);
         }
 
-        if (this.getStatusEffects().smokeBombEnabled() && damageSource.isEnemy())
+        if (this.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_SMOKE_BOMB) && damageSource.isEnemy())
         {
             System.out.println("Checking smoke bomb");
 

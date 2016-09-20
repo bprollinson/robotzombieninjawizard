@@ -1,5 +1,6 @@
 package rznw.game.enemy.action.choice;
 
+import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.EnemyCharacterWithSpell;
 import rznw.game.enemy.action.EnemyAction;
@@ -28,7 +29,7 @@ public class RadialPoisonSpellChoice extends EnemyActionChoice
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
         MapElement enemyMapElement = enemyCharacter.getMapElement();
 
-        if (mainCharacter.getStatusEffects().isPoisoned())
+        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_POISONED))
         {
             System.out.println("Already poisoned - just attacking");
             return null;

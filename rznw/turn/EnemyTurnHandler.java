@@ -1,5 +1,6 @@
 package rznw.turn;
 
+import rznw.game.StatusEffects;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.action.EnemyAction;
@@ -32,7 +33,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            if (enemy.getStatusEffects().isFrozen())
+            if (enemy.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FROZEN) > 0)
             {
                 System.out.println("Enemy is frozen!");
             }
@@ -69,7 +70,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
 
-        if (character.getStatusEffects().isSkippingTurn() || character.getStatusEffects().isFrozen())
+        if (character.getStatusEffects().isSkippingTurn() || character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FROZEN) > 0)
         {
             System.out.println("Enemies take a turn while you are sleeping / frozen");
             character.getStatusEffects().processTurn(character, this.gameWorld);

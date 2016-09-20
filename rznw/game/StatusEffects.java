@@ -31,7 +31,7 @@ public class StatusEffects
     public static final int EFFECT_SMOKE_BOMB = 3;
     public static final int EFFECT_COUNTERSTRIKE = 4;
     public static final int EFFECT_INFER_ZOMBIE = 5;
-    private static final int EFFECT_REGENERATE_SHOP = 6;
+    public static final int EFFECT_REGENERATE_SHOP = 6;
 
     private static final int EFFECT_SIGNAL_WEAPON = 0;
     private static final int EFFECT_THORN_SKIN = 1;
@@ -48,7 +48,7 @@ public class StatusEffects
     private static final int EFFECT_INVISIBLE = 12;
     private static final int EFFECT_POWER_SEARCH = 13;
     private static final int EFFECT_CONFUSION = 14;
-    private static final int EFFECT_FROZEN = 15;
+    public static final int EFFECT_FROZEN = 15;
 
     private static final int STAT_ARMOR_BREAK = 0;
     private static final int STAT_DETECT_VITALITY_RADIUS = 1;
@@ -147,36 +147,6 @@ public class StatusEffects
         {
             this.statusEffects.put(StatusEffects.EFFECT_POISONED, true);
         }
-    }
-
-    public boolean isPoisoned()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_POISONED);
-    }
-
-    public boolean isFrozen()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_FROZEN) > 0;
-    }
-
-    public boolean isReversingPain()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_REVERSE_PAIN);
-    }
-
-    public boolean isDeathStriking()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_DEATH_STRIKE);
-    }
-
-    public boolean smokeBombEnabled()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_SMOKE_BOMB);
-    }
-
-    public boolean isCounterstriking()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_COUNTERSTRIKE);
     }
 
     public void confuse()
@@ -460,16 +430,6 @@ public class StatusEffects
     public boolean regenerateShopEnabled()
     {
         return this.statusEffects.get(StatusEffects.EFFECT_REGENERATE_SHOP);
-    }
-
-    public void enableRegenerateShop()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, true);
-    }
-
-    public void disableRegenerateShop()
-    {
-        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, false);
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

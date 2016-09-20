@@ -54,7 +54,7 @@ public class EnemyClearer
                         if (enemy.isFinalBoss())
                         {
                             gameWorld.flagGameCompleted();
-                            character.getStatusEffects().enableRegenerateShop();
+                            character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP, true);
                             RandomInventoryGenerator.handleRegeneration(gameWorld);
                         }
                     }

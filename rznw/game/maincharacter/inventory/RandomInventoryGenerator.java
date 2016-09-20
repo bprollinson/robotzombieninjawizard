@@ -1,5 +1,6 @@
 package rznw.game.maincharacter.inventory;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
@@ -18,7 +19,7 @@ public class RandomInventoryGenerator
 
         if (mainCharacter.getStatusEffects().regenerateShopEnabled())
         {
-            mainCharacter.getStatusEffects().disableRegenerateShop();
+            mainCharacter.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP, false);
 
             RandomInventoryGenerator.regenerateSelectedItems(gameWorld);
             RandomInventoryGenerator.regenerateSelectedEquipments(gameWorld);

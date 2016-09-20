@@ -1,6 +1,7 @@
 package rznw.game.maincharacter.calculator;
 
 import rznw.game.Character;
+import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.EnemyStat;
 import rznw.game.maincharacter.MainCharacter;
@@ -108,7 +109,7 @@ public class MainCharacterDamageReceivedCalculator
             }
         }
 
-        if (mainCharacter.getStatusEffects().isReversingPain())
+        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_REVERSE_PAIN))
         {
             System.out.println("Reversing pain!");
 
