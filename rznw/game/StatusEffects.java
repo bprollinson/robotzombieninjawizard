@@ -33,13 +33,13 @@ public class StatusEffects
     public static final int EFFECT_INFER_ZOMBIE = 5;
     public static final int EFFECT_REGENERATE_SHOP = 6;
 
-    private static final int EFFECT_SIGNAL_WEAPON = 0;
-    private static final int EFFECT_THORN_SKIN = 1;
-    private static final int EFFECT_POISON_SKIN = 2;
-    private static final int EFFECT_BARBED_SKIN = 3;
-    private static final int EFFECT_RESIST_DAMAGE = 4;
-    private static final int EFFECT_INFECTIOUS_RAGE = 5;
-    private static final int EFFECT_FEED_BRAIN = 6;
+    public static final int EFFECT_SIGNAL_WEAPON = 0;
+    public static final int EFFECT_THORN_SKIN = 1;
+    public static final int EFFECT_POISON_SKIN = 2;
+    public static final int EFFECT_BARBED_SKIN = 3;
+    public static final int EFFECT_RESIST_DAMAGE = 4;
+    public static final int EFFECT_INFECTIOUS_RAGE = 5;
+    public static final int EFFECT_FEED_BRAIN = 6;
     private static final int EFFECT_SKIP = 7;
     private static final int EFFECT_RAGE = 8;
     private static final int EFFECT_MAGIC_SEEDS = 9;
@@ -47,7 +47,7 @@ public class StatusEffects
     private static final int EFFECT_MEAT_SHIELD = 11;
     private static final int EFFECT_INVISIBLE = 12;
     private static final int EFFECT_POWER_SEARCH = 13;
-    private static final int EFFECT_CONFUSION = 14;
+    public static final int EFFECT_CONFUSION = 14;
     public static final int EFFECT_FROZEN = 15;
 
     private static final int STAT_ARMOR_BREAK = 0;
@@ -136,11 +136,6 @@ public class StatusEffects
         }
     }
 
-    public void freeze(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, numTurns);
-    }
-
     public void poison()
     {
         if (!this.thickSkinDodgesEffect())
@@ -155,86 +150,6 @@ public class StatusEffects
         {
             this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 3);
         }
-    }
-
-    public void healConfusion()
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 0);
-    }
-
-    public boolean isConfused()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_CONFUSION) > 0;
-    }
-
-    public void enableSignalWeapon(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, numTurns);
-    }
-
-    public boolean signalWeaponEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_SIGNAL_WEAPON) > 0;
-    }
-
-    public void enableThornSkin(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, numTurns);
-    }
-
-    public boolean thornSkinEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_THORN_SKIN) > 0;
-    }
-
-    public void enablePoisonSkin(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_POISON_SKIN, numTurns);
-    }
-
-    public boolean poisonSkinEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_POISON_SKIN) > 0;
-    }
-
-    public void enableBarbedSkin(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_BARBED_SKIN, numTurns);
-    }
-
-    public boolean barbedSkinEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_BARBED_SKIN) > 0;
-    }
-
-    public void enableResistDamage(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_RESIST_DAMAGE, numTurns);
-    }
-
-    public boolean isResistingDamage()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_RESIST_DAMAGE) > 0;
-    }
-
-    public void enableInfectiousRage(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_INFECTIOUS_RAGE, numTurns);
-    }
-
-    public boolean infectiousRageEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_INFECTIOUS_RAGE) > 0;
-    }
-
-    public void enableFeedBrain(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_FEED_BRAIN, numTurns);
-    }
-
-    public boolean feedBrainEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_FEED_BRAIN) > 0;
     }
 
     public boolean isInferringZombie()

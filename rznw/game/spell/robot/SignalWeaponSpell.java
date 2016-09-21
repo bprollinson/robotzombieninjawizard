@@ -1,5 +1,6 @@
 package rznw.game.spell.robot;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
@@ -23,7 +24,7 @@ public class SignalWeaponSpell extends UndirectedSpell
         int numTurns = 2 + (int)Math.floor(spellPoints / 4);
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().enableSignalWeapon(numTurns);
+        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_SIGNAL_WEAPON, numTurns);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

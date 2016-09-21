@@ -57,7 +57,7 @@ public class MainCharacterTurnHandler
             return;
         }
 
-        if (character.getStatusEffects().isConfused())
+        if (character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_CONFUSION) > 0)
         {
             System.out.println("Main character is confused!");
 

@@ -1,5 +1,6 @@
 package rznw.game.enemy.action.choice;
 
+import rznw.game.StatusEffects;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemyMovementAction;
 import rznw.game.enemy.EnemyCharacter;
@@ -14,9 +15,9 @@ public class ConfusionChoice extends EnemyActionChoice
         CharacterDistanceCalculator distanceCalculator = new CharacterDistanceCalculator();
         double distance = distanceCalculator.calculateDistance(gameWorld.getMainCharacter(), enemyCharacter);
 
-        if (enemyCharacter.getStatusEffects().isConfused() || distance > enemyCharacter.getViewRadius())
+        if (enemyCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_CONFUSION) > 0 || distance > enemyCharacter.getViewRadius())
         {
-            if (enemyCharacter.getStatusEffects().isConfused())
+            if (enemyCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_CONFUSION) > 0)
             {
                 System.out.println("Enemy is confused!");
             }

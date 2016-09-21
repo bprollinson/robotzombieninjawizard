@@ -460,7 +460,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_COUNTERSTRIKE, false);
         }
 
-        if (this.getStatusEffects().thornSkinEnabled() && damageSource.isEnemy())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_THORN_SKIN) > 0 && damageSource.isEnemy())
         {
             System.out.println("Attacking back with thorn skin");
 
@@ -470,7 +470,7 @@ public abstract class MainCharacter extends Character
             System.out.println("Enemy hp after: " + damageSource.getHP());
         }
 
-        if (this.getStatusEffects().poisonSkinEnabled() && damageSource.isEnemy())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_POISON_SKIN) > 0 && damageSource.isEnemy())
         {
             System.out.println("Poisoning with poison skin");
 
@@ -505,7 +505,7 @@ public abstract class MainCharacter extends Character
             this.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_SMOKE_BOMB, false);
         }
 
-        if (this.getStatusEffects().barbedSkinEnabled() && damageSource.isEnemy())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_BARBED_SKIN) > 0 && damageSource.isEnemy())
         {
             System.out.println("Checking barbed skin");
 
@@ -513,7 +513,7 @@ public abstract class MainCharacter extends Character
             if (RandomNumberGenerator.rollSucceeds(barbedSkinProbability))
             {
                 System.out.println("Stunning with barbed skin");
-                damageSource.getStatusEffects().freeze(2);
+                damageSource.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_FROZEN, 2);
             }
         }
 

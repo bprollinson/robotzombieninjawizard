@@ -37,7 +37,7 @@ public class MainCharacterDamageReceivedCalculator
         }
 
         int paddingPercent = 2 * mainCharacter.getStatPoints(Stat.STAT_PADDING);
-        if (mainCharacter.getStatusEffects().isResistingDamage())
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
         {
             paddingPercent += 2 * mainCharacter.getSpellPoints(1);
         }

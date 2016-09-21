@@ -1,6 +1,7 @@
 package rznw.turn;
 
 import rznw.game.Character;
+import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Shield;
@@ -146,7 +147,7 @@ public class CollisionHandler
             System.out.println("Summoned character HP after: " + otherCharacter.getHP());
         }
 
-        if (character.getStatusEffects().signalWeaponEnabled())
+        if (character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
         {
             System.out.println("Checking signal weapon");
 

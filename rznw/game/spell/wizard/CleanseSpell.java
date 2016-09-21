@@ -22,7 +22,7 @@ public class CleanseSpell extends UndirectedSpell
         System.out.println("Casting Cleanse");
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_POISONED, false);
-        character.getStatusEffects().healConfusion();
+        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_CONFUSION, 0);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

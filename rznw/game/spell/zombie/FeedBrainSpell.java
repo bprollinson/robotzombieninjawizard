@@ -1,6 +1,7 @@
 package rznw.game.spell.zombie;
 
 import rznw.game.Character;
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
@@ -46,7 +47,7 @@ public class FeedBrainSpell extends DirectedSpell
             System.out.println("After: " + enemy.getHP());
 
             int numTurns = 2 + (int)Math.floor(spellPoints / 4);
-            character.getStatusEffects().enableFeedBrain(numTurns);
+            character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_FEED_BRAIN, numTurns);
         }
     }
 
