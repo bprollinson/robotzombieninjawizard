@@ -1,5 +1,6 @@
 package rznw.game.skill;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
@@ -29,7 +30,7 @@ public class RageSkill extends Skill
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + character.getSkillPoints(Skill.SKILL_RAGE);
         System.out.println("Rage turns: " + numTurns);
-        character.getStatusEffects().enableRage(numTurns);
+        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_RAGE, numTurns);
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)

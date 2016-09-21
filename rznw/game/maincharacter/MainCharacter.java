@@ -235,7 +235,7 @@ public abstract class MainCharacter extends Character
 
         int bonusSpellPoints = 0;
 
-        if (this.getStatusEffects().magicSeedsEnabled())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MAGIC_SEEDS) > 0)
         {
             int magicSeedPoints = this.getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
             bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
@@ -315,14 +315,14 @@ public abstract class MainCharacter extends Character
             toDodgePercent += armorDodgePercent;
         }
 
-        if (this.getStatusEffects().rageEnabled())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
         {
             int dodgePenalty = Math.max(21 - this.getSkillPoints(Skill.SKILL_RAGE), 1);
             System.out.println("Dodge penalty: " + dodgePenalty);
             toDodgePercent -= dodgePenalty;
         }
 
-        if (this.getStatusEffects().meatShieldEnabled())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
             int meatShieldDodgePercent = this.getStatusEffects().getMeatShieldDodgePercent();
             System.out.println("Meat shield dodge bonus: " + meatShieldDodgePercent);
@@ -427,7 +427,7 @@ public abstract class MainCharacter extends Character
 
         this.HP -= damage;
 
-        if (this.getStatusEffects().manaSuckEnabled())
+        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MANA_SUCK) > 0)
         {
             int MPFromDamage = (int)Math.floor(5.0 / 100.0 * this.getSkillPoints(Skill.SKILL_MANA_SUCK) * damage);
             if (MPFromDamage > 0)

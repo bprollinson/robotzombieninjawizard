@@ -70,7 +70,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
 
-        if (character.getStatusEffects().isSkippingTurn() || character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FROZEN) > 0)
+        if (character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_SKIP) > 0 || character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FROZEN) > 0)
         {
             System.out.println("Enemies take a turn while you are sleeping / frozen");
             character.getStatusEffects().processTurn(character, this.gameWorld);

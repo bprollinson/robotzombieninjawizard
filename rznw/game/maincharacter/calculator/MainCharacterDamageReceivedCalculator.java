@@ -58,7 +58,7 @@ public class MainCharacterDamageReceivedCalculator
             paddingPercent += magicPaddingPercent;
         }
 
-        if (mainCharacter.getStatusEffects().rageEnabled())
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
         {
             int paddingPenalty = Math.max(21 - mainCharacter.getSkillPoints(Skill.SKILL_RAGE), 1);
             System.out.println("Padding penalty: " + paddingPenalty);
@@ -81,7 +81,7 @@ public class MainCharacterDamageReceivedCalculator
             paddingPercent += armorPaddingPercent;
         }
 
-        if (mainCharacter.getStatusEffects().meatShieldEnabled())
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
             int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getMeatShieldPaddingPercent();
             System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);

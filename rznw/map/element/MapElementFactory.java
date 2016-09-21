@@ -1,5 +1,6 @@
 package rznw.map.element;
 
+import rznw.game.StatusEffects;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
@@ -19,7 +20,7 @@ public class MapElementFactory
                 gameWorld.incrementEnemyIndex();
 
                 invisibleEnemy.generateMapElement(row, column);
-                invisibleEnemy.getStatusEffects().makeInvisible(Integer.parseInt(metadata));
+                invisibleEnemy.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_INVISIBLE, Integer.parseInt(metadata));
                 return invisibleEnemy.getMapElement();
             case EnemyMapElement.ELEMENT_NUMBER:
                 int enemyIndex = gameWorld.getEnemyIndex();

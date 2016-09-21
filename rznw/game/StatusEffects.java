@@ -40,12 +40,12 @@ public class StatusEffects
     public static final int EFFECT_RESIST_DAMAGE = 4;
     public static final int EFFECT_INFECTIOUS_RAGE = 5;
     public static final int EFFECT_FEED_BRAIN = 6;
-    private static final int EFFECT_SKIP = 7;
-    private static final int EFFECT_RAGE = 8;
-    private static final int EFFECT_MAGIC_SEEDS = 9;
-    private static final int EFFECT_MANA_SUCK = 10;
-    private static final int EFFECT_MEAT_SHIELD = 11;
-    private static final int EFFECT_INVISIBLE = 12;
+    public static final int EFFECT_SKIP = 7;
+    public static final int EFFECT_RAGE = 8;
+    public static final int EFFECT_MAGIC_SEEDS = 9;
+    public static final int EFFECT_MANA_SUCK = 10;
+    public static final int EFFECT_MEAT_SHIELD = 11;
+    public static final int EFFECT_INVISIBLE = 12;
     private static final int EFFECT_POWER_SEARCH = 13;
     public static final int EFFECT_CONFUSION = 14;
     public static final int EFFECT_FROZEN = 15;
@@ -152,21 +152,6 @@ public class StatusEffects
         }
     }
 
-    public boolean isInferringZombie()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_INFER_ZOMBIE);
-    }
-
-    public void skipTurns(int turnsToSkip)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_SKIP, turnsToSkip);
-    }
-
-    public boolean isSkippingTurn()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_SKIP) > 0;
-    }
-
     public void breakArmor(int armorBreakPercent)
     {
         this.otherStats.put(StatusEffects.STAT_ARMOR_BREAK, armorBreakPercent);
@@ -175,16 +160,6 @@ public class StatusEffects
     public int getArmorBreakPercent()
     {
         return this.otherStats.get(StatusEffects.STAT_ARMOR_BREAK);
-    }
-
-    public void enableRage(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_RAGE, numTurns);
-    }
-
-    public boolean rageEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_RAGE) > 0;
     }
 
     public void enableDetectVitality(int detectVitalityRadius)
@@ -248,26 +223,6 @@ public class StatusEffects
         return this.otherStats.get(StatusEffects.STAT_BONUS_GOLD_PERCENT);
     }
 
-    public boolean magicSeedsEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_MAGIC_SEEDS) > 0;
-    }
-
-    public void enableMagicSeeds(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_MAGIC_SEEDS, numTurns);
-    }
-
-    public boolean manaSuckEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_MANA_SUCK) > 0;
-    }
-
-    public void enableManaSuck(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_MANA_SUCK, numTurns);
-    }
-
     public int getMeatShieldPaddingPercent()
     {
         return this.otherStats.get(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT);
@@ -276,11 +231,6 @@ public class StatusEffects
     public int getMeatShieldDodgePercent()
     {
         return this.otherStats.get(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT);
-    }
-
-    public boolean meatShieldEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_MEAT_SHIELD) > 0;
     }
 
     public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)
@@ -315,11 +265,6 @@ public class StatusEffects
         }
 
         return success;
-    }
-
-    public void makeInvisible(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_INVISIBLE, numTurns);
     }
 
     public boolean isInvisible()

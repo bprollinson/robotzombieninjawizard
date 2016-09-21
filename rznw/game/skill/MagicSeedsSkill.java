@@ -1,5 +1,6 @@
 package rznw.game.skill;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
@@ -28,7 +29,7 @@ public class MagicSeedsSkill extends Skill
 
         int skillPoints = gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
         int numTurns = 2 + (int)Math.floor(skillPoints / 4);
-        gameWorld.getMainCharacter().getStatusEffects().enableMagicSeeds(numTurns);
+        gameWorld.getMainCharacter().getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_MAGIC_SEEDS, numTurns);
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)

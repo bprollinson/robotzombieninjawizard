@@ -36,7 +36,7 @@ public class EnemyClearer
                         this.killBonusGranter.grantKillBonuses(character, enemy);
                         map.setElement(element.getRow(), element.getColumn(), null);
 
-                        if (character.getStatusEffects().isInferringZombie())
+                        if (character.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_INFER_ZOMBIE))
                         {
                             character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_INFER_ZOMBIE, false);
 
