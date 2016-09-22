@@ -17,7 +17,7 @@ public class RandomInventoryGenerator
     {
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
-        if (mainCharacter.getStatusEffects().regenerateShopEnabled())
+        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP))
         {
             mainCharacter.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP, false);
 

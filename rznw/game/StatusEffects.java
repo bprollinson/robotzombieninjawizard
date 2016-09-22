@@ -46,7 +46,7 @@ public class StatusEffects
     public static final int EFFECT_MANA_SUCK = 10;
     public static final int EFFECT_MEAT_SHIELD = 11;
     public static final int EFFECT_INVISIBLE = 12;
-    private static final int EFFECT_POWER_SEARCH = 13;
+    public static final int EFFECT_POWER_SEARCH = 13;
     public static final int EFFECT_CONFUSION = 14;
     public static final int EFFECT_FROZEN = 15;
 
@@ -265,31 +265,6 @@ public class StatusEffects
         }
 
         return success;
-    }
-
-    public boolean isInvisible()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE) > 0;
-    }
-
-    public int getInvisibilityTurns()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_INVISIBLE);
-    }
-
-    public void enablePowerSearch(int numTurns)
-    {
-        this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, numTurns);
-    }
-
-    public boolean powerSearchEnabled()
-    {
-        return this.statusEffectTurns.get(StatusEffects.EFFECT_POWER_SEARCH) > 0;
-    }
-
-    public boolean regenerateShopEnabled()
-    {
-        return this.statusEffects.get(StatusEffects.EFFECT_REGENERATE_SHOP);
     }
 
     public void processTurn(Character character, GameWorld gameWorld)

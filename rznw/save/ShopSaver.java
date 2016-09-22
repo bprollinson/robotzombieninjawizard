@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -15,7 +16,7 @@ public class ShopSaver extends ComponentSaver
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        if (character.getStatusEffects().regenerateShopEnabled())
+        if (character.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP))
         {
             this.writeLine(fileWriter, 0);
 

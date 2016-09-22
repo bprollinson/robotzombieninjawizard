@@ -1,5 +1,6 @@
 package rznw.map.element;
 
+import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 
 public class DisappearingEnemyMapElement extends EnemyMapElement
@@ -13,7 +14,7 @@ public class DisappearingEnemyMapElement extends EnemyMapElement
 
     public char getDisplayCharacter()
     {
-        if (this.character.getStatusEffects().isInvisible())
+        if (this.character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_INVISIBLE) > 0)
         {
             return ' ';
         }
@@ -28,6 +29,6 @@ public class DisappearingEnemyMapElement extends EnemyMapElement
 
     public String getMetadata()
     {
-        return "" + this.getCharacter().getStatusEffects().getInvisibilityTurns();
+        return "" + this.getCharacter().getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_INVISIBLE);
     }
 }

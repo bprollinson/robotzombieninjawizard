@@ -1,5 +1,6 @@
 package rznw.game.spell.robot;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Bomb;
 import rznw.game.maincharacter.inventory.FullManaPotion;
@@ -39,7 +40,7 @@ public class PowerSearchSpell extends UndirectedSpell
 
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + spellPoints;
-        character.getStatusEffects().enablePowerSearch(numTurns);
+        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_POWER_SEARCH, numTurns);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

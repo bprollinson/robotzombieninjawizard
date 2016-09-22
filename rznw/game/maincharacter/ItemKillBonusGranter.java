@@ -1,5 +1,6 @@
 package rznw.game.maincharacter;
 
+import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -16,7 +17,7 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
         {
             InventoryItemGroup itemGroup = new InventoryItemGroup(enemyCharacter.getItemDrop(), 1);
 
-            if (mainCharacter.getStatusEffects().powerSearchEnabled())
+            if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_POWER_SEARCH) > 0)
             {
                 System.out.println("Upgrading item via power search");
                 itemGroup = PowerSearchSpell.getUpgradedItemGroup(itemGroup, mainCharacter.getSpellPoints(15));
