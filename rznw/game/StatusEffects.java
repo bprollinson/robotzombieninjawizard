@@ -63,39 +63,21 @@ public class StatusEffects
     {
         this.character = character;
 
-        this.statusEffects.put(StatusEffects.EFFECT_POISONED, false);
-        this.statusEffects.put(StatusEffects.EFFECT_REVERSE_PAIN, false);
-        this.statusEffects.put(StatusEffects.EFFECT_DEATH_STRIKE, false);
-        this.statusEffects.put(StatusEffects.EFFECT_SMOKE_BOMB, false);
-        this.statusEffects.put(StatusEffects.EFFECT_COUNTERSTRIKE, false);
-        this.statusEffects.put(StatusEffects.EFFECT_INFER_ZOMBIE, false);
+        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECTS; i++)
+        {
+            this.statusEffects.put(i, false);
+        }
         this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, true);
 
-        this.statusEffectTurns.put(StatusEffects.EFFECT_SIGNAL_WEAPON, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_THORN_SKIN, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_POISON_SKIN, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_BARBED_SKIN, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_RESIST_DAMAGE, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_INFECTIOUS_RAGE, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_FEED_BRAIN, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_SKIP, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_RAGE, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_MAGIC_SEEDS, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_MANA_SUCK, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_MEAT_SHIELD, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_INVISIBLE, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_POWER_SEARCH, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_CONFUSION, 0);
-        this.statusEffectTurns.put(StatusEffects.EFFECT_FROZEN, 0);
+        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
+        {
+            this.statusEffectTurns.put(i, 0);
+        }
 
-        this.otherStats.put(StatusEffects.STAT_ARMOR_BREAK, 0);
-        this.otherStats.put(StatusEffects.STAT_DETECT_VITALITY_RADIUS, 0);
-        this.otherStats.put(StatusEffects.STAT_ITEM_TRADE_NUMBER, 0);
-        this.otherStats.put(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, 0);
-        this.otherStats.put(StatusEffects.STAT_BONUS_DROP_PROBABILITY, 0);
-        this.otherStats.put(StatusEffects.STAT_BONUS_GOLD_PERCENT, 0);
-        this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT, 0);
-        this.otherStats.put(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT, 0);
+        for (int i = 0; i < StatusEffects.NUM_STATS; i++)
+        {
+            this.otherStats.put(i, 0);
+        }
     }
 
     public boolean getStatusEffect(int index)
