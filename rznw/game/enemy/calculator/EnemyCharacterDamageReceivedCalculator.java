@@ -14,9 +14,9 @@ public class EnemyCharacterDamageReceivedCalculator
     {
         int paddingPercent = 2 * enemyCharacter.getStatPoints(EnemyStat.STAT_PADDING);
 
-        if (enemyCharacter.getStatusEffects().getArmorBreakPercent() > 0)
+        if (enemyCharacter.getStatusEffects().getStat(StatusEffects.STAT_ARMOR_BREAK) > 0)
         {
-            int armorBreakPercent = enemyCharacter.getStatusEffects().getArmorBreakPercent();
+            int armorBreakPercent = enemyCharacter.getStatusEffects().getStat(StatusEffects.STAT_ARMOR_BREAK);
             paddingPercent -= armorBreakPercent;
 
             System.out.println("Enemy armor break percent: " + armorBreakPercent);

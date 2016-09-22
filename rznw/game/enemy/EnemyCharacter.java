@@ -1,6 +1,7 @@
 package rznw.game.enemy;
 
 import rznw.game.Character;
+import rznw.game.StatusEffects;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.calculator.EnemyActionCalculator;
 import rznw.game.enemy.calculator.EnemyCharacterDamageDealtCalculator;
@@ -90,7 +91,7 @@ public abstract class EnemyCharacter extends Character
     public boolean isDroppingItems(MainCharacter mainCharacter)
     {
         int probability = 50 + 2 * mainCharacter.getSkillPoints(Skill.SKILL_FAST_HANDS);
-        probability += this.getStatusEffects().getBonusDropProbability();
+        probability += this.getStatusEffects().getStat(StatusEffects.STAT_BONUS_DROP_PROBABILITY);
         System.out.println("Item drop probability: " + probability);
 
         return RandomNumberGenerator.rollSucceeds(probability);
@@ -101,7 +102,7 @@ public abstract class EnemyCharacter extends Character
     public final boolean isDroppingEquipment()
     {
         int probability = 10;
-        probability += this.getStatusEffects().getBonusDropProbability();
+        probability += this.getStatusEffects().getStat(StatusEffects.STAT_BONUS_DROP_PROBABILITY);
         System.out.println("Equipment drop probability: " + probability);
 
         return RandomNumberGenerator.rollSucceeds(probability);

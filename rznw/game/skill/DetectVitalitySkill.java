@@ -1,5 +1,6 @@
 package rznw.game.skill;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 
@@ -29,7 +30,7 @@ public class DetectVitalitySkill extends Skill
         MainCharacter character = gameWorld.getMainCharacter();
         int skillPoints = character.getSkillPoints(Skill.SKILL_DETECT_VITALITY);
         int radius = 1 + skillPoints;
-        character.getStatusEffects().enableDetectVitality(skillPoints);
+        character.getStatusEffects().setStat(StatusEffects.STAT_DETECT_VITALITY_RADIUS, skillPoints);
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)

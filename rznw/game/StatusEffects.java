@@ -50,14 +50,14 @@ public class StatusEffects
     public static final int EFFECT_CONFUSION = 14;
     public static final int EFFECT_FROZEN = 15;
 
-    private static final int STAT_ARMOR_BREAK = 0;
-    private static final int STAT_DETECT_VITALITY_RADIUS = 1;
-    private static final int STAT_ITEM_TRADE_NUMBER = 2;
-    private static final int STAT_PRICE_REDUCTION_PERCENT = 3;
-    private static final int STAT_BONUS_DROP_PROBABILITY = 4;
-    private static final int STAT_BONUS_GOLD_PERCENT = 5;
-    private static final int STAT_MEAT_SHIELD_PADDING_PERCENT = 6;
-    private static final int STAT_MEAT_SHIELD_DODGE_PERCENT = 7;
+    public static final int STAT_ARMOR_BREAK = 0;
+    public static final int STAT_DETECT_VITALITY_RADIUS = 1;
+    public static final int STAT_ITEM_TRADE_NUMBER = 2;
+    public static final int STAT_PRICE_REDUCTION_PERCENT = 3;
+    public static final int STAT_BONUS_DROP_PROBABILITY = 4;
+    public static final int STAT_BONUS_GOLD_PERCENT = 5;
+    public static final int STAT_MEAT_SHIELD_PADDING_PERCENT = 6;
+    public static final int STAT_MEAT_SHIELD_DODGE_PERCENT = 7;
 
     public StatusEffects(Character character)
     {
@@ -152,85 +152,10 @@ public class StatusEffects
         }
     }
 
-    public void breakArmor(int armorBreakPercent)
-    {
-        this.otherStats.put(StatusEffects.STAT_ARMOR_BREAK, armorBreakPercent);
-    }
-
-    public int getArmorBreakPercent()
-    {
-        return this.otherStats.get(StatusEffects.STAT_ARMOR_BREAK);
-    }
-
-    public void enableDetectVitality(int detectVitalityRadius)
-    {
-        this.otherStats.put(StatusEffects.STAT_DETECT_VITALITY_RADIUS, detectVitalityRadius);
-    }
-
-    public boolean detectVitalityEnabled()
-    {
-        return this.otherStats.get(StatusEffects.STAT_DETECT_VITALITY_RADIUS) > 0;
-    }
-
-    public void disableDetectVitality()
-    {
-        this.otherStats.put(StatusEffects.STAT_DETECT_VITALITY_RADIUS, 0);
-    }
-
-    public void enableItemTrade(int itemTradeNumber)
-    {
-        this.otherStats.put(StatusEffects.STAT_ITEM_TRADE_NUMBER, itemTradeNumber);
-    }
-
-    public boolean itemTradeEnabled()
-    {
-        return this.otherStats.get(StatusEffects.STAT_ITEM_TRADE_NUMBER) > 0;
-    }
-
-    public void disableItemTrade()
-    {
-        this.otherStats.put(StatusEffects.STAT_ITEM_TRADE_NUMBER, 0);
-    }
-
-    public void enableSummonShopkeeper(int priceReductionPercent)
-    {
-        this.otherStats.put(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, priceReductionPercent);
-    }
-
-    public void disableSummonShopkeeper()
-    {
-        this.otherStats.put(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, 0);
-    }
-
-    public boolean summonShopkeeperEnabled()
-    {
-        return this.otherStats.get(StatusEffects.STAT_PRICE_REDUCTION_PERCENT) > 0;
-    }
-
     public void enableBoostGenetics(int bonusDropProbability, int bonusGoldPercent)
     {
         this.otherStats.put(StatusEffects.STAT_BONUS_DROP_PROBABILITY, bonusDropProbability);
         this.otherStats.put(StatusEffects.STAT_BONUS_GOLD_PERCENT, bonusGoldPercent);
-    }
-
-    public int getBonusDropProbability()
-    {
-        return this.otherStats.get(StatusEffects.STAT_BONUS_DROP_PROBABILITY);
-    }
-
-    public int getBonusGoldPercent()
-    {
-        return this.otherStats.get(StatusEffects.STAT_BONUS_GOLD_PERCENT);
-    }
-
-    public int getMeatShieldPaddingPercent()
-    {
-        return this.otherStats.get(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT);
-    }
-
-    public int getMeatShieldDodgePercent()
-    {
-        return this.otherStats.get(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT);
     }
 
     public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)

@@ -83,7 +83,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
-            int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getMeatShieldPaddingPercent();
+            int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getStat(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT);
             System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);
             paddingPercent += meatShieldPaddingPercent;
         }

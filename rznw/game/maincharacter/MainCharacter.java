@@ -324,7 +324,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
-            int meatShieldDodgePercent = this.getStatusEffects().getMeatShieldDodgePercent();
+            int meatShieldDodgePercent = this.getStatusEffects().getStat(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT);
             System.out.println("Meat shield dodge bonus: " + meatShieldDodgePercent);
             toDodgePercent += meatShieldDodgePercent;
         }

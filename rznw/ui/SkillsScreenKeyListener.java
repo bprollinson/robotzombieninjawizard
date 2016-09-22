@@ -1,5 +1,6 @@
 package rznw.ui;
 
+import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
@@ -106,23 +107,23 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 return DispatchKeyListener.STATE_GAME_COMPLETED;
             }
 
-            if (this.gameWorld.getMainCharacter().getStatusEffects().detectVitalityEnabled())
+            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffects.STAT_DETECT_VITALITY_RADIUS) > 0)
             {
-                this.gameWorld.getMainCharacter().getStatusEffects().disableDetectVitality();
+                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffects.STAT_DETECT_VITALITY_RADIUS, 0);
 
                 return DispatchKeyListener.STATE_DETECT_VITALITY;
             }
 
-            if (this.gameWorld.getMainCharacter().getStatusEffects().itemTradeEnabled())
+            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffects.STAT_ITEM_TRADE_NUMBER) > 0)
             {
-                this.gameWorld.getMainCharacter().getStatusEffects().disableItemTrade();
+                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffects.STAT_ITEM_TRADE_NUMBER, 0);
 
                 return DispatchKeyListener.STATE_TRADE_ITEMS;
             }
 
-            if (this.gameWorld.getMainCharacter().getStatusEffects().summonShopkeeperEnabled())
+            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffects.STAT_PRICE_REDUCTION_PERCENT) > 0)
             {
-                this.gameWorld.getMainCharacter().getStatusEffects().disableSummonShopkeeper();
+                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, 0);
 
                 return DispatchKeyListener.STATE_SHOP;
             }
