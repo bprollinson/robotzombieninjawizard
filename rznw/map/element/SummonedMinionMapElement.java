@@ -11,15 +11,6 @@ public abstract class SummonedMinionMapElement extends CharacterMapElement
         super(row, column, displayCharacter, character);
     }
 
-    public void processTurn(Map map)
-    {
-        Character enemy = this.getCharacter();
-        if (enemy.isDead())
-        {
-            map.setElement(this.getRow(), this.getColumn(), null);
-        }
-    }
-
     public boolean interactsWithCharacter(Character character)
     {
         return true;

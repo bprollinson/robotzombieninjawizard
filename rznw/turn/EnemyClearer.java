@@ -10,6 +10,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.map.element.SummonedMinionMapElement;
 import rznw.map.element.SummonedZombieMapElement;
 
 public class EnemyClearer
@@ -57,6 +58,12 @@ public class EnemyClearer
                             character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP, true);
                             RandomInventoryGenerator.handleRegeneration(gameWorld);
                         }
+                    }
+                } else if (element != null && element instanceof SummonedMinionMapElement) {
+                    Character summon = ((SummonedMinionMapElement)element).getCharacter();
+                    if (summon.isDead())
+                    {
+                        map.setElement(element.getRow(), element.getColumn(), null);
                     }
                 }
             }
