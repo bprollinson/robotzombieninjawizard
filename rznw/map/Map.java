@@ -1,15 +1,11 @@
 package rznw.map;
 
-import java.util.Collection;
-import java.util.Vector;
-
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
-import rznw.game.skill.Skill;
 import rznw.map.element.MapElement;
-import rznw.map.element.Stairs;
-import rznw.map.element.SummonedMinionMapElement;
 import rznw.game.maincharacter.MainCharacter;
+
+import java.util.Collection;
 
 public class Map
 {
@@ -99,42 +95,7 @@ public class Map
 
     public void setElementVisited(MainCharacter character, int row, int column)
     {
-        int radius = character.getViewRadius();
-
-        int minRow = Math.max(row - radius, 0);
-        int maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);
-        int minColumn = Math.max(column - radius, 0);
-        int maxColumn = Math.min(column + radius, Map.NUM_COLUMNS - 1);
-
-        for (int rangeRow = minRow; rangeRow <= maxRow; rangeRow++)
-        {
-            for (int rangeColumn = minColumn; rangeColumn <= maxColumn; rangeColumn++)
-            {
-                this.setVisible(character, rangeRow, rangeColumn);
-            }
-        }
-
-        radius = 3 * character.getSkillPoints(Skill.SKILL_FIND_STAIRS);
-        System.out.println("Looking for stairs with radius: " + radius);
-        minRow = Math.max(row - radius, 0);
-        maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);
-        minColumn = Math.max(column - radius, 0);
-        maxColumn = Math.min(column + radius, Map.NUM_COLUMNS - 1);
-
-        for (int rangeRow = minRow; rangeRow <= maxRow; rangeRow++)
-        {
-            for (int rangeColumn = minColumn; rangeColumn <= maxColumn; rangeColumn++)
-            {
-                if (this.getBackgroundElement(rangeRow, rangeColumn) instanceof Stairs)
-                {
-                    if (!this.isVisible(rangeRow, rangeColumn))
-                    {
-                        System.out.println("Found stairs using skill");
-                    }
-                    this.setVisible(character, rangeRow, rangeColumn);
-                }
-            }
-        }
+        new MapElementVisitor(this).visit(character, row, column);
     }
 
     public Collection<EnemyCharacter> getEnemies()
