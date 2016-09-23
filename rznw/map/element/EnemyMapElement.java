@@ -1,5 +1,6 @@
 package rznw.map.element;
 
+import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 
 public class EnemyMapElement extends CharacterMapElement
@@ -19,5 +20,10 @@ public class EnemyMapElement extends CharacterMapElement
     public int getElementNumber()
     {
         return EnemyMapElement.ELEMENT_NUMBER;
+    }
+
+    public boolean interactsWithCharacter(Character character)
+    {
+        return !character.isEnemy();
     }
 }

@@ -1,5 +1,6 @@
 package rznw.map.element;
 
+import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 
 public class MainCharacterMapElement extends CharacterMapElement
@@ -14,5 +15,10 @@ public class MainCharacterMapElement extends CharacterMapElement
     public int getElementNumber()
     {
         return MainCharacterMapElement.ELEMENT_NUMBER;
+    }
+
+    public boolean interactsWithCharacter(Character character)
+    {
+        return !character.isSummon();
     }
 }

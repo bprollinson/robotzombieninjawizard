@@ -19,4 +19,9 @@ public abstract class SummonedMinionMapElement extends CharacterMapElement
             map.setElement(this.getRow(), this.getColumn(), null);
         }
     }
+
+    public boolean interactsWithCharacter(Character character)
+    {
+        return true;
+    }
 }

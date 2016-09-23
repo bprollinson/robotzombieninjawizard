@@ -1,6 +1,7 @@
 package rznw.map.element;
 
 import rznw.map.GameWorld;
+import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.Map;
@@ -64,5 +65,10 @@ public abstract class MapElement
     public String getMetadata()
     {
         return "";
+    }
+
+    public boolean interactsWithCharacter(Character character)
+    {
+        return false;
     }
 }

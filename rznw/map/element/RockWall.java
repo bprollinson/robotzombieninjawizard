@@ -1,5 +1,7 @@
 package rznw.map.element;
 
+import rznw.game.Character;
+
 public class RockWall extends MapElement
 {
     public static final int ELEMENT_NUMBER = 8;
@@ -36,5 +38,10 @@ public class RockWall extends MapElement
     public String getMetadata()
     {
         return "" + this.HP;
+    }
+
+    public boolean interactsWithCharacter(Character character)
+    {
+        return true;
     }
 }

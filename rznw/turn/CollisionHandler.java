@@ -7,8 +7,6 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
-import rznw.map.element.EnemyMapElement;
-import rznw.map.element.MainCharacterMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
 import rznw.map.GameWorld;
@@ -33,7 +31,7 @@ public class CollisionHandler
             return false;
         }
 
-        if (!this.elementsHaveInteraction(character, collisionTest))
+        if (!collisionTest.interactsWithCharacter(character))
         {
             return true;
         }
@@ -50,31 +48,6 @@ public class CollisionHandler
         }
 
         this.handleCharacterInteraction(character, (CharacterMapElement)collisionTest, map, gameWorld);
-
-        return true;
-    }
-
-    private boolean elementsHaveInteraction(Character character, MapElement collisionTest)
-    {
-        if (collisionTest instanceof RockWall)
-        {
-            return true;
-        }
-
-        if (!(collisionTest instanceof CharacterMapElement))
-        {
-            return false;
-        }
-
-        if (collisionTest instanceof MainCharacterMapElement && character.isSummon())
-        {
-            return false;
-        }
-
-        if (collisionTest.isEnemy() && character.isEnemy())
-        {
-            return false;
-        }
 
         return true;
     }
