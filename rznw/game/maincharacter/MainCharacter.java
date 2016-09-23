@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.calculator.MainCharacterDamageDealtCalculator;
 import rznw.game.maincharacter.calculator.MainCharacterDamageReceivedCalculator;
+import rznw.game.maincharacter.calculator.MainCharacterDodgeCalculator;
 import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItem;
@@ -297,39 +298,7 @@ public abstract class MainCharacter extends Character
 
     public boolean dodgesAttack()
     {
-        int toDodgePercent = 2 * this.getStatPoints(Stat.STAT_DODGE);
-
-        Shield shield = this.getEquipment().getEquippedShield();
-        if (shield != null)
-        {
-            int shieldDodgePercent = shield.getDodgePercent();
-            System.out.println("Additional shield chance to dodge: " + shieldDodgePercent);
-            toDodgePercent += shieldDodgePercent;
-        }
-
-        Armor armor = this.getEquipment().getEquippedArmor();
-        if (armor != null)
-        {
-            int armorDodgePercent = armor.getDodgePercent();
-            System.out.println("Additional armor chance to dodge: " + armorDodgePercent);
-            toDodgePercent += armorDodgePercent;
-        }
-
-        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
-        {
-            int dodgePenalty = Math.max(21 - this.getSkillPoints(Skill.SKILL_RAGE), 1);
-            System.out.println("Dodge penalty: " + dodgePenalty);
-            toDodgePercent -= dodgePenalty;
-        }
-
-        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
-        {
-            int meatShieldDodgePercent = this.getStatusEffects().getStat(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT);
-            System.out.println("Meat shield dodge bonus: " + meatShieldDodgePercent);
-            toDodgePercent += meatShieldDodgePercent;
-        }
-
-        return RandomNumberGenerator.rollSucceeds(toDodgePercent);
+        return new MainCharacterDodgeCalculator().dodgesAttack(this);
     }
 
     private int getStepsForHeal()
