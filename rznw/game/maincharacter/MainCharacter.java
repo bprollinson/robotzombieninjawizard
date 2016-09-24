@@ -300,6 +300,36 @@ public abstract class MainCharacter extends Character
         return new MainCharacterDodgeCalculator().dodgesAttack(this);
     }
 
+    public int getHPSteps()
+    {
+        return this.HPSteps;
+    }
+
+    public void setHPSteps(int HPSteps)
+    {
+        this.HPSteps = HPSteps;
+    }
+
+    public int getMPSteps()
+    {
+        return this.MPSteps;
+    }
+
+    public void setMPSteps(int MPSteps)
+    {
+        this.MPSteps = MPSteps;
+    }
+
+    public int getManaRiverSteps()
+    {
+        return this.manaRiverSteps;
+    }
+
+    public void setManaRiverSteps(int manaRiverSteps)
+    {
+        this.manaRiverSteps = manaRiverSteps;
+    }
+
     private int getStepsForHeal()
     {
         return Math.max(1, 20 - this.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION));

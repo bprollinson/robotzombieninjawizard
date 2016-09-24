@@ -19,6 +19,10 @@ public class MainCharacterSaver extends ComponentSaver
         this.writeLine(fileWriter, mainCharacter.getHP());
         this.writeLine(fileWriter, mainCharacter.getMP());
 
+        this.writeLine(fileWriter, mainCharacter.getHPSteps());
+        this.writeLine(fileWriter, mainCharacter.getMPSteps());
+        this.writeLine(fileWriter, mainCharacter.getManaRiverSteps());
+
         for (int i = 0; i < 16; i++)
         {
             this.writeLine(fileWriter, mainCharacter.getStatPoints(i));
