@@ -330,70 +330,24 @@ public abstract class MainCharacter extends Character
         this.manaRiverSteps = manaRiverSteps;
     }
 
-    private int getStepsForHeal()
+    public int getStepsForHeal()
     {
         return Math.max(1, 20 - this.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION));
     }
 
-    private int getStepsForMPHeal()
+    public int getStepsForMPHeal()
     {
         return Math.max(1, 20 - this.getStatPoints(Stat.STAT_MENTAL_REGENERATION));
     }
 
-    private int getStepsForManaRiver()
+    public int getStepsForManaRiver()
     {
         return Math.max(1, 20 - this.getSkillPoints(Skill.SKILL_MANA_RIVER));
     }
 
     public void incrementSteps()
     {
-        if (this.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION) > 0)
-        {
-            this.HPSteps++;
-            if (this.HPSteps >= this.getStepsForHeal())
-            {
-                this.heal(10);
-                this.HPSteps = 0;
-            }
-        }
-
-        if (this.getStatPoints(Stat.STAT_MENTAL_REGENERATION) > 0)
-        {
-            this.MPSteps++;
-            if (this.MPSteps >= this.getStepsForMPHeal())
-            {
-                this.healMP(10);
-                this.MPSteps = 0;
-            }
-        }
-
-        if (this.getSkillPoints(Skill.SKILL_MANA_RIVER) > 0)
-        {
-            this.manaRiverSteps++;
-            if (this.manaRiverSteps >= this.getStepsForManaRiver())
-            {
-                int manaRiverProbability = this.getSkillPoints(Skill.SKILL_MANA_RIVER);
-
-                if (RandomNumberGenerator.rollSucceeds(manaRiverProbability))
-                {
-                    this.MP = this.getMaxMP();
-                }
-
-                this.manaRiverSteps = 0;
-            }
-        }
-
-        Weapon weapon = this.getEquipment().getEquippedWeapon();
-        if (weapon != null)
-        {
-            weapon.step(this);
-        }
-
-        Armor armor = this.getEquipment().getEquippedArmor();
-        if (armor != null)
-        {
-            armor.step(this);
-        }
+        new MainCharacterStepIncrementer().incrementSteps(this);
     }
 
     public int getViewRadius()
