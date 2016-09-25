@@ -21,10 +21,7 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class MainCharacter extends Character
 {
-    public static final int SPELL_POINTS_PER_LEVEL = 4;
-
     public static final int MAX_LEVEL = 80;
-    public static final int MAX_SPELL_POINTS = 20;
 
     private int level = 0;
     private int experience = 0;
@@ -32,8 +29,8 @@ public abstract class MainCharacter extends Character
 
     private MainCharacterStats stats;
     private MainCharacterSkills skills;
+    private MainCharacterSpells spells;
 
-    private int[] spells;
     private Inventory inventory;
     private Equipment equipment;
 
@@ -47,13 +44,7 @@ public abstract class MainCharacter extends Character
 
         this.stats = new MainCharacterStats();
         this.skills = new MainCharacterSkills();
-
-        this.spells = new int[16];
-
-        for (int i = 0; i < this.spells.length; i++)
-        {
-            this.spells[i] = 0;
-        }
+        this.spells = new MainCharacterSpells(this);
 
         this.inventory = new Inventory(this);
         this.equipment = new Equipment(this);
@@ -72,17 +63,12 @@ public abstract class MainCharacter extends Character
         return this.skills;
     }
 
+    public MainCharacterSpells getSpells()
+    {
+        return this.spells;
+    }
+
     public abstract String getSpellCategory(int categoryNumber);
-
-    public String getSpellName(int spellNumber)
-    {
-        return this.getSpellFactory().getSpell(spellNumber).getDisplayName();
-    }
-
-    public String getSpellDescription(int spellNumber)
-    {
-        return this.getSpellFactory().getSpell(spellNumber).getDescription();
-    }
 
     public int getLevel()
     {
@@ -142,44 +128,6 @@ public abstract class MainCharacter extends Character
     public void setExperience(int experience)
     {
         this.experience = experience;
-    }
-
-    public void addSpellPoint(int spellNumber)
-    {
-        this.spells[spellNumber]++;
-    }
-
-    public int getSpellPoints(int spellNumber, boolean allowAdjustment)
-    {
-        if (!allowAdjustment)
-        {
-            return this.spells[spellNumber];
-        }
-
-        return this.getSpellPoints(spellNumber);
-    }
-
-    public int getSpellPoints(int spellNumber)
-    {
-        int spellPoints = this.spells[spellNumber];
-
-        int bonusSpellPoints = 0;
-
-        if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MAGIC_SEEDS) > 0)
-        {
-            int magicSeedPoints = this.skills.getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
-            bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
-
-            System.out.println("Bonus spell points: " + bonusSpellPoints);
-            spellPoints += bonusSpellPoints;
-        }
-
-        return Math.min(spellPoints, MainCharacter.MAX_SPELL_POINTS);
-    }
-
-    public void setSpellPoints(int spellNumber, int points)
-    {
-        this.spells[spellNumber] = points;
     }
 
     public void resetStateAfterLevelUp()

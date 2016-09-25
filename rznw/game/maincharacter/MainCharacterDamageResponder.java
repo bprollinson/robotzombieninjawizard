@@ -30,12 +30,12 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking counterstrike");
 
-            int counterstrikeProbability = 10 * mainCharacter.getSpellPoints(13);
+            int counterstrikeProbability = 10 * mainCharacter.getSpells().getSpellPoints(13);
             if (RandomNumberGenerator.rollSucceeds(counterstrikeProbability))
             {
                 System.out.println("Damaging with counterstrike");
 
-                int counterstrikeDamage = 10 * mainCharacter.getSpellPoints(13);
+                int counterstrikeDamage = 10 * mainCharacter.getSpells().getSpellPoints(13);
                 System.out.println("Enemy hp before: " + damageSource.getHP());
                 damageSource.damage(counterstrikeDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                 System.out.println("Enemy hp after: " + damageSource.getHP());
@@ -48,7 +48,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Attacking back with thorn skin");
 
-            int thornSkinDamage = 5 * mainCharacter.getSpellPoints(2);
+            int thornSkinDamage = 5 * mainCharacter.getSpells().getSpellPoints(2);
             System.out.println("Enemy hp before: " + damageSource.getHP());
             damageSource.damage(thornSkinDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("Enemy hp after: " + damageSource.getHP());
@@ -65,7 +65,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking death strike");
 
-            int deathStrikeProbability = 5 * mainCharacter.getSpellPoints(15);
+            int deathStrikeProbability = 5 * mainCharacter.getSpells().getSpellPoints(15);
             if (RandomNumberGenerator.rollSucceeds(deathStrikeProbability))
             {
                 System.out.println("Killing with death strike");
@@ -79,7 +79,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking smoke bomb");
 
-            int smokeBombProbability = 5 * mainCharacter.getSpellPoints(12);
+            int smokeBombProbability = 5 * mainCharacter.getSpells().getSpellPoints(12);
             if (RandomNumberGenerator.rollSucceeds(smokeBombProbability))
             {
                 System.out.println("Escaping with smoke bomb");
@@ -93,7 +93,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking barbed skin");
 
-            int barbedSkinProbability = 5 * mainCharacter.getSpellPoints(3);
+            int barbedSkinProbability = 5 * mainCharacter.getSpells().getSpellPoints(3);
             if (RandomNumberGenerator.rollSucceeds(barbedSkinProbability))
             {
                 System.out.println("Stunning with barbed skin");

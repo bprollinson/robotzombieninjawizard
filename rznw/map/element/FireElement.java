@@ -51,7 +51,7 @@ public class FireElement extends MapElement
         MainCharacter character = gameWorld.getMainCharacter();
 
         System.out.println("Enemy runs into fire element");
-        int damage = 10 * character.getSpellPoints(4);
+        int damage = 10 * character.getSpells().getSpellPoints(4);
         System.out.println("Enemy HP before: " + enemyCharacter.getHP());
         enemyCharacter.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
         System.out.println("Enemy HP after: " + enemyCharacter.getHP());

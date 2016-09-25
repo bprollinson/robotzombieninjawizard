@@ -20,14 +20,14 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
 
         if (showingDescription)
         {
-            this.renderCenteredString(1, mainCharacter.getSpellName(state.getEntryNumber()));
+            this.renderCenteredString(1, mainCharacter.getSpells().getSpellName(state.getEntryNumber()));
 
             int row = 3;
 
-            row += this.renderStringWithNewlines(3, mainCharacter.getSpellDescription(state.getEntryNumber()));
+            row += this.renderStringWithNewlines(3, mainCharacter.getSpells().getSpellDescription(state.getEntryNumber()));
             row++;
 
-            int spellPoints = mainCharacter.getSpellPoints(state.getEntryNumber());
+            int spellPoints = mainCharacter.getSpells().getSpellPoints(state.getEntryNumber());
             SpellFactory factory = mainCharacter.getSpellFactory();
             Spell spell = factory.getSpell(state.getEntryNumber());
 
@@ -84,7 +84,7 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
         {
             int groupPositionDisplay = i + 1;
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, mainCharacter.getSpellName(pointIndex) + ": " + mainCharacter.getSpellPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, mainCharacter.getSpells().getSpellName(pointIndex) + ": " + mainCharacter.getSpells().getSpellPoints(pointIndex));
         }
     }
 

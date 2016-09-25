@@ -20,7 +20,7 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
             if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_POWER_SEARCH) > 0)
             {
                 System.out.println("Upgrading item via power search");
-                itemGroup = PowerSearchSpell.getUpgradedItemGroup(itemGroup, mainCharacter.getSpellPoints(15));
+                itemGroup = PowerSearchSpell.getUpgradedItemGroup(itemGroup, mainCharacter.getSpells().getSpellPoints(15));
             }
 
             try

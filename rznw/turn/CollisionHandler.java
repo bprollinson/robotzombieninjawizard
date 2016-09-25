@@ -124,7 +124,7 @@ public class CollisionHandler
         {
             System.out.println("Checking signal weapon");
 
-            int confuseProbability = 5 * ((MainCharacter)character).getSpellPoints(14);
+            int confuseProbability = 5 * ((MainCharacter)character).getSpells().getSpellPoints(14);
             System.out.println("Confuse probability: " + confuseProbability);
 
             if (RandomNumberGenerator.rollSucceeds(confuseProbability))

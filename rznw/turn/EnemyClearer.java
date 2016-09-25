@@ -43,7 +43,7 @@ public class EnemyClearer
 
                             System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
 
-                            int maxHP = 200 + 10 * character.getSpellPoints(13);
+                            int maxHP = 200 + 10 * character.getSpells().getSpellPoints(13);
                             System.out.println("Max HP is: " + maxHP);
 
                             SummonedZombie zombie = new SummonedZombie(maxHP);

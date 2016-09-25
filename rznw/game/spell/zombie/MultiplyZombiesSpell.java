@@ -38,7 +38,7 @@ public class MultiplyZombiesSpell extends UndirectedSpell
         Map map = gameWorld.getMap();
 
         int multiplyProbability = 5 * spellPoints;
-        int maxHP = 100 + 5 * gameWorld.getMainCharacter().getSpellPoints(12);
+        int maxHP = 100 + 5 * gameWorld.getMainCharacter().getSpells().getSpellPoints(12);
         System.out.println("Multiply zombie max HP: " + maxHP);
 
         Collection<SummonedCharacter> summons = gameWorld.getMap().getSummons();
@@ -95,7 +95,7 @@ public class MultiplyZombiesSpell extends UndirectedSpell
 
     public String[] getStats(MainCharacter character, int spellPoints)
     {
-        int summonSpellPoints = character.getSpellPoints(12);
+        int summonSpellPoints = character.getSpells().getSpellPoints(12);
 
         return new String[] {
             "MP cost: " + this.getMPCost(character, spellPoints),

@@ -34,7 +34,7 @@ public class MainCharacterLoader extends ComponentLoader
 
         for (int i = 0; i < 16; i++)
         {
-            character.setSpellPoints(i, this.readInteger(fileReader));
+            character.getSpells().setSpellPoints(i, this.readInteger(fileReader));
         }
 
         for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECTS; i++)

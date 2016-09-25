@@ -36,7 +36,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         {
             SpellFactory spellFactory = this.gameWorld.getMainCharacter().getSpellFactory();
             Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
-            int spellPoints = this.gameWorld.getMainCharacter().getSpellPoints(this.state.getEntryNumber());
+            int spellPoints = this.gameWorld.getMainCharacter().getSpells().getSpellPoints(this.state.getEntryNumber());
 
             switch (event.getKeyCode())
             {
@@ -87,7 +87,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                     MainCharacter character = gameWorld.getMainCharacter();
                     SpellFactory spellFactory = character.getSpellFactory();
                     Spell spell = spellFactory.getSpell(this.state.getEntryNumber());
-                    int spellPoints = character.getSpellPoints(this.state.getEntryNumber());
+                    int spellPoints = character.getSpells().getSpellPoints(this.state.getEntryNumber());
 
                     if (spell != null && spell.canCast(gameWorld, spellPoints))
                     {
@@ -101,7 +101,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                         }
                         else
                         {
-                            int points = this.gameWorld.getMainCharacter().getSpellPoints(this.state.getEntryNumber());
+                            int points = this.gameWorld.getMainCharacter().getSpells().getSpellPoints(this.state.getEntryNumber());
                             spell.cast(gameWorld, points);
                             this.turnHandler.handlePostTurn();
                             int MPCost = spell.getMPCost(character, points);

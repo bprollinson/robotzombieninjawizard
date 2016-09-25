@@ -35,7 +35,7 @@ public class MainCharacterSaver extends ComponentSaver
 
         for (int i = 0; i < 16; i++)
         {
-            this.writeLine(fileWriter, mainCharacter.getSpellPoints(i, false));
+            this.writeLine(fileWriter, mainCharacter.getSpells().getSpellPoints(i, false));
         }
 
         for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECTS; i++)

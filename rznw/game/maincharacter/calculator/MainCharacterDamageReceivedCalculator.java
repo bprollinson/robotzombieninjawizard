@@ -39,7 +39,7 @@ public class MainCharacterDamageReceivedCalculator
         int paddingPercent = 2 * mainCharacter.getStats().getStatPoints(Stat.STAT_PADDING);
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
         {
-            paddingPercent += 2 * mainCharacter.getSpellPoints(1);
+            paddingPercent += 2 * mainCharacter.getSpells().getSpellPoints(1);
         }
 
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
