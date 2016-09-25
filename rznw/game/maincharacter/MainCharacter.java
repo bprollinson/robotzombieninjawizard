@@ -14,7 +14,6 @@ import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.StatusEffects;
 import rznw.game.skill.Skill;
-import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
 import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
@@ -22,27 +21,18 @@ import rznw.utility.RandomNumberGenerator;
 
 public abstract class MainCharacter extends Character
 {
-    public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
     public static final int MAX_LEVEL = 80;
-    public static final int MAX_SKILL_POINTS = 20;
     public static final int MAX_SPELL_POINTS = 20;
-
-    private static String[] skillCategory = {
-        "Vitality",
-        "Agility",
-        "Fortitude",
-        "Magic"
-    };
 
     private int level = 0;
     private int experience = 0;
     private int pendingLevels = 0;
 
     private MainCharacterStats stats;
+    private MainCharacterSkills skills;
 
-    private int[] skills;
     private int[] spells;
     private Inventory inventory;
     private Equipment equipment;
@@ -56,13 +46,12 @@ public abstract class MainCharacter extends Character
         super(20, 20);
 
         this.stats = new MainCharacterStats();
+        this.skills = new MainCharacterSkills();
 
-        this.skills = new int[16];
         this.spells = new int[16];
 
-        for (int i = 0; i < this.skills.length; i++)
+        for (int i = 0; i < this.spells.length; i++)
         {
-            this.skills[i] = 0;
             this.spells[i] = 0;
         }
 
@@ -78,19 +67,9 @@ public abstract class MainCharacter extends Character
         return this.stats;
     }
 
-    public static String getSkillCategory(int categoryNumber)
+    public MainCharacterSkills getSkills()
     {
-        return MainCharacter.skillCategory[categoryNumber];
-    }
-
-    public static String getSkillName(int skillNumber)
-    {
-        return MainCharacter.getSkillFactory().getSkill(skillNumber).getDisplayName();
-    }
-
-    public static String getSkillDescription(int skillNumber)
-    {
-        return MainCharacter.getSkillFactory().getSkill(skillNumber).getDescription();
+        return this.skills;
     }
 
     public abstract String getSpellCategory(int categoryNumber);
@@ -165,21 +144,6 @@ public abstract class MainCharacter extends Character
         this.experience = experience;
     }
 
-    public void addSkillPoint(int skillNumber)
-    {
-        this.skills[skillNumber]++;
-    }
-
-    public int getSkillPoints(int skillNumber)
-    {
-        return this.skills[skillNumber];
-    }
-
-    public void setSkillPoints(int skillNumber, int points)
-    {
-        this.skills[skillNumber] = points;
-    }
-
     public void addSpellPoint(int spellNumber)
     {
         this.spells[spellNumber]++;
@@ -203,7 +167,7 @@ public abstract class MainCharacter extends Character
 
         if (this.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MAGIC_SEEDS) > 0)
         {
-            int magicSeedPoints = this.getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
+            int magicSeedPoints = this.skills.getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
             bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
 
             System.out.println("Bonus spell points: " + bonusSpellPoints);
@@ -236,11 +200,6 @@ public abstract class MainCharacter extends Character
     }
 
     public abstract SpellFactory getSpellFactory();
-
-    public static SkillFactory getSkillFactory()
-    {
-        return new SkillFactory();
-    }
 
     public boolean meleeAttackHits()
     {
@@ -303,7 +262,7 @@ public abstract class MainCharacter extends Character
 
     public int getStepsForManaRiver()
     {
-        return Math.max(1, 20 - this.getSkillPoints(Skill.SKILL_MANA_RIVER));
+        return Math.max(1, 20 - this.skills.getSkillPoints(Skill.SKILL_MANA_RIVER));
     }
 
     public void incrementSteps()

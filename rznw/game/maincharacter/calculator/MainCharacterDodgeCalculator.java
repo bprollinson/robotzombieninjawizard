@@ -32,7 +32,7 @@ public class MainCharacterDodgeCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
         {
-            int dodgePenalty = Math.max(21 - mainCharacter.getSkillPoints(Skill.SKILL_RAGE), 1);
+            int dodgePenalty = Math.max(21 - mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE), 1);
             System.out.println("Dodge penalty: " + dodgePenalty);
             toDodgePercent -= dodgePenalty;
         }

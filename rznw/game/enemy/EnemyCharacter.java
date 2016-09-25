@@ -90,7 +90,7 @@ public abstract class EnemyCharacter extends Character
 
     public boolean isDroppingItems(MainCharacter mainCharacter)
     {
-        int probability = 50 + 2 * mainCharacter.getSkillPoints(Skill.SKILL_FAST_HANDS);
+        int probability = 50 + 2 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_FAST_HANDS);
         probability += this.getStatusEffects().getStat(StatusEffects.STAT_BONUS_DROP_PROBABILITY);
         System.out.println("Item drop probability: " + probability);
 

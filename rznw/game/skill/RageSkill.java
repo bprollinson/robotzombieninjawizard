@@ -20,7 +20,7 @@ public class RageSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        return character.getSkillPoints(Skill.SKILL_RAGE) > 0;
+        return character.getSkills().getSkillPoints(Skill.SKILL_RAGE) > 0;
     }
 
     public void use(GameWorld gameWorld)
@@ -28,7 +28,7 @@ public class RageSkill extends Skill
         System.out.println("Using Rage");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        int numTurns = 1 + character.getSkillPoints(Skill.SKILL_RAGE);
+        int numTurns = 1 + character.getSkills().getSkillPoints(Skill.SKILL_RAGE);
         System.out.println("Rage turns: " + numTurns);
         character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_RAGE, numTurns);
     }

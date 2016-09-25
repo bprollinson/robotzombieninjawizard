@@ -22,7 +22,7 @@ public class ItemTradeSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        if (character.getSkillPoints(Skill.SKILL_ITEM_TRADE) == 0)
+        if (character.getSkills().getSkillPoints(Skill.SKILL_ITEM_TRADE) == 0)
         {
             return false;
         }
@@ -38,7 +38,7 @@ public class ItemTradeSkill extends Skill
             numItems += itemGroup.getNumItems();
         }
 
-        int skillPoints = character.getSkillPoints(Skill.SKILL_ITEM_TRADE);
+        int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_ITEM_TRADE);
         int numToTradeIn = 6 - (int)Math.floor(skillPoints / 5);
 
         return numItems >= numToTradeIn;
@@ -47,7 +47,7 @@ public class ItemTradeSkill extends Skill
     public void use(GameWorld gameWorld)
     {
         MainCharacter character = gameWorld.getMainCharacter();
-        int skillPoints = character.getSkillPoints(Skill.SKILL_ITEM_TRADE);
+        int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_ITEM_TRADE);
         int numToTradeIn = 6 - (int)Math.floor(skillPoints / 5);
 
         character.getStatusEffects().setStat(StatusEffects.STAT_ITEM_TRADE_NUMBER, numToTradeIn);

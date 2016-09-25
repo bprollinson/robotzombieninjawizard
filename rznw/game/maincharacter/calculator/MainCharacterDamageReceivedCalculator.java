@@ -18,7 +18,7 @@ public class MainCharacterDamageReceivedCalculator
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
             System.out.println("Hit by a magical source");
-            int dodgePercent = 5 * mainCharacter.getSkillPoints(Skill.SKILL_PROTECTIVE_FIELD);
+            int dodgePercent = 5 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_PROTECTIVE_FIELD);
             System.out.println("Magic dodge change: " + dodgePercent);
 
             Shield shield = mainCharacter.getEquipment().getEquippedShield();
@@ -60,7 +60,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
         {
-            int paddingPenalty = Math.max(21 - mainCharacter.getSkillPoints(Skill.SKILL_RAGE), 1);
+            int paddingPenalty = Math.max(21 - mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE), 1);
             System.out.println("Padding penalty: " + paddingPenalty);
             paddingPercent -= paddingPenalty;
         }

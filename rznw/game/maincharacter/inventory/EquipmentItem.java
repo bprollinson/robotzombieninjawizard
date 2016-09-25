@@ -13,7 +13,7 @@ public abstract class EquipmentItem
 
     public int getBuyPrice(MainCharacter character)
     {
-        int priceReductionPercent = (int)(2.0 * character.getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER));
+        int priceReductionPercent = (int)(2.0 * character.getSkills().getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER));
 
         return (int)Math.ceil((100.0 - priceReductionPercent) / 100.0 * this.getValue());
     }

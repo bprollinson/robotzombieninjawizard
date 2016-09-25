@@ -10,7 +10,7 @@ public class GoldKillBonusGranter implements KillBonusGranterComponent
     public void grantKillBonuses(MainCharacter mainCharacter, EnemyCharacter enemyCharacter)
     {
         int baseGold = enemyCharacter.getNumGold();
-        int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkillPoints(Skill.SKILL_ABUNDANCE));
+        int bonusGoldPercent = RandomNumberGenerator.randomInteger(0, mainCharacter.getSkills().getSkillPoints(Skill.SKILL_ABUNDANCE));
         bonusGoldPercent += enemyCharacter.getStatusEffects().getStat(StatusEffects.STAT_BONUS_GOLD_PERCENT);
         int bonusGold = (int)(baseGold * bonusGoldPercent / 100);
 

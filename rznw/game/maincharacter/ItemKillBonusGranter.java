@@ -33,9 +33,9 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
             }
         }
 
-        if (mainCharacter.getSkillPoints(Skill.SKILL_POTION_FIND) > 0)
+        if (mainCharacter.getSkills().getSkillPoints(Skill.SKILL_POTION_FIND) > 0)
         {
-            int probability = 5 * mainCharacter.getSkillPoints(Skill.SKILL_POTION_FIND);
+            int probability = 5 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_POTION_FIND);
 
             if (RandomNumberGenerator.rollSucceeds(probability))
             {

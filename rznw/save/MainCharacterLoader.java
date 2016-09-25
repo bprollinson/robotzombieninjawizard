@@ -29,7 +29,7 @@ public class MainCharacterLoader extends ComponentLoader
 
         for (int i = 0; i < 16; i++)
         {
-            character.setSkillPoints(i, this.readInteger(fileReader));
+            character.getSkills().setSkillPoints(i, this.readInteger(fileReader));
         }
 
         for (int i = 0; i < 16; i++)

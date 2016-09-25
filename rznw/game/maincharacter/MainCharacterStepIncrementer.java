@@ -30,12 +30,12 @@ public class MainCharacterStepIncrementer
             }
         }
 
-        if (mainCharacter.getSkillPoints(Skill.SKILL_MANA_RIVER) > 0)
+        if (mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_RIVER) > 0)
         {
             mainCharacter.setManaRiverSteps(mainCharacter.getManaRiverSteps() + 1);
             if (mainCharacter.getManaRiverSteps() >= mainCharacter.getStepsForManaRiver())
             {
-                int manaRiverProbability = mainCharacter.getSkillPoints(Skill.SKILL_MANA_RIVER);
+                int manaRiverProbability = mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_RIVER);
 
                 if (RandomNumberGenerator.rollSucceeds(manaRiverProbability))
                 {

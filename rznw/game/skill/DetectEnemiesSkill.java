@@ -26,14 +26,14 @@ public class DetectEnemiesSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        return character.getSkillPoints(Skill.SKILL_DETECT_ENEMIES) > 0;
+        return character.getSkills().getSkillPoints(Skill.SKILL_DETECT_ENEMIES) > 0;
     }
 
     public void use(GameWorld gameWorld)
     {
         System.out.println("Using Detect Enemies");
 
-        int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_DETECT_ENEMIES);
+        int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_DETECT_ENEMIES);
         if (!RandomNumberGenerator.rollSucceeds(successProbability))
         {
             System.out.println("Failure");
@@ -45,7 +45,7 @@ public class DetectEnemiesSkill extends Skill
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
 
-        int maxDistance = 2 * character.getSkillPoints(Skill.SKILL_DETECT_ENEMIES);
+        int maxDistance = 2 * character.getSkills().getSkillPoints(Skill.SKILL_DETECT_ENEMIES);
 
         Map map = gameWorld.getMap();
 

@@ -63,7 +63,7 @@ public class TrapMapElement extends MapElement
         {
             this.spring();
 
-            int disarmProbability = 5 * mainCharacter.getSkillPoints(Skill.SKILL_DISARM_TRAPS);
+            int disarmProbability = 5 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_DISARM_TRAPS);
 
             if (RandomNumberGenerator.rollSucceeds(disarmProbability))
             {

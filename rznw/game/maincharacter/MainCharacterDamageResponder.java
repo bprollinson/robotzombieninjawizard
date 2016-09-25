@@ -13,7 +13,7 @@ public class MainCharacterDamageResponder
     {
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MANA_SUCK) > 0)
         {
-            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * mainCharacter.getSkillPoints(Skill.SKILL_MANA_SUCK) * damage);
+            int MPFromDamage = (int)Math.floor(5.0 / 100.0 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_SUCK) * damage);
             if (MPFromDamage > 0)
             {
                 System.out.println("Healing MP from damage: " + MPFromDamage);

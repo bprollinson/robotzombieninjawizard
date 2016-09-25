@@ -20,14 +20,14 @@ public class ManaSuckSkill extends Skill
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        return character.getSkillPoints(Skill.SKILL_MANA_SUCK) > 0;
+        return character.getSkills().getSkillPoints(Skill.SKILL_MANA_SUCK) > 0;
     }
 
     public void use(GameWorld gameWorld)
     {
         System.out.println("Using Mana Suck");
 
-        int skillPoints = gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_MANA_SUCK);
+        int skillPoints = gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_MANA_SUCK);
         int numTurns = 2 + (int)Math.floor(skillPoints / 4);
         gameWorld.getMainCharacter().getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_MANA_SUCK, numTurns);
     }

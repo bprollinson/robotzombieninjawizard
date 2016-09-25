@@ -37,7 +37,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_ENTER:
                 if (!this.showingDescription)
                 {
-                    SkillFactory skillFactory = character.getSkillFactory();
+                    SkillFactory skillFactory = character.getSkills().getSkillFactory();
                     Skill skill = skillFactory.getSkill(this.state.getEntryNumber());
                     if (skill != null && skill.canUse(gameWorld))
                     {

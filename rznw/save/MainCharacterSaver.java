@@ -30,7 +30,7 @@ public class MainCharacterSaver extends ComponentSaver
 
         for (int i = 0; i < 16; i++)
         {
-            this.writeLine(fileWriter, mainCharacter.getSkillPoints(i));
+            this.writeLine(fileWriter, mainCharacter.getSkills().getSkillPoints(i));
         }
 
         for (int i = 0; i < 16; i++)

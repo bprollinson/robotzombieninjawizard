@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.MainCharacterSkills;
 import rznw.game.skill.PassiveSkill;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
@@ -21,7 +22,7 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 
         if (showingDescription)
         {
-            SkillFactory factory = mainCharacter.getSkillFactory();
+            SkillFactory factory = mainCharacter.getSkills().getSkillFactory();
             Skill skill = factory.getSkill(state.getEntryNumber());
             String skillType = "";
             if (skill instanceof PassiveSkill)
@@ -33,14 +34,14 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
                 skillType = " (Active)";
             }
 
-            this.renderCenteredString(1, mainCharacter.getSkillName(state.getEntryNumber()) + skillType);
+            this.renderCenteredString(1, mainCharacter.getSkills().getSkillName(state.getEntryNumber()) + skillType);
 
             int row = 3;
 
-            row += this.renderStringWithNewlines(3, mainCharacter.getSkillDescription(state.getEntryNumber()));
+            row += this.renderStringWithNewlines(3, mainCharacter.getSkills().getSkillDescription(state.getEntryNumber()));
             row++;
 
-            int skillPoints = mainCharacter.getSkillPoints(state.getEntryNumber());
+            int skillPoints = mainCharacter.getSkills().getSkillPoints(state.getEntryNumber());
 
             if (skill != null)
             {
@@ -88,13 +89,13 @@ public class LevelUpSkillsMenuRenderer extends MenuScreenRenderer
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
-        String groupDisplay = MainCharacter.getSkillCategory(groupNumber);
+        String groupDisplay = MainCharacterSkills.getSkillCategory(groupNumber);
         this.frame.renderDisplayString(startRow, 2, groupDisplay);
 
         for (int i = 0; i < 4; i++)
         {
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacter.getSkillName(pointIndex) + ": " + mainCharacter.getSkillPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacterSkills.getSkillName(pointIndex) + ": " + mainCharacter.getSkills().getSkillPoints(pointIndex));
         }
     }
 

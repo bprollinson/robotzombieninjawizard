@@ -22,12 +22,12 @@ public class MainCharacterDamageDealtCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
         {
-            int bonusDamagePercent = 2 * mainCharacter.getSkillPoints(Skill.SKILL_RAGE);
+            int bonusDamagePercent = 2 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE);
             int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
             System.out.println("Bonus rage damage: " + bonusDamage);
         }
 
-        double bloodRageFactor = mainCharacter.getSkillPoints(Skill.SKILL_BLOOD_RAGE) / 100.0 * (mainCharacter.getMaxHP() - mainCharacter.getHP()) / mainCharacter.getMaxHP();
+        double bloodRageFactor = mainCharacter.getSkills().getSkillPoints(Skill.SKILL_BLOOD_RAGE) / 100.0 * (mainCharacter.getMaxHP() - mainCharacter.getHP()) / mainCharacter.getMaxHP();
 
         if (bloodRageFactor > 0.0) {
             System.out.println("Blood rage factor: " + bloodRageFactor);

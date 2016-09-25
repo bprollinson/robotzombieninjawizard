@@ -99,7 +99,7 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
-        int skillPoints = this.gameWorld.getMainCharacter().getSkillPoints(Skill.SKILL_ITEM_TRADE);
+        int skillPoints = this.gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_ITEM_TRADE);
         int numToTradeIn = 6 - (int)Math.floor(skillPoints / 5);
 
         if (this.numTradedIn == numToTradeIn)
