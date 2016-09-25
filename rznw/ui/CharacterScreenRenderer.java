@@ -2,6 +2,7 @@ package rznw.ui;
 
 import rznw.game.maincharacter.ExperienceCalculator;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.MainCharacterStats;
 import rznw.game.stat.Stat;
 import rznw.game.stat.StatFactory;
 import rznw.map.GameWorld;
@@ -34,15 +35,15 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
             {
                 MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
 
-                this.renderCenteredString(1, mainCharacter.getStatName(state.getEntryNumber() - 1));
+                this.renderCenteredString(1, mainCharacter.getStats().getStatName(state.getEntryNumber() - 1));
 
                 int row = 3;
 
-                row += this.renderStringWithNewlines(3, mainCharacter.getStatDescription(state.getEntryNumber() - 1));
+                row += this.renderStringWithNewlines(3, mainCharacter.getStats().getStatDescription(state.getEntryNumber() - 1));
                 row++;
 
-                int statPoints = mainCharacter.getStatPoints(state.getEntryNumber() - 1);
-                StatFactory factory = mainCharacter.getStatFactory();
+                int statPoints = mainCharacter.getStats().getStatPoints(state.getEntryNumber() - 1);
+                StatFactory factory = mainCharacter.getStats().getStatFactory();
                 Stat stat = factory.getStat(state.getEntryNumber() - 1);
 
                 if (stat != null)
@@ -126,13 +127,13 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
-        String groupDisplay = MainCharacter.getStatCategory(groupNumber);
+        String groupDisplay = MainCharacterStats.getStatCategory(groupNumber);
         this.frame.renderDisplayString(startRow, 2, groupDisplay);
 
         for (int i = 0; i < 4; i++)
         {
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacter.getStatName(pointIndex) + ": " + mainCharacter.getStatPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacterStats.getStatName(pointIndex) + ": " + mainCharacter.getStats().getStatPoints(pointIndex));
         }
     }
 

@@ -52,7 +52,7 @@ public class PostEnemyTurnHandler implements TurnFragmentHandler
     private void handleMainCharacterRevival()
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
-        int revivalProbability = 5 * character.getStatPoints(Stat.STAT_LAST_BREATH);
+        int revivalProbability = 5 * character.getStats().getStatPoints(Stat.STAT_LAST_BREATH);
         System.out.println("Revival probability: " + revivalProbability);
 
         if (RandomNumberGenerator.rollSucceeds(revivalProbability))

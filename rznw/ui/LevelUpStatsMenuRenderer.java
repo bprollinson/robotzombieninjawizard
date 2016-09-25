@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.MainCharacterStats;
 import rznw.game.stat.Stat;
 import rznw.game.stat.StatFactory;
 
@@ -20,15 +21,15 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
 
         if (showingDescription)
         {
-            this.renderCenteredString(1, mainCharacter.getStatName(state.getEntryNumber()));
+            this.renderCenteredString(1, mainCharacter.getStats().getStatName(state.getEntryNumber()));
 
             int row = 3;
 
-            row += this.renderStringWithNewlines(3, mainCharacter.getStatDescription(state.getEntryNumber()));
+            row += this.renderStringWithNewlines(3, mainCharacter.getStats().getStatDescription(state.getEntryNumber()));
             row++;
 
-            int statPoints = mainCharacter.getStatPoints(state.getEntryNumber());
-            StatFactory factory = mainCharacter.getStatFactory();
+            int statPoints = mainCharacter.getStats().getStatPoints(state.getEntryNumber());
+            StatFactory factory = mainCharacter.getStats().getStatFactory();
             Stat stat = factory.getStat(state.getEntryNumber());
 
             if (stat != null)
@@ -74,13 +75,13 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
     {
-        String groupDisplay = MainCharacter.getStatCategory(groupNumber);
+        String groupDisplay = MainCharacterStats.getStatCategory(groupNumber);
         this.frame.renderDisplayString(startRow, 2, groupDisplay);
 
         for (int i = 0; i < 4; i++)
         {
             int pointIndex = groupNumber * 4 + i;
-            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacter.getStatName(pointIndex) + ": " + mainCharacter.getStatPoints(pointIndex));
+            this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacterStats.getStatName(pointIndex) + ": " + mainCharacter.getStats().getStatPoints(pointIndex));
         }
     }
 

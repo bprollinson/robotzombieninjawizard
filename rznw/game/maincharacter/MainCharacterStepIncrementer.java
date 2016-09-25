@@ -10,7 +10,7 @@ public class MainCharacterStepIncrementer
 {
     public void incrementSteps(MainCharacter mainCharacter)
     {
-        if (mainCharacter.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION) > 0)
+        if (mainCharacter.getStats().getStatPoints(Stat.STAT_PHYSICAL_REGENERATION) > 0)
         {
             mainCharacter.setHPSteps(mainCharacter.getHPSteps() + 1);
             if (mainCharacter.getHPSteps() >= mainCharacter.getStepsForHeal())
@@ -20,7 +20,7 @@ public class MainCharacterStepIncrementer
             }
         }
 
-        if (mainCharacter.getStatPoints(Stat.STAT_MENTAL_REGENERATION) > 0)
+        if (mainCharacter.getStats().getStatPoints(Stat.STAT_MENTAL_REGENERATION) > 0)
         {
             mainCharacter.setMPSteps(mainCharacter.getMPSteps() + 1);
             if (mainCharacter.getMPSteps() >= mainCharacter.getStepsForMPHeal())

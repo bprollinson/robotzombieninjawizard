@@ -17,27 +17,17 @@ import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
 import rznw.game.spell.SpellFactory;
 import rznw.game.stat.Stat;
-import rznw.game.stat.StatFactory;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
 public abstract class MainCharacter extends Character
 {
-    public static final int STAT_POINTS_PER_LEVEL = 4;
     public static final int SKILL_POINTS_PER_LEVEL = 4;
     public static final int SPELL_POINTS_PER_LEVEL = 4;
 
     public static final int MAX_LEVEL = 80;
-    public static final int MAX_STAT_POINTS = 20;
     public static final int MAX_SKILL_POINTS = 20;
     public static final int MAX_SPELL_POINTS = 20;
-
-    private static String[] statCategory = {
-        "Vitality",
-        "Agility",
-        "Fortitude",
-        "Magic"
-    };
 
     private static String[] skillCategory = {
         "Vitality",
@@ -50,7 +40,8 @@ public abstract class MainCharacter extends Character
     private int experience = 0;
     private int pendingLevels = 0;
 
-    private int[] stats;
+    private MainCharacterStats stats;
+
     private int[] skills;
     private int[] spells;
     private Inventory inventory;
@@ -64,13 +55,13 @@ public abstract class MainCharacter extends Character
     {
         super(20, 20);
 
-        this.stats = new int[16];
+        this.stats = new MainCharacterStats();
+
         this.skills = new int[16];
         this.spells = new int[16];
 
-        for (int i = 0; i < this.stats.length; i++)
+        for (int i = 0; i < this.skills.length; i++)
         {
-            this.stats[i] = 0;
             this.skills[i] = 0;
             this.spells[i] = 0;
         }
@@ -82,19 +73,9 @@ public abstract class MainCharacter extends Character
         this.MP = this.getMaxMP();
     }
 
-    public static String getStatCategory(int categoryNumber)
+    public MainCharacterStats getStats()
     {
-        return MainCharacter.statCategory[categoryNumber];
-    }
-
-    public static String getStatName(int statNumber)
-    {
-        return MainCharacter.getStatFactory().getStat(statNumber).getDisplayName();
-    }
-
-    public static String getStatDescription(int statNumber)
-    {
-        return MainCharacter.getStatFactory().getStat(statNumber).getDescription();
+        return this.stats;
     }
 
     public static String getSkillCategory(int categoryNumber)
@@ -136,12 +117,12 @@ public abstract class MainCharacter extends Character
 
     public int getMaxHP()
     {
-        return 200 + 20 * this.stats[Stat.STAT_HEALTH];
+        return 200 + 20 * this.stats.getStatPoints(Stat.STAT_HEALTH);
     }
 
     public int getMaxMP()
     {
-        return 200 + 20 * this.stats[Stat.STAT_MANA];
+        return 200 + 20 * this.stats.getStatPoints(Stat.STAT_MANA);
     }
 
     public int getDamage()
@@ -182,21 +163,6 @@ public abstract class MainCharacter extends Character
     public void setExperience(int experience)
     {
         this.experience = experience;
-    }
-
-    public void addStatPoint(int statNumber)
-    {
-        this.stats[statNumber]++;
-    }
-
-    public int getStatPoints(int statNumber)
-    {
-        return this.stats[statNumber];
-    }
-
-    public void setStatPoints(int statNumber, int points)
-    {
-        this.stats[statNumber] = points;
     }
 
     public void addSkillPoint(int skillNumber)
@@ -269,11 +235,6 @@ public abstract class MainCharacter extends Character
         item.useOnCharacter(this, gameWorld);
     }
 
-    public static StatFactory getStatFactory()
-    {
-        return new StatFactory();
-    }
-
     public abstract SpellFactory getSpellFactory();
 
     public static SkillFactory getSkillFactory()
@@ -283,7 +244,7 @@ public abstract class MainCharacter extends Character
 
     public boolean meleeAttackHits()
     {
-        int toHitPercent = 50 + 2 * this.getStatPoints(Stat.STAT_ACCURACY);
+        int toHitPercent = 50 + 2 * this.stats.getStatPoints(Stat.STAT_ACCURACY);
 
         Weapon weapon = this.getEquipment().getEquippedWeapon();
         if (weapon != null)
@@ -332,12 +293,12 @@ public abstract class MainCharacter extends Character
 
     public int getStepsForHeal()
     {
-        return Math.max(1, 20 - this.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION));
+        return Math.max(1, 20 - this.stats.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION));
     }
 
     public int getStepsForMPHeal()
     {
-        return Math.max(1, 20 - this.getStatPoints(Stat.STAT_MENTAL_REGENERATION));
+        return Math.max(1, 20 - this.stats.getStatPoints(Stat.STAT_MENTAL_REGENERATION));
     }
 
     public int getStepsForManaRiver()
@@ -360,7 +321,7 @@ public abstract class MainCharacter extends Character
             equipmentBonus = shield.getViewRadiusBonus();
         }
 
-        return 2 + this.getStatPoints(Stat.STAT_SIGHT) + equipmentBonus;
+        return 2 + this.stats.getStatPoints(Stat.STAT_SIGHT) + equipmentBonus;
     }
 
     public int damage(int damage, Character damageSource, GameWorld gameWorld, int damageSourceType)
@@ -386,7 +347,7 @@ public abstract class MainCharacter extends Character
 
     public void heal(int HP)
     {
-        int bonusHPPercent = 5 * this.getStatPoints(Stat.STAT_LIFE_BOND);
+        int bonusHPPercent = 5 * this.stats.getStatPoints(Stat.STAT_LIFE_BOND);
         int bonusHP = (int)Math.floor(bonusHPPercent / 100.0 * HP);
 
         if (bonusHP > 0)

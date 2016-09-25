@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.MainCharacterStats;
 import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
@@ -29,9 +30,9 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
         switch (event.getKeyCode())
         {
             case KeyEvent.VK_ENTER:
-                if (!this.showingDescription && character.getStatPoints(this.state.getEntryNumber()) < MainCharacter.MAX_STAT_POINTS)
+                if (!this.showingDescription && character.getStats().getStatPoints(this.state.getEntryNumber()) < MainCharacterStats.MAX_STAT_POINTS)
                 {
-                    character.addStatPoint(this.state.getEntryNumber());
+                    character.getStats().addStatPoint(this.state.getEntryNumber());
                     this.numPoints--;
                 }
                 break;
@@ -62,7 +63,7 @@ public class LevelUpStatsMenuKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
-        this.numPoints = character.getPendingLevels() * MainCharacter.STAT_POINTS_PER_LEVEL;
+        this.numPoints = character.getPendingLevels() * MainCharacterStats.STAT_POINTS_PER_LEVEL;
         this.levelUpStatsMenuRenderer.render(this.state, this.numPoints, character, this.showingDescription);
     }
 

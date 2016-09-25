@@ -24,7 +24,7 @@ public class MainCharacterLoader extends ComponentLoader
 
         for (int i = 0; i < 16; i++)
         {
-            character.setStatPoints(i, this.readInteger(fileReader));
+            character.getStats().setStatPoints(i, this.readInteger(fileReader));
         }
 
         for (int i = 0; i < 16; i++)

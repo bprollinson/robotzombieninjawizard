@@ -12,7 +12,7 @@ public class MainCharacterDodgeCalculator
 {
     public boolean dodgesAttack(MainCharacter mainCharacter)
     {
-        int toDodgePercent = 2 * mainCharacter.getStatPoints(Stat.STAT_DODGE);
+        int toDodgePercent = 2 * mainCharacter.getStats().getStatPoints(Stat.STAT_DODGE);
 
         Shield shield = mainCharacter.getEquipment().getEquippedShield();
         if (shield != null)

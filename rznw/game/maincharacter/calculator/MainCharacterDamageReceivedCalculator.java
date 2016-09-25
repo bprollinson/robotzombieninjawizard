@@ -36,7 +36,7 @@ public class MainCharacterDamageReceivedCalculator
             }
         }
 
-        int paddingPercent = 2 * mainCharacter.getStatPoints(Stat.STAT_PADDING);
+        int paddingPercent = 2 * mainCharacter.getStats().getStatPoints(Stat.STAT_PADDING);
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
         {
             paddingPercent += 2 * mainCharacter.getSpellPoints(1);
@@ -44,7 +44,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
-            int magicPaddingPercent = 5 * mainCharacter.getStatPoints(Stat.STAT_MAGIC_RESISTANCE);
+            int magicPaddingPercent = 5 * mainCharacter.getStats().getStatPoints(Stat.STAT_MAGIC_RESISTANCE);
 
             Shield shield = mainCharacter.getEquipment().getEquippedShield();
             if (shield != null)
