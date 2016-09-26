@@ -18,9 +18,9 @@ public class MainCharacterLoader extends ComponentLoader
         character.setHP(this.readInteger(fileReader));
         character.setMP(this.readInteger(fileReader));
 
-        character.setHPSteps(this.readInteger(fileReader));
-        character.setMPSteps(this.readInteger(fileReader));
-        character.setManaRiverSteps(this.readInteger(fileReader));
+        character.getSteps().setHPSteps(this.readInteger(fileReader));
+        character.getSteps().setMPSteps(this.readInteger(fileReader));
+        character.getSteps().setManaRiverSteps(this.readInteger(fileReader));
 
         for (int i = 0; i < 16; i++)
         {

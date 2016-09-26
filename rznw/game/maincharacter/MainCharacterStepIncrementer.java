@@ -12,28 +12,28 @@ public class MainCharacterStepIncrementer
     {
         if (mainCharacter.getStats().getStatPoints(Stat.STAT_PHYSICAL_REGENERATION) > 0)
         {
-            mainCharacter.setHPSteps(mainCharacter.getHPSteps() + 1);
-            if (mainCharacter.getHPSteps() >= mainCharacter.getStepsForHeal())
+            mainCharacter.getSteps().setHPSteps(mainCharacter.getSteps().getHPSteps() + 1);
+            if (mainCharacter.getSteps().getHPSteps() >= mainCharacter.getSteps().getStepsForHeal())
             {
                 mainCharacter.heal(10);
-                mainCharacter.setHPSteps(0);
+                mainCharacter.getSteps().setHPSteps(0);
             }
         }
 
         if (mainCharacter.getStats().getStatPoints(Stat.STAT_MENTAL_REGENERATION) > 0)
         {
-            mainCharacter.setMPSteps(mainCharacter.getMPSteps() + 1);
-            if (mainCharacter.getMPSteps() >= mainCharacter.getStepsForMPHeal())
+            mainCharacter.getSteps().setMPSteps(mainCharacter.getSteps().getMPSteps() + 1);
+            if (mainCharacter.getSteps().getMPSteps() >= mainCharacter.getSteps().getStepsForMPHeal())
             {
                 mainCharacter.healMP(10);
-                mainCharacter.setMPSteps(0);
+                mainCharacter.getSteps().setMPSteps(0);
             }
         }
 
         if (mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_RIVER) > 0)
         {
-            mainCharacter.setManaRiverSteps(mainCharacter.getManaRiverSteps() + 1);
-            if (mainCharacter.getManaRiverSteps() >= mainCharacter.getStepsForManaRiver())
+            mainCharacter.getSteps().setManaRiverSteps(mainCharacter.getSteps().getManaRiverSteps() + 1);
+            if (mainCharacter.getSteps().getManaRiverSteps() >= mainCharacter.getSteps().getStepsForManaRiver())
             {
                 int manaRiverProbability = mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_RIVER);
 
@@ -42,7 +42,7 @@ public class MainCharacterStepIncrementer
                     mainCharacter.setMP(mainCharacter.getMaxMP());
                 }
 
-                mainCharacter.setManaRiverSteps(0);
+                mainCharacter.getSteps().setManaRiverSteps(0);
             }
         }
 

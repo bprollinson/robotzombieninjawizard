@@ -48,7 +48,7 @@ public class PostCharacterTurnHandler implements TurnFragmentHandler
             map.visit(row, column);
 
             MainCharacter mainCharacter = this.gameWorld.getMainCharacter();
-            mainCharacter.incrementSteps();
+            mainCharacter.getSteps().incrementSteps();
         }
     }
 }

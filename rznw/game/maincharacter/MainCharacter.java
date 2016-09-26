@@ -13,7 +13,6 @@ import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.StatusEffects;
-import rznw.game.skill.Skill;
 import rznw.game.spell.SpellFactory;
 import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
@@ -34,9 +33,7 @@ public abstract class MainCharacter extends Character
     private Inventory inventory;
     private Equipment equipment;
 
-    private int HPSteps = 0;
-    private int MPSteps = 0;
-    private int manaRiverSteps = 0;
+    private MainCharacterSteps steps;
 
     public MainCharacter()
     {
@@ -48,6 +45,8 @@ public abstract class MainCharacter extends Character
 
         this.inventory = new Inventory(this);
         this.equipment = new Equipment(this);
+
+        this.steps = new MainCharacterSteps(this);
 
         this.HP = this.getMaxHP();
         this.MP = this.getMaxMP();
@@ -66,6 +65,11 @@ public abstract class MainCharacter extends Character
     public MainCharacterSpells getSpells()
     {
         return this.spells;
+    }
+
+    public MainCharacterSteps getSteps()
+    {
+        return this.steps;
     }
 
     public abstract String getSpellCategory(int categoryNumber);
@@ -166,56 +170,6 @@ public abstract class MainCharacter extends Character
     public boolean dodgesAttack()
     {
         return new MainCharacterDodgeCalculator().dodgesAttack(this);
-    }
-
-    public int getHPSteps()
-    {
-        return this.HPSteps;
-    }
-
-    public void setHPSteps(int HPSteps)
-    {
-        this.HPSteps = HPSteps;
-    }
-
-    public int getMPSteps()
-    {
-        return this.MPSteps;
-    }
-
-    public void setMPSteps(int MPSteps)
-    {
-        this.MPSteps = MPSteps;
-    }
-
-    public int getManaRiverSteps()
-    {
-        return this.manaRiverSteps;
-    }
-
-    public void setManaRiverSteps(int manaRiverSteps)
-    {
-        this.manaRiverSteps = manaRiverSteps;
-    }
-
-    public int getStepsForHeal()
-    {
-        return Math.max(1, 20 - this.stats.getStatPoints(Stat.STAT_PHYSICAL_REGENERATION));
-    }
-
-    public int getStepsForMPHeal()
-    {
-        return Math.max(1, 20 - this.stats.getStatPoints(Stat.STAT_MENTAL_REGENERATION));
-    }
-
-    public int getStepsForManaRiver()
-    {
-        return Math.max(1, 20 - this.skills.getSkillPoints(Skill.SKILL_MANA_RIVER));
-    }
-
-    public void incrementSteps()
-    {
-        new MainCharacterStepIncrementer().incrementSteps(this);
     }
 
     public int getViewRadius()
