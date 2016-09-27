@@ -49,7 +49,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_DEATH_SCREEN;
         }
 
-        if (this.gameWorld.getMainCharacter().getPendingLevels() > 0)
+        if (this.gameWorld.getMainCharacter().getExperience().getPendingLevels() > 0)
         {
             return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
         }

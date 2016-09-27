@@ -20,7 +20,7 @@ public class CharacterSummaryRenderer
         MainCharacter character = gameWorld.getMainCharacter();
         Map map = gameWorld.getMap();
 
-        this.frame.renderDisplayString(Map.NUM_ROWS, 0, "Character: L. " + character.getLevel());
+        this.frame.renderDisplayString(Map.NUM_ROWS, 0, "Character: L. " + character.getExperience().getLevel());
         this.frame.renderDisplayString(Map.NUM_ROWS, 20, "Dungeon: L. " + map.getLevel());
 
         String hpDisplay = character.getHP() + "/" + character.getMaxHP();

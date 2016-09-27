@@ -22,9 +22,7 @@ public abstract class MainCharacter extends Character
 {
     public static final int MAX_LEVEL = 80;
 
-    private int level = 0;
-    private int experience = 0;
-    private int pendingLevels = 0;
+    private MainCharacterExperience experience;
 
     private MainCharacterStats stats;
     private MainCharacterSkills skills;
@@ -39,6 +37,8 @@ public abstract class MainCharacter extends Character
     {
         super(20, 20);
 
+        this.experience = new MainCharacterExperience();
+
         this.stats = new MainCharacterStats();
         this.skills = new MainCharacterSkills();
         this.spells = new MainCharacterSpells(this);
@@ -50,6 +50,11 @@ public abstract class MainCharacter extends Character
 
         this.HP = this.getMaxHP();
         this.MP = this.getMaxMP();
+    }
+
+    public MainCharacterExperience getExperience()
+    {
+        return this.experience;
     }
 
     public MainCharacterStats getStats()
@@ -74,16 +79,6 @@ public abstract class MainCharacter extends Character
 
     public abstract String getSpellCategory(int categoryNumber);
 
-    public int getLevel()
-    {
-        return this.level;
-    }
-
-    public int getExperience()
-    {
-        return this.experience;
-    }
-
     public int getMaxHP()
     {
         return 200 + 20 * this.stats.getStatPoints(Stat.STAT_HEALTH);
@@ -107,31 +102,6 @@ public abstract class MainCharacter extends Character
     public Equipment getEquipment()
     {
         return this.equipment;
-    }
-
-    public void setLevel(int level)
-    {
-        this.level = level;
-    }
-
-    public void setPendingLevels(int pendingLevels)
-    {
-        this.pendingLevels = pendingLevels;
-    }
-
-    public int getPendingLevels()
-    {
-        return this.pendingLevels;
-    }
-
-    public void grantExperience(int experience)
-    {
-        this.experience += experience;
-    }
-
-    public void setExperience(int experience)
-    {
-        this.experience = experience;
     }
 
     public void resetStateAfterLevelUp()

@@ -13,8 +13,8 @@ public class MainCharacterLoader extends ComponentLoader
         gameWorld.generateMainCharacter(this.readInteger(fileReader));
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.setLevel(this.readInteger(fileReader));
-        character.setExperience(this.readInteger(fileReader));
+        character.getExperience().setLevel(this.readInteger(fileReader));
+        character.getExperience().setExperience(this.readInteger(fileReader));
         character.setHP(this.readInteger(fileReader));
         character.setMP(this.readInteger(fileReader));
 

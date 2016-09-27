@@ -52,7 +52,7 @@ public class StealExperienceSpell extends DirectedSpell
                 int baseExperience = enemy.getExperienceReward();
 
                 int numExperience = (int)Math.floor(numExperiencePercent / 100.0 * baseExperience);
-                character.grantExperience(numExperience);
+                character.getExperience().grantExperience(numExperience);
 
                 System.out.println("Steal percentage: " + numExperiencePercent);
                 System.out.println("Base experience: " + baseExperience);

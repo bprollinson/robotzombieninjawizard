@@ -49,7 +49,7 @@ public class FeedPastSpell extends DirectedSpell
             System.out.println("After: " + enemy.getHP());
 
             System.out.println("Bonus experience: " + experience);
-            gameWorld.getMainCharacter().grantExperience(experience);
+            gameWorld.getMainCharacter().getExperience().grantExperience(experience);
         }
     }
 
