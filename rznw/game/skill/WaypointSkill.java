@@ -52,34 +52,19 @@ public class WaypointSkill extends Skill
         if (waypointDeployed && !this.waypointCovered(gameWorld))
         {
             Map map = gameWorld.getMap();
+            MapScraper mapScraper = new MapScraper();
 
-            int waypointRow = -1;
-            int waypointColumn = -1;
-
-            for (int row = 0; row < Map.NUM_ROWS; row++)
-            {
-                for (int column = 0; column < Map.NUM_COLUMNS; column++)
-                {
-                    MapElement element = map.getBackgroundElement(row, column);
-
-                    if (element instanceof Waypoint)
-                    {
-                        waypointRow = row;
-                        waypointColumn = column;
-                    }
-                }
-            }
-
-            map.setBackgroundElement(waypointRow, waypointColumn, null);
+            MapElement waypoint = mapScraper.getFirstBackgroundElementOfType(map, Waypoint.class);
+            map.setBackgroundElement(waypoint.getRow(), waypoint.getColumn(), null);
 
             int characterRow = gameWorld.getMainCharacter().getMapElement().getRow();
             int characterColumn = gameWorld.getMainCharacter().getMapElement().getColumn();
             map.setElement(characterRow, characterColumn, null);
 
             MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
-            characterElement.setRow(waypointRow);
-            characterElement.setColumn(waypointColumn);
-            map.setElement(waypointRow, waypointColumn, characterElement);
+            characterElement.setRow(waypoint.getRow());
+            characterElement.setColumn(waypoint.getColumn());
+            map.setElement(waypoint.getRow(), waypoint.getColumn(), characterElement);
         }
         else if (!waypointDeployed && !this.currentSquareHasBackground(gameWorld))
         {
@@ -101,31 +86,17 @@ public class WaypointSkill extends Skill
 
     private boolean waypointCovered(GameWorld gameWorld)
     {
-        int waypointRow = -1;
-        int waypointColumn = -1;
-
         Map map = gameWorld.getMap();
+        MapScraper mapScraper = new MapScraper();
 
-        for (int row = 0; row < Map.NUM_ROWS; row++)
-        {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = map.getBackgroundElement(row, column);
+        MapElement waypoint = mapScraper.getFirstBackgroundElementOfType(map, Waypoint.class);
 
-                if (element instanceof Waypoint)
-                {
-                    waypointRow = row;
-                    waypointColumn = column;
-                }
-            }
-        }
-
-        if (waypointRow == -1)
+        if (waypoint == null)
         {
             return false;
         }
 
-        return map.getElement(waypointRow, waypointColumn) != null;
+        return map.getElement(waypoint.getRow(), waypoint.getColumn()) != null;
     }
 
     private boolean currentSquareHasBackground(GameWorld gameWorld)
