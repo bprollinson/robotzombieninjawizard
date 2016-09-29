@@ -3,6 +3,7 @@ package rznw.game.skill;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapScraper;
 import rznw.map.element.MapElement;
 import rznw.map.element.Waypoint;
 import rznw.utility.RandomNumberGenerator;
@@ -92,22 +93,10 @@ public class WaypointSkill extends Skill
 
     private boolean waypointDeployed(GameWorld gameWorld)
     {
+        MapScraper mapScraper = new MapScraper();
         Map map = gameWorld.getMap();
 
-        for (int row = 0; row < Map.NUM_ROWS; row++)
-        {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = map.getBackgroundElement(row, column);
-
-                if (element instanceof Waypoint)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return mapScraper.mapContainsBackgroundElementOfType(map, Waypoint.class);
     }
 
     private boolean waypointCovered(GameWorld gameWorld)

@@ -91,4 +91,22 @@ public class MapScraper
 
         return false;
     }
+
+    public boolean mapContainsBackgroundElementOfType(Map map, Class clazz)
+    {
+        for (int row = 0; row < Map.NUM_ROWS; row++)
+        {
+            for (int column = 0; column < Map.NUM_COLUMNS; column++)
+            {
+                MapElement element = map.getBackgroundElement(row, column);
+
+                if (element != null && clazz.isInstance(element))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
