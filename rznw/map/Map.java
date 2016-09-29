@@ -100,17 +100,17 @@ public class Map
 
     public Collection<EnemyCharacter> getEnemies()
     {
-        return new MapScraper().getEnemies(this);
+        return new MapCharacterScraper().getEnemies(this);
     }
 
     public Collection<SummonedCharacter> getSummons()
     {
-        return new MapScraper().getSummons(this);
+        return new MapCharacterScraper().getSummons(this);
     }
 
     public Collection<EnemyCharacter> getEnemiesInRectangle(int minRow, int minColumn, int maxRow, int maxColumn)
     {
-        return new MapScraper().getEnemiesInRectangle(this, minRow, minColumn, maxRow, maxColumn);
+        return new MapCharacterScraper().getEnemiesInRectangle(this, minRow, minColumn, maxRow, maxColumn);
     }
 
     public boolean elementVisited(int row, int column)
