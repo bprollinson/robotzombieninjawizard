@@ -3,6 +3,7 @@ package rznw.game.skill;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.MapScraper;
 import rznw.map.element.MapElement;
 import rznw.map.element.Waypoint;
@@ -57,14 +58,10 @@ public class WaypointSkill extends Skill
             MapElement waypoint = mapScraper.getFirstBackgroundElementOfType(map, Waypoint.class);
             map.setBackgroundElement(waypoint.getRow(), waypoint.getColumn(), null);
 
-            int characterRow = gameWorld.getMainCharacter().getMapElement().getRow();
-            int characterColumn = gameWorld.getMainCharacter().getMapElement().getColumn();
-            map.setElement(characterRow, characterColumn, null);
-
             MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
-            characterElement.setRow(waypoint.getRow());
-            characterElement.setColumn(waypoint.getColumn());
-            map.setElement(waypoint.getRow(), waypoint.getColumn(), characterElement);
+            map.setElement(characterElement.getRow(), characterElement.getColumn(), null);
+
+            MapElementSetter.setElement(map, characterElement, waypoint.getRow(), waypoint.getColumn());
         }
         else if (!waypointDeployed && !this.currentSquareHasBackground(gameWorld))
         {
