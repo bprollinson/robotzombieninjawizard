@@ -13,6 +13,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 import rznw.map.element.Void;
 
@@ -37,14 +38,10 @@ public class TeleportSpell extends UndirectedSpell
         MapElement newPositionElement = this.getNewPositionElement(gameWorld, spellPoints);
 
         Map map = gameWorld.getMap();
-        int oldRow = character.getMapElement().getRow();
-        int oldColumn = character.getMapElement().getColumn();
-
-        map.setElement(oldRow, oldColumn, null);
         MapElement characterMapElement = character.getMapElement();
-        characterMapElement.setRow(newPositionElement.getRow());
-        characterMapElement.setColumn(newPositionElement.getColumn());
-        map.setElement(newPositionElement.getRow(), newPositionElement.getColumn(), characterMapElement);
+
+        map.setElement(characterMapElement.getRow(), characterMapElement.getColumn(), null);
+        MapElementSetter.setElement(map, characterMapElement, newPositionElement.getRow(), newPositionElement.getColumn());
         map.setElementVisited(character, newPositionElement.getRow(), newPositionElement.getColumn());
     }
 
