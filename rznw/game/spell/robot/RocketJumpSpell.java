@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 import rznw.map.element.Void;
 import rznw.map.element.Wall;
@@ -53,10 +54,7 @@ public class RocketJumpSpell extends DirectedSpell
             column -= positionChange.getDeltaColumn();
         }
 
-        MapElement characterElement = character.getMapElement();
-        characterElement.setRow(row);
-        characterElement.setColumn(column);
-        map.setElement(row, column, characterElement);
+        MapElementSetter.setElement(map, character.getMapElement(), row, column);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
