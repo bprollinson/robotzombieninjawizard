@@ -3,6 +3,7 @@ package rznw.turn;
 import rznw.game.Character;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.PositionChange;
 
@@ -33,12 +34,7 @@ public class CharacterTurnHandler
 
         map.setElement(positionChange.getInitialRow(), positionChange.getInitialColumn(), null);
 
-        int newRow = positionChange.getFinalRow();
-        int newColumn = positionChange.getFinalColumn();
-
         MapElement mapElement = character.getMapElement();
-        map.setElement(newRow, newColumn, mapElement);
-        mapElement.setRow(newRow);
-        mapElement.setColumn(newColumn);
+        MapElementSetter.setElement(map, mapElement, positionChange.getFinalRow(), positionChange.getFinalColumn());
     }
 }
