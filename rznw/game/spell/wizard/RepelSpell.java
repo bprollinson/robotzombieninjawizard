@@ -12,6 +12,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
+import rznw.map.MapElementSetter;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 
@@ -108,10 +109,8 @@ public class RepelSpell extends UndirectedSpell
 
                 if (map.getElement(newRow, newColumn) == null)
                 {
-                    enemyElement.setRow(newRow);
-                    enemyElement.setColumn(newColumn);
                     map.setElement(oldRow, oldColumn, null);
-                    map.setElement(newRow, newColumn, enemyElement);
+                    MapElementSetter.setElement(map, enemyElement, newRow, newColumn);
                 }
             }
         }
