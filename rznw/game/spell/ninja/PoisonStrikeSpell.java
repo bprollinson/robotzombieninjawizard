@@ -5,6 +5,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -48,9 +49,7 @@ public class PoisonStrikeSpell extends DirectedSpell
         int characterColumn = enemyColumn - positionChange.getDeltaColumn();
 
         MapElement characterElement = character.getMapElement();
-        characterElement.setRow(characterRow);
-        characterElement.setColumn(characterColumn);
-        map.setElement(characterRow, characterColumn, characterElement);
+        MapElementSetter.setElement(map, characterElement, characterRow, characterColumn);
 
         MapElement enemyElement = map.getElement(enemyRow, enemyColumn);
         if (enemyElement != null && enemyElement.isEnemy())
