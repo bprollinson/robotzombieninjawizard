@@ -5,6 +5,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -77,9 +78,7 @@ public class PinStrikeSpell extends DirectedSpell
                     }
 
                     map.setElement(element.getRow(), element.getColumn(), null);
-                    map.setElement(row, column, element);
-                    element.setRow(row);
-                    element.setColumn(column);
+                    MapElementSetter.setElement(map, element, row, column);
                 }
             }
         }
