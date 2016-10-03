@@ -14,6 +14,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 import rznw.map.element.Void;
 
@@ -56,10 +57,7 @@ public class SmokeBombSpell extends UndirectedSpell
         int oldColumn = character.getMapElement().getColumn();
 
         map.setElement(oldRow, oldColumn, null);
-        MapElement characterMapElement = character.getMapElement();
-        characterMapElement.setRow(newPositionElement.getRow());
-        characterMapElement.setColumn(newPositionElement.getColumn());
-        map.setElement(newPositionElement.getRow(), newPositionElement.getColumn(), characterMapElement);
+        MapElementSetter.setElement(map, character.getMapElement(), newPositionElement.getRow(), newPositionElement.getColumn());
         map.setElementVisited(character, newPositionElement.getRow(), newPositionElement.getColumn());
     }
 
