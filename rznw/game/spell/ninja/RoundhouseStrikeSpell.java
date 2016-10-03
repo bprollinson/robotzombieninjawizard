@@ -9,6 +9,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
 
@@ -51,9 +52,7 @@ public class RoundhouseStrikeSpell extends DirectedSpell
         int characterColumn = objectColumn - positionChange.getDeltaColumn();
 
         MapElement characterElement = character.getMapElement();
-        characterElement.setRow(characterRow);
-        characterElement.setColumn(characterColumn);
-        map.setElement(characterRow, characterColumn, characterElement);
+        MapElementSetter.setElement(map, characterElement, characterRow, characterColumn);
 
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - 1, characterElement.getColumn() - 1, characterElement.getRow() + 1, characterElement.getColumn() + 1);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
