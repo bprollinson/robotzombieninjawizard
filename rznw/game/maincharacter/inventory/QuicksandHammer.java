@@ -4,6 +4,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 
@@ -109,9 +110,7 @@ public class QuicksandHammer extends Weapon
             if (map.getElement(newRow, newColumn) == null)
             {
                 map.setElement(enemyMapElement.getRow(), enemyMapElement.getColumn(), null);
-                enemyMapElement.setRow(newRow);
-                enemyMapElement.setColumn(newColumn);
-                map.setElement(newRow, newColumn, enemyMapElement);
+                MapElementSetter.setElement(map, enemyMapElement, newRow, newColumn);
             }
         }
     }
