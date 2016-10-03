@@ -5,6 +5,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -87,9 +88,7 @@ public class RicochetBlastSpell extends DirectedSpell
             }
 
             map.setElement(element.getRow(), element.getColumn(), null);
-            element.setRow(newRow);
-            element.setColumn(newColumn);
-            map.setElement(newRow, newColumn, element);
+            MapElementSetter.setElement(map, element, newRow, newColumn);
         }
     }
 
