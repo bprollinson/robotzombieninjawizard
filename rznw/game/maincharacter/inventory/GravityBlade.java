@@ -4,6 +4,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 
 public class GravityBlade extends Weapon
@@ -77,9 +78,7 @@ public class GravityBlade extends Weapon
             }
 
             map.setElement(enemyCharacterElement.getRow(), enemyCharacterElement.getColumn(), null);
-            map.setElement(row, column, enemyCharacterElement);
-            enemyCharacterElement.setRow(row);
-            enemyCharacterElement.setColumn(column);
+            MapElementSetter.setElement(map, enemyCharacterElement, row, column);
         }
     }
 
