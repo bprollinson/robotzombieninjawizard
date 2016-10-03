@@ -5,6 +5,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 
 public class QuicksandPullSpell extends EnemySpell
@@ -64,9 +65,7 @@ public class QuicksandPullSpell extends EnemySpell
             }
 
             map.setElement(mainCharacterElement.getRow(), mainCharacterElement.getColumn(), null);
-            map.setElement(row, column, mainCharacterElement);
-            mainCharacterElement.setRow(row);
-            mainCharacterElement.setColumn(column);
+            MapElementSetter.setElement(map, mainCharacterElement, row, column);
         }
 
         System.out.println("Main character final position: " + mainCharacterElement.getRow() + ", " + mainCharacterElement.getColumn());
