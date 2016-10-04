@@ -5,41 +5,58 @@ import rznw.game.spell.SpellFactory;
 
 public class WizardSpellFactory extends SpellFactory
 {
+    private static final int SPELL_ROCK_WALL = 0;
+    private static final int SPELL_METEOR_SHOWER = 1;
+    private static final int SPELL_EARTHQUAKE = 2;
+    private static final int SPELL_SUMMON_GOLEM = 3;
+    private static final int SPELL_RING_OF_FIRE = 4;
+    private static final int SPELL_FIREBALL = 5;
+    private static final int SPELL_HEAT_RAY = 6;
+    private static final int SPELL_ARC_LIGHTNING = 7;
+    private static final int SPELL_REPEL = 8;
+    private static final int SPELL_TELEPORT = 9;
+    private static final int SPELL_RICOCHET_BLAST = 10;
+    private static final int SPELL_UPDRAFT = 11;
+    private static final int SPELL_ICE_FIELD = 12;
+    private static final int SPELL_HEAL = 13;
+    private static final int SPELL_CLEANSE = 14;
+    private static final int SPELL_VITAL_ZAP = 15;
+
     public Spell getSpell(int spellIndex)
     {
         switch (spellIndex)
         {
-            case 0:
+            case WizardSpellFactory.SPELL_ROCK_WALL:
                 return new RockWallSpell();
-            case 1:
+            case WizardSpellFactory.SPELL_METEOR_SHOWER:
                 return new MeteorShowerSpell();
-            case 2:
+            case WizardSpellFactory.SPELL_EARTHQUAKE:
                 return new EarthquakeSpell();
-            case 3:
+            case WizardSpellFactory.SPELL_SUMMON_GOLEM:
                 return new SummonGolemSpell();
-            case 4:
+            case WizardSpellFactory.SPELL_RING_OF_FIRE:
                 return new RingOfFireSpell();
-            case 5:
+            case WizardSpellFactory.SPELL_FIREBALL:
                 return new FireballSpell();
-            case 6:
+            case WizardSpellFactory.SPELL_HEAT_RAY:
                 return new HeatRaySpell();
-            case 7:
+            case WizardSpellFactory.SPELL_ARC_LIGHTNING:
                 return new ArcLightningSpell();
-            case 8:
+            case WizardSpellFactory.SPELL_REPEL:
                 return new RepelSpell();
-            case 9:
+            case WizardSpellFactory.SPELL_TELEPORT:
                 return new TeleportSpell();
-            case 10:
+            case WizardSpellFactory.SPELL_RICOCHET_BLAST:
                 return new RicochetBlastSpell();
-            case 11:
+            case WizardSpellFactory.SPELL_UPDRAFT:
                 return new UpdraftSpell();
-            case 12:
+            case WizardSpellFactory.SPELL_ICE_FIELD:
                 return new IceFieldSpell();
-            case 13:
+            case WizardSpellFactory.SPELL_HEAL:
                 return new HealSpell();
-            case 14:
+            case WizardSpellFactory.SPELL_CLEANSE:
                 return new CleanseSpell();
-            case 15:
+            case WizardSpellFactory.SPELL_VITAL_ZAP:
                 return new VitalZapSpell();
             default:
                 return null;
