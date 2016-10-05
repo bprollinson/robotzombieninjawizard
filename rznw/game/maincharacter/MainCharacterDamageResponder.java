@@ -94,7 +94,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking barbed skin");
 
-            int barbedSkinProbability = 5 * mainCharacter.getSpells().getSpellPoints(3);
+            int barbedSkinProbability = 5 * mainCharacter.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_BARBED_SKIN);
             if (RandomNumberGenerator.rollSucceeds(barbedSkinProbability))
             {
                 System.out.println("Stunning with barbed skin");
