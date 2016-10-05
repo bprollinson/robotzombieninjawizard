@@ -48,7 +48,7 @@ public class SmokeBombSpell extends UndirectedSpell
         System.out.println("Escaping with smoke bomb");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        int spellPoints = character.getSpells().getSpellPoints(12);
+        int spellPoints = character.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_SMOKE_BOMB);
 
         MapElement newPositionElement = SmokeBombSpell.getNewPositionElement(gameWorld, spellPoints);
 
