@@ -9,7 +9,7 @@ public class WizardSpellFactory extends SpellFactory
     private static final int SPELL_METEOR_SHOWER = 1;
     private static final int SPELL_EARTHQUAKE = 2;
     private static final int SPELL_SUMMON_GOLEM = 3;
-    private static final int SPELL_RING_OF_FIRE = 4;
+    public static final int SPELL_RING_OF_FIRE = 4;
     private static final int SPELL_FIREBALL = 5;
     private static final int SPELL_HEAT_RAY = 6;
     private static final int SPELL_ARC_LIGHTNING = 7;
