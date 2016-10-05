@@ -8,6 +8,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.skill.Skill;
+import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.stat.Stat;
 import rznw.utility.RandomNumberGenerator;
 
@@ -39,7 +40,7 @@ public class MainCharacterDamageReceivedCalculator
         int paddingPercent = 2 * mainCharacter.getStats().getStatPoints(Stat.STAT_PADDING);
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
         {
-            paddingPercent += 2 * mainCharacter.getSpells().getSpellPoints(1);
+            paddingPercent += 2 * mainCharacter.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_RESIST_DAMAGE);
         }
 
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
