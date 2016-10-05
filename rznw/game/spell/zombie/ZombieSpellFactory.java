@@ -7,7 +7,7 @@ public class ZombieSpellFactory extends SpellFactory
 {
     private static final int SPELL_POISON_SKIN = 0;
     public static final int SPELL_RESIST_DAMAGE = 1;
-    private static final int SPELL_THORN_SKIN = 2;
+    public static final int SPELL_THORN_SKIN = 2;
     private static final int SPELL_BARBED_SKIN = 3;
     private static final int SPELL_FEED_FLESH = 4;
     private static final int SPELL_FEED_BRAIN = 5;

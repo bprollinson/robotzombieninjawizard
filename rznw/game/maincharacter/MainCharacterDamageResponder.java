@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.StatusEffects;
 import rznw.game.skill.Skill;
 import rznw.game.spell.ninja.SmokeBombSpell;
+import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
@@ -48,7 +49,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Attacking back with thorn skin");
 
-            int thornSkinDamage = 5 * mainCharacter.getSpells().getSpellPoints(2);
+            int thornSkinDamage = 5 * mainCharacter.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_THORN_SKIN);
             System.out.println("Enemy hp before: " + damageSource.getHP());
             damageSource.damage(thornSkinDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("Enemy hp after: " + damageSource.getHP());
