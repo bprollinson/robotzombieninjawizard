@@ -6,6 +6,7 @@ import rznw.game.SummonedZombie;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.game.maincharacter.KillBonusGranter;
+import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
@@ -43,7 +44,7 @@ public class EnemyClearer
 
                             System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
 
-                            int maxHP = 200 + 10 * character.getSpells().getSpellPoints(13);
+                            int maxHP = 200 + 10 * character.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_INFER_ZOMBIE);
                             System.out.println("Max HP is: " + maxHP);
 
                             SummonedZombie zombie = new SummonedZombie(maxHP);

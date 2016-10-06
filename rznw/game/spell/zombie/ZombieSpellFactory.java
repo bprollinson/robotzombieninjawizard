@@ -18,7 +18,7 @@ public class ZombieSpellFactory extends SpellFactory
     private static final int SPELL_INFECTIOUS_RAGE = 10;
     private static final int SPELL_BLOTCH = 11;
     public static final int SPELL_SUMMON_ZOMBIE = 12;
-    private static final int SPELL_INFER_ZOMBIE = 13;
+    public static final int SPELL_INFER_ZOMBIE = 13;
     private static final int SPELL_MULTIPLY_ZOMBIES = 14;
     private static final int SPELL_EXPLODE_ZOMBIES = 15;
 
