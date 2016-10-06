@@ -3,6 +3,7 @@ package rznw.game.maincharacter;
 import rznw.game.Character;
 import rznw.game.StatusEffects;
 import rznw.game.skill.Skill;
+import rznw.game.spell.ninja.NinjaSpellFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
 import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.map.GameWorld;
@@ -80,7 +81,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking smoke bomb");
 
-            int smokeBombProbability = 5 * mainCharacter.getSpells().getSpellPoints(12);
+            int smokeBombProbability = 5 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_SMOKE_BOMB);
             if (RandomNumberGenerator.rollSucceeds(smokeBombProbability))
             {
                 System.out.println("Escaping with smoke bomb");
