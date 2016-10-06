@@ -19,7 +19,7 @@ public class RobotSpellFactory extends SpellFactory
     private static final int SPELL_LEVEL_UP = 11;
     private static final int SPELL_EXTRACT_WEAPON = 12;
     private static final int SPELL_MEAT_SHIELD = 13;
-    private static final int SPELL_SIGNAL_WEAPON = 14;
+    public static final int SPELL_SIGNAL_WEAPON = 14;
     private static final int SPELL_POWER_SEARCH = 15;
 
     public Spell getSpell(int spellIndex)

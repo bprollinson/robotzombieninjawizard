@@ -5,6 +5,7 @@ import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Shield;
+import rznw.game.spell.robot.RobotSpellFactory;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
@@ -84,7 +85,7 @@ public class CharacterInteracter
         {
             System.out.println("Checking signal weapon");
 
-            int confuseProbability = 5 * ((MainCharacter)character).getSpells().getSpellPoints(14);
+            int confuseProbability = 5 * ((MainCharacter)character).getSpells().getSpellPoints(RobotSpellFactory.SPELL_SIGNAL_WEAPON);
             System.out.println("Confuse probability: " + confuseProbability);
 
             if (RandomNumberGenerator.rollSucceeds(confuseProbability))
