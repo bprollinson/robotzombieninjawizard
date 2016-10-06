@@ -7,6 +7,7 @@ import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.skill.Skill;
 import rznw.game.spell.robot.PowerSearchSpell;
+import rznw.game.spell.robot.RobotSpellFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class ItemKillBonusGranter implements KillBonusGranterComponent
@@ -20,7 +21,7 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
             if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_POWER_SEARCH) > 0)
             {
                 System.out.println("Upgrading item via power search");
-                itemGroup = PowerSearchSpell.getUpgradedItemGroup(itemGroup, mainCharacter.getSpells().getSpellPoints(15));
+                itemGroup = PowerSearchSpell.getUpgradedItemGroup(itemGroup, mainCharacter.getSpells().getSpellPoints(RobotSpellFactory.SPELL_POWER_SEARCH));
             }
 
             try
