@@ -32,12 +32,12 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking counterstrike");
 
-            int counterstrikeProbability = 10 * mainCharacter.getSpells().getSpellPoints(13);
+            int counterstrikeProbability = 10 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_COUNTERSTRIKE);
             if (RandomNumberGenerator.rollSucceeds(counterstrikeProbability))
             {
                 System.out.println("Damaging with counterstrike");
 
-                int counterstrikeDamage = 10 * mainCharacter.getSpells().getSpellPoints(13);
+                int counterstrikeDamage = 10 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_COUNTERSTRIKE);
                 System.out.println("Enemy hp before: " + damageSource.getHP());
                 damageSource.damage(counterstrikeDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
                 System.out.println("Enemy hp after: " + damageSource.getHP());

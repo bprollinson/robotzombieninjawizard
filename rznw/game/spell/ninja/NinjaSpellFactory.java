@@ -18,7 +18,7 @@ public class NinjaSpellFactory extends SpellFactory
     private static final int SPELL_STEAL_EQUIPMENT = 10;
     private static final int SPELL_STEAL_EXPERIENCE = 11;
     public static final int SPELL_SMOKE_BOMB = 12;
-    private static final int SPELL_COUNTERSTRIKE = 13;
+    public static final int SPELL_COUNTERSTRIKE = 13;
     private static final int SPELL_REVERSE_PAIN = 14;
     private static final int SPELL_DEATH_STRIKE = 15;
 
