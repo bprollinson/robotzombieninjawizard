@@ -67,7 +67,7 @@ public class MainCharacterDamageResponder
         {
             System.out.println("Checking death strike");
 
-            int deathStrikeProbability = 5 * mainCharacter.getSpells().getSpellPoints(15);
+            int deathStrikeProbability = 5 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_DEATH_STRIKE);
             if (RandomNumberGenerator.rollSucceeds(deathStrikeProbability))
             {
                 System.out.println("Killing with death strike");
