@@ -5,22 +5,22 @@ import rznw.game.spell.SpellFactory;
 
 public class ZombieSpellFactory extends SpellFactory
 {
-    private static final int SPELL_POISON_SKIN = 0;
+    public static final int SPELL_POISON_SKIN = 0;
     public static final int SPELL_RESIST_DAMAGE = 1;
     public static final int SPELL_THORN_SKIN = 2;
     public static final int SPELL_BARBED_SKIN = 3;
-    private static final int SPELL_FEED_FLESH = 4;
-    private static final int SPELL_FEED_BRAIN = 5;
-    private static final int SPELL_FEED_PAST = 6;
-    private static final int SPELL_FEED_MIND = 7;
-    private static final int SPELL_LOCUST_SWARM = 8;
-    private static final int SPELL_POISON_CLOUD = 9;
-    private static final int SPELL_INFECTIOUS_RAGE = 10;
-    private static final int SPELL_BLOTCH = 11;
+    public static final int SPELL_FEED_FLESH = 4;
+    public static final int SPELL_FEED_BRAIN = 5;
+    public static final int SPELL_FEED_PAST = 6;
+    public static final int SPELL_FEED_MIND = 7;
+    public static final int SPELL_LOCUST_SWARM = 8;
+    public static final int SPELL_POISON_CLOUD = 9;
+    public static final int SPELL_INFECTIOUS_RAGE = 10;
+    public static final int SPELL_BLOTCH = 11;
     public static final int SPELL_SUMMON_ZOMBIE = 12;
     public static final int SPELL_INFER_ZOMBIE = 13;
-    private static final int SPELL_MULTIPLY_ZOMBIES = 14;
-    private static final int SPELL_EXPLODE_ZOMBIES = 15;
+    public static final int SPELL_MULTIPLY_ZOMBIES = 14;
+    public static final int SPELL_EXPLODE_ZOMBIES = 15;
 
     public Spell getSpell(int spellIndex)
     {

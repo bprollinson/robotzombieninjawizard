@@ -5,21 +5,21 @@ import rznw.game.spell.SpellFactory;
 
 public class NinjaSpellFactory extends SpellFactory
 {
-    private static final int SPELL_STUN_STRIKE = 0;
-    private static final int SPELL_ROUNDHOUSE_STRIKE = 1;
-    private static final int SPELL_POISON_STRIKE = 2;
-    private static final int SPELL_ARMOR_BREAK = 3;
-    private static final int SPELL_PIN_STRIKE = 4;
-    private static final int SPELL_SHURIKEN_STAR = 5;
-    private static final int SPELL_SMOKE_CLUSTER = 6;
-    private static final int SPELL_STUN_BOMB = 7;
-    private static final int SPELL_STEAL_GOLD = 8;
-    private static final int SPELL_STEAL_ITEM = 9;
-    private static final int SPELL_STEAL_EQUIPMENT = 10;
-    private static final int SPELL_STEAL_EXPERIENCE = 11;
+    public static final int SPELL_STUN_STRIKE = 0;
+    public static final int SPELL_ROUNDHOUSE_STRIKE = 1;
+    public static final int SPELL_POISON_STRIKE = 2;
+    public static final int SPELL_ARMOR_BREAK = 3;
+    public static final int SPELL_PIN_STRIKE = 4;
+    public static final int SPELL_SHURIKEN_STAR = 5;
+    public static final int SPELL_SMOKE_CLUSTER = 6;
+    public static final int SPELL_STUN_BOMB = 7;
+    public static final int SPELL_STEAL_GOLD = 8;
+    public static final int SPELL_STEAL_ITEM = 9;
+    public static final int SPELL_STEAL_EQUIPMENT = 10;
+    public static final int SPELL_STEAL_EXPERIENCE = 11;
     public static final int SPELL_SMOKE_BOMB = 12;
     public static final int SPELL_COUNTERSTRIKE = 13;
-    private static final int SPELL_REVERSE_PAIN = 14;
+    public static final int SPELL_REVERSE_PAIN = 14;
     public static final int SPELL_DEATH_STRIKE = 15;
 
     public Spell getSpell(int spellIndex)

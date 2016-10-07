@@ -5,20 +5,20 @@ import rznw.game.spell.SpellFactory;
 
 public class RobotSpellFactory extends SpellFactory
 {
-    private static final int SPELL_POWER_DOWN = 0;
-    private static final int SPELL_ELECTRIC_FIELD = 1;
-    private static final int SPELL_OVERLOAD = 2;
-    private static final int SPELL_SUCK_POWER = 3;
-    private static final int SPELL_ROCKET_PACK = 4;
-    private static final int SPELL_ROCKET_JUMP = 5;
-    private static final int SPELL_ROCKET_SHOT = 6;
-    private static final int SPELL_PARALYZING_BLAST = 7;
-    private static final int SPELL_GENETIC_TARGETING = 8;
-    private static final int SPELL_LEVEL_DOWN = 9;
-    private static final int SPELL_BOOST_GENETICS = 10;
-    private static final int SPELL_LEVEL_UP = 11;
-    private static final int SPELL_EXTRACT_WEAPON = 12;
-    private static final int SPELL_MEAT_SHIELD = 13;
+    public static final int SPELL_POWER_DOWN = 0;
+    public static final int SPELL_ELECTRIC_FIELD = 1;
+    public static final int SPELL_OVERLOAD = 2;
+    public static final int SPELL_SUCK_POWER = 3;
+    public static final int SPELL_ROCKET_PACK = 4;
+    public static final int SPELL_ROCKET_JUMP = 5;
+    public static final int SPELL_ROCKET_SHOT = 6;
+    public static final int SPELL_PARALYZING_BLAST = 7;
+    public static final int SPELL_GENETIC_TARGETING = 8;
+    public static final int SPELL_LEVEL_DOWN = 9;
+    public static final int SPELL_BOOST_GENETICS = 10;
+    public static final int SPELL_LEVEL_UP = 11;
+    public static final int SPELL_EXTRACT_WEAPON = 12;
+    public static final int SPELL_MEAT_SHIELD = 13;
     public static final int SPELL_SIGNAL_WEAPON = 14;
     public static final int SPELL_POWER_SEARCH = 15;
 
