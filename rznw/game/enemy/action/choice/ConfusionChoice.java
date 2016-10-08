@@ -1,9 +1,9 @@
 package rznw.game.enemy.action.choice;
 
-import rznw.game.StatusEffects;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemyMovementAction;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.CharacterDistanceCalculator;
 import rznw.map.GameWorld;
 import rznw.turn.positionchange.RandomPositionChange;

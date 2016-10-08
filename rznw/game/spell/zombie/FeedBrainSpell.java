@@ -1,9 +1,9 @@
 package rznw.game.spell.zombie;
 
 import rznw.game.Character;
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;

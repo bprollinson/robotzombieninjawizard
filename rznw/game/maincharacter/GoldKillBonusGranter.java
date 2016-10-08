@@ -1,8 +1,8 @@
 package rznw.game.maincharacter;
 
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.skill.Skill;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
 public class GoldKillBonusGranter implements KillBonusGranterComponent

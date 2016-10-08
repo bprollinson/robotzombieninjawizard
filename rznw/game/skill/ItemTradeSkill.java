@@ -1,9 +1,9 @@
 package rznw.game.skill;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
 public class ItemTradeSkill extends Skill

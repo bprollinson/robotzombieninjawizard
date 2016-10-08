@@ -1,7 +1,7 @@
 package rznw.save;
 
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;

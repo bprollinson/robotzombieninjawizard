@@ -1,10 +1,10 @@
 package rznw.save;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
 import java.io.BufferedWriter;

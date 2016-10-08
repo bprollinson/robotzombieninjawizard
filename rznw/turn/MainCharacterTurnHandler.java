@@ -1,7 +1,7 @@
 package rznw.turn;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;

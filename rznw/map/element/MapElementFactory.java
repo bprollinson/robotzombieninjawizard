@@ -1,9 +1,9 @@
 package rznw.map.element;
 
-import rznw.game.StatusEffects;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
 public class MapElementFactory

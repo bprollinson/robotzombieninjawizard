@@ -1,8 +1,8 @@
 package rznw.game.spell.zombie;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
 public class InferZombieSpell extends UndirectedSpell

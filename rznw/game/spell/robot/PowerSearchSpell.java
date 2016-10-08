@@ -1,6 +1,5 @@
 package rznw.game.spell.robot;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Bomb;
 import rznw.game.maincharacter.inventory.FullManaPotion;
@@ -19,6 +18,7 @@ import rznw.game.maincharacter.inventory.ReplenishingXRayDrop;
 import rznw.game.maincharacter.inventory.SanityDrop;
 import rznw.game.maincharacter.inventory.XRayDrop;
 import rznw.game.spell.UndirectedSpell;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 

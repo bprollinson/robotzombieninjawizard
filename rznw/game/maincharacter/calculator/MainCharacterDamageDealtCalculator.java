@@ -1,10 +1,10 @@
 package rznw.game.maincharacter.calculator;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
+import rznw.game.statuseffects.StatusEffects;
 
 public class MainCharacterDamageDealtCalculator
 {

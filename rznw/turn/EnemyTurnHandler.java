@@ -1,11 +1,11 @@
 package rznw.turn;
 
-import rznw.game.StatusEffects;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;

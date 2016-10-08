@@ -1,12 +1,12 @@
 package rznw.turn;
 
 import rznw.game.Character;
-import rznw.game.StatusEffects;
 import rznw.game.SummonedZombie;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.spell.zombie.ZombieSpellFactory;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;

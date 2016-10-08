@@ -1,6 +1,5 @@
 package rznw.game.maincharacter;
 
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -8,6 +7,7 @@ import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.skill.Skill;
 import rznw.game.spell.robot.PowerSearchSpell;
 import rznw.game.spell.robot.RobotSpellFactory;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
 public class ItemKillBonusGranter implements KillBonusGranterComponent

@@ -1,9 +1,9 @@
 package rznw.ui;
 
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
 

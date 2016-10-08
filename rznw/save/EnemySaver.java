@@ -1,8 +1,8 @@
 package rznw.save;
 
 import rznw.game.Character;
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;

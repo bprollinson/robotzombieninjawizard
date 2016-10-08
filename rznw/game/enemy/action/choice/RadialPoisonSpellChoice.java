@@ -1,11 +1,11 @@
 package rznw.game.enemy.action.choice;
 
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.EnemyCharacterWithSpell;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemySpellAction;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 

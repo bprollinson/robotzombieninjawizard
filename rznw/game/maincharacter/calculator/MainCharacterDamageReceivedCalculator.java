@@ -1,7 +1,6 @@
 package rznw.game.maincharacter.calculator;
 
 import rznw.game.Character;
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.EnemyStat;
 import rznw.game.maincharacter.MainCharacter;
@@ -10,6 +9,7 @@ import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.skill.Skill;
 import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.stat.Stat;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterDamageReceivedCalculator

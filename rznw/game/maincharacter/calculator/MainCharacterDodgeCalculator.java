@@ -1,11 +1,11 @@
 package rznw.game.maincharacter.calculator;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.StatusEffects;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterDodgeCalculator

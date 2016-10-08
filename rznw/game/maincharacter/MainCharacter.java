@@ -12,9 +12,9 @@ import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.maincharacter.inventory.Weapon;
-import rznw.game.StatusEffects;
 import rznw.game.spell.SpellFactory;
 import rznw.game.stat.Stat;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 

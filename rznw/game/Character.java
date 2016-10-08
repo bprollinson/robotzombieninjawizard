@@ -1,5 +1,6 @@
 package rznw.game;
 
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 

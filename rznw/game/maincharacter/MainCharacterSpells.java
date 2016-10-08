@@ -1,7 +1,7 @@
 package rznw.game.maincharacter;
 
-import rznw.game.StatusEffects;
 import rznw.game.skill.Skill;
+import rznw.game.statuseffects.StatusEffects;
 
 public class MainCharacterSpells
 {

@@ -1,11 +1,11 @@
 package rznw.game.maincharacter;
 
 import rznw.game.Character;
-import rznw.game.StatusEffects;
 import rznw.game.skill.Skill;
 import rznw.game.spell.ninja.NinjaSpellFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
 import rznw.game.spell.zombie.ZombieSpellFactory;
+import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 

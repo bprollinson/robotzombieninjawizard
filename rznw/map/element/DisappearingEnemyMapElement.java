@@ -1,7 +1,7 @@
 package rznw.map.element;
 
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.statuseffects.StatusEffects;
 
 public class DisappearingEnemyMapElement extends EnemyMapElement
 {

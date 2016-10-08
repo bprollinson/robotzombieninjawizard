@@ -1,12 +1,12 @@
 package rznw.game.enemy.calculator;
 
 import rznw.game.Character;
-import rznw.game.StatusEffects;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.EnemyStat;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.stat.Stat;
+import rznw.game.statuseffects.StatusEffects;
 
 public class EnemyCharacterDamageReceivedCalculator
 {

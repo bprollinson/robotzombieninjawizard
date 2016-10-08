@@ -1,4 +1,4 @@
-package rznw.game;
+package rznw.game.statuseffects;
 
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
