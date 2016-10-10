@@ -1,5 +1,8 @@
 package rznw.game.statuseffects;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class TurnBasedStatusEffects
 {
     public static final int NUM_STATUS_EFFECTS = 16;
@@ -20,4 +23,29 @@ public class TurnBasedStatusEffects
     public static final int EFFECT_POWER_SEARCH = 13;
     public static final int EFFECT_CONFUSION = 14;
     public static final int EFFECT_FROZEN = 15;
+
+    private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
+
+    public TurnBasedStatusEffects()
+    {
+        for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
+        {
+            this.statusEffectTurns.put(i, 0);
+        }
+    }
+
+    public int getStatusEffectTurns(int index)
+    {
+        return this.statusEffectTurns.get(index);
+    }
+
+    public void setStatusEffectTurns(int index, int value)
+    {
+        this.statusEffectTurns.put(index, value);
+    }
+
+    public Iterator getEntrySetIterator()
+    {
+        return this.statusEffectTurns.entrySet().iterator();
+    }
 }

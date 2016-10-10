@@ -18,17 +18,12 @@ public class StatusEffects
     private Character character;
 
     private SimpleStatusEffects simpleStatusEffects = new SimpleStatusEffects();
-    private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
+    private TurnBasedStatusEffects turnBasedStatusEffects = new TurnBasedStatusEffects();
     private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 
     public StatusEffects(Character character)
     {
         this.character = character;
-
-        for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
-        {
-            this.statusEffectTurns.put(i, 0);
-        }
 
         for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
         {
@@ -46,19 +41,14 @@ public class StatusEffects
         this.simpleStatusEffects.setStatusEffect(index, value);
     }
 
-    public SimpleStatusEffects getSimpleStatusEffects()
-    {
-        return this.simpleStatusEffects;
-    }
-
     public int getStatusEffectTurns(int index)
     {
-        return this.statusEffectTurns.get(index);
+        return this.turnBasedStatusEffects.getStatusEffectTurns(index);
     }
 
     public void setStatusEffectTurns(int index, int value)
     {
-        this.statusEffectTurns.put(index, value);
+        this.turnBasedStatusEffects.setStatusEffectTurns(index, value);
     }
 
     public int getStat(int index)
@@ -75,7 +65,7 @@ public class StatusEffects
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.statusEffectTurns.put(TurnBasedStatusEffects.EFFECT_FROZEN, 1);
+            this.setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN, 1);
         }
     }
 
@@ -91,7 +81,7 @@ public class StatusEffects
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.statusEffectTurns.put(TurnBasedStatusEffects.EFFECT_CONFUSION, 3);
+            this.setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION, 3);
         }
     }
 
@@ -103,7 +93,7 @@ public class StatusEffects
 
     public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)
     {
-        this.statusEffectTurns.put(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD, numTurns);
+        this.setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD, numTurns);
         this.otherStats.put(StatusEffectStats.STAT_MEAT_SHIELD_PADDING_PERCENT, bonusPadding);
         this.otherStats.put(StatusEffectStats.STAT_MEAT_SHIELD_DODGE_PERCENT, bonusDodge);
     }
@@ -145,7 +135,7 @@ public class StatusEffects
 
         this.setStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);
 
-        Iterator<Map.Entry<Integer, Integer>> iterator = this.statusEffectTurns.entrySet().iterator();
+        Iterator<Map.Entry<Integer, Integer>> iterator = this.turnBasedStatusEffects.getEntrySetIterator();
         while (iterator.hasNext())
         {
             Map.Entry<Integer, Integer> pair = iterator.next();
@@ -153,7 +143,7 @@ public class StatusEffects
 
             if (turnsRemaining > 0)
             {
-                this.statusEffectTurns.put(pair.getKey(), turnsRemaining - 1);
+                this.setStatusEffectTurns(pair.getKey(), turnsRemaining - 1);
             }
         }
     }
