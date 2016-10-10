@@ -17,19 +17,13 @@ public class StatusEffects
 
     private Character character;
 
-    private HashMap<Integer, Boolean> statusEffects = new HashMap<Integer, Boolean>();
+    private SimpleStatusEffects simpleStatusEffects = new SimpleStatusEffects();
     private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 
     public StatusEffects(Character character)
     {
         this.character = character;
-
-        for (int i = 0; i < SimpleStatusEffects.NUM_STATUS_EFFECTS; i++)
-        {
-            this.statusEffects.put(i, false);
-        }
-        this.statusEffects.put(SimpleStatusEffects.EFFECT_REGENERATE_SHOP, true);
 
         for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
         {
@@ -44,12 +38,17 @@ public class StatusEffects
 
     public boolean getStatusEffect(int index)
     {
-        return this.statusEffects.get(index);
+        return this.simpleStatusEffects.getStatusEffect(index);
     }
 
     public void setStatusEffect(int index, boolean value)
     {
-        this.statusEffects.put(index, value);
+        this.simpleStatusEffects.setStatusEffect(index, value);
+    }
+
+    public SimpleStatusEffects getSimpleStatusEffects()
+    {
+        return this.simpleStatusEffects;
     }
 
     public int getStatusEffectTurns(int index)
@@ -84,7 +83,7 @@ public class StatusEffects
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.statusEffects.put(SimpleStatusEffects.EFFECT_POISONED, true);
+            this.setStatusEffect(SimpleStatusEffects.EFFECT_POISONED, true);
         }
     }
 
@@ -138,13 +137,13 @@ public class StatusEffects
 
     public void processTurn(Character character, GameWorld gameWorld)
     {
-        if (this.statusEffects.get(SimpleStatusEffects.EFFECT_POISONED))
+        if (this.getStatusEffect(SimpleStatusEffects.EFFECT_POISONED))
         {
             System.out.println("Damaging character due to poison");
             character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
         }
 
-        this.statusEffects.put(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);
+        this.setStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);
 
         Iterator<Map.Entry<Integer, Integer>> iterator = this.statusEffectTurns.entrySet().iterator();
         while (iterator.hasNext())
