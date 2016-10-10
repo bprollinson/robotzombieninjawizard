@@ -2,6 +2,7 @@ package rznw.game.statuseffects;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class TurnBasedStatusEffects
 {
@@ -44,7 +45,7 @@ public class TurnBasedStatusEffects
         this.statusEffectTurns.put(index, value);
     }
 
-    public Iterator getEntrySetIterator()
+    public Iterator<Map.Entry<Integer, Integer>> getEntrySetIterator()
     {
         return this.statusEffectTurns.entrySet().iterator();
     }
