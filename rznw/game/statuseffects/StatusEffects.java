@@ -119,12 +119,12 @@ public class StatusEffects
         return success;
     }
 
-    public void processTurn(Character character, GameWorld gameWorld)
+    public void processTurn(GameWorld gameWorld)
     {
         if (this.getStatusEffect(SimpleStatusEffects.EFFECT_POISONED))
         {
             System.out.println("Damaging character due to poison");
-            character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+            this.character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
         }
 
         this.setStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);

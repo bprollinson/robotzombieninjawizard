@@ -67,13 +67,13 @@ public class EnemyTurnHandler implements TurnFragmentHandler
                 backgroundElement.collideWithEnemy(this.gameWorld, enemy);
             }
 
-            enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
+            enemy.getStatusEffects().processTurn(this.gameWorld);
         }
 
         if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SKIP) > 0 || character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN) > 0)
         {
             System.out.println("Enemies take a turn while you are sleeping / frozen");
-            character.getStatusEffects().processTurn(character, this.gameWorld);
+            character.getStatusEffects().processTurn(this.gameWorld);
             this.handleTurnFragment();
         }
     }
@@ -95,7 +95,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
 
             new CharacterTurnHandler(this.gameWorld).handleTurnFragment(summonPositionChange, summon);
 
-            summon.getStatusEffects().processTurn(summon, this.gameWorld);
+            summon.getStatusEffects().processTurn(this.gameWorld);
         }
     }
 }
