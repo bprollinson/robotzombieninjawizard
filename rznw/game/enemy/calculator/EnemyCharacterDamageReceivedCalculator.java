@@ -6,7 +6,7 @@ import rznw.game.enemy.EnemyStat;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.stat.Stat;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 
 public class EnemyCharacterDamageReceivedCalculator
@@ -15,9 +15,9 @@ public class EnemyCharacterDamageReceivedCalculator
     {
         int paddingPercent = 2 * enemyCharacter.getStatPoints(EnemyStat.STAT_PADDING);
 
-        if (enemyCharacter.getStatusEffects().getStat(StatusEffects.STAT_ARMOR_BREAK) > 0)
+        if (enemyCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_ARMOR_BREAK) > 0)
         {
-            int armorBreakPercent = enemyCharacter.getStatusEffects().getStat(StatusEffects.STAT_ARMOR_BREAK);
+            int armorBreakPercent = enemyCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_ARMOR_BREAK);
             paddingPercent -= armorBreakPercent;
 
             System.out.println("Enemy armor break percent: " + armorBreakPercent);

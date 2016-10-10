@@ -3,7 +3,7 @@ package rznw.ui;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.skill.Skill;
 import rznw.game.skill.SkillFactory;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
 
@@ -107,23 +107,23 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
                 return DispatchKeyListener.STATE_GAME_COMPLETED;
             }
 
-            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffects.STAT_DETECT_VITALITY_RADIUS) > 0)
+            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffectStats.STAT_DETECT_VITALITY_RADIUS) > 0)
             {
-                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffects.STAT_DETECT_VITALITY_RADIUS, 0);
+                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffectStats.STAT_DETECT_VITALITY_RADIUS, 0);
 
                 return DispatchKeyListener.STATE_DETECT_VITALITY;
             }
 
-            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffects.STAT_ITEM_TRADE_NUMBER) > 0)
+            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffectStats.STAT_ITEM_TRADE_NUMBER) > 0)
             {
-                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffects.STAT_ITEM_TRADE_NUMBER, 0);
+                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffectStats.STAT_ITEM_TRADE_NUMBER, 0);
 
                 return DispatchKeyListener.STATE_TRADE_ITEMS;
             }
 
-            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffects.STAT_PRICE_REDUCTION_PERCENT) > 0)
+            if (this.gameWorld.getMainCharacter().getStatusEffects().getStat(StatusEffectStats.STAT_PRICE_REDUCTION_PERCENT) > 0)
             {
-                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffects.STAT_PRICE_REDUCTION_PERCENT, 0);
+                this.gameWorld.getMainCharacter().getStatusEffects().setStat(StatusEffectStats.STAT_PRICE_REDUCTION_PERCENT, 0);
 
                 return DispatchKeyListener.STATE_SHOP;
             }

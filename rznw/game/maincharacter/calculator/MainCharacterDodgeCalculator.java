@@ -5,7 +5,7 @@ import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
@@ -40,7 +40,7 @@ public class MainCharacterDodgeCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
-            int meatShieldDodgePercent = mainCharacter.getStatusEffects().getStat(StatusEffects.STAT_MEAT_SHIELD_DODGE_PERCENT);
+            int meatShieldDodgePercent = mainCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_MEAT_SHIELD_DODGE_PERCENT);
             System.out.println("Meat shield dodge bonus: " + meatShieldDodgePercent);
             toDodgePercent += meatShieldDodgePercent;
         }

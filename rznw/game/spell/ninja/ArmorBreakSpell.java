@@ -3,7 +3,7 @@ package rznw.game.spell.ninja;
 import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
@@ -63,7 +63,7 @@ public class ArmorBreakSpell extends DirectedSpell
             System.out.println("Enemy HP after: " + enemy.getHP());
 
             int armorBreakPercent = 5 * spellPoints;
-            enemy.getStatusEffects().setStat(StatusEffects.STAT_ARMOR_BREAK, armorBreakPercent);
+            enemy.getStatusEffects().setStat(StatusEffectStats.STAT_ARMOR_BREAK, armorBreakPercent);
         }
     }
 

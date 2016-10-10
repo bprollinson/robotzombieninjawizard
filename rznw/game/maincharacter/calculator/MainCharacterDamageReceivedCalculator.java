@@ -10,7 +10,7 @@ import rznw.game.skill.Skill;
 import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.stat.Stat;
 import rznw.game.statuseffects.SimpleStatusEffects;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
@@ -86,7 +86,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
-            int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getStat(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT);
+            int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_MEAT_SHIELD_PADDING_PERCENT);
             System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);
             paddingPercent += meatShieldPaddingPercent;
         }

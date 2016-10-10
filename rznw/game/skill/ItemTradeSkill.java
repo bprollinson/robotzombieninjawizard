@@ -3,7 +3,7 @@ package rznw.game.skill;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.map.GameWorld;
 
 public class ItemTradeSkill extends Skill
@@ -50,7 +50,7 @@ public class ItemTradeSkill extends Skill
         int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_ITEM_TRADE);
         int numToTradeIn = 6 - (int)Math.floor(skillPoints / 5);
 
-        character.getStatusEffects().setStat(StatusEffects.STAT_ITEM_TRADE_NUMBER, numToTradeIn);
+        character.getStatusEffects().setStat(StatusEffectStats.STAT_ITEM_TRADE_NUMBER, numToTradeIn);
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)
