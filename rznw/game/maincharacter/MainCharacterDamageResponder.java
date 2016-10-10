@@ -5,6 +5,7 @@ import rznw.game.skill.Skill;
 import rznw.game.spell.ninja.NinjaSpellFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
 import rznw.game.spell.zombie.ZombieSpellFactory;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
@@ -28,7 +29,7 @@ public class MainCharacterDamageResponder
             return;
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_COUNTERSTRIKE) && damageSource.isEnemy())
+        if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_COUNTERSTRIKE) && damageSource.isEnemy())
         {
             System.out.println("Checking counterstrike");
 
@@ -43,7 +44,7 @@ public class MainCharacterDamageResponder
                 System.out.println("Enemy hp after: " + damageSource.getHP());
             }
 
-            mainCharacter.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_COUNTERSTRIKE, false);
+            mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_COUNTERSTRIKE, false);
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_THORN_SKIN) > 0 && damageSource.isEnemy())
@@ -63,7 +64,7 @@ public class MainCharacterDamageResponder
             damageSource.getStatusEffects().poison();
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_DEATH_STRIKE) && damageSource.isEnemy())
+        if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_DEATH_STRIKE) && damageSource.isEnemy())
         {
             System.out.println("Checking death strike");
 
@@ -74,10 +75,10 @@ public class MainCharacterDamageResponder
                 damageSource.setHP(0);
             }
 
-            mainCharacter.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_DEATH_STRIKE, false);
+            mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_DEATH_STRIKE, false);
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_SMOKE_BOMB) && damageSource.isEnemy())
+        if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB) && damageSource.isEnemy())
         {
             System.out.println("Checking smoke bomb");
 
@@ -88,7 +89,7 @@ public class MainCharacterDamageResponder
                 SmokeBombSpell.escape(gameWorld);
             }
 
-            mainCharacter.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_SMOKE_BOMB, false);
+            mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB, false);
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_BARBED_SKIN) > 0 && damageSource.isEnemy())

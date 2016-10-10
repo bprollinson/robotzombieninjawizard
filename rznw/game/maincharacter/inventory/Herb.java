@@ -1,7 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 
 public class Herb extends InventoryItem
@@ -20,7 +20,7 @@ public class Herb extends InventoryItem
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
-        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_POISONED, false);
+        character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_POISONED, false);
     }
 
     public int getValue()

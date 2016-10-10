@@ -11,7 +11,7 @@ import java.util.List;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
@@ -35,7 +35,7 @@ public class SmokeBombSpell extends UndirectedSpell
         System.out.println("Casting Smoke Bomb");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_SMOKE_BOMB, true);
+        character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB, true);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

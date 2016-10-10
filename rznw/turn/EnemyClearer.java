@@ -6,7 +6,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.game.maincharacter.KillBonusGranter;
 import rznw.game.spell.zombie.ZombieSpellFactory;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
@@ -38,9 +38,9 @@ public class EnemyClearer
                         this.killBonusGranter.grantKillBonuses(character, enemy);
                         map.setElement(element.getRow(), element.getColumn(), null);
 
-                        if (character.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_INFER_ZOMBIE))
+                        if (character.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_INFER_ZOMBIE))
                         {
-                            character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_INFER_ZOMBIE, false);
+                            character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_INFER_ZOMBIE, false);
 
                             System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
 
@@ -56,7 +56,7 @@ public class EnemyClearer
                         if (enemy.isFinalBoss())
                         {
                             gameWorld.flagGameCompleted();
-                            character.getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP, true);
+                            character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_REGENERATE_SHOP, true);
                             RandomInventoryGenerator.handleRegeneration(gameWorld);
                         }
                     }

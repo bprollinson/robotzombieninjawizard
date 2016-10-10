@@ -1,6 +1,7 @@
 package rznw.turn;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -32,7 +33,7 @@ public class MainCharacterTurnHandler
         if (this.eventIsFloorChange(event))
         {
             System.out.println("Going down to the next floor");
-            this.gameWorld.getMainCharacter().getStatusEffects().setStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP, true);
+            this.gameWorld.getMainCharacter().getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_REGENERATE_SHOP, true);
             this.gameWorld.generateNextMap();
             Map map = this.gameWorld.getMap();
             MapElement characterElement = this.gameWorld.getMainCharacter().getMapElement();

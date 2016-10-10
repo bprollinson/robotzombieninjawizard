@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.skill.Skill;
 import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.stat.Stat;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
@@ -110,7 +111,7 @@ public class MainCharacterDamageReceivedCalculator
             }
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_REVERSE_PAIN))
+        if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN))
         {
             System.out.println("Reversing pain!");
 

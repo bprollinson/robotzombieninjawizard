@@ -4,7 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ public class ShopSaver extends ComponentSaver
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        if (character.getStatusEffects().getStatusEffect(StatusEffects.EFFECT_REGENERATE_SHOP))
+        if (character.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_REGENERATE_SHOP))
         {
             this.writeLine(fileWriter, 0);
 

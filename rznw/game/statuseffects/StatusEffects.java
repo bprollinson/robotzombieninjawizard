@@ -25,14 +25,6 @@ public class StatusEffects
     public static final int NUM_STATUS_EFFECT_TURNS = 16;
     public static final int NUM_STATS = 8;
 
-    public static final int EFFECT_POISONED = 0;
-    public static final int EFFECT_REVERSE_PAIN = 1;
-    public static final int EFFECT_DEATH_STRIKE = 2;
-    public static final int EFFECT_SMOKE_BOMB = 3;
-    public static final int EFFECT_COUNTERSTRIKE = 4;
-    public static final int EFFECT_INFER_ZOMBIE = 5;
-    public static final int EFFECT_REGENERATE_SHOP = 6;
-
     public static final int EFFECT_SIGNAL_WEAPON = 0;
     public static final int EFFECT_THORN_SKIN = 1;
     public static final int EFFECT_POISON_SKIN = 2;
@@ -67,7 +59,7 @@ public class StatusEffects
         {
             this.statusEffects.put(i, false);
         }
-        this.statusEffects.put(StatusEffects.EFFECT_REGENERATE_SHOP, true);
+        this.statusEffects.put(SimpleStatusEffects.EFFECT_REGENERATE_SHOP, true);
 
         for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
         {
@@ -122,7 +114,7 @@ public class StatusEffects
     {
         if (!this.thickSkinDodgesEffect())
         {
-            this.statusEffects.put(StatusEffects.EFFECT_POISONED, true);
+            this.statusEffects.put(SimpleStatusEffects.EFFECT_POISONED, true);
         }
     }
 
@@ -176,13 +168,13 @@ public class StatusEffects
 
     public void processTurn(Character character, GameWorld gameWorld)
     {
-        if (this.statusEffects.get(StatusEffects.EFFECT_POISONED))
+        if (this.statusEffects.get(SimpleStatusEffects.EFFECT_POISONED))
         {
             System.out.println("Damaging character due to poison");
             character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
         }
 
-        this.statusEffects.put(StatusEffects.EFFECT_REVERSE_PAIN, false);
+        this.statusEffects.put(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);
 
         Iterator<Map.Entry<Integer, Integer>> iterator = this.statusEffectTurns.entrySet().iterator();
         while (iterator.hasNext())
