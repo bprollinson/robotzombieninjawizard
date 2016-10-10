@@ -5,7 +5,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Shield;
 import rznw.game.spell.robot.RobotSpellFactory;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
@@ -81,7 +81,7 @@ public class CharacterInteracter
             System.out.println("Summoned character HP after: " + otherCharacter.getHP());
         }
 
-        if (character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
+        if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
         {
             System.out.println("Checking signal weapon");
 

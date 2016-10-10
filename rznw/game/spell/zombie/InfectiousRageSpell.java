@@ -2,7 +2,7 @@ package rznw.game.spell.zombie;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 public class InfectiousRageSpell extends UndirectedSpell
@@ -25,7 +25,7 @@ public class InfectiousRageSpell extends UndirectedSpell
 
         character.getStatusEffects().poison();
         int numTurns = 2 + (int)Math.floor(spellPoints / 4);
-        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_INFECTIOUS_RAGE, numTurns);
+        character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_INFECTIOUS_RAGE, numTurns);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

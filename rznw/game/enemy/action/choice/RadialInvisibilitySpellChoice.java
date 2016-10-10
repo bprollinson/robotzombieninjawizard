@@ -5,7 +5,7 @@ import rznw.game.enemy.EnemyCharacterWithSpell;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.action.EnemySpellAction;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 
@@ -29,7 +29,7 @@ public class RadialInvisibilitySpellChoice extends EnemyActionChoice
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
         MapElement enemyMapElement = enemyCharacter.getMapElement();
 
-        if (enemyCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_INVISIBLE) > 0)
+        if (enemyCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_INVISIBLE) > 0)
         {
             return null;
         }

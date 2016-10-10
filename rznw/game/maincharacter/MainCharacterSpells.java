@@ -1,7 +1,7 @@
 package rznw.game.maincharacter;
 
 import rznw.game.skill.Skill;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 
 public class MainCharacterSpells
 {
@@ -53,7 +53,7 @@ public class MainCharacterSpells
 
         int bonusSpellPoints = 0;
 
-        if (this.mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MAGIC_SEEDS) > 0)
+        if (this.mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MAGIC_SEEDS) > 0)
         {
             int magicSeedPoints = this.mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
             bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);

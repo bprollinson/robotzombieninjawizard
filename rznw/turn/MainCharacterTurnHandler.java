@@ -2,7 +2,7 @@ package rznw.turn;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.statuseffects.SimpleStatusEffects;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -58,7 +58,7 @@ public class MainCharacterTurnHandler
             return;
         }
 
-        if (character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_CONFUSION) > 0)
+        if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION) > 0)
         {
             System.out.println("Main character is confused!");
 

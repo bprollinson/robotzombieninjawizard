@@ -6,7 +6,7 @@ import rznw.game.spell.ninja.NinjaSpellFactory;
 import rznw.game.spell.ninja.SmokeBombSpell;
 import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.statuseffects.SimpleStatusEffects;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
@@ -14,7 +14,7 @@ public class MainCharacterDamageResponder
 {
     public void respondToDamage(GameWorld gameWorld, MainCharacter mainCharacter, Character damageSource, int damage)
     {
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MANA_SUCK) > 0)
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MANA_SUCK) > 0)
         {
             int MPFromDamage = (int)Math.floor(5.0 / 100.0 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_SUCK) * damage);
             if (MPFromDamage > 0)
@@ -47,7 +47,7 @@ public class MainCharacterDamageResponder
             mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_COUNTERSTRIKE, false);
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_THORN_SKIN) > 0 && damageSource.isEnemy())
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_THORN_SKIN) > 0 && damageSource.isEnemy())
         {
             System.out.println("Attacking back with thorn skin");
 
@@ -57,7 +57,7 @@ public class MainCharacterDamageResponder
             System.out.println("Enemy hp after: " + damageSource.getHP());
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_POISON_SKIN) > 0 && damageSource.isEnemy())
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_POISON_SKIN) > 0 && damageSource.isEnemy())
         {
             System.out.println("Poisoning with poison skin");
 
@@ -92,7 +92,7 @@ public class MainCharacterDamageResponder
             mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB, false);
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_BARBED_SKIN) > 0 && damageSource.isEnemy())
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_BARBED_SKIN) > 0 && damageSource.isEnemy())
         {
             System.out.println("Checking barbed skin");
 
@@ -100,7 +100,7 @@ public class MainCharacterDamageResponder
             if (RandomNumberGenerator.rollSucceeds(barbedSkinProbability))
             {
                 System.out.println("Stunning with barbed skin");
-                damageSource.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_FROZEN, 2);
+                damageSource.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN, 2);
             }
         }
     }

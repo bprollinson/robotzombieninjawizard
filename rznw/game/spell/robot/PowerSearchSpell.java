@@ -18,7 +18,7 @@ import rznw.game.maincharacter.inventory.ReplenishingXRayDrop;
 import rznw.game.maincharacter.inventory.SanityDrop;
 import rznw.game.maincharacter.inventory.XRayDrop;
 import rznw.game.spell.UndirectedSpell;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
@@ -40,7 +40,7 @@ public class PowerSearchSpell extends UndirectedSpell
 
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + spellPoints;
-        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_POWER_SEARCH, numTurns);
+        character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_POWER_SEARCH, numTurns);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

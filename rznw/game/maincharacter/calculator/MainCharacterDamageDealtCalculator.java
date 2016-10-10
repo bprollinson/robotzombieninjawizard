@@ -4,7 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 
 public class MainCharacterDamageDealtCalculator
 {
@@ -20,7 +20,7 @@ public class MainCharacterDamageDealtCalculator
             damage += weaponDamage;
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RAGE) > 0)
         {
             int bonusDamagePercent = 2 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE);
             int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);

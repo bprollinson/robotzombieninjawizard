@@ -11,6 +11,7 @@ import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.stat.Stat;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterDamageReceivedCalculator
@@ -39,7 +40,7 @@ public class MainCharacterDamageReceivedCalculator
         }
 
         int paddingPercent = 2 * mainCharacter.getStats().getStatPoints(Stat.STAT_PADDING);
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RESIST_DAMAGE) > 0)
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RESIST_DAMAGE) > 0)
         {
             paddingPercent += 2 * mainCharacter.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_RESIST_DAMAGE);
         }
@@ -60,7 +61,7 @@ public class MainCharacterDamageReceivedCalculator
             paddingPercent += magicPaddingPercent;
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_RAGE) > 0)
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RAGE) > 0)
         {
             int paddingPenalty = Math.max(21 - mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE), 1);
             System.out.println("Padding penalty: " + paddingPenalty);
@@ -83,7 +84,7 @@ public class MainCharacterDamageReceivedCalculator
             paddingPercent += armorPaddingPercent;
         }
 
-        if (mainCharacter.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_MEAT_SHIELD) > 0)
+        if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
             int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getStat(StatusEffects.STAT_MEAT_SHIELD_PADDING_PERCENT);
             System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);

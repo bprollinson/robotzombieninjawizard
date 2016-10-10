@@ -2,7 +2,7 @@ package rznw.game.spell.robot;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 public class PowerDownSpell extends UndirectedSpell
@@ -27,7 +27,7 @@ public class PowerDownSpell extends UndirectedSpell
         System.out.println("Skipping " + turnsToSkip + " turns to heal " + healHP + " hp");
 
         MainCharacter character = gameWorld.getMainCharacter();
-        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_SKIP, turnsToSkip);
+        character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SKIP, turnsToSkip);
         character.heal(healHP);
     }
 

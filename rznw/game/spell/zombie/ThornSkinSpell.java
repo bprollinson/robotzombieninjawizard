@@ -2,7 +2,7 @@ package rznw.game.spell.zombie;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 public class ThornSkinSpell extends UndirectedSpell
@@ -24,7 +24,7 @@ public class ThornSkinSpell extends UndirectedSpell
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + (int)Math.floor(spellPoints / 4);
 
-        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_THORN_SKIN, numTurns);
+        character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_THORN_SKIN, numTurns);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

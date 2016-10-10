@@ -7,6 +7,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.Zombie;
 import rznw.game.stat.Stat;
 import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 
 public class EnemyCharacterDamageReceivedCalculator
 {
@@ -44,7 +45,7 @@ public class EnemyCharacterDamageReceivedCalculator
             }
         }
 
-        if (damageSource instanceof Zombie && damageSource.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_INFECTIOUS_RAGE) > 0)
+        if (damageSource instanceof Zombie && damageSource.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_INFECTIOUS_RAGE) > 0)
         {
             System.out.println("Infectious rage is enabled");
             System.out.println("Base damage: " + damage);
@@ -52,7 +53,7 @@ public class EnemyCharacterDamageReceivedCalculator
             System.out.println("Rage damage: " + damage);
         }
 
-        if (damageSource instanceof Zombie && damageSource.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FEED_BRAIN) > 0 && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
+        if (damageSource instanceof Zombie && damageSource.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FEED_BRAIN) > 0 && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
             System.out.println("Feed brain is enabled");
             System.out.println("Base damage: " + damage);

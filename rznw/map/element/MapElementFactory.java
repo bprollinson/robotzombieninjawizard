@@ -3,7 +3,7 @@ package rznw.map.element;
 import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 public class MapElementFactory
@@ -20,7 +20,7 @@ public class MapElementFactory
                 gameWorld.incrementEnemyIndex();
 
                 invisibleEnemy.generateMapElement(row, column);
-                invisibleEnemy.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_INVISIBLE, Integer.parseInt(metadata));
+                invisibleEnemy.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_INVISIBLE, Integer.parseInt(metadata));
                 return invisibleEnemy.getMapElement();
             case EnemyMapElement.ELEMENT_NUMBER:
                 int enemyIndex = gameWorld.getEnemyIndex();

@@ -1,7 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 public class SanityDrop extends InventoryItem
@@ -20,7 +20,7 @@ public class SanityDrop extends InventoryItem
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
-        character.getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_CONFUSION, 0);
+        character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION, 0);
     }
 
     public int getValue()

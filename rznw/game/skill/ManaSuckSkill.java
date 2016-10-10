@@ -1,7 +1,7 @@
 package rznw.game.skill;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 public class ManaSuckSkill extends Skill
@@ -29,7 +29,7 @@ public class ManaSuckSkill extends Skill
 
         int skillPoints = gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_MANA_SUCK);
         int numTurns = 2 + (int)Math.floor(skillPoints / 4);
-        gameWorld.getMainCharacter().getStatusEffects().setStatusEffectTurns(StatusEffects.EFFECT_MANA_SUCK, numTurns);
+        gameWorld.getMainCharacter().getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MANA_SUCK, numTurns);
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)

@@ -5,7 +5,7 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.spell.EnemySpell;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -33,7 +33,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            if (enemy.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FROZEN) > 0)
+            if (enemy.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN) > 0)
             {
                 System.out.println("Enemy is frozen!");
             }
@@ -70,7 +70,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
             enemy.getStatusEffects().processTurn(enemy, this.gameWorld);
         }
 
-        if (character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_SKIP) > 0 || character.getStatusEffects().getStatusEffectTurns(StatusEffects.EFFECT_FROZEN) > 0)
+        if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SKIP) > 0 || character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN) > 0)
         {
             System.out.println("Enemies take a turn while you are sleeping / frozen");
             character.getStatusEffects().processTurn(character, this.gameWorld);
