@@ -1,5 +1,7 @@
 package rznw.game.statuseffects;
 
+import java.util.HashMap;
+
 public class StatusEffectStats
 {
     public static final int NUM_STATS = 8;
@@ -12,4 +14,24 @@ public class StatusEffectStats
     public static final int STAT_BONUS_GOLD_PERCENT = 5;
     public static final int STAT_MEAT_SHIELD_PADDING_PERCENT = 6;
     public static final int STAT_MEAT_SHIELD_DODGE_PERCENT = 7;
+
+    private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
+
+    public StatusEffectStats()
+    {
+        for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
+        {
+            this.otherStats.put(i, 0);
+        }
+    }
+
+    public int getStat(int index)
+    {
+        return this.otherStats.get(index);
+    }
+
+    public void setStat(int index, int value)
+    {
+        this.otherStats.put(index, value);
+    }
 }

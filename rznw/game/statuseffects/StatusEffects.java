@@ -7,7 +7,6 @@ import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
 
@@ -19,16 +18,11 @@ public class StatusEffects
 
     private SimpleStatusEffects simpleStatusEffects = new SimpleStatusEffects();
     private TurnBasedStatusEffects turnBasedStatusEffects = new TurnBasedStatusEffects();
-    private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
+    private StatusEffectStats statusEffectStats = new StatusEffectStats();
 
     public StatusEffects(Character character)
     {
         this.character = character;
-
-        for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
-        {
-            this.otherStats.put(i, 0);
-        }
     }
 
     public boolean getStatusEffect(int index)
@@ -53,12 +47,12 @@ public class StatusEffects
 
     public int getStat(int index)
     {
-        return this.otherStats.get(index);
+        return this.statusEffectStats.getStat(index);
     }
 
     public void setStat(int index, int value)
     {
-        this.otherStats.put(index, value);
+        this.statusEffectStats.setStat(index, value);
     }
 
     public void freeze()
@@ -87,15 +81,15 @@ public class StatusEffects
 
     public void enableBoostGenetics(int bonusDropProbability, int bonusGoldPercent)
     {
-        this.otherStats.put(StatusEffectStats.STAT_BONUS_DROP_PROBABILITY, bonusDropProbability);
-        this.otherStats.put(StatusEffectStats.STAT_BONUS_GOLD_PERCENT, bonusGoldPercent);
+        this.setStat(StatusEffectStats.STAT_BONUS_DROP_PROBABILITY, bonusDropProbability);
+        this.setStat(StatusEffectStats.STAT_BONUS_GOLD_PERCENT, bonusGoldPercent);
     }
 
     public void enableMeatShield(int numTurns, int bonusPadding, int bonusDodge)
     {
         this.setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD, numTurns);
-        this.otherStats.put(StatusEffectStats.STAT_MEAT_SHIELD_PADDING_PERCENT, bonusPadding);
-        this.otherStats.put(StatusEffectStats.STAT_MEAT_SHIELD_DODGE_PERCENT, bonusDodge);
+        this.setStat(StatusEffectStats.STAT_MEAT_SHIELD_PADDING_PERCENT, bonusPadding);
+        this.setStat(StatusEffectStats.STAT_MEAT_SHIELD_DODGE_PERCENT, bonusDodge);
     }
 
     private boolean thickSkinDodgesEffect()
