@@ -1,6 +1,7 @@
 package rznw.save;
 
 import rznw.game.enemy.EnemyCharacter;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
@@ -28,7 +29,7 @@ public class EnemyLoader extends ComponentLoader
             enemy.setHP(hp);
             enemy.setMP(mp);
 
-            for (int j = 0; j < StatusEffects.NUM_STATUS_EFFECTS; j++)
+            for (int j = 0; j < SimpleStatusEffects.NUM_STATUS_EFFECTS; j++)
             {
                 enemy.getStatusEffects().setStatusEffect(j, this.readInteger(fileReader) == 1);
             }

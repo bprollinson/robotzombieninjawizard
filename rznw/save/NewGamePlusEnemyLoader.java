@@ -1,5 +1,6 @@
 package rznw.save;
 
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
 
@@ -20,7 +21,7 @@ public class NewGamePlusEnemyLoader extends ComponentLoader
             int hp = this.readInteger(fileReader);
             int mp = this.readInteger(fileReader);
 
-            for (int j = 0; j < StatusEffects.NUM_STATUS_EFFECTS; j++)
+            for (int j = 0; j < SimpleStatusEffects.NUM_STATUS_EFFECTS; j++)
             {
                 this.readInteger(fileReader);
             }
