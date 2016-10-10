@@ -21,8 +21,6 @@ public class StatusEffects
     private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 
-    public static final int NUM_STATS = 8;
-
     public StatusEffects(Character character)
     {
         this.character = character;
@@ -38,7 +36,7 @@ public class StatusEffects
             this.statusEffectTurns.put(i, 0);
         }
 
-        for (int i = 0; i < StatusEffects.NUM_STATS; i++)
+        for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
         {
             this.otherStats.put(i, 0);
         }

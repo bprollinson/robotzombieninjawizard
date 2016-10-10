@@ -1,7 +1,7 @@
 package rznw.save;
 
 import rznw.game.statuseffects.SimpleStatusEffects;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
@@ -32,7 +32,7 @@ public class NewGamePlusEnemyLoader extends ComponentLoader
                 this.readInteger(fileReader);
             }
 
-            for (int j = 0; j < StatusEffects.NUM_STATS; j++)
+            for (int j = 0; j < StatusEffectStats.NUM_STATS; j++)
             {
                 this.readInteger(fileReader);
             }

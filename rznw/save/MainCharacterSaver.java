@@ -2,7 +2,7 @@ package rznw.save;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.statuseffects.SimpleStatusEffects;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
@@ -50,7 +50,7 @@ public class MainCharacterSaver extends ComponentSaver
             this.writeLine(fileWriter, mainCharacter.getStatusEffects().getStatusEffectTurns(i));
         }
 
-        for (int i = 0; i < StatusEffects.NUM_STATS; i++)
+        for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
         {
             this.writeLine(fileWriter, mainCharacter.getStatusEffects().getStat(i));
         }

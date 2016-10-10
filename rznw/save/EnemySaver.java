@@ -3,7 +3,7 @@ package rznw.save;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.statuseffects.SimpleStatusEffects;
-import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -72,7 +72,7 @@ public class EnemySaver extends ComponentSaver
             this.writeLine(fileWriter, enemyCharacter.getStatusEffects().getStatusEffectTurns(i));
         }
 
-        for (int i = 0; i < StatusEffects.NUM_STATS; i++)
+        for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
         {
             this.writeLine(fileWriter, enemyCharacter.getStatusEffects().getStat(i));
         }

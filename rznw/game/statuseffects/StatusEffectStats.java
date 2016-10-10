@@ -2,6 +2,8 @@ package rznw.game.statuseffects;
 
 public class StatusEffectStats
 {
+    public static final int NUM_STATS = 8;
+
     public static final int STAT_ARMOR_BREAK = 0;
     public static final int STAT_DETECT_VITALITY_RADIUS = 1;
     public static final int STAT_ITEM_TRADE_NUMBER = 2;
