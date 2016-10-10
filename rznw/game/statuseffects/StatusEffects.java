@@ -21,7 +21,6 @@ public class StatusEffects
     private HashMap<Integer, Integer> statusEffectTurns = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 
-    public static final int NUM_STATUS_EFFECT_TURNS = 16;
     public static final int NUM_STATS = 8;
 
     public StatusEffects(Character character)
@@ -34,7 +33,7 @@ public class StatusEffects
         }
         this.statusEffects.put(SimpleStatusEffects.EFFECT_REGENERATE_SHOP, true);
 
-        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
+        for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
         {
             this.statusEffectTurns.put(i, 0);
         }

@@ -3,6 +3,7 @@ package rznw.save;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;
@@ -43,7 +44,7 @@ public class MainCharacterLoader extends ComponentLoader
             character.getStatusEffects().setStatusEffect(i, this.readInteger(fileReader) == 1);
         }
 
-        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
+        for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
         {
             character.getStatusEffects().setStatusEffectTurns(i, this.readInteger(fileReader));
         }

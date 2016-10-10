@@ -2,6 +2,8 @@ package rznw.game.statuseffects;
 
 public class TurnBasedStatusEffects
 {
+    public static final int NUM_STATUS_EFFECTS = 16;
+
     public static final int EFFECT_SIGNAL_WEAPON = 0;
     public static final int EFFECT_THORN_SKIN = 1;
     public static final int EFFECT_POISON_SKIN = 2;

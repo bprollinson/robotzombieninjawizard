@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffects;
+import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
@@ -66,7 +67,7 @@ public class EnemySaver extends ComponentSaver
             this.writeLine(fileWriter, enemyCharacter.getStatusEffects().getStatusEffect(i) ? 1 : 0);
         }
 
-        for (int i = 0; i < StatusEffects.NUM_STATUS_EFFECT_TURNS; i++)
+        for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
         {
             this.writeLine(fileWriter, enemyCharacter.getStatusEffects().getStatusEffectTurns(i));
         }
