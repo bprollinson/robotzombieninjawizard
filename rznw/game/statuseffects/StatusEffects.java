@@ -1,16 +1,11 @@
 package rznw.game.statuseffects;
 
 import rznw.game.Character;
-import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.Armor;
-import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
-import rznw.utility.RandomNumberGenerator;
 
 public class StatusEffects
 {
     private Character character;
-
     private SimpleStatusEffects simpleStatusEffects = new SimpleStatusEffects();
     private TurnBasedStatusEffects turnBasedStatusEffects = new TurnBasedStatusEffects();
     private StatusEffectStats statusEffectStats = new StatusEffectStats();
@@ -94,29 +89,7 @@ public class StatusEffects
 
     private boolean thickSkinDodgesEffect()
     {
-        if (!this.character.isMainCharacter())
-        {
-            return false;
-        }
-
-        int statPoints = ((MainCharacter)this.character).getStats().getStatPoints(Stat.STAT_THICK_SKIN);
-        int probability = 5 * statPoints;
-
-        Armor armor = ((MainCharacter)character).getEquipment().getEquippedArmor();
-        if (armor != null)
-        {
-            System.out.println("Adding additional thick skin stats from armor");
-            probability += armor.getThickSkinBonus();
-        }
-
-        boolean success = RandomNumberGenerator.rollSucceeds(probability);
-
-        if (success)
-        {
-            System.out.println("Dodging status effect due to thick skin");
-        }
-
-        return success;
+        return new StatusEffectDodgeCalculator().characterDodgesEffect(this.character);
     }
 
     public void processTurn(GameWorld gameWorld)
