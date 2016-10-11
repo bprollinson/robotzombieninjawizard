@@ -1,22 +1,8 @@
 package rznw.game.spell.robot;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.Bomb;
-import rznw.game.maincharacter.inventory.FullManaPotion;
-import rznw.game.maincharacter.inventory.FullPotion;
-import rznw.game.maincharacter.inventory.Herb;
-import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-import rznw.game.maincharacter.inventory.ManaPotion;
-import rznw.game.maincharacter.inventory.MegaBomb;
-import rznw.game.maincharacter.inventory.Potion;
-import rznw.game.maincharacter.inventory.ReplenishingFullManaPotion;
-import rznw.game.maincharacter.inventory.ReplenishingFullPotion;
-import rznw.game.maincharacter.inventory.ReplenishingHerb;
-import rznw.game.maincharacter.inventory.ReplenishingSanityDrop;
-import rznw.game.maincharacter.inventory.ReplenishingXRayDrop;
-import rznw.game.maincharacter.inventory.SanityDrop;
-import rznw.game.maincharacter.inventory.XRayDrop;
+import rznw.game.maincharacter.inventory.InventoryItemUpgrader;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
@@ -65,48 +51,6 @@ public class PowerSearchSpell extends UndirectedSpell
             return itemGroup;
         }
 
-        InventoryItem item = itemGroup.getItem();
-
-        if (item instanceof Potion)
-        {
-            return new InventoryItemGroup(new FullPotion(), 1);
-        }
-
-        if (item instanceof ManaPotion)
-        {
-            return new InventoryItemGroup(new FullManaPotion(), 1);
-        }
-
-        if (item instanceof FullPotion)
-        {
-            return new InventoryItemGroup(new ReplenishingFullPotion(), 1);
-        }
-
-        if (item instanceof FullManaPotion)
-        {
-            return new InventoryItemGroup(new ReplenishingFullManaPotion(), 1);
-        }
-
-        if (item instanceof Herb)
-        {
-            return new InventoryItemGroup(new ReplenishingHerb(), 1);
-        }
-
-        if (item instanceof SanityDrop)
-        {
-            return new InventoryItemGroup(new ReplenishingSanityDrop(), 1);
-        }
-
-        if (item instanceof XRayDrop)
-        {
-            return new InventoryItemGroup(new ReplenishingXRayDrop(), 1);
-        }
-
-        if (item instanceof Bomb)
-        {
-            return new InventoryItemGroup(new MegaBomb(), 1);
-        }
-
-        return itemGroup;
+        return new InventoryItemUpgrader().getUpgradedItemGroup(itemGroup);
     }
 }
