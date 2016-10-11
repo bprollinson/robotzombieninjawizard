@@ -7,13 +7,8 @@ import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
 
-import java.util.Map;
-import java.util.Iterator;
-
 public class StatusEffects
 {
-    private static final int POISON_DAMAGE = 10;
-
     private Character character;
 
     private SimpleStatusEffects simpleStatusEffects = new SimpleStatusEffects();
@@ -43,6 +38,11 @@ public class StatusEffects
     public void setStatusEffectTurns(int index, int value)
     {
         this.turnBasedStatusEffects.setStatusEffectTurns(index, value);
+    }
+
+    public TurnBasedStatusEffects getTurnBasedStatusEffects()
+    {
+        return this.turnBasedStatusEffects;
     }
 
     public int getStat(int index)
@@ -121,24 +121,6 @@ public class StatusEffects
 
     public void processTurn(GameWorld gameWorld)
     {
-        if (this.getStatusEffect(SimpleStatusEffects.EFFECT_POISONED))
-        {
-            System.out.println("Damaging character due to poison");
-            this.character.damage(StatusEffects.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
-        }
-
-        this.setStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);
-
-        Iterator<Map.Entry<Integer, Integer>> iterator = this.turnBasedStatusEffects.getEntrySetIterator();
-        while (iterator.hasNext())
-        {
-            Map.Entry<Integer, Integer> pair = iterator.next();
-            int turnsRemaining = pair.getValue();
-
-            if (turnsRemaining > 0)
-            {
-                this.setStatusEffectTurns(pair.getKey(), turnsRemaining - 1);
-            }
-        }
+        new StatusEffectsTurnProcessor().processTurn(gameWorld, this.character);
     }
 }
