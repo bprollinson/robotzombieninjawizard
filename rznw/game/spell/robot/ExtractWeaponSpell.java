@@ -3,24 +3,11 @@ package rznw.game.spell.robot;
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.BloodSword;
-import rznw.game.maincharacter.inventory.CrusherHammer;
-import rznw.game.maincharacter.inventory.DeathScythe;
 import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
-import rznw.game.maincharacter.inventory.GauntletOfDarkness;
-import rznw.game.maincharacter.inventory.GravityBlade;
-import rznw.game.maincharacter.inventory.IceRod;
-import rznw.game.maincharacter.inventory.InvisibilityWand;
-import rznw.game.maincharacter.inventory.MagicJavelin;
-import rznw.game.maincharacter.inventory.QuicksandHammer;
-import rznw.game.maincharacter.inventory.RiddleWand;
-import rznw.game.maincharacter.inventory.ThiefGlove;
-import rznw.game.maincharacter.inventory.ViperDagger;
-import rznw.game.maincharacter.inventory.WandOfSummoning;
+import rznw.game.maincharacter.inventory.RandomWeaponGenerator;
 import rznw.game.maincharacter.inventory.Weapon;
-import rznw.game.maincharacter.inventory.WoodenSword;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
@@ -121,41 +108,6 @@ public class ExtractWeaponSpell extends DirectedSpell
 
     private Weapon getRandomWeapon()
     {
-        System.out.println("Extracting enemy weapon");
-        int index = RandomNumberGenerator.randomInteger(0, 13);
-
-        switch (index)
-        {
-            case 0:
-                return new BloodSword();
-            case 1:
-                return new CrusherHammer();
-            case 2:
-                return new DeathScythe();
-            case 3:
-                return new GravityBlade();
-            case 4:
-                return new GauntletOfDarkness();
-            case 5:
-                return new IceRod();
-            case 6:
-                return new InvisibilityWand();
-            case 7:
-                return new MagicJavelin();
-            case 8:
-                return new QuicksandHammer();
-            case 9:
-                return new RiddleWand();
-            case 10:
-                return new ThiefGlove();
-            case 11:
-                return new ViperDagger();
-            case 12:
-                return new WandOfSummoning();
-            case 13:
-                return new WoodenSword();
-            default:
-                return null;
-        }
+        return new RandomWeaponGenerator().generateRandomWeapon();
     }
 }
