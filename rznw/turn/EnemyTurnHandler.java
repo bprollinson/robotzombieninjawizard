@@ -1,6 +1,5 @@
 package rznw.turn;
 
-import rznw.game.SummonedCharacter;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.enemy.action.EnemyAction;
 import rznw.game.enemy.spell.EnemySpell;
@@ -9,7 +8,6 @@ import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
-import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -25,7 +23,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
 
     public void handleTurnFragment()
     {
-        this.handleSummonedZombieTurns();
+        new SummonTurnHandler(this.gameWorld).handleTurnFragment();
 
         MainCharacter character = this.gameWorld.getMainCharacter();
 
@@ -75,27 +73,6 @@ public class EnemyTurnHandler implements TurnFragmentHandler
             System.out.println("Enemies take a turn while you are sleeping / frozen");
             character.getStatusEffects().processTurn(this.gameWorld);
             this.handleTurnFragment();
-        }
-    }
-
-    private void handleSummonedZombieTurns()
-    {
-        System.out.println("Handling summon turns");
-
-        MainCharacter character = this.gameWorld.getMainCharacter();
-
-        Collection<SummonedCharacter> summons = this.gameWorld.getMap().getSummons();
-        for (Iterator iterator = summons.iterator(); iterator.hasNext();)
-        {
-            System.out.println("Have a summon");
-
-            SummonedCharacter summon = (SummonedCharacter)iterator.next();
-            EnemyAIBasedPositionChange summonPositionChange = summon.getPositionChange(this.gameWorld);
-            System.out.println("Position change: " + summonPositionChange.getInitialRow() + ", " + summonPositionChange.getInitialColumn() + " -> " + summonPositionChange.getFinalRow() + ", " + summonPositionChange.getFinalColumn());
-
-            new CharacterTurnHandler(this.gameWorld).handleTurnFragment(summonPositionChange, summon);
-
-            summon.getStatusEffects().processTurn(this.gameWorld);
         }
     }
 }
