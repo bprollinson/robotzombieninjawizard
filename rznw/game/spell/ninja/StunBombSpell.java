@@ -36,55 +36,46 @@ public class StunBombSpell extends DirectedSpell
 
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
-        boolean objectFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
+        Map map = gameWorld.getMap();
+        int row = character.getMapElement().getRow() + positionChange.getDeltaRow();
+        int column = character.getMapElement().getColumn() + positionChange.getDeltaColumn();
 
-        while (!objectFound)
+        while (map.getElement(row, column) == null)
         {
             row += positionChange.getDeltaRow();
             column += positionChange.getDeltaColumn();
+        }
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
+        MapElement element = map.getElement(row, column);
 
-            if (element == null)
+        if (element.isEnemy())
+        {
+            System.out.println("Direct hit " + element);
+
+            Character enemy = ((EnemyMapElement)element).getCharacter();
+            System.out.println("Before: " + enemy.getHP());
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("After: " + enemy.getHP());
+        }
+
+        MapElement characterElement = character.getMapElement();
+
+        int radius = 1 + (int)Math.floor(spellPoints / 4);
+        Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
+        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+        {
+            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+            System.out.println("Attempting to stun " + enemy);
+
+            int stunProbability = 5 * spellPoints;
+            if (RandomNumberGenerator.rollSucceeds(stunProbability))
             {
-                continue;
+                System.out.println("Stunned");
+                enemy.getStatusEffects().freeze();
             }
-
-            objectFound = true;
-
-            if (element.isEnemy())
+            else
             {
-                System.out.println("Direct hit " + element);
-
-                Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-            }
-
-            MapElement characterElement = character.getMapElement();
-
-            int radius = 1 + (int)Math.floor(spellPoints / 4);
-            Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
-            for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
-            {
-                EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-                System.out.println("Indirect hit " + enemy);
-
-                int stunProbability = 5 * spellPoints;
-                if (RandomNumberGenerator.rollSucceeds(stunProbability))
-                {
-                    System.out.println("Stunned");
-
-                    enemy.getStatusEffects().freeze();
-                }
-                else
-                {
-                    System.out.println("Not stunned");
-                }
+                System.out.println("Not stunned");
             }
         }
     }
