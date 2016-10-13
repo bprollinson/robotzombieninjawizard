@@ -92,22 +92,11 @@ public class ExtractWeaponSpell extends DirectedSpell
     {
         EquipmentItem drop = enemy.getEquipmentDrop();
 
-        if (drop == null)
-        {
-            System.out.println("Extracting enemy's weapon: " + drop);
-            return null;
-        }
-
         if (drop.isWeapon())
         {
             return (Weapon)drop;
         }
 
-        return this.getRandomWeapon();
-    }
-
-    private Weapon getRandomWeapon()
-    {
         return new RandomWeaponGenerator().generateRandomWeapon();
     }
 }
