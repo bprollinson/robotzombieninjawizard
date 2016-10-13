@@ -1,13 +1,5 @@
 package rznw.game.spell.wizard;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
@@ -16,6 +8,14 @@ import rznw.map.Map;
 import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
 import rznw.map.element.Void;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TeleportSpell extends UndirectedSpell
 {
