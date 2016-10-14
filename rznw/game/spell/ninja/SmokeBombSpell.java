@@ -1,22 +1,13 @@
 package rznw.game.spell.ninja;
 
-import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
+import rznw.map.TeleportSquareCalculator;
 import rznw.map.element.MapElement;
-import rznw.map.element.Void;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 public class SmokeBombSpell extends UndirectedSpell
 {
@@ -63,58 +54,10 @@ public class SmokeBombSpell extends UndirectedSpell
 
     private static MapElement getNewPositionElement(GameWorld gameWorld, int spellPoints)
     {
-        HashMap<MapElement, Double> minDistanceMap = new HashMap<MapElement, Double>();
+        double safetyPercentage = Math.floor(50 + 50 * Math.min(spellPoints / 20.0, 1));
+        System.out.println("safety percentage: " + safetyPercentage);
 
-        for (int row = 0; row < Map.NUM_ROWS; row++)
-        {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = gameWorld.getMap().getElement(row, column);
-                if (element == null)
-                {
-                    minDistanceMap.put(new Void(row, column), SmokeBombSpell.getMinDistanceToPosition(gameWorld, row, column));
-                }
-            }
-        }
-
-        List<java.util.Map.Entry<MapElement, Double>> minDistanceList = new LinkedList<java.util.Map.Entry<MapElement, Double>>(minDistanceMap.entrySet());
-        Collections.sort(minDistanceList, new Comparator<java.util.Map.Entry<MapElement, Double>>()
-        {
-            public int compare(java.util.Map.Entry<MapElement, Double> o1, java.util.Map.Entry<MapElement, Double> o2)
-            {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-        });
-
-        double positionPercentage = Math.floor(50 + 50 * Math.min(spellPoints / 20.0, 1));
-        System.out.println("position percentage: " + positionPercentage);
-        int position = (int)Math.floor(positionPercentage / 100 * (minDistanceList.size() - 1));
-
-        System.out.println("position vs size: " + position + "-" + minDistanceList.size());
-        System.out.println("nearest enemy distance: " + minDistanceList.get(position).getValue());
-
-        return minDistanceList.get(position).getKey();
-    }
-
-    private static double getMinDistanceToPosition(GameWorld gameWorld, int row, int column)
-    {
-        double result = 1000;
-
-        Map map = gameWorld.getMap();
-        Collection<EnemyCharacter> enemies = map.getEnemies();
-        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
-        {
-            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            MapElement mapElement = enemy.getMapElement();
-
-            double distance = Math.sqrt(Math.pow(mapElement.getRow() - row, 2) + Math.pow(mapElement.getColumn() - column, 2));
-            if (distance < result)
-            {
-                result = distance;
-            }
-        }
-
-        return result;
+        return new TeleportSquareCalculator(gameWorld).getMapElementWithSafetyPercentage(safetyPercentage);
     }
 
     public String[] getStats(MainCharacter character, int spellPoints)
