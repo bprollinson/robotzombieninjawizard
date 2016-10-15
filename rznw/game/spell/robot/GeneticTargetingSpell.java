@@ -14,6 +14,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapCharacterScraper;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
@@ -28,6 +29,16 @@ public class GeneticTargetingSpell extends UndirectedSpell
     public String getDescription()
     {
         return "Deals damage to the nearest enemy, and all on the current dungeon level of the same type. The nearest enemies is targeted automatically regardless of position.";
+    }
+
+    public boolean canCast(GameWorld gameWorld, int spellPoints)
+    {
+        if (!super.canCast(gameWorld, spellPoints))
+        {
+            return false;
+        }
+
+        return new MapCharacterScraper().getEnemies(gameWorld.getMap()).size() > 0;
     }
 
     public void cast(GameWorld gameWorld, int spellPoints)
