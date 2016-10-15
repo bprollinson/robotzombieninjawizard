@@ -71,6 +71,7 @@ public class MultiplyZombiesSpell extends UndirectedSpell
 
         return new String[] {
             "MP cost: " + this.getMPCost(character, spellPoints),
+            "Chance to multiply: " + 5 * spellPoints + "%",
             "Zombie HP: " + (100 + 5 * summonSpellPoints),
             "Zombie damage: 10"
         };
