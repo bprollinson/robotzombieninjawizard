@@ -1,8 +1,5 @@
 package rznw.game.spell.wizard;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
@@ -12,6 +9,9 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class FireballSpell extends DirectedSpell
 {
