@@ -1,19 +1,15 @@
 package rznw.game;
 
+import rznw.game.enemy.EnemyCharacter;
+import rznw.map.ClosestEnemiesCalculator;
 import rznw.map.GameWorld;
-import rznw.map.Map;
 import rznw.map.ShortestPathCalculator;
 import rznw.map.element.MapElement;
-import rznw.map.element.Void;
 import rznw.map.generator.MapPoint;
 import rznw.map.generator.direction.PathDirection;
 import rznw.map.generator.path.MapPath;
 import rznw.turn.positionchange.EnemyAIBasedPositionChange;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class SummonedCharacter extends Character
@@ -56,36 +52,15 @@ public abstract class SummonedCharacter extends Character
 
     public EnemyAIBasedPositionChange getPositionChange(GameWorld gameWorld)
     {
-        HashMap<MapElement, Double> minDistanceMap = new HashMap<MapElement, Double>();
-
-        for (int row = 0; row < Map.NUM_ROWS; row++)
-        {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = gameWorld.getMap().getElement(row, column);
-                if (element != null && element.isEnemy())
-                {
-                    double distance = Math.sqrt(Math.pow(element.getRow() - this.getMapElement().getRow(), 2) + Math.pow(element.getColumn() - this.getMapElement().getColumn(), 2));
-                    minDistanceMap.put(new Void(row, column), distance);
-                }
-            }
-        }
-
-        List<java.util.Map.Entry<MapElement, Double>> minDistanceList = new LinkedList<java.util.Map.Entry<MapElement, Double>>(minDistanceMap.entrySet());
-        Collections.sort(minDistanceList, new Comparator<java.util.Map.Entry<MapElement, Double>>()
-        {
-            public int compare(java.util.Map.Entry<MapElement, Double> o1, java.util.Map.Entry<MapElement, Double> o2)
-            {
-                return o1.getValue().compareTo(o2.getValue());
-            }
-        });
+        List<java.util.Map.Entry<EnemyCharacter, Double>> minDistanceList = new ClosestEnemiesCalculator().getSortedEnemiesList(gameWorld.getMap(), this.getMapElement());
 
         if (minDistanceList.size() == 0)
         {
             return new EnemyAIBasedPositionChange(this, 0, 0);
         }
 
-        MapElement closestElement = minDistanceList.get(0).getKey();
+        EnemyCharacter closestEnemy = minDistanceList.get(0).getKey();
+        MapElement closestElement = closestEnemy.getMapElement();
 
         MapPoint startPoint = new MapPoint(this.getMapElement().getRow(), this.getMapElement().getColumn());
         MapPoint endPoint = new MapPoint(closestElement.getRow(), closestElement.getColumn());
