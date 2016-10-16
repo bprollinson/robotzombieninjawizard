@@ -12,6 +12,8 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.utility.RandomNumberGenerator;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 public class GeneticTargetingSpell extends UndirectedSpell
@@ -68,26 +70,15 @@ public class GeneticTargetingSpell extends UndirectedSpell
 
         int damage = 5 * spellPoints;
 
-        for (int row = 0; row < Map.NUM_ROWS; row++)
+        Collection<EnemyCharacter> enemies = new MapCharacterScraper().getAllEnemiesOfType(gameWorld.getMap(), targetedEnemy.getClass());
+        Iterator<EnemyCharacter> iterator = enemies.iterator();
+        while (iterator.hasNext())
         {
-            for (int column = 0; column < Map.NUM_COLUMNS; column++)
-            {
-                MapElement element = gameWorld.getMap().getElement(row, column);
+            EnemyCharacter enemy = iterator.next();
 
-                if (element != null && element.isEnemy())
-                {
-                    EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
-
-                    if (enemy.getClass().equals(targetedEnemy.getClass()))
-                    {
-                        System.out.println("Finding an enemy of the same type at: " + row + ", " + column + " : " + element);
-
-                        System.out.println("HP before: " + enemy.getHP());
-                        enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                        System.out.println("HP after: " + enemy.getHP());
-                    }
-                }
-            }
+            System.out.println("HP before: " + enemy.getHP());
+            enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("HP after: " + enemy.getHP());
         }
     }
 

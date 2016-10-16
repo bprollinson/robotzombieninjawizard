@@ -7,6 +7,7 @@ import rznw.map.element.MapElement;
 import rznw.map.element.SummonedMinionMapElement;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class MapCharacterScraper
@@ -68,6 +69,23 @@ public class MapCharacterScraper
                     EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                     enemies.add(enemyCharacter);
                 }
+            }
+        }
+
+        return enemies;
+    }
+
+    public Collection<EnemyCharacter> getAllEnemiesOfType(Map map, Class enemyClass)
+    {
+        Collection<EnemyCharacter> enemies = this.getEnemiesInRectangle(map, 0, 0, Map.NUM_ROWS - 1, Map.NUM_COLUMNS - 1);
+
+        Iterator<EnemyCharacter> iterator = enemies.iterator();
+        while (iterator.hasNext())
+        {
+            EnemyCharacter enemy = iterator.next();
+            if (!enemy.getClass().equals(enemyClass))
+            {
+                iterator.remove();
             }
         }
 
