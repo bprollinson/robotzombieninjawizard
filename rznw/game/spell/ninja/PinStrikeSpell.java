@@ -6,6 +6,7 @@ import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -30,56 +31,38 @@ public class PinStrikeSpell extends DirectedSpell
 
         int damage = 10 + 10 * spellPoints;
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        Map map = gameWorld.getMap();
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
 
-        boolean objectFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
-
-        while (!objectFound)
+        if (element.isEnemy())
         {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
+            System.out.println("Direct hit " + element);
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
+            Character enemy = ((EnemyMapElement)element).getCharacter();
+            System.out.println("Before: " + enemy.getHP());
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("After: " + enemy.getHP());
 
-            if (element == null)
+            int distance = 1 + (int)Math.floor(spellPoints / 4);
+            System.out.println("Maximum distance: " + distance);
+
+            SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+            int row = element.getRow();
+            int column = element.getColumn();
+
+            for (int i = 0; i < distance; i++)
             {
-                continue;
-            }
+                row += positionChange.getDeltaRow();
+                column += positionChange.getDeltaColumn();
 
-            objectFound = true;
-
-            if (element.isEnemy())
-            {
-                System.out.println("Direct hit " + element);
-
-                Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-
-                int distance = 1 + (int)Math.floor(spellPoints / 4);
-                System.out.println("Maximum distance: " + distance);
-
-                row = element.getRow();
-                column = element.getColumn();
-
-                for (int i = 0; i < distance; i++)
+                MapElement test = map.getElement(row, column);
+                if (test != null)
                 {
-                    row += positionChange.getDeltaRow();
-                    column += positionChange.getDeltaColumn();
-
-                    MapElement test = map.getElement(row, column);
-                    if (test != null)
-                    {
-                        break;
-                    }
-
-                    map.setElement(element.getRow(), element.getColumn(), null);
-                    MapElementSetter.setElement(map, element, row, column);
+                    break;
                 }
+
+                map.setElement(element.getRow(), element.getColumn(), null);
+                MapElementSetter.setElement(map, element, row, column);
             }
         }
     }
