@@ -5,9 +5,9 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
-import rznw.turn.positionchange.SpellBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
 
 public class ParalyzingBlastSpell extends DirectedSpell
@@ -30,45 +30,26 @@ public class ParalyzingBlastSpell extends DirectedSpell
 
         int damage = 20 + 10 * spellPoints;
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        Map map = gameWorld.getMap();
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
 
-        boolean objectFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
-
-        while (!objectFound)
+        if (element.isEnemy())
         {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
+            System.out.println("Direct hit " + element);
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
+            Character enemy = ((EnemyMapElement)element).getCharacter();
+            System.out.println("Before: " + enemy.getHP());
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("After: " + enemy.getHP());
 
-            if (element == null)
+            if (!enemy.isDead())
             {
-                continue;
-            }
+                int probabilityToFreeze = 5 * spellPoints;
 
-            objectFound = true;
-
-            if (element.isEnemy())
-            {
-                System.out.println("Direct hit " + element);
-
-                Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-
-                if (!enemy.isDead())
+                if (RandomNumberGenerator.rollSucceeds(probabilityToFreeze))
                 {
-                    int probabilityToFreeze = 5 * spellPoints;
-
-                    if (RandomNumberGenerator.rollSucceeds(probabilityToFreeze))
-                    {
-                        System.out.println("Enemy paralyzed");
-                        enemy.getStatusEffects().freeze();
-                    }
+                    System.out.println("Enemy paralyzed");
+                    enemy.getStatusEffects().freeze();
                 }
             }
         }
