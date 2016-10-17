@@ -5,9 +5,9 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
-import rznw.turn.positionchange.SpellBasedPositionChange;
 
 public class VitalZapSpell extends DirectedSpell
 {
@@ -29,37 +29,18 @@ public class VitalZapSpell extends DirectedSpell
 
         int damagePercentage = 5 * spellPoints;
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        Map map = gameWorld.getMap();
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
 
-        boolean objectFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
-
-        while (!objectFound)
+        if (element.isEnemy())
         {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
+            System.out.println("Hit an enemy");
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
-
-            if (element == null)
-            {
-                continue;
-            }
-
-            objectFound = true;
-
-            if (element != null && element.isEnemy())
-            {
-                System.out.println("Hit an enemy");
-
-                Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                int damage = (int)Math.floor(damagePercentage / 100.0 * enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-            }
+            Character enemy = ((EnemyMapElement)element).getCharacter();
+            System.out.println("Before: " + enemy.getHP());
+            int damage = (int)Math.floor(damagePercentage / 100.0 * enemy.getHP());
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("After: " + enemy.getHP());
         }
     }
 
