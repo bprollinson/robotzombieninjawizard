@@ -6,6 +6,7 @@ import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -30,37 +31,18 @@ public class RicochetBlastSpell extends DirectedSpell
 
         System.out.println("Main character position: " + character.getMapElement().getRow() + ", " + character.getMapElement().getColumn());
 
+        Map map = gameWorld.getMap();
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
 
-        boolean objectFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
-
-        while (!objectFound)
+        if (element.isEnemy())
         {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
+            System.out.println("Hit an enemy!");
+            int damage = 10 * spellPoints;
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
-
-            if (element == null)
+            while (element != null)
             {
-                continue;
-            }
-
-            System.out.println("Found element at: " + row + ", " + column);
-            objectFound = true;
-
-            if (element.isEnemy())
-            {
-                System.out.println("Hit an enemy!");
-                int damage = 10 * spellPoints;
-
-                while (element != null)
-                {
-                    element = this.ricochetEnemy(element, damage, character, gameWorld, positionChange.getDeltaRow(), positionChange.getDeltaColumn(), map);
-                }
+                element = this.ricochetEnemy(element, damage, character, gameWorld, positionChange.getDeltaRow(), positionChange.getDeltaColumn(), map);
             }
         }
     }
