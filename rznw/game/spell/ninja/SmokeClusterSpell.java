@@ -1,18 +1,18 @@
 package rznw.game.spell.ninja;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
-import rznw.turn.positionchange.SpellBasedPositionChange;
 import rznw.utility.RandomNumberGenerator;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class SmokeClusterSpell extends DirectedSpell
 {
@@ -34,57 +34,38 @@ public class SmokeClusterSpell extends DirectedSpell
 
         int damage = 50 + 10 * spellPoints;
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        Map map = gameWorld.getMap();
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
 
-        boolean objectFound = false;
-        int row = character.getMapElement().getRow();
-        int column = character.getMapElement().getColumn();
-
-        while (!objectFound)
+        if (element.isEnemy())
         {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
+            System.out.println("Direct hit " + element);
 
-            Map map = gameWorld.getMap();
-            MapElement element = map.getElement(row, column);
+            Character enemy = ((EnemyMapElement)element).getCharacter();
+            System.out.println("Before: " + enemy.getHP());
+            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            System.out.println("After: " + enemy.getHP());
+        }
 
-            if (element == null)
+        MapElement characterElement = character.getMapElement();
+
+        int radius = 1 + (int)Math.floor(spellPoints / 4);
+        Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
+        for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
+        {
+            System.out.println("Indirect hit " + element);
+            EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+
+            int confuseProbability = 5 * spellPoints;
+            if (RandomNumberGenerator.rollSucceeds(confuseProbability))
             {
-                continue;
+                System.out.println("Confused");
+
+                enemy.getStatusEffects().confuse();
             }
-
-            objectFound = true;
-
-            if (element.isEnemy())
+            else
             {
-                System.out.println("Direct hit " + element);
-
-                Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-            }
-
-            MapElement characterElement = character.getMapElement();
-
-            int radius = 1 + (int)Math.floor(spellPoints / 4);
-            Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
-            for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
-            {
-                System.out.println("Indirect hit " + element);
-                EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-
-                int confuseProbability = 5 * spellPoints;
-                if (RandomNumberGenerator.rollSucceeds(confuseProbability))
-                {
-                    System.out.println("Confused");
-
-                    enemy.getStatusEffects().confuse();
-                }
-                else
-                {
-                    System.out.println("Not confused");
-                }
+                System.out.println("Not confused");
             }
         }
     }
