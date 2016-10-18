@@ -1,11 +1,8 @@
 package rznw.ui;
 
-import rznw.game.maincharacter.MainCharacter;
-import rznw.game.skill.Skill;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.GameWorld;
-import rznw.map.Map;
-import rznw.map.element.MapElement;
+import rznw.map.MapDetectVitalityScraper;
 
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
@@ -93,29 +90,6 @@ public class DetectVitalityScreenKeyListener extends StateTransitionKeyListener
 
     private Vector<EnemyMapElement> getVisibleEnemies()
     {
-        Vector<EnemyMapElement> enemies = new Vector<EnemyMapElement>();
-
-        Map map = this.gameWorld.getMap();
-        MainCharacter character = this.gameWorld.getMainCharacter();
-
-        for (int i = 0; i < Map.NUM_ROWS; i++)
-        {
-            for (int j = 0; j < Map.NUM_COLUMNS; j++)
-            {
-                MapElement element = map.getElement(i, j);
-
-                boolean visible = map.isVisible(i, j);
-                int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_DETECT_VITALITY);
-                int radius = 1 + skillPoints;
-                MapElement characterElement = character.getMapElement();
-                double distance = Math.sqrt(Math.pow(characterElement.getRow() - i, 2) + Math.pow(characterElement.getColumn() - j, 2));
-
-                if (element != null && element.isEnemy() && (visible || distance <= radius)) {
-                    enemies.add((EnemyMapElement)element);
-                }
-            }
-        }
-
-        return enemies;
+        return new MapDetectVitalityScraper(this.gameWorld).getVisibleEnemies();
     }
 }
