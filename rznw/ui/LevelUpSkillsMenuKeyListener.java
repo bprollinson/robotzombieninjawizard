@@ -20,7 +20,7 @@ public class LevelUpSkillsMenuKeyListener extends StateTransitionKeyListener
     {
         this.levelUpSkillsMenuRenderer = levelUpSkillsMenuRenderer;
         this.gameWorld = gameWorld;
-        this.state = new MenuState(15);
+        this.state = new MenuState(16);
     }
 
     public void keyPressed(KeyEvent event)

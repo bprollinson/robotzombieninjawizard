@@ -14,7 +14,7 @@ public class StartScreenKeyListener extends StateTransitionKeyListener
     public StartScreenKeyListener(StartScreenRenderer startScreenRenderer)
     {
         this.startScreenRenderer = startScreenRenderer;
-        this.state = new MenuState(2);
+        this.state = new MenuState(3);
     }
 
     public void keyPressed(KeyEvent event)

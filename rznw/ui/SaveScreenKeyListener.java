@@ -15,7 +15,7 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
     public SaveScreenKeyListener(SaveScreenRenderer saveScreenRenderer, GameWorld gameWorld)
     {
         this.saveScreenRenderer = saveScreenRenderer;
-        this.state = new MenuState(9);
+        this.state = new MenuState(10);
         this.gameWorld = gameWorld;
     }
 

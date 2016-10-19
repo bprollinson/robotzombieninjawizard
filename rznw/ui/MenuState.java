@@ -5,9 +5,9 @@ public class MenuState
     private int maxEntryNumber;
     private int entryNumber = 0;
 
-    public MenuState(int maxEntryNumber)
+    public MenuState(int numEntries)
     {
-        this.maxEntryNumber = maxEntryNumber;
+        this.maxEntryNumber = numEntries - 1;
     }
 
     public int getEntryNumber()

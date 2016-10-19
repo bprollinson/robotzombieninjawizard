@@ -35,8 +35,8 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         this.shopScreenRenderer = shopScreenRenderer;
         this.gameWorld = gameWorld;
         this.turnHandler = turnHandler;
-        this.topMenuState = new MenuState(4);
-        this.subMenuState = new MenuState(0);
+        this.topMenuState = new MenuState(5);
+        this.subMenuState = new MenuState(1);
     }
 
     public void enterState(int previousState)
@@ -175,21 +175,21 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         switch (this.topMenuState.getEntryNumber())
         {
             case 0:
-                this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups() - 1);
+                this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups());
                 break;
             case 1:
-                this.subMenuState = new MenuState(this.buyEquipment.size() - 1);
+                this.subMenuState = new MenuState(this.buyEquipment.size());
                 break;
             case 2:
                 character = gameWorld.getMainCharacter();
                 Inventory inventory = character.getInventory();
-                this.subMenuState = new MenuState(inventory.getNumItemGroups() - 1);            
+                this.subMenuState = new MenuState(inventory.getNumItemGroups());
                 break;
             case 3:
                 character = gameWorld.getMainCharacter();
                 Equipment equipment = character.getEquipment();
                 Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                this.subMenuState = new MenuState(equipmentGroups.size() - 1);
+                this.subMenuState = new MenuState(equipmentGroups.size());
                 break;
         }
     }

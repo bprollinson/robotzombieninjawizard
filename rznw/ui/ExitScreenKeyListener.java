@@ -14,7 +14,7 @@ public class ExitScreenKeyListener extends StateTransitionKeyListener
     public ExitScreenKeyListener(ExitScreenRenderer exitScreenRenderer)
     {
         this.exitScreenRenderer = exitScreenRenderer;
-        this.state = new MenuState(1);
+        this.state = new MenuState(2);
     }
 
     public void keyPressed(KeyEvent event)

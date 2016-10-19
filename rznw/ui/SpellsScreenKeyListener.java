@@ -25,7 +25,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
     {
         this.spellsScreenRenderer = spellsScreenRenderer;
         this.gameWorld = gameWorld;
-        this.state = new MenuState(15);
+        this.state = new MenuState(16);
         this.mapRenderer = mapRenderer;
         this.turnHandler = new MainCharacterTurnHandler(gameWorld, null);
     }

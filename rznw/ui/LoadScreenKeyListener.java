@@ -18,7 +18,7 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
     public LoadScreenKeyListener(LoadScreenRenderer loadScreenRenderer, GameWorld gameWorld)
     {
         this.loadScreenRenderer = loadScreenRenderer;
-        this.state = new MenuState(9);
+        this.state = new MenuState(10);
         this.gameWorld = gameWorld;
     }
 

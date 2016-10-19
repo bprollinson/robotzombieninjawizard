@@ -11,7 +11,7 @@ public class NewGameTypeScreenKeyListener extends StateTransitionKeyListener
     public NewGameTypeScreenKeyListener(NewGameTypeScreenRenderer newGameTypeScreenRenderer)
     {
         this.newGameTypeScreenRenderer = newGameTypeScreenRenderer;
-        this.state = new MenuState(1);
+        this.state = new MenuState(2);
     }
 
     public void keyPressed(KeyEvent event)

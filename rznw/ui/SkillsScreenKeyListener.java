@@ -25,7 +25,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
         this.skillsScreenRenderer = skillsScreenRenderer;
         this.gameWorld = gameWorld;
         this.turnHandler = turnHandler;
-        this.state = new MenuState(15);
+        this.state = new MenuState(16);
     }
 
     public void keyPressed(KeyEvent event)

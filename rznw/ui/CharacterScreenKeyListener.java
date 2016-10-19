@@ -13,7 +13,7 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
     public CharacterScreenKeyListener(CharacterScreenRenderer characterScreenRenderer)
     {
         this.characterScreenRenderer = characterScreenRenderer;
-        this.state = new MenuState(16);
+        this.state = new MenuState(17);
     }
 
     public void keyPressed(KeyEvent event)

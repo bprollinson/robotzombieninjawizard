@@ -61,7 +61,7 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         MainCharacter character = gameWorld.getMainCharacter();
-        this.state = new MenuState(character.getInventory().getNumItemGroups() - 1);
+        this.state = new MenuState(character.getInventory().getNumItemGroups());
 
         this.selectionMap = new HashMap<Integer, Integer>();
         for (int i = 0; i < character.getInventory().getNumItemGroups(); i++)

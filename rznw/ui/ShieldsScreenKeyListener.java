@@ -59,7 +59,7 @@ public class ShieldsScreenKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         Equipment equipment = gameWorld.getMainCharacter().getEquipment();
-        this.state = new MenuState(equipment.getNumShieldGroups());
+        this.state = new MenuState(equipment.getNumShieldGroups() + 1);
         this.shieldsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 

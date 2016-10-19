@@ -12,7 +12,7 @@ public class InstructionsScreenKeyListener extends StateTransitionKeyListener
     public InstructionsScreenKeyListener(InstructionsScreenRenderer instructionsScreenRenderer)
     {
         this.instructionsScreenRenderer = instructionsScreenRenderer;
-        this.state = new MenuState(InstructionsFactory.NUM_PAGES - 1);
+        this.state = new MenuState(InstructionsFactory.NUM_PAGES);
     }
 
     public void keyPressed(KeyEvent event)

@@ -59,7 +59,7 @@ public class WeaponsScreenKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         Equipment equipment = gameWorld.getMainCharacter().getEquipment();
-        this.state = new MenuState(equipment.getNumWeaponGroups());
+        this.state = new MenuState(equipment.getNumWeaponGroups() + 1);
         this.weaponsScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 

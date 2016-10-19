@@ -59,7 +59,7 @@ public class ArmorScreenKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         Equipment equipment = gameWorld.getMainCharacter().getEquipment();
-        this.state = new MenuState(equipment.getNumArmorGroups());
+        this.state = new MenuState(equipment.getNumArmorGroups() + 1);
         this.armorScreenRenderer.render(this.gameWorld.getMainCharacter(), this.state, this.showingDescription);
     }
 

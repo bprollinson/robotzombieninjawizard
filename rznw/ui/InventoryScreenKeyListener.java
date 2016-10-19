@@ -113,7 +113,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
         if (mainCharacter.getInventory().getNumItemGroups() > 0)
         {
             int entryNumber = this.state == null ? 0 : this.state.getEntryNumber();
-            this.state = new MenuState(mainCharacter.getInventory().getNumItemGroups() - 1);
+            this.state = new MenuState(mainCharacter.getInventory().getNumItemGroups());
             if (entryNumber >= mainCharacter.getInventory().getNumItemGroups())
             {
                 entryNumber = mainCharacter.getInventory().getNumItemGroups() - 1;

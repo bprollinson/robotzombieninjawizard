@@ -18,7 +18,7 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
     {
         this.equipmentScreenRenderer = equipmentScreenRenderer;
         this.gameWorld = gameWorld;
-        this.state = new MenuState(2);
+        this.state = new MenuState(3);
     }
 
     public void keyPressed(KeyEvent event)
