@@ -247,7 +247,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
     private void processBuySell()
     {
-        if (this.subMenuState.getEntryNumber() < 0)
+        if (!this.subMenuState.hasEntries())
         {
             return;
         }
