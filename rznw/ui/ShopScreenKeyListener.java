@@ -205,7 +205,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         {
             case 0:
                 menuTitle = "Buy Items";
-                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                if (this.subMenuState.hasEntries())
                 {
                     price = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
                     priceDisplay = "Purchase Price: " + price;
@@ -214,7 +214,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 break;
             case 1:
                 menuTitle = "Buy Equipment";
-                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                if (this.subMenuState.hasEntries())
                 {
                     price = this.buyEquipment.get(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
                     priceDisplay = "Purchase Price: " + price;
@@ -224,7 +224,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             case 2:
                 menuTitle = "Sell Items";
                 inventory = gameWorld.getMainCharacter().getInventory();
-                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                if (this.subMenuState.hasEntries())
                 {
                     price = inventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
                     priceDisplay = "Sell Price: " + price;
@@ -235,7 +235,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 menuTitle = "Sell Equipment";
                 Equipment equipment = gameWorld.getMainCharacter().getEquipment();
                 Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                if (this.subMenuState.getEntryNumber() >= 0 && this.subMenuState.getMaxEntryNumber() >= 0)
+                if (this.subMenuState.hasEntries())
                 {
                     price = equipmentGroups.get(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
                     priceDisplay = "Sell Price: " + price;

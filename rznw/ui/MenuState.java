@@ -36,9 +36,9 @@ public class MenuState
         }
     }
 
-    public int getMaxEntryNumber()
+    public boolean hasEntries()
     {
-        return this.maxEntryNumber;
+        return this.maxEntryNumber >= 0;
     }
 
     public void adjustMaxEntryNumber(int maxEntryNumber)

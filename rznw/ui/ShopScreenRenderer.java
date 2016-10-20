@@ -68,7 +68,7 @@ public class ShopScreenRenderer extends MenuScreenRenderer
 
     private void renderCursor(MenuState state)
     {
-        if (state.getMaxEntryNumber() >= 0)
+        if (state.hasEntries())
         {
             this.frame.renderDisplayCharacter(state.getEntryNumber() + 4, 0, 'X');
         }
