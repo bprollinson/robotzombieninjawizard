@@ -1,6 +1,8 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Inventory;
+import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
@@ -39,13 +41,19 @@ public class RandomInventoryGenerator
             new XRayDrop()
         };
         Vector<InventoryItem> possibleItems = new Vector<InventoryItem>(Arrays.asList(possibleItemsArray));
-        Vector<InventoryItemGroup> selectedItems = new Vector<InventoryItemGroup>();
+        Inventory selectedItems = new Inventory(null);
 
         for (int i = 0; i < RandomInventoryGenerator.NUM_ITEMS; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleItems.size() - 1);
             InventoryItem item = possibleItems.get(randomIndex);
-            selectedItems.add(new InventoryItemGroup(item, 1));
+            try
+            {
+                selectedItems.addItems(new InventoryItemGroup(item, 1));
+            }
+            catch (InventoryFullException ife)
+            {
+            }
             possibleItems.remove(randomIndex);
         }
 

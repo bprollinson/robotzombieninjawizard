@@ -48,17 +48,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         RandomInventoryGenerator.handleRegeneration(gameWorld);
 
-        this.buyInventory = new Inventory(null);
-        Vector<InventoryItemGroup> items = gameWorld.getShopInventory().getRandomItems();
-
-        try
-        {
-            this.buyInventory.addItems(items);
-        }
-        catch (InventoryFullException ife)
-        {
-        }
-
+        this.buyInventory = gameWorld.getShopInventory().getRandomItems();
         this.buyEquipment = gameWorld.getShopInventory().getRandomEquipments();
     }
 

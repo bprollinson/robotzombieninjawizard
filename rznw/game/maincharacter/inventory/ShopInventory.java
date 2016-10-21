@@ -4,21 +4,21 @@ import java.util.Vector;
 
 public class ShopInventory
 {
-    private Vector<InventoryItemGroup> selectedItems;
+    private Inventory selectedItems;
     private Vector<EquipmentGroup> selectedEquipments;
 
     public ShopInventory()
     {
-        this.selectedItems = new Vector<InventoryItemGroup>();
+        this.selectedItems = new Inventory(null);
         this.selectedEquipments = new Vector<EquipmentGroup>();
     }
 
-    public Vector<InventoryItemGroup> getRandomItems()
+    public Inventory getRandomItems()
     {
         return this.selectedItems;
     }
 
-    public void setRandomItems(Vector<InventoryItemGroup> items)
+    public void setRandomItems(Inventory items)
     {
         this.selectedItems = items;
     }
