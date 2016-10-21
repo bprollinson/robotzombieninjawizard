@@ -258,7 +258,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
                     character.getInventory().removeGold((int)itemCost);
 
-                    this.subMenuState.adjustMaxEntryNumber(this.buyInventory.getNumItemGroups() - 1);
+                    this.subMenuState.adjustNumEntries(this.buyInventory.getNumItemGroups());
                 }
                 catch (InventoryFullException ife)
                 {
@@ -287,7 +287,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
                     character.getInventory().removeGold((int)equipmentCost);
 
-                    this.subMenuState.adjustMaxEntryNumber(this.buyEquipment.size() - 1);
+                    this.subMenuState.adjustNumEntries(this.buyEquipment.size());
                 }
                 catch (EquipmentFullException efe)
                 {
@@ -307,7 +307,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             int goldGained = existingGroup.getItem().getSellPrice();
             inventory.addGold(goldGained);
 
-            this.subMenuState.adjustMaxEntryNumber(inventory.getNumItemGroups() - 1);
+            this.subMenuState.adjustNumEntries(inventory.getNumItemGroups());
         }
         else if (this.topMenuState.getEntryNumber() == 3)
         {
@@ -361,7 +361,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             }
 
             equipmentGroups = this.getEquipmentGroups(equipment);
-            this.subMenuState.adjustMaxEntryNumber(equipmentGroups.size() - 1);
+            this.subMenuState.adjustNumEntries(equipmentGroups.size());
         }
     }
 }

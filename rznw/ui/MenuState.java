@@ -2,12 +2,12 @@ package rznw.ui;
 
 public class MenuState
 {
-    private int maxEntryNumber;
+    private int numEntries;
     private int entryNumber = 0;
 
     public MenuState(int numEntries)
     {
-        this.maxEntryNumber = numEntries - 1;
+        this.numEntries = numEntries;
     }
 
     public int getEntryNumber()
@@ -30,7 +30,7 @@ public class MenuState
 
     public void moveDown()
     {
-        if (this.entryNumber < this.maxEntryNumber)
+        if (this.entryNumber < this.numEntries - 1)
         {
             this.entryNumber++;
         }
@@ -38,13 +38,12 @@ public class MenuState
 
     public boolean hasEntries()
     {
-        return this.maxEntryNumber >= 0;
+        return this.numEntries > 0;
     }
 
-    public void adjustMaxEntryNumber(int maxEntryNumber)
+    public void adjustNumEntries(int numEntries)
     {
-        this.maxEntryNumber = maxEntryNumber;
-
-        this.entryNumber = Math.min(this.entryNumber, this.maxEntryNumber);
+        this.numEntries = numEntries;
+        this.entryNumber = Math.min(this.entryNumber, this.numEntries - 1);
     }
 }
