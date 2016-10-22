@@ -10,6 +10,7 @@ import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
+import rznw.map.MapRayTracer;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
 
@@ -30,29 +31,18 @@ public class RoundhouseStrikeSpell extends DirectedSpell
         System.out.println("Casting Roundhouse Strike");
 
         MainCharacter character = gameWorld.getMainCharacter();
-
-        int startRow = character.getMapElement().getRow();
-        int startColumn = character.getMapElement().getColumn();
+        MapElement characterElement = character.getMapElement();
 
         Map map = gameWorld.getMap();
-        map.setElement(startRow, startColumn, null);
+        map.setElement(characterElement.getRow(), characterElement.getColumn(), null);
+
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(characterElement, direction);
 
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
+        int characterRow = element.getRow() - positionChange.getDeltaRow();
+        int characterColumn = element.getColumn() - positionChange.getDeltaColumn();
 
-        int objectRow = startRow;
-        int objectColumn = startColumn;
-
-        while (map.getElement(objectRow, objectColumn) == null)
-        {
-            objectRow += positionChange.getDeltaRow();
-            objectColumn += positionChange.getDeltaColumn();
-        }
-
-        int characterRow = objectRow - positionChange.getDeltaRow();
-        int characterColumn = objectColumn - positionChange.getDeltaColumn();
-
-        MapElement characterElement = character.getMapElement();
-        MapElementSetter.setElement(map, characterElement, characterRow, characterColumn);
+        MapElementSetter.setElement(map, character.getMapElement(), characterRow, characterColumn);
 
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - 1, characterElement.getColumn() - 1, characterElement.getRow() + 1, characterElement.getColumn() + 1);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
