@@ -5,6 +5,7 @@ import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
+import rznw.map.MapRayTracer;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
 
@@ -25,26 +26,16 @@ public class RocketPackSpell extends DirectedSpell
         System.out.println("Casting Rocket Pack");
 
         MainCharacter character = gameWorld.getMainCharacter();
-
-        int startRow = character.getMapElement().getRow();
-        int startColumn = character.getMapElement().getColumn();
+        MapElement characterElement = character.getMapElement();
 
         Map map = gameWorld.getMap();
-        map.setElement(startRow, startColumn, null);
+        map.setElement(characterElement.getRow(), characterElement.getColumn(), null);
+
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(characterElement, direction);
 
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
-
-        int row = startRow;
-        int column = startColumn;
-
-        while (map.getElement(row, column) == null)
-        {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
-        }
-
-        row -= positionChange.getDeltaRow();
-        column -= positionChange.getDeltaColumn();
+        int row = element.getRow() - positionChange.getDeltaRow();
+        int column = element.getColumn() - positionChange.getDeltaColumn();
 
         MapElementSetter.setElement(map, character.getMapElement(), row, column);
     }
