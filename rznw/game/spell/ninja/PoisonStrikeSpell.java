@@ -6,6 +6,7 @@ import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -27,37 +28,25 @@ public class PoisonStrikeSpell extends DirectedSpell
         System.out.println("Casting Poison Strike");
 
         MainCharacter character = gameWorld.getMainCharacter();
-
-        int startRow = character.getMapElement().getRow();
-        int startColumn = character.getMapElement().getColumn();
+        MapElement characterElement = character.getMapElement();
 
         Map map = gameWorld.getMap();
-        map.setElement(startRow, startColumn, null);
+        map.setElement(characterElement.getRow(), characterElement.getColumn(), null);
+
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(characterElement, direction);
 
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
+        int characterRow = element.getRow() - positionChange.getDeltaRow();
+        int characterColumn = element.getColumn() - positionChange.getDeltaColumn();
 
-        int enemyRow = startRow;
-        int enemyColumn = startColumn;
+        MapElementSetter.setElement(map, character.getMapElement(), characterRow, characterColumn);
 
-        while (map.getElement(enemyRow, enemyColumn) == null)
-        {
-            enemyRow += positionChange.getDeltaRow();
-            enemyColumn += positionChange.getDeltaColumn();
-        }
-
-        int characterRow = enemyRow - positionChange.getDeltaRow();
-        int characterColumn = enemyColumn - positionChange.getDeltaColumn();
-
-        MapElement characterElement = character.getMapElement();
-        MapElementSetter.setElement(map, characterElement, characterRow, characterColumn);
-
-        MapElement enemyElement = map.getElement(enemyRow, enemyColumn);
-        if (enemyElement != null && enemyElement.isEnemy())
+        if (element.isEnemy())
         {
             System.out.println("Hitting enemy");
             int damage = 20 + 10 * spellPoints;
 
-            Character enemy = ((EnemyMapElement)enemyElement).getCharacter();
+            Character enemy = ((EnemyMapElement)element).getCharacter();
             System.out.println("Enemy HP before: " + enemy.getHP());
             enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("Enemy HP after: " + enemy.getHP());
