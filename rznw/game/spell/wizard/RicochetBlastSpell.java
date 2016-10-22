@@ -33,7 +33,7 @@ public class RicochetBlastSpell extends DirectedSpell
 
         Map map = gameWorld.getMap();
         MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         if (element.isEnemy())
         {

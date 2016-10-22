@@ -34,7 +34,7 @@ public class PoisonStrikeSpell extends DirectedSpell
         Map map = gameWorld.getMap();
         map.setElement(startRow, startColumn, null);
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         int enemyRow = startRow;
         int enemyColumn = startColumn;

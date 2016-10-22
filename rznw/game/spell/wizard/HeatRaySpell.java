@@ -30,7 +30,7 @@ public class HeatRaySpell extends DirectedSpell
 
         int damage = 50 + 10 * spellPoints;
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         boolean wallFound = false;
         int row = character.getMapElement().getRow();

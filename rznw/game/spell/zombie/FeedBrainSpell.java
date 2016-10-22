@@ -30,7 +30,7 @@ public class FeedBrainSpell extends DirectedSpell
 
         MapElement characterElement = character.getMapElement();
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         int row = characterElement.getRow() + positionChange.getDeltaRow();
         int column = characterElement.getColumn() + positionChange.getDeltaColumn();

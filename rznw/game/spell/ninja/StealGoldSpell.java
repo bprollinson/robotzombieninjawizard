@@ -32,7 +32,7 @@ public class StealGoldSpell extends DirectedSpell
         int row = character.getMapElement().getRow();
         int column = character.getMapElement().getColumn();
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         row += positionChange.getDeltaRow();
         column += positionChange.getDeltaColumn();

@@ -46,7 +46,7 @@ public class PinStrikeSpell extends DirectedSpell
             int distance = 1 + (int)Math.floor(spellPoints / 4);
             System.out.println("Maximum distance: " + distance);
 
-            SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+            SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
             int row = element.getRow();
             int column = element.getColumn();
 

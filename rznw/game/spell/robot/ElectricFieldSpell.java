@@ -33,7 +33,7 @@ public class ElectricFieldSpell extends DirectedSpell
         int radius = 1 + (int)Math.floor(spellPoints / 4);
         System.out.println("Radius is: " + radius);
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
 

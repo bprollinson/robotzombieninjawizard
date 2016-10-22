@@ -34,7 +34,7 @@ public class StunBombSpell extends DirectedSpell
 
         int damage = 50 + 10 * spellPoints;
 
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         Map map = gameWorld.getMap();
         int row = character.getMapElement().getRow() + positionChange.getDeltaRow();

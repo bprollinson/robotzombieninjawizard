@@ -14,7 +14,7 @@ public class MapRayTracer
 
     public MapElement findNextElementInDirection(MapElement startingPositionElement, int direction)
     {
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(0, 0, direction);
+        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         int row = startingPositionElement.getRow();
         int column = startingPositionElement.getColumn();

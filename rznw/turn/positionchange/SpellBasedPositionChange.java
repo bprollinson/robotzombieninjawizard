@@ -4,6 +4,11 @@ import rznw.game.spell.Spell;
 
 public class SpellBasedPositionChange extends PositionChange
 {
+    public SpellBasedPositionChange(int direction)
+    {
+        this(0, 0, direction);
+    }
+
     public SpellBasedPositionChange(int initialRow, int initialColumn, int direction)
     {
         this.initialRow = initialRow;
