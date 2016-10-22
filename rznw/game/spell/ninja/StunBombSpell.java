@@ -6,6 +6,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.DirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
@@ -31,34 +32,21 @@ public class StunBombSpell extends DirectedSpell
         System.out.println("Casting Stun Bomb");
 
         MainCharacter character = gameWorld.getMainCharacter();
-
-        int damage = 50 + 10 * spellPoints;
-
-        SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
+        MapElement characterElement = character.getMapElement();
 
         Map map = gameWorld.getMap();
-        int row = character.getMapElement().getRow() + positionChange.getDeltaRow();
-        int column = character.getMapElement().getColumn() + positionChange.getDeltaColumn();
-
-        while (map.getElement(row, column) == null)
-        {
-            row += positionChange.getDeltaRow();
-            column += positionChange.getDeltaColumn();
-        }
-
-        MapElement element = map.getElement(row, column);
+        MapElement element = new MapRayTracer(map).findNextElementInDirection(characterElement, direction);
 
         if (element.isEnemy())
         {
             System.out.println("Direct hit " + element);
+            int damage = 50 + 10 * spellPoints;
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
             System.out.println("Before: " + enemy.getHP());
             enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             System.out.println("After: " + enemy.getHP());
         }
-
-        MapElement characterElement = character.getMapElement();
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
