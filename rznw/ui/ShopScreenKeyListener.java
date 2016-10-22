@@ -16,7 +16,6 @@ import rznw.map.GameWorld;
 import rznw.turn.MainCharacterTurnHandler;
 
 import java.awt.event.KeyEvent;
-import java.util.Vector;
 
 public class ShopScreenKeyListener extends StateTransitionKeyListener
 {
@@ -28,7 +27,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
     private boolean inSubmenu;
     private boolean done;
     private Inventory buyInventory;
-    private Vector<EquipmentGroup> buyEquipment;
+    private Equipment buyEquipment;
 
     public ShopScreenKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld, MainCharacterTurnHandler turnHandler)
     {
@@ -132,26 +131,44 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         return DispatchKeyListener.STATE_SHOP;
     }
 
-    private Vector<EquipmentGroup> getEquipmentGroups(Equipment equipment)
+    private Equipment getEquipmentGroups(Equipment equipment)
     {
-        Vector<EquipmentGroup> result = new Vector<EquipmentGroup>();
+        Equipment result = new Equipment(null);
 
         int numGroups = equipment.getNumWeaponGroups();
         for (int i = 0; i < numGroups; i++)
         {
-            result.add(equipment.getWeaponGroup(i));
+            try
+            {
+                result.addEquipment(equipment.getWeaponGroup(i));
+            }
+            catch (EquipmentFullException efe)
+            {
+            }
         }
 
         numGroups = equipment.getNumShieldGroups();
         for (int i = 0; i < numGroups; i++)
         {
-            result.add(equipment.getShieldGroup(i));
+            try
+            {
+                result.addEquipment(equipment.getShieldGroup(i));
+            }
+            catch (EquipmentFullException efe)
+            {
+            }
         }
 
         numGroups = equipment.getNumArmorGroups();
         for (int i = 0; i < numGroups; i++)
         {
-            result.add(equipment.getArmorGroup(i));
+            try
+            {
+                result.addEquipment(equipment.getArmorGroup(i));
+            }
+            catch (EquipmentFullException efe)
+            {
+            }
         }
 
         return result;
@@ -168,7 +185,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups());
                 break;
             case 1:
-                this.subMenuState = new MenuState(this.buyEquipment.size());
+                this.subMenuState = new MenuState(this.buyEquipment.getNumGroups());
                 break;
             case 2:
                 character = gameWorld.getMainCharacter();
@@ -178,8 +195,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             case 3:
                 character = gameWorld.getMainCharacter();
                 Equipment equipment = character.getEquipment();
-                Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-                this.subMenuState = new MenuState(equipmentGroups.size());
+                this.subMenuState = new MenuState(equipment.getNumGroups());
                 break;
         }
     }
@@ -206,7 +222,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 menuTitle = "Buy Equipment";
                 if (this.subMenuState.hasEntries())
                 {
-                    price = this.buyEquipment.get(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
+                    price = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
                     priceDisplay = "Purchase Price: " + price;
                 }
                 this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.subMenuState);
@@ -224,13 +240,13 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             case 3:
                 menuTitle = "Sell Equipment";
                 Equipment equipment = gameWorld.getMainCharacter().getEquipment();
-                Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
+                equipment = this.getEquipmentGroups(equipment);
                 if (this.subMenuState.hasEntries())
                 {
-                    price = equipmentGroups.get(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
+                    price = equipment.getEquipmentGroup(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
                     priceDisplay = "Sell Price: " + price;
                 }
-                this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, equipmentGroups, this.subMenuState);
+                this.shopScreenRenderer.renderEquipmentSubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, equipment, this.subMenuState);
                 break;
             }
     }
@@ -269,7 +285,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         else if (this.topMenuState.getEntryNumber() == 1)
         {
             MainCharacter character = gameWorld.getMainCharacter();
-            EquipmentGroup selectedGroup = this.buyEquipment.get(this.subMenuState.getEntryNumber());
+            EquipmentGroup selectedGroup = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber());
 
             int equipmentCost = selectedGroup.getItem().getBuyPrice(character);
 
@@ -277,17 +293,12 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             {
                 try
                 {
-                    character.getEquipment().addEquipment(new EquipmentGroup(selectedGroup.getItem(), 1));
-
-                    selectedGroup.removeEquipmentFromGroup(1);
-                    if (selectedGroup.getNumItems() == 0)
-                    {
-                        this.buyEquipment.remove(this.subMenuState.getEntryNumber());
-                    }
+                    EquipmentGroup group = new EquipmentGroup(selectedGroup.getItem(), 1);
+                    character.getEquipment().addEquipment(group);
+                    this.buyEquipment.removeEquipment(group.getItem());
 
                     character.getInventory().removeGold((int)equipmentCost);
-
-                    this.subMenuState.adjustNumEntries(this.buyEquipment.size());
+                    this.subMenuState.adjustNumEntries(this.buyEquipment.getNumGroups());
                 }
                 catch (EquipmentFullException efe)
                 {
@@ -313,16 +324,17 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
         {
             MainCharacter character = gameWorld.getMainCharacter();
             Equipment equipment = character.getEquipment();
-            Vector<EquipmentGroup> equipmentGroups = this.getEquipmentGroups(equipment);
-            EquipmentGroup equipmentGroup = equipmentGroups.get(this.subMenuState.getEntryNumber());
+            equipment = this.getEquipmentGroups(equipment);
+            EquipmentGroup equipmentGroup = equipment.getEquipmentGroup(this.subMenuState.getEntryNumber());
             EquipmentItem item = equipmentGroup.getItem();
 
             boolean itemSold = false;
 
             if (item.isWeapon())
             {
-                Weapon equippedWeapon = equipment.getEquippedWeapon();
+                Weapon equippedWeapon = character.getEquipment().getEquippedWeapon();
                 boolean isEquippedWeapon = equippedWeapon != null && item.getClass().equals(equippedWeapon.getClass());
+                System.out.println(isEquippedWeapon + " - " + equipmentGroup.getNumItems());
 
                 if (!isEquippedWeapon || equipmentGroup.getNumItems() > 1)
                 {
@@ -332,8 +344,9 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
             if (item.isShield())
             {
-                Shield equippedShield = equipment.getEquippedShield();
+                Shield equippedShield = character.getEquipment().getEquippedShield();
                 boolean isEquippedShield = equippedShield != null && item.getClass().equals(equippedShield.getClass());
+                System.out.println(isEquippedShield + " - " + equipmentGroup.getNumItems());
 
                 if (!isEquippedShield || equipmentGroup.getNumItems() > 1)
                 {
@@ -343,8 +356,9 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
             if (item.isArmor())
             {
-                Armor equippedArmor = equipment.getEquippedArmor();
+                Armor equippedArmor = character.getEquipment().getEquippedArmor();
                 boolean isEquippedArmor = equippedArmor != null && item.getClass().equals(equippedArmor.getClass());
+                System.out.println(isEquippedArmor + " - " + equipmentGroup.getNumItems());
 
                 if (!isEquippedArmor || equipmentGroup.getNumItems() > 1)
                 {
@@ -357,11 +371,10 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
                 Inventory inventory = character.getInventory();
                 int goldGained = equipmentGroup.getItem().getSellPrice();
                 inventory.addGold(goldGained);
-                equipment.removeEquipment(item);
+                character.getEquipment().removeEquipment(item);
             }
 
-            equipmentGroups = this.getEquipmentGroups(equipment);
-            this.subMenuState.adjustNumEntries(equipmentGroups.size());
+            this.subMenuState.adjustNumEntries(character.getEquipment().getNumGroups());
         }
     }
 }

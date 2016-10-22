@@ -1,9 +1,9 @@
 package rznw.game.maincharacter.inventory;
 
-import java.util.Vector;
-
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.stat.Stat;
+
+import java.util.Vector;
 
 public class Equipment
 {
@@ -171,6 +171,11 @@ public class Equipment
 
     private void assertCanAddEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
     {
+        if (this.character == null)
+        {
+            return;
+        }
+
         int statPoints = this.character.getStats().getStatPoints(Stat.STAT_UNENCUMBERANCE);
         int maxSize = 1 + statPoints;
 

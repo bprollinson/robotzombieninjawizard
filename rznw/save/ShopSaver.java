@@ -1,6 +1,7 @@
 package rznw.save;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
@@ -9,7 +10,6 @@ import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 
 import java.io.BufferedWriter;
-import java.util.Vector;
 
 public class ShopSaver extends ComponentSaver
 {
@@ -37,12 +37,12 @@ public class ShopSaver extends ComponentSaver
             this.writeLine(fileWriter, itemGroup.getNumItems());
         }
 
-        Vector<EquipmentGroup> equipment = gameWorld.getShopInventory().getRandomEquipments();
-        this.writeLine(fileWriter, equipment.size());
+        Equipment equipment = gameWorld.getShopInventory().getRandomEquipments();
+        this.writeLine(fileWriter, equipment.getNumGroups());
 
-        for (int i = 0; i < equipment.size(); i++)
+        for (int i = 0; i < equipment.getNumGroups(); i++)
         {
-            EquipmentGroup equipmentGroup = equipment.get(i);
+            EquipmentGroup equipmentGroup = equipment.getEquipmentGroup(i);
 
             this.writeLine(fileWriter, equipmentGroup.getItem().getEquipmentNumber());
             this.writeLine(fileWriter, equipmentGroup.getNumItems());

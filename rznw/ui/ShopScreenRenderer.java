@@ -1,11 +1,10 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
-
-import java.util.Vector;
 
 public class ShopScreenRenderer extends MenuScreenRenderer
 {
@@ -48,16 +47,16 @@ public class ShopScreenRenderer extends MenuScreenRenderer
         this.renderCursor(subMenuState);
     }
 
-    public void renderEquipmentSubMenu(MainCharacter character, String title, String priceDisplay, Vector<EquipmentGroup> equipmentGroups, MenuState subMenuState)
+    public void renderEquipmentSubMenu(MainCharacter character, String title, String priceDisplay, Equipment equipment, MenuState subMenuState)
     {
         this.clearScreen();
 
         this.renderCenteredString(0, title);
         this.frame.renderDisplayString(2, 2, "Gold: " + character.getInventory().getNumGold());
 
-        for (int i = 0; i < equipmentGroups.size(); i++)
+        for (int i = 0; i < equipment.getNumGroups(); i++)
         {
-            EquipmentGroup group = equipmentGroups.get(i);
+            EquipmentGroup group = equipment.getEquipmentGroup(i);
             this.frame.renderDisplayString(4 + i, 2, group.getDisplayString());
         }
 

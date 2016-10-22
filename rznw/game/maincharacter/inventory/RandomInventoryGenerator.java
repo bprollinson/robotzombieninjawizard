@@ -1,8 +1,6 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.Inventory;
-import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 import rznw.utility.RandomNumberGenerator;
@@ -90,13 +88,19 @@ public class RandomInventoryGenerator
             new EtherealShield()
         };
         Vector<EquipmentItem> possibleEquipments = new Vector<EquipmentItem>(Arrays.asList(possibleEquipmentsArray));
-        Vector<EquipmentGroup> selectedEquipments = new Vector<EquipmentGroup>();
+        Equipment selectedEquipments = new Equipment(null);
 
         for (int i = 0; i < RandomInventoryGenerator.NUM_EQUIPMENTS; i++)
         {
             int randomIndex = RandomNumberGenerator.randomInteger(0, possibleEquipments.size() - 1);
             EquipmentItem equipment = possibleEquipments.get(randomIndex);
-            selectedEquipments.add(new EquipmentGroup(equipment, 1));
+            try
+            {
+                selectedEquipments.addEquipment(new EquipmentGroup(equipment, 1));
+            }
+            catch (EquipmentFullException ife)
+            {
+            }
             possibleEquipments.remove(randomIndex);
         }
 

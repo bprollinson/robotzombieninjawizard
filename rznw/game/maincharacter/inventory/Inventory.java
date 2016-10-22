@@ -7,7 +7,7 @@ import rznw.game.stat.Stat;
 
 public class Inventory
 {
-    int numGold = 0;
+    int numGold = 999999;
     Vector<InventoryItemGroup> itemGroups;
     MainCharacter character;
 

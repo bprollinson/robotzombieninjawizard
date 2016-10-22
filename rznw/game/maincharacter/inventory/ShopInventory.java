@@ -1,16 +1,14 @@
 package rznw.game.maincharacter.inventory;
 
-import java.util.Vector;
-
 public class ShopInventory
 {
     private Inventory selectedItems;
-    private Vector<EquipmentGroup> selectedEquipments;
+    private Equipment selectedEquipments;
 
     public ShopInventory()
     {
         this.selectedItems = new Inventory(null);
-        this.selectedEquipments = new Vector<EquipmentGroup>();
+        this.selectedEquipments = new Equipment(null);
     }
 
     public Inventory getRandomItems()
@@ -23,12 +21,12 @@ public class ShopInventory
         this.selectedItems = items;
     }
 
-    public Vector<EquipmentGroup> getRandomEquipments()
+    public Equipment getRandomEquipments()
     {
         return this.selectedEquipments;
     }
 
-    public void setRandomEquipment(Vector<EquipmentGroup> equipment)
+    public void setRandomEquipment(Equipment equipment)
     {
         this.selectedEquipments = equipment;
     }

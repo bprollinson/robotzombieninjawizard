@@ -1,5 +1,7 @@
 package rznw.save;
 
+import rznw.game.maincharacter.inventory.Equipment;
+import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.EquipmentItemFactory;
@@ -12,7 +14,6 @@ import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.map.GameWorld;
 
 import java.io.BufferedReader;
-import java.util.Vector;
 
 public class ShopLoader extends ComponentLoader
 {
@@ -45,7 +46,7 @@ public class ShopLoader extends ComponentLoader
 
         gameWorld.getShopInventory().setRandomItems(items);
 
-        Vector<EquipmentGroup> equipments = new Vector<EquipmentGroup>();
+        Equipment equipments = new Equipment(null);
 
         int numEquipmentGroups = this.readInteger(fileReader);
         for (int i = 0; i < numEquipmentGroups; i++)
@@ -54,7 +55,13 @@ public class ShopLoader extends ComponentLoader
             int numEquipment = this.readInteger(fileReader);
 
             EquipmentItem equipment = EquipmentItemFactory.factory(equipmentNumber);
-            equipments.add(new EquipmentGroup(equipment, numEquipment));
+            try
+            {
+                equipments.addEquipment(new EquipmentGroup(equipment, numEquipment));
+            }
+            catch (EquipmentFullException ife)
+            {
+            }
         }
 
         gameWorld.getShopInventory().setRandomEquipment(equipments);
