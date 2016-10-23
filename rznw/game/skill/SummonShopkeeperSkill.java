@@ -25,7 +25,7 @@ public class SummonShopkeeperSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
-        System.out.println("Using Rage");
+        System.out.println("Using Summon Shopkeeper");
 
         MainCharacter character = gameWorld.getMainCharacter();
         int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER);

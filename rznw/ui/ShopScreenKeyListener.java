@@ -6,7 +6,6 @@ import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Inventory;
-import rznw.game.maincharacter.inventory.InventoryFullException;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.inventory.RandomInventoryGenerator;
 import rznw.game.maincharacter.inventory.Shield;
@@ -122,7 +121,12 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
     }
 
     public int getNextState(KeyEvent event)
-    {   
+    {
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 0)
+        {
+            return DispatchKeyListener.STATE_BUY_ITEMS_MENU;
+        }
+
         if (this.done)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
@@ -181,9 +185,6 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         switch (this.topMenuState.getEntryNumber())
         {
-            case 0:
-                this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups());
-                break;
             case 1:
                 this.subMenuState = new MenuState(this.buyEquipment.getNumGroups());
                 break;
@@ -209,15 +210,6 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         switch (this.topMenuState.getEntryNumber())
         {
-            case 0:
-                menuTitle = "Buy Items";
-                if (this.subMenuState.hasEntries())
-                {
-                    price = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
-                    priceDisplay = "Purchase Price: " + price;
-                }
-                this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.subMenuState);
-                break;
             case 1:
                 menuTitle = "Buy Equipment";
                 if (this.subMenuState.hasEntries())
@@ -258,31 +250,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             return;
         }
 
-        if (this.topMenuState.getEntryNumber() == 0)
-        {
-            MainCharacter character = gameWorld.getMainCharacter();
-            InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber());
-
-            int itemCost = selectedGroup.getItem().getBuyPrice(character);
-
-            if (character.getInventory().getNumGold() >= itemCost)
-            {
-                try
-                {
-                    character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
-                    this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
-
-                    character.getInventory().removeGold((int)itemCost);
-
-                    this.subMenuState.adjustNumEntries(this.buyInventory.getNumItemGroups());
-                }
-                catch (InventoryFullException ife)
-                {
-                    System.out.println("Inventory full");
-                }
-            }
-        }
-        else if (this.topMenuState.getEntryNumber() == 1)
+        if (this.topMenuState.getEntryNumber() == 1)
         {
             MainCharacter character = gameWorld.getMainCharacter();
             EquipmentGroup selectedGroup = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber());
