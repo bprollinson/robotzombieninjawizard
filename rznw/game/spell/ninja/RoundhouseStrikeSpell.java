@@ -42,7 +42,7 @@ public class RoundhouseStrikeSpell extends DirectedSpell
         int characterRow = element.getRow() - positionChange.getDeltaRow();
         int characterColumn = element.getColumn() - positionChange.getDeltaColumn();
 
-        MapElementSetter.setElement(map, character.getMapElement(), characterRow, characterColumn);
+        MapElementSetter.setElement(map, characterElement, characterRow, characterColumn);
 
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - 1, characterElement.getColumn() - 1, characterElement.getRow() + 1, characterElement.getColumn() + 1);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)

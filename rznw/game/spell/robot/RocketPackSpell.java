@@ -37,7 +37,7 @@ public class RocketPackSpell extends DirectedSpell
         int row = element.getRow() - positionChange.getDeltaRow();
         int column = element.getColumn() - positionChange.getDeltaColumn();
 
-        MapElementSetter.setElement(map, character.getMapElement(), row, column);
+        MapElementSetter.setElement(map, characterElement, row, column);
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

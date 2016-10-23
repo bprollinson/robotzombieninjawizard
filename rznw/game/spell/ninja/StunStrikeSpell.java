@@ -40,7 +40,7 @@ public class StunStrikeSpell extends DirectedSpell
         int characterRow = element.getRow() - positionChange.getDeltaRow();
         int characterColumn = element.getColumn() - positionChange.getDeltaColumn();
 
-        MapElementSetter.setElement(map, character.getMapElement(), characterRow, characterColumn);
+        MapElementSetter.setElement(map, characterElement, characterRow, characterColumn);
 
         if (element.isEnemy())
         {
