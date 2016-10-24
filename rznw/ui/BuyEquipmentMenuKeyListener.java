@@ -1,21 +1,21 @@
 package rznw.ui;
 
-import rznw.game.maincharacter.inventory.Inventory;
-import rznw.game.maincharacter.inventory.InventoryFullException;
-import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.maincharacter.inventory.Equipment;
+import rznw.game.maincharacter.inventory.EquipmentFullException;
+import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
 
-public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
+public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
 {
     private ShopScreenRenderer shopScreenRenderer;
     private GameWorld gameWorld;
-    private Inventory buyInventory;
+    private Equipment buyEquipment;
     private MenuState subMenuState;
 
-    public BuyItemsMenuKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld)
+    public BuyEquipmentMenuKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld)
     {
         this.shopScreenRenderer = shopScreenRenderer;
         this.gameWorld = gameWorld;
@@ -28,13 +28,13 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_SHOP;
         }
 
-        return DispatchKeyListener.STATE_BUY_ITEMS_MENU;
+        return DispatchKeyListener.STATE_BUY_EQUIPMENT_MENU;
     }
 
     public void enterState(int previousState)
     {
-        this.buyInventory = this.gameWorld.getShopInventory().getRandomItems();
-        this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups());
+        this.buyEquipment = this.gameWorld.getShopInventory().getRandomEquipments();
+        this.subMenuState = new MenuState(this.buyEquipment.getNumGroups());
 
         this.renderMenu();
     }
@@ -67,14 +67,14 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
 
     private void renderMenu()
     {
-        String menuTitle = "Buy Items";
+        String menuTitle = "Buy Equipment";
         String priceDisplay = "";
         if (this.subMenuState.hasEntries())
         {
-            int price = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
+            int price = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
             priceDisplay = "Purchase Price: " + price;
         }
-        this.shopScreenRenderer.renderInventorySubMenu(this.gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.subMenuState);
+        this.shopScreenRenderer.renderEquipmentSubMenu(this.gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.subMenuState);
     }
 
     private void processBuy()
@@ -85,24 +85,24 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
         }
 
         MainCharacter character = this.gameWorld.getMainCharacter();
-        InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber());
+        EquipmentGroup selectedGroup = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber());
 
-        int itemCost = selectedGroup.getItem().getBuyPrice(character);
+        int equipmentCost = selectedGroup.getItem().getBuyPrice(character);
 
-        if (character.getInventory().getNumGold() >= itemCost)
+        if (character.getInventory().getNumGold() >= equipmentCost)
         {
             try
             {
-                character.getInventory().addItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
-                this.buyInventory.removeItems(new InventoryItemGroup(selectedGroup.getItem(), 1));
+                EquipmentGroup group = new EquipmentGroup(selectedGroup.getItem(), 1);
+                character.getEquipment().addEquipment(group);
+                this.buyEquipment.removeEquipment(group.getItem());
 
-                character.getInventory().removeGold(itemCost);
-
-                this.subMenuState.adjustNumEntries(this.buyInventory.getNumItemGroups());
+                character.getInventory().removeGold(equipmentCost);
+                this.subMenuState.adjustNumEntries(this.buyEquipment.getNumGroups());
             }
-            catch (InventoryFullException ife)
+            catch (EquipmentFullException efe)
             {
-                System.out.println("Inventory full");
+                System.out.println("Equipment full");
             }
 
             this.renderMenu();
