@@ -132,6 +132,11 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_BUY_EQUIPMENT_MENU;
         }
 
+        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 2)
+        {
+            return DispatchKeyListener.STATE_SELL_ITEMS_MENU;
+        }
+
         if (this.done)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
@@ -190,11 +195,6 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         switch (this.topMenuState.getEntryNumber())
         {
-            case 2:
-                character = gameWorld.getMainCharacter();
-                Inventory inventory = character.getInventory();
-                this.subMenuState = new MenuState(inventory.getNumItemGroups());
-                break;
             case 3:
                 character = gameWorld.getMainCharacter();
                 Equipment equipment = character.getEquipment();
@@ -212,16 +212,6 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
         switch (this.topMenuState.getEntryNumber())
         {
-            case 2:
-                menuTitle = "Sell Items";
-                inventory = gameWorld.getMainCharacter().getInventory();
-                if (this.subMenuState.hasEntries())
-                {
-                    price = inventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getSellPrice();
-                    priceDisplay = "Sell Price: " + price;
-                }
-                this.shopScreenRenderer.renderInventorySubMenu(gameWorld.getMainCharacter(), menuTitle, priceDisplay, inventory, this.subMenuState);
-                break;
             case 3:
                 menuTitle = "Sell Equipment";
                 Equipment equipment = gameWorld.getMainCharacter().getEquipment();
@@ -243,21 +233,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             return;
         }
 
-        if (this.topMenuState.getEntryNumber() == 2)
-        {
-            MainCharacter character = gameWorld.getMainCharacter();
-
-            Inventory inventory = character.getInventory();
-            InventoryItemGroup existingGroup = inventory.getItemGroup(this.subMenuState.getEntryNumber());
-            InventoryItemGroup removalGroup = new InventoryItemGroup(existingGroup.getItem(), 1);
-            inventory.removeItems(removalGroup);
-
-            int goldGained = existingGroup.getItem().getSellPrice();
-            inventory.addGold(goldGained);
-
-            this.subMenuState.adjustNumEntries(inventory.getNumItemGroups());
-        }
-        else if (this.topMenuState.getEntryNumber() == 3)
+        if (this.topMenuState.getEntryNumber() == 3)
         {
             MainCharacter character = gameWorld.getMainCharacter();
             Equipment equipment = character.getEquipment();
