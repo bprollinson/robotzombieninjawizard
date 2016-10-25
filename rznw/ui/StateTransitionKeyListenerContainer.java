@@ -39,7 +39,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_ARMOR_SCREEN, new ArmorScreenKeyListener(new ArmorScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_DETECT_VITALITY, new DetectVitalityScreenKeyListener(new DetectVitalityScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_TRADE_ITEMS, new TradeItemsScreenKeyListener(new TradeItemsScreenRenderer(frame), gameWorld, turnHandler));
-        this.listeners.put(DispatchKeyListener.STATE_SHOP, new ShopScreenKeyListener(new ShopScreenRenderer(frame), gameWorld, turnHandler));
+        this.listeners.put(DispatchKeyListener.STATE_SHOP, new ShopScreenKeyListener(new ShopScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_INSTRUCTIONS_SCREEN, new InstructionsScreenKeyListener(new InstructionsScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_GAME_COMPLETED, new GameCompletedScreenKeyListener(new GameCompletedScreenRenderer(frame)));
         this.listeners.put(DispatchKeyListener.STATE_SAVE_CONFIRMATION_SCREEN, new SaveConfirmationScreenKeyListener(new SaveConfirmationScreenRenderer(frame), gameWorld));
@@ -49,6 +49,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_BUY_ITEMS_MENU, new BuyItemsMenuKeyListener(new ShopScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_BUY_EQUIPMENT_MENU, new BuyEquipmentMenuKeyListener(new ShopScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_SELL_ITEMS_MENU, new SellItemsMenuKeyListener(new ShopScreenRenderer(frame), gameWorld));
+        this.listeners.put(DispatchKeyListener.STATE_SELL_EQUIPMENT_MENU, new SellEquipmentMenuKeyListener(new ShopScreenRenderer(frame), gameWorld));
     }
 
     public StateTransitionKeyListener getListener(int state)
