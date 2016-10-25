@@ -50,27 +50,24 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 0)
+        if (event.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            return DispatchKeyListener.STATE_BUY_ITEMS_MENU;
+            switch (this.topMenuState.getEntryNumber())
+            {
+                case 0:
+                    return DispatchKeyListener.STATE_BUY_ITEMS_MENU;
+                case 1:
+                    return DispatchKeyListener.STATE_BUY_EQUIPMENT_MENU;
+                case 2:
+                    return DispatchKeyListener.STATE_SELL_ITEMS_MENU;
+                case 3:
+                    return DispatchKeyListener.STATE_SELL_EQUIPMENT_MENU;
+                case 4:
+                    return DispatchKeyListener.STATE_GAME_MOTION;
+            }
         }
 
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 1)
-        {
-            return DispatchKeyListener.STATE_BUY_EQUIPMENT_MENU;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 2)
-        {
-            return DispatchKeyListener.STATE_SELL_ITEMS_MENU;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 3)
-        {
-            return DispatchKeyListener.STATE_SELL_EQUIPMENT_MENU;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.topMenuState.getEntryNumber() == 4 || event.getKeyCode() == KeyEvent.VK_ESCAPE)
+        if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
