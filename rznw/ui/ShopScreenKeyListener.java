@@ -9,18 +9,18 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
 {
     private ShopScreenRenderer shopScreenRenderer;
     private GameWorld gameWorld;
-    private MenuState topMenuState;
+    private MenuState state;
 
     public ShopScreenKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld)
     {
         this.shopScreenRenderer = shopScreenRenderer;
         this.gameWorld = gameWorld;
-        this.topMenuState = new MenuState(5);
+        this.state = new MenuState(5);
     }
 
     public void enterState(int previousState)
     {
-        this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
+        this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), this.state);
 
         RandomInventoryGenerator.handleRegeneration(gameWorld);
     }
@@ -32,16 +32,16 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.topMenuState.moveUp();
+                this.state.moveUp();
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.topMenuState.moveDown();
+                this.state.moveDown();
                 break;
         }
 
-        this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), topMenuState);
+        this.shopScreenRenderer.renderTopMenu(gameWorld.getMainCharacter(), this.state);
     }
 
     public void exitState(KeyEvent event)
@@ -52,7 +52,7 @@ public class ShopScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            switch (this.topMenuState.getEntryNumber())
+            switch (this.state.getEntryNumber())
             {
                 case 0:
                     return DispatchKeyListener.STATE_BUY_ITEMS_MENU;

@@ -13,7 +13,7 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
     private ShopScreenRenderer shopScreenRenderer;
     private GameWorld gameWorld;
     private Inventory buyInventory;
-    private MenuState subMenuState;
+    private MenuState state;
 
     public BuyItemsMenuKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld)
     {
@@ -34,7 +34,7 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         this.buyInventory = this.gameWorld.getShopInventory().getRandomItems();
-        this.subMenuState = new MenuState(this.buyInventory.getNumItemGroups());
+        this.state = new MenuState(this.buyInventory.getNumItemGroups());
 
         this.renderMenu();
     }
@@ -46,13 +46,13 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.subMenuState.moveUp();
+                this.state.moveUp();
                 this.renderMenu();
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.subMenuState.moveDown();
+                this.state.moveDown();
                 this.renderMenu();
                 break;
             case KeyEvent.VK_ENTER:
@@ -69,23 +69,23 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
     {
         String menuTitle = "Buy Items";
         String priceDisplay = "";
-        if (this.subMenuState.hasEntries())
+        if (this.state.hasEntries())
         {
-            int price = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
+            int price = this.buyInventory.getItemGroup(this.state.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
             priceDisplay = "Purchase Price: " + price;
         }
-        this.shopScreenRenderer.renderInventorySubMenu(this.gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.subMenuState);
+        this.shopScreenRenderer.renderInventorySubMenu(this.gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyInventory, this.state);
     }
 
     private void processBuy()
     {
-        if (!this.subMenuState.hasEntries())
+        if (!this.state.hasEntries())
         {
             return;
         }
 
         MainCharacter character = this.gameWorld.getMainCharacter();
-        InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.subMenuState.getEntryNumber());
+        InventoryItemGroup selectedGroup = this.buyInventory.getItemGroup(this.state.getEntryNumber());
 
         int itemCost = selectedGroup.getItem().getBuyPrice(character);
 
@@ -98,7 +98,7 @@ public class BuyItemsMenuKeyListener extends StateTransitionKeyListener
 
                 character.getInventory().removeGold(itemCost);
 
-                this.subMenuState.adjustNumEntries(this.buyInventory.getNumItemGroups());
+                this.state.adjustNumEntries(this.buyInventory.getNumItemGroups());
             }
             catch (InventoryFullException ife)
             {

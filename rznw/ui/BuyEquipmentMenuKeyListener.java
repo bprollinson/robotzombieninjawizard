@@ -13,7 +13,7 @@ public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
     private ShopScreenRenderer shopScreenRenderer;
     private GameWorld gameWorld;
     private Equipment buyEquipment;
-    private MenuState subMenuState;
+    private MenuState state;
 
     public BuyEquipmentMenuKeyListener(ShopScreenRenderer shopScreenRenderer, GameWorld gameWorld)
     {
@@ -34,7 +34,7 @@ public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
     public void enterState(int previousState)
     {
         this.buyEquipment = this.gameWorld.getShopInventory().getRandomEquipments();
-        this.subMenuState = new MenuState(this.buyEquipment.getNumGroups());
+        this.state = new MenuState(this.buyEquipment.getNumGroups());
 
         this.renderMenu();
     }
@@ -46,13 +46,13 @@ public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
             case KeyEvent.VK_UP:
             case KeyEvent.VK_NUMPAD8:
             case KeyEvent.VK_KP_UP:
-                this.subMenuState.moveUp();
+                this.state.moveUp();
                 this.renderMenu();
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_NUMPAD2:
             case KeyEvent.VK_KP_DOWN:
-                this.subMenuState.moveDown();
+                this.state.moveDown();
                 this.renderMenu();
                 break;
             case KeyEvent.VK_ENTER:
@@ -69,23 +69,23 @@ public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
     {
         String menuTitle = "Buy Equipment";
         String priceDisplay = "";
-        if (this.subMenuState.hasEntries())
+        if (this.state.hasEntries())
         {
-            int price = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
+            int price = this.buyEquipment.getEquipmentGroup(this.state.getEntryNumber()).getItem().getBuyPrice(this.gameWorld.getMainCharacter());
             priceDisplay = "Purchase Price: " + price;
         }
-        this.shopScreenRenderer.renderEquipmentSubMenu(this.gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.subMenuState);
+        this.shopScreenRenderer.renderEquipmentSubMenu(this.gameWorld.getMainCharacter(), menuTitle, priceDisplay, this.buyEquipment, this.state);
     }
 
     private void processBuy()
     {
-        if (!this.subMenuState.hasEntries())
+        if (!this.state.hasEntries())
         {
             return;
         }
 
         MainCharacter character = this.gameWorld.getMainCharacter();
-        EquipmentGroup selectedGroup = this.buyEquipment.getEquipmentGroup(this.subMenuState.getEntryNumber());
+        EquipmentGroup selectedGroup = this.buyEquipment.getEquipmentGroup(this.state.getEntryNumber());
 
         int equipmentCost = selectedGroup.getItem().getBuyPrice(character);
 
@@ -98,7 +98,7 @@ public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
                 this.buyEquipment.removeEquipment(group.getItem());
 
                 character.getInventory().removeGold(equipmentCost);
-                this.subMenuState.adjustNumEntries(this.buyEquipment.getNumGroups());
+                this.state.adjustNumEntries(this.buyEquipment.getNumGroups());
             }
             catch (EquipmentFullException efe)
             {
