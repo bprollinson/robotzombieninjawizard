@@ -152,6 +152,16 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
     public int getNextState(KeyEvent event)
     {
+        if (this.gameWorld.getMainCharacter().isDead())
+        {
+            return DispatchKeyListener.STATE_DEATH_SCREEN;
+        }
+
+        if (this.gameWorld.getMainCharacter().getExperience().getPendingLevels() > 0)
+        {
+            return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
+        }
+
         if (this.requiresDirection)
         {
             switch (event.getKeyCode())
@@ -168,11 +178,6 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_NUMPAD6:
                 case KeyEvent.VK_KP_RIGHT:
-                    if (this.gameWorld.getMainCharacter().getExperience().getPendingLevels() > 0)
-                    {
-                        return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
-                    }
-
                     return DispatchKeyListener.STATE_GAME_MOTION;
                 default:
                     return DispatchKeyListener.STATE_SPELLS_SCREEN;
@@ -182,16 +187,6 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
-        }
-
-        if (this.gameWorld.getMainCharacter().isDead())
-        {
-            return DispatchKeyListener.STATE_DEATH_SCREEN;
-        }
-
-        if (this.gameWorld.getMainCharacter().getExperience().getPendingLevels() > 0)
-        {
-            return DispatchKeyListener.STATE_LEVEL_UP_STATS_MENU;
         }
 
         if (this.gameWorld.gameCompleted())
