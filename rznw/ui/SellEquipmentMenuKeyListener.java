@@ -3,7 +3,6 @@ package rznw.ui;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Equipment;
-import rznw.game.maincharacter.inventory.EquipmentFullException;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Inventory;
