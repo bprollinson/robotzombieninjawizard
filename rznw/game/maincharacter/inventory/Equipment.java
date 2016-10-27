@@ -3,20 +3,24 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.stat.Stat;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 public class Equipment
 {
-    private Vector<EquipmentGroup> equipmentGroups;
-    private int equippedWeapon = -1;
-    private int equippedShield = -1;
-    private int equippedArmor = -1;
     private MainCharacter character;
+    private HashMap<Integer, Vector<EquipmentGroup>> equipmentGroups = new HashMap<Integer, Vector<EquipmentGroup>>();
+    private HashMap<Integer, Integer> equippedEquipment = new HashMap<Integer, Integer>();
 
     public Equipment(MainCharacter character)
     {
-        this.equipmentGroups = new Vector<EquipmentGroup>();
         this.character = character;
+        this.equipmentGroups.put(Weapon.EQUIPMENT_TYPE, new Vector<EquipmentGroup>());
+        this.equipmentGroups.put(Shield.EQUIPMENT_TYPE, new Vector<EquipmentGroup>());
+        this.equipmentGroups.put(Armor.EQUIPMENT_TYPE, new Vector<EquipmentGroup>());
+        this.equippedEquipment.put(Weapon.EQUIPMENT_TYPE, -1);
+        this.equippedEquipment.put(Shield.EQUIPMENT_TYPE, -1);
+        this.equippedEquipment.put(Armor.EQUIPMENT_TYPE, -1);
     }
 
     public void addEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
@@ -24,41 +28,44 @@ public class Equipment
         this.assertCanAddEquipment(equipmentGroup);
 
         int index = this.getEquipmentGroupPosition(equipmentGroup);
+        int type = equipmentGroup.getItem().getEquipmentType();
 
         if (index == -1)
         {
-            this.equipmentGroups.add(equipmentGroup);
+            this.equipmentGroups.get(type).add(equipmentGroup);
         }
         else
         {
-            this.equipmentGroups.get(index).addEquipmentToGroup(equipmentGroup.getNumItems());
+            this.equipmentGroups.get(type).get(index).addEquipmentToGroup(equipmentGroup.getNumItems());
         }
     }
 
     public void removeEquipment(EquipmentItem item)
     {
         int index = this.getEquipmentGroupPosition(new EquipmentGroup(item, 1));
+        int type = item.getEquipmentType();
 
         if (index == -1)
         {
             return;
         }
 
-        this.equipmentGroups.get(index).removeEquipmentFromGroup(1);
+        this.equipmentGroups.get(type).get(index).removeEquipmentFromGroup(1);
 
-        if (this.equipmentGroups.get(index).getNumItems() == 0)
+        if (this.equipmentGroups.get(type).get(index).getNumItems() == 0)
         {
-            this.equipmentGroups.remove(index);
+            this.equipmentGroups.get(type).remove(index);
         }
     }
 
     private int getEquipmentGroupPosition(EquipmentGroup equipmentGroup)
     {
         int index = -1;
+        int type = equipmentGroup.getItem().getEquipmentType();
 
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
+        for (int i = 0; i < this.equipmentGroups.get(type).size(); i++)
         {
-            EquipmentGroup existingEquipmentGroup = this.equipmentGroups.get(i);
+            EquipmentGroup existingEquipmentGroup = this.equipmentGroups.get(type).get(i);
             if (equipmentGroup.getItem().getClass().equals(existingEquipmentGroup.getItem().getClass()))
             {
                 index = i;
@@ -71,12 +78,28 @@ public class Equipment
 
     public int getNumGroups()
     {
-        return this.equipmentGroups.size();
+        return this.equipmentGroups.get(Weapon.EQUIPMENT_TYPE).size() + this.equipmentGroups.get(Shield.EQUIPMENT_TYPE).size() + this.equipmentGroups.get(Armor.EQUIPMENT_TYPE).size();
     }
 
     public EquipmentGroup getEquipmentGroup(int groupIndex)
     {
-        return this.equipmentGroups.get(groupIndex);
+        int numWeapons = this.getNumWeaponGroups();
+        int numShields = this.getNumShieldGroups();
+        int numArmor = this.getNumArmorGroups();
+
+        if (groupIndex < numWeapons)
+        {
+            return this.getWeaponGroup(groupIndex);
+        }
+        groupIndex -= numWeapons;
+
+        if (groupIndex < numShields)
+        {
+            return this.getShieldGroup(groupIndex);
+        }
+        groupIndex -= numShields;
+
+        return this.getArmorGroup(groupIndex);
     }
 
     public int getNumWeaponGroups()
@@ -91,22 +114,22 @@ public class Equipment
 
     public void unequipWeapon()
     {
-        this.equippedWeapon = -1;
+        this.equippedEquipment.put(Weapon.EQUIPMENT_TYPE, -1);
     }
 
     public void equipWeapon(int weaponGroupIndex)
     {
-        this.equippedWeapon = weaponGroupIndex;
+        this.equippedEquipment.put(Weapon.EQUIPMENT_TYPE, weaponGroupIndex);
     }
 
     public Weapon getEquippedWeapon()
     {
-        if (this.equippedWeapon == -1)
+        if (this.equippedEquipment.get(Weapon.EQUIPMENT_TYPE) == -1)
         {
             return null;
         }
 
-        return (Weapon)this.getWeaponGroup(this.equippedWeapon).getItem();
+        return (Weapon)this.getWeaponGroup(this.equippedEquipment.get(Weapon.EQUIPMENT_TYPE)).getItem();
     }
 
     public int getNumShieldGroups()
@@ -121,22 +144,22 @@ public class Equipment
 
     public void unequipShield()
     {
-        this.equippedShield = -1;
+        this.equippedEquipment.put(Shield.EQUIPMENT_TYPE, -1);
     }
 
     public void equipShield(int shieldGroupIndex)
     {
-        this.equippedShield = shieldGroupIndex;
+        this.equippedEquipment.put(Shield.EQUIPMENT_TYPE, shieldGroupIndex);
     }
 
     public Shield getEquippedShield()
     {
-        if (this.equippedShield == -1)
+        if (this.equippedEquipment.get(Shield.EQUIPMENT_TYPE) == -1)
         {
             return null;
         }
 
-        return (Shield)this.getShieldGroup(this.equippedShield).getItem();
+        return (Shield)this.getShieldGroup(this.equippedEquipment.get(Shield.EQUIPMENT_TYPE)).getItem();
     }
 
     public int getNumArmorGroups()
@@ -151,22 +174,22 @@ public class Equipment
 
     public void unequipArmor()
     {
-        this.equippedArmor = -1;
+        this.equippedEquipment.put(Armor.EQUIPMENT_TYPE, -1);
     }
 
     public void equipArmor(int armorGroupIndex)
     {
-        this.equippedArmor = armorGroupIndex;
+        this.equippedEquipment.put(Armor.EQUIPMENT_TYPE, armorGroupIndex);
     }
 
     public Armor getEquippedArmor()
     {
-        if (this.equippedArmor == -1)
+        if (this.equippedEquipment.get(Armor.EQUIPMENT_TYPE) == -1)
         {
             return null;
         }
 
-        return (Armor)this.getArmorGroup(this.equippedArmor).getItem();
+        return (Armor)this.getArmorGroup(this.equippedEquipment.get(Armor.EQUIPMENT_TYPE)).getItem();
     }
 
     private void assertCanAddEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
@@ -181,12 +204,12 @@ public class Equipment
 
         int index = this.getEquipmentGroupPosition(equipmentGroup);
 
-        if (index == -1 && this.equipmentGroups.size() >= maxSize)
+        if (index == -1 && this.getNumGroups() >= maxSize)
         {
             throw new EquipmentFullException();
         }
 
-        if (index != -1 && this.equipmentGroups.get(index).getNumItems() >= maxSize)
+        if (index != -1 && this.equipmentGroups.get(equipmentGroup.getItem().getEquipmentType()).get(index).getNumItems() >= maxSize)
         {
             throw new EquipmentFullException();
         }
@@ -194,37 +217,11 @@ public class Equipment
 
     private int getNumGroupsOfType(int requiredType)
     {
-        int result = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            EquipmentGroup equipmentGroup = this.equipmentGroups.get(i);
-            if (equipmentGroup.getItem().getEquipmentType() == requiredType)
-            {
-                result++;
-            }
-        }
-
-        return result;
+        return this.equipmentGroups.get(requiredType).size();
     }
 
     private EquipmentGroup getGroupOfType(int requiredType, int targetPosition)
     {
-        int pos = 0;
-
-        for (int i = 0; i < this.equipmentGroups.size(); i++)
-        {
-            if (pos == targetPosition && this.equipmentGroups.get(i).getItem().getEquipmentType() == requiredType)
-            {
-                return this.equipmentGroups.get(i);
-            }
-
-            if (this.equipmentGroups.get(i).getItem().getEquipmentType() == requiredType)
-            {
-                pos++;
-            }
-        }
-
-        return null;
+        return this.equipmentGroups.get(requiredType).get(targetPosition);
     }
 }
