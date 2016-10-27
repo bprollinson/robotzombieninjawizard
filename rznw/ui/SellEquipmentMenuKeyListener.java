@@ -1,13 +1,10 @@
 package rznw.ui;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Equipment;
 import rznw.game.maincharacter.inventory.EquipmentGroup;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.Inventory;
-import rznw.game.maincharacter.inventory.Shield;
-import rznw.game.maincharacter.inventory.Weapon;
 import rznw.map.GameWorld;
 
 import java.awt.event.KeyEvent;
