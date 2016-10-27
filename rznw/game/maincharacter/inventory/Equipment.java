@@ -130,12 +130,7 @@ public class Equipment
 
     public Weapon getEquippedWeapon()
     {
-        if (this.equippedEquipment.get(Weapon.EQUIPMENT_TYPE) == -1)
-        {
-            return null;
-        }
-
-        return (Weapon)this.getWeaponGroup(this.equippedEquipment.get(Weapon.EQUIPMENT_TYPE)).getItem();
+        return (Weapon)this.getEquippedItemOfType(Weapon.EQUIPMENT_TYPE);
     }
 
     public int getNumShieldGroups()
@@ -160,12 +155,7 @@ public class Equipment
 
     public Shield getEquippedShield()
     {
-        if (this.equippedEquipment.get(Shield.EQUIPMENT_TYPE) == -1)
-        {
-            return null;
-        }
-
-        return (Shield)this.getShieldGroup(this.equippedEquipment.get(Shield.EQUIPMENT_TYPE)).getItem();
+        return (Shield)this.getEquippedItemOfType(Shield.EQUIPMENT_TYPE);
     }
 
     public int getNumArmorGroups()
@@ -190,12 +180,7 @@ public class Equipment
 
     public Armor getEquippedArmor()
     {
-        if (this.equippedEquipment.get(Armor.EQUIPMENT_TYPE) == -1)
-        {
-            return null;
-        }
-
-        return (Armor)this.getArmorGroup(this.equippedEquipment.get(Armor.EQUIPMENT_TYPE)).getItem();
+        return (Armor)this.getEquippedItemOfType(Armor.EQUIPMENT_TYPE);
     }
 
     private void assertCanAddEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
@@ -229,5 +214,15 @@ public class Equipment
     private EquipmentGroup getGroupOfType(int requiredType, int targetPosition)
     {
         return this.equipmentGroups.get(requiredType).get(targetPosition);
+    }
+
+    public EquipmentItem getEquippedItemOfType(int type)
+    {
+        if (this.equippedEquipment.get(type) == -1)
+        {
+            return null;
+        }
+
+        return this.getGroupOfType(type, this.equippedEquipment.get(type)).getItem();
     }
 }

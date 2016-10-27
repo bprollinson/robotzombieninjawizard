@@ -94,43 +94,11 @@ public class SellEquipmentMenuKeyListener extends StateTransitionKeyListener
         EquipmentGroup equipmentGroup = equipment.getEquipmentGroup(this.state.getEntryNumber());
         EquipmentItem item = equipmentGroup.getItem();
 
-        boolean itemSold = false;
+        EquipmentItem equippedItem = character.getEquipment().getEquippedItemOfType(item.getEquipmentType());
+        boolean isEquippedItem = equippedItem != null && item.getClass().equals(equippedItem.getClass());
+        System.out.println(isEquippedItem + " - " + equipmentGroup.getNumItems());
 
-        if (item.isWeapon())
-        {
-            Weapon equippedWeapon = character.getEquipment().getEquippedWeapon();
-            boolean isEquippedWeapon = equippedWeapon != null && item.getClass().equals(equippedWeapon.getClass());
-            System.out.println(isEquippedWeapon + " - " + equipmentGroup.getNumItems());
-
-            if (!isEquippedWeapon || equipmentGroup.getNumItems() > 1)
-            {
-                itemSold = true;
-            }
-        }
-
-        if (item.isShield())
-        {
-            Shield equippedShield = character.getEquipment().getEquippedShield();
-            boolean isEquippedShield = equippedShield != null && item.getClass().equals(equippedShield.getClass());
-            System.out.println(isEquippedShield + " - " + equipmentGroup.getNumItems());
-
-            if (!isEquippedShield || equipmentGroup.getNumItems() > 1)
-            {
-                itemSold = true;
-            }
-        }
-
-        if (item.isArmor())
-        {
-            Armor equippedArmor = character.getEquipment().getEquippedArmor();
-            boolean isEquippedArmor = equippedArmor != null && item.getClass().equals(equippedArmor.getClass());
-            System.out.println(isEquippedArmor + " - " + equipmentGroup.getNumItems());
-
-            if (!isEquippedArmor || equipmentGroup.getNumItems() > 1)
-            {
-                itemSold = true;
-            }
-        }
+        boolean itemSold = !isEquippedItem || equipmentGroup.getNumItems() > 1;
 
         if (itemSold)
         {
