@@ -55,6 +55,12 @@ public class Equipment
         if (this.equipmentGroups.get(type).get(index).getNumItems() == 0)
         {
             this.equipmentGroups.get(type).remove(index);
+
+            int equippedIndex = this.equippedEquipment.get(type);
+            if (equippedIndex != -1 && equippedIndex > index)
+            {
+                this.equippedEquipment.put(type, equippedIndex - 1);
+            }
         }
     }
 
