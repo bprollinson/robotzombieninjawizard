@@ -75,7 +75,6 @@ public class SellEquipmentMenuKeyListener extends StateTransitionKeyListener
         String menuTitle = "Sell Equipment";
         String priceDisplay = "";
         Equipment equipment = this.gameWorld.getMainCharacter().getEquipment();
-        equipment = this.getEquipmentGroups(equipment);
         if (this.state.hasEntries())
         {
             int price = equipment.getEquipmentGroup(this.state.getEntryNumber()).getItem().getSellPrice();
@@ -93,7 +92,6 @@ public class SellEquipmentMenuKeyListener extends StateTransitionKeyListener
 
         MainCharacter character = this.gameWorld.getMainCharacter();
         Equipment equipment = character.getEquipment();
-        equipment = this.getEquipmentGroups(equipment);
         EquipmentGroup equipmentGroup = equipment.getEquipmentGroup(this.state.getEntryNumber());
         EquipmentItem item = equipmentGroup.getItem();
 
@@ -146,48 +144,5 @@ public class SellEquipmentMenuKeyListener extends StateTransitionKeyListener
         this.state.adjustNumEntries(character.getEquipment().getNumGroups());
 
         this.renderMenu();
-    }
-
-    private Equipment getEquipmentGroups(Equipment equipment)
-    {
-        Equipment result = new Equipment(null);
-
-        int numGroups = equipment.getNumWeaponGroups();
-        for (int i = 0; i < numGroups; i++)
-        {
-            try
-            {
-                result.addEquipment(equipment.getWeaponGroup(i));
-            }
-            catch (EquipmentFullException efe)
-            {
-            }
-        }
-
-        numGroups = equipment.getNumShieldGroups();
-        for (int i = 0; i < numGroups; i++)
-        {
-            try
-            {
-                result.addEquipment(equipment.getShieldGroup(i));
-            }
-            catch (EquipmentFullException efe)
-            {
-            }
-        }
-
-        numGroups = equipment.getNumArmorGroups();
-        for (int i = 0; i < numGroups; i++)
-        {
-            try
-            {
-                result.addEquipment(equipment.getArmorGroup(i));
-            }
-            catch (EquipmentFullException efe)
-            {
-            }
-        }
-
-        return result;
     }
 }
