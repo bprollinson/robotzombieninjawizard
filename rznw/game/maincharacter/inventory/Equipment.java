@@ -1,7 +1,6 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.stat.Stat;
 
 import java.util.HashMap;
 import java.util.Vector;
@@ -25,7 +24,7 @@ public class Equipment
 
     public void addEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
     {
-        this.assertCanAddEquipment(equipmentGroup);
+        new AddEquipmentAssertion(this.character).validate(equipmentGroup);
 
         int index = this.getEquipmentGroupPosition(equipmentGroup);
         int type = equipmentGroup.getItem().getEquipmentType();
@@ -64,7 +63,7 @@ public class Equipment
         }
     }
 
-    private int getEquipmentGroupPosition(EquipmentGroup equipmentGroup)
+    public int getEquipmentGroupPosition(EquipmentGroup equipmentGroup)
     {
         int index = -1;
         int type = equipmentGroup.getItem().getEquipmentType();
@@ -183,35 +182,12 @@ public class Equipment
         return (Armor)this.getEquippedItemOfType(Armor.EQUIPMENT_TYPE);
     }
 
-    private void assertCanAddEquipment(EquipmentGroup equipmentGroup) throws EquipmentFullException
-    {
-        if (this.character == null)
-        {
-            return;
-        }
-
-        int statPoints = this.character.getStats().getStatPoints(Stat.STAT_UNENCUMBERANCE);
-        int maxSize = 1 + statPoints;
-
-        int index = this.getEquipmentGroupPosition(equipmentGroup);
-
-        if (index == -1 && this.getNumGroups() >= maxSize)
-        {
-            throw new EquipmentFullException();
-        }
-
-        if (index != -1 && this.equipmentGroups.get(equipmentGroup.getItem().getEquipmentType()).get(index).getNumItems() >= maxSize)
-        {
-            throw new EquipmentFullException();
-        }
-    }
-
     private int getNumGroupsOfType(int requiredType)
     {
         return this.equipmentGroups.get(requiredType).size();
     }
 
-    private EquipmentGroup getGroupOfType(int requiredType, int targetPosition)
+    public EquipmentGroup getGroupOfType(int requiredType, int targetPosition)
     {
         return this.equipmentGroups.get(requiredType).get(targetPosition);
     }
