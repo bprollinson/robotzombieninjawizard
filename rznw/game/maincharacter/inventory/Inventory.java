@@ -3,7 +3,6 @@ package rznw.game.maincharacter.inventory;
 import java.util.Vector;
 
 import rznw.game.maincharacter.MainCharacter;
-import rznw.game.stat.Stat;
 
 public class Inventory
 {
@@ -44,7 +43,7 @@ public class Inventory
 
     public void addItems(InventoryItemGroup itemGroup) throws InventoryFullException
     {
-        this.assertCanAddItems(itemGroup);
+        new AddInventoryAssertion(this.character).validate(itemGroup);
 
         int index = this.getItemGroupPosition(itemGroup);
 
@@ -93,30 +92,7 @@ public class Inventory
         return this.itemGroups.get(index);
     }
 
-    private void assertCanAddItems(InventoryItemGroup itemGroup) throws InventoryFullException
-    {
-        if (this.character == null)
-        {
-            return;
-        }
-
-        int statPoints = this.character.getStats().getStatPoints(Stat.STAT_UNENCUMBERANCE);
-        int maxSize = 1 + statPoints;
-
-        int index = this.getItemGroupPosition(itemGroup);
-
-        if (index == -1 && this.itemGroups.size() >= maxSize)
-        {
-            throw new InventoryFullException();
-        }
-
-        if (index != -1 && this.itemGroups.get(index).getNumItems() >= maxSize)
-        {
-            throw new InventoryFullException();
-        }
-    }
-
-    private int getItemGroupPosition(InventoryItemGroup itemGroup)
+    public int getItemGroupPosition(InventoryItemGroup itemGroup)
     {
         int index = -1;
 
