@@ -1,10 +1,10 @@
 package rznw.ui;
 
+import rznw.map.Map;
+
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import rznw.map.Map;
 
 public class MainGameFrame extends JFrame
 {
