@@ -1,8 +1,5 @@
 package rznw.game.spell.ninja;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
@@ -13,6 +10,9 @@ import rznw.map.MapElementSetter;
 import rznw.map.MapRayTracer;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class RoundhouseStrikeSpell extends DirectedSpell
 {
