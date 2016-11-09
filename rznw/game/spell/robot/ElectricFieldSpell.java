@@ -1,8 +1,5 @@
 package rznw.game.spell.robot;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
@@ -11,6 +8,9 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 public class ElectricFieldSpell extends DirectedSpell
 {
