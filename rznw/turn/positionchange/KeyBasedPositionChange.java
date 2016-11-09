@@ -1,9 +1,9 @@
 package rznw.turn.positionchange;
 
-import java.awt.event.KeyEvent;
-
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.element.MapElement;
+
+import java.awt.event.KeyEvent;
 
 public class KeyBasedPositionChange extends PositionChange
 {
