@@ -1,8 +1,8 @@
 package rznw.game.maincharacter.inventory;
 
-import java.util.Vector;
-
 import rznw.game.maincharacter.MainCharacter;
+
+import java.util.Vector;
 
 public class Inventory
 {
