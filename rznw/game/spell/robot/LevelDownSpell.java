@@ -40,7 +40,7 @@ public class LevelDownSpell extends UndirectedSpell
             if (enemy.getLevel() > 0)
             {
                 int levelDifference = spellPoints;
-                int newLevel = Math.max(enemy.getLevel() - levelDifference, 1);
+                int newLevel = Math.max(enemy.getLevel() - levelDifference, 0);
 
                 EnemyCharacter newEnemy = enemy.getNewInstance(newLevel);
 
