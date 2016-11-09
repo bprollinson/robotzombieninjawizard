@@ -1,11 +1,11 @@
 package rznw.ui;
 
-import java.awt.event.KeyEvent;
-
 import rznw.map.GameWorld;
 import rznw.save.GameLoader;
 import rznw.save.LoadException;
 import rznw.save.MissingFileException;
+
+import java.awt.event.KeyEvent;
 
 public class LoadScreenKeyListener extends StateTransitionKeyListener
 {
