@@ -1,12 +1,12 @@
 package rznw.ui;
 
-import java.awt.event.KeyEvent;
-
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.turn.MainCharacterTurnHandler;
+
+import java.awt.event.KeyEvent;
 
 public class MovementKeyListener extends StateTransitionKeyListener
 {
