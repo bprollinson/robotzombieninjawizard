@@ -45,7 +45,7 @@ public class LevelDownSpell extends UndirectedSpell
                 EnemyCharacter newEnemy = enemy.getNewInstance(newLevel);
 
                 System.out.println("Replaced enemy");
-                CharacterMapElement mapElement = (CharacterMapElement)enemy.getMapElement();
+                CharacterMapElement mapElement = enemy.getMapElement();
                 mapElement.setCharacter(newEnemy);
                 newEnemy.setMapElement(mapElement);
             }

@@ -2,7 +2,7 @@ package rznw.game;
 
 import rznw.game.statuseffects.StatusEffects;
 import rznw.map.GameWorld;
-import rznw.map.element.MapElement;
+import rznw.map.element.CharacterMapElement;
 
 public abstract class Character
 {
@@ -13,7 +13,7 @@ public abstract class Character
     protected int HP;
     protected int MP;
     protected StatusEffects statusEffects;
-    protected MapElement mapElement;
+    protected CharacterMapElement mapElement;
 
     public Character()
     {
@@ -29,12 +29,12 @@ public abstract class Character
         this.statusEffects = new StatusEffects(this);
     }
 
-    public MapElement getMapElement()
+    public CharacterMapElement getMapElement()
     {
         return this.mapElement;
     }
 
-    public void setMapElement(MapElement mapElement)
+    public void setMapElement(CharacterMapElement mapElement)
     {
         this.mapElement = mapElement;
     }

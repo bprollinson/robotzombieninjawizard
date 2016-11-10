@@ -56,7 +56,7 @@ public class MapElementFactory
                 SummonedCharacter summon = gameWorld.getSummon(summonIndex);
                 gameWorld.incrementSummonIndex();
 
-                MapElement element = new SummonedGolemMapElement(row, column, summon);
+                CharacterMapElement element = new SummonedGolemMapElement(row, column, summon);
                 summon.setMapElement(element);
 
                 return element;
@@ -65,7 +65,7 @@ public class MapElementFactory
                 SummonedCharacter zombie = gameWorld.getSummon(zombieIndex);
                 gameWorld.incrementSummonIndex();
 
-                MapElement zombieElement = new SummonedZombieMapElement(row, column, zombie);
+                CharacterMapElement zombieElement = new SummonedZombieMapElement(row, column, zombie);
                 zombie.setMapElement(zombieElement);
 
                 return zombieElement;
