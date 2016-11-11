@@ -13,6 +13,7 @@ public class MainGameFrame extends JFrame
         super(title);
 
         this.setSize(20 * Map.NUM_COLUMNS, 20 * (Map.NUM_ROWS + MainGamePanel.NUM_SUMMARY_ROWS));
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new MainGamePanel();
