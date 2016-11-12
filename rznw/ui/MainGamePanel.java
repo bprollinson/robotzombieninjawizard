@@ -14,13 +14,11 @@ public class MainGamePanel extends JPanel
 
     public MainGamePanel()
     {
-        int numTotalRows = Map.NUM_ROWS + MainGamePanel.NUM_SUMMARY_ROWS;
+        this.setLayout(new GridLayout(MainGameFrame.NUM_ROWS, MainGameFrame.NUM_COLUMNS));
 
-        this.setLayout(new GridLayout(numTotalRows, Map.NUM_COLUMNS));
+        this.innerPanel = new JPanel[MainGameFrame.NUM_ROWS][MainGameFrame.NUM_COLUMNS];
 
-        this.innerPanel = new JPanel[numTotalRows][Map.NUM_COLUMNS];
-
-        for (int i = 0; i < numTotalRows; i++)
+        for (int i = 0; i < MainGameFrame.NUM_ROWS; i++)
         {
             for (int j = 0; j < Map.NUM_COLUMNS; j++)
             {

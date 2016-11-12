@@ -8,14 +8,14 @@ import javax.swing.JPanel;
 
 public class MainGameFrame extends JFrame
 {
-    public static final int NUM_ROWS = 34;
+    public static final int NUM_ROWS = 42;
     public static final int NUM_COLUMNS = 40;
 
     public MainGameFrame(String title)
     {
         super(title);
 
-        this.setSize(20 * Map.NUM_COLUMNS, 24 * (Map.NUM_ROWS + MainGamePanel.NUM_SUMMARY_ROWS));
+        this.setSize(20 * MainGameFrame.NUM_COLUMNS, 24 * MainGameFrame.NUM_ROWS);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
