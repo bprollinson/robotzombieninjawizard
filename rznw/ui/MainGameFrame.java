@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 
 public class MainGameFrame extends JFrame
 {
+    public static final int NUM_ROWS = 34;
+    public static final int NUM_COLUMNS = 40;
+
     public MainGameFrame(String title)
     {
         super(title);

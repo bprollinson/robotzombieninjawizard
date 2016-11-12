@@ -2,9 +2,6 @@ package rznw.ui;
 
 public class MainMenuRenderer
 {
-    public static final int NUM_ROWS = 34;
-    public static final int NUM_COLUMNS = 40;
-
     private static final int MENU_ENTRY_FIRST_ROW = 4;
     private static final int MENU_ROW_HEIGHT = 2;
 
@@ -17,9 +14,9 @@ public class MainMenuRenderer
 
     public void render(MenuState state)
     {
-        for (int i = 0; i < MainMenuRenderer.NUM_ROWS; i++)
+        for (int i = 0; i < MainGameFrame.NUM_ROWS; i++)
         {
-            for (int j = 0; j < MainMenuRenderer.NUM_COLUMNS; j++)
+            for (int j = 0; j < MainGameFrame.NUM_COLUMNS; j++)
             {
                 this.frame.renderDisplayCharacter(i, j, ' ');
             }
@@ -43,7 +40,7 @@ public class MainMenuRenderer
 
     private void renderCenteredString(int row, String string)
     {
-        int column = (MainMenuRenderer.NUM_COLUMNS - string.length()) / 2;
+        int column = (MainGameFrame.NUM_COLUMNS - string.length()) / 2;
         this.frame.renderDisplayString(row, column, string);
     }
 

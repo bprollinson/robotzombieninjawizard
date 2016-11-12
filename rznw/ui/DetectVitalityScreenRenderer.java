@@ -106,9 +106,9 @@ public class DetectVitalityScreenRenderer
 
     protected void clearScreen()
     {
-        for (int i = 0; i < 34; i++)
+        for (int i = 0; i < MainGameFrame.NUM_ROWS; i++)
         {
-            for (int j = 0; j < 40; j++)
+            for (int j = 0; j < MainGameFrame.NUM_COLUMNS; j++)
             {
                 this.frame.renderDisplayCharacter(i, j, ' ');
             }
