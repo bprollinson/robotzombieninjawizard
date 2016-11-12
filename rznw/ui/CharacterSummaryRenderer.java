@@ -20,14 +20,14 @@ public class CharacterSummaryRenderer
         MainCharacter character = gameWorld.getMainCharacter();
         Map map = gameWorld.getMap();
 
-        this.frame.renderDisplayString(Map.NUM_ROWS, 0, "Character: L. " + character.getExperience().getLevel());
-        this.frame.renderDisplayString(Map.NUM_ROWS, 20, "Dungeon: L. " + map.getLevel());
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "Character: L. " + character.getExperience().getLevel());
+        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20, "Dungeon: L. " + map.getLevel());
 
         String hpDisplay = character.getHP() + "/" + character.getMaxHP();
-        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 0, "HP: " + hpDisplay);
+        this.frame.renderDisplayString(Map.NUM_ROWS + 2, 0, "HP: " + hpDisplay);
 
         String mpDisplay = character.getMP() + "/" + character.getMaxMP();
-        this.frame.renderDisplayString(Map.NUM_ROWS + 1, 20, "MP: " + mpDisplay);
+        this.frame.renderDisplayString(Map.NUM_ROWS + 2, 20, "MP: " + mpDisplay);
     }
 
     private void clearCharacterSummaryArea()

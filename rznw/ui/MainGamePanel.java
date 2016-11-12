@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class MainGamePanel extends JPanel
 {
-    public static final int NUM_SUMMARY_ROWS = 2;
+    public static final int NUM_SUMMARY_ROWS = 4;
 
     private JPanel[][] innerPanel;
 

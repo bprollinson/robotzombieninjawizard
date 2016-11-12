@@ -2,7 +2,7 @@ package rznw.ui;
 
 public class MainMenuRenderer
 {
-    public static final int NUM_ROWS = 32;
+    public static final int NUM_ROWS = 34;
     public static final int NUM_COLUMNS = 40;
 
     private static final int MENU_ENTRY_FIRST_ROW = 4;

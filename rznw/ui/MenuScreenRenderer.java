@@ -2,7 +2,7 @@ package rznw.ui;
 
 public abstract class MenuScreenRenderer
 {
-    private static final int NUM_ROWS = 32;
+    private static final int NUM_ROWS = 34;
     private static final int NUM_COLUMNS = 40;
 
     protected MainGameFrame frame;

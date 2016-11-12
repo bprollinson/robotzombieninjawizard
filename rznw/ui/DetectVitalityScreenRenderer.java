@@ -106,7 +106,7 @@ public class DetectVitalityScreenRenderer
 
     protected void clearScreen()
     {
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 34; i++)
         {
             for (int j = 0; j < 40; j++)
             {
