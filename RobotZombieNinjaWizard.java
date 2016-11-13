@@ -4,6 +4,8 @@ import rznw.map.generator.MapGenerator;
 import rznw.turn.MainCharacterTurnHandler;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.ui.DispatchKeyListener;
+import rznw.ui.LogRenderer;
+import rznw.ui.LogRendererFactory;
 import rznw.ui.MainGameFrame;
 import rznw.ui.StateTransitionKeyListenerContainer;
 
@@ -26,5 +28,8 @@ public class RobotZombieNinjaWizard
         dispatchListener.enterFirstState();
 
         frame.display(dispatchListener);
+
+        LogRendererFactory.init(frame);
+        LogRendererFactory.instance().log("Test message");
     }
 }
