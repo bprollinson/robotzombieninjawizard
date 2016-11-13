@@ -4,7 +4,6 @@ import rznw.map.generator.MapGenerator;
 import rznw.turn.MainCharacterTurnHandler;
 import rznw.ui.CharacterSummaryRenderer;
 import rznw.ui.DispatchKeyListener;
-import rznw.ui.LogRenderer;
 import rznw.ui.LogRendererFactory;
 import rznw.ui.MainGameFrame;
 import rznw.ui.StateTransitionKeyListenerContainer;
