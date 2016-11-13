@@ -7,6 +7,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.MainCharacterGenerator;
 import rznw.game.maincharacter.inventory.ShopInventory;
 import rznw.map.generator.MapGenerator;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Vector;
 
@@ -32,7 +33,7 @@ public class GameWorld
 
     public void initializeToDefaultState(int characterClass)
     {
-        System.out.println("Generating dungeon level 1");
+        LogRendererFactory.instance().log("Welcome to dungeon level 1!");
         this.character = characterGenerator.generateMainCharacter(characterClass);
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, 1);
         this.gameCompleted = false;
@@ -64,7 +65,7 @@ public class GameWorld
 
     public void generateNextMap()
     {
-        System.out.println("Generating dungeon level " + (this.map.getLevel() + 1));
+        LogRendererFactory.instance().log("Welcome to dungeon level " + (this.map.getLevel() + 1) + "!");
         this.map = this.mapGenerator.generate(this.character, this.characterGenerator, this.map.getLevel() + 1);
     }
 

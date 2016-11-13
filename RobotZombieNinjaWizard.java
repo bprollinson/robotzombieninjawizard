@@ -29,6 +29,5 @@ public class RobotZombieNinjaWizard
         frame.display(dispatchListener);
 
         LogRendererFactory.init(frame);
-        LogRendererFactory.instance().log("Test message");
     }
 }
