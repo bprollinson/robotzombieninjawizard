@@ -18,7 +18,11 @@ public class LogRenderer
     public void log(String message)
     {
         this.logs.add(message);
+        this.render();
+    }
 
+    public void render()
+    {
         this.clearScreen();
         for (int i = 0; i < this.logs.size(); i++)
         {

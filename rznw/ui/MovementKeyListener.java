@@ -36,6 +36,7 @@ public class MovementKeyListener extends StateTransitionKeyListener
 
         this.renderer.render(this.gameWorld.getMap());
         this.turnHandler.renderSummary();
+        LogRendererFactory.instance().render();
     }
 
     public void exitState(KeyEvent event)
