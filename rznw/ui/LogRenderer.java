@@ -6,6 +6,8 @@ import java.util.Vector;
 
 public class LogRenderer
 {
+    public static final int NUM_ROWS = 8;
+
     private Vector<String> logs;
     private MainGameFrame frame;
 
@@ -24,9 +26,13 @@ public class LogRenderer
     public void render()
     {
         this.clearScreen();
-        for (int i = 0; i < this.logs.size(); i++)
+
+        int endIndex = this.logs.size() - 1;
+        int startIndex = Math.max(endIndex - LogRenderer.NUM_ROWS + 1, 0);
+
+        for (int i = startIndex; i <= endIndex; i++)
         {
-            this.frame.renderDisplayString(Map.NUM_ROWS + MainGamePanel.NUM_SUMMARY_ROWS + i, 0, this.logs.get(i));
+            this.frame.renderDisplayString(Map.NUM_ROWS + MainGamePanel.NUM_SUMMARY_ROWS + i - startIndex, 0, this.logs.get(i));
         }
     }
 
