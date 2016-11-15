@@ -8,6 +8,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -26,35 +27,27 @@ public class ElectricFieldSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Electric Field");
+        LogRendererFactory.instance().log("Casting electric field.");
 
         Map map = gameWorld.getMap();
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
-        System.out.println("Radius is: " + radius);
 
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
 
-        System.out.println("Character position is: " + characterElement.getRow() + ", " + characterElement.getColumn());
-
         int row = characterElement.getRow() + positionChange.getDeltaRow() * (radius + 1);
         int column = characterElement.getColumn() + positionChange.getDeltaColumn() * (radius + 1);
-
-        System.out.println("Center row and column are: " + row + ", " + column);
 
         int damage = 100 + 20 * spellPoints;
 
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
-            System.out.println("Damaging an enemy");
-
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            System.out.println("Enemy HP before: " + enemy.getHP());
-            enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("Enemy HP after: " + enemy.getHP());
+            damage = enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
         }
     }
 

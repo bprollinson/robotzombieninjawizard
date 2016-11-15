@@ -7,6 +7,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -25,7 +26,7 @@ public class OverloadSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Overload");
+        LogRendererFactory.instance().log("Casting overload.");
         MainCharacter character = gameWorld.getMainCharacter();
 
         MapElement characterElement = character.getMapElement();
@@ -34,13 +35,13 @@ public class OverloadSpell extends UndirectedSpell
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            System.out.println("Before: " + enemy.getHP());
             int damage = 100 + 20 * spellPoints;
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
         }
 
-        character.damage(50, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+        int damage = character.damage(50, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+        LogRendererFactory.instance().log("Dealt " + damage + " damage to yourself.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

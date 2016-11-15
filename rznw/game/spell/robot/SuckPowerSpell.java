@@ -6,6 +6,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class SuckPowerSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Suck Power");
+        LogRendererFactory.instance().log("Casting suck power.");
         MainCharacter character = gameWorld.getMainCharacter();
 
         MapElement characterElement = character.getMapElement();
@@ -36,7 +37,7 @@ public class SuckPowerSpell extends UndirectedSpell
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             int maxMPStolen = 10 * spellPoints;
             int MPStolen = Math.min(enemy.getMP(), maxMPStolen);
-            System.out.println("Stealing MP: " + MPStolen);
+            LogRendererFactory.instance().log("Stole " + MPStolen + " MP from " + enemy.getLogName() + ".");
 
             character.healMP(MPStolen);
             enemy.setMP(enemy.getMP() - MPStolen);
