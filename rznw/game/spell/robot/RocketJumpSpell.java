@@ -9,6 +9,7 @@ import rznw.map.element.MapElement;
 import rznw.map.element.Void;
 import rznw.map.element.Wall;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class RocketJumpSpell extends DirectedSpell
 {
@@ -24,7 +25,7 @@ public class RocketJumpSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Rocket Jump");
+        LogRendererFactory.instance().log("Casting rocket jump.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 

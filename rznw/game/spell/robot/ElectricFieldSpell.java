@@ -46,8 +46,8 @@ public class ElectricFieldSpell extends DirectedSpell
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            damage = enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
+            int damageDealt = enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemy.getLogName() + ".");
         }
     }
 

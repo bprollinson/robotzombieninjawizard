@@ -8,6 +8,7 @@ import rznw.map.MapElementSetter;
 import rznw.map.MapRayTracer;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class RocketPackSpell extends DirectedSpell
 {
@@ -23,7 +24,7 @@ public class RocketPackSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Rocket Pack");
+        LogRendererFactory.instance().log("Casting rocket pack.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
