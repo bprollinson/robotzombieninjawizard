@@ -7,12 +7,16 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 public class LevelDownSpell extends UndirectedSpell
 {
+    private StringUtils stringUtils = new StringUtils();
+
     public String getDisplayName()
     {
         return "Level Down";
@@ -25,14 +29,13 @@ public class LevelDownSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Level Down");
+        LogRendererFactory.instance().log("Casting level down.");
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
 
         Map map = gameWorld.getMap();
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
-        System.out.println(enemies.size() + " enemies affected");
 
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
@@ -44,14 +47,14 @@ public class LevelDownSpell extends UndirectedSpell
 
                 EnemyCharacter newEnemy = enemy.getNewInstance(newLevel);
 
-                System.out.println("Replaced enemy");
+                LogRendererFactory.instance().log("Setting " + enemy.getLogName() + " to level " + newLevel + ".");
                 CharacterMapElement mapElement = enemy.getMapElement();
                 mapElement.setCharacter(newEnemy);
                 newEnemy.setMapElement(mapElement);
             }
             else
             {
-                System.out.println("Not affected - level too low");
+                LogRendererFactory.instance().log(this.stringUtils.UCFirst(enemy.getLogName()) + " not affected.");
             }
         }
     }

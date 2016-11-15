@@ -6,6 +6,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -24,10 +25,9 @@ public class BoostGeneticsSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Boost Genetics");
+        LogRendererFactory.instance().log("Casting boost genetics.");
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
-        System.out.println("Radius is: " + radius);
 
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
         Map map = gameWorld.getMap();
@@ -38,9 +38,9 @@ public class BoostGeneticsSpell extends UndirectedSpell
 
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         { 
-            System.out.println("Boosting genetics on an enemy: " + bonusDropProbability + ", " + bonusGoldPercent);
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             enemy.getStatusEffects().enableBoostGenetics(bonusDropProbability, bonusGoldPercent);
+            LogRendererFactory.instance().log("Boost genetics affects " + enemy.getLogName() + ".");
         }
     }
 

@@ -10,6 +10,7 @@ import rznw.map.Map;
 import rznw.map.MapCharacterScraper;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Collection;
@@ -40,12 +41,11 @@ public class GeneticTargetingSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Genetic Targeting");
+        LogRendererFactory.instance().log("Casting genetic targeting.");
 
         List<java.util.Map.Entry<EnemyCharacter, Double>> minDistanceList = new ClosestEnemiesCalculator().getSortedEnemiesList(gameWorld.getMap(), gameWorld.getMainCharacter().getMapElement());
 
         double minDistance = minDistanceList.get(0).getValue();
-        System.out.println("Main distance: " + minDistance);
 
         int maxSameIndex = 0;
         for (int i = 1; i < minDistanceList.size(); i++)
@@ -62,11 +62,9 @@ public class GeneticTargetingSpell extends UndirectedSpell
             }
         }
 
-        System.out.println("Max same index: " + maxSameIndex);
         int randomIndex = RandomNumberGenerator.randomInteger(0, maxSameIndex);
 
         EnemyCharacter targetedEnemy = minDistanceList.get(randomIndex).getKey();
-        System.out.println("Targeted enemy: " + targetedEnemy);
 
         int damage = 5 * spellPoints;
 
@@ -76,9 +74,8 @@ public class GeneticTargetingSpell extends UndirectedSpell
         {
             EnemyCharacter enemy = iterator.next();
 
-            System.out.println("HP before: " + enemy.getHP());
-            enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("HP after: " + enemy.getHP());
+            int damageDealt = enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemy.getLogName() + ".");
         }
     }
 
