@@ -29,68 +29,28 @@ public class CharacterInteracter
 
         if (!character.meleeAttackHits())
         {
-            if (character.isMainCharacter())
-            {
-                System.out.println("Main character melee miss!");
-            }
-            else
-            {
-                System.out.println("Enemy character melee miss!");
-            }
+            LogRendererFactory.instance().log("Attack misses!");
 
             return;
         }
 
         if (otherCharacter.dodgesAttack())
         {
+            LogRendererFactory.instance().log("Attack dodged!");
             if (otherCharacter.isMainCharacter())
             {
-                System.out.println("Main character dodge!");
-
                 Shield shield = ((MainCharacter)otherCharacter).getEquipment().getEquippedShield();
                 if (shield != null)
                 {
                     shield.dodgesAttack((MainCharacter)otherCharacter);
                 }
             }
-            else
-            {
-                System.out.println("Enemy character dodge!");
-            }
 
             return;
         }
 
-        if (character.isMainCharacter())
-        {
-            System.out.println("Main character melee hit!");
-        }
-        else
-        {
-            System.out.println("Enemy character melee hit!");
-        }
-
-        if (otherCharacter.isSummon())
-        {
-            System.out.println("Summoned character HP before: " + otherCharacter.getHP());
-        }
-
-        if (otherCharacter.isEnemy() && character.isSummon())
-        {
-            System.out.println("Summon is hitting an enemy, HP before: " + otherCharacter.getHP());
-        }
-
         int damage = otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
-
-        if (otherCharacter.isEnemy() && character.isSummon())
-        {
-            System.out.println("Summon is hitting an enemy, HP after: " + otherCharacter.getHP());
-        }
-
-        if (otherCharacter.isSummon())
-        {
-            System.out.println("Summoned character HP after: " + otherCharacter.getHP());
-        }
+        LogRendererFactory.instance().log("Hit for " + damage + " damage!");
 
         if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
         {

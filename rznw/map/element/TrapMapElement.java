@@ -6,6 +6,7 @@ import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class TrapMapElement extends MapElement
@@ -71,8 +72,8 @@ public class TrapMapElement extends MapElement
             }
             else
             {
-                System.out.println("It's a trap!");
-                mainCharacter.damage(20, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+                int damage = mainCharacter.damage(20, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+                LogRendererFactory.instance().log("Hit by a trap for " + damage + " damage.");
             }
         }
     }
