@@ -57,4 +57,9 @@ public class Assassin extends EnemyCharacter
     {
         return Assassin.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "assassin";
+    }
 }

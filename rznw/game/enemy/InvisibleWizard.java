@@ -81,4 +81,9 @@ public class InvisibleWizard extends EnemyCharacterWithSpell
     {
         return InvisibleWizard.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "invisible wizard";
+    }
 }

@@ -58,4 +58,9 @@ public class Werewolf extends EnemyCharacter
     {
         return Werewolf.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "werewolf";
+    }
 }

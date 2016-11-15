@@ -68,4 +68,9 @@ public class Thief extends EnemyCharacter
     {
         return Thief.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "thief";
+    }
 }

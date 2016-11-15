@@ -64,4 +64,9 @@ public class Phantasm extends EnemyCharacter
     {
         return Phantasm.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "phantasm";
+    }
 }

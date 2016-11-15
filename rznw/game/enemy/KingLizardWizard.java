@@ -81,4 +81,9 @@ public class KingLizardWizard extends EnemyCharacterWithSpell
     {
         return KingLizardWizard.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "king lizard wizard";
+    }
 }

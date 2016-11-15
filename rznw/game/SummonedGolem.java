@@ -21,4 +21,9 @@ public class SummonedGolem extends SummonedCharacter
     {
         return SummonedGolem.SUMMON_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "summoned golem";
+    }
 }

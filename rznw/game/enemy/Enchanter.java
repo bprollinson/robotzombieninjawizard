@@ -83,4 +83,9 @@ public class Enchanter extends EnemyCharacterWithSpell
     {
         return Enchanter.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "enchanter";
+    }
 }

@@ -71,4 +71,9 @@ public class Yeti extends EnemyCharacter
     {
         return Yeti.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "yeti";
+    }
 }

@@ -81,4 +81,9 @@ public class QuicksandDweller extends EnemyCharacterWithSpell
     {
         return QuicksandDweller.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "quicksand dweller";
+    }
 }

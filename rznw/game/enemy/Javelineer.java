@@ -81,4 +81,9 @@ public class Javelineer extends EnemyCharacterWithSpell
     {
         return Javelineer.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "javelineer";
+    }
 }

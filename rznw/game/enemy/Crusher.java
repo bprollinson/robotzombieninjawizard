@@ -88,4 +88,9 @@ public class Crusher extends EnemyCharacter
     {
         return Crusher.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "crusher";
+    }
 }

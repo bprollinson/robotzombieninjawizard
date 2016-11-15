@@ -57,4 +57,9 @@ public class Mummy extends EnemyCharacter
     {
         return Mummy.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "mummy";
+    }
 }

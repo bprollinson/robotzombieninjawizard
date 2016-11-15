@@ -83,4 +83,9 @@ public class FumeBeast extends EnemyCharacterWithSpell
     {
         return FumeBeast.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "fume beast";
+    }
 }

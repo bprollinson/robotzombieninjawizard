@@ -9,12 +9,24 @@ import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.CharacterMapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
+import rznw.utility.StringUtils;
 
 public class CharacterInteracter
 {
+    private StringUtils stringUtils = new StringUtils();
+
     public void handleCharacterInteraction(Character character, CharacterMapElement collisionTest, Map map, GameWorld gameWorld)
     {
+        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
+        String verb = "attacks";
+        if (character.isMainCharacter())
+        {
+            verb = "attack";
+        }
+        LogRendererFactory.instance().log(this.stringUtils.UCFirst(character.getLogName()) + " " + verb + " " + otherCharacter.getLogName() + ".");
+
         if (!character.meleeAttackHits())
         {
             if (character.isMainCharacter())
@@ -29,7 +41,6 @@ public class CharacterInteracter
             return;
         }
 
-        Character otherCharacter = ((CharacterMapElement)collisionTest).getCharacter();
         if (otherCharacter.dodgesAttack())
         {
             if (otherCharacter.isMainCharacter())

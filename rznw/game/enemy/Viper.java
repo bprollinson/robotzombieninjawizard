@@ -63,4 +63,9 @@ public class Viper extends EnemyCharacter
     {
         return Viper.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "viper";
+    }
 }

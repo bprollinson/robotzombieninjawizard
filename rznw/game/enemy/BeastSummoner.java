@@ -84,4 +84,9 @@ public class BeastSummoner extends EnemyCharacterWithSpell
     {
         return BeastSummoner.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "beast summoner";
+    }
 }

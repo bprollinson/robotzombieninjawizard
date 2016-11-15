@@ -69,4 +69,9 @@ public class Undertaker extends EnemyCharacter
     {
         return Undertaker.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "undertaker";
+    }
 }

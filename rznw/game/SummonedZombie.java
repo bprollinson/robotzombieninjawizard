@@ -21,4 +21,9 @@ public class SummonedZombie extends SummonedCharacter
     {
         return SummonedZombie.SUMMON_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "summoned zombie";
+    }
 }

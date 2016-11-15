@@ -213,4 +213,9 @@ public abstract class MainCharacter extends Character
             armor.damagedByEnemyCharacter(this, enemyCharacter, damage, gameWorld);
         }
     }
+
+    public String getLogName()
+    {
+        return "you";
+    }
 }

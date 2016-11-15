@@ -65,4 +65,9 @@ public class Sphinx extends EnemyCharacter
     {
         return Sphinx.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "sphinx";
+    }
 }

@@ -98,4 +98,9 @@ public class Zenith extends EnemyCharacterWithSpell
     {
         return Zenith.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "Zenith";
+    }
 }

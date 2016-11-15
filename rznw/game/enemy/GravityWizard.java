@@ -81,4 +81,9 @@ public class GravityWizard extends EnemyCharacterWithSpell
     {
         return GravityWizard.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "gravity wizard";
+    }
 }

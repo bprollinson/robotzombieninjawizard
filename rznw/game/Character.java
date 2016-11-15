@@ -127,4 +127,6 @@ public abstract class Character
     public abstract boolean meleeAttackHits();
 
     public abstract boolean dodgesAttack();
+
+    public abstract String getLogName();
 }

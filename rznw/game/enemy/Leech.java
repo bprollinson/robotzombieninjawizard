@@ -69,4 +69,9 @@ public class Leech extends EnemyCharacter
     {
         return Leech.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "leech";
+    }
 }

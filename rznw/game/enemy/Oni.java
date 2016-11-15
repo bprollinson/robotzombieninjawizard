@@ -79,4 +79,9 @@ public class Oni extends EnemyCharacterWithSpell
     {
         return Oni.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "oni";
+    }
 }

@@ -65,4 +65,9 @@ public class XRayCat extends EnemyCharacter
     {
         return XRayCat.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "x-ray cat";
+    }
 }

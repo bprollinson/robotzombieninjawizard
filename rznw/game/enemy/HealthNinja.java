@@ -82,4 +82,9 @@ public class HealthNinja extends EnemyCharacterWithSpell
     {
         return HealthNinja.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "health ninja";
+    }
 }

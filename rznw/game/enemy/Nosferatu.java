@@ -96,4 +96,9 @@ public class Nosferatu extends EnemyCharacterWithSpell
     {
         return Nosferatu.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "nosferatu";
+    }
 }

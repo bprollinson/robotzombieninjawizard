@@ -60,4 +60,9 @@ public class RockMan extends EnemyCharacter
     {
         return RockMan.ENEMY_NUMBER;
     }
+
+    public String getLogName()
+    {
+        return "rock man";
+    }
 }
