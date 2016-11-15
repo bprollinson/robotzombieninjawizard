@@ -1,6 +1,7 @@
 package rznw.game.maincharacter;
 
 import rznw.game.enemy.EnemyCharacter;
+import rznw.ui.LogRendererFactory;
 
 public class ExperienceKillBonusGranter implements KillBonusGranterComponent
 {
@@ -16,7 +17,7 @@ public class ExperienceKillBonusGranter implements KillBonusGranterComponent
 
         if (newLevel > oldLevel)
         {
-            System.out.println("Leveling up " + (newLevel - oldLevel) + " time(s) to level " + newLevel);
+            LogRendererFactory.instance().log("You've leveled up to level " + newLevel + ".");
             mainCharacter.getExperience().setLevel(newLevel);
             mainCharacter.getExperience().setPendingLevels(newLevel - oldLevel);
         }
