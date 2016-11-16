@@ -14,6 +14,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class ExtractWeaponSpell extends DirectedSpell
@@ -30,7 +31,7 @@ public class ExtractWeaponSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Extract Weapon");
+        LogRendererFactory.instance().log("Casting extract weapon.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -41,18 +42,16 @@ public class ExtractWeaponSpell extends DirectedSpell
 
         if (collisionElement != null && collisionElement.isEnemy())
         {
-            System.out.println("Is an enemy");
-
             int damage = 20 + 10 * spellPoints;
 
             EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)collisionElement).getCharacter();
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             int chanceToSteal = 5 * spellPoints;
 
             if (RandomNumberGenerator.rollSucceeds(chanceToSteal))
             {
-                System.out.println("Roll succeeds");
                 Weapon weapon = this.getWeapon(enemy);
 
                 if (weapon != null)
@@ -60,16 +59,13 @@ public class ExtractWeaponSpell extends DirectedSpell
                     try
                     {
                         character.getEquipment().addEquipment(new EquipmentGroup(weapon, 1));
+                        LogRendererFactory.instance().log("Extracted " + weapon.getDisplayName().toLowerCase() + " from enemy.");
                     }
                     catch (EquipmentFullException efe)
                     {
-                        System.out.println("Equipment full");
+                        LogRendererFactory.instance().log("Your equipment is full.");
                     }
                 }
-            }
-            else
-            {
-                System.out.println("Roll fails");
             }
         }
     }

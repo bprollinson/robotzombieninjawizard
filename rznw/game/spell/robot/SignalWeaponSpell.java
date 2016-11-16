@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class SignalWeaponSpell extends UndirectedSpell
 {
@@ -19,12 +20,13 @@ public class SignalWeaponSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Signal Weapon");
+        LogRendererFactory.instance().log("Casting signal weapon.");
 
         int numTurns = 2 + (int)Math.floor(spellPoints / 4);
 
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON, numTurns);
+        LogRendererFactory.instance().log("Signal weapon enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

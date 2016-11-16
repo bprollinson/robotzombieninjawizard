@@ -6,6 +6,7 @@ import rznw.game.maincharacter.inventory.InventoryItemUpgrader;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class PowerSearchSpell extends UndirectedSpell
@@ -22,11 +23,12 @@ public class PowerSearchSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Power Search");
+        LogRendererFactory.instance().log("Casting power search.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + spellPoints;
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_POWER_SEARCH, numTurns);
+        LogRendererFactory.instance().log("Power search enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
