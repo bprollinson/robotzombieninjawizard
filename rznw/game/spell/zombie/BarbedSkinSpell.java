@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class BarbedSkinSpell extends UndirectedSpell
 {
@@ -19,12 +20,13 @@ public class BarbedSkinSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Barbed Skin");
+        LogRendererFactory.instance().log("Casting barbed skin.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + (int)Math.floor(spellPoints / 4);
 
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_BARBED_SKIN, numTurns);
+        LogRendererFactory.instance().log("Barbed skin enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

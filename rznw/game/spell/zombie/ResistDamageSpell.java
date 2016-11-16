@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class ResistDamageSpell extends UndirectedSpell
 {
@@ -19,12 +20,13 @@ public class ResistDamageSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Resist Damage");
+        LogRendererFactory.instance().log("Casting resist damage.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + (int)Math.floor(spellPoints / 4);
 
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RESIST_DAMAGE, numTurns);
+        LogRendererFactory.instance().log("Resist damage enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
