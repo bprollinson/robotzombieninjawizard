@@ -9,6 +9,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class FeedBrainSpell extends DirectedSpell
 {
@@ -24,7 +25,7 @@ public class FeedBrainSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Feed Brain");
+        LogRendererFactory.instance().log("Casting feed brain.");
         MainCharacter character = gameWorld.getMainCharacter();
         Map map = gameWorld.getMap();
 
@@ -42,12 +43,12 @@ public class FeedBrainSpell extends DirectedSpell
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
 
-            System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             int numTurns = 2 + (int)Math.floor(spellPoints / 4);
             character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FEED_BRAIN, numTurns);
+            LogRendererFactory.instance().log("Feed brain enabled.");
         }
     }
 

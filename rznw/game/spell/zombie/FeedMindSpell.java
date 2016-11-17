@@ -8,6 +8,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class FeedMindSpell extends DirectedSpell
@@ -24,7 +25,7 @@ public class FeedMindSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Feed Mind");
+        LogRendererFactory.instance().log("Casting feed mind.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         Map map = gameWorld.getMap();
@@ -42,14 +43,13 @@ public class FeedMindSpell extends DirectedSpell
             int damage = 50 + 10 * spellPoints;
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             int confuseProbability = 5 * spellPoints;
             if (RandomNumberGenerator.rollSucceeds(confuseProbability))
             {
-                System.out.println("Confusing enemy");
+                LogRendererFactory.instance().log("Enemy confused.");
                 enemy.getStatusEffects().confuse();
             }
         }

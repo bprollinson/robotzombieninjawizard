@@ -9,6 +9,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class FeedPastSpell extends DirectedSpell
 {
@@ -24,7 +25,7 @@ public class FeedPastSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Feed Past");
+        LogRendererFactory.instance().log("Casting feed past.");
         MainCharacter character = gameWorld.getMainCharacter();
         Map map = gameWorld.getMap();
 
@@ -44,12 +45,11 @@ public class FeedPastSpell extends DirectedSpell
             int experiencePercentage = 5 * spellPoints;
             int experience = (int)Math.floor(experiencePercentage * ((EnemyCharacter)enemy).getExperienceReward() / 100.0);
 
-            System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
-            System.out.println("Bonus experience: " + experience);
             gameWorld.getMainCharacter().getExperience().grantExperience(experience);
+            LogRendererFactory.instance().log("Gained " + experience + " bonus experience.");
         }
     }
 
