@@ -5,6 +5,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.element.Blotch;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class BlotchSpell extends UndirectedSpell
 {
@@ -20,11 +21,12 @@ public class BlotchSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Blotch");
+        LogRendererFactory.instance().log("Casting blotch.");
 
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
         Blotch blotch = new Blotch(characterElement.getRow(), characterElement.getColumn());
         gameWorld.getMap().setBackgroundElement(characterElement.getRow(), characterElement.getColumn(), blotch);
+        LogRendererFactory.instance().log("Blotch created.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

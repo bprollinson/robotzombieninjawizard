@@ -9,6 +9,7 @@ import rznw.map.Map;
 import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -28,11 +29,10 @@ public class LocustSwarmSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Locust Swarm");
+        LogRendererFactory.instance().log("Casting locust swarm.");
 
         int damage = 50 + 10 * spellPoints;
         int radius = 1 + (int)Math.floor(spellPoints / 4);
-        System.out.println("Radius is: " + radius);
         Map map = gameWorld.getMap();
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -48,7 +48,6 @@ public class LocustSwarmSpell extends DirectedSpell
 
             while (currentSet.size() > 0)
             {
-                System.out.println("In Arc Lightning iterator");
                 this.damageAllInSet(currentSet, damage, character, gameWorld);
 
                 currentSet = this.getNextCurrentSet(currentSet, totalSet, radius, map);
@@ -62,10 +61,8 @@ public class LocustSwarmSpell extends DirectedSpell
         for (Iterator iterator = currentSet.iterator(); iterator.hasNext();)
         {
             EnemyMapElement enemyElement = (EnemyMapElement)iterator.next();
-            System.out.println("Damaging enemy at: " + enemyElement.getRow() + " , " + enemyElement.getColumn());
-            System.out.println("HP before: " + enemyElement.getCharacter().getHP());
-            enemyElement.getCharacter().damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("HP after: " + enemyElement.getCharacter().getHP());
+            int damageDealt = enemyElement.getCharacter().damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemyElement.getCharacter().getLogName() + ".");
         }
     }
 

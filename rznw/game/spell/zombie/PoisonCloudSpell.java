@@ -7,6 +7,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -25,30 +26,24 @@ public class PoisonCloudSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Poison Cloud");
+        LogRendererFactory.instance().log("Casting poison cloud.");
 
         Map map = gameWorld.getMap();
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
-        System.out.println("Radius is: " + radius);
 
         SpellBasedPositionChange positionChange = new SpellBasedPositionChange(direction);
 
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
 
-        System.out.println("Character position is: " + characterElement.getRow() + ", " + characterElement.getColumn());
-
         int row = characterElement.getRow() + positionChange.getDeltaRow() * (radius + 1);
         int column = characterElement.getColumn() + positionChange.getDeltaColumn() * (radius + 1);
-
-        System.out.println("Center row and column are: " + row + ", " + column);
 
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
-            System.out.println("Poisoning an enemy");
-
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
+            LogRendererFactory.instance().log("Poisoned " + enemy.getLogName() + ".");
             enemy.getStatusEffects().poison();
         }
     }
