@@ -10,6 +10,7 @@ import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class PoisonStrikeSpell extends DirectedSpell
 {
@@ -25,7 +26,7 @@ public class PoisonStrikeSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Poison Strike");
+        LogRendererFactory.instance().log("Casting poison strike.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -43,15 +44,14 @@ public class PoisonStrikeSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Hitting enemy");
             int damage = 20 + 10 * spellPoints;
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Enemy HP before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("Enemy HP after: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             enemy.getStatusEffects().poison();
+            LogRendererFactory.instance().log("Enemy poisoned.");
         }
     }
 

@@ -10,6 +10,7 @@ import rznw.map.MapElementSetter;
 import rznw.map.MapRayTracer;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -28,7 +29,7 @@ public class RoundhouseStrikeSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Roundhouse Strike");
+        LogRendererFactory.instance().log("Casting roundhouse strike.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -48,10 +49,9 @@ public class RoundhouseStrikeSpell extends DirectedSpell
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            System.out.println("Before: " + enemy.getHP());
             int damage = 100 + 20 * spellPoints;
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
         }
     }
 

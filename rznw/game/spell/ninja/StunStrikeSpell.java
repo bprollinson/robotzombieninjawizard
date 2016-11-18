@@ -10,6 +10,7 @@ import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class StunStrikeSpell extends DirectedSpell
@@ -26,7 +27,7 @@ public class StunStrikeSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Stun Strike");
+        LogRendererFactory.instance().log("Casting stun strike.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -44,19 +45,17 @@ public class StunStrikeSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Hitting enemy");
             int damage = 20 + 10 * spellPoints;
             int stunProbability = 5 * spellPoints;
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Enemy HP before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("Enemy HP after: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             if (RandomNumberGenerator.rollSucceeds(stunProbability))
             {
-                System.out.println("Stunning enemy");
                 enemy.getStatusEffects().freeze();
+                LogRendererFactory.instance().log("Enemy stunned.");
             }
         }
     }

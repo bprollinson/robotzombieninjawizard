@@ -11,6 +11,7 @@ import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class ArmorBreakSpell extends DirectedSpell
 {
@@ -26,7 +27,7 @@ public class ArmorBreakSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Armor Break");
+        LogRendererFactory.instance().log("Casting armor break.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -44,16 +45,15 @@ public class ArmorBreakSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Hitting enemy");
             int damage = 20 + 10 * spellPoints;
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Enemy HP before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("Enemy HP after: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             int armorBreakPercent = 5 * spellPoints;
             enemy.getStatusEffects().setStat(StatusEffectStats.STAT_ARMOR_BREAK, armorBreakPercent);
+            LogRendererFactory.instance().log("Reduced enemy's defense.");
         }
     }
 
