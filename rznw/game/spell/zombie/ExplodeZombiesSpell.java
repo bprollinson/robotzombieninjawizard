@@ -8,6 +8,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -26,7 +27,7 @@ public class ExplodeZombiesSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Explode Zombies");
+        LogRendererFactory.instance().log("Casting explode zombies.");
 
         Map map = gameWorld.getMap();
 
@@ -36,7 +37,7 @@ public class ExplodeZombiesSpell extends UndirectedSpell
             SummonedCharacter summon = (SummonedCharacter)iterator.next();
             MapElement summonElement = summon.getMapElement();
 
-            System.out.println("Exploding zombies at: " + summonElement.getRow() + ", " + summonElement.getColumn());
+            LogRendererFactory.instance().log("Exploded a zombie.");
             summon.setHP(0);
 
             Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(summonElement.getRow() - 1, summonElement.getColumn() - 1, summonElement.getRow() + 1, summonElement.getColumn() + 1);
@@ -46,10 +47,8 @@ public class ExplodeZombiesSpell extends UndirectedSpell
                 MapElement enemyElement = enemy.getMapElement();
 
                 int damage = 100 + 20 * spellPoints;
-                System.out.println("Damaging enemy at: " + enemyElement.getRow() + ", " + enemyElement.getColumn());
-                System.out.println("Enemy HP before: " + enemy.getHP());
-                enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("Enemy HP after: " + enemy.getHP());
+                damage = enemy.damage(damage, gameWorld.getMainCharacter(), gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+                LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
             }
         }
     }

@@ -9,6 +9,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.SummonedZombieMapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Collection;
@@ -28,29 +29,27 @@ public class MultiplyZombiesSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Multiply Zombies");
+        LogRendererFactory.instance().log("Casting multiply zombies.");
 
         Map map = gameWorld.getMap();
 
         int multiplyProbability = 5 * spellPoints;
         int maxHP = 100 + 5 * gameWorld.getMainCharacter().getSpells().getSpellPoints(ZombieSpellFactory.SPELL_SUMMON_ZOMBIE);
-        System.out.println("Multiply zombie max HP: " + maxHP);
 
         Collection<SummonedCharacter> summons = gameWorld.getMap().getSummons();
         for (Iterator iterator = summons.iterator(); iterator.hasNext();)
         {
-            System.out.println("Attempting to multiply a zombie");
             SummonedCharacter summon = (SummonedCharacter)iterator.next();
 
             if (RandomNumberGenerator.rollSucceeds(multiplyProbability))
             {
-                System.out.println("Zombie is multiplying");
                 MapElement element = this.getPositionElement(gameWorld, summon.getMapElement());
 
                 SummonedZombie zombie = new SummonedZombie(maxHP);
                 SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
                 zombie.setMapElement(zombieElement);
                 gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
+                LogRendererFactory.instance().log("Summoned a zombie.");
             }
         }
     }

@@ -7,6 +7,7 @@ import rznw.map.ClosestSquareCalculator;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
 import rznw.map.element.SummonedZombieMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class SummonZombieSpell extends UndirectedSpell
 {
@@ -22,18 +23,17 @@ public class SummonZombieSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Summon Zombie");
+        LogRendererFactory.instance().log("Casting summon zombie.");
 
         MapElement element = this.getPositionElement(gameWorld);
-        System.out.println("Creating zombie at: " + element.getRow() + ", " + element.getColumn());
 
         int maxHP = 100 + 5 * spellPoints;
-        System.out.println("Max HP is: " + maxHP);
 
         SummonedZombie zombie = new SummonedZombie(maxHP);
         SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
         zombie.setMapElement(zombieElement);
         gameWorld.getMap().setElement(zombieElement.getRow(), zombieElement.getColumn(), zombieElement);
+        LogRendererFactory.instance().log("Summoned a zombie.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
