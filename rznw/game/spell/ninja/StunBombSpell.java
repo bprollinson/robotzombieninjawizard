@@ -10,6 +10,7 @@ import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Collection;
@@ -29,7 +30,7 @@ public class StunBombSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Stun Bomb");
+        LogRendererFactory.instance().log("Casting stun bomb.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -39,13 +40,11 @@ public class StunBombSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Direct hit " + element);
             int damage = 50 + 10 * spellPoints;
 
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
         }
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
@@ -53,17 +52,12 @@ public class StunBombSpell extends DirectedSpell
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            System.out.println("Attempting to stun " + enemy);
 
             int stunProbability = 5 * spellPoints;
             if (RandomNumberGenerator.rollSucceeds(stunProbability))
             {
-                System.out.println("Stunned");
                 enemy.getStatusEffects().freeze();
-            }
-            else
-            {
-                System.out.println("Not stunned");
+                LogRendererFactory.instance().log("Enemy " + enemy.getLogName() + " stunned.");
             }
         }
     }
