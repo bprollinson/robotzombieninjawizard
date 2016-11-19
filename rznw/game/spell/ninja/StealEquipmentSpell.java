@@ -11,6 +11,7 @@ import rznw.map.element.MapElement;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class StealEquipmentSpell extends DirectedSpell
@@ -27,7 +28,7 @@ public class StealEquipmentSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Steal Equipment");
+        LogRendererFactory.instance().log("Casting steal equipment.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -48,29 +49,19 @@ public class StealEquipmentSpell extends DirectedSpell
 
             if (RandomNumberGenerator.rollSucceeds(stealProbability))
             {
-                System.out.println("Steal success");
-
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                 EquipmentItem equipmentItem = enemy.getEquipmentDrop();
 
                 try
                 {
                     character.getEquipment().addEquipment(new EquipmentGroup(equipmentItem, 1));
-                    System.out.println("Stole equipment: " + equipmentItem.getDisplayName());
+                    LogRendererFactory.instance().log("Stole " + equipmentItem.getDisplayName().toLowerCase() + " from enemy.");
                 }
                 catch (EquipmentFullException efe)
                 {
-                    System.out.println("Equipment full");
+                    LogRendererFactory.instance().log("Your equipment storage is full!");
                 }
             }
-            else
-            {
-                System.out.println("Steal failure - bad roll");
-            }
-        }
-        else
-        {
-            System.out.println("Steal failure - not an enemy");
         }
     }
 

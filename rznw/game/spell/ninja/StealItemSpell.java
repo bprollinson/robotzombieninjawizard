@@ -10,6 +10,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class StealItemSpell extends DirectedSpell
@@ -26,7 +27,7 @@ public class StealItemSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Steal Item");
+        LogRendererFactory.instance().log("Casting steal item.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -47,29 +48,18 @@ public class StealItemSpell extends DirectedSpell
 
             if (RandomNumberGenerator.rollSucceeds(stealProbability))
             {
-                System.out.println("Steal success");
-
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                 InventoryItemGroup itemGroup = new InventoryItemGroup(enemy.getItemDrop(), 1);
                 try
                 {
                     character.getInventory().addItems(itemGroup);
+                    LogRendererFactory.instance().log("Stole " + itemGroup.getItem().getDisplayName().toLowerCase() + " from enemy.");
                 }
                 catch (InventoryFullException ife)
                 {
-                    System.out.println("Inventory full");
+                    LogRendererFactory.instance().log("Your inventory is full!");
                 }
-
-                System.out.println("Stole item: " + itemGroup.getItem().getDisplayName());
             }
-            else
-            {
-                System.out.println("Steal failure - bad roll");
-            }
-        }
-        else
-        {
-            System.out.println("Steal failure - not an enemy");
         }
     }
 

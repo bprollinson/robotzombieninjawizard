@@ -9,6 +9,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class StealGoldSpell extends DirectedSpell
@@ -25,7 +26,7 @@ public class StealGoldSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Steal Gold");
+        LogRendererFactory.instance().log("Casting steal gold.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -46,8 +47,6 @@ public class StealGoldSpell extends DirectedSpell
 
             if (RandomNumberGenerator.rollSucceeds(stealProbability))
             {
-                System.out.println("Steal success");
-
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                 int numGoldPercent = 20 + 10 * spellPoints;
                 int baseGold = enemy.getNumGold();
@@ -55,18 +54,8 @@ public class StealGoldSpell extends DirectedSpell
                 int numGold = (int)Math.floor(numGoldPercent / 100.0 * baseGold);
                 character.getInventory().addGold(numGold);
 
-                System.out.println("Steal percentage: " + numGoldPercent);
-                System.out.println("Base gold: " + baseGold);
-                System.out.println("Gold stolen: " + numGold);
+                LogRendererFactory.instance().log("Stole " + numGold + " gold from enemy.");
             }
-            else
-            {
-                System.out.println("Steal failure - bad roll");
-            }
-        }
-        else
-        {
-            System.out.println("Steal failure - not an enemy");
         }
     }
 

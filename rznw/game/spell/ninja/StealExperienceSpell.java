@@ -8,6 +8,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class StealExperienceSpell extends DirectedSpell
@@ -24,7 +25,7 @@ public class StealExperienceSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Steal Experience");
+        LogRendererFactory.instance().log("Casting steal experience.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -45,8 +46,6 @@ public class StealExperienceSpell extends DirectedSpell
 
             if (RandomNumberGenerator.rollSucceeds(stealProbability))
             {
-                System.out.println("Steal success");
-
                 EnemyCharacter enemy = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
                 int numExperiencePercent = 20 + 10 * spellPoints;
                 int baseExperience = enemy.getExperienceReward();
@@ -54,18 +53,8 @@ public class StealExperienceSpell extends DirectedSpell
                 int numExperience = (int)Math.floor(numExperiencePercent / 100.0 * baseExperience);
                 character.getExperience().grantExperience(numExperience);
 
-                System.out.println("Steal percentage: " + numExperiencePercent);
-                System.out.println("Base experience: " + baseExperience);
-                System.out.println("Experience stolen: " + numExperience);
+                LogRendererFactory.instance().log("Stole " + numExperience + " experience from enemy.");
             }
-            else
-            {
-                System.out.println("Steal failure - bad roll");
-            }
-        }
-        else
-        {
-            System.out.println("Steal failure - not an enemy");
         }
     }
 
