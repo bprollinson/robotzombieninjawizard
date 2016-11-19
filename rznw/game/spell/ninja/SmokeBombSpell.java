@@ -8,6 +8,7 @@ import rznw.map.Map;
 import rznw.map.MapElementSetter;
 import rznw.map.TeleportSquareCalculator;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class SmokeBombSpell extends UndirectedSpell
 {
@@ -23,10 +24,11 @@ public class SmokeBombSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Smoke Bomb");
+        LogRendererFactory.instance().log("Casting smoke bomb.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB, true);
+        LogRendererFactory.instance().log("Smoke bomb enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
@@ -36,8 +38,6 @@ public class SmokeBombSpell extends UndirectedSpell
 
     public static void escape(GameWorld gameWorld)
     {
-        System.out.println("Escaping with smoke bomb");
-
         MainCharacter character = gameWorld.getMainCharacter();
         int spellPoints = character.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_SMOKE_BOMB);
 
@@ -55,7 +55,6 @@ public class SmokeBombSpell extends UndirectedSpell
     private static MapElement getNewPositionElement(GameWorld gameWorld, int spellPoints)
     {
         double safetyPercentage = Math.floor(50 + 50 * Math.min(spellPoints / 20.0, 1));
-        System.out.println("safety percentage: " + safetyPercentage);
 
         return new TeleportSquareCalculator(gameWorld).getMapElementWithSafetyPercentage(safetyPercentage);
     }

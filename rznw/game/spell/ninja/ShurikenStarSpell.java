@@ -8,6 +8,7 @@ import rznw.map.Map;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Projectile;
+import rznw.ui.LogRendererFactory;
 
 public class ShurikenStarSpell extends UndirectedSpell
 {
@@ -23,7 +24,7 @@ public class ShurikenStarSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Shuriken Star");
+        LogRendererFactory.instance().log("Casting shuriken star.");
         MainCharacter character = gameWorld.getMainCharacter();
 
         int shurikensRemaining = 8;
@@ -55,12 +56,10 @@ public class ShurikenStarSpell extends UndirectedSpell
                 {
                     if (collisionElement != null && collisionElement.isEnemy())
                     {
-                        System.out.println("Shuriken Star hit: " + collisionElement.getRow() + "," + collisionElement.getColumn());
                         int damage = 60 + 15 * spellPoints;
                         Character enemy = ((EnemyMapElement)collisionElement).getCharacter();
-                        enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                    } else {
-                        System.out.println("Shuriken Star miss: " + collisionElement.getRow() + "," + collisionElement.getColumn());
+                        damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+                        LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
                     }
 
                     shurikensRemaining--;
