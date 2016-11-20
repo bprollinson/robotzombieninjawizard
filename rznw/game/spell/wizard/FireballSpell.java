@@ -9,6 +9,7 @@ import rznw.map.Map;
 import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -27,7 +28,7 @@ public class FireballSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Fireball");
+        LogRendererFactory.instance().log("Casting fireball.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -38,12 +39,9 @@ public class FireballSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Direct hit " + element);
-
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            int damageDealt = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemy.getLogName() + ".");
         }
 
         MapElement characterElement = character.getMapElement();
@@ -52,12 +50,9 @@ public class FireballSpell extends DirectedSpell
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(element.getRow() - radius, element.getColumn() - radius, element.getRow() + radius, element.getColumn() + radius);
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
-            System.out.println("Indirect hit " + element);
-
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            System.out.println("Before: " + enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            int damageDealt = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemy.getLogName() + ".");
         }
     }
 

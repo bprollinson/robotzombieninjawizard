@@ -9,6 +9,7 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.Wall;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class HeatRaySpell extends DirectedSpell
 {
@@ -24,7 +25,7 @@ public class HeatRaySpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Heat Ray");
+        LogRendererFactory.instance().log("Casting heat ray.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -62,9 +63,8 @@ public class HeatRaySpell extends DirectedSpell
             if (element.isEnemy())
             {
                 Character enemy = ((EnemyMapElement)element).getCharacter();
-                System.out.println("Before: " + enemy.getHP());
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
+                int damageDealt = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+                LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemy.getLogName() + ".");
             }
         }
     }

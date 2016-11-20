@@ -6,6 +6,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.FireElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class RingOfFireSpell extends UndirectedSpell
 {
@@ -21,7 +22,7 @@ public class RingOfFireSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Ring of Fire");
+        LogRendererFactory.instance().log("Casting ring of fire.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -94,6 +95,8 @@ public class RingOfFireSpell extends UndirectedSpell
                 map.setBackgroundElement(row, column, fireElement);
             }
         }
+
+        LogRendererFactory.instance().log("Created a ring of fire.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
