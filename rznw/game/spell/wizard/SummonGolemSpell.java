@@ -8,6 +8,7 @@ import rznw.map.GameWorld;
 import rznw.map.MapScraper;
 import rznw.map.element.MapElement;
 import rznw.map.element.SummonedGolemMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class SummonGolemSpell extends UndirectedSpell
 {
@@ -35,18 +36,17 @@ public class SummonGolemSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Summon Golem");
+        LogRendererFactory.instance().log("Casting summon golem.");
 
         MapElement element = this.getPositionElement(gameWorld);
-        System.out.println("Creating golem at: " + element.getRow() + ", " + element.getColumn());
 
         int maxHP = 100 + 5 * spellPoints;
-        System.out.println("Max HP is: " + maxHP);
 
         SummonedGolem golem = new SummonedGolem(maxHP);
         SummonedGolemMapElement golemElement = new SummonedGolemMapElement(element.getRow(), element.getColumn(), golem);
         golem.setMapElement(golemElement);
         gameWorld.getMap().setElement(golemElement.getRow(), golemElement.getColumn(), golemElement);
+        LogRendererFactory.instance().log("Summoned a golem.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

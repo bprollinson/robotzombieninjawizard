@@ -7,6 +7,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Collection;
@@ -26,7 +27,7 @@ public class MeteorShowerSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Meteor Shower");
+        LogRendererFactory.instance().log("Casting meteor shower.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -43,16 +44,9 @@ public class MeteorShowerSpell extends UndirectedSpell
 
             if (RandomNumberGenerator.rollSucceeds(hitProbability))
             {
-                System.out.println("Meteor hit!");
-
-                System.out.println("Before: " + enemy.getHP());
                 int damage = 50 + 50 * spellPoints;
-                enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("After: " + enemy.getHP());
-            }
-            else
-            {
-                System.out.println("Meteor miss!");
+                damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+                LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
             }
         }
     }

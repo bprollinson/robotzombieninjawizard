@@ -7,6 +7,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.map.element.RockWall;
+import rznw.ui.LogRendererFactory;
 
 public class RockWallSpell extends DirectedSpell
 {
@@ -22,16 +23,13 @@ public class RockWallSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Rock Wall");
+        LogRendererFactory.instance().log("Casting rock wall.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
         int wallWidth = 1 + 2 * (int)Math.floor(spellPoints / 4);
-        System.out.println("Wall width: " + wallWidth);
         int wallDistance = Math.max(1, 5 - (int)Math.floor(spellPoints / 4));
-        System.out.println("Wall distance: " + wallDistance);
         int wallHP = 10 * spellPoints;
-        System.out.println("Wall HP: " + wallHP);
 
         int deltaRow = 0;
         int deltaColumn = 0;
@@ -101,6 +99,8 @@ public class RockWallSpell extends DirectedSpell
                 map.setElement(row, column, rockWall);
             }
         }
+
+        LogRendererFactory.instance().log("Rock wall created.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

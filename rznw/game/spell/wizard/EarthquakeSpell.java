@@ -7,6 +7,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -25,7 +26,7 @@ public class EarthquakeSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Earthquake");
+        LogRendererFactory.instance().log("Casting earthquake.");
         MainCharacter character = gameWorld.getMainCharacter();
 
         MapElement characterElement = character.getMapElement();
@@ -35,10 +36,9 @@ public class EarthquakeSpell extends UndirectedSpell
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
-            System.out.println("Before: " + enemy.getHP());
             int damage = 50 + 10 * spellPoints;
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
         }
     }
 
