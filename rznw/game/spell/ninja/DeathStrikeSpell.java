@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class DeathStrikeSpell extends UndirectedSpell
 {
@@ -19,10 +20,11 @@ public class DeathStrikeSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Death Strike");
+        LogRendererFactory.instance().log("Casting death strike.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_DEATH_STRIKE, true);
+        LogRendererFactory.instance().log("Death strike enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

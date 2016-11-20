@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class CounterstrikeSpell extends UndirectedSpell
 {
@@ -19,10 +20,11 @@ public class CounterstrikeSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Counterstrike");
+        LogRendererFactory.instance().log("Casting counterstrike.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_COUNTERSTRIKE, true);
+        LogRendererFactory.instance().log("Counterstrike enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

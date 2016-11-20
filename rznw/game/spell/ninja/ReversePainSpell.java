@@ -4,6 +4,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class ReversePainSpell extends UndirectedSpell
 {
@@ -19,10 +20,11 @@ public class ReversePainSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Reverse Pain");
+        LogRendererFactory.instance().log("Casting reverse pain.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN, true);
+        LogRendererFactory.instance().log("Reverse pain enabled.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
