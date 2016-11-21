@@ -10,6 +10,7 @@ import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.turn.positionchange.SpellBasedPositionChange;
+import rznw.ui.LogRendererFactory;
 
 public class RicochetBlastSpell extends DirectedSpell
 {
@@ -25,11 +26,9 @@ public class RicochetBlastSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Ricochet Blast");
+        LogRendererFactory.instance().log("Casting ricochet blast.");
 
         MainCharacter character = gameWorld.getMainCharacter();
-
-        System.out.println("Main character position: " + character.getMapElement().getRow() + ", " + character.getMapElement().getColumn());
 
         Map map = gameWorld.getMap();
         MapElement element = new MapRayTracer(map).findNextElementInDirection(character.getMapElement(), direction);
@@ -37,7 +36,6 @@ public class RicochetBlastSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Hit an enemy!");
             int damage = 10 * spellPoints;
 
             while (element != null)
@@ -49,10 +47,8 @@ public class RicochetBlastSpell extends DirectedSpell
 
     private MapElement ricochetEnemy(MapElement element, int damage, MainCharacter character, GameWorld gameWorld, int deltaRow, int deltaColumn, Map map)
     {
-        System.out.println("Performing a ricochet");
-        System.out.println("HP before: " + ((EnemyMapElement)element).getCharacter().getHP());
-        ((EnemyMapElement)element).getCharacter().damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-        System.out.println("HP after: " + ((EnemyMapElement)element).getCharacter().getHP());
+        damage = ((EnemyMapElement)element).getCharacter().damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+        LogRendererFactory.instance().log("Dealt " + damage + " damage to " + ((EnemyMapElement)element).getCharacter().getLogName() + ".");
 
         while (true)
         {

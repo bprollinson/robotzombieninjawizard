@@ -5,6 +5,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class UpdraftSpell extends UndirectedSpell
 {
@@ -36,6 +37,8 @@ public class UpdraftSpell extends UndirectedSpell
         Map map = gameWorld.getMap();
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
         map.setElementVisited(gameWorld.getMainCharacter(), characterElement.getRow(), characterElement.getColumn());
+
+        LogRendererFactory.instance().log("Welcome to dungeon level " + map.getLevel() + "!");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

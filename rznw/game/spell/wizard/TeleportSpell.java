@@ -7,6 +7,7 @@ import rznw.map.Map;
 import rznw.map.MapElementSetter;
 import rznw.map.TeleportSquareCalculator;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class TeleportSpell extends UndirectedSpell
 {
@@ -22,7 +23,7 @@ public class TeleportSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Teleport");
+        LogRendererFactory.instance().log("Casting teleport.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -34,6 +35,8 @@ public class TeleportSpell extends UndirectedSpell
         map.setElement(characterMapElement.getRow(), characterMapElement.getColumn(), null);
         MapElementSetter.setElement(map, characterMapElement, newPositionElement.getRow(), newPositionElement.getColumn());
         map.setElementVisited(character, newPositionElement.getRow(), newPositionElement.getColumn());
+
+        LogRendererFactory.instance().log("Escaped to a new location.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
@@ -44,7 +47,6 @@ public class TeleportSpell extends UndirectedSpell
     private MapElement getNewPositionElement(GameWorld gameWorld, int spellPoints)
     {
         double safetyPercentage = Math.floor(50 + 50 * Math.min(spellPoints / 20.0, 1));
-        System.out.println("safety percentage: " + safetyPercentage);
 
         return new TeleportSquareCalculator(gameWorld).getMapElementWithSafetyPercentage(safetyPercentage);
     }

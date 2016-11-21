@@ -7,6 +7,7 @@ import rznw.map.GameWorld;
 import rznw.map.MapElementSetter;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -30,16 +31,13 @@ public class RepelSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Repel");
+        LogRendererFactory.instance().log("Casting repel.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         Map map = gameWorld.getMap();
 
         int radius = 1 + (int)Math.floor(spellPoints / 4);
         int pushDistance = 1 + (int)Math.floor(spellPoints / 4);
-
-        System.out.println("Repel radius: " + radius);
-        System.out.println("Repel distance: " + pushDistance);
 
         MapElement characterElement = character.getMapElement();
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
@@ -93,11 +91,8 @@ public class RepelSpell extends UndirectedSpell
 
         for (int i = 0; i < pushDistance; i++)
         {
-            System.out.println("In pushDistance iteration");
-
             for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
             {
-                System.out.println("Have an enemy");
                 EnemyCharacter enemy = (EnemyCharacter)iterator.next();
                 MapElement enemyElement = enemy.getMapElement();
                 int[] directions = directionMap.get(enemyElement);
@@ -114,6 +109,8 @@ public class RepelSpell extends UndirectedSpell
                 }
             }
         }
+
+        LogRendererFactory.instance().log("Repelled enemies.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
