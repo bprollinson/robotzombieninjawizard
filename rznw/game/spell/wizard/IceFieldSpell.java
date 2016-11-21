@@ -7,6 +7,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Collection;
@@ -26,7 +27,7 @@ public class IceFieldSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Ice Field");
+        LogRendererFactory.instance().log("Casting ice field.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -38,10 +39,9 @@ public class IceFieldSpell extends UndirectedSpell
         {
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
 
-            System.out.println("Before: " + enemy.getHP());
             int damage = 20;
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
             if (!enemy.isDead())
             {
@@ -49,7 +49,7 @@ public class IceFieldSpell extends UndirectedSpell
 
                 if (RandomNumberGenerator.rollSucceeds(probabilityToFreeze))
                 {
-                    System.out.println("Enemy frozen");
+                    LogRendererFactory.instance().log("Enemy frozen.");
                     enemy.getStatusEffects().freeze();
                 }
             }

@@ -3,6 +3,7 @@ package rznw.game.spell.wizard;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class HealSpell extends UndirectedSpell
 {
@@ -18,9 +19,10 @@ public class HealSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Heal");
+        LogRendererFactory.instance().log("Casting heal.");
         MainCharacter character = gameWorld.getMainCharacter();
         character.heal(10 * spellPoints);
+        LogRendererFactory.instance().log("You healed " + (10 * spellPoints) + " HP.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

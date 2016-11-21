@@ -8,6 +8,7 @@ import rznw.map.Map;
 import rznw.map.MapRayTracer;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class VitalZapSpell extends DirectedSpell
 {
@@ -23,7 +24,7 @@ public class VitalZapSpell extends DirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints, int direction)
     {
-        System.out.println("Casting Vital Zap");
+        LogRendererFactory.instance().log("Casting vital zap.");
 
         MainCharacter character = gameWorld.getMainCharacter();
 
@@ -34,13 +35,10 @@ public class VitalZapSpell extends DirectedSpell
 
         if (element.isEnemy())
         {
-            System.out.println("Hit an enemy");
-
             Character enemy = ((EnemyMapElement)element).getCharacter();
-            System.out.println("Before: " + enemy.getHP());
             int damage = (int)Math.floor(damagePercentage / 100.0 * enemy.getHP());
-            enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("After: " + enemy.getHP());
+            damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
         }
     }
 

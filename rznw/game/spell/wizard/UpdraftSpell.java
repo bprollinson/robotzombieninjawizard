@@ -31,7 +31,7 @@ public class UpdraftSpell extends UndirectedSpell
 
     public void cast(GameWorld gameWorld, int spellPoints)
     {
-        System.out.println("Casting Updraft");
+        LogRendererFactory.instance().log("Casting updraft.");
 
         gameWorld.generatePreviousMap();
         Map map = gameWorld.getMap();
