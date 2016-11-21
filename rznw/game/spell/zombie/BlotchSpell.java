@@ -5,6 +5,7 @@ import rznw.game.spell.UndirectedSpell;
 import rznw.map.GameWorld;
 import rznw.map.element.Blotch;
 import rznw.map.element.MapElement;
+import rznw.map.element.Stairs;
 import rznw.ui.LogRendererFactory;
 
 public class BlotchSpell extends UndirectedSpell
@@ -17,6 +18,18 @@ public class BlotchSpell extends UndirectedSpell
     public String getDescription()
     {
         return "Leaves a poison spot on the ground. Enemies who come into contact with this spot will become poisoned.";
+    }
+
+    public boolean canCast(GameWorld gameWorld, int spellPoints)
+    {
+        MapElement characterMapElement = gameWorld.getMainCharacter().getMapElement();
+        MapElement backgroundElement = gameWorld.getMap().getBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn());
+        if (backgroundElement instanceof Stairs)
+        {
+            return false;
+        }
+
+        return super.canCast(gameWorld, spellPoints);
     }
 
     public void cast(GameWorld gameWorld, int spellPoints)
