@@ -3,6 +3,7 @@ package rznw.game.skill;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.statuseffects.StatusEffectStats;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class SummonShopkeeperSkill extends Skill
 {
@@ -25,12 +26,13 @@ public class SummonShopkeeperSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
-        System.out.println("Using Summon Shopkeeper");
+        LogRendererFactory.instance().log("Using summon shopkeeper.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_SUMMON_SHOPKEEPER);
         int priceReductionPercent = 2 * skillPoints;
         character.getStatusEffects().setStat(StatusEffectStats.STAT_PRICE_REDUCTION_PERCENT, priceReductionPercent);
+        LogRendererFactory.instance().log("Summoned shopkeeper.");
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)

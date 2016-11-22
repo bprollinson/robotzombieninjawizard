@@ -7,6 +7,7 @@ import rznw.map.MapElementSetter;
 import rznw.map.MapScraper;
 import rznw.map.element.MapElement;
 import rznw.map.element.Waypoint;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class WaypointSkill extends Skill
@@ -37,16 +38,13 @@ public class WaypointSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
-        System.out.println("Using Waypoint");
+        LogRendererFactory.instance().log("Using waypoint.");
 
         int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_WAYPOINT);
         if (!RandomNumberGenerator.rollSucceeds(successProbability))
         {
-            System.out.println("Failure");
             return;
         }
-
-        System.out.println("Success");
 
         boolean waypointDeployed = this.waypointDeployed(gameWorld);
 
@@ -62,6 +60,7 @@ public class WaypointSkill extends Skill
             map.setElement(characterElement.getRow(), characterElement.getColumn(), null);
 
             MapElementSetter.setElement(map, characterElement, waypoint.getRow(), waypoint.getColumn());
+            LogRendererFactory.instance().log("Returned to waypoint.");
         }
         else if (!waypointDeployed && !this.currentSquareHasBackground(gameWorld))
         {
@@ -70,6 +69,7 @@ public class WaypointSkill extends Skill
 
             Map map = gameWorld.getMap();
             map.setBackgroundElement(characterMapElement.getRow(), characterMapElement.getColumn(), waypoint);
+            LogRendererFactory.instance().log("Placed waypoint.");
         }
     }
 

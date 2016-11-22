@@ -5,6 +5,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 import java.util.Collection;
@@ -31,16 +32,13 @@ public class DetectEnemiesSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
-        System.out.println("Using Detect Enemies");
+        LogRendererFactory.instance().log("Using detect enemies.");
 
         int successProbability = 20 + 5 * gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_DETECT_ENEMIES);
         if (!RandomNumberGenerator.rollSucceeds(successProbability))
         {
-            System.out.println("Failure");
             return;
         }
-
-        System.out.println("Success");
 
         MainCharacter character = gameWorld.getMainCharacter();
         MapElement characterElement = character.getMapElement();
@@ -68,6 +66,8 @@ public class DetectEnemiesSkill extends Skill
                 }
             }
         }
+
+        LogRendererFactory.instance().log("Detected enemies.");
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)
