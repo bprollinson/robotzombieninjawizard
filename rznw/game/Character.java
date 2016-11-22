@@ -41,9 +41,11 @@ public abstract class Character
 
     public abstract void generateMapElement(int row, int column);
 
-    public void heal(int HP)
+    public int heal(int HP)
     {
         this.HP = Math.min(this.HP + HP, this.getMaxHP());
+
+        return HP;
     }
 
     public void healMP(int MP)

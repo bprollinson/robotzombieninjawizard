@@ -21,8 +21,8 @@ public class HealSpell extends UndirectedSpell
     {
         LogRendererFactory.instance().log("Casting heal.");
         MainCharacter character = gameWorld.getMainCharacter();
-        character.heal(10 * spellPoints);
-        LogRendererFactory.instance().log("You healed " + (10 * spellPoints) + " HP.");
+        int HPHealed = character.heal(10 * spellPoints);
+        LogRendererFactory.instance().log("You healed " + HPHealed + " HP.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

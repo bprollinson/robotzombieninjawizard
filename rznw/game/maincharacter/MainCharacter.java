@@ -176,7 +176,7 @@ public abstract class MainCharacter extends Character
         return damage;
     }
 
-    public void heal(int HP)
+    public int heal(int HP)
     {
         int bonusHPPercent = 5 * this.stats.getStatPoints(Stat.STAT_LIFE_BOND);
         int bonusHP = (int)Math.floor(bonusHPPercent / 100.0 * HP);
@@ -187,6 +187,8 @@ public abstract class MainCharacter extends Character
         }
 
         super.heal(HP + bonusHP);
+
+        return HP + bonusHP;
     }
 
     public boolean isMainCharacter()

@@ -27,8 +27,8 @@ public class PowerDownSpell extends UndirectedSpell
 
         MainCharacter character = gameWorld.getMainCharacter();
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SKIP, turnsToSkip);
-        character.heal(healHP);
-        LogRendererFactory.instance().log("You healed " + healHP + " HP.");
+        int HPHealed = character.heal(healHP);
+        LogRendererFactory.instance().log("You healed " + HPHealed + " HP.");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)

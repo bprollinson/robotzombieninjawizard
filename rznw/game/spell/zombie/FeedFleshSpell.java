@@ -45,8 +45,8 @@ public class FeedFleshSpell extends DirectedSpell
             damage = enemy.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
             LogRendererFactory.instance().log("Dealt " + damage + " damage to " + enemy.getLogName() + ".");
 
-            gameWorld.getMainCharacter().heal(healHP);
-            LogRendererFactory.instance().log("You healed " + healHP + " HP.");
+            int HPHealed = gameWorld.getMainCharacter().heal(healHP);
+            LogRendererFactory.instance().log("You healed " + HPHealed + " HP.");
         }
     }
 
