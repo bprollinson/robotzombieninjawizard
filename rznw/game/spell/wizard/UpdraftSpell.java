@@ -2,6 +2,7 @@ package rznw.game.spell.wizard;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.UndirectedSpell;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
@@ -37,6 +38,7 @@ public class UpdraftSpell extends UndirectedSpell
         Map map = gameWorld.getMap();
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
         map.setElementVisited(gameWorld.getMainCharacter(), characterElement.getRow(), characterElement.getColumn());
+        gameWorld.getMainCharacter().getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_REGENERATE_SHOP, true);
 
         LogRendererFactory.instance().log("Welcome to dungeon level " + map.getLevel() + "!");
     }
