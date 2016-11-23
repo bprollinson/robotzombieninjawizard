@@ -5,6 +5,7 @@ import rznw.game.maincharacter.inventory.Inventory;
 import rznw.game.maincharacter.inventory.InventoryItemGroup;
 import rznw.game.statuseffects.StatusEffectStats;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class ItemTradeSkill extends Skill
 {
@@ -46,6 +47,8 @@ public class ItemTradeSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
+        LogRendererFactory.instance().log("Using item trade.");
+
         MainCharacter character = gameWorld.getMainCharacter();
         int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_ITEM_TRADE);
         int numToTradeIn = 6 - (int)Math.floor(skillPoints / 5);

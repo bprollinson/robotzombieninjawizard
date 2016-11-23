@@ -3,6 +3,7 @@ package rznw.game.skill;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class RageSkill extends Skill
 {
@@ -25,12 +26,13 @@ public class RageSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
-        System.out.println("Using Rage");
+        LogRendererFactory.instance().log("Using rage.");
 
         MainCharacter character = gameWorld.getMainCharacter();
         int numTurns = 1 + character.getSkills().getSkillPoints(Skill.SKILL_RAGE);
-        System.out.println("Rage turns: " + numTurns);
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RAGE, numTurns);
+
+        LogRendererFactory.instance().log("Rage enabled.");
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)

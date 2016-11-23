@@ -3,6 +3,7 @@ package rznw.game.skill;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class MagicSeedsSkill extends Skill
 {
@@ -25,11 +26,13 @@ public class MagicSeedsSkill extends Skill
 
     public void use(GameWorld gameWorld)
     {
-        System.out.println("Using Magic Seeds");
+        LogRendererFactory.instance().log("Using magic seeds.");
 
         int skillPoints = gameWorld.getMainCharacter().getSkills().getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
         int numTurns = 2 + (int)Math.floor(skillPoints / 4);
         gameWorld.getMainCharacter().getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MAGIC_SEEDS, numTurns);
+
+        LogRendererFactory.instance().log("Magic seeds enabled.");
     }
 
     public String[] getStats(MainCharacter character, int skillPoints)
