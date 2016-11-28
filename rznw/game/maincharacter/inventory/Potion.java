@@ -2,6 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class Potion extends InventoryItem
 {
@@ -19,7 +20,10 @@ public class Potion extends InventoryItem
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
-        character.heal(50);
+        LogRendererFactory.instance().log("Using potion.");
+
+        int HPHealed = character.heal(50);
+        LogRendererFactory.instance().log("You healed " + HPHealed + " HP.");
     }
 
     public int getValue()

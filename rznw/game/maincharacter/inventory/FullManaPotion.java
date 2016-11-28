@@ -2,6 +2,7 @@ package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class FullManaPotion extends InventoryItem
 {
@@ -19,7 +20,10 @@ public class FullManaPotion extends InventoryItem
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
+        LogRendererFactory.instance().log("Using full mana potion.");
+
         character.setMP(character.getMaxMP());
+        LogRendererFactory.instance().log("You recovered all MP.");
     }
 
     public int getValue()

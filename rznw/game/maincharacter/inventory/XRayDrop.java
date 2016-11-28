@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.ui.LogRendererFactory;
 
 public class XRayDrop extends InventoryItem
 {
@@ -20,6 +21,8 @@ public class XRayDrop extends InventoryItem
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
+        LogRendererFactory.instance().log("Using x-ray drop.");
+
         Map map = gameWorld.getMap();
 
         for (int row = 0; row < Map.NUM_ROWS; row++)
@@ -29,6 +32,8 @@ public class XRayDrop extends InventoryItem
                 map.setVisible(character, row, column);
             }
         }
+
+        LogRendererFactory.instance().log("Revealed the entire map.");
     }
 
     public int getValue()
