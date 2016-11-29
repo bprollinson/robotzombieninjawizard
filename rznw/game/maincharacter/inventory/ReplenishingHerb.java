@@ -1,10 +1,12 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
-public class ReplenishingHerb extends Herb
+public class ReplenishingHerb extends InventoryItem
 {
     public static final int ITEM_NUMBER = 10;
 
@@ -20,13 +22,17 @@ public class ReplenishingHerb extends Herb
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
-        super.useOnCharacter(character, gameWorld);
+        LogRendererFactory.instance().log("Using replenishing herb.");
+
+        character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_POISONED, false);
+        LogRendererFactory.instance().log("You cured all poison.");
 
         if (RandomNumberGenerator.rollSucceeds(25))
         {
             try
             {
                 character.getInventory().addItems(new InventoryItemGroup(new ReplenishingHerb(), 1));
+                LogRendererFactory.instance().log("Replenished herb.");
             }
             catch (InventoryFullException ife)
             {

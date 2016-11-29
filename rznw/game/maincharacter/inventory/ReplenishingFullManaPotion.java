@@ -2,9 +2,10 @@ package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
-public class ReplenishingFullManaPotion extends FullManaPotion
+public class ReplenishingFullManaPotion extends InventoryItem
 {
     public static final int ITEM_NUMBER = 8;
 
@@ -20,13 +21,17 @@ public class ReplenishingFullManaPotion extends FullManaPotion
 
     public void useOnCharacter(MainCharacter character, GameWorld gameWorld)
     {
-        super.useOnCharacter(character, gameWorld);
+        LogRendererFactory.instance().log("Using replenishing full mana potion.");
+
+        character.setMP(character.getMaxMP());
+        LogRendererFactory.instance().log("You recovered all MP.");
 
         if (RandomNumberGenerator.rollSucceeds(25))
         {
             try
             {
                 character.getInventory().addItems(new InventoryItemGroup(new ReplenishingFullManaPotion(), 1));
+                LogRendererFactory.instance().log("Replenished potion.");
             }
             catch (InventoryFullException ife)
             {
