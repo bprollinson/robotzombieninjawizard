@@ -1,6 +1,7 @@
 package rznw.game.maincharacter.inventory;
 
 import rznw.game.maincharacter.MainCharacter;
+import rznw.ui.LogRendererFactory;
 
 public class HealShield extends Shield
 {
@@ -35,9 +36,9 @@ public class HealShield extends Shield
 
     public void dodgesAttack(MainCharacter mainCharacter)
     {
-        System.out.println("Dodged attack with heal shield - healing 5 HP");
-
         mainCharacter.heal(5);
+
+        LogRendererFactory.instance().log("You healed 5 HP.");
     }
 
     public int getEquipmentNumber()
