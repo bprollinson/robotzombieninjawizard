@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class IceRod extends Weapon
@@ -33,11 +34,11 @@ public class IceRod extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Enemy is frozen by the ice rod");
-
         if (RandomNumberGenerator.rollSucceeds(50))
         {
             enemyCharacter.getStatusEffects().freeze();
+
+            LogRendererFactory.instance().log("Enemy frozen.");
         }
     }
 

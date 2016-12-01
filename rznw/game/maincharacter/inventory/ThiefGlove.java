@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class ThiefGlove extends Weapon
 {
@@ -31,8 +32,9 @@ public class ThiefGlove extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Stealing gold from the enemy");
         mainCharacter.getInventory().addGold(10);
+
+        LogRendererFactory.instance().log("Stole 10 gold from enemy.");
     }
 
     public int getEquipmentNumber()

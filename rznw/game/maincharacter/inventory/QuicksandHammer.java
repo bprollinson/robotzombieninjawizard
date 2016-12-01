@@ -7,6 +7,7 @@ import rznw.map.Map;
 import rznw.map.MapElementSetter;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Vector;
 
@@ -42,12 +43,12 @@ public class QuicksandHammer extends Weapon
         {
             this.pullEnemiesWithRadius(mainCharacter, gameWorld, radius);
         }
+
+        LogRendererFactory.instance().log("Pulled enemies closer.");
     }
 
     private void pullEnemiesWithRadius(MainCharacter mainCharacter, GameWorld gameWorld, int radius)
     {
-        System.out.println("Handling radius: " + radius);
-
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
 
         Vector<EnemyMapElement> enemyElements = new Vector<EnemyMapElement>();
@@ -77,8 +78,6 @@ public class QuicksandHammer extends Weapon
                 }
             }
         }
-
-        System.out.println("Number of elements: " + enemyElements.size());
 
         for (int i = 0; i < enemyElements.size(); i++)
         {

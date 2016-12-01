@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class RiddleWand extends Weapon
 {
@@ -30,8 +31,9 @@ public class RiddleWand extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Enemy is confused by the riddle wand");
         enemyCharacter.getStatusEffects().confuse();
+
+        LogRendererFactory.instance().log("Enemy confused.");
     }
 
     public int getEquipmentNumber()

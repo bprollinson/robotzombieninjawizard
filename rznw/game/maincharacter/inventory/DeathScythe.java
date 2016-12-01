@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class DeathScythe extends Weapon
 {
@@ -31,10 +32,10 @@ public class DeathScythe extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Scything opponent!");
-
         int hp = enemyCharacter.getHP() / 2;
-        enemyCharacter.damage(hp, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+        int damageDealt = enemyCharacter.damage(hp, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+
+        LogRendererFactory.instance().log(damageDealt + " extra damage from death scythe.");
     }
 
     public int getEquipmentNumber()

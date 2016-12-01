@@ -6,6 +6,7 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class MagicJavelin extends Weapon
 {
@@ -21,7 +22,7 @@ public class MagicJavelin extends Weapon
     {
         return new String[] {
             "Damage: " + this.getDamage(),
-            "Performs magic damage to enemies in a diagonal line from a damaged enemy",
+            "Performs magic damage to enemies in a diagonal cross relative to your position",
             "Additional damage radius: 1",
             "Additional damage: " + MagicJavelin.DAMAGE,
             "",
@@ -44,8 +45,6 @@ public class MagicJavelin extends Weapon
 
     private void damageEnemyInPosition(MainCharacter mainCharacter, GameWorld gameWorld, int deltaRow, int deltaColumn)
     {
-        System.out.println("Attempting javelin jab: " + deltaRow + ", " + deltaColumn);
-
         MapElement mainCharacterElement = mainCharacter.getMapElement();
         int row = mainCharacter.getMapElement().getRow() + deltaRow;
         int column = mainCharacter.getMapElement().getColumn() + deltaColumn;
@@ -53,10 +52,9 @@ public class MagicJavelin extends Weapon
         MapElement element = gameWorld.getMap().getElement(row, column);
         if (element != null && element.isEnemy())
         {
-            System.out.println("Enemy is jabbed!");
-
             EnemyCharacter enemyCharacter = (EnemyCharacter)((EnemyMapElement)element).getCharacter();
-            enemyCharacter.damage(MagicJavelin.DAMAGE, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            int damageDealt = enemyCharacter.damage(MagicJavelin.DAMAGE, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemyCharacter.getLogName() + ".");
         }
     }
 

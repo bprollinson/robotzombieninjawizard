@@ -6,6 +6,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 public class GravityBlade extends Weapon
 {
@@ -36,8 +37,6 @@ public class GravityBlade extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Gravity blading opponent!");
-
         MapElement mainCharacterElement = mainCharacter.getMapElement();
         MapElement enemyCharacterElement = enemyCharacter.getMapElement();
 
@@ -80,6 +79,8 @@ public class GravityBlade extends Weapon
             map.setElement(enemyCharacterElement.getRow(), enemyCharacterElement.getColumn(), null);
             MapElementSetter.setElement(map, enemyCharacterElement, row, column);
         }
+
+        LogRendererFactory.instance().log("Pushed enemy away.");
     }
 
     public int getEquipmentNumber()

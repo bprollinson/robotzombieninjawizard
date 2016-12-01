@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class GauntletOfDarkness extends Weapon
@@ -32,12 +33,11 @@ public class GauntletOfDarkness extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Enemy is hit by the gauntlet of darkness");
-
         if (enemyCharacter.getHP() > 1 && RandomNumberGenerator.rollSucceeds(25))
         {
-            System.out.println("Gauntlet success");
             enemyCharacter.setHP(1);
+
+            LogRendererFactory.instance().log("Enemy HP set to 1.");
         }
     }
 

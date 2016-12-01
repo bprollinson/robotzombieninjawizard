@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class BloodSword extends Weapon
 {
@@ -32,12 +33,10 @@ public class BloodSword extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Healing with the blood sword");
-
         int healHP = (int)Math.floor(0.1 * damage);
-        System.out.println("Healing " + healHP + " from " + damage + " damage");
 
-        mainCharacter.heal(healHP);
+        int HPHealed = mainCharacter.heal(healHP);
+        LogRendererFactory.instance().log("Healed " + HPHealed + " HP.");
     }
 
     public int getEquipmentNumber()

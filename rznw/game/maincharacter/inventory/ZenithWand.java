@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class ZenithWand extends Weapon
 {
@@ -44,9 +45,9 @@ public class ZenithWand extends Weapon
 
     public void damagedEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Hitting enemy with zenith wand");
-
         mainCharacter.healMP(20);
+
+        LogRendererFactory.instance().log("You recovered 20 MP.");
     }
 
     public int getEquipmentNumber()
