@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class DragonPlate extends Armor
 {
@@ -38,9 +39,9 @@ public class DragonPlate extends Armor
 
     public void damagedByEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Damaged by an enemy character");
+        int damageDealt = enemyCharacter.damage(10, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_OTHER);
 
-        enemyCharacter.damage(10, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+        LogRendererFactory.instance().log("Dealt " + damageDealt + " damage to " + enemyCharacter.getLogName() + ".");
     }
 
     public int getEquipmentNumber()

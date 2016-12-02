@@ -3,6 +3,7 @@ package rznw.game.maincharacter.inventory;
 import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 
 public class PoisonCloth extends Armor
 {
@@ -36,9 +37,9 @@ public class PoisonCloth extends Armor
 
     public void damagedByEnemyCharacter(MainCharacter mainCharacter, EnemyCharacter enemyCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Poisoning enemy with poison cloth");
-
         enemyCharacter.getStatusEffects().poison();
+
+        LogRendererFactory.instance().log("Enemy poisoned.");
     }
 
     public int getEquipmentNumber()
