@@ -10,6 +10,7 @@ import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ManaPotion;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Dragon extends EnemyCharacter
 {
@@ -60,8 +61,9 @@ public class Dragon extends EnemyCharacter
 
     public void damagedByMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("The dragon retaliates by shooting fire");
-        mainCharacter.damage(10, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+        int damageDealt = mainCharacter.damage(10, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+
+        LogRendererFactory.instance().log("Enemy deals " + damageDealt + " damage.");
     }
 
     public int getEnemyNumber()
