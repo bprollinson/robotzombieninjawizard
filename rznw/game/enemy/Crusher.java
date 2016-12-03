@@ -66,18 +66,14 @@ public class Crusher extends EnemyCharacter
 
     public void damagedByMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Damaged by the main character");
-
         this.enhanceRage();
+
+        LogRendererFactory.instance().log("Enemy's rage grows.");
     }
 
     public int getDamage()
     {
-        int damage = (int)Math.floor((1 + bonusDamagePercent / 100.0) * super.getDamage());
-
-        System.out.println(super.getDamage() + " is promoted to " + damage);
-
-        return damage;
+        return (int)Math.floor((1 + bonusDamagePercent / 100.0) * super.getDamage());
     }
 
     private void enhanceRage()
