@@ -55,8 +55,6 @@ public class Phantasm extends EnemyCharacter
 
     public boolean dodgesAttack()
     {
-        System.out.println("The phantasm will always dodge your attack!");
-
         return true;
     }
 
