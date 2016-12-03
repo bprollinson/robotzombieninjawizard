@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.LeechMail;
 import rznw.game.maincharacter.inventory.ManaPotion;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Leech extends EnemyCharacter
 {
@@ -59,10 +60,10 @@ public class Leech extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Your are being leeched!");
-
         int mp = Math.max(mainCharacter.getMP() - 5, 0);
         mainCharacter.setMP(mp);
+
+        LogRendererFactory.instance().log("Enemy zaps 5 MP.");
     }
 
     public int getEnemyNumber()

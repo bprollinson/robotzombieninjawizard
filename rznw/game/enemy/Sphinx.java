@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.ManaPotion;
 import rznw.game.maincharacter.inventory.RiddleWand;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Sphinx extends EnemyCharacter
 {
@@ -52,8 +53,9 @@ public class Sphinx extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Given a riddle by the Sphinx - you are confused");
         mainCharacter.getStatusEffects().confuse();
+
+        LogRendererFactory.instance().log("You become confused.");
     }
 
     public EnemyActionCalculator getActionCalculator()

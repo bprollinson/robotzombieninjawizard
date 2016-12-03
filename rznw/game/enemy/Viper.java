@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.ViperDagger;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Viper extends EnemyCharacter
 {
@@ -50,8 +51,9 @@ public class Viper extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Stung by the viper - you are poisoned");
         mainCharacter.getStatusEffects().poison();
+
+        LogRendererFactory.instance().log("You become poisoned.");
     }
 
     public EnemyActionCalculator getActionCalculator()

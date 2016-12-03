@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.Potion;
 import rznw.game.maincharacter.inventory.ThiefGlove;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Thief extends EnemyCharacter
 {
@@ -59,9 +60,9 @@ public class Thief extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("The thief is stealing your gold!");
-
         mainCharacter.getInventory().removeGold(10);
+
+        LogRendererFactory.instance().log("Enemy steals 10 gold.");
     }
 
     public int getEnemyNumber()

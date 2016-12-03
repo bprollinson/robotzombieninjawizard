@@ -11,6 +11,7 @@ import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.game.maincharacter.inventory.Potion;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Nosferatu extends EnemyCharacterWithSpell
 {
@@ -76,15 +77,10 @@ public class Nosferatu extends EnemyCharacterWithSpell
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Attacked by nosferatu");
-        System.out.println("Nosferatu HP before: " + this.getHP());
-
         int healHP = (int)Math.floor(0.1 * damage);
         this.heal(healHP);
-        System.out.println("Nosferatu heals by: " + healHP);
-        System.out.println("Nosferatu HP after: " + this.getHP());
 
-        this.heal(healHP);
+        LogRendererFactory.instance().log("Enemy heals " + healHP + " HP.");
     }
 
     public EnemyActionCalculator getActionCalculator()

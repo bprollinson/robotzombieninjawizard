@@ -9,6 +9,7 @@ import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Crusher extends EnemyCharacter
 {
@@ -58,9 +59,9 @@ public class Crusher extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Damaged the main character");
-
         this.enhanceRage();
+
+        LogRendererFactory.instance().log("Enemy's rage grows.");
     }
 
     public void damagedByMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)

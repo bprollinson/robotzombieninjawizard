@@ -10,6 +10,7 @@ import rznw.game.maincharacter.inventory.SanityDrop;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.utility.RandomNumberGenerator;
+import rznw.ui.LogRendererFactory;
 
 public class Yeti extends EnemyCharacter
 {
@@ -53,12 +54,11 @@ public class Yeti extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Struck by the yeti");
-
         if (RandomNumberGenerator.rollSucceeds(50))
         {
-            System.out.println("You are frozen");
             mainCharacter.getStatusEffects().freeze();
+
+            LogRendererFactory.instance().log("You become frozen.");
         }
     }
 

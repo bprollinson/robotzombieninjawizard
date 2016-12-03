@@ -10,6 +10,7 @@ import rznw.game.maincharacter.inventory.FullPotion;
 import rznw.game.maincharacter.inventory.InventoryItem;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class Undertaker extends EnemyCharacter
 {
@@ -59,10 +60,10 @@ public class Undertaker extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        System.out.println("Your are being taken under!");
-
         int hp = mainCharacter.getHP() / 2;
-        mainCharacter.damage(hp, this, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+        int damageDealt = mainCharacter.damage(hp, this, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+
+        LogRendererFactory.instance().log("Enemy deals " + damageDealt + " extra damage.");
     }
 
     public int getEnemyNumber()
