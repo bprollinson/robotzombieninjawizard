@@ -5,20 +5,23 @@ import rznw.game.enemy.EnemyCharacter;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 public class MagicJavelinSpell extends EnemySpell
 {
     public void cast(GameWorld gameWorld, EnemyCharacter enemyCharacter, int spellPoints)
     {
-        System.out.println("Enemy is casting magic javelin with spell points of: " + spellPoints);
+        StringUtils utils = new StringUtils();
+        LogRendererFactory.instance().log(utils.UCFirst(enemyCharacter.getLogName()) + " casts magic javelin.");
 
         int damage = 80 + 20 * spellPoints;
 
         if (this.mainCharacterInDamagePosition(gameWorld, enemyCharacter))
         {
-            System.out.println("Hit!");
             MainCharacter mainCharacter = gameWorld.getMainCharacter();
-            mainCharacter.damage(damage, enemyCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            int damageDealt = mainCharacter.damage(damage, enemyCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Hit for " + damageDealt + " damage.");
         }
     }
 

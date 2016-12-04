@@ -5,19 +5,22 @@ import rznw.game.enemy.Werewolf;
 import rznw.map.ClosestSquareCalculator;
 import rznw.map.GameWorld;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 public class SummonBeastSpell extends EnemySpell
 {
     public void cast(GameWorld gameWorld, EnemyCharacter enemyCharacter, int spellPoints)
     {
-        System.out.println("Enemy is casting summon beast with spell points of: " + spellPoints);
+        StringUtils utils = new StringUtils();
+        LogRendererFactory.instance().log(utils.UCFirst(enemyCharacter.getLogName()) + " casts summon beast.");
 
         MapElement element = this.getPositionElement(gameWorld, enemyCharacter);
-        System.out.println("Summoning werewolf at: " + element.getRow() + ", " + element.getColumn());
 
         Werewolf werewolf = new Werewolf(spellPoints);
         werewolf.generateMapElement(element.getRow(), element.getColumn());
         gameWorld.getMap().setElement(werewolf.getMapElement().getRow(), werewolf.getMapElement().getColumn(), werewolf.getMapElement());
+        LogRendererFactory.instance().log("Summoned a werewolf.");
     }
 
     public int getMPCost(int spellPoints)

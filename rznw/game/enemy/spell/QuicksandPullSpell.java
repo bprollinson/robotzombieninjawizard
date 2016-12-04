@@ -7,24 +7,24 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.MapElementSetter;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 public class QuicksandPullSpell extends EnemySpell
 {
     public void cast(GameWorld gameWorld, EnemyCharacter enemyCharacter, int spellPoints)
     {
-        System.out.println("Enemy is casting quicksand pull with spell points of: " + spellPoints);
+        StringUtils utils = new StringUtils();
+        LogRendererFactory.instance().log(utils.UCFirst(enemyCharacter.getLogName()) + " casts quicksand pull.");
 
         int damage = 5 * spellPoints;
-        System.out.println("Quicksand pull damage: " + damage);
 
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
-        mainCharacter.damage(damage, enemyCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+        int damageDealt = mainCharacter.damage(damage, enemyCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+        LogRendererFactory.instance().log("Hit for " + damageDealt + " damage.");
 
         MapElement mainCharacterElement = mainCharacter.getMapElement();
         MapElement enemyCharacterElement = enemyCharacter.getMapElement();
-
-        System.out.println("Main character position: " + mainCharacterElement.getRow() + ", " + mainCharacterElement.getColumn());
-        System.out.println("Enemy position: " + enemyCharacterElement.getRow() + ", " + enemyCharacterElement.getColumn());
 
         int distance = 1 + (int)Math.floor(spellPoints / 4);
 
@@ -68,7 +68,7 @@ public class QuicksandPullSpell extends EnemySpell
             MapElementSetter.setElement(map, mainCharacterElement, row, column);
         }
 
-        System.out.println("Main character final position: " + mainCharacterElement.getRow() + ", " + mainCharacterElement.getColumn());
+        LogRendererFactory.instance().log("Pulled you in.");
     }
 
     public int getMPCost(int spellPoints)
