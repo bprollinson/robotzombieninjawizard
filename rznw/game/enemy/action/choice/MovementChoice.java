@@ -22,11 +22,7 @@ public class MovementChoice extends EnemyActionChoice
         ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
         MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
 
-        System.out.println("Path: " + path);
-
         PathDirection firstDirection = path.getDirection(0);
-
-        System.out.println("Direction: " + firstDirection.getDeltaRow() + ", " + firstDirection.getDeltaColumn());
 
         return new EnemyMovementAction(new EnemyAIBasedPositionChange(enemyCharacter, firstDirection.getDeltaRow(), firstDirection.getDeltaColumn()));
     }

@@ -19,8 +19,6 @@ public class DiagonalSpellChoice extends EnemyActionChoice
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("In getSpellAction");
-
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
@@ -41,7 +39,6 @@ public class DiagonalSpellChoice extends EnemyActionChoice
 
         if (deltaRow != 1 || deltaColumn != 1)
         {
-            System.out.println("Positioning not right");
             return null;
         }
 

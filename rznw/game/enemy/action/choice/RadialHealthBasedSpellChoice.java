@@ -21,8 +21,6 @@ public class RadialHealthBasedSpellChoice extends EnemyActionChoice
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("Radial spell?");
-
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
@@ -30,13 +28,11 @@ public class RadialHealthBasedSpellChoice extends EnemyActionChoice
 
         if (mainCharacter.getHP() < Math.floor(0.6 * mainCharacter.getMaxHP()))
         {
-            System.out.println("Main character too damaged");
             return null;
         }
 
         if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) > this.radius || Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) > this.radius)
         {
-            System.out.println("Main character too far away");
             return null;
         }
 

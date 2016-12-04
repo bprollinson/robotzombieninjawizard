@@ -19,11 +19,8 @@ public class PartialHealSpellChoice extends EnemyActionChoice
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("Zenith healing?");
-
         if (enemyCharacter.getHP() > Math.floor(0.6 * enemyCharacter.getMaxHP()))
         {
-            System.out.println("Too healthy");
             return null;
         }
 

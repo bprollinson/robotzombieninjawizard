@@ -22,8 +22,6 @@ public class RadialPoisonSpellChoice extends EnemyActionChoice
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("In getSpellAction");
-
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
@@ -31,7 +29,6 @@ public class RadialPoisonSpellChoice extends EnemyActionChoice
 
         if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_POISONED))
         {
-            System.out.println("Already poisoned - just attacking");
             return null;
         }
 
@@ -46,8 +43,6 @@ public class RadialPoisonSpellChoice extends EnemyActionChoice
         }
 
         int spellPoints = ((EnemyCharacterWithSpell)enemyCharacter).getSpellPoints(this.spellIndex);
-
-        System.out.println("Poisoning!");
 
         return new EnemySpellAction(((EnemyCharacterWithSpell)enemyCharacter).getSpell(this.spellIndex), spellPoints);
     }

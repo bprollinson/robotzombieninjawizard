@@ -16,7 +16,6 @@ public abstract class EnemyActionChoice
 
         if (spellPoints == 0)
         {
-            System.out.println("Not enough spell points");
             return false;
         }
 
@@ -25,7 +24,6 @@ public abstract class EnemyActionChoice
 
         if (MPCost > enemyCharacter.getMP())
         {
-            System.out.println("Not enough MP");
             return false;
         }
 

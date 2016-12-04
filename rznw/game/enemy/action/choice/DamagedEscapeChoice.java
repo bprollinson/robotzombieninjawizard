@@ -19,8 +19,6 @@ public class DamagedEscapeChoice extends EnemyActionChoice
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("In getSpellAction");
-
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();
@@ -28,16 +26,11 @@ public class DamagedEscapeChoice extends EnemyActionChoice
 
         if (enemyCharacter.getHP() > Math.floor(0.6 * enemyCharacter.getMaxHP()))
         {
-            System.out.println("Too healthy - just attacking");
             return null;
         }
 
         if (Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()) < this.radius && Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()) < this.radius)
         {
-            System.out.println("Damaged and close, move away");
-            System.out.println("Difference 1: " + Math.abs(mainCharacterMapElement.getRow() - enemyMapElement.getRow()));
-            System.out.println("Difference 2: " + Math.abs(mainCharacterMapElement.getColumn() - enemyMapElement.getColumn()));
-
             int deltaRow = 0;
             if (mainCharacterMapElement.getRow() < enemyMapElement.getRow())
             {

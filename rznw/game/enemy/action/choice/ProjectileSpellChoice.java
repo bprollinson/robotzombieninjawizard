@@ -20,8 +20,6 @@ public class ProjectileSpellChoice extends EnemyActionChoice
 
     public EnemyAction getAction(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("In getSpellAction");
-
         MainCharacter mainCharacter = gameWorld.getMainCharacter();
 
         MapElement mainCharacterMapElement = mainCharacter.getMapElement();

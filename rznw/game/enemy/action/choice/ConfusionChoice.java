@@ -17,11 +17,6 @@ public class ConfusionChoice extends EnemyActionChoice
 
         if (enemyCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION) > 0 || distance > enemyCharacter.getViewRadius())
         {
-            if (enemyCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION) > 0)
-            {
-                System.out.println("Enemy is confused!");
-            }
-
             return new EnemyMovementAction(new RandomPositionChange(enemyCharacter));
         }
 
