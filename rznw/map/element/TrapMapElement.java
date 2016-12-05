@@ -68,7 +68,7 @@ public class TrapMapElement extends MapElement
 
             if (RandomNumberGenerator.rollSucceeds(disarmProbability))
             {
-                System.out.println("Disarmed trap");
+                LogRendererFactory.instance().log("Disarmed trap.");
             }
             else
             {
@@ -80,13 +80,11 @@ public class TrapMapElement extends MapElement
 
     public void reveal(MainCharacter mainCharacter)
     {
-        System.out.println("A trap is in range");
         int trapRevealProbability = 5 * mainCharacter.getStats().getStatPoints(Stat.STAT_FIND_TRAPS);
-        System.out.println("Trap reveal probability: " + trapRevealProbability);
 
         if (RandomNumberGenerator.rollSucceeds(trapRevealProbability))
         {
-            System.out.println("Detected the trap!");
+            LogRendererFactory.instance().log("Detected a trap.");
             this.find();
         }
     }

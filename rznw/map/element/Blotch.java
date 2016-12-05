@@ -2,6 +2,8 @@ package rznw.map.element;
 
 import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 public class Blotch extends MapElement
 {
@@ -19,8 +21,10 @@ public class Blotch extends MapElement
 
     public void collideWithEnemy(GameWorld gameWorld, EnemyCharacter enemyCharacter)
     {
-        System.out.println("Poisoning enemy from blotch");
         enemyCharacter.getStatusEffects().poison();
+
+        StringUtils utils = new StringUtils();
+        LogRendererFactory.instance().log(utils.UCFirst(enemyCharacter.getLogName()) + " poisoned by blotch.");
     }
 
     public int getElementNumber()

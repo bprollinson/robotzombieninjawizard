@@ -6,6 +6,8 @@ import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.wizard.WizardSpellFactory;
 import rznw.map.GameWorld;
 import rznw.map.Map;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 public class FireElement extends MapElement
 {
@@ -51,11 +53,11 @@ public class FireElement extends MapElement
     {
         MainCharacter character = gameWorld.getMainCharacter();
 
-        System.out.println("Enemy runs into fire element");
         int damage = 10 * character.getSpells().getSpellPoints(WizardSpellFactory.SPELL_RING_OF_FIRE);
-        System.out.println("Enemy HP before: " + enemyCharacter.getHP());
-        enemyCharacter.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-        System.out.println("Enemy HP after: " + enemyCharacter.getHP());
+        int damageDealt = enemyCharacter.damage(damage, character, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+
+        StringUtils utils = new StringUtils();
+        LogRendererFactory.instance().log(utils.UCFirst(enemyCharacter.getLogName()) + " burned for " + damageDealt + " damage.");
     }
 
     public void processTurn(Map map)
