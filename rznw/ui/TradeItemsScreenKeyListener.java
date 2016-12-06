@@ -115,7 +115,6 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
         }
         catch (InventoryFullException ife)
         {
-            System.out.println("Inventory full");
         }
     }
 

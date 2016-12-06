@@ -31,7 +31,7 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
             }
             catch (InventoryFullException ife)
             {
-                System.out.println("Inventory full");
+                LogRendererFactory.instance().log("Can't acquire item - inventory full.");
             }
         }
 
@@ -48,7 +48,7 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
                 }
                 catch (InventoryFullException ife)
                 {
-                    System.out.println("Inventory full");
+                    LogRendererFactory.instance().log("Can't find potion - inventory full.");
                 }
             }
         }

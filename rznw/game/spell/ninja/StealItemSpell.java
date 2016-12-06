@@ -57,7 +57,7 @@ public class StealItemSpell extends DirectedSpell
                 }
                 catch (InventoryFullException ife)
                 {
-                    LogRendererFactory.instance().log("Your inventory is full!");
+                    LogRendererFactory.instance().log("Can't steal item - inventory full.");
                 }
             }
         }
