@@ -63,7 +63,7 @@ public class ExtractWeaponSpell extends DirectedSpell
                     }
                     catch (EquipmentFullException efe)
                     {
-                        LogRendererFactory.instance().log("Your equipment is full.");
+                        LogRendererFactory.instance().log("Can't extract weapon - equipment full.");
                     }
                 }
             }

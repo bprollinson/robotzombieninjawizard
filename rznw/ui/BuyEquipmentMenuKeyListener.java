@@ -102,7 +102,6 @@ public class BuyEquipmentMenuKeyListener extends StateTransitionKeyListener
             }
             catch (EquipmentFullException efe)
             {
-                System.out.println("Equipment full");
             }
 
             this.renderMenu();

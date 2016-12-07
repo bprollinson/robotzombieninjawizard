@@ -19,7 +19,7 @@ public class EquipmentKillBonusGranter implements KillBonusGranterComponent
             }
             catch (EquipmentFullException efe)
             {
-                System.out.println("Equipment full");
+                LogRendererFactory.instance().log("Can't acquire equipment - equipment full.");
             }
         }
     }

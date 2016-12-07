@@ -59,7 +59,7 @@ public class StealEquipmentSpell extends DirectedSpell
                 }
                 catch (EquipmentFullException efe)
                 {
-                    LogRendererFactory.instance().log("Your equipment storage is full!");
+                    LogRendererFactory.instance().log("Can't steal equipment - equipment full.");
                 }
             }
         }
