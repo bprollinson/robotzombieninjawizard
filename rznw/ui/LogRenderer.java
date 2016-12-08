@@ -1,6 +1,7 @@
 package rznw.ui;
 
 import rznw.map.Map;
+import rznw.utility.StringUtils;
 
 import java.util.Vector;
 
@@ -10,16 +11,23 @@ public class LogRenderer
 
     private Vector<String> logs;
     private MainGameFrame frame;
+    private StringUtils stringUtils;
 
     public LogRenderer(MainGameFrame frame)
     {
         this.logs = new Vector<String>();
         this.frame = frame;
+        this.stringUtils = new StringUtils();
     }
 
     public void log(String message)
     {
-        this.logs.add(message);
+        String[] logLines = this.stringUtils.splitIntoLines(message, MainGameFrame.NUM_COLUMNS);
+        for (int i = 0; i < logLines.length; i++)
+        {
+            this.logs.add(logLines[i]);
+        }
+
         this.render();
     }
 
