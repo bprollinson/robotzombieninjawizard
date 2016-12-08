@@ -1,5 +1,7 @@
 package rznw.ui;
 
+import rznw.utility.StringUtils;
+
 public abstract class MenuScreenRenderer
 {
     protected MainGameFrame frame;
@@ -28,24 +30,13 @@ public abstract class MenuScreenRenderer
 
     protected int renderStringWithNewlines(int row, String string)
     {
-        String remainingString = string;
+        String[] lines = new StringUtils().splitIntoLines(string, MainGameFrame.NUM_COLUMNS);
 
-        int numLines = 1;
-
-        while (remainingString.length() > MainGameFrame.NUM_COLUMNS)
+        for (int i = 0; i < lines.length; i++)
         {
-            String searchString = remainingString.substring(0, MainGameFrame.NUM_COLUMNS);
-            int lastSpacePos = searchString.lastIndexOf(' ');
-            String rowString = searchString.substring(0, lastSpacePos);
-            this.frame.renderDisplayString(row, 0, rowString);
-
-            remainingString = remainingString.substring(lastSpacePos + 1);
-            row++;
-            numLines++;
+            this.frame.renderDisplayString(row + i, 0, lines[i]);
         }
 
-        this.frame.renderDisplayString(row, 0, remainingString);
-
-        return numLines;
+        return lines.length;
     }
 }
