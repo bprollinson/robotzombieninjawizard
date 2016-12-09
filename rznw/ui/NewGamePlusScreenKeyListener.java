@@ -39,6 +39,7 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
                 NewGamePlusLoader gameLoader = new NewGamePlusLoader();
                 try
                 {
+                    LogRendererFactory.instance().clear();
                     gameLoader.load(this.gameWorld, this.state.getEntryNumber());
                     this.loaded = true;
                 }

@@ -40,6 +40,7 @@ public class LoadScreenKeyListener extends StateTransitionKeyListener
                 GameLoader gameLoader = new GameLoader();
                 try
                 {
+                    LogRendererFactory.instance().clear();
                     gameLoader.load(this.gameWorld, this.state.getEntryNumber());
                     this.loaded = true;
                 }
