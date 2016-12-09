@@ -52,7 +52,7 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            System.out.println("Regenerate the world");
+            LogRendererFactory.instance().clear();
             this.gameWorld.initializeToDefaultState(this.state.getEntryNumber());
         }
     }

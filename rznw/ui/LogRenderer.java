@@ -31,6 +31,11 @@ public class LogRenderer
         this.render();
     }
 
+    public void clear()
+    {
+        this.logs = new Vector<String>();
+    }
+
     public void render()
     {
         this.clearScreen();
