@@ -13,7 +13,8 @@ public class GameLoader extends BaseGameLoader
             new MapLoader(),
             new MapVisibilityLoader(),
             new InventoryLoader(),
-            new EquipmentLoader()
+            new EquipmentLoader(),
+            new LogLoader()
         };
     }
 }

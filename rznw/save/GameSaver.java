@@ -83,7 +83,8 @@ public class GameSaver
             new MapSaver(),
             new MapVisibilitySaver(),
             new InventorySaver(),
-            new EquipmentSaver()
+            new EquipmentSaver(),
+            new LogSaver()
         };
     }
 }

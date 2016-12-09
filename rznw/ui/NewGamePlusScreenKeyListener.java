@@ -41,6 +41,7 @@ public class NewGamePlusScreenKeyListener extends StateTransitionKeyListener
                 {
                     LogRendererFactory.instance().clear();
                     gameLoader.load(this.gameWorld, this.state.getEntryNumber());
+                    LogRendererFactory.instance().log("Welcome to dungeon level 1!");
                     this.loaded = true;
                 }
                 catch (LoadException le)

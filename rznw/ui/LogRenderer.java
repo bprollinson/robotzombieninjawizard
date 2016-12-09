@@ -22,13 +22,26 @@ public class LogRenderer
 
     public void log(String message)
     {
+        this.log(message, true);
+    }
+
+    public void log(String message, boolean render)
+    {
         String[] logLines = this.stringUtils.splitIntoLines(message, MainGameFrame.NUM_COLUMNS);
         for (int i = 0; i < logLines.length; i++)
         {
             this.logs.add(logLines[i]);
         }
 
-        this.render();
+        if (render)
+        {
+            this.render();
+        }
+    }
+
+    public Vector<String> getLines()
+    {
+        return this.logs;
     }
 
     public void clear()
