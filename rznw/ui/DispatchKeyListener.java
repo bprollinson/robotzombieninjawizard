@@ -38,6 +38,7 @@ public class DispatchKeyListener implements KeyListener
     public static final int STATE_BUY_EQUIPMENT_MENU = 31;
     public static final int STATE_SELL_ITEMS_MENU = 32;
     public static final int STATE_SELL_EQUIPMENT_MENU = 33;
+    public static final int STATE_LOGS_SCREEN = 34;
 
     private int state;
     private StateTransitionKeyListenerContainer listenerContainer;
