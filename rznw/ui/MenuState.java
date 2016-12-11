@@ -41,6 +41,11 @@ public class MenuState
         return this.numEntries > 0;
     }
 
+    public int getNumEntries()
+    {
+        return this.numEntries;
+    }
+
     public void adjustNumEntries(int numEntries)
     {
         this.numEntries = numEntries;
