@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class StatusEffectStats
 {
-    public static final int NUM_STATS = 8;
+    public static final int NUM_STATS = 9;
 
     public static final int STAT_ARMOR_BREAK = 0;
     public static final int STAT_DETECT_VITALITY_RADIUS = 1;
@@ -14,6 +14,7 @@ public class StatusEffectStats
     public static final int STAT_BONUS_GOLD_PERCENT = 5;
     public static final int STAT_MEAT_SHIELD_PADDING_PERCENT = 6;
     public static final int STAT_MEAT_SHIELD_DODGE_PERCENT = 7;
+    public static final int STAT_CRUSHER_RAGE_PERCENT = 8;
 
     private HashMap<Integer, Integer> otherStats = new HashMap<Integer, Integer>();
 

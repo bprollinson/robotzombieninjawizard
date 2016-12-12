@@ -7,6 +7,7 @@ import rznw.game.maincharacter.inventory.Bomb;
 import rznw.game.maincharacter.inventory.CrusherHammer;
 import rznw.game.maincharacter.inventory.EquipmentItem;
 import rznw.game.maincharacter.inventory.InventoryItem;
+import rznw.game.statuseffects.StatusEffectStats;
 import rznw.map.GameWorld;
 import rznw.map.element.EnemyMapElement;
 import rznw.ui.LogRendererFactory;
@@ -16,8 +17,6 @@ public class Crusher extends EnemyCharacter
     public static final int ENEMY_NUMBER = 3;
 
     private static char mapCharacter = 'c';
-
-    private int bonusDamagePercent = 0;
 
     public Crusher(int level)
     {
@@ -73,12 +72,17 @@ public class Crusher extends EnemyCharacter
 
     public int getDamage()
     {
+        int bonusDamagePercent = this.getStatusEffects().getStat(StatusEffectStats.STAT_CRUSHER_RAGE_PERCENT);
+
         return (int)Math.floor((1 + bonusDamagePercent / 100.0) * super.getDamage());
     }
 
     private void enhanceRage()
     {
-        this.bonusDamagePercent += 10;
+        int bonusDamagePercent = this.getStatusEffects().getStat(StatusEffectStats.STAT_CRUSHER_RAGE_PERCENT);
+        bonusDamagePercent += 10;
+
+        this.getStatusEffects().setStat(StatusEffectStats.STAT_CRUSHER_RAGE_PERCENT, bonusDamagePercent);
     }
 
     public int getEnemyNumber()
