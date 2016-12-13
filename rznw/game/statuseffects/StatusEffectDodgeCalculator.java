@@ -4,6 +4,7 @@ import rznw.game.Character;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.stat.Stat;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class StatusEffectDodgeCalculator
@@ -21,7 +22,6 @@ public class StatusEffectDodgeCalculator
         Armor armor = ((MainCharacter)character).getEquipment().getEquippedArmor();
         if (armor != null)
         {
-            System.out.println("Adding additional thick skin stats from armor");
             probability += armor.getThickSkinBonus();
         }
 
@@ -29,7 +29,7 @@ public class StatusEffectDodgeCalculator
 
         if (success)
         {
-            System.out.println("Dodging status effect due to thick skin");
+            LogRendererFactory.instance().log("You dodged a status effect via thick skin.");
         }
 
         return success;

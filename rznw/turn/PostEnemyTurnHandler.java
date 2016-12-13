@@ -5,6 +5,7 @@ import rznw.game.stat.Stat;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class PostEnemyTurnHandler implements TurnFragmentHandler
@@ -53,12 +54,11 @@ public class PostEnemyTurnHandler implements TurnFragmentHandler
     {
         MainCharacter character = this.gameWorld.getMainCharacter();
         int revivalProbability = 5 * character.getStats().getStatPoints(Stat.STAT_LAST_BREATH);
-        System.out.println("Revival probability: " + revivalProbability);
 
         if (RandomNumberGenerator.rollSucceeds(revivalProbability))
         {
-            System.out.println("Reviving");
             character.setHP(1);
+            LogRendererFactory.instance().log("You revived with 1 HP via last breath.");
         }
     }
 }

@@ -4,6 +4,7 @@ import rznw.game.maincharacter.inventory.Armor;
 import rznw.game.maincharacter.inventory.Weapon;
 import rznw.game.skill.Skill;
 import rznw.game.stat.Stat;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterStepIncrementer
@@ -15,8 +16,10 @@ public class MainCharacterStepIncrementer
             mainCharacter.getSteps().setHPSteps(mainCharacter.getSteps().getHPSteps() + 1);
             if (mainCharacter.getSteps().getHPSteps() >= mainCharacter.getSteps().getStepsForHeal())
             {
-                mainCharacter.heal(10);
+                int HPHealed = mainCharacter.heal(10);
                 mainCharacter.getSteps().setHPSteps(0);
+
+                LogRendererFactory.instance().log("You healed " + HPHealed + " HP via physical regeneration.");
             }
         }
 
@@ -27,6 +30,8 @@ public class MainCharacterStepIncrementer
             {
                 mainCharacter.healMP(10);
                 mainCharacter.getSteps().setMPSteps(0);
+
+                LogRendererFactory.instance().log("You recovered 10 MP via mental regeneration.");
             }
         }
 
@@ -40,6 +45,7 @@ public class MainCharacterStepIncrementer
                 if (RandomNumberGenerator.rollSucceeds(manaRiverProbability))
                 {
                     mainCharacter.setMP(mainCharacter.getMaxMP());
+                    LogRendererFactory.instance().log("You recovered all MP via mana river.");
                 }
 
                 mainCharacter.getSteps().setManaRiverSteps(0);
