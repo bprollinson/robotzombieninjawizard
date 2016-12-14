@@ -51,9 +51,12 @@ public class Viper extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        mainCharacter.getStatusEffects().poison();
+        boolean poisoned = mainCharacter.getStatusEffects().poison();
 
-        LogRendererFactory.instance().log("You become poisoned.");
+        if (poisoned)
+        {
+            LogRendererFactory.instance().log("You become poisoned.");
+        }
     }
 
     public EnemyActionCalculator getActionCalculator()

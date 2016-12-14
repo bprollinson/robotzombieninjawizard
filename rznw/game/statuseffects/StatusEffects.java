@@ -50,28 +50,37 @@ public class StatusEffects
         this.statusEffectStats.setStat(index, value);
     }
 
-    public void freeze()
+    public boolean freeze()
     {
         if (!this.thickSkinDodgesEffect())
         {
             this.setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN, 1);
+            return true;
         }
+
+        return false;
     }
 
-    public void poison()
+    public boolean poison()
     {
         if (!this.thickSkinDodgesEffect())
         {
             this.setStatusEffect(SimpleStatusEffects.EFFECT_POISONED, true);
+            return true;
         }
+
+        return false;
     }
 
-    public void confuse()
+    public boolean confuse()
     {
         if (!this.thickSkinDodgesEffect())
         {
             this.setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION, 3);
+            return true;
         }
+
+        return false;
     }
 
     public void enableBoostGenetics(int bonusDropProbability, int bonusGoldPercent)

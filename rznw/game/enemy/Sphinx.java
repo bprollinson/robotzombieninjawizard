@@ -53,9 +53,12 @@ public class Sphinx extends EnemyCharacter
 
     public void damagedMainCharacter(MainCharacter mainCharacter, int damage, GameWorld gameWorld)
     {
-        mainCharacter.getStatusEffects().confuse();
+        boolean confused = mainCharacter.getStatusEffects().confuse();
 
-        LogRendererFactory.instance().log("You become confused.");
+        if (confused)
+        {
+            LogRendererFactory.instance().log("You become confused.");
+        }
     }
 
     public EnemyActionCalculator getActionCalculator()

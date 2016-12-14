@@ -20,10 +20,17 @@ public class AcidSpitSpell extends EnemySpell
         int damageDealt = mainCharacter.damage(damage, enemyCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
         LogRendererFactory.instance().log("Hit for " + damageDealt + " damage.");
 
-        mainCharacter.getStatusEffects().poison();
-        LogRendererFactory.instance().log("You become poisoned.");
-        mainCharacter.getStatusEffects().confuse();
-        LogRendererFactory.instance().log("You become confused.");
+        boolean poisoned = mainCharacter.getStatusEffects().poison();
+        if (poisoned)
+        {
+            LogRendererFactory.instance().log("You become poisoned.");
+        }
+
+        boolean confused = mainCharacter.getStatusEffects().confuse();
+        if (confused)
+        {
+            LogRendererFactory.instance().log("You become confused.");
+        }
     }
 
     public int getMPCost(int spellPoints)

@@ -56,9 +56,12 @@ public class Yeti extends EnemyCharacter
     {
         if (RandomNumberGenerator.rollSucceeds(50))
         {
-            mainCharacter.getStatusEffects().freeze();
+            boolean frozen = mainCharacter.getStatusEffects().freeze();
 
-            LogRendererFactory.instance().log("You become frozen.");
+            if (frozen)
+            {
+                LogRendererFactory.instance().log("You become frozen.");
+            }
         }
     }
 
