@@ -45,6 +45,7 @@ public class ItemKillBonusGranter implements KillBonusGranterComponent
                 try
                 {
                     mainCharacter.getInventory().addItems(itemGroup);
+                    LogRendererFactory.instance().log("Found potion.");
                 }
                 catch (InventoryFullException ife)
                 {

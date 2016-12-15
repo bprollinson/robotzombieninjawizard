@@ -50,6 +50,11 @@ public class CharacterInteracter
         }
 
         int damage = otherCharacter.damage(character.getDamage(), character, gameWorld, Character.DAMAGE_SOURCE_PHYSICAL);
+        if (damage == 0)
+        {
+            return;
+        }
+
         LogRendererFactory.instance().log("Hit for " + damage + " damage!");
 
         if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON) > 0)

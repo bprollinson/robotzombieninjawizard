@@ -12,6 +12,7 @@ import rznw.game.stat.Stat;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.StatusEffectStats;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterDamageReceivedCalculator
@@ -20,21 +21,18 @@ public class MainCharacterDamageReceivedCalculator
     {
         if (damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
-            System.out.println("Hit by a magical source");
             int dodgePercent = 5 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_PROTECTIVE_FIELD);
-            System.out.println("Magic dodge change: " + dodgePercent);
 
             Shield shield = mainCharacter.getEquipment().getEquippedShield();
             if (shield != null)
             {
                 int shieldDodgePercent = shield.getMagicDodgePercent();
-                System.out.println("Shield magic dodge percent: " + shieldDodgePercent);
                 dodgePercent += shieldDodgePercent;
             }
 
             if (RandomNumberGenerator.rollSucceeds(dodgePercent))
             {
-                System.out.println("Successfully dodged magic");
+                LogRendererFactory.instance().log("Dodged magic damage.");
                 return 0;
             }
         }
@@ -53,18 +51,15 @@ public class MainCharacterDamageReceivedCalculator
             if (shield != null)
             {
                 int shieldPaddingPercent = shield.getMagicPaddingPercent();
-                System.out.println("Shield magic padding percent: " + shieldPaddingPercent);
                 magicPaddingPercent += shieldPaddingPercent;
             }
 
-            System.out.println("Preventing " + magicPaddingPercent + "% of damage");
             paddingPercent += magicPaddingPercent;
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RAGE) > 0)
         {
             int paddingPenalty = Math.max(21 - mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE), 1);
-            System.out.println("Padding penalty: " + paddingPenalty);
             paddingPercent -= paddingPenalty;
         }
 
@@ -72,7 +67,6 @@ public class MainCharacterDamageReceivedCalculator
         if (shield != null)
         {
             int shieldPaddingPercent = shield.getPaddingPercent();
-            System.out.println("Additional shield padding percent: " + shieldPaddingPercent);
             paddingPercent += shieldPaddingPercent;
         }
 
@@ -80,24 +74,16 @@ public class MainCharacterDamageReceivedCalculator
         if (armor != null)
         {
             int armorPaddingPercent = armor.getPaddingPercent();
-            System.out.println("Additional armor padding percent: " + armorPaddingPercent);
             paddingPercent += armorPaddingPercent;
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
             int meatShieldPaddingPercent = mainCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_MEAT_SHIELD_PADDING_PERCENT);
-            System.out.println("Additional meat shield pardding percent: " + meatShieldPaddingPercent);
             paddingPercent += meatShieldPaddingPercent;
         }
 
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
-
-        if (padding > 0)
-        {
-            System.out.println("Padding percent: " + paddingPercent);
-            System.out.println("Padding damage: " + padding);
-        }
 
         if (damageSource != null && damageSource.isEnemy() && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
@@ -107,8 +93,6 @@ public class MainCharacterDamageReceivedCalculator
             {
                  int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * (damage - padding));
                  damage += bonusDamage;
-
-                 System.out.println("Enemy mana burn bonus damage: " + bonusDamage);
             }
         }
 

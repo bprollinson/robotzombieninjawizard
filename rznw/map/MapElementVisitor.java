@@ -3,6 +3,7 @@ package rznw.map;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.map.element.Stairs;
 import rznw.game.skill.Skill;
+import rznw.ui.LogRendererFactory;
 
 public class MapElementVisitor
 {
@@ -45,7 +46,7 @@ public class MapElementVisitor
                 {
                     if (!this.map.isVisible(rangeRow, rangeColumn))
                     {
-                        System.out.println("Found stairs using skill");
+                        LogRendererFactory.instance().log("Located stairs using find stairs.");
                     }
                     this.map.setVisible(character, rangeRow, rangeColumn);
                 }
