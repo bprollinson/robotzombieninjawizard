@@ -8,6 +8,7 @@ import rznw.game.spell.zombie.ZombieSpellFactory;
 import rznw.game.statuseffects.SimpleStatusEffects;
 import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
 import rznw.utility.RandomNumberGenerator;
 
 public class MainCharacterDamageResponder
@@ -19,7 +20,7 @@ public class MainCharacterDamageResponder
             int MPFromDamage = (int)Math.floor(5.0 / 100.0 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MANA_SUCK) * damage);
             if (MPFromDamage > 0)
             {
-                System.out.println("Healing MP from damage: " + MPFromDamage);
+                LogRendererFactory.instance().log("Recovered " + MPFromDamage + " MP via mana suck.");
                 mainCharacter.healMP(MPFromDamage);
             }
         }
