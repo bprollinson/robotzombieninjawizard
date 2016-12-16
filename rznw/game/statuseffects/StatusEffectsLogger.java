@@ -15,6 +15,9 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_SKIP:
                 LogRendererFactory.instance().log("You are no longer incapacitated.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_MEAT_SHIELD:
+                LogRendererFactory.instance().log("Meat shield expired.");
+                break;
         }
     }
 }
