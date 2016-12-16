@@ -18,6 +18,9 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_MEAT_SHIELD:
                 LogRendererFactory.instance().log("Meat shield expired.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_POWER_SEARCH:
+                LogRendererFactory.instance().log("Power search expired.");
+                break;
         }
     }
 }
