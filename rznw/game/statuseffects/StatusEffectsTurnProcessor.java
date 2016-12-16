@@ -10,6 +10,13 @@ public class StatusEffectsTurnProcessor
 {
     private static final int POISON_DAMAGE = 10;
 
+    private StatusEffectsLogger logger;
+
+    public StatusEffectsTurnProcessor()
+    {
+        this.logger = new StatusEffectsLogger();
+    }
+
     public void processTurn(GameWorld gameWorld, Character character)
     {
         StatusEffects statusEffects = character.getStatusEffects();
@@ -31,6 +38,11 @@ public class StatusEffectsTurnProcessor
             if (turnsRemaining > 0)
             {
                 statusEffects.setStatusEffectTurns(pair.getKey(), turnsRemaining - 1);
+            }
+
+            if (turnsRemaining - 1 == 0)
+            {
+                this.logger.logTurnBasedEffectExhausted(character, pair.getKey());
             }
         }
     }

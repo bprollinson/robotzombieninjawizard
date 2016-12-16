@@ -8,6 +8,7 @@ import rznw.game.statuseffects.TurnBasedStatusEffects;
 import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
+import rznw.ui.LogRendererFactory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -70,7 +71,7 @@ public class EnemyTurnHandler implements TurnFragmentHandler
 
         if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SKIP) > 0 || character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN) > 0)
         {
-            System.out.println("Enemies take a turn while you are sleeping / frozen");
+            LogRendererFactory.instance().log("You are incapacitated during your turn.");
             character.getStatusEffects().processTurn(this.gameWorld);
             this.handleTurnFragment();
         }
