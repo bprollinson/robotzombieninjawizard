@@ -1,7 +1,10 @@
 package rznw.game.statuseffects;
 
 import rznw.game.Character;
+import rznw.game.enemy.EnemyCharacter;
 import rznw.map.GameWorld;
+import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -23,8 +26,17 @@ public class StatusEffectsTurnProcessor
 
         if (statusEffects.getStatusEffect(SimpleStatusEffects.EFFECT_POISONED))
         {
-            System.out.println("Damaging character due to poison");
-            character.damage(StatusEffectsTurnProcessor.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+            int damageDealt = character.damage(StatusEffectsTurnProcessor.POISON_DAMAGE, null, gameWorld, Character.DAMAGE_SOURCE_OTHER);
+
+            if (character instanceof EnemyCharacter)
+            {
+                StringUtils utils = new StringUtils();
+                LogRendererFactory.instance().log(utils.UCFirst(character.getLogName()) + " takes " + damageDealt + " damage from poison.");
+            }
+            else
+            {
+                LogRendererFactory.instance().log("You take " + damageDealt + " damage from poison.");
+            }
         }
 
         statusEffects.setStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN, false);

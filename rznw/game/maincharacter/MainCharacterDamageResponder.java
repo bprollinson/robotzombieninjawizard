@@ -60,7 +60,7 @@ public class MainCharacterDamageResponder
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_POISON_SKIN) > 0 && damageSource.isEnemy())
         {
-            System.out.println("Poisoning with poison skin");
+            LogRendererFactory.instance().log("Enemy poisoned by poison skin.");
 
             damageSource.getStatusEffects().poison();
         }
