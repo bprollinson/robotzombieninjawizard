@@ -59,14 +59,11 @@ public class CharacterInteracter
 
         if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON) > 0)
         {
-            System.out.println("Checking signal weapon");
-
             int confuseProbability = 5 * ((MainCharacter)character).getSpells().getSpellPoints(RobotSpellFactory.SPELL_SIGNAL_WEAPON);
-            System.out.println("Confuse probability: " + confuseProbability);
 
             if (RandomNumberGenerator.rollSucceeds(confuseProbability))
             {
-                System.out.println("Confuse successful!");
+                LogRendererFactory.instance().log("Enemy confused by signal weapon.");
                 otherCharacter.getStatusEffects().confuse();
             }
         }

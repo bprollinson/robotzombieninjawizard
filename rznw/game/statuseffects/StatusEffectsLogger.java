@@ -9,6 +9,9 @@ public class StatusEffectsLogger
     {
         switch (index)
         {
+            case TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON:
+                LogRendererFactory.instance().log("Signal weapon expired.");
+                break;
             case TurnBasedStatusEffects.EFFECT_SKIP:
                 LogRendererFactory.instance().log("You are no longer incapacitated.");
                 break;
