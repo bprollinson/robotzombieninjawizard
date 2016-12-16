@@ -15,6 +15,9 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_POISON_SKIN:
                 LogRendererFactory.instance().log("Poison skin expired.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_RESIST_DAMAGE:
+                LogRendererFactory.instance().log("Resist damage expired.");
+                break;
             case TurnBasedStatusEffects.EFFECT_SKIP:
                 LogRendererFactory.instance().log("You are no longer incapacitated.");
                 break;
