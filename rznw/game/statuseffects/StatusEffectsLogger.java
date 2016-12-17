@@ -39,6 +39,16 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_POWER_SEARCH:
                 LogRendererFactory.instance().log("Power search expired.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_CONFUSION:
+                if (character.isMainCharacter())
+                {
+                    LogRendererFactory.instance().log("You are no longer confused.");
+                }
+                else
+                {
+                    LogRendererFactory.instance().log(utils.UCFirst(character.getLogName()) + " is no longer confused.");
+                }
+                break;
             case TurnBasedStatusEffects.EFFECT_FROZEN:
                 if (character.isMainCharacter())
                 {
@@ -46,7 +56,7 @@ public class StatusEffectsLogger
                 }
                 else
                 {
-                    LogRendererFactory.instance().log(utils.UCFirst(character.getLogName()) + " is not longer incapacitated.");
+                    LogRendererFactory.instance().log(utils.UCFirst(character.getLogName()) + " is no longer incapacitated.");
                 }
                 break;
         }

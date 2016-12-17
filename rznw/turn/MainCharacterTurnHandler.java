@@ -11,6 +11,7 @@ import rznw.turn.positionchange.KeyBasedPositionChange;
 import rznw.turn.positionchange.PositionChange;
 import rznw.turn.positionchange.RandomPositionChange;
 import rznw.ui.CharacterSummaryRenderer;
+import rznw.ui.LogRendererFactory;
 
 import java.awt.event.KeyEvent;
 
@@ -60,7 +61,7 @@ public class MainCharacterTurnHandler
 
         if (character.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_CONFUSION) > 0)
         {
-            System.out.println("Main character is confused!");
+            LogRendererFactory.instance().log("You are confused.");
 
             characterPositionChange = new RandomPositionChange(character);
         }
