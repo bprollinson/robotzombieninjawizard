@@ -9,6 +9,7 @@ import rznw.map.GameWorld;
 import rznw.map.Map;
 import rznw.map.element.MapElement;
 import rznw.ui.LogRendererFactory;
+import rznw.utility.StringUtils;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -34,7 +35,8 @@ public class EnemyTurnHandler implements TurnFragmentHandler
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             if (enemy.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN) > 0)
             {
-                System.out.println("Enemy is frozen!");
+                StringUtils utils = new StringUtils();
+                LogRendererFactory.instance().log(utils.UCFirst(enemy.getLogName()) + " is incapacitated turing its turn.");
             }
             else
             {

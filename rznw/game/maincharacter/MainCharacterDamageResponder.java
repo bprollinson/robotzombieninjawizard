@@ -92,12 +92,10 @@ public class MainCharacterDamageResponder
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_BARBED_SKIN) > 0 && damageSource.isEnemy())
         {
-            System.out.println("Checking barbed skin");
-
             int barbedSkinProbability = 5 * mainCharacter.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_BARBED_SKIN);
             if (RandomNumberGenerator.rollSucceeds(barbedSkinProbability))
             {
-                System.out.println("Stunning with barbed skin");
+                LogRendererFactory.instance().log("Enemy stunned by barbed skin.");
                 damageSource.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FROZEN, 2);
             }
         }
