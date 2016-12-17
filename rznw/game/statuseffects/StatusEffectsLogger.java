@@ -12,6 +12,9 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_SIGNAL_WEAPON:
                 LogRendererFactory.instance().log("Signal weapon expired.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_THORN_SKIN:
+                LogRendererFactory.instance().log("Thorn skin expired.");
+                break;
             case TurnBasedStatusEffects.EFFECT_POISON_SKIN:
                 LogRendererFactory.instance().log("Poison skin expired.");
                 break;

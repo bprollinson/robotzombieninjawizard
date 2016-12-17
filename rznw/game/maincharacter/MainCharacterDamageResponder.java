@@ -50,12 +50,9 @@ public class MainCharacterDamageResponder
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_THORN_SKIN) > 0 && damageSource.isEnemy())
         {
-            System.out.println("Attacking back with thorn skin");
-
             int thornSkinDamage = 5 * mainCharacter.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_THORN_SKIN);
-            System.out.println("Enemy hp before: " + damageSource.getHP());
-            damageSource.damage(thornSkinDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-            System.out.println("Enemy hp after: " + damageSource.getHP());
+            int damageDealt = damageSource.damage(thornSkinDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+            LogRendererFactory.instance().log("Dealt " + damageDealt + " HP of damage to " + damageSource.getLogName() + " via thorn skin.");
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_POISON_SKIN) > 0 && damageSource.isEnemy())
