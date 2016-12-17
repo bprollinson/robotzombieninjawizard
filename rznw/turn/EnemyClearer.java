@@ -13,6 +13,7 @@ import rznw.map.element.EnemyMapElement;
 import rznw.map.element.MapElement;
 import rznw.map.element.SummonedMinionMapElement;
 import rznw.map.element.SummonedZombieMapElement;
+import rznw.ui.LogRendererFactory;
 
 public class EnemyClearer
 {
@@ -42,10 +43,9 @@ public class EnemyClearer
                         {
                             character.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_INFER_ZOMBIE, false);
 
-                            System.out.println("Inferring zombie at: " + element.getRow() + ", " + element.getColumn());
+                            LogRendererFactory.instance().log("Inferring zombie.");
 
                             int maxHP = 200 + 10 * character.getSpells().getSpellPoints(ZombieSpellFactory.SPELL_INFER_ZOMBIE);
-                            System.out.println("Max HP is: " + maxHP);
 
                             SummonedZombie zombie = new SummonedZombie(maxHP);
                             SummonedZombieMapElement zombieElement = new SummonedZombieMapElement(element.getRow(), element.getColumn(), zombie);
