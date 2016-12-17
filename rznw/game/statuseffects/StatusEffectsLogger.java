@@ -27,6 +27,9 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_RESIST_DAMAGE:
                 LogRendererFactory.instance().log("Resist damage expired.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_INFECTIOUS_RAGE:
+                LogRendererFactory.instance().log("Infectious rage expired.");
+                break;
             case TurnBasedStatusEffects.EFFECT_FEED_BRAIN:
                 LogRendererFactory.instance().log("Feed brain expired.");
                 break;
