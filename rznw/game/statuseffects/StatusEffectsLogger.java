@@ -27,6 +27,9 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_RESIST_DAMAGE:
                 LogRendererFactory.instance().log("Resist damage expired.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_FEED_BRAIN:
+                LogRendererFactory.instance().log("Feed brain expired.");
+                break;
             case TurnBasedStatusEffects.EFFECT_SKIP:
                 LogRendererFactory.instance().log("You are no longer incapacitated.");
                 break;
