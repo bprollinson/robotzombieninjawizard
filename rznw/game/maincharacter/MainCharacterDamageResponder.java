@@ -32,17 +32,12 @@ public class MainCharacterDamageResponder
 
         if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_COUNTERSTRIKE) && damageSource.isEnemy())
         {
-            System.out.println("Checking counterstrike");
-
             int counterstrikeProbability = 10 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_COUNTERSTRIKE);
             if (RandomNumberGenerator.rollSucceeds(counterstrikeProbability))
             {
-                System.out.println("Damaging with counterstrike");
-
                 int counterstrikeDamage = 10 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_COUNTERSTRIKE);
-                System.out.println("Enemy hp before: " + damageSource.getHP());
-                damageSource.damage(counterstrikeDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
-                System.out.println("Enemy hp after: " + damageSource.getHP());
+                int damageDealt = damageSource.damage(counterstrikeDamage, mainCharacter, gameWorld, Character.DAMAGE_SOURCE_MAGICAL);
+                LogRendererFactory.instance().log("Dealt " + damageDealt + " HP of damage to " + damageSource.getLogName() + " via counterstrike.");
             }
 
             mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_COUNTERSTRIKE, false);

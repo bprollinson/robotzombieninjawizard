@@ -36,7 +36,7 @@ public class CounterstrikeSpell extends UndirectedSpell
     {
         return new String[] {
             "MP cost: " + this.getMPCost(character, spellPoints),
-            "Counterstrike probability: " + 10 * spellPoints + "%",
+            "Counterstrike probability: " + Math.min(10 * spellPoints, 100) + "%",
             "Counterstrike damage: " + 10 * spellPoints,
             "Number of turns: 1"
         };
