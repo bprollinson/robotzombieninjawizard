@@ -59,12 +59,10 @@ public class MainCharacterDamageResponder
 
         if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_DEATH_STRIKE) && damageSource.isEnemy())
         {
-            System.out.println("Checking death strike");
-
             int deathStrikeProbability = 5 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_DEATH_STRIKE);
             if (RandomNumberGenerator.rollSucceeds(deathStrikeProbability))
             {
-                System.out.println("Killing with death strike");
+                LogRendererFactory.instance().log("Killed " + damageSource.getLogName() + " via death strike.");
                 damageSource.setHP(0);
             }
 
