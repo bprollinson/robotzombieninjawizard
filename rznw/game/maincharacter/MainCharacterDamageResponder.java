@@ -78,13 +78,11 @@ public class MainCharacterDamageResponder
 
         if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB) && damageSource.isEnemy())
         {
-            System.out.println("Checking smoke bomb");
-
             int smokeBombProbability = 5 * mainCharacter.getSpells().getSpellPoints(NinjaSpellFactory.SPELL_SMOKE_BOMB);
             if (RandomNumberGenerator.rollSucceeds(smokeBombProbability))
             {
-                System.out.println("Escaping with smoke bomb");
                 SmokeBombSpell.escape(gameWorld);
+                LogRendererFactory.instance().log("Escaped with smoke bomb.");
             }
 
             mainCharacter.getStatusEffects().setStatusEffect(SimpleStatusEffects.EFFECT_SMOKE_BOMB, false);
