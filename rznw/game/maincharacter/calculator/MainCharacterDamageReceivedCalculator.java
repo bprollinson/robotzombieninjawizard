@@ -98,7 +98,7 @@ public class MainCharacterDamageReceivedCalculator
 
         if (mainCharacter.getStatusEffects().getStatusEffect(SimpleStatusEffects.EFFECT_REVERSE_PAIN))
         {
-            System.out.println("Reversing pain!");
+            LogRendererFactory.instance().log("You healed " + (damage - padding) + " HP via reverse pain.");
 
             return -(damage - padding);
         }
