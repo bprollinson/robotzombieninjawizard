@@ -36,6 +36,15 @@ public class StatusEffectsLogger
             case TurnBasedStatusEffects.EFFECT_SKIP:
                 LogRendererFactory.instance().log("You are no longer incapacitated.");
                 break;
+            case TurnBasedStatusEffects.EFFECT_RAGE:
+                LogRendererFactory.instance().log("Rage expired.");
+                break;
+            case TurnBasedStatusEffects.EFFECT_MAGIC_SEEDS:
+                LogRendererFactory.instance().log("Magic seeds expired.");
+                break;
+            case TurnBasedStatusEffects.EFFECT_MANA_SUCK:
+                LogRendererFactory.instance().log("Mana suck expired.");
+                break;
             case TurnBasedStatusEffects.EFFECT_MEAT_SHIELD:
                 LogRendererFactory.instance().log("Meat shield expired.");
                 break;
