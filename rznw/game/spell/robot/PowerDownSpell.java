@@ -29,6 +29,7 @@ public class PowerDownSpell extends UndirectedSpell
         character.getStatusEffects().setStatusEffectTurns(TurnBasedStatusEffects.EFFECT_SKIP, turnsToSkip);
         int HPHealed = character.heal(healHP);
         LogRendererFactory.instance().log("You healed " + HPHealed + " HP.");
+        LogRendererFactory.instance().log("Powered down");
     }
 
     public int getMPCost(MainCharacter character, int spellPoints)
