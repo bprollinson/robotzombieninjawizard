@@ -7,7 +7,6 @@ public class EnemyCharacterDamageDealtCalculator
 {
     public int getDamage(EnemyCharacter enemyCharacter)
     {
-        System.out.println("Enemy damage: " + (10 + 2 * enemyCharacter.getStatPoints(EnemyStat.STAT_DAMAGE)));
         return 10 + 2 * enemyCharacter.getStatPoints(EnemyStat.STAT_DAMAGE);
     }
 }

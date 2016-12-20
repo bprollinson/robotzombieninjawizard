@@ -49,7 +49,6 @@ public class PowerSearchSpell extends UndirectedSpell
     {
         if (!RandomNumberGenerator.rollSucceeds(5 * spellPoints))
         {
-            System.out.println("Power search spell fail!");
             return itemGroup;
         }
 

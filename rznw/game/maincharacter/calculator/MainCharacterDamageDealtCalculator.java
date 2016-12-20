@@ -16,7 +16,6 @@ public class MainCharacterDamageDealtCalculator
         if (weapon != null)
         {
             int weaponDamage = weapon.getDamage();
-            System.out.println("Additional weapon damage: " + weaponDamage);
             damage += weaponDamage;
         }
 
@@ -24,14 +23,9 @@ public class MainCharacterDamageDealtCalculator
         {
             int bonusDamagePercent = 2 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE);
             int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
-            System.out.println("Bonus rage damage: " + bonusDamage);
         }
 
         double bloodRageFactor = mainCharacter.getSkills().getSkillPoints(Skill.SKILL_BLOOD_RAGE) / 100.0 * (mainCharacter.getMaxHP() - mainCharacter.getHP()) / mainCharacter.getMaxHP();
-
-        if (bloodRageFactor > 0.0) {
-            System.out.println("Blood rage factor: " + bloodRageFactor);
-        }
 
         return (int)Math.floor(damage * (1 + bloodRageFactor));
     }

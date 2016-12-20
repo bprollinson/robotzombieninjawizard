@@ -130,7 +130,6 @@ public abstract class MainCharacter extends Character
         Weapon weapon = this.getEquipment().getEquippedWeapon();
         if (weapon != null)
         {
-            System.out.println("Adjusting to hit percent");
             toHitPercent += weapon.getToHitBonus();
         }
 
@@ -180,11 +179,6 @@ public abstract class MainCharacter extends Character
     {
         int bonusHPPercent = 5 * this.stats.getStatPoints(Stat.STAT_LIFE_BOND);
         int bonusHP = (int)Math.floor(bonusHPPercent / 100.0 * HP);
-
-        if (bonusHP > 0)
-        {
-            System.out.println("Bonus HP: " + bonusHP);
-        }
 
         super.heal(HP + bonusHP);
 

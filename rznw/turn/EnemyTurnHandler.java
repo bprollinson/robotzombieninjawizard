@@ -49,8 +49,6 @@ public class EnemyTurnHandler implements TurnFragmentHandler
 
                 if (enemyAction.isSpell())
                 {
-                    System.out.println("Enemy is casting a spell");
-
                     EnemySpell spell = enemyAction.getSpell();
                     spell.cast(this.gameWorld, enemy, enemyAction.getSpellPoints());
 

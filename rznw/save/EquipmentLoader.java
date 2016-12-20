@@ -15,27 +15,22 @@ public class EquipmentLoader extends ComponentLoader
     public void load(GameWorld gameWorld, BufferedReader fileReader)
     {
         int numEquipmentGroups = this.readInteger(fileReader);
-        System.out.println("Num equipment groups: " + numEquipmentGroups);
 
         for (int i = 0; i < numEquipmentGroups; i++)
         {
             int equipmentIndex = this.readInteger(fileReader);
             int equipmentQuantity = this.readInteger(fileReader);
-            System.out.println("Equipment group: " + equipmentIndex + " - " + equipmentQuantity);
 
             this.addEquipment(gameWorld, equipmentIndex, equipmentQuantity);
         }
 
         int equippedWeaponIndex = this.readInteger(fileReader);
-        System.out.println("Equipped weapon index: " + equippedWeaponIndex);
         this.equipWeapon(gameWorld, equippedWeaponIndex);
 
         int equippedShieldIndex = this.readInteger(fileReader);
-        System.out.println("Equipped shield index: " + equippedShieldIndex);
         this.equipShield(gameWorld, equippedShieldIndex);
 
         int equippedArmorIndex = this.readInteger(fileReader);
-        System.out.println("Equipped armor index: " + equippedArmorIndex);
         this.equipArmor(gameWorld, equippedArmorIndex);
     }
 

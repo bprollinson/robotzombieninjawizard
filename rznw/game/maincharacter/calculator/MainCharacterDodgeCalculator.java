@@ -19,7 +19,6 @@ public class MainCharacterDodgeCalculator
         if (shield != null)
         {
             int shieldDodgePercent = shield.getDodgePercent();
-            System.out.println("Additional shield chance to dodge: " + shieldDodgePercent);
             toDodgePercent += shieldDodgePercent;
         }
 
@@ -27,21 +26,18 @@ public class MainCharacterDodgeCalculator
         if (armor != null)
         {
             int armorDodgePercent = armor.getDodgePercent();
-            System.out.println("Additional armor chance to dodge: " + armorDodgePercent);
             toDodgePercent += armorDodgePercent;
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_RAGE) > 0)
         {
             int dodgePenalty = Math.max(21 - mainCharacter.getSkills().getSkillPoints(Skill.SKILL_RAGE), 1);
-            System.out.println("Dodge penalty: " + dodgePenalty);
             toDodgePercent -= dodgePenalty;
         }
 
         if (mainCharacter.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_MEAT_SHIELD) > 0)
         {
             int meatShieldDodgePercent = mainCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_MEAT_SHIELD_DODGE_PERCENT);
-            System.out.println("Meat shield dodge bonus: " + meatShieldDodgePercent);
             toDodgePercent += meatShieldDodgePercent;
         }
 

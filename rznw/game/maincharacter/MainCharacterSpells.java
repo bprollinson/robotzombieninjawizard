@@ -58,7 +58,6 @@ public class MainCharacterSpells
             int magicSeedPoints = this.mainCharacter.getSkills().getSkillPoints(Skill.SKILL_MAGIC_SEEDS);
             bonusSpellPoints = (int)Math.floor(magicSeedPoints / 4);
 
-            System.out.println("Bonus spell points: " + bonusSpellPoints);
             spellPoints += bonusSpellPoints;
         }
 

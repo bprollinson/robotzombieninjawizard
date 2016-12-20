@@ -21,13 +21,11 @@ public class InventoryLoader extends ComponentLoader
         inventory.setNumGold(numGold);
 
         int numInventoryGroups = this.readInteger(fileReader);
-        System.out.println("Num inventory groups: " + numInventoryGroups);
 
         for (int i = 0; i < numInventoryGroups; i++)
         {
             int itemIndex = this.readInteger(fileReader);
             int itemQuantity = this.readInteger(fileReader);
-            System.out.println("Inventory group: " + itemIndex + " - " + itemQuantity);
 
             InventoryItem item = InventoryItemFactory.factory(itemIndex);
             try

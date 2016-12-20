@@ -12,7 +12,6 @@ public class SummonLoader extends ComponentLoader
     public void load(GameWorld gameWorld, BufferedReader fileReader)
     {
         int numSummons = this.readInteger(fileReader);
-        System.out.println("Num summons: " + numSummons);
 
         gameWorld.clearSummonSet();
 
@@ -21,8 +20,6 @@ public class SummonLoader extends ComponentLoader
             int summonNumber = this.readInteger(fileReader);
             int maxHP = this.readInteger(fileReader);
             int hp = this.readInteger(fileReader);
-
-            System.out.println("Summon info: " + summonNumber + " - " + maxHP + " - " + hp);
 
             SummonedCharacter summon = null;
             switch (summonNumber)

@@ -90,8 +90,6 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
 
         if (this.numTradedIn == numToTradeIn)
         {
-            System.out.println("Done trading in!");
-
             this.assignRandomItem();
             this.removeSelectedItems();
 
@@ -106,8 +104,6 @@ public class TradeItemsScreenKeyListener extends StateTransitionKeyListener
     private void assignRandomItem()
     {
         InventoryItem item = RandomTradeItemGenerator.generateRandomTradeItem();
-
-        System.out.println("Generated item is: " + item.getDisplayName());
 
         try
         {

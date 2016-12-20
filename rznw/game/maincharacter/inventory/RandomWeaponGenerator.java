@@ -6,7 +6,6 @@ public class RandomWeaponGenerator
 {
     public Weapon generateRandomWeapon()
     {
-        System.out.println("Extracting enemy weapon");
         int index = RandomNumberGenerator.randomInteger(0, 13);
 
         switch (index)

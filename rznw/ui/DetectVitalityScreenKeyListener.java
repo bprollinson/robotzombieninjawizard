@@ -68,7 +68,7 @@ public class DetectVitalityScreenKeyListener extends StateTransitionKeyListener
     {
         this.visibleEnemies = this.getVisibleEnemies();
         int numEnemyPages = (int)Math.ceil((double)this.visibleEnemies.size() / DetectVitalityScreenKeyListener.PAGE_SIZE);
-        System.out.println("Enemies and pages: " + visibleEnemies.size() + " - " + numEnemyPages);
+
         this.state = new MenuState(2 + numEnemyPages);
 
         this.detectVitalityScreenRenderer.renderMap(this.gameWorld.getMap());

@@ -120,7 +120,6 @@ public class Map
 
     public void visit(int row, int column)
     {
-        System.out.println("Setting a map square as visited");
         this.visited[row][column] = true;
     }
 

@@ -93,7 +93,6 @@ public class SellEquipmentMenuKeyListener extends StateTransitionKeyListener
 
         EquipmentItem equippedItem = character.getEquipment().getEquippedItemOfType(item.getEquipmentType());
         boolean isEquippedItem = equippedItem != null && item.getClass().equals(equippedItem.getClass());
-        System.out.println(isEquippedItem + " - " + equipmentGroup.getNumItems());
 
         boolean itemSold = !isEquippedItem || equipmentGroup.getNumItems() > 1;
 

@@ -59,7 +59,6 @@ public abstract class EnemyCharacter extends Character
         if (this.stats != null)
         {
             result += 20 * this.getStatPoints(EnemyStat.STAT_HEALTH);
-            System.out.println("Enemy max HP: " + result);
         }
 
         return result;
@@ -72,7 +71,6 @@ public abstract class EnemyCharacter extends Character
         if (this.stats != null)
         {
             result += 20 * this.getStatPoints(EnemyStat.STAT_MANA);
-            System.out.println("Enemy max MP: " + result);
         }
 
         return result;
@@ -92,7 +90,6 @@ public abstract class EnemyCharacter extends Character
     {
         int probability = 50 + 2 * mainCharacter.getSkills().getSkillPoints(Skill.SKILL_FAST_HANDS);
         probability += this.getStatusEffects().getStat(StatusEffectStats.STAT_BONUS_DROP_PROBABILITY);
-        System.out.println("Item drop probability: " + probability);
 
         return RandomNumberGenerator.rollSucceeds(probability);
     }
@@ -103,7 +100,6 @@ public abstract class EnemyCharacter extends Character
     {
         int probability = 10;
         probability += this.getStatusEffects().getStat(StatusEffectStats.STAT_BONUS_DROP_PROBABILITY);
-        System.out.println("Equipment drop probability: " + probability);
 
         return RandomNumberGenerator.rollSucceeds(probability);
     }
@@ -118,7 +114,6 @@ public abstract class EnemyCharacter extends Character
     public boolean meleeAttackHits()
     {
         int toHitPercent = 50 + 2 * this.getStatPoints(EnemyStat.STAT_ACCURACY);
-        System.out.println("Enemy melee percent: " + toHitPercent);
 
         return RandomNumberGenerator.rollSucceeds(toHitPercent);
     }
@@ -126,7 +121,6 @@ public abstract class EnemyCharacter extends Character
     public boolean dodgesAttack()
     {
         int toDodgePercent = 2 *  this.getStatPoints(EnemyStat.STAT_DODGE);
-        System.out.println("Enemy chance to dodge: " + toDodgePercent);
 
         return RandomNumberGenerator.rollSucceeds(toDodgePercent);
     }

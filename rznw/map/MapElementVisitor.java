@@ -32,7 +32,7 @@ public class MapElementVisitor
         }
 
         radius = 3 * character.getSkills().getSkillPoints(Skill.SKILL_FIND_STAIRS);
-        System.out.println("Looking for stairs with radius: " + radius);
+
         minRow = Math.max(row - radius, 0);
         maxRow = Math.min(row + radius, Map.NUM_ROWS - 1);
         minColumn = Math.max(column - radius, 0);

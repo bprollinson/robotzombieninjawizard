@@ -19,16 +19,9 @@ public class EnemyCharacterDamageReceivedCalculator
         {
             int armorBreakPercent = enemyCharacter.getStatusEffects().getStat(StatusEffectStats.STAT_ARMOR_BREAK);
             paddingPercent -= armorBreakPercent;
-
-            System.out.println("Enemy armor break percent: " + armorBreakPercent);
         }
 
         int padding = (int)Math.floor(paddingPercent / 100.0 * damage);
-
-        if (padding != 0)
-        {
-            System.out.println("Enemy is preventing " + padding + " of " + damage + " damage via padding");
-        }
 
         damage -= padding;
 
@@ -40,25 +33,17 @@ public class EnemyCharacterDamageReceivedCalculator
             {
                  int bonusDamage = (int)Math.floor(bonusDamagePercent / 100.0 * damage);
                  damage += bonusDamage;
-
-                 System.out.println("Mana burn bonus damage: " + bonusDamage);
             }
         }
 
         if (damageSource instanceof Zombie && damageSource.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_INFECTIOUS_RAGE) > 0)
         {
-            System.out.println("Infectious rage is enabled");
-            System.out.println("Base damage: " + damage);
             damage = (int)Math.floor(1.5 * damage);
-            System.out.println("Rage damage: " + damage);
         }
 
         if (damageSource instanceof Zombie && damageSource.getStatusEffects().getStatusEffectTurns(TurnBasedStatusEffects.EFFECT_FEED_BRAIN) > 0 && damageSourceType == Character.DAMAGE_SOURCE_MAGICAL)
         {
-            System.out.println("Feed brain is enabled");
-            System.out.println("Base damage: " + damage);
             damage = (int)Math.floor(1.6 * damage);
-            System.out.println("Feed brain damage: " + damage);
         }
 
         return damage;

@@ -46,11 +46,7 @@ public class TeleportSquareCalculator
             }
         });
 
-        System.out.println("safety percentage: " + safetyPercentage);
         int position = (int)Math.floor(safetyPercentage / 100 * (minDistanceList.size() - 1));
-
-        System.out.println("position vs size: " + position + "-" + minDistanceList.size());
-        System.out.println("selected enemy distance: " + minDistanceList.get(position).getValue());
 
         return minDistanceList.get(position).getKey();
     }

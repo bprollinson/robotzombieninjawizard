@@ -33,7 +33,6 @@ public class LevelUpSpell extends UndirectedSpell
         Map map = gameWorld.getMap();
         MapElement characterElement = gameWorld.getMainCharacter().getMapElement();
         Collection<EnemyCharacter> enemies = map.getEnemiesInRectangle(characterElement.getRow() - radius, characterElement.getColumn() - radius, characterElement.getRow() + radius, characterElement.getColumn() + radius);
-        System.out.println(enemies.size() + " enemies affected");
 
         for (Iterator iterator = enemies.iterator(); iterator.hasNext();)
         {

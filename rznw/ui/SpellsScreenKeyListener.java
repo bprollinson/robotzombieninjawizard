@@ -43,28 +43,24 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                 case KeyEvent.VK_UP:
                 case KeyEvent.VK_NUMPAD8:
                 case KeyEvent.VK_KP_UP:
-                    System.out.println("Casting upward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_UP);
                     this.turnHandler.handlePostTurn();
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_NUMPAD2:
                 case KeyEvent.VK_KP_DOWN:
-                    System.out.println("Casting downward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_DOWN);
                     this.turnHandler.handlePostTurn();
                     break;
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_NUMPAD4:
                 case KeyEvent.VK_KP_LEFT:
-                    System.out.println("Casting leftward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_LEFT);
                     this.turnHandler.handlePostTurn();
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_NUMPAD6:
                 case KeyEvent.VK_KP_RIGHT:
-                    System.out.println("Casting rightward");
                     spell.cast(this.gameWorld, spellPoints, Spell.DIRECTION_RIGHT);
                     this.turnHandler.handlePostTurn();
                     break;
@@ -93,11 +89,9 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
                     {
                         if (spell.requiresDirectionInput())
                         {
-                            System.out.println("Requires direction input");
                             this.requiresDirection = true;
                             this.mapRenderer.render(this.gameWorld.getMap());
                             this.spellsScreenRenderer.renderDirectionInstructions();
-                            System.out.println("Re-renderer map");
                         }
                         else
                         {

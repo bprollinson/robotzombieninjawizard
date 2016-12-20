@@ -13,7 +13,6 @@ public class EnemyLoader extends ComponentLoader
     public void load(GameWorld gameWorld, BufferedReader fileReader)
     {
         int numEnemies = this.readInteger(fileReader);
-        System.out.println("Num enemies; " + numEnemies);
 
         gameWorld.clearEnemySet();
 
@@ -23,8 +22,6 @@ public class EnemyLoader extends ComponentLoader
             int level = this.readInteger(fileReader);
             int hp = this.readInteger(fileReader);
             int mp = this.readInteger(fileReader);
-
-            System.out.println("Enemy stats: " + enemyIndex + " - " + level + " - " + hp + " - " + mp);
 
             EnemyCharacter enemy = EnemyCharacterFactory.factory(enemyIndex, level);
             enemy.setHP(hp);
