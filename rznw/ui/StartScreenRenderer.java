@@ -19,6 +19,10 @@ public class StartScreenRenderer extends MenuScreenRenderer
         this.renderCenteredString(6, "New Game");
         this.renderCenteredString(8, "Exit");
 
+        this.renderCenteredString(38, "Copyright");
+        this.renderCenteredString(39, "Brendan Rollinson-Lorimer");
+        this.renderCenteredString(40, "2015");
+
         this.renderCursor(state);
     }
 
