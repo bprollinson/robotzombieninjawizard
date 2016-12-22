@@ -1,12 +1,17 @@
 # Robot Zombie Ninja Wizard
 
-## Starting the Game
+## Starting the Game (Windows)
+1. Double-click on RobotZombieNinjaWizard.jar to start the game
 
-1. Run **make** to compile the game
-2. Run **make run** to start the game
-3. Use the arrow keys to select **New Game**, then press **Enter**
-4. Keep **New Game** selected, and press **Enter**
-5. Use the arrow keys to select a character class, then press **Enter**
+## Starting the Game (Other OS)
+
+1. Run **make run** to start the game
+
+## Initializing a New Game
+
+1. Use the arrow keys to select **New Game**, then press **Enter**
+2. Keep **New Game** selected, and press **Enter**
+3. Use the arrow keys to select a character class, then press **Enter**
 
 ## Viewing Full Instructions
 
