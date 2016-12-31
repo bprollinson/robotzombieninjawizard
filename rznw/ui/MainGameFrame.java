@@ -15,7 +15,7 @@ public class MainGameFrame extends JFrame
     {
         super(title);
 
-        this.setSize(16 * MainGameFrame.NUM_COLUMNS, 21 * MainGameFrame.NUM_ROWS);
+        this.setSize(14 * MainGameFrame.NUM_COLUMNS, 21 * MainGameFrame.NUM_ROWS);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
