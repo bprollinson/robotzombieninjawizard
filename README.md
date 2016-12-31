@@ -18,3 +18,11 @@
 1. Within the game, press **Escape**
 2. Use the arrows keys to select **Instructions**, then press **Enter**
 3. Use the arrow keys to navigate through pages of instructions
+
+## Version History
+
+### 1.0.1
+1. Pulling in grid sizing for a better user experience
+
+### 1.0.0
+1. Initial Beta release
