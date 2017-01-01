@@ -62,7 +62,7 @@ public class SaveScreenKeyListener extends StateTransitionKeyListener
 
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER)

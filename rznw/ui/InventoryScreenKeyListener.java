@@ -14,6 +14,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
     private GameWorld gameWorld;
     private MainCharacterTurnHandler turnHandler;
     private MenuState state;
+    private int previousState;
     private boolean itemUsed;
     private boolean showingDescription = false;
 
@@ -66,6 +67,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.itemUsed = false;
 
         this.fixPosition();
@@ -80,7 +82,7 @@ public class InventoryScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (this.gameWorld.getMainCharacter().isDead())

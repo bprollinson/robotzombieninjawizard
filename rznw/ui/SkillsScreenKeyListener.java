@@ -17,6 +17,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
     private GameWorld gameWorld;
     private MainCharacterTurnHandler turnHandler;
     private MenuState state;
+    private int previousState;
     private boolean skillUsed;
     private boolean showingDescription = false;
 
@@ -72,6 +73,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.skillUsed = false;
 
         this.skillsScreenRenderer.render(this.state, this.gameWorld.getMainCharacter(), this.showingDescription);
@@ -85,7 +87,7 @@ public class SkillsScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (this.skillUsed)

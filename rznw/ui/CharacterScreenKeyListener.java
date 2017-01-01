@@ -8,6 +8,7 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
 
     private CharacterScreenRenderer characterScreenRenderer;
     private MenuState state;
+    private int previousState;
     private boolean showingDescription = false;
 
     public CharacterScreenKeyListener(CharacterScreenRenderer characterScreenRenderer)
@@ -50,6 +51,7 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.characterScreenRenderer.render(this.state, this.showingDescription);
     }
 
@@ -57,7 +59,7 @@ public class CharacterScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         return DispatchKeyListener.STATE_CHARACTER_SCREEN;

@@ -13,6 +13,7 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
     private EquipmentScreenRenderer equipmentScreenRenderer;
     private GameWorld gameWorld;
     private MenuState state;
+    private int previousState;
 
     public EquipmentScreenKeyListener(EquipmentScreenRenderer equipmentScreenRenderer, GameWorld gameWorld)
     {
@@ -42,6 +43,7 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.equipmentScreenRenderer.render(state);
     }
 
@@ -53,7 +55,7 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == EquipmentScreenKeyListener.ENTRY_WEAPONS)

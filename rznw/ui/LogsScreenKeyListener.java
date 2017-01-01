@@ -8,6 +8,7 @@ public class LogsScreenKeyListener extends StateTransitionKeyListener
 {
     private LogsScreenRenderer logsScreenRenderer;
     private MenuState state;
+    private int previousState;
 
     public LogsScreenKeyListener(LogsScreenRenderer logsScreenRenderer)
     {
@@ -39,6 +40,7 @@ public class LogsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         int numLogs = LogRendererFactory.instance().getLines().size();
         int numPages = (int)Math.ceil((double)numLogs / LogsScreenRenderer.LOGS_PER_PAGE);
         this.state = new MenuState(numPages);
@@ -50,7 +52,7 @@ public class LogsScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         return DispatchKeyListener.STATE_LOGS_SCREEN;

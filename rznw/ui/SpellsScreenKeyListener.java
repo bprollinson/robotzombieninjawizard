@@ -17,6 +17,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
     private MapRenderer mapRenderer;
     private MainCharacterTurnHandler turnHandler;
     private MenuState state;
+    private int previousState;
     private boolean spellCast;
     private boolean requiresDirection;
     private boolean showingDescription = false;
@@ -134,6 +135,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.spellCast = false;
         this.requiresDirection = false;
 
@@ -180,7 +182,7 @@ public class SpellsScreenKeyListener extends StateTransitionKeyListener
 
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         if (this.gameWorld.gameCompleted())

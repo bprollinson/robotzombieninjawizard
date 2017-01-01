@@ -8,6 +8,7 @@ public class InstructionsScreenKeyListener extends StateTransitionKeyListener
 {
     private InstructionsScreenRenderer instructionsScreenRenderer;
     private MenuState state;
+    private int previousState;
 
     public InstructionsScreenKeyListener(InstructionsScreenRenderer instructionsScreenRenderer)
     {
@@ -36,6 +37,7 @@ public class InstructionsScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
+        this.previousState = previousState;
         this.instructionsScreenRenderer.render(this.state);
     }
 
@@ -47,7 +49,7 @@ public class InstructionsScreenKeyListener extends StateTransitionKeyListener
     {
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE)
         {
-            return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
+            return this.previousState;
         }
 
         return DispatchKeyListener.STATE_INSTRUCTIONS_SCREEN;
