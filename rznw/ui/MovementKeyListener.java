@@ -65,6 +65,32 @@ public class MovementKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
         }
 
+        switch (event.getKeyCode())
+        {
+            case KeyEvent.VK_C:
+                return DispatchKeyListener.STATE_CHARACTER_SCREEN;
+            case KeyEvent.VK_K:
+                return DispatchKeyListener.STATE_SKILLS_SCREEN;
+            case KeyEvent.VK_P:
+                return DispatchKeyListener.STATE_SPELLS_SCREEN;
+            case KeyEvent.VK_I:
+                return DispatchKeyListener.STATE_INVENTORY_SCREEN;
+            case KeyEvent.VK_E:
+                return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;
+            case KeyEvent.VK_O:
+                return DispatchKeyListener.STATE_LOGS_SCREEN;
+            case KeyEvent.VK_T:
+                return DispatchKeyListener.STATE_INSTRUCTIONS_SCREEN;
+            case KeyEvent.VK_S:
+                return DispatchKeyListener.STATE_SAVE_SCREEN;
+            case KeyEvent.VK_L:
+                return DispatchKeyListener.STATE_LOAD_SCREEN;
+            case KeyEvent.VK_N:
+                return DispatchKeyListener.STATE_NEW_GAME_SCREEN;
+            case KeyEvent.VK_X:
+                return DispatchKeyListener.STATE_EXIT_SCREEN;
+        }
+
         return DispatchKeyListener.STATE_GAME_MOTION;
     }
 }
