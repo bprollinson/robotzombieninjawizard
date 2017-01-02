@@ -57,7 +57,7 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
                 }
             }
 
-            this.renderCenteredString(30, "Press 'i' to return to the spell menu");
+            this.renderCenteredString(40, "Press 'i' to return to the spell menu");
         }
         else
         {
@@ -69,7 +69,8 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
             this.renderPointGroup(mainCharacter, 2, 17);
             this.renderPointGroup(mainCharacter, 3, 23);
 
-            this.renderCenteredString(30, "Press 'i' for spell information");
+            this.renderSpellDescription(mainCharacter, state);
+            this.renderCenteredString(40, "Press 'i' for spell information");
 
             this.renderCursor(state);
         }
@@ -86,6 +87,14 @@ public class LevelUpSpellsMenuRenderer extends MenuScreenRenderer
             int pointIndex = groupNumber * 4 + i;
             this.frame.renderDisplayString(startRow + i + 1, 2, mainCharacter.getSpells().getSpellName(pointIndex) + ": " + mainCharacter.getSpells().getSpellPoints(pointIndex));
         }
+    }
+
+    private void renderSpellDescription(MainCharacter mainCharacter, MenuState state)
+    {
+        this.frame.renderDisplayString(30, 0, "Description:");
+
+        String spellDescription = mainCharacter.getSpells().getSpellDescription(state.getEntryNumber());
+        this.renderStringWithNewlines(32, spellDescription);
     }
 
     private void renderCursor(MenuState state)

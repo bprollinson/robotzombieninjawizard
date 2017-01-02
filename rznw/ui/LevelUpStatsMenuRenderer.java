@@ -55,7 +55,7 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
                 }
             }
 
-            this.renderCenteredString(30, "Press 'i' to return to the stat menu");
+            this.renderCenteredString(40, "Press 'i' to return to the stat menu");
         }
         else
         {
@@ -67,7 +67,8 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
             this.renderPointGroup(mainCharacter, 2, 17);
             this.renderPointGroup(mainCharacter, 3, 23);
 
-            this.renderCenteredString(30, "Press 'i' for stat information");
+            this.renderStatDescription(mainCharacter, state);
+            this.renderCenteredString(40, "Press 'i' for stat information");
 
             this.renderCursor(state);
         }
@@ -83,6 +84,14 @@ public class LevelUpStatsMenuRenderer extends MenuScreenRenderer
             int pointIndex = groupNumber * 4 + i;
             this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacterStats.getStatName(pointIndex) + ": " + mainCharacter.getStats().getStatPoints(pointIndex));
         }
+    }
+
+    private void renderStatDescription(MainCharacter mainCharacter, MenuState state)
+    {
+        this.frame.renderDisplayString(30, 0, "Description:");
+
+        String statDescription = mainCharacter.getStats().getStatDescription(state.getEntryNumber());
+        this.renderStringWithNewlines(32, statDescription);
     }
 
     private void renderCursor(MenuState state)
