@@ -51,6 +51,7 @@ public class StateTransitionKeyListenerContainer
         this.listeners.put(DispatchKeyListener.STATE_SELL_ITEMS_MENU, new SellItemsMenuKeyListener(new ShopScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_SELL_EQUIPMENT_MENU, new SellEquipmentMenuKeyListener(new ShopScreenRenderer(frame), gameWorld));
         this.listeners.put(DispatchKeyListener.STATE_LOGS_SCREEN, new LogsScreenKeyListener(new LogsScreenRenderer(frame)));
+        this.listeners.put(DispatchKeyListener.STATE_HOTKEYS_SCREEN, new HotkeysScreenKeyListener(new HotkeysScreenRenderer(frame)));
     }
 
     public StateTransitionKeyListener getListener(int state)

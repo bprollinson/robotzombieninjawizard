@@ -67,6 +67,8 @@ public class MovementKeyListener extends StateTransitionKeyListener
 
         switch (event.getKeyCode())
         {
+            case KeyEvent.VK_H:
+                return DispatchKeyListener.STATE_HOTKEYS_SCREEN;
             case KeyEvent.VK_C:
                 return DispatchKeyListener.STATE_CHARACTER_SCREEN;
             case KeyEvent.VK_K:
