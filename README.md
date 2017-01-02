@@ -20,6 +20,10 @@
 
 ## Version History
 
+### 1.0.2
+1. Adding hotkeys for accessing menus
+2. Adding menu for viewing hotkeys
+
 ### 1.0.1
 1. Pulling in grid sizing for a better user experience
 
