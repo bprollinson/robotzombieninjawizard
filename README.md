@@ -15,9 +15,8 @@
 
 ## Viewing Full Instructions
 
-1. Within the game, press **Escape**
-2. Use the arrows keys to select **Instructions**, then press **Enter**
-3. Use the arrow keys to navigate through pages of instructions
+1. Within the game, press **t**
+2. Use the arrow keys to navigate through pages of instructions
 
 ## Version History
 
