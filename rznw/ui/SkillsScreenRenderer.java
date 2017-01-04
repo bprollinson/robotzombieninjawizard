@@ -69,7 +69,7 @@ public class SkillsScreenRenderer extends MenuScreenRenderer
                 }
             }
 
-            this.renderCenteredString(30, "Press 'i' to return to the skill menu");
+            this.renderCenteredString(40, "Press 'i' to return to the skill menu");
         }
         else
         {
@@ -80,7 +80,8 @@ public class SkillsScreenRenderer extends MenuScreenRenderer
             this.renderPointGroup(mainCharacter, 2, 15);
             this.renderPointGroup(mainCharacter, 3, 21);
 
-            this.renderCenteredString(30, "Press 'i' for skill information");
+            this.renderSkillDescription(mainCharacter, state);
+            this.renderCenteredString(40, "Press 'i' for skill information");
 
             this.renderCursor(state);
         }
@@ -96,6 +97,14 @@ public class SkillsScreenRenderer extends MenuScreenRenderer
             int pointIndex = groupNumber * 4 + i;
             this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacterSkills.getSkillName(pointIndex) + ": " + mainCharacter.getSkills().getSkillPoints(pointIndex));
         }
+    }
+
+    private void renderSkillDescription(MainCharacter mainCharacter, MenuState state)
+    {
+        this.frame.renderDisplayString(30, 0, "Description:");
+
+        String skillDescription = mainCharacter.getSkills().getSkillDescription(state.getEntryNumber());
+        this.renderStringWithNewlines(32, skillDescription);
     }
 
     private void renderCursor(MenuState state)

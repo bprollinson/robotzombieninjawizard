@@ -69,7 +69,7 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
                     }
                 }
 
-                this.renderCenteredString(29, "Press 'i' to return to the stat menu");
+                this.renderCenteredString(38, "Press 'i' to return to the stat menu");
             }
             else
             {
@@ -106,7 +106,7 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.frame.renderDisplayString(10, 0, "HP: " + character.getHP() + "/" + character.getMaxHP());
         this.frame.renderDisplayString(11, 0, "MP: " + character.getMP() + "/" + character.getMaxMP());
 
-        this.frame.renderDisplayString(31, 0, "Down for more");
+        this.frame.renderDisplayString(40, 0, "Down for more");
     }
 
     private void renderStatInfo(MenuState state)
@@ -117,11 +117,12 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
         this.renderPointGroup(character, 2, 15);
         this.renderPointGroup(character, 3, 21);
 
-        this.renderCenteredString(29, "Press 'i' for stat information");
+        this.renderStatDescription(character, state);
+        this.renderCenteredString(38, "Press 'i' for stat information");
 
         if (state.getEntryNumber() == 1)
         {
-            this.frame.renderDisplayString(31, 0, "Up for more");
+            this.frame.renderDisplayString(40, 0, "Up for more");
         }
     }
 
@@ -135,6 +136,14 @@ public class CharacterScreenRenderer extends MenuScreenRenderer
             int pointIndex = groupNumber * 4 + i;
             this.frame.renderDisplayString(startRow + i + 1, 2, MainCharacterStats.getStatName(pointIndex) + ": " + mainCharacter.getStats().getStatPoints(pointIndex));
         }
+    }
+
+    private void renderStatDescription(MainCharacter mainCharacter, MenuState state)
+    {
+        this.frame.renderDisplayString(30, 0, "Description:");
+
+        String statDescription = mainCharacter.getStats().getStatDescription(state.getEntryNumber() - 1);
+        this.renderStringWithNewlines(32, statDescription);
     }
 
     private void renderCursor(MenuState state)
