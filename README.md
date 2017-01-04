@@ -20,6 +20,10 @@
 
 ## Version History
 
+### 1.0.3
+1. Showing stat, spell and skill descriptions on hover during level-up
+2. Showing stat, spell and skill descriptions on hover in standard menus
+
 ### 1.0.2
 1. Adding hotkeys for accessing menus
 2. Adding menu for viewing hotkeys
