@@ -43,7 +43,11 @@ public class EquipmentScreenKeyListener extends StateTransitionKeyListener
 
     public void enterState(int previousState)
     {
-        this.previousState = previousState;
+        if (previousState == DispatchKeyListener.STATE_GAME_MOTION || previousState == DispatchKeyListener.STATE_GAME_ESCAPE_MENU)
+        {
+            this.previousState = previousState;
+        }
+
         this.equipmentScreenRenderer.render(state);
     }
 

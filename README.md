@@ -23,6 +23,7 @@
 ### 1.0.3
 1. Showing stat, spell and skill descriptions on hover during level-up
 2. Showing stat, spell and skill descriptions on hover in standard menus
+3. Fixing issue where user can't escape the equipment menu after going to a sub-menu
 
 ### 1.0.2
 1. Adding hotkeys for accessing menus
