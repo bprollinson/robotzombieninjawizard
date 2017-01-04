@@ -3,6 +3,7 @@ package rznw.ui;
 import rznw.game.maincharacter.MainCharacter;
 import rznw.game.spell.Spell;
 import rznw.game.spell.SpellFactory;
+import rznw.map.Map;
 
 public class SpellsScreenRenderer extends MenuScreenRenderer
 {
@@ -77,8 +78,20 @@ public class SpellsScreenRenderer extends MenuScreenRenderer
 
     public void renderDirectionInstructions()
     {
+        this.clearCharacterSummaryArea();
         this.renderCenteredString(30, "Press up, down, left or right to direct");
         this.renderCenteredString(31, "your spell.");
+    }
+
+    private void clearCharacterSummaryArea()
+    {
+        for (int i = 0; i < MainGamePanel.NUM_SUMMARY_ROWS; i++)
+        {
+            for (int j = 0; j < Map.NUM_COLUMNS; j++)
+            {
+                this.frame.renderDisplayCharacter(Map.NUM_ROWS + i, j, ' ');
+            }
+        }
     }
 
     private void renderPointGroup(MainCharacter mainCharacter, int groupNumber, int startRow)
