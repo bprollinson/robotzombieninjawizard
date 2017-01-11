@@ -33,7 +33,7 @@ public class MapDetectVitalityScraper
                 int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_DETECT_VITALITY);
                 int radius = 1 + skillPoints;
                 MapElement characterElement = character.getMapElement();
-                double distance = Math.sqrt(Math.pow(characterElement.getRow() - row, 2) + Math.pow(characterElement.getColumn() - column, 2));
+                int distance = Math.max(Math.abs(characterElement.getRow() - row), Math.abs(characterElement.getColumn() - column));
 
                 if (element != null && element.isEnemy() && (visible || distance <= radius)) {
                     enemies.add((EnemyMapElement)element);

@@ -67,7 +67,7 @@ public class DetectVitalityScreenRenderer
                 int skillPoints = character.getSkills().getSkillPoints(Skill.SKILL_DETECT_VITALITY);
                 int radius = 1 + skillPoints;
                 MapElement characterElement = character.getMapElement();
-                double distance = Math.sqrt(Math.pow(characterElement.getRow() - i, 2) + Math.pow(characterElement.getColumn() - j, 2));
+                int distance = Math.max(Math.abs(characterElement.getRow() - i), + Math.abs(characterElement.getColumn() - j));
 
                 if (element != null && element.isEnemy() && (visible || distance <= radius)) {
                     displayCharacter = Character.forDigit(digit, 10);
