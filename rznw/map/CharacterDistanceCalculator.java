@@ -5,7 +5,7 @@ import rznw.map.element.MapElement;
 
 public class CharacterDistanceCalculator
 {
-    public double calculateDistance(Character character1, Character character2)
+    public int calculateDistance(Character character1, Character character2)
     {
         MapElement element1 = character1.getMapElement();
         MapElement element2 = character2.getMapElement();

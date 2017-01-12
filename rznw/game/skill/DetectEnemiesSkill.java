@@ -53,7 +53,7 @@ public class DetectEnemiesSkill extends Skill
             EnemyCharacter enemy = (EnemyCharacter)iterator.next();
             MapElement enemyElement = enemy.getMapElement();
 
-            double distance = Math.sqrt(Math.pow(enemyElement.getRow() - characterElement.getRow(), 2) + Math.pow(enemyElement.getColumn() - characterElement.getColumn(), 2));
+            int distance = Math.max(Math.abs(enemyElement.getRow() - characterElement.getRow()), Math.abs(enemyElement.getColumn() - characterElement.getColumn()));
 
             if (distance <= maxDistance)
             {
