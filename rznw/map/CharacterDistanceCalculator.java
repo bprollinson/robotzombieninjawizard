@@ -10,6 +10,6 @@ public class CharacterDistanceCalculator
         MapElement element1 = character1.getMapElement();
         MapElement element2 = character2.getMapElement();
 
-        return Math.sqrt(Math.pow(element2.getRow() - element1.getRow(), 2) + Math.pow(element2.getColumn() - element1.getColumn(), 2));
+        return Math.max(Math.abs(element2.getRow() - element1.getRow()), Math.abs(element2.getColumn() - element1.getColumn()));
     }
 }
