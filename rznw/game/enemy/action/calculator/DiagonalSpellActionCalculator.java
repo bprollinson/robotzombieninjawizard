@@ -4,6 +4,7 @@ import rznw.game.enemy.action.choice.ConfusionChoice;
 import rznw.game.enemy.action.choice.DiagonalSpellChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
+import rznw.game.enemy.action.choice.SummonAttackChoice;
 
 public class DiagonalSpellActionCalculator extends EnemyActionCalculator
 {
@@ -12,6 +13,7 @@ public class DiagonalSpellActionCalculator extends EnemyActionCalculator
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
+            new SummonAttackChoice(),
             new ConfusionChoice(),
             new DiagonalSpellChoice(DiagonalSpellActionCalculator.SPELL_INDEX),
             new MovementChoice()

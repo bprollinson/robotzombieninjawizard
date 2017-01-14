@@ -7,6 +7,7 @@ import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.PartialHealSpellChoice;
 import rznw.game.enemy.action.choice.ProjectileSpellChoice;
 import rznw.game.enemy.action.choice.RadialHealthBasedSpellChoice;
+import rznw.game.enemy.action.choice.SummonAttackChoice;
 
 public class ZenithActionCalculator extends EnemyActionCalculator
 {
@@ -15,6 +16,7 @@ public class ZenithActionCalculator extends EnemyActionCalculator
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
+            new SummonAttackChoice(),
             new ConfusionChoice(),
             new PartialHealSpellChoice(Zenith.SPELL_HEAL),
             new RadialHealthBasedSpellChoice(Zenith.SPELL_HEALTH_ZAP, ZenithActionCalculator.RADIUS),

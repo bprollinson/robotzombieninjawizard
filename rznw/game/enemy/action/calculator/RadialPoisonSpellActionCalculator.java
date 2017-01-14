@@ -4,6 +4,7 @@ import rznw.game.enemy.action.choice.ConfusionChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.RadialPoisonSpellChoice;
+import rznw.game.enemy.action.choice.SummonAttackChoice;
 
 public class RadialPoisonSpellActionCalculator extends EnemyActionCalculator
 {
@@ -13,6 +14,7 @@ public class RadialPoisonSpellActionCalculator extends EnemyActionCalculator
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
+            new SummonAttackChoice(),
             new ConfusionChoice(),
             new RadialPoisonSpellChoice(RadialPoisonSpellActionCalculator.SPELL_INDEX, RadialPoisonSpellActionCalculator.RADIUS),
             new MovementChoice()

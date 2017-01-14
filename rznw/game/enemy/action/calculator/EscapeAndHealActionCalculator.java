@@ -5,6 +5,7 @@ import rznw.game.enemy.action.choice.DamagedEscapeChoice;
 import rznw.game.enemy.action.choice.EnemyActionChoice;
 import rznw.game.enemy.action.choice.MovementChoice;
 import rznw.game.enemy.action.choice.PartialHealSpellChoice;
+import rznw.game.enemy.action.choice.SummonAttackChoice;
 
 public class EscapeAndHealActionCalculator extends EnemyActionCalculator
 {
@@ -14,6 +15,7 @@ public class EscapeAndHealActionCalculator extends EnemyActionCalculator
     public EnemyActionChoice[] getChoiceList()
     {
         return new EnemyActionChoice[] {
+            new SummonAttackChoice(),
             new ConfusionChoice(),
             new DamagedEscapeChoice(EscapeAndHealActionCalculator.RADIUS),
             new PartialHealSpellChoice(EscapeAndHealActionCalculator.SPELL_INDEX),
