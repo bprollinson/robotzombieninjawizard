@@ -20,6 +20,10 @@
 
 ## Version History
 
+### 1.0.4
+1. Improving radius calculations for skills and enemy AI
+2. Improving enemy AI to attack summoned characters when nearby
+
 ### 1.0.3
 1. Showing stat, spell and skill descriptions on hover during level-up
 2. Showing stat, spell and skill descriptions on hover in standard menus
