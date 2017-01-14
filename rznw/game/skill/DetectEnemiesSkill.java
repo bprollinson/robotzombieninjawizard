@@ -76,7 +76,7 @@ public class DetectEnemiesSkill extends Skill
 
         return new String[] {
             "Success probability: " + successProbability + "%",
-            "Maximum distance: " + 2 * skillPoints
+            "Radius: " + 2 * skillPoints
         };
     }
 }
