@@ -53,6 +53,8 @@ public class NewGameScreenKeyListener extends StateTransitionKeyListener
         if (event.getKeyCode() == KeyEvent.VK_ENTER)
         {
             LogRendererFactory.instance().clear();
+            LogRendererFactory.instance().log("Welcome to RobotZombieNinjaWizard!");
+            LogRendererFactory.instance().log("Press 'h' for hotkeys, 'n' for instructions, or 'Esc' to access the main menu.");
             this.gameWorld.initializeToDefaultState(this.state.getEntryNumber());
         }
     }
