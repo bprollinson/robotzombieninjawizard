@@ -4,17 +4,18 @@ import java.awt.event.KeyEvent;
 
 public class MainMenuKeyListener extends StateTransitionKeyListener
 {
-    private static final int ENTRY_CHARACTER = 0;
-    private static final int ENTRY_SKILLS = 1;
-    private static final int ENTRY_SPELLS = 2;
-    private static final int ENTRY_INVENTORY = 3;
-    private static final int ENTRY_EQUIPMENT = 4;
-    private static final int ENTRY_LOGS = 5;
-    private static final int ENTRY_INSTRUCTIONS = 6;
-    private static final int ENTRY_SAVE = 7;
-    private static final int ENTRY_LOAD = 8;
-    private static final int ENTRY_NEW_GAME = 9;
-    private static final int ENTRY_EXIT = 10;
+    private static final int ENTRY_RESUME = 0;
+    private static final int ENTRY_CHARACTER = 1;
+    private static final int ENTRY_SKILLS = 2;
+    private static final int ENTRY_SPELLS = 3;
+    private static final int ENTRY_INVENTORY = 4;
+    private static final int ENTRY_EQUIPMENT = 5;
+    private static final int ENTRY_LOGS = 6;
+    private static final int ENTRY_INSTRUCTIONS = 7;
+    private static final int ENTRY_SAVE = 8;
+    private static final int ENTRY_LOAD = 9;
+    private static final int ENTRY_NEW_GAME = 10;
+    private static final int ENTRY_EXIT = 11;
 
     private MainMenuRenderer mainMenuRenderer;
     private MenuState state;
@@ -22,7 +23,7 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
     public MainMenuKeyListener(MainMenuRenderer mainMenuRenderer)
     {
         this.mainMenuRenderer = mainMenuRenderer;
-        this.state = new MenuState(11);
+        this.state = new MenuState(12);
     }
 
     public void keyPressed(KeyEvent event)
@@ -60,59 +61,35 @@ public class MainMenuKeyListener extends StateTransitionKeyListener
             return DispatchKeyListener.STATE_GAME_MOTION;
         }
 
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_CHARACTER)
+        if (event.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            return DispatchKeyListener.STATE_CHARACTER_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_SKILLS)
-        {
-            return DispatchKeyListener.STATE_SKILLS_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_SPELLS)
-        {
-            return DispatchKeyListener.STATE_SPELLS_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_INVENTORY)
-        {
-            return DispatchKeyListener.STATE_INVENTORY_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EQUIPMENT)
-        {
-            return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_LOGS)
-        {
-            return DispatchKeyListener.STATE_LOGS_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_INSTRUCTIONS)
-        {
-            return DispatchKeyListener.STATE_INSTRUCTIONS_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_SAVE)
-        {
-            return DispatchKeyListener.STATE_SAVE_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_LOAD)
-        {
-            return DispatchKeyListener.STATE_LOAD_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_NEW_GAME)
-        {
-            return DispatchKeyListener.STATE_NEW_GAME_TYPE_SCREEN;
-        }
-
-        if (event.getKeyCode() == KeyEvent.VK_ENTER && this.state.getEntryNumber() == MainMenuKeyListener.ENTRY_EXIT)
-        {
-            return DispatchKeyListener.STATE_EXIT_SCREEN;
+            switch (this.state.getEntryNumber())
+            {
+                case MainMenuKeyListener.ENTRY_RESUME:
+                    return DispatchKeyListener.STATE_GAME_MOTION;
+                case MainMenuKeyListener.ENTRY_CHARACTER:
+                    return DispatchKeyListener.STATE_CHARACTER_SCREEN;
+                case MainMenuKeyListener.ENTRY_SKILLS:
+                    return DispatchKeyListener.STATE_SKILLS_SCREEN;
+                case MainMenuKeyListener.ENTRY_SPELLS:
+                    return DispatchKeyListener.STATE_SPELLS_SCREEN;
+                case MainMenuKeyListener.ENTRY_INVENTORY:
+                    return DispatchKeyListener.STATE_INVENTORY_SCREEN;
+                case MainMenuKeyListener.ENTRY_EQUIPMENT:
+                    return DispatchKeyListener.STATE_EQUIPMENT_SCREEN;
+                case MainMenuKeyListener.ENTRY_LOGS:
+                    return DispatchKeyListener.STATE_LOGS_SCREEN;
+                case MainMenuKeyListener.ENTRY_INSTRUCTIONS:
+                    return DispatchKeyListener.STATE_INSTRUCTIONS_SCREEN;
+                case MainMenuKeyListener.ENTRY_SAVE:
+                    return DispatchKeyListener.STATE_SAVE_SCREEN;
+                case MainMenuKeyListener.ENTRY_LOAD:
+                    return DispatchKeyListener.STATE_LOAD_SCREEN;
+                case MainMenuKeyListener.ENTRY_NEW_GAME:
+                    return DispatchKeyListener.STATE_NEW_GAME_TYPE_SCREEN;
+                case MainMenuKeyListener.ENTRY_EXIT:
+                    return DispatchKeyListener.STATE_EXIT_SCREEN;
+            }
         }
 
         return DispatchKeyListener.STATE_GAME_ESCAPE_MENU;
