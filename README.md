@@ -20,6 +20,11 @@
 
 ## Version History
 
+### 1.0.5
+1. Adding basic instructions when starting a new game
+2. Adding a "resume" menu item to the main menu
+3. Adding instructions for accessing menus to various instructions screens
+
 ### 1.0.4
 1. Improving radius calculations for skills and enemy AI
 2. Improving enemy AI to attack summoned characters when nearby
