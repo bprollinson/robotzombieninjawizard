@@ -18,7 +18,7 @@ public class MagicInstructionsPage extends InstructionsPage
             "",
             "Spells are specific to your character class. Try playing with each of the four classes to see which you like the best.",
             "",
-            "For more information about your spells, visit the spells menu."
+            "For more information about your spells, visit the spells menu. To access that menu, press 'p' in-game, or use the 'Esc'-key menu."
         };
     }
 }

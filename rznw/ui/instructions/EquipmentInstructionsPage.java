@@ -18,7 +18,9 @@ public class EquipmentInstructionsPage extends InstructionsPage
             "",
             "Equipment may also provide other bonuses. See specific equipment descriptions on the equipment menu for details.",
             "",
-            "You may equip one of each equipment type at any time via the equipment menu."
+            "You may equip one of each equipment type at any time via the equipment menu.",
+            "",
+            "For more information about your skills, visit the equipment menu. To access that menu, press 'e' in-game, or use the 'Esc'-key menu."
         };
     }
 }

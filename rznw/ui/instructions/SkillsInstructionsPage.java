@@ -14,7 +14,7 @@ public class SkillsInstructionsPage extends InstructionsPage
             "",
             "Stats are common to all four character classes. They may work in an active or passive fashion, depending on the skill.",
             "",
-            "For more information about your skills, visit the skills menu."
+            "For more information about your skills, visit the skills menu. To access that menu, press 'k' in-game, or use the 'Esc'-key menu."
         };
     }
 }

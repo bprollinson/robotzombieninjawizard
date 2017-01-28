@@ -14,7 +14,9 @@ public class InventoryInstructionsPage extends InstructionsPage
             "",
             "The most common uses of items are for healing, recovering MP, or relieving a status effect.",
             "",
-            "Items can be viewed or used from the inventory menu."
+            "Items can be viewed or used from the inventory menu.",
+            "",
+            "For more information about your skills, visit the inventory menu. To access that menu, press 'i' in-game, or use the 'Esc'-key menu."
         };
     }
 }
