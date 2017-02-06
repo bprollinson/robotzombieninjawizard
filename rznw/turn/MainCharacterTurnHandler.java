@@ -20,6 +20,7 @@ public class MainCharacterTurnHandler
     private static int KEY_V = 86;
     private static int KEY_5 = 101;
     private static int KEY_5_NO_NUM_LOCK = 65368;
+    private static int KEY_5_NO_NUM_LOCK_ALTERNATE = 12;
 
     private GameWorld gameWorld;
     private CharacterSummaryRenderer renderer;
@@ -47,7 +48,7 @@ public class MainCharacterTurnHandler
         MainCharacter character = this.gameWorld.getMainCharacter();
         PositionChange characterPositionChange = new KeyBasedPositionChange(character, event);
 
-        if (event.getKeyCode() == MainCharacterTurnHandler.KEY_5 || event.getKeyCode() == MainCharacterTurnHandler.KEY_5_NO_NUM_LOCK)
+        if (event.getKeyCode() == MainCharacterTurnHandler.KEY_5 || event.getKeyCode() == MainCharacterTurnHandler.KEY_5_NO_NUM_LOCK || event.getKeyCode() == MainCharacterTurnHandler.KEY_5_NO_NUM_LOCK_ALTERNATE)
         {
             this.handlePostTurn();
             this.renderer.render(this.gameWorld);
