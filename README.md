@@ -20,6 +20,9 @@
 
 ## Version History
 
+### 1.0.6
+1. Allowing users to skip their turn when num lock is off
+
 ### 1.0.5
 1. Adding basic instructions when starting a new game
 2. Adding a "resume" menu item to the main menu
