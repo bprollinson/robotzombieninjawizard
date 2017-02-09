@@ -20,6 +20,9 @@
 
 ## Version History
 
+### 1.0.7
+1. Improving enemy pathfinding AI
+
 ### 1.0.6
 1. Allowing users to skip their turn when num lock is off
 

@@ -2,7 +2,7 @@ package rznw;
 
 public class Version
 {
-    private static final String VERSION_STRING = "1.0.6";
+    private static final String VERSION_STRING = "1.0.7";
 
     public static String getVersionString()
     {
