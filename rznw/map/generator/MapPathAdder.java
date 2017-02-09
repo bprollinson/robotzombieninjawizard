@@ -86,6 +86,6 @@ public class MapPathAdder
 
         ShortestPathCalculator pathCalculator = new ShortestPathCalculator(paddedMap, true, false);
 
-        return pathCalculator.calculateShortestPath(point1, point2);
+        return pathCalculator.calculateShortestPath(point1, point2, false);
     }
 }

@@ -1,5 +1,6 @@
 package rznw.map;
 
+import rznw.map.element.CharacterMapElement;
 import rznw.map.element.Void;
 import rznw.map.element.Wall;
 import rznw.map.generator.MapPoint;
@@ -30,15 +31,15 @@ public class ShortestPathCalculator
         this.allowDiagonal = allowDiagonal;
     }
 
-    public MapPath calculateShortestPath(MapPoint startPoint, MapPoint endPoint)
+    public MapPath calculateShortestPath(MapPoint startPoint, MapPoint endPoint, boolean passThroughCharacters)
     {
         MapPathCache pathCache = new MapPathCache();
         MapPath result = new MapPath(startPoint);
 
-        return this.calculateShortestPath(this.map, endPoint, new MapPath[]{result}, pathCache, this.voidWalk, this.allowDiagonal);
+        return this.calculateShortestPath(this.map, endPoint, new MapPath[]{result}, pathCache, passThroughCharacters);
     }
 
-    private MapPath calculateShortestPath(Map map, MapPoint endPoint, MapPath[] paths, MapPathCache pathCache, boolean voidWalk, boolean allowDiagonal)
+    private MapPath calculateShortestPath(Map map, MapPoint endPoint, MapPath[] paths, MapPathCache pathCache, boolean passThroughCharacters)
     {
         if (paths.length == 0)
         {
@@ -70,7 +71,7 @@ public class ShortestPathCalculator
             new PathDirectionRight()
         };
 
-        if (allowDiagonal)
+        if (this.allowDiagonal)
         {
             possibleDirections = new PathDirection[]{
                 new PathDirectionUp(),
@@ -92,19 +93,49 @@ public class ShortestPathCalculator
                 MapPath path = paths[i].getSubsequentPath(possibleDirection);
                 MapPoint point = path.getCurrentPoint();
 
-                if (point.getRow() >= 0 && point.getRow() < Map.NUM_ROWS && point.getColumn() >= 0 && point.getColumn() < Map.NUM_COLUMNS && !(map.getElement(point.getRow(), point.getColumn()) instanceof Wall) || path.getCurrentPoint().equals(endPoint))
-                {
-                    if (voidWalk || !(map.getElement(point.getRow(), point.getColumn()) instanceof Void))
-                    {
-                        newPaths.add(path);
-                    }
+                if (!pathCache.pathIsUsed(path) && this.pointReachable(point, endPoint, passThroughCharacters)) {
+                    newPaths.add(path);
                 }
             }
         }
 
         Vector<MapPath> uniquePaths = ShortestPathCalculator.makePathsUnique(newPaths);
 
-        return this.calculateShortestPath(map, endPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache, voidWalk, allowDiagonal);
+        return this.calculateShortestPath(map, endPoint, uniquePaths.toArray(new MapPath[uniquePaths.size()]), pathCache, passThroughCharacters);
+    }
+
+    private boolean pointReachable(MapPoint point, MapPoint endPoint, boolean passThroughCharacters)
+    {
+        if (point.equals(endPoint)) {
+            return true;
+        }
+
+        if (point.getRow() < 0 || point.getRow() >= Map.NUM_ROWS)
+        {
+            return false;
+        }
+
+        if (point.getColumn() < 0 || point.getColumn() >= Map.NUM_COLUMNS)
+        {
+            return false;
+        }
+
+        if (map.getElement(point.getRow(), point.getColumn()) instanceof Wall)
+        {
+            return false;
+        }
+
+        if (map.getElement(point.getRow(), point.getColumn()) instanceof Void && !this.voidWalk)
+        {
+            return false;
+        }
+
+        if (map.getElement(point.getRow(), point.getColumn()) instanceof CharacterMapElement && !passThroughCharacters)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private static Vector<MapPath> makePathsUnique(Vector<MapPath> paths)

@@ -65,7 +65,11 @@ public abstract class SummonedCharacter extends Character
         MapPoint startPoint = new MapPoint(this.getMapElement().getRow(), this.getMapElement().getColumn());
         MapPoint endPoint = new MapPoint(closestElement.getRow(), closestElement.getColumn());
         ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
-        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
+        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint, false);
+        if (path == null)
+        {
+            path = pathCalculator.calculateShortestPath(startPoint, endPoint, true);
+        }
 
         PathDirection firstDirection = path.getDirection(0);
 

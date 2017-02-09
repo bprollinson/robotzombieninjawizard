@@ -20,7 +20,11 @@ public class MovementChoice extends EnemyActionChoice
         MapPoint startPoint = new MapPoint(enemyCharacter.getMapElement().getRow(), enemyCharacter.getMapElement().getColumn());
         MapPoint endPoint = new MapPoint(character.getMapElement().getRow(), character.getMapElement().getColumn());
         ShortestPathCalculator pathCalculator = new ShortestPathCalculator(gameWorld.getMap(), false, true);
-        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint);
+        MapPath path = pathCalculator.calculateShortestPath(startPoint, endPoint, false);
+        if (path == null)
+        {
+            path = pathCalculator.calculateShortestPath(startPoint, endPoint, true);
+        }
 
         PathDirection firstDirection = path.getDirection(0);
 
