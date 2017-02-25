@@ -48,6 +48,9 @@ public class PostEnemyTurnHandler implements TurnFragmentHandler
         }
 
         character.getStatusEffects().processTurn(this.gameWorld);
+
+        MapElement characterMapElement = character.getMapElement();
+        map.setElementVisited(character, characterMapElement.getRow(), characterMapElement.getColumn());
     }
 
     private void handleMainCharacterRevival()
