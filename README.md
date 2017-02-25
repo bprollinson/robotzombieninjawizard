@@ -20,6 +20,9 @@
 
 ## Version History
 
+### 1.0.8
+1. Fixing bug where the screen was not re-rendering when moved by an enemy spell
+
 ### 1.0.7
 1. Improving enemy pathfinding AI
 
