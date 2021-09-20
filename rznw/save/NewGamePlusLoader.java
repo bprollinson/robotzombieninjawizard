@@ -6,7 +6,7 @@ public class NewGamePlusLoader extends BaseGameLoader
     {
         return new ComponentLoader[] {
             new NewGamePlusGameCompletedLoader(),
-            new MainCharacterLoader(),
+            new NewGamePlusMainCharacterLoader(),
             new ShopLoader(),
             new NewGamePlusEnemyLoader(),
             new NewGamePlusSummonLoader(),
