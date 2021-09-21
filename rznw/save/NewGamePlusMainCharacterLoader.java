@@ -45,16 +45,19 @@ class NewGamePlusMainCharacterLoader extends MainCharacterLoader
         for (int i = 0; i < SimpleStatusEffects.NUM_STATUS_EFFECTS; i++)
         {
             boolean simpleStatusEffect = this.readInteger(fileReader) == 1;
+            character.getStatusEffects().setStatusEffect(i, false);
         }
 
         for (int i = 0; i < TurnBasedStatusEffects.NUM_STATUS_EFFECTS; i++)
         {
             int statusEffectTurns = this.readInteger(fileReader);
+            character.getStatusEffects().setStatusEffectTurns(i, 0);
         }
 
         for (int i = 0; i < StatusEffectStats.NUM_STATS; i++)
         {
             int statusEffectStatus = this.readInteger(fileReader);
+            character.getStatusEffects().setStat(i, 0);
         }
 
         character.setHP(character.getMaxHP());
