@@ -4,7 +4,7 @@ full:
 	make jar
 	make clean
 game:
-	javac ./*.java
+	javac -Xlint:unchecked ./*.java
 clean:
 	find . -name "*.class" -exec rm {} \;
 	find . -name "*.java~" -exec rm {} \;
