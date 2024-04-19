@@ -20,6 +20,9 @@
 
 ## Version History
 
+### 2.0.0
+1. Updating Robot Zombie Ninja Wizard to run on Java 22
+
 ### 1.0.9
 1. Refilling HP and MP and resetting status effects during New Game Plus
 
