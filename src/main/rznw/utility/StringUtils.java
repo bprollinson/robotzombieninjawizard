@@ -21,7 +21,7 @@ public class StringUtils
 
         while (remainingString.length() > maxLineLength)
         {
-            String searchString = remainingString.substring(0, maxLineLength);
+            String searchString = remainingString.substring(0, maxLineLength + 1);
             int lastSpacePos = searchString.lastIndexOf(' ');
             String line = searchString.substring(0, lastSpacePos);
             lines.add(line);
