@@ -1,5 +1,6 @@
 package rznw.utility;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
@@ -19,5 +20,62 @@ public class StringUtilsTest
         StringUtils stringUtils = new StringUtils();
 
         assertEquals("", stringUtils.UCFirst(""));
+    }
+
+    @Test
+    public void testSplitIntoLinesSplitsIntoTwoLines()
+    {
+        StringUtils stringUtils = new StringUtils();
+
+        String[] expectedLines = new String[]
+        {
+            "1234 1234",
+            "1234 1234"
+        };
+
+        assertArrayEquals(expectedLines, stringUtils.splitIntoLines("1234 1234 1234 1234", 10));
+    }
+
+    @Test
+    public void testSplitIntoLinesDoesNotSplitShortString()
+    {
+        StringUtils stringUtils = new StringUtils();
+
+        String[] expectedLines = new String[]
+        {
+            "1234 1234"
+        };
+
+        assertArrayEquals(expectedLines, stringUtils.splitIntoLines("1234 1234", 10));
+    }
+
+    @Test
+    public void testSplitIntoLinesSplitsIntoManyLines()
+    {
+        StringUtils stringUtils = new StringUtils();
+
+        String[] expectedLines = new String[]
+        {
+            "1234",
+            "1234",
+            "1234",
+            "1234"
+        };
+
+        assertArrayEquals(expectedLines, stringUtils.splitIntoLines("1234 1234 1234 1234", 5));
+    }
+
+    @Test
+    public void testSplitIntoLinesHandlesEndOfStringBoundary()
+    {
+        StringUtils stringUtils = new StringUtils();
+
+        String[] expectedLines = new String[]
+        {
+            "1234 1234",
+            "1234 1234"
+        };
+
+        assertArrayEquals(expectedLines, stringUtils.splitIntoLines("1234 1234 1234 1234", 9));
     }
 }
