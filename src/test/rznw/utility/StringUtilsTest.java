@@ -50,6 +50,19 @@ public class StringUtilsTest
     }
 
     @Test
+    public void testSplitIntoLinesHandlesEmptyString()
+    {
+        StringUtils stringUtils = new StringUtils();
+
+        String[] expectedLines = new String[]
+        {
+            ""
+        };
+
+        assertArrayEquals(expectedLines, stringUtils.splitIntoLines("", 10));
+    }
+
+    @Test
     public void testSplitIntoLinesSplitsIntoManyLines()
     {
         StringUtils stringUtils = new StringUtils();
@@ -63,6 +76,20 @@ public class StringUtilsTest
         };
 
         assertArrayEquals(expectedLines, stringUtils.splitIntoLines("1234 1234 1234 1234", 5));
+    }
+
+    @Test
+    public void testSplitIntoLinesHandlesSpaces()
+    {
+        StringUtils stringUtils = new StringUtils();
+
+        String[] expectedLines = new String[]
+        {
+            "         ",
+            "         "
+        };
+
+        assertArrayEquals(expectedLines, stringUtils.splitIntoLines("                   ", 10));
     }
 
     @Test
